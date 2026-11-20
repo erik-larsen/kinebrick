@@ -1,0 +1,637 @@
+{
+  "set": "42052-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:49:21.949Z",
+  "load": 31.3,
+  "part": "A",
+  "parts": 1027,
+  "seconds": 660,
+  "functions": [
+    {
+      "function": 1,
+      "does": "One Power Functions M-motor, switched on and reversed at the battery box under the nose, drives everything through a gearbox behind the cockpit: its 12-tooth gear turns a 24-tooth gear on the gearbox's right shaft, and a row of 16-tooth gears carries the drive across to the left shaft, so both shafts with driving rings always turn while the motor runs.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 1068,
+      "time": {
+        "open": 28,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 111,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p407 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": -1.571,
+          "ms": 47924,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p196 32270": [
+              0,
+              99
+            ],
+            "p311 76019": [
+              0,
+              49.5
+            ],
+            "p239 15462": [
+              0,
+              49.5
+            ],
+            "p241 94925": [
+              0,
+              49.5
+            ],
+            "p261 18946": [
+              0,
+              49.5
+            ],
+            "p243 18946": [
+              0,
+              49.5
+            ],
+            "p254 18946": [
+              0,
+              49.5
+            ],
+            "p240 94925": [
+              0,
+              49.5
+            ],
+            "p238 15462": [
+              0,
+              49.5
+            ]
+          }
+        },
+        {
+          "control": "p407 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": 1.571,
+          "ms": 41932,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p196 32270": [
+              0,
+              99
+            ],
+            "p311 76019": [
+              0,
+              49.5
+            ],
+            "p239 15462": [
+              0,
+              49.5
+            ],
+            "p241 94925": [
+              0,
+              49.5
+            ],
+            "p261 18946": [
+              0,
+              49.5
+            ],
+            "p243 18946": [
+              0,
+              49.5
+            ],
+            "p254 18946": [
+              0,
+              49.5
+            ],
+            "p240 94925": [
+              0,
+              49.5
+            ],
+            "p238 15462": [
+              0,
+              49.5
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 143
+    },
+    {
+      "function": 2,
+      "does": "Function A: with the lever on the right side behind the cockpit pushed to A, the motor turns the two coaxial three-blade rotors: the right shaft's driving ring locks its rear 16-tooth clutch gear, which turns through two idler clutch gears and a gear above them to a 16-tooth gear on the rotor drive shaft; its two 12-tooth bevel gears turn the two rotor turntables, one from above and one from below, so the rotors turn opposite ways.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 1377,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 95,
+        "B": 0
+      },
+      "stop": {
+        "control": "p407 58120",
+        "way": 1,
+        "went": 1.508,
+        "asked": 1.5,
+        "by": [
+          "367/379"
+        ]
+      },
+      "stops": [
+        "367/379"
+      ],
+      "A": [
+        {
+          "control": "p407 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.508,
+          "ms": 59297,
+          "msOneCall": null,
+          "stops": [
+            "367/379"
+          ],
+          "moved": {
+            "p272 18947": [
+              0,
+              47.7
+            ],
+            "p276 18946": [
+              0,
+              47.7
+            ],
+            "p278 18946": [
+              0,
+              47.7
+            ],
+            "p393 18946": [
+              0,
+              47.7
+            ],
+            "p392 94925": [
+              0,
+              47.7
+            ],
+            "p355 32270": [
+              0,
+              47.7
+            ],
+            "p333 99010": [
+              0,
+              20.44
+            ],
+            "p1203 99013p01": [
+              27.67,
+              20.44
+            ],
+            "p360 3705": [
+              0,
+              20.44
+            ],
+            "p1229 99013p01": [
+              27.67,
+              20.44
+            ],
+            "p925 64782": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p407 58120",
+          "way": -1,
+          "asked": 0.2,
+          "went": 0.314,
+          "ms": 12362,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p272 18947": [
+              0,
+              13.5
+            ],
+            "p276 18946": [
+              0,
+              13.5
+            ],
+            "p278 18946": [
+              0,
+              13.5
+            ],
+            "p393 18946": [
+              0,
+              13.5
+            ],
+            "p392 94925": [
+              0,
+              13.5
+            ],
+            "p355 32270": [
+              0,
+              13.5
+            ],
+            "p333 99010": [
+              0,
+              5.79
+            ],
+            "p1203 99013p01": [
+              7.87,
+              5.79
+            ],
+            "p360 3705": [
+              0,
+              5.79
+            ],
+            "p1229 99013p01": [
+              7.87,
+              5.79
+            ],
+            "p925 64782": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p407 58120",
+          "judged": "stands",
+          "why": "stopped at +1.508 rad (367/379); kinds function-selector, driven-rotor: coaxial rotors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 111
+    },
+    {
+      "function": 3,
+      "does": "Function B: with the right lever pushed to B, the motor lowers or raises the rear loading ramp: the right shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft running back through a universal joint to a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms swing the ramp on its links.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 3272,
+      "time": {
+        "open": 23,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 112,
+        "B": 0
+      },
+      "stop": {
+        "control": "p407 58120",
+        "way": 1,
+        "went": 0.66,
+        "asked": 1.5,
+        "by": [
+          "916/942"
+        ]
+      },
+      "stops": [
+        "916/942"
+      ],
+      "A": [
+        {
+          "control": "p407 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.66,
+          "ms": 61677,
+          "msOneCall": null,
+          "stops": [
+            "916/942"
+          ],
+          "moved": {
+            "p272 18947": [
+              0,
+              23.4
+            ],
+            "p248 18946": [
+              0,
+              23.4
+            ],
+            "p262 94925": [
+              0,
+              23.4
+            ],
+            "p265 62520": [
+              0,
+              23.4
+            ],
+            "p753 4716": [
+              0,
+              23.4
+            ],
+            "p709 10928": [
+              0,
+              2.93
+            ],
+            "p716 11478": [
+              2.04,
+              2.93
+            ],
+            "p925 64782": [
+              2.46,
+              1.17
+            ],
+            "p333 99010": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p407 58120",
+          "way": -1,
+          "asked": 0.73,
+          "went": 0.785,
+          "ms": 26774,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p272 18947": [
+              0,
+              27
+            ],
+            "p248 18946": [
+              0,
+              27
+            ],
+            "p262 94925": [
+              0,
+              27
+            ],
+            "p265 62520": [
+              0,
+              27
+            ],
+            "p753 4716": [
+              0,
+              27
+            ],
+            "p709 10928": [
+              0,
+              3.38
+            ],
+            "p716 11478": [
+              2.36,
+              3.38
+            ],
+            "p925 64782": [
+              2.86,
+              1.37
+            ],
+            "p333 99010": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p407 58120",
+          "judged": "stands",
+          "why": "stopped at +0.66 rad (916/942); kinds function-selector, worm-drive, crank-and-link: ramp"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 144
+    },
+    {
+      "function": 5,
+      "does": "Function D: with the left lever pushed to D, the motor winds the winch, raising or lowering the hook on its string under the fuselage: the left shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft whose 20-tooth gear turns a 12-tooth gear on a worm shaft; the worm turns an 8-tooth gear on the winch reel.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 1109,
+      "time": {
+        "open": 26,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 120,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p407 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": -1.571,
+          "ms": 49778,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p271 18947": [
+              0,
+              49.5
+            ],
+            "p249 18946": [
+              0,
+              49.5
+            ],
+            "p253 94925": [
+              0,
+              49.5
+            ],
+            "p255 32269": [
+              0,
+              49.5
+            ],
+            "p234 32270": [
+              0,
+              82.5
+            ],
+            "p207 4716": [
+              0,
+              82.5
+            ],
+            "p202 10928": [
+              0,
+              10.31
+            ],
+            "p213 32012": [
+              0,
+              10.31
+            ],
+            "p602 62531": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p407 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": 1.571,
+          "ms": 45263,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p271 18947": [
+              0,
+              49.5
+            ],
+            "p249 18946": [
+              0,
+              49.5
+            ],
+            "p253 94925": [
+              0,
+              49.5
+            ],
+            "p255 32269": [
+              0,
+              49.5
+            ],
+            "p234 32270": [
+              0,
+              82.5
+            ],
+            "p207 4716": [
+              0,
+              82.5
+            ],
+            "p202 10928": [
+              0,
+              10.31
+            ],
+            "p213 32012": [
+              0,
+              10.31
+            ],
+            "p602 62531": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 157
+    },
+    {
+      "function": 7,
+      "does": "The landing gear's wheels roll freely: two small nose wheels and two larger main wheels.",
+      "verdict": "shown",
+      "msOneCall": 134,
+      "msPerStep": 21,
+      "time": {
+        "open": 33,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 68,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1185 42052 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 921,
+          "msOneCall": 134,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1185 42052 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 873,
+          "msOneCall": 83,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1186 42052 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 892,
+          "msOneCall": 84,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1186 42052 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 864,
+          "msOneCall": 92,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1177 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 755,
+          "msOneCall": 80,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1177 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 735,
+          "msOneCall": 87,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1178 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 745,
+          "msOneCall": 85,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1178 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 752,
+          "msOneCall": 74,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 104
+    }
+  ]
+}

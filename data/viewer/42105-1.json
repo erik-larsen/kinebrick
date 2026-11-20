@@ -1,0 +1,185 @@
+{
+  "set": "42105-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:10:07.884Z",
+  "load": 30.1,
+  "part": "A",
+  "parts": 404,
+  "seconds": 15,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull.",
+      "verdict": "shown",
+      "msOneCall": 48,
+      "msPerStep": 14,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p186 42105 - 33299b",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 602,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {
+            "p184 27938": [
+              0,
+              85.94
+            ],
+            "p155 42105 - 18575": [
+              0,
+              4.3
+            ],
+            "p161 32278": [
+              1.13,
+              0
+            ],
+            "p213 11946": [
+              1.13,
+              0
+            ],
+            "p236 32278": [
+              0,
+              0
+            ],
+            "p59 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p186 42105 - 33299b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 581,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p184 27938": [
+              0,
+              85.94
+            ],
+            "p155 42105 - 18575": [
+              0,
+              4.3
+            ],
+            "p161 32278": [
+              1.13,
+              0
+            ],
+            "p213 11946": [
+              1.13,
+              0
+            ],
+            "p236 32278": [
+              0,
+              0
+            ],
+            "p59 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 3,
+      "does": "The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack.",
+      "verdict": "shown",
+      "msOneCall": 28,
+      "msPerStep": 14,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p261 42105 - 33299b",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 584,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {
+            "p259 27938": [
+              0,
+              85.94
+            ],
+            "p230 42105 - 18575": [
+              0,
+              4.3
+            ],
+            "p236 32278": [
+              1.13,
+              0
+            ],
+            "p161 32278": [
+              0,
+              0
+            ],
+            "p59 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p261 42105 - 33299b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 591,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {
+            "p259 27938": [
+              0,
+              85.94
+            ],
+            "p230 42105 - 18575": [
+              0,
+              4.3
+            ],
+            "p236 32278": [
+              1.13,
+              0
+            ],
+            "p161 32278": [
+              0,
+              0
+            ],
+            "p59 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

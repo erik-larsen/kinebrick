@@ -1,0 +1,483 @@
+{
+  "set": "42099-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:39:35.009Z",
+  "load": 26.5,
+  "part": "A",
+  "parts": 931,
+  "seconds": 97,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs.",
+      "verdict": "not shown",
+      "why": "A: p83 32270, p59 42099 - 18575, p20 32270, p43 62821, p1864 23798, p1868 23798 not moved; not decided: p363 42099 - 18575: a travel of 0.2 rad or less each way, stopped at +0 rad (445/604); -0 rad (458/604)",
+      "msOneCall": 255,
+      "msPerStep": null,
+      "time": {
+        "open": 20,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": {
+        "control": "p363 42099 - 18575",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "445/604"
+        ]
+      },
+      "stops": [
+        "445/604",
+        "458/604"
+      ],
+      "A": [
+        {
+          "control": "p363 42099 - 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 231,
+          "msOneCall": 255,
+          "stops": [
+            "445/604"
+          ],
+          "moved": {
+            "p83 32270": [
+              0,
+              0
+            ],
+            "p59 42099 - 18575": [
+              0,
+              0
+            ],
+            "p20 32270": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ],
+            "p1864 23798": [
+              0,
+              0
+            ],
+            "p1868 23798": [
+              0,
+              0
+            ],
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p1866 23798": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p363 42099 - 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 226,
+          "msOneCall": 240,
+          "stops": [
+            "458/604"
+          ],
+          "moved": {
+            "p83 32270": [
+              0,
+              0
+            ],
+            "p59 42099 - 18575": [
+              0,
+              0
+            ],
+            "p20 32270": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ],
+            "p1864 23798": [
+              0,
+              0
+            ],
+            "p1868 23798": [
+              0,
+              0
+            ],
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p1866 23798": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p363 42099 - 18575",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (445/604); -0 rad (458/604)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p83 32270, p59 42099 - 18575, p20 32270, p43 62821, p1864 23798, p1868 23798 not moved"
+      },
+      "seconds": 33
+    },
+    {
+      "function": 4,
+      "does": "The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs.",
+      "verdict": "shown",
+      "msOneCall": 258,
+      "msPerStep": 92,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 11,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1096 32270",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 1318,
+          "msOneCall": 258,
+          "stops": [],
+          "moved": {
+            "p595 87761": [
+              7.5,
+              0
+            ],
+            "p565 42099 - 46490c02": [
+              6.75,
+              2.93
+            ],
+            "p577 42099 - 46490c02": [
+              7.07,
+              3.1
+            ],
+            "p102 42099 - 46490c02": [
+              0,
+              0
+            ],
+            "p121 42099 - 46490c02": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1096 32270",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 1242,
+          "msOneCall": 195,
+          "stops": [],
+          "moved": {
+            "p595 87761": [
+              7.5,
+              0
+            ],
+            "p565 42099 - 46490c02": [
+              7.07,
+              3.1
+            ],
+            "p577 42099 - 46490c02": [
+              6.75,
+              2.93
+            ],
+            "p102 42099 - 46490c02": [
+              0,
+              0
+            ],
+            "p121 42099 - 46490c02": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 5,
+      "does": "The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way.",
+      "verdict": "not shown",
+      "why": "A: p1862 23798 not moved; not decided: p1866 23798: a travel of 0.2 rad or less each way, stopped at +0 rad (458/604); -0 rad (445/607)",
+      "msOneCall": 225,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1866 23798",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "458/604"
+        ]
+      },
+      "stops": [
+        "458/604",
+        "445/607"
+      ],
+      "A": [
+        {
+          "control": "p1866 23798",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 213,
+          "msOneCall": 212,
+          "stops": [
+            "458/604"
+          ],
+          "moved": {
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p878 42099 - 18575": [
+              0,
+              0
+            ],
+            "p490 62821": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1866 23798",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 215,
+          "msOneCall": 225,
+          "stops": [
+            "445/607"
+          ],
+          "moved": {
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p878 42099 - 18575": [
+              0,
+              0
+            ],
+            "p490 62821": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1866 23798",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (458/604); -0 rad (445/607)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p1862 23798 not moved"
+      },
+      "seconds": 14
+    },
+    {
+      "function": 6,
+      "does": "The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way.",
+      "verdict": "not shown",
+      "why": "A: p1864 23798 not moved; not decided: p1868 23798: a travel of 0.2 rad or less each way, stopped at +0 rad (445/604); -0 rad (458/604)",
+      "msOneCall": 247,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1868 23798",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "445/604"
+        ]
+      },
+      "stops": [
+        "445/604",
+        "458/604"
+      ],
+      "A": [
+        {
+          "control": "p1868 23798",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 244,
+          "msOneCall": 247,
+          "stops": [
+            "445/604"
+          ],
+          "moved": {
+            "p1864 23798": [
+              0,
+              0
+            ],
+            "p363 42099 - 18575": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1868 23798",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 246,
+          "msOneCall": 235,
+          "stops": [
+            "458/604"
+          ],
+          "moved": {
+            "p1864 23798": [
+              0,
+              0
+            ],
+            "p363 42099 - 18575": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1868 23798",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (445/604); -0 rad (458/604)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p1864 23798 not moved"
+      },
+      "seconds": 14
+    },
+    {
+      "function": 9,
+      "does": "The small steering wheel on the dashboard turns freely; it isn't joined to the steering.",
+      "verdict": "shown",
+      "msOneCall": 191,
+      "msPerStep": 39,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 11,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1452 2819",
+        "way": -1,
+        "went": -0.7,
+        "asked": 1.47,
+        "by": [
+          "1240/1452"
+        ]
+      },
+      "stops": [
+        "1240/1452"
+      ],
+      "A": [
+        {
+          "control": "p1452 2819",
+          "way": 1,
+          "asked": 0.7,
+          "went": 0.7,
+          "ms": 765,
+          "msOneCall": 191,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1452 2819",
+          "way": -1,
+          "asked": 1.47,
+          "went": -0.7,
+          "ms": 780,
+          "msOneCall": 143,
+          "stops": [
+            "1240/1452"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1452 2819",
+          "judged": "stands",
+          "why": "stopped at -0.7 rad (1240/1452); kinds for-show: steering wheel"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 19
+    }
+  ]
+}

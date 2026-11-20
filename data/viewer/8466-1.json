@@ -1,0 +1,139 @@
+{
+  "set": "8466-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:51:33.699Z",
+  "load": 28,
+  "part": "A",
+  "parts": 1044,
+  "seconds": 74,
+  "functions": [
+    {
+      "function": 10,
+      "does": "The two doors swing up and out like gull wings: each is a black frame running from the roof edge down to the front fender, with green panels, hinged at the roof.",
+      "verdict": "shown",
+      "msOneCall": 216,
+      "msPerStep": 74,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 39,
+        "B": 0
+      },
+      "stop": {
+        "control": "p134 32009",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "251/605"
+        ]
+      },
+      "stops": [
+        "251/605",
+        "268/569"
+      ],
+      "A": [
+        {
+          "control": "p134 32009",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 3169,
+          "msOneCall": 216,
+          "stops": [],
+          "moved": {
+            "p257 32188": [
+              299.05,
+              85.94
+            ],
+            "p274 32189": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p134 32009",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 111,
+          "msOneCall": 171,
+          "stops": [
+            "251/605"
+          ],
+          "moved": {
+            "p257 32188": [
+              0,
+              0
+            ],
+            "p274 32189": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p138 32009",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 125,
+          "msOneCall": 115,
+          "stops": [
+            "268/569"
+          ],
+          "moved": {
+            "p257 32188": [
+              0,
+              0
+            ],
+            "p274 32189": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p138 32009",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2996,
+          "msOneCall": 131,
+          "stops": [],
+          "moved": {
+            "p257 32188": [
+              0,
+              0
+            ],
+            "p274 32189": [
+              299.05,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p134 32009",
+          "judged": "stands",
+          "why": "stopped at -0 rad (251/605); kinds hinge: gull-wing doors"
+        },
+        {
+          "control": "p138 32009",
+          "judged": "stands",
+          "why": "stopped at +0 rad (268/569); kinds hinge: gull-wing doors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 74
+    }
+  ]
+}

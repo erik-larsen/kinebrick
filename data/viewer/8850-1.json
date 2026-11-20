@@ -1,0 +1,328 @@
+{
+  "set": "8850-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:09:04.159Z",
+  "load": 24.7,
+  "part": "A",
+  "parts": 332,
+  "seconds": 30,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The yellow beacon on the roof steers the front wheels: its tall upright shaft carries a 24 tooth gear at the bottom that drives a crown gear on a shaft running forward under the floor, whose 8 tooth gear slides the steering rack on the tie-rod plate between the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 2,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p338 4150",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 85,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p33 4261 against p0 3702": [
+              0,
+              22
+            ],
+            "p29 4261 against p0 3702": [
+              0,
+              22
+            ],
+            "p54 3743 against p0 3702": [
+              15.27,
+              0
+            ],
+            "p346 4266 against p0 3702": [
+              0,
+              0
+            ],
+            "p344 4266 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p338 4150",
+          "way": -1,
+          "asked": 1.47,
+          "went": -1.47,
+          "ms": 77,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p33 4261 against p0 3702": [
+              0,
+              21.54
+            ],
+            "p29 4261 against p0 3702": [
+              0,
+              21.54
+            ],
+            "p54 3743 against p0 3702": [
+              14.95,
+              0
+            ],
+            "p346 4266 against p0 3702": [
+              0,
+              0
+            ],
+            "p344 4266 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 2,
+      "does": "Pushed along, the rear wheels drive the differential between them, so they can turn at different speeds round a corner.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p346 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 81,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p76 73071 against p0 3702": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p346 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 82,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p76 73071 against p0 3702": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p344 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 83,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p76 73071 against p0 3702": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p344 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 77,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p76 73071 against p0 3702": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 4,
+      "does": "The axle sticking out of the back of the chassis turns as the truck rolls: its 8 tooth gear is driven by the 24 tooth gear on the prop shaft, ready to drive something hitched behind.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p346 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 76,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p94 3737 against p0 3702": [
+              0,
+              158
+            ]
+          }
+        },
+        {
+          "control": "p346 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 77,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p94 3737 against p0 3702": [
+              0,
+              158
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 5,
+      "does": "The front wheels roll freely on their stub axles.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p342 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 80,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p342 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 79,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p348 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 76,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p348 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 73,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 7,
+      "does": "The grey pulley wheel on the side of the engine turns freely on its pin.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p303 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p303 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 54,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}
