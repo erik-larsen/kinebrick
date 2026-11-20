@@ -91,6 +91,13 @@ const DEAD_POINT_SAMPLE = (10 * Math.PI) / 180;
 // How far apart a joint may be left after closing the loops, in LDU, before the step counts as
 // past a dead point (see turnJoint). Models' rounded-off positions leave a hundred-thousandth.
 const DEAD_POINT_GAP = 1e-3;
+// How far a joint may be left from where a step's motion had it going, in radians, and the step
+// still be taken on or just after play (see turnJoint): closing loops that play left open turns
+// joints off their way, by up to 0.73 radians in twenty sets that go on play (the 8274's, 2026-11-20).
+// Further is not play but a linkage flipped: the 9395 Pick-Up Tow Truck's winch, a step after one
+// on play, turned a joint 27.7 radians off its way and moved 506 parts up to 140 LDU, and only the
+// collision test stopped it there, naming the pair it met first (2026-11-20).
+const PLAY_STRAY = Math.PI / 2;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
 // The smallest step a turn is cut down to, a step at a time, to leave a jam ahead (see turnJoint).
@@ -2618,7 +2625,9 @@ export class Kinematics {
       // The last step counts only where it ended where this one starts: a drag before this one,
       // ended on play, says nothing of the loops here.
       const fromPlay = this.options.loopPlay && (played || (last?.played === true && last.angles.every((x, k) => x === before.jointAngles[k])));
-      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(fromPlay && !ownTurnLost))) {
+      // But not a joint left more than PLAY_STRAY off its way: a linkage flipped, not play.
+      const flipped = strayed.some((k) => Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > PLAY_STRAY);
+      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(fromPlay && !ownTurnLost && !flipped))) {
         if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length, ownTurnLost });
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have

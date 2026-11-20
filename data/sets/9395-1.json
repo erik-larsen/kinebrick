@@ -164,9 +164,10 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d0eb6ba3",
+    "uncommitted": true,
     "date": "2026-11-20",
-    "seconds": 802,
+    "seconds": 765,
     "counts": {
       "works": 4,
       "partly": 2,
@@ -299,8 +300,8 @@
             ]
           ]
         ],
-        "seconds": 25.7,
-        "peak": 897
+        "seconds": 29.4,
+        "peak": 903
       },
       {
         "result": "works",
@@ -428,8 +429,8 @@
             "p297 2851"
           ]
         ],
-        "seconds": 127.7,
-        "peak": 909
+        "seconds": 126.1,
+        "peak": 904
       },
       {
         "result": "partly",
@@ -505,8 +506,8 @@
           ]
         ],
         "onPlay": 1.67,
-        "seconds": 45.5,
-        "peak": 895
+        "seconds": 51.2,
+        "peak": 904
       },
       {
         "result": "works",
@@ -559,8 +560,8 @@
         "back": [
           [
             [
-              26.77,
-              48.14
+              82.33,
+              105.13
             ],
             [
               3.69,
@@ -571,8 +572,8 @@
         "torn": [
           [
             [
-              26.81,
-              48.14
+              80.64,
+              105.13
             ],
             [
               3.7,
@@ -586,23 +587,13 @@
         ],
         "stop": [
           [
-            "limit",
+            "end of travel",
             "dead point"
           ]
         ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            742,
-            773,
-            1.17,
-            1.17
-          ]
-        ],
         "onPlay": 1.61,
-        "seconds": 138.5,
-        "peak": 911
+        "seconds": 104.7,
+        "peak": 895
       },
       {
         "result": "partly",
@@ -673,8 +664,8 @@
         "cause": "not-driven",
         "detail": "p431 41239 against p8 62821",
         "onPlay": 0.27,
-        "seconds": 182.7,
-        "peak": 900
+        "seconds": 177.5,
+        "peak": 907
       },
       {
         "result": "not checked"
@@ -795,8 +786,8 @@
           [],
           []
         ],
-        "seconds": 266,
-        "peak": 908
+        "seconds": 259.4,
+        "peak": 893
       }
     ]
   }
