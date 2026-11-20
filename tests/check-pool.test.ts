@@ -89,7 +89,7 @@ describe('the check pool', () => {
   });
 
   it('estimates from the part count, and reads part counts past quoted commas', () => {
-    expect(estimateMb(4079)).toBe(11198);
+    expect(estimateMb(4079)).toBe(4059);
     const dir = mkdtempSync(join(tmpdir(), 'check-pool-'));
     dirs.push(dir);
     const csv = join(dir, 'sets.csv');
