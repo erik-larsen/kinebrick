@@ -20,7 +20,7 @@
 // joint) are pulled back together after each step (see closeLoops). A body reached only
 // through those, such as a piston, is a root of its own.
 
-import { Matrix4, Vector3 } from 'three';
+import { Matrix4, Quaternion, Vector3 } from 'three';
 import { Joint, Mechanism, StringLine } from './mechanism.ts';
 import { StringCircle, stringLayout } from './paths.ts';
 import { links, spinners } from './constraints/balls.ts';
@@ -2533,6 +2533,10 @@ export class Kinematics {
   // second (the 42083 Bugatti Chiron's steering moves its body 159 so).
   ws: { drag: Drag; joint: number; columns: Set<number>; ring: Set<number>; turned: number; confirmed: boolean; w: Set<number> } | null = null;
   private wsActive = false;
+  // The shadow mode (KINEBRICK_WORKING_SET_SHADOW=1): the same drag worked in full, beside the drag on
+  // the set, from its own last state; and a number for each drag.
+  private wsShadow: { drag: Drag; state: ReturnType<Kinematics['stepState']>; turned: number; id: number } | null = null;
+  private static wsDrags = 0;
   // What the working set did, for the compare mode and the reports: turns worked on the set, and
   // those worked again in full, by why; and, in the compare mode, each turn both ways.
   // Kept for every Kinematics alike (a function check makes it afresh as the mechanism is read
@@ -2546,6 +2550,9 @@ export class Kinematics {
     fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 } as Record<string, number>,
     excluded: 0,
     compared: [] as { joint: number; angle: number; small: number; full: number; pose: number; angle2: number; small_ok: boolean }[],
+    // The shadow mode: after each turn of a drag, how far the drag on the set and the same drag in
+    // full have come apart (see turnJoint).
+    shadow: [] as { drag: number; at: number; ldu: number; rad: number; small: number; full: number }[],
   };
 
   // Turns a joint by `angle` (see turnJointPlain), on the drag's working set where it has one and
@@ -2555,6 +2562,44 @@ export class Kinematics {
   // set afresh from what it turned.
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     if (!this.options.workingSet) return this.turnJointPlain(joint, angle, allowed, maxStep);
+    if (process.env.KINEBRICK_WORKING_SET_SHADOW !== '1') return this.turnJointSet(joint, angle, allowed, maxStep);
+    // The shadow: the same turn in full from the full drag's own state (or from here, at a drag's
+    // start), then the turn on the set from here, kept; and how far apart they now are. The collision
+    // test is asked in both: a stop it makes in one is a stop the other may not make.
+    const mine = this.stepState();
+    const fresh = !this.wsShadow || this.wsShadow.drag !== this.drag;
+    if (!fresh) this.restoreStepState(this.wsShadow!.state);
+    const full = this.turnJointPlain(joint, angle, allowed, maxStep);
+    const shadow = { drag: this.drag, state: this.stepState(), turned: (fresh ? 0 : this.wsShadow!.turned) + full, id: fresh ? ++Kinematics.wsDrags : this.wsShadow!.id };
+    this.restoreStepState(mine);
+    const turned = this.turnJointSet(joint, angle, allowed, maxStep);
+    this.wsShadow = shadow;
+    const [ldu, rad] = this.apartFrom(shadow.state.state);
+    this.wsStats.shadow.push({ drag: shadow.id, at: shadow.turned, ldu, rad, small: turned, full });
+    return turned;
+  }
+
+  // How far each body is from where another state has it: the most any joint's point on it is apart
+  // (LDU), and the most it is turned against it (rad).
+  private apartFrom(other: KinematicsState): [number, number] {
+    const here = this.poses.map((m) => m.clone());
+    const now = this.snapshot();
+    this.restore(other);
+    const there = this.poses.map((m) => m.clone());
+    this.restore(now);
+    let ldu = 0;
+    let rad = 0;
+    const points: Vector3[][] = this.mech.bodies.map(() => []);
+    for (const j of this.mech.joints) for (const b of [j.bodyA, j.bodyB]) points[b].push(j.from, j.to);
+    here.forEach((m, b) => {
+      for (const p of points[b]) ldu = Math.max(ldu, p.clone().applyMatrix4(m).distanceTo(p.clone().applyMatrix4(there[b])));
+      const q = new Quaternion().setFromRotationMatrix(new Matrix4().extractRotation(there[b]).invert().multiply(new Matrix4().extractRotation(m)));
+      rad = Math.max(rad, 2 * Math.acos(Math.min(1, Math.abs(q.w))));
+    });
+    return [ldu, rad];
+  }
+
+  private turnJointSet(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     const ws = this.ws;
     const ours = ws !== null && ws.drag === this.drag && ws.joint === joint;
     const usable = ours && ws!.confirmed && !this.wsExcluded(ws!);
