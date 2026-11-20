@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "26dab794",
-    "date": "2026-11-19",
-    "seconds": 7788,
+    "commit": "4fa15e08",
+    "date": "2026-11-20",
+    "seconds": 1224,
     "counts": {
       "works": 8,
       "partly": 4,
@@ -325,7 +325,8 @@
             1.27
           ]
         ],
-        "seconds": 218.4
+        "seconds": 47.9,
+        "peak": 1835
       },
       {
         "result": "partly",
@@ -407,7 +408,8 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 413.9
+        "seconds": 91.9,
+        "peak": 1783
       },
       {
         "result": "works",
@@ -477,7 +479,8 @@
           [],
           []
         ],
-        "seconds": 653.3
+        "seconds": 224.1,
+        "peak": 2319
       },
       {
         "result": "works",
@@ -554,7 +557,8 @@
             0.03
           ]
         ],
-        "seconds": 18.3
+        "seconds": 7,
+        "peak": 1600
       },
       {
         "result": "works",
@@ -665,7 +669,8 @@
             0
           ]
         ],
-        "seconds": 183.3
+        "seconds": 35.3,
+        "peak": 1993
       },
       {
         "result": "partly",
@@ -713,7 +718,8 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 19.3
+        "seconds": 7.5,
+        "peak": 1668
       },
       {
         "result": "works",
@@ -783,7 +789,8 @@
             0.6
           ]
         ],
-        "seconds": 64.6
+        "seconds": 22,
+        "peak": 1787
       },
       {
         "result": "works",
@@ -853,7 +860,8 @@
             0.6
           ]
         ],
-        "seconds": 67.6
+        "seconds": 21.7,
+        "peak": 1759
       },
       {
         "result": "partly",
@@ -926,7 +934,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 47.9
+        "seconds": 18.2,
+        "peak": 1775
       },
       {
         "result": "partly",
@@ -999,7 +1008,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 54.7
+        "seconds": 17.8,
+        "peak": 1624
       },
       {
         "result": "works",
@@ -1098,7 +1108,8 @@
             0.01
           ]
         ],
-        "seconds": 651.8
+        "seconds": 231.3,
+        "peak": 1840
       },
       {
         "result": "no",
@@ -1165,7 +1176,8 @@
               0.6
             ]
           ],
-          "seconds": 47.4
+          "seconds": 22.4,
+          "peak": 1771
         }
       },
       {
@@ -1288,7 +1300,8 @@
           [],
           []
         ],
-        "seconds": 915.8
+        "seconds": 425,
+        "peak": 2419
       }
     ]
   }
