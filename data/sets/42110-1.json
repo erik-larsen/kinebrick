@@ -204,15 +204,13 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 1049,
+    "commit": "335ef375",
+    "date": "2026-11-20",
+    "seconds": 892,
     "counts": {
       "works": 12,
       "partly": 1,
-      "skipped": 2,
-      "not back": 1,
-      "torn": 1
+      "skipped": 2
     },
     "loose": [
       "p850 3068b",
@@ -316,7 +314,8 @@
             ]
           ]
         ],
-        "seconds": 142
+        "seconds": 141.7,
+        "peak": 957
       },
       {
         "result": "works",
@@ -358,7 +357,8 @@
             ]
           ]
         ],
-        "seconds": 139.7
+        "seconds": 141.5,
+        "peak": 949
       },
       {
         "result": "partly",
@@ -417,7 +417,8 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 68.1
+        "seconds": 63.8,
+        "peak": 959
       },
       {
         "result": "works",
@@ -467,7 +468,8 @@
             ]
           ]
         ],
-        "seconds": 19.9
+        "seconds": 19.1,
+        "peak": 958
       },
       {
         "result": "works",
@@ -547,7 +549,8 @@
             0.17
           ]
         ],
-        "seconds": 5.9
+        "seconds": 5.4,
+        "peak": 952
       },
       {
         "result": "works",
@@ -613,7 +616,8 @@
             0.5
           ]
         ],
-        "seconds": 10.4
+        "seconds": 9.5,
+        "peak": 954
       },
       {
         "result": "works",
@@ -679,7 +683,8 @@
             0.5
           ]
         ],
-        "seconds": 10.2
+        "seconds": 9.6,
+        "peak": 952
       },
       {
         "result": "works",
@@ -721,7 +726,8 @@
             ]
           ]
         ],
-        "seconds": 23.5
+        "seconds": 21.4,
+        "peak": 962
       },
       {
         "result": "skipped"
@@ -730,12 +736,12 @@
         "result": "works",
         "turned": [
           [
-            0.91,
+            1.5,
             0
           ],
           [
             0,
-            -1.04
+            -1.5
           ]
         ],
         "rates": [
@@ -745,8 +751,8 @@
         "back": [
           [
             [
-              149.38,
-              36.7
+              0,
+              0
             ],
             [
               0,
@@ -767,8 +773,8 @@
         "torn": [
           [
             [
-              149.38,
-              36.7
+              0,
+              0
             ],
             [
               0,
@@ -786,17 +792,14 @@
             ]
           ]
         ],
-        "strayed": [
-          "p1870 59443"
-        ],
         "stop": [
           [
-            "limit",
+            null,
             "limit"
           ],
           [
             "limit",
-            "limit"
+            null
           ]
         ],
         "pushed": [
@@ -809,14 +812,6 @@
           []
         ],
         "collisionStops": [
-          [
-            0,
-            1,
-            1819,
-            1890,
-            0.91,
-            0.91
-          ],
           [
             0,
             -1,
@@ -832,17 +827,10 @@
             1906,
             0,
             0
-          ],
-          [
-            1,
-            -1,
-            1905,
-            1976,
-            1.04,
-            1.04
           ]
         ],
-        "seconds": 196.9
+        "seconds": 327.7,
+        "peak": 996
       },
       {
         "result": "works",
@@ -895,7 +883,8 @@
             0
           ]
         ],
-        "seconds": 12.5
+        "seconds": 12.4,
+        "peak": 957
       },
       {
         "result": "works",
@@ -964,7 +953,8 @@
             0.1
           ]
         ],
-        "seconds": 6.4
+        "seconds": 5.7,
+        "peak": 964
       },
       {
         "result": "works",
@@ -1018,7 +1008,8 @@
             0.03
           ]
         ],
-        "seconds": 22.7
+        "seconds": 22,
+        "peak": 1099
       },
       {
         "result": "works",
@@ -1072,7 +1063,8 @@
             0.07
           ]
         ],
-        "seconds": 22.8
+        "seconds": 22.3,
+        "peak": 1116
       },
       {
         "result": "skipped"

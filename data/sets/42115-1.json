@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 2786,
+    "commit": "335ef375",
+    "date": "2026-11-20",
+    "seconds": 1757,
     "counts": {
       "partly": 4,
       "works": 4,
@@ -316,7 +316,8 @@
         ],
         "cause": "not-driven",
         "detail": "p681 2854",
-        "seconds": 317.5
+        "seconds": 239.1,
+        "peak": 1366
       },
       {
         "result": "partly",
@@ -410,7 +411,8 @@
             0.03
           ]
         ],
-        "seconds": 16.6
+        "seconds": 10.9,
+        "peak": 1034
       },
       {
         "result": "works",
@@ -480,7 +482,8 @@
             0.5
           ]
         ],
-        "seconds": 26.9
+        "seconds": 23.3,
+        "peak": 1039
       },
       {
         "result": "works",
@@ -562,7 +565,8 @@
             0.6
           ]
         ],
-        "seconds": 140.9
+        "seconds": 114.7,
+        "peak": 1397
       },
       {
         "result": "works",
@@ -680,7 +684,8 @@
           [],
           []
         ],
-        "seconds": 1366.6
+        "seconds": 1044,
+        "peak": 1360
       },
       {
         "result": "skipped"
@@ -766,7 +771,8 @@
             0.13
           ]
         ],
-        "seconds": 24.6
+        "seconds": 16,
+        "peak": 1081
       },
       {
         "result": "partly",
@@ -888,7 +894,8 @@
           ]
         ],
         "onPlay": 0.13,
-        "seconds": 44.1
+        "seconds": 34.7,
+        "peak": 1279
       },
       {
         "result": "works",
@@ -947,7 +954,8 @@
             0
           ]
         ],
-        "seconds": 98.8
+        "seconds": 73.1,
+        "peak": 1404
       },
       {
         "result": "no",
@@ -1006,7 +1014,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 49.4
+        "seconds": 33.3,
+        "peak": 1040
       },
       {
         "result": "no",
@@ -1087,7 +1096,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 97
+        "seconds": 86.3,
+        "peak": 1143
       }
     ]
   }

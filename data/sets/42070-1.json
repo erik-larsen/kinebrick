@@ -283,9 +283,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 1186,
+    "commit": "335ef375",
+    "date": "2026-11-20",
+    "seconds": 951,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -419,7 +419,8 @@
             ]
           ]
         ],
-        "seconds": 83.5
+        "seconds": 78.9,
+        "peak": 907
       },
       {
         "result": "partly",
@@ -479,7 +480,8 @@
         ],
         "cause": "not-driven",
         "detail": "p592 18946",
-        "seconds": 31.1
+        "seconds": 31.2,
+        "peak": 1020
       },
       {
         "result": "works",
@@ -549,7 +551,8 @@
             ]
           ]
         ],
-        "seconds": 42.1
+        "seconds": 43.6,
+        "peak": 1094
       },
       {
         "result": "works",
@@ -627,7 +630,8 @@
             0.47
           ]
         ],
-        "seconds": 27.8
+        "seconds": 27.8,
+        "peak": 900
       },
       {
         "result": "works",
@@ -705,7 +709,8 @@
             0.47
           ]
         ],
-        "seconds": 23.7
+        "seconds": 24,
+        "peak": 1028
       },
       {
         "result": "works",
@@ -783,7 +788,8 @@
             ]
           ]
         ],
-        "seconds": 99
+        "seconds": 93.3,
+        "peak": 1081
       },
       {
         "result": "partly",
@@ -893,7 +899,8 @@
             0.43
           ]
         ],
-        "seconds": 467.8
+        "seconds": 451.1,
+        "peak": 1039
       },
       {
         "result": "works",
@@ -963,7 +970,8 @@
             ]
           ]
         ],
-        "seconds": 49.5
+        "seconds": 49.8,
+        "peak": 1139
       },
       {
         "result": "partly",
@@ -1050,7 +1058,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2086 40490",
-        "seconds": 76.1
+        "seconds": 71.7,
+        "peak": 1044
       },
       {
         "result": "works",
@@ -1160,7 +1169,8 @@
             0.17
           ]
         ],
-        "seconds": 18.1
+        "seconds": 18,
+        "peak": 898
       },
       {
         "result": "skipped"
