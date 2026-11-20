@@ -31,7 +31,9 @@ async function readLdrawFile(name: string): Promise<string | null> {
 }
 
 // `modelText`: the model's text as read, if not the file's own (a set's file with its errata).
-export async function partShapes(file: string, modelText?: string): Promise<{ name: string; shape: PartMesh[] }[]> {
+// `partNames`: the model's parts as parseModel reads them (readParts' parts): the shapes then come
+// one for each of them, matched by name (see the end).
+export async function partShapes(file: string, modelText?: string, partNames?: string[]): Promise<{ name: string; shape: PartMesh[] }[]> {
   const base = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   let text: string;
   if (existsSync(join('packed', `${base}.mpd`))) text = readFileSync(join('packed', `${base}.mpd`), 'utf-8');
@@ -69,16 +71,59 @@ export async function partShapes(file: string, modelText?: string): Promise<{ na
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
   const model = await new Promise<Object3D>((resolve, reject) => loader.parse([...placed, ...rest].join('\n'), resolve, reject));
   model.updateMatrixWorld(true);
+  // Each child the loader made, matched to its line by what it is (its file and its colour),
+  // never by where it falls in the list: a line the loader makes no child for (a subpart or
+  // primitive the model places itself, which the loader draws into the model's own mesh; a file
+  // that failed to load) must not shift every shape after it onto the next part (the 4558
+  // Metroliner's two subparts s/4865p01b and s/4865p01c: from its part 200 on, every part had the
+  // next one's shape; decision 242). The model's own mesh, of what it draws itself, is no line's.
+  const lineChildren = model.children.filter((obj) => (obj as Object3D & { isGroup?: boolean }).isGroup && obj.userData.colorCode !== undefined);
   const byKey = new Map<string, { name: string; shape: PartMesh[] }>();
-  model.children.forEach((obj, i) => {
+  const nameOf = (key: string) => normalizePartName(key.slice(key.indexOf(' ') + 1));
+  // A file the model carries itself, the loader names as if in the library (parts/s/…).
+  const loaded = (name: string) => normalizePartName(name).replace(/^(parts|p)\//, '');
+  let next = 0;
+  for (const key of firsts) {
+    const obj = lineChildren[next];
+    if (!obj || loaded(obj.name) !== nameOf(key) || String(obj.userData.colorCode) !== key.slice(0, key.indexOf(' '))) continue;
+    next++;
     const toPart = obj.matrixWorld.clone().invert();
     const shape: PartMesh[] = [];
     obj.traverse((child) => {
       const mesh = child as Mesh;
       if (mesh.isMesh) shape.push({ geometry: collisionGeometry(mesh.geometry), matrix: toPart.clone().multiply(mesh.matrixWorld) });
     });
-    byKey.set(firsts[i], { name: normalizePartName(obj.name), shape });
+    byKey.set(key, { name: nameOf(key), shape });
+  }
+  if (next !== lineChildren.length) throw new Error(`${file}: the loader made ${lineChildren.length} parts and shapes, of which ${next} match the model's lines; from ${lineChildren[next].name} on, none do`);
+  // Each line's shape, in order, but the lines the loader makes no child for: as the old reading
+  // gave them (the loader's children, a part each, then the shapes the submodels draw), which is
+  // how parseModel reads the parts where they agree. They are named; the check's guard (see
+  // check-functions.ts) stops a function where the shapes don't match the parts.
+  const missing = new Set<string>();
+  const out = keyOf.flatMap((key) => {
+    const found = byKey.get(key);
+    if (!found) missing.add(nameOf(key));
+    return found ? [found] : [];
   });
+  if (missing.size) console.error(`${base}: no part made of ${[...missing].join(', ')} (drawn into the model, or not loaded)`);
+  if (!partNames) return out;
+  // One for each of the model's parts, by name, in order. Where the loader and parseModel read a
+  // subpart differently (the 42120's embedded s/42120 - faxle1, which the loader makes a part of
+  // and parseModel draws into the model; the 4558's s/4865p01b, the other way round), a shape no
+  // part has is passed over, and a part the loader made nothing of has no shape. The shapes the
+  // submodels draw come after, as they were.
+  const aligned: { name: string; shape: PartMesh[] }[] = [];
+  let at = 0;
+  for (const name of partNames.map(normalizePartName)) {
+    let j = at;
+    while (j < out.length && out[j].name !== name && /^s\//.test(out[j].name)) j++;
+    if (j < out.length && out[j].name === name) {
+      aligned.push(out[j]);
+      at = j + 1;
+    } else aligned.push({ name, shape: [] });
+  }
+  return [...aligned, ...out.slice(at)];
   // Every copy shares its colour and part's list (see Collisions, which shrinks a list once).
-  return keyOf.map((key) => byKey.get(key)!);
+  return out;
 }
