@@ -450,8 +450,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [850-1](#850-1-handwheel-down) | handwheel-down | moves `3736.dat` to -90 -198 -100 | Signed off by Erik, 2026-11-14 |
 | [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
 | [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
-| [8110-1](#8110-1-crane-shaft-universal-joint-whole) | crane-shaft-universal-joint-whole | adds 2 lines to the main model | Proposed, not applied until signed off |
-| [8110-1](#8110-1-crane-shaft-ball-in-its-cup) | crane-shaft-ball-in-its-cup | moves `32494.dat` to 20 -60 -460 | Proposed, not applied until signed off |
+| [8110-1](#8110-1-crane-shaft-universal-joint-whole) | crane-shaft-universal-joint-whole | adds 2 lines to the main model | Signed off by Erik, 2026-11-19 |
+| [8110-1](#8110-1-crane-shaft-ball-in-its-cup) | crane-shaft-ball-in-its-cup | moves `32494.dat` to 20 -60 -460 | Signed off by Erik, 2026-11-19 |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
 | [8258-1](#8258-1-boom-actuator-u-joint-on-the-turntable-axle) | boom-actuator-u-joint-on-the-turntable-axle | moves `62520.dat` (in `8258 - m-1g''''.ldr`) to 0 0 -50, turned | Signed off by Erik, 2026-11-17 |
 | [8832-1](#8832-1-roll-bar-brace-right-axle-through-its-toggles) | roll-bar-brace-right-axle-through-its-toggles | moves `3706.dat` to 70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
@@ -506,10 +506,10 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
 | [42077-1](#42077-1-rear-half-shaft-inner-ball-level) | rear-half-shaft-inner-ball-level | moves `32494.dat` (in `42077 - rearaxle.ldr`) to -60 0 0, turned | Signed off by Erik, 2026-11-17 |
 | [42078-1](#42078-1-rear-crane-actuator-axle-to-its-connectors) | rear-crane-actuator-axle-to-its-connectors | moves `60485.dat` (in `42078 - craneactu.ldr` as placed in `42078 - crane1.ldr` only) to -0.012 -20 49.983 | Signed off by Erik, 2026-11-17 |
-| [42078-1](#42078-1-door-2-has-no-13L-beam) | door-2-has-no-13L-beam | removes `41239.dat` (in `42078 - containerdoor2.ldr`) | Proposed, not applied until signed off |
-| [42078-1](#42078-1-door-2-has-no-blue-pin-at-y-minus-280) | door-2-has-no-blue-pin-at-y-minus-280 | removes `6558.dat` (in `42078 - containerdoor2.ldr`) | Proposed, not applied until signed off |
-| [42078-1](#42078-1-door-2-has-no-blue-pin-at-y-minus-400) | door-2-has-no-blue-pin-at-y-minus-400 | removes `6558.dat` (in `42078 - containerdoor2.ldr`) | Proposed, not applied until signed off |
-| [42078-1](#42078-1-door-2-black-pins-for-its-11L-beam) | door-2-black-pins-for-its-11L-beam | adds 2 lines to the main model | Proposed, not applied until signed off |
+| [42078-1](#42078-1-door-2-has-no-13L-beam) | door-2-has-no-13L-beam | removes `41239.dat` (in `42078 - containerdoor2.ldr`) | Signed off by Erik, 2026-11-19 |
+| [42078-1](#42078-1-door-2-has-no-blue-pin-at-y-minus-280) | door-2-has-no-blue-pin-at-y-minus-280 | removes `6558.dat` (in `42078 - containerdoor2.ldr`) | Signed off by Erik, 2026-11-19 |
+| [42078-1](#42078-1-door-2-has-no-blue-pin-at-y-minus-400) | door-2-has-no-blue-pin-at-y-minus-400 | removes `6558.dat` (in `42078 - containerdoor2.ldr`) | Signed off by Erik, 2026-11-19 |
+| [42078-1](#42078-1-door-2-black-pins-for-its-11L-beam) | door-2-black-pins-for-its-11L-beam | adds 2 lines to the main model | Signed off by Erik, 2026-11-19 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
@@ -568,7 +568,7 @@ Added to the main model:
 
 ### 8110-1: crane-shaft-universal-joint-whole
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-19.
 
 Book 2, step 65 (page 3, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6013912.pdf#page=3) puts an axle 8 into a whole universal joint, both ends and the cross, and the joint onto the gearbox's output at the back, the shaft that runs to the crane base and slews the crane (function 8; the crane base is book 4, pages 43 to 48). The main model's line 349 has one end only, 62520 p706, its fork centre at 100 -60 -270, on the output axle's line (the axle 8 with stop p365, along z at x 100), and its axle hole along the shaft, holding the axle 8 p707. There is no cross and no second end, so the shaft (body 162) is joined to nothing at the gearbox, and turning the output leaves it still: function 8 is not driven at p767 94925. The file's five other universal joints each have their two ends and the cross at one point (lines 27 to 29, 40 to 42, 328 to 330, and two in submodels): 11 ends and 5 crosses in all. Added at that point: the cross 62519, and a second end 62520 reaching back along the output axle, its fork turned a quarter turn from p706's, as the file's other joints have them, in p706's colour.
 
@@ -581,7 +581,7 @@ Added to the main model:
 
 ### 8110-1: crane-shaft-ball-in-its-cup
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-19.
 
 With crane-shaft-universal-joint-whole: the shaft's far end is the ball driver p756 32494 in the cup p754 92906, which turns the crane base's input (the joiner p755 and the 16 tooth gear p767), put on in book 2, step 77 (page 24, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6013912.pdf#page=24). The ball's middle is the driver's origin and the socket's is the cup's, and the file has the ball 6.2 LDU short of the socket, along the shaft, so the two are not joined and the crane base is not driven (function 8, not driven at p767 94925). The file's two other balls in such cups sit at the cup's middle (axleFront.ldr lines 11002 and 11003; line 14687, 0.6 LDU off). Moved to the cup's middle, with its turn as drawn (0.2 degrees off the line from the universal joint's middle), the axle 8 p707 is 16 LDU in the driver's hole, against 10 as drawn.
 
@@ -1372,7 +1372,7 @@ is read with its part at -0.012 -20 49.983.
 
 ### 42078-1: door-2-has-no-13L-beam
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-19.
 
 The container's two end doors are built differently. Door 1 (step 43, page 409, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=409), ends in an 11L beam and a 13L beam held to the panel by two blue 3L pins; door 2 (steps 58 and 59, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415) ends in an 11L beam only, on two of the six black pins, and has no 13L beam and no blue pins. The file's door 2 (42078 - containerdoor2.ldr) is door 1 mirrored, so it has door 1's 13L beam and blue pins too: its 13L beam p2672 lies in the same place as door 1's 13L beam p2638 (80, -340, 800), and its blue pins p2669 and p2670 run on into door 1's 13L. As read, the two doors are one body with the trailer, and neither swings on its hinge (function 12). Removed: door 2's 13L beam and blue pins; added: two black pins 2780 in their place, each through door 2's 11L beam and 20 LDU into its panel, as door 1's blue pins go into its panel.
 
@@ -1386,7 +1386,7 @@ is read as not there. The part keeps its number.
 
 ### 42078-1: door-2-has-no-blue-pin-at-y-minus-280
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-19.
 
 With door-2-has-no-13L-beam: one of door 2's two blue 3L pins, which the booklet doesn't give it (step 58, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415).
 
@@ -1400,7 +1400,7 @@ is read as not there. The part keeps its number.
 
 ### 42078-1: door-2-has-no-blue-pin-at-y-minus-400
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-19.
 
 With door-2-has-no-13L-beam: the other blue 3L pin.
 
@@ -1414,7 +1414,7 @@ is read as not there. The part keeps its number.
 
 ### 42078-1: door-2-black-pins-for-its-11L-beam
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-19.
 
 With door-2-has-no-13L-beam: the two black pins 2780 that hold door 2's 11L beam p2671 to its panel p2665 (step 58, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415, where two of the six black pins go into the panel's end; step 59 puts the 11L beam on them), in the main model's coordinates, 10 LDU nearer the panel than the blue pins they replace, so they don't reach door 1.
 

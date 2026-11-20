@@ -114,7 +114,7 @@
         "note": "inferred which parts are the axle housings; the springs only push back under force. lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
-        "does": "The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output.",
+        "does": "The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor.",
         "mechanisms": [
           "electric-motor: PF",
           "function-selector: 4 functions"
@@ -124,7 +124,7 @@
         "moves": [
           "p241 3648b"
         ],
-        "note": "the motor is a control like a crank; which ring and which clutch gear (p321, p325 on one ring, p332, p336 on the other) drives which output isn't read from the file yet; the levers are the catches p512 6641 and p516 6641"
+        "note": "the motor is a control like a crank; the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up. The yellow lever’s ring p330 locks p332 when up (the red lever’s line) and p336 when down (the compressor’s crank p422); the red lever’s ring p320 locks p325 when down (the winch) and p321 when up (the crane). Page 43 shows four pictures, but the two with the yellow lever down differ only by the red knob, which is a valve’s (function 16), not a gear’s"
       },
       {
         "does": "With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook.",
@@ -155,7 +155,7 @@
         "stays": [
           "p2216 48168"
         ],
-        "note": "which way each catch moves for each setting is inferred; the hook's rise and fall isn't expressed by the fields. Both levers stand straight up as built, so the model's pose doesn't say which way is up; of the four ways to set the two catches (each by +0.4 or -0.4), only the red lever's catch p512 by +0.4 with the yellow lever's catch p516 by +0.4 drives the winch (the drum turning 1/24 of the motor) and moves nothing listed to stay: with p516 by -0.4 the motor jams, and with p512 by -0.4 and p516 by +0.4 the winch isn't driven. So that is the first step, the check's finding rather than the book's"
+        "note": "the hook’s rise and fall isn’t expressed by the fields; the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up, so the first step is red down and yellow up, as page 43 shows"
       },
       {
         "does": "With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round.",
@@ -170,7 +170,7 @@
         "first": [
           {
             "control": "p512 6641",
-            "by": 0.4
+            "by": -0.4
           },
           {
             "control": "p516 6641",
@@ -188,7 +188,7 @@
           "p2215 48452",
           "p4030 32012"
         ],
-        "note": "which way each catch moves for each setting is inferred"
+        "note": "the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up, so the first step is red up and yellow up, as page 43 shows"
       },
       {
         "does": "With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system.",
@@ -201,7 +201,7 @@
         "control": "p60 58120",
         "first": [
           {
-            "control": "p512 6641",
+            "control": "p516 6641",
             "by": -0.4
           }
         ],
@@ -213,17 +213,27 @@
           "p2216 48168",
           "p4030 32012"
         ],
-        "note": "which part is the red knob that's pushed in and out isn't identified; the pump p378 99798-f1 is drawn retracted and its stroke isn't expressed"
+        "note": "the pump p378 99798-f1 is drawn retracted and its stroke isn’t expressed; the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up, so the first step is yellow down; with it, the red lever’s line is idle, so the red lever doesn’t matter. The red knob is p832 59443, on the lever of the valve p826 47223a-f1 (function 16): it switches the air, not the drive"
       },
       {
-        "does": "With the yellow lever down and the red knob pushed in, the motor works a fourth output.",
+        "does": "With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting.",
         "mechanisms": [
           "electric-motor",
           "function-selector"
         ],
         "source": "book: book 5 page 43 (bottom right: the crane's grab moving up and down)",
         "control": "p60 58120",
-        "note": "unsure what this output does: the picture shows the grab moving up and down with the crane reaching over the cab"
+        "note": "page 43 counts this as a fourth function, but the drive is the same as function 9’s: the red knob p832 is the valve p826’s (function 16), not a gear’s. The picture shows the grab moving up and down with the crane reaching over the cab, which is the air the valve sends",
+        "first": [
+          {
+            "control": "p516 6641",
+            "by": -0.4
+          }
+        ],
+        "moves": [
+          "p422 94925",
+          "p730 6587"
+        ]
       },
       {
         "does": "The first valve on the crane base works the cylinder that raises and lowers the crane's main boom.",
@@ -292,7 +302,7 @@
         ],
         "source": "inferred: a fourth valve p826 47223a-f1 sits on the truck by the gearbox",
         "control": "p826 47223a-f1",
-        "note": "unsure what this valve does"
+        "note": "the valve’s lever ends in the red knob p832 59443, which page 43 shows pushed out (bottom left) and in (bottom right); which cylinder each way feeds isn’t traced"
       }
     ],
     "questions": [
