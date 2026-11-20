@@ -36,7 +36,7 @@ import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { TRACE, trace, traceJam } from './trace.ts';
-import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
+import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
@@ -911,7 +911,15 @@ export class Kinematics {
       }
       done[body] = [...others, ...own];
     }
-    this.basis = Array.from({ length: n }, (_, i) => columns.map((col) => col[i]));
+    // Turned round: a row for each coordinate of the motion vector. Plain loops: the same numbers,
+    // without a function call for each (this is worked out afresh in many rounds of a step).
+    const basis: number[][] = [];
+    for (let i = 0; i < n; i++) {
+      const row = new Array<number>(columns.length);
+      for (let c = 0; c < columns.length; c++) row[c] = columns[c][i];
+      basis.push(row);
+    }
+    this.basis = basis;
     return this.basis;
   }
 
@@ -3237,7 +3245,7 @@ export class Kinematics {
     const basis = this.treeBasis();
     const smallest = (motions: number[][]) => (tiers ? leastTurning(motions, rate, tiers) : smallestTurning(motions, rate, size));
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
-    const frameRows = [0, 1, 2, 3, 4, 5].map((k) => all.map((z) => z.reduce((sum, x, c) => sum + x * basis[k][c], 0)));
+    const frameRows = dotsWith(basis.slice(0, 6), all);
     const still = all.length ? orthonormalize(mixes(all, nullSpace(frameRows, all.length))) : [];
     // Least motion: of those, the ones in which no tyre on the ground scrubs or lifts, if any
     // turns the joint, as the frame is kept still if it can be: all or nothing. A motion that
@@ -3246,7 +3254,7 @@ export class Kinematics {
     // body, slewed its chassis round under it, all four tyres scrubbing, rather than steer.
     let gripped: number[] | null = null;
     if (tiers && this.drag.grip && this.slipRows.length && still.length) {
-      const slips = this.slipRows.map((row) => still.map((z) => z.reduce((sum, x, c) => sum + x * row[c], 0)));
+      const slips = dotsWith(this.slipRows, still);
       const grip = orthonormalize(mixes(still, nullSpace(slips, still.length)));
       if (grip.length) gripped = smallest(grip);
     }

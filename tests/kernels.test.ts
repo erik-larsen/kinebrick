@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { loadModel } from '../scripts/load-model.ts';
-import { combine, EPSILON, gramOf, kernelSpy, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row } from '../src/linalg.ts';
+import { combine, dotsWith, EPSILON, gramOf, kernelSpy, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row } from '../src/linalg.ts';
 
 // The solver's kernels made cheaper with the same arithmetic (decision 263 of 2026-11-20): each new
 // kernel gives the very numbers the old one gave, to the last bit (Object.is, so +0 and −0 differ
@@ -16,6 +16,9 @@ function oldDot(x: number[], z: number[]): number {
 }
 function oldGramOf(rows: number[][], columns: number[][]): number[][] {
   return rows.map((x) => columns.map((z) => oldDot(x, z)));
+}
+function oldDotsWith(rows: number[][], vectors: number[][]): number[][] {
+  return rows.map((row) => vectors.map((z) => z.reduce((sum, x, c) => sum + x * row[c], 0)));
 }
 function oldCombine(vectors: number[][], amounts: number[]): number[] {
   const out = new Array(vectors[0]?.length ?? 0).fill(0);
@@ -147,6 +150,7 @@ const kernels: Record<string, { old: (...args: never[]) => unknown; now: (...arg
   mixes: { old: oldMixes, now: mixes },
   orthonormalize: { old: oldOrthonormalize, now: orthonormalize },
   nullSpace: { old: oldNullSpace, now: nullSpace },
+  dotsWith: { old: oldDotsWith, now: dotsWith },
 };
 
 // The calls of each kernel in one turn of a control by a step, as a drag makes it: up to `most`
@@ -200,6 +204,7 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
       const a = vectors(k, n);
       calls.push({ kernel: 'gramOf', args: [a, vectors(1 + Math.floor(random() * 8), n)] });
       calls.push({ kernel: 'combine', args: [a, Array.from({ length: k }, value)] });
+      calls.push({ kernel: 'dotsWith', args: [vectors(1 + Math.floor(random() * 6), n), vectors(k, n)] });
       calls.push({ kernel: 'orthonormalize', args: [vectors(k, n), EPSILON] });
       // Rows that repeat each other (a sum of two others), as a linkage's equations do.
       const rows = vectors(1 + Math.floor(random() * 8), n).map((r) => r.map((x) => (Number.isFinite(x) && Math.abs(x) < 1e100 ? x : 0)));

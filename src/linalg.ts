@@ -379,6 +379,24 @@ export function mixes(vectors: number[][], amountsList: number[][]): number[][] 
   });
 }
 
+// Each row's dot product with each vector, z · row, summed in order: the same numbers as dot, to
+// the last bit, over each row's places that are not 0 only, found once (see sparseDot). The
+// vectors are checked once for anything not finite; if one holds any, or a row does, it's as
+// before, every product made.
+export function dotsWith(rows: number[][], vectors: number[][]): number[][] {
+  kernelSpy.on?.('dotsWith', [rows, vectors]);
+  const finite = vectors.every(allFinite);
+  return rows.map((row) => {
+    const places = finite ? nonzeros(row) : null;
+    return vectors.map((z) => {
+      if (!places) return dot(z, row);
+      let sum = 0;
+      for (let i = 0; i < places.length; i++) sum += z[places[i]] * row[places[i]];
+      return sum;
+    });
+  });
+}
+
 function allFinite(v: number[]): boolean {
   for (let j = 0; j < v.length; j++) if (!Number.isFinite(v[j])) return false;
   return true;
@@ -621,13 +639,25 @@ export function dampedSolution(rows: Row[], values: number[], order?: number[], 
   const n = rows[0].length;
   // Each row scaled to length 1, so that rows of turning and of moving count alike. Rows next
   // to nothing long are left out: the tree already keeps them (their length is rounding).
-  const lengths = rows.map((row) => Math.sqrt(row.reduce((sum, x) => sum + x * x, 0)));
+  // Plain loops below: the same sums and products, in the same order, without a function call
+  // for each entry (a big model's rows are long, and this runs in every round of a step).
+  const lengths = rows.map((row) => {
+    let sum = 0;
+    for (let j = 0; j < row.length; j++) sum += row[j] * row[j];
+    return Math.sqrt(sum);
+  });
   const longest = Math.max(...lengths);
   const kept = rows.flatMap((_, i) => (lengths[i] > 1e-9 * longest ? [i] : []));
   if (kept.length === 0) return null;
   const weight = (i: number) => (weights?.[i] ?? 1) / lengths[i];
   return leastSquares(
-    kept.map((i) => rows[i].map((x) => x * weight(i))),
+    kept.map((i) => {
+      const w = weight(i);
+      const row = rows[i];
+      const out = new Array<number>(row.length);
+      for (let j = 0; j < row.length; j++) out[j] = row[j] * w;
+      return out;
+    }),
     kept.map((i) => values[i] * weight(i)),
     Math.sqrt(1e-13),
     order ?? Array.from({ length: n }, (_, i) => i),
@@ -753,7 +783,13 @@ const supports = new WeakMap<number[][], Int32Array[]>();
 export function supportOf(basis: number[][]): Int32Array[] {
   let support = supports.get(basis);
   if (!support) {
-    support = basis.map((row) => Int32Array.from(row.flatMap((x, c) => (x !== 0 ? [c] : []))));
+    support = basis.map((row) => {
+      let count = 0;
+      for (let c = 0; c < row.length; c++) if (row[c] !== 0) count++;
+      const places = new Int32Array(count);
+      for (let c = 0, k = 0; c < row.length; c++) if (row[c] !== 0) places[k++] = c;
+      return places;
+    });
     supports.set(basis, support);
   }
   return support;
