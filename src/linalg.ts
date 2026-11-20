@@ -795,28 +795,67 @@ export function supportOf(basis: number[][]): Int32Array[] {
   return support;
 }
 
+// Whether every row of a basis holds only finite numbers, worked out once a basis (as supportOf).
+const finiteBases = new WeakMap<number[][], boolean>();
+function basisFinite(basis: number[][]): boolean {
+  let finite = finiteBases.get(basis);
+  if (finite === undefined) {
+    finite = basis.every(allFinite);
+    finiteBases.set(basis, finite);
+  }
+  return finite;
+}
+
+// Rows `list` of a basis times z: for each, the sum over the row's places that are not 0 (supportOf),
+// in order, of row_c z_c. Where z has fewer places that are not 0, the sum goes over those: the same
+// sum to the last bit, the products left out on either side being ±0 (see sparseDot), as long as
+// both hold only finite numbers (z is checked here, a basis once).
+export function rowsTimes(basis: number[][], list: ArrayLike<number>, z: number[]): number[] {
+  const support = supportOf(basis);
+  const zPlaces = basisFinite(basis) ? nonzeros(z) : null;
+  const out = new Array<number>(list.length);
+  for (let l = 0; l < list.length; l++) {
+    const i = list[l];
+    const row = basis[i];
+    const own = support[i];
+    let sum = 0;
+    if (zPlaces && zPlaces.length < own.length) {
+      for (let p = 0; p < zPlaces.length; p++) sum += row[zPlaces[p]] * z[zPlaces[p]];
+    } else {
+      for (let p = 0; p < own.length; p++) sum += row[own[p]] * z[own[p]];
+    }
+    out[l] = sum;
+  }
+  return out;
+}
+
 // The same vectors made orthonormal (unit length, at right angles to each other), by
 // Gram-Schmidt. Plain loops: this runs many times a step.
 //
 // Each vector found is kept with its places that are not 0, and each new one is taken against it
 // over those places only: the same numbers to the last bit. Its dot product with the new one (a
 // sum from +0) leaves out only products with a 0 (see sparseDot); the new one's entries less d times
-// it leave out only subtractions of ±0, which change nothing but a −0 (−0 − −0 = +0), and the new
-// one has none: it is checked for −0 and anything not finite first, and made as before if it has
-// either; and x − x is +0, so none comes. Its length is summed over every place, as before.
+// it leave out only subtractions of ±0, which change nothing but a −0 (−0 − −0 = +0): the new one's
+// places holding −0 are listed, and there each subtraction is made. A new one holding anything
+// not finite, or coming to (an overflow), is made as before from there on. Its length is summed
+// over every place, as before.
 export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] {
   kernelSpy.on?.('orthonormalize', [vectors, tiny]);
   const result: number[][] = [];
   const places: (Int32Array | null)[] = [];
   for (const v of vectors) {
     const n = v.length;
+    // Worked as before (every product and subtraction) once it holds anything not finite.
     let plain = false;
+    // Its places that hold −0: there a subtraction of ±0 can make +0 (−0 − −0), so each is made.
+    let zeros: number[] = [];
     for (let i = 0; i < n; i++) {
       const x = v[i];
-      if (!Number.isFinite(x) || (x === 0 && 1 / x < 0)) {
+      if (!Number.isFinite(x)) {
         plain = true;
         break;
       }
+      if (x === 0 && 1 / x < 0) zeros.push(i);
     }
     const u = v.slice();
     for (let r = 0; r < result.length; r++) {
@@ -831,11 +870,21 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
       let d = 0;
       for (let p = 0; p < at.length; p++) d += u[at[p]] * b[at[p]];
       if (!Number.isFinite(d)) {
-        // Not so for d: every subtraction is made, as before.
         for (let i = 0; i < n; i++) u[i] -= d * b[i];
+        plain = true;
         continue;
       }
-      for (let p = 0; p < at.length; p++) u[at[p]] -= d * b[at[p]];
+      for (let p = 0; p < at.length; p++) {
+        const i = at[p];
+        u[i] -= d * b[i];
+        if (!Number.isFinite(u[i])) plain = true;
+      }
+      // Where b is 0 the subtraction is of ±0: it changes only a −0, so only those are made. No
+      // new −0 comes (x − x is +0, +0 − ±0 is +0), so the list only gets shorter.
+      if (zeros.length) {
+        for (const i of zeros) if (b[i] === 0) u[i] -= d * b[i];
+        zeros = zeros.filter((i) => u[i] === 0 && 1 / u[i] < 0);
+      }
     }
     let len = 0;
     for (let i = 0; i < n; i++) len += u[i] * u[i];

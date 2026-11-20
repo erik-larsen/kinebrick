@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { loadModel } from '../scripts/load-model.ts';
-import { combine, dotsWith, EPSILON, gramOf, kernelSpy, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row } from '../src/linalg.ts';
+import { combine, dotsWith, EPSILON, gramOf, kernelSpy, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row, rowsTimes, supportOf } from '../src/linalg.ts';
 
 // The solver's kernels made cheaper with the same arithmetic (decision 263 of 2026-11-20): each new
 // kernel gives the very numbers the old one gave, to the last bit (Object.is, so +0 and −0 differ
@@ -211,6 +211,23 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
       if (rows.length > 2) rows.push(rows[0].map((x, j) => x + rows[1][j]));
       calls.push({ kernel: 'nullSpace', args: [rows, n] });
       calls.push({ kernel: 'mixes', args: [a, Array.from({ length: 1 + Math.floor(random() * 5) }, () => Array.from({ length: k }, value))] });
+    }
+    // A basis's rows times z (rowsTimes), as they were: over the row's places that are not 0. With ∞ in a
+    // basis or in z, and with z both sparser and fuller than the rows.
+    for (let t2 = 0; t2 < 30; t2++) {
+      const n = 1 + Math.floor(random() * 25);
+      const basis = vectors(1 + Math.floor(random() * 10), n);
+      if (t2 % 7 === 3) basis[0][n - 1] = Infinity;
+      const z = Array.from({ length: n }, () => (random() < 0.8 ? 0 : value()));
+      if (t2 % 5 === 4) z[0] = -Infinity;
+      const support = supportOf(basis);
+      const old = basis.map((row, i) => {
+        let sum = 0;
+        for (const c of support[i]) sum += row[c] * z[c];
+        return sum;
+      });
+      const list = basis.map((_, i) => i).reverse();
+      expect(firstDifference(rowsTimes(basis, list, z), list.map((i) => old[i]))).toBeNull();
     }
     // A Gram matrix of a list with itself, as the solver asks it (the same array twice).
     const a = vectors(9, 20);

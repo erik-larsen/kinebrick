@@ -36,7 +36,7 @@ import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { TRACE, trace, traceJam } from './trace.ts';
-import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
+import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, nullSpace, orthonormalize, rowsTimes, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
@@ -371,7 +371,8 @@ export class Kinematics {
   private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number; played: boolean } | null = null; // the last step a turn took (see turnJoint)
-  private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
+  private loopJoints: Set<number> | null = null;
+  private turningRows: Int32Array | null = null; // each body's three turning rows of the tree basis, in order (see turningIn) // the joints in closed loops of joints (see inLoop), once worked out
   private pins: Set<number> | null = null; // bodies free to spin on their one axis (see findPins), once worked out
   private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
   contactTreads: number[] = []; // indices into mech.treads
@@ -2133,19 +2134,15 @@ export class Kinematics {
         // or out, came back 2.5 LDU off). Only the bodies' coordinates some free motion moves
         // count: on a big model, the rest are most of them, and cost the tiers' time for nothing.
         if (this.closingStill.length && motions.length) {
-          const support = supportOf(basis);
-          const moving = (i: number, z: number[]) => {
-            let sum = 0;
-            for (const c of support[i]) sum += basis[i][c] * z[c];
-            return sum;
-          };
           const coordinates = this.closingStill.flatMap((b) => [0, 1, 2, 3, 4, 5].map((k) => 6 * b + k));
           // The frame's six worked out once for each z, not again for each coordinate (the same sums:
           // the frame's rows reach every coordinate, and this was most of a step of the 9397 Logging
           // Truck rolled, 2026-11-20).
+          // Each coordinate's row times z over z's places that are not 0 where they're fewer (see
+          // rowsTimes): the same sums.
           const still = (list: number[], z: number[]) => {
-            const frame = [0, 1, 2, 3, 4, 5].map((k) => moving(k, z));
-            return list.map((i) => moving(i, z) - frame[i % 6]);
+            const frame = rowsTimes(basis, [0, 1, 2, 3, 4, 5], z);
+            return rowsTimes(basis, list, z).map((x, l) => x - frame[list[l] % 6]);
           };
           const moved = motions.map((m) => still(coordinates, m));
           const most = moved.reduce((max, v) => v.reduce((m, x) => Math.max(m, Math.abs(x)), max), 0);
@@ -2437,17 +2434,10 @@ export class Kinematics {
   // How fast each body turns (3 numbers per body) under a motion in the tree basis's coordinates
   // (see freeMotionsInBasis), read off the basis's rows without making the whole motion vector.
   private turningIn(z: number[], basis: number[][]): Float64Array {
-    const w = new Float64Array(3 * this.bodyCount);
-    const support = supportOf(basis);
-    for (let body = 0; body < this.bodyCount; body++) {
-      for (let k = 0; k < 3; k++) {
-        const row = basis[6 * body + k];
-        let sum = 0;
-        for (const c of support[6 * body + k]) sum += row[c] * z[c];
-        w[3 * body + k] = sum;
-      }
-    }
-    return w;
+    // Each body's three turning rows, over z's places that are not 0 where they're fewer (see
+    // rowsTimes).
+    const rows = this.turningRows ??= Int32Array.from({ length: 3 * this.bodyCount }, (_, r) => 6 * Math.floor(r / 3) + (r % 3));
+    return Float64Array.from(rowsTimes(basis, rows, z));
   }
 
   // How fast a joint turns, given how fast each body turns (see turningIn) and the joints' axes
