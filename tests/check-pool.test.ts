@@ -34,6 +34,15 @@ describe('the check pool', () => {
     expect(pool.tryReserve(500, 'b')).not.toBeNull();
   });
 
+  it('lets no more than the most processes run, though memory would allow more', () => {
+    const pool = fresh(100000);
+    const names = Array.from({ length: 10 }, (_, i) => pool.tryReserve(10, `p${i}`));
+    expect(names.every((n) => n !== null)).toBe(true);
+    expect(pool.tryReserve(10, 'eleventh')).toBeNull();
+    pool.release(names[0]!);
+    expect(pool.tryReserve(10, 'eleventh')).not.toBeNull();
+  });
+
   it('drops the entries of processes that are gone', () => {
     const pool = fresh(1000);
     writeFileSync(join(pool.dir, '1-0.json'), JSON.stringify({ owner: dead(), child: null, mb: 900, what: 'gone' }));

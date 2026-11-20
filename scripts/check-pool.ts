@@ -27,6 +27,10 @@ import { fileURLToPath } from 'node:url';
 
 // Half the machine's memory, in MB.
 export const BUDGET_MB = Math.floor(totalmem() / 2 ** 20 / 2);
+// At most this many live entries on the whole machine, whatever memory is left: Erik's figure for
+// this 12-thread Mac, 2026-11-19 (decision 232): "let's do a worker limit too - 16 check processes
+// on a 12 thread machine ain't gonna work; how about 10 max".
+export const MAX_PROCESSES = 10;
 
 // How long to wait between tries for room in the pool, and for its lock (ms).
 const WAIT = 2000;
@@ -69,6 +73,7 @@ export class Pool {
   constructor(
     readonly dir: string,
     readonly budget = BUDGET_MB,
+    readonly most = MAX_PROCESSES,
   ) {
     mkdirSync(dir, { recursive: true });
   }
@@ -129,11 +134,13 @@ export class Pool {
   }
 
   // Enters `mb` for this check if it fits in the budget with everything live, or if nothing is
-  // live (a child expected to take more than the whole budget runs alone): the entry's name, or
-  // null if there is no room yet.
+  // live (a child expected to take more than the whole budget runs alone), and fewer than `most`
+  // entries are live: the entry's name, or null if there is no room yet.
   tryReserve(mb: number, what: string): string | null {
     return this.locked(() => {
-      const used = this.used();
+      const live = [...this.entries().values()];
+      const used = live.reduce((sum, e) => sum + e.mb, 0);
+      if (live.length >= this.most) return null;
       if (used > 0 && used + mb > this.budget) return null;
       const name = `${process.pid}-${this.n++}.json`;
       this.write(name, { owner: process.pid, child: null, mb, what });
