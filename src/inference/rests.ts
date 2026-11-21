@@ -173,19 +173,23 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
         at += sec.length;
         const t = new Vector3().subVectors(footAt, start).dot(c.dir);
         if (t < -BUSH_RADIUS || t > sec.length + BUSH_RADIUS) continue; // not across under it
-        // Where the cylinder comes nearest the foot as its body turns, not where it is built: a lobe
-        // pointing away as built (one of the 42112's four points down) comes round under the foot.
+        // Near enough, built where it is or at the top of the circle it sweeps as its body turns:
+        // a lobe pointing away as built (one of the 42112's four points down) comes round under
+        // the foot at the top of its circle. (Not the point of the circle nearest the foot: a
+        // body turning about a line far off sweeps parts built high above the foot past it.)
+        const near = (q: Vector3) => {
+          const off = new Vector3().subVectors(q, footAt);
+          return Math.abs(off.dot(up)) <= REACH && off.addScaledVector(up, -off.dot(up)).length() <= BUSH_RADIUS + REACH;
+        };
         const at0 = start.clone().addScaledVector(c.dir, t);
         const axis = axisPointOf(body, c.dir);
-        let nearest = at0;
+        let top: Vector3 | null = null;
         if (axis) {
           const centre = axis.addScaledVector(c.dir, new Vector3().subVectors(at0, axis).dot(c.dir));
-          const toFoot = new Vector3().subVectors(footAt, centre);
-          toFoot.addScaledVector(c.dir, -toFoot.dot(c.dir));
-          if (toFoot.lengthSq() > 1e-12) nearest = centre.addScaledVector(toFoot.normalize(), at0.distanceTo(centre));
+          const upward = up.clone().addScaledVector(c.dir, -up.dot(c.dir));
+          if (upward.lengthSq() > 1e-12) top = centre.addScaledVector(upward.normalize(), at0.distanceTo(centre));
         }
-        const off = new Vector3().subVectors(nearest, footAt);
-        if (Math.abs(off.dot(up)) > REACH || off.addScaledVector(up, -off.dot(up)).length() > BUSH_RADIUS + REACH) continue;
+        if (!near(at0) && !(top && near(top))) continue;
         on.push({ face: foot(bottom[0]), body, shape: { kind: 'cylinder', point: start, axis: c.dir.clone(), length: sec.length, radius: half ?? sec.radius } });
       }
     }
