@@ -31,6 +31,48 @@
       "effect": "Three choices. Not now: the worker stays on the 186 Technic sets. Quick wins: doors on stud pivots and the two fittings, about 2 days, which opens the door functions and little else. All of it: about 11 days, the worker off the Technic sets for that time, and lids on studs is a change in every set. Claude advises not now: the rolling rule, the second sweep's findings and the first move's speed are open on the 186, and lids on studs is the largest and riskiest part of the gain.",
       "reply": "Not now",
       "since": "2026-11-21"
+    },
+    {
+      "id": "motors-as-controls",
+      "kind": "Sign-off",
+      "title": "Five functions: name the motor as the control, in place of a shaft buried at the motor",
+      "what": "In the second sweep the pointer could not see the control of these functions from any view (329). The worker tested each: the control is a shaft or gear buried at the motor that works the function on the real set, where no hand reaches. The check turns that shaft; a user of the viewer runs the motor. The change names the motor as the control, as the 42080's function 1 does since your signature today. 42100 Liebherr, function 4 (the L motor slews the superstructure): the control p707, a gear on the motor's shaft, becomes the motor p536. 42131 Cat D11, function 1 (the right track): the shaft p2686 becomes the motor p13. Function 2 (the left track): the shaft p2688 becomes the motor p1319. Functions 3 (driving and turning) and 4 (the V12 pumps as it drives): both shafts become both motors. Each motor's output is joined to the shaft named before, so the check turns the same parts as now, started from the motor. Not in this sign-off: the 42070's two functions on its XL motor, because that motor's output is joined to nothing in the model as read, which the worker looks at first.",
+      "effect": "The check and the sweep then work these five as the real set is worked, from its motor. The results may change, since a motor runs on and a turned shaft does not; today all five are works.",
+      "links": [
+        {
+          "label": "42100 booklet 2, page 365: the app's controls",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=365"
+        },
+        {
+          "label": "42131 booklet 1, page 15: the app's driving page",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=15"
+        },
+        {
+          "label": "42100 in the viewer, the motor marked",
+          "url": "http://localhost:5174/?file=omr%2F42100-1%20Liebherr%20R%209800.mpd&show=536"
+        },
+        {
+          "label": "42131 in the viewer, the two motors marked",
+          "url": "http://localhost:5174/?file=omr%2F42131-1%20Cat%20D11%20Bulldozer.mpd&show=13,1319"
+        }
+      ],
+      "reply": "Sign the five motor controls",
+      "since": "2026-11-21"
+    },
+    {
+      "id": "two-functions-no-hand",
+      "kind": "Decision",
+      "title": "Two functions that no hand can work on the real set: keep, rewrite or skip?",
+      "what": "Two more of the buried controls are not at a motor. 42129 Zetros, function 2 (the centre differential): the list says to hold the motors and turn the front drive shaft, and names an axle inside the differential as the control. On the real truck that axle is enclosed; one sees the differential work only when the truck is driven or its wheels are turned. The worker proposes a control a hand can reach: with the motors held, turning the front wheels turns the rear ones through the shafts and the differential. 42131 Cat D11, function 10 (the red lever that switches the Control+ hub on): booklet 1, steps 169 to 174, builds the lever onto the hub's button inside the chassis, under the engine. It switches the electronics on; nothing mechanical follows from it, and Kinebrick has no hub button to press. The worker proposes to skip it, with the reason that it is a switch and not a mechanism, as the 42110's roof rack was skipped on 14 November as taken off by hand.",
+      "effect": "Both are works today, by the check turning a part no user can reach. With the changes, the 42129's function 2 is tested from the front wheels and may change its result, and the 42131's function 10 is skipped and leaves the count of working functions.",
+      "links": [
+        {
+          "label": "42131 booklet 1, page 154: the lever on the hub's button",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=154"
+        }
+      ],
+      "reply": "Rewrite the 42129's and skip the 42131's",
+      "since": "2026-11-21"
     }
   ],
   "coming": [
