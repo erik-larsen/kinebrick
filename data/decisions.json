@@ -33,33 +33,6 @@
       "since": "2026-11-21"
     },
     {
-      "id": "motors-as-controls",
-      "kind": "Sign-off",
-      "title": "Five functions: name the motor as the control, in place of a shaft buried at the motor",
-      "what": "In the second sweep the pointer could not see the control of these functions from any view (329). The worker tested each: the control is a shaft or gear buried at the motor that works the function on the real set, where no hand reaches. The check turns that shaft; a user of the viewer runs the motor. The change names the motor as the control, as the 42080's function 1 does since your signature today. 42100 Liebherr, function 4 (the L motor slews the superstructure): the control p707, a gear on the motor's shaft, becomes the motor p536. 42131 Cat D11, function 1 (the right track): the shaft p2686 becomes the motor p13. Function 2 (the left track): the shaft p2688 becomes the motor p1319. Functions 3 (driving and turning) and 4 (the V12 pumps as it drives): both shafts become both motors. Each motor's output is joined to the shaft named before, so the check turns the same parts as now, started from the motor. Not in this sign-off: the 42070's two functions on its XL motor, because that motor's output is joined to nothing in the model as read, which the worker looks at first.",
-      "effect": "The check and the sweep then work these five as the real set is worked, from its motor. The results may change, since a motor runs on and a turned shaft does not; today all five are works.",
-      "links": [
-        {
-          "label": "42100 booklet 2, page 365: the app's controls",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=365"
-        },
-        {
-          "label": "42131 booklet 1, page 15: the app's driving page",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=15"
-        },
-        {
-          "label": "42100 in the viewer, the motor marked",
-          "url": "http://localhost:5174/?file=omr%2F42100-1%20Liebherr%20R%209800.mpd&show=536"
-        },
-        {
-          "label": "42131 in the viewer, the two motors marked",
-          "url": "http://localhost:5174/?file=omr%2F42131-1%20Cat%20D11%20Bulldozer.mpd&show=13,1319"
-        }
-      ],
-      "reply": "Sign the five motor controls",
-      "since": "2026-11-21"
-    },
-    {
       "id": "two-functions-no-hand",
       "kind": "Decision",
       "title": "Two functions that no hand can work on the real set: keep, rewrite or skip?",
@@ -72,25 +45,6 @@
         }
       ],
       "reply": "Rewrite the 42129's and skip the 42131's",
-      "since": "2026-11-21"
-    },
-    {
-      "id": "42112-fn3-piston",
-      "kind": "Sign-off",
-      "title": "42112 Concrete Mixer Truck, function 3: name a piston that the check's turn lifts",
-      "what": "Function 3 is rolling the truck turning the small engine under the cab, whose camshaft lifts four pistons. Since today's merge the camshaft does lift them (332). The list names the piston p170 as the part that must move. That is the one piston whose cam points away as built: its cam needs about 2 radian of camshaft before it lifts, more than the check's turn of 1.5 radian each way gives, so the function stays partly though the engine runs. The worker tried each piston on today's preview: p176 is the one a turn of 1.5 radian moves both ways (it drops 12 LDU off the top of its cam onto its plate); p173 and p179 move one way only; p170 not at all. The change: in the list of parts that must move, p176 4519 in place of p170 4519. Nothing else in the function changes.",
-      "effect": "The function is then judged by a piston that the turn does move. It should go from partly to works; Claude checks the set after the change and says.",
-      "links": [
-        {
-          "label": "Booklet 1, page 38, step 50: the four pistons put in over the camshaft",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=38"
-        },
-        {
-          "label": "42112 in the viewer, the piston p176 marked",
-          "url": "http://localhost:5174/?file=omr%2F42112-1%20Concrete%20Mixer%20Truck.mpd&show=176"
-        }
-      ],
-      "reply": "Sign the 42112's piston change",
       "since": "2026-11-21"
     }
   ],
@@ -512,6 +466,14 @@
     {
       "date": "2026-11-21",
       "what": "42070 6x6 All Terrain Tow Truck, the XL motor one stud too low and the motor as the control of functions 1 and 6 (\"Sign it\", your answer to that question): the worker writes the erratum; Claude then names the motor as the control and checks the set."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The five motor controls (\"Sign the five motor controls\") and the 42112's piston (\"Sign the 42112's piston change\"): both applied to the lists; the three sets are being checked."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Weekly usage at 91% (your note): the worker is paused and the solver owner holds after one last report, until the reset on 23 November or your word. Claude keeps to closing what is in flight."
     }
   ]
 }
