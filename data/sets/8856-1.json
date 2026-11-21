@@ -155,12 +155,12 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "fe0dd791",
     "date": "2026-11-21",
-    "seconds": 9,
+    "seconds": 10,
     "counts": {
-      "partly": 5,
-      "works": 2,
+      "partly": 6,
+      "works": 1,
       "skipped": 1
     },
     "loose": [
@@ -273,7 +273,7 @@
         ],
         "cause": "loose-part",
         "detail": "p460 2906",
-        "seconds": 0.8
+        "seconds": 1
       },
       {
         "result": "works",
@@ -372,7 +372,7 @@
             0.47
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -438,7 +438,7 @@
         ],
         "cause": "loose-part",
         "detail": "p468 70278",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -604,7 +604,7 @@
             0.4
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -703,160 +703,167 @@
         "seconds": 0
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ],
-          [
-            1.5,
-            -1.5
-          ],
-          [
-            0.57,
-            -1.5
-          ],
-          [
-            1.5,
-            -0.57
-          ]
-        ],
-        "rates": [
-          {},
-          {},
-          {},
-          {}
-        ],
-        "back": [
-          [
+        "result": "partly",
+        "hold": {
+          "reason": "The real part turns without end, but in the viewer a collision stops it: the wheel p131 at 0.56 rad (parts 43/79). Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
             [
-              0,
-              0
+              1.5,
+              -1.5
             ],
             [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
+              1.5,
+              -1.5
             ],
             [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0.14,
-              0
+              0.57,
+              -1.5
             ],
             [
-              0.08,
-              0
+              1.5,
+              -0.57
             ]
           ],
-          [
+          "rates": [
+            {},
+            {},
+            {},
+            {}
+          ],
+          "back": [
             [
-              0.08,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ],
             [
-              0.14,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ],
             [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
+              [
+                0.14,
+                0
+              ],
+              [
+                0.08,
+                0
+              ]
             ],
             [
-              0,
-              0
+              [
+                0.08,
+                0
+              ],
+              [
+                0.14,
+                0
+              ]
             ]
           ],
-          [
+          "torn": [
             [
-              0.12,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ],
             [
-              0.01,
-              0
-            ]
-          ],
-          [
-            [
-              0.01,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ],
             [
-              0.12,
-              0
+              [
+                0.12,
+                0
+              ],
+              [
+                0.01,
+                0
+              ]
+            ],
+            [
+              [
+                0.01,
+                0
+              ],
+              [
+                0.12,
+                0
+              ]
             ]
-          ]
-        ],
-        "stop": [
-          [
-            null,
-            null
           ],
-          [
-            null,
-            null
+          "stop": [
+            [
+              null,
+              null
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "limit",
+              null
+            ],
+            [
+              null,
+              "limit"
+            ]
           ],
-          [
-            "limit",
-            null
+          "movedBy": [
+            [],
+            [],
+            [],
+            []
           ],
-          [
-            null,
-            "limit"
-          ]
-        ],
-        "movedBy": [
-          [],
-          [],
-          [],
-          []
-        ],
-        "collisionStops": [
-          [
-            2,
-            1,
-            43,
-            79,
-            0.57,
-            0.57
+          "collisionStops": [
+            [
+              2,
+              1,
+              43,
+              79,
+              0.57,
+              0.57
+            ],
+            [
+              3,
+              -1,
+              43,
+              79,
+              0.57,
+              0.57
+            ]
           ],
-          [
-            3,
-            -1,
-            43,
-            79,
-            0.57,
-            0.57
-          ]
-        ],
-        "seconds": 2.6
+          "seconds": 3
+        }
       }
     ],
-    "peak": 447
+    "peak": 439
   }
 }

@@ -149,12 +149,12 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "fe0dd791",
     "date": "2026-11-21",
-    "seconds": 133,
+    "seconds": 119,
     "counts": {
-      "partly": 1,
-      "works": 6,
+      "partly": 2,
+      "works": 5,
       "not back": 1,
       "torn": 1,
       "skipped": 1
@@ -339,8 +339,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 28,
-        "peak": 908
+        "seconds": 33.5
       },
       {
         "result": "works",
@@ -382,8 +381,7 @@
             ]
           ]
         ],
-        "seconds": 12.8,
-        "peak": 916
+        "seconds": 15.6
       },
       {
         "result": "works",
@@ -471,95 +469,100 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 13.1,
-        "peak": 938
+        "seconds": 14.9
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.2,
-            -3.5
-          ]
-        ],
-        "rates": [
-          {
-            "p517 35188": [
-              0.267,
-              0
-            ],
-            "p1064 35188": [
-              0.267,
-              4.17e-14
-            ],
-            "p513 18947 against p468 6573": [
-              0,
-              9.03e-36
-            ],
-            "p1030 18947 against p1032 65414c01": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "In the viewer the control turns and these listed parts stay: p513 against p468, p1030 against p1032; a push by hand does not move both. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.2,
+              -3.5
             ]
-          }
-        ],
-        "expected": [
-          {
-            "p517 35188": 0.267
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "why": [
-          "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
-        ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            20,
-            519,
-            0.2,
-            0.2
           ],
-          [
-            0,
-            1,
-            20,
-            519,
-            0.2,
-            0.2
-          ]
-        ],
-        "seconds": 25.8,
-        "peak": 883
+          "rates": [
+            {
+              "p517 35188": [
+                0.267,
+                0
+              ],
+              "p1064 35188": [
+                0.267,
+                4.17e-14
+              ],
+              "p513 18947 against p468 6573": [
+                0,
+                9.03e-36
+              ],
+              "p1030 18947 against p1032 65414c01": [
+                0,
+                0
+              ]
+            }
+          ],
+          "expected": [
+            {
+              "p517 35188": 0.267
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "why": [
+            "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
+          ],
+          "stop": [
+            [
+              "limit",
+              null
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              20,
+              519,
+              0.2,
+              0.2
+            ],
+            [
+              0,
+              1,
+              20,
+              519,
+              0.2,
+              0.2
+            ]
+          ],
+          "seconds": 29.8
+        }
       },
       {
         "result": "works",
@@ -633,8 +636,7 @@
             0.4
           ]
         ],
-        "seconds": 4.9,
-        "peak": 932
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -772,11 +774,11 @@
           ]
         ],
         "onPlay": 0.27,
-        "seconds": 8.9,
-        "peak": 967
+        "seconds": 9.6
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -842,9 +844,9 @@
             0.13
           ]
         ],
-        "seconds": 4.2,
-        "peak": 919
+        "seconds": 4.4
       }
-    ]
+    ],
+    "peak": 986
   }
 }

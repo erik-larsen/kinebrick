@@ -4,7 +4,7 @@ A chain runs round sprockets. (Drivetrain.)
 
 First appears in 1981, in [8844 Helicopter](https://erik-larsen.github.io/kinebrick/?model=8844-Helicopter): The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together.
 
-Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 10 works, 1 partly.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 9 works, 2 partly.
 
 ## By decade
 
@@ -26,7 +26,7 @@ Each detail by the set it first appears in.
 
 **1981, [8844 Helicopter](https://erik-larsen.github.io/kinebrick/?model=8844-Helicopter)**
 
-- The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together. (works)
+- The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together. (partly)
 
 **1989, [8835 Forklift](https://erik-larsen.github.io/kinebrick/?model=8835-Forklift)**
 
