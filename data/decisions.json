@@ -431,6 +431,14 @@
     {
       "date": "2026-11-21",
       "what": "Withdrawn (323): the finding that 4,617 parts in 86 models had no connection points was wrong. They do have them; the worker's count had looked in the wrong place, and Claude passed it on without a check of its own. Claude has now checked the 42131: all 1,679 of its copied parts are connected. Nothing was built, and no count will move from it."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The second sweep of every function (326, 327): of 698 working functions the viewer shows 590 outright and 39 more by the pointer. Two more are held (the 42078's bonnet, the 42080's pump crank); 38 wait for a closer look, most of them a control the pointer cannot find or move. Its records and times are merged."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Twelve sets with tracks did not stand on their tracks, for want of one figure for two track-link parts (325, 328). Claude checked it first this time. The figure is right, but with it 13 functions are worse: a model rolled on its tracks does not come back to where it began, and the 42038 cannot be steered where it stands. So it is not merged alone; the solver owner mends rolling on tracks with it."
     }
   ]
 }
