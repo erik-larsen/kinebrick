@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
     "seconds": 6,
     "counts": {
@@ -160,7 +160,7 @@
           0
         ],
         "cause": "one-link-too-many",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -482,9 +482,9 @@
           [],
           []
         ],
-        "seconds": 2.2
+        "seconds": 2.3
       }
     ],
-    "peak": 359
+    "peak": 364
   }
 }

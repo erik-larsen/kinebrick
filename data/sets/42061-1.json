@@ -106,7 +106,7 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
     "seconds": 6,
     "counts": {
@@ -200,7 +200,7 @@
           "rise": 0,
           "tyre": "p254 15413"
         },
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -354,7 +354,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -512,6 +512,6 @@
         "seconds": 0.3
       }
     ],
-    "peak": 366
+    "peak": 356
   }
 }

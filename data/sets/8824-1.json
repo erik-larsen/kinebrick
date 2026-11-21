@@ -71,9 +71,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 2,
     "counts": {
       "partly": 1,
       "works": 2
@@ -168,7 +168,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p62 3482",
-        "seconds": 0.6
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -294,7 +294,7 @@
             "p183 3705"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -360,9 +360,9 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       }
     ],
-    "peak": 313
+    "peak": 312
   }
 }

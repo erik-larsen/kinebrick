@@ -315,9 +315,9 @@
     ]
   },
   "generated": {
-    "commit": "4e3fd34e",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 17078,
+    "seconds": 15105,
     "counts": {
       "works": 9,
       "not back": 3,
@@ -493,8 +493,8 @@
           "rise": 3.48,
           "tyre": "p1441 92912"
         },
-        "seconds": 614.3,
-        "peak": 1503
+        "seconds": 454,
+        "peak": 1338
       },
       {
         "result": "works",
@@ -531,8 +531,8 @@
             ]
           ]
         ],
-        "seconds": 363.4,
-        "peak": 1332
+        "seconds": 296.5,
+        "peak": 957
       },
       {
         "result": "works",
@@ -794,8 +794,8 @@
             "p1136 2851"
           ]
         ],
-        "seconds": 7819,
-        "peak": 1614
+        "seconds": 7303.5,
+        "peak": 1116
       },
       {
         "result": "works",
@@ -885,8 +885,8 @@
             "p593 6589"
           ]
         ],
-        "seconds": 4122.1,
-        "peak": 1655
+        "seconds": 3662.4,
+        "peak": 1096
       },
       {
         "result": "partly",
@@ -971,8 +971,8 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 136.3,
-        "peak": 1337
+        "seconds": 100.4,
+        "peak": 1013
       },
       {
         "result": "works",
@@ -1014,8 +1014,8 @@
             ]
           ]
         ],
-        "seconds": 321.6,
-        "peak": 1293
+        "seconds": 251,
+        "peak": 1016
       },
       {
         "result": "works",
@@ -1073,8 +1073,8 @@
             ]
           ]
         ],
-        "seconds": 444.6,
-        "peak": 1445
+        "seconds": 349,
+        "peak": 1007
       },
       {
         "result": "works",
@@ -1140,8 +1140,8 @@
             ]
           ]
         ],
-        "seconds": 1139.2,
-        "peak": 1453
+        "seconds": 896.5,
+        "peak": 1315
       },
       {
         "result": "partly",
@@ -1209,8 +1209,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 425.8,
-        "peak": 1387
+        "seconds": 313.7,
+        "peak": 1128
       },
       {
         "result": "partly",
@@ -1270,8 +1270,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 426.3,
-        "peak": 1412
+        "seconds": 304.7,
+        "peak": 1176
       },
       {
         "result": "partly",
@@ -1345,8 +1345,8 @@
             0.07
           ]
         ],
-        "seconds": 60.9,
-        "peak": 1276
+        "seconds": 46.8,
+        "peak": 996
       },
       {
         "result": "no",
@@ -1405,8 +1405,8 @@
         ],
         "cause": "loose-part",
         "detail": "p2629 2795",
-        "seconds": 35.1,
-        "peak": 1122
+        "seconds": 35.6,
+        "peak": 885
       },
       {
         "result": "works",
@@ -1467,8 +1467,8 @@
             0.03
           ]
         ],
-        "seconds": 46.4,
-        "peak": 1144
+        "seconds": 34.7,
+        "peak": 970
       },
       {
         "result": "works",
@@ -1566,8 +1566,8 @@
             0
           ]
         ],
-        "seconds": 878.5,
-        "peak": 1850
+        "seconds": 800.3,
+        "peak": 1128
       },
       {
         "result": "no",
@@ -1635,8 +1635,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1761 32278",
-        "seconds": 40.1,
-        "peak": 1322
+        "seconds": 44,
+        "peak": 953
       },
       {
         "result": "no",
@@ -1686,8 +1686,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 34.4,
-        "peak": 1092
+        "seconds": 35.3,
+        "peak": 900
       }
     ]
   }
