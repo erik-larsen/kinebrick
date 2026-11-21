@@ -591,8 +591,10 @@ async function turnsPlain(v: Viewer, control: number): Promise<boolean> {
     if (k.mech.roles[control] === 'motor') return true;
     const snap = k.kin.snapshot();
     const went = k.interaction.turnPart(control, 0.01, k.setup.camera.position);
+    // A turn on play is no plain turn (decision 331): a jam play only puts off.
+    const played = k.kin.lastTurnPlayed;
     k.kin.restore(snap);
-    return Math.abs(went) > 1e-4;
+    return Math.abs(went) > 1e-4 && !played;
   }, control);
 }
 
