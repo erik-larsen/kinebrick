@@ -91,7 +91,7 @@ import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
-import { endlessKinds } from './endless.ts';
+import { endlessKinds, endlessPart } from './endless.ts';
 import { normalizePartName } from '../src/connections.ts';
 import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
@@ -1443,13 +1443,17 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
       combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still))!;
     }
     // The collisions that stopped a way (collisionStops), beside the result.
-    // A function whose kinds all turn without end (see endless.ts) that a collision stopped works
-    // at most partly (decision 279 of 2026-11-21), however far its parts moved first: a wheel that
-    // rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
+    // A function whose kinds all turn without end (see endless.ts) works at most partly where a
+    // collision stopped a control that is itself a part that turns without end, a wheel, sprocket
+    // or shaft (endlessPart; decisions 279 and 282 of 2026-11-21), however far its parts moved
+    // first: a wheel that rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
+    // A lever stopped (the 8063's) is at the end of its travel, whatever the function's kinds.
     const endless = endlessKinds(fn.mechanisms).endless;
+    const controlRefs = [fn.control!].flat();
     const withCollisions = <T extends { result?: Result; cause?: Cause; detail?: string }>(r: T): T => {
       if (!collisionStops.length) return r;
-      const stopped = endless && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${name(collisionStops[0][2])} against ${name(collisionStops[0][3])}` } : {};
+      const judged = endless ? collisionStops.find(([wi]) => controlRefs[wi] !== undefined && endlessPart(parts[part(controlRefs[wi])].name)) : undefined;
+      const stopped = judged && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${controlRefs[judged[0]]}: ${name(judged[2])} against ${name(judged[3])}` } : {};
       return { ...r, ...stopped, collisionStops };
     };
     // A function that doesn't work as read, whose control moves only together with a bigger body

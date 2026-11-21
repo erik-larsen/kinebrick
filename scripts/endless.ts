@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+
 // The kinds of mechanism whose real part turns without end (decision 252 of 2026-11-20): a wheel
 // that rolls, a track that runs, an engine's crankshaft, a drive shaft. A collision that stops such
 // a part is a fault, however far the part turned first; a part with an end (a lever, a door) may
@@ -14,4 +16,33 @@ export function endlessKinds(mechanisms: string[] | undefined): { kinds: string[
   const all = (mechanisms ?? []).map((m) => m.split(':')[0].trim());
   const kinds = all.filter((k) => ENDLESS.has(k));
   return { kinds, endless: kinds.length > 0 && kinds.length === all.length };
+}
+
+// Whether a part is itself one that turns without end (decision 282 of 2026-11-21): a wheel, a
+// rim or tyre, a gear or sprocket, a pulley, a propeller or rotor, a shaft (an axle), a worm, a
+// crankshaft, a differential, by its role (data/roles.json) or by its LDraw title. A collision stop
+// is judged only where the control it stopped is such a part, never by the function's kinds
+// alone: the 8063's lever (a connector on the catch's axle) stops at the end of its real travel.
+// Not a steering wheel, a hub, a spindle, a joiner, a connector or a towball: those turn so far.
+const ENDLESS_ROLES = new Set(['tyre', 'rim', 'gear', 'axle', 'differential', 'crankshaft', 'worm', 'train wheel']);
+const ENDLESS_TITLE = /\b(wheel|rim|tyre|tire|gear|sprocket|pulley|propeller|rotor|axle|worm|crankshaft|differential)\b/i;
+const NOT_ENDLESS_TITLE = /\b(steering|hub|spindle|joiner|connector|towball)\b/i;
+let roles: Record<string, string> | null = null;
+let titles: Record<string, string> | null = null;
+export function endlessPart(name: string): boolean {
+  const file = name.endsWith('.dat') ? name : `${name}.dat`;
+  roles ??= JSON.parse(readFileSync('data/roles.json', 'utf-8')) as Record<string, string>;
+  const role = roles[file] ?? roles[file.replace(/\.dat$/, '')];
+  if (role) return ENDLESS_ROLES.has(role);
+  titles ??= JSON.parse(readFileSync('packed/titles.json', 'utf-8')) as Record<string, string>;
+  let title = titles[file];
+  if (title === undefined) {
+    for (const dir of ['ldraw/parts', 'ldraw/unofficial/parts']) {
+      try {
+        title = readFileSync(`${dir}/${file.replace(/^.* - /, '')}`, 'utf-8').split('\n')[0].replace(/^0\s+~?/, '');
+        break;
+      } catch {}
+    }
+  }
+  return !!title && ENDLESS_TITLE.test(title) && !NOT_ENDLESS_TITLE.test(title);
 }

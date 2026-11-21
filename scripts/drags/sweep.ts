@@ -58,7 +58,7 @@ import { loadavg } from 'node:os';
 import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
 import { LAUNCH, LIBRARY, open, type Viewer } from './drag.ts';
-import { ENDLESS_WORDS, endlessKinds } from '../endless.ts';
+import { ENDLESS_WORDS, endlessKinds, endlessPart } from '../endless.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
@@ -635,7 +635,9 @@ function judge(key: string, fn: any, line: Record<string, any>): Record<string, 
     const ways = A.filter((a) => a.control === control);
     const at = ways.filter((a) => a.stops.length).map((a) => `${a.way > 0 ? '+' : '-'}${Math.abs(a.went)} rad (${a.stops.join(', ')})`).join('; ');
     const short = ways.every((a) => Math.abs(a.went) <= SHORT);
-    if (endless) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessOnes.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
+    // Judged so only where the stopped control is itself a part that turns without end
+    // (endlessPart, decision 282): a lever at the end of its travel stands.
+    if (endless && endlessPart(control.split(' ').slice(1).join(' '))) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessOnes.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
     if (short) return { control, judged: 'to compare with the booklet', why: `a travel of ${SHORT} rad or less each way, stopped at ${at}` };
     return { control, judged: 'stands', why: `stopped at ${at}; kinds ${kinds.join(', ') || 'none'}` };
   });
