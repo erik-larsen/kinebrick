@@ -351,6 +351,10 @@
     {
       "date": "2026-11-21",
       "what": "Three holds lifted with the sweep's measure mended (293): the engines of the 42043 and the 42075 and the 42129's differential locks are shown. Five holds of the same kind stand. The check's stored collision data was stale or missing in 61 models and is made afresh (292); the check of those sets runs."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Why wheels stop when a model is rolled (294): in 12 of the 20 held cases a part that nothing drives, such as a liftarm on one pin or an idle drive train, swings or runs when the model rolls and hits its neighbour; on the real model it stays put. The solver owner now writes a rule for that as a proposal. A small follow-up makes the cheaper search gain in the viewer too: the 42083's first move 370 to 290 ms."
     }
   ]
 }
