@@ -45,6 +45,22 @@ export function wayOnJoint(kin: Kinematics, body: number, g: Vector3): Vector3 |
 // says no to where the step left the model (it ran into something, or past the end of a slide).
 // A step whose sums meet a value that is not finite is undone, and 'stuck' (see Kinematics.refuseNotFinite).
 export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
+  // The free-parts rule's classification (see Kinematics.classifyDrag), at the push's first step:
+  // against the grabbed point's speed along the push.
+  const at = () => grab.clone().applyMatrix4(kin.poses[body]);
+  if (!kin.drag.free) {
+    const g = at();
+    kin.classifyDrag((m) => kin.pointVelocity(m, body, g).dot(dir), 'push');
+    if (typeof process !== 'undefined' && process.env?.KINEBRICK_FREE_COUNT === '1') kin.countFree(g);
+  }
+  try {
+    return pushStepCounted(kin, body, grab, dir, step, allowed);
+  } finally {
+    if (typeof process !== 'undefined' && process.env?.KINEBRICK_FREE_COUNT === '1') kin.countFree(at());
+  }
+}
+
+function pushStepCounted(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean): 'moved' | 'stuck' | 'blocked' {
   const before = kin.snapshot();
   try {
     return pushStepWhole(kin, body, grab, dir, step, allowed);

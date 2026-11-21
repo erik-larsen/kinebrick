@@ -1508,6 +1508,10 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
     // The working set's counts for this function (decision 266), then reset: printed only when
     // KINEBRICK_WORKING_SET=1 asks for them, though the set is on without it.
+    if (process.env.KINEBRICK_FREE_COUNT === '1') {
+      console.error(`free-count function ${i + 1}: ${JSON.stringify(Kinematics.freeCounts)}`);
+      Kinematics.freeCounts = [];
+    }
     if (process.env.KINEBRICK_WORKING_SET === '1') {
       const st = Kinematics.wsShared;
       const beyond = st.compared.filter((c) => c.pose > 1e-6 || c.angle2 > 1e-6);

@@ -233,6 +233,8 @@ export interface Options {
 // KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0, KINEBRICK_FREE_CLUTCH=1 and
 // KINEBRICK_SCRUB_JOINED=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
+// The free-parts count (see Kinematics.countFree): off unless asked for.
+const FREE_COUNT = () => setting('KINEBRICK_FREE_COUNT') === '1';
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
   oneProblem: setting('KINEBRICK_ONE') !== '0',
@@ -325,6 +327,13 @@ class Drag {
   drivenLast = false; // while they are, whether what its part drives is tried last (see chooseDragHolds)
   outOfReach = new Set<number>(); // the bodies it can't reach, held where they are on the frame (see Options.reach)
   springs = false; // whether the slides that springs hold at rest are held still for it (see chooseDragHolds)
+  // The free-parts rule's classification (see Kinematics.classifyDrag), made at the drag's first step.
+  free: Set<number> | null = null; // the joints free and not driven
+  driven: Set<number> | null = null; // the joints whose turning the drag fixes
+  kind: 'wheel' | 'turn' | 'push' = 'turn';
+  // KINEBRICK_FREE_COUNT=1: each joint's two bodies against each other where the count last looked,
+  // how far each free joint has moved over the drag, and how far the control has.
+  counted: { rel: Matrix4[]; moved: number[]; travel: number; grab: Vector3 | null } | null = null;
 
   constructor(together: number[] = []) {
     this.together = together;
@@ -1946,7 +1955,117 @@ export class Kinematics {
 
   // A drag ends: what it held and found is dropped.
   letGoAfterDrag() {
+    if (FREE_COUNT()) this.countFreeDrag();
     this.drag = new Drag();
+  }
+
+  // The free-parts rule's classification (decision 295, step one: it changes no motion). At a drag's
+  // first step, from the motions the model allows the drag (its holds and the tyres on the ground as
+  // they are, the frame free), each joint of the mechanism, the tree's and those that close loops
+  // alike, by its rate in each motion against the control's (`control`: the joint's rate for a turn,
+  // the grabbed point's speed along the push for a push):
+  //   driven: its rate is the same multiple of the control's in every motion (it turns as the
+  //     control does, and only so);
+  //   free and not driven: it turns in some motion that leaves the control still, so some motion
+  //     turns the control and leaves it still;
+  //   neither: it turns in no motion.
+  // "The same" and "turns" are to 1e-6 of the fastest joint in any of the motions. A track holds to
+  // the ground as a tyre does: each wheel in it is a tread (see trackTreads).
+  classifyDrag(control: (m: number[]) => number, kind: Drag['kind']) {
+    const d = this.drag;
+    const kept = [this.scrubNeeded, this.leastScrub, this.slipRows] as const;
+    // Worked out where the model is, not moved to the origin as freeMotions does: that rounds the
+    // frame's place in its last bits, and this must change nothing.
+    // With the tyres rolling: of the free motions, the ones in which no tyre on the ground scrubs
+    // sideways or lifts (as motionChoices keeps them gripping), if any; else all of them.
+    let motions: number[][];
+    try {
+      const basis = this.treeBasis();
+      let all = this.freeMotionsInBasis();
+      if (this.slipRows.length && all.length) {
+        const grip = orthonormalize(mixes(all, nullSpace(dotsWith(this.slipRows, all), all.length)));
+        if (grip.length) all = grip;
+      }
+      motions = all.map((z) => fromBasis(z, basis));
+    } finally {
+      [this.scrubNeeded, this.leastScrub, this.slipRows] = kept;
+    }
+    const c = motions.map(control);
+    const cc = c.reduce((sum, x) => sum + x * x, 0);
+    const rates = this.mech.joints.map((_, j) => motions.map((m) => this.anyJointRate(m, j)));
+    const size = (r: number[]) => Math.sqrt(r.reduce((sum, x) => sum + x * x, 0));
+    const scale = Math.max(0, ...rates.map(size));
+    const free = new Set<number>();
+    const driven = new Set<number>();
+    // A wheel on the ground (a tyre, or a track's wheel) is no free part: it rolls as the model goes.
+    // Its joint is left out, neither free nor driven.
+    const rolling = new Set(this.contactTreads.map((i) => this.mech.treads[i].body));
+    rates.forEach((r, j) => {
+      const { bodyA, bodyB } = this.mech.joints[j];
+      if (rolling.has(bodyA) || rolling.has(bodyB)) return;
+      if (size(r) <= 1e-6 * scale) return;
+      const along = cc > 0 ? r.reduce((sum, x, i) => sum + x * c[i], 0) / cc : 0;
+      const rest = size(r.map((x, i) => x - along * c[i]));
+      (rest > 1e-6 * scale ? free : driven).add(j);
+    });
+    d.free = free;
+    d.driven = driven;
+    d.kind = kind;
+    if (setting('KINEBRICK_FREE_DEBUG')) console.error(`free parts, ${kind}: ${motions.length} motions; driven ${[...driven].join(' ')}; free ${[...free].join(' ')}`);
+  }
+
+  // A joint's rate in a motion: a turning joint's turning about its axis, a slide's sliding along it.
+  private anyJointRate(motion: number[], j: number): number {
+    const joint = this.mech.joints[j];
+    if (joint.kind !== 'slide') return this.jointRate(motion, j);
+    const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+    const p = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
+    return this.pointVelocity(motion, joint.bodyB, p).sub(this.pointVelocity(motion, joint.bodyA, p)).dot(d);
+  }
+
+  // Whether a joint turns a wheel on the ground: one of its bodies carries a tread in contact (a
+  // tyre, or a track's wheel).
+  private wheelTurned(joint: number): boolean {
+    const { bodyA, bodyB } = this.mech.joints[joint];
+    return this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body));
+  }
+
+  // KINEBRICK_FREE_COUNT=1: how far each joint has moved since the count last looked (the turn
+  // between its two bodies, or the slide), added up over the drag, and how far the control has.
+  // Counted over every joint, the free ones picked out at the drag's end.
+  countFree(grabPoint: Vector3 | null = null) {
+    const d = this.drag;
+    if (!d.free) return;
+    const rel = this.mech.joints.map((j) => this.poses[j.bodyA].clone().invert().multiply(this.poses[j.bodyB]));
+    if (!d.counted) {
+      d.counted = { rel, moved: rel.map(() => 0), travel: 0, grab: grabPoint };
+      return;
+    }
+    const q = new Quaternion();
+    this.mech.joints.forEach((j, i) => {
+      const step = d.counted!.rel[i].clone().invert().multiply(rel[i]);
+      if (j.kind === 'slide') d.counted!.moved[i] += new Vector3().setFromMatrixPosition(step).length();
+      else d.counted!.moved[i] += 2 * Math.acos(Math.min(1, Math.abs(q.setFromRotationMatrix(step).w)));
+    });
+    if (d.turning) d.counted.travel = d.counted.moved[d.turning.joint];
+    else if (grabPoint && d.counted.grab) d.counted.travel += grabPoint.distanceTo(d.counted.grab);
+    d.counted.rel = rel;
+    if (grabPoint) d.counted.grab = grabPoint;
+  }
+
+  static freeCounts: { kind: Drag['kind']; free: number; driven: number; travel: number; most: number; mostJoint: number; over: number }[] = [];
+  private countFreeDrag() {
+    const d = this.drag;
+    if (!d.free || !d.counted || !(d.counted.travel > 0)) return;
+    let most = 0;
+    let mostJoint = -1;
+    let over = 0;
+    for (const j of d.free) {
+      const m = d.counted.moved[j];
+      if (m > most) [most, mostJoint] = [m, j];
+      if (m > 1e-6 * d.counted.travel) over++;
+    }
+    Kinematics.freeCounts.push({ kind: d.kind, free: d.free.size, driven: d.driven!.size, travel: d.counted.travel, most, mostJoint, over });
   }
 
   // ---------------------------------------------------------------------------
@@ -2592,6 +2711,18 @@ export class Kinematics {
   // A turn whose sums meet a value that is not finite (see NotFinite) is refused: undone, with
   // nothing turned (see refuseNotFinite).
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
+    if (this.drag.turning?.joint === joint && !this.drag.free) {
+      this.classifyDrag((m) => this.jointRate(m, joint), this.wheelTurned(joint) ? 'wheel' : 'turn');
+      if (FREE_COUNT()) this.countFree();
+    }
+    try {
+      return this.turnJointGuarded(joint, angle, allowed, maxStep);
+    } finally {
+      if (FREE_COUNT()) this.countFree();
+    }
+  }
+
+  private turnJointGuarded(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     const before = this.stepState();
     try {
       return this.turnJointWhole(joint, angle, allowed, maxStep);
