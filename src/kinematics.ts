@@ -4152,7 +4152,7 @@ export class Kinematics {
       for (let c = 0; c < z.length; c++) sum += row[c] * z[c];
       return sum;
     };
-    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
+    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b) && !this.closingFollowers.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
     // The steering is kept still on a car on its tyres, and lifted too: in the hand, nothing turns a
     // knuckle against its chassis but friction in the steering, which holds it there (the 42053
@@ -4381,6 +4381,17 @@ export class Kinematics {
         const mountsHeld = this.options.leastMotion && !this.options.oneProblem && this.drag.turning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.drag.held.has(b) && b !== this.drag.turning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
         for (const b of mountsHeld) this.drag.held.add(b);
         this.move(m, amount);
+        // A support that arrives under a resting body in the step (a lobe coming round under a push
+        // rod's foot that stood on the plate): where it rests on now, after the move, counts too.
+        if (this.closingFollowers.size || this.mech.rests?.length) {
+          const most = Math.max(...m.map(Math.abs));
+          const moving = (b: number) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * b + k] - m[k]) > 1e-9 * most);
+          for (const r of this.mech.rests ?? []) {
+            const on = restingOn(this, r);
+            if (on && moving(on.body)) this.closingFollowers.add(r.body);
+          }
+          this.closingStill = this.closingStill.filter((b) => !this.closingFollowers.has(b));
+        }
         let gap: number;
         try {
           gap = this.closeLoops(keep);
