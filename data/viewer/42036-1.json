@@ -1,25 +1,25 @@
 {
   "set": "42036-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:09:16.334Z",
-  "load": 25,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:25:57.213Z",
+  "load": 11,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 362,
-  "seconds": 29,
+  "seconds": 82,
   "functions": [
     {
       "function": 1,
       "does": "Pushed along, the rear wheel runs the four-cylinder engine: a 24 tooth sprocket on the rear wheel drives a chain to a 16 tooth sprocket on the swing arm's pivot axle, a row of 16 tooth gears carries the turn forward and up to a 24 tooth gear, and that drives an 8 tooth gear on the crankshaft, so the four pistons pump up and down, about four and a half times per turn of the wheel.",
       "verdict": "shown",
-      "msOneCall": 37,
+      "msOneCall": 31,
       "msPerStep": 6,
       "time": {
-        "open": 9,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 1,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 277,
-          "msOneCall": 37,
+          "ms": 265,
+          "msOneCall": 31,
           "stops": [],
           "moved": {
             "p130 3648b": [
@@ -51,22 +51,22 @@
             ],
             "p146 3705": [
               0,
-              13.37
+              373.37
             ],
             "p149 2851": [
-              1.76,
+              41.69,
               0
             ],
             "p153 2851": [
-              1.4,
+              41.39,
               0
             ],
             "p164 2851": [
-              2.26,
+              42.2,
               0
             ],
             "p168 2851": [
-              1.97,
+              41.96,
               0
             ]
           }
@@ -77,7 +77,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 249,
-          "msOneCall": 11,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p130 3648b": [
@@ -98,55 +98,74 @@
             ],
             "p146 3705": [
               0,
-              13.37
+              373.37
             ],
             "p149 2851": [
-              1.41,
+              41.39,
               0
             ],
             "p153 2851": [
-              1.76,
+              41.69,
               0
             ],
             "p164 2851": [
-              1.97,
+              41.96,
               0
             ],
             "p168 2851": [
-              2.26,
+              42.2,
               0
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 12
+      "B": [
+        {
+          "control": "p118 88517",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p130 3648b",
+            "p129 94925",
+            "p117 6542b",
+            "p107 3648b",
+            "p146 3705",
+            "p149 2851",
+            "p153 2851",
+            "p164 2851",
+            "p168 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
     },
     {
       "function": 2,
       "does": "The rear wheel rides on a swing arm pivoted under the seat, with a yellow shock absorber from the frame to the swing arm, so the rear wheel moves up and down; the chain runs round the sprocket on the pivot axle, so the drive to the engine keeps working.",
-      "verdict": "not decided",
-      "msOneCall": 10,
+      "verdict": "shown",
+      "msOneCall": 22,
       "msPerStep": 5,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 5
       },
       "stop": {
         "control": "p79 64290",
         "way": 1,
-        "went": 0.14,
+        "went": 0.279,
         "asked": 1.5,
         "by": [
-          "291/291"
+          "455/454"
         ]
       },
       "stops": [
-        "291/291",
         "455/454"
       ],
       "A": [
@@ -154,20 +173,20 @@
           "control": "p79 64290",
           "way": 1,
           "asked": 1.5,
-          "went": 0.14,
-          "ms": 21,
-          "msOneCall": 10,
+          "went": 0.279,
+          "ms": 39,
+          "msOneCall": 22,
           "stops": [
-            "291/291"
+            "455/454"
           ],
           "moved": {
             "p118 88517": [
-              27.88,
-              13.52
+              55.81,
+              27.03
             ],
             "p455 4254": [
-              10.05,
-              0.6
+              20.12,
+              2.21
             ],
             "p146 3705": [
               0,
@@ -180,8 +199,8 @@
           "way": -1,
           "asked": 0.27,
           "went": 0,
-          "ms": 6,
-          "msOneCall": 7,
+          "ms": 3,
+          "msOneCall": 6,
           "stops": [
             "455/454"
           ],
@@ -201,35 +220,46 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p79 64290",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p118 88517",
+            "p455 4254"
+          ],
+          "stops": []
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p79 64290",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.14 rad (291/291); -0 rad (455/454)"
+          "judged": "stands",
+          "why": "stopped at +0.279 rad (455/454); -0 rad (455/454); kinds swing-arm"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p79 64290: a travel of 0.2 rad or less each way, stopped at +0.14 rad (291/291); -0 rad (455/454)",
-      "seconds": 4
+      "seconds": 12
     },
     {
       "function": 6,
       "does": "The kickstand under the right side swings down to hold the bike up, and folds back up.",
-      "verdict": "not shown",
-      "why": "A: p291 4519 not moved",
-      "msOneCall": 0,
-      "msPerStep": null,
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 3,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 1,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -237,50 +267,76 @@
         {
           "control": "p290 32192",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              22
+            ]
+          },
           "asked": 1.2,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": 1.2,
+          "ms": 69,
+          "msOneCall": 21,
           "stops": [],
           "moved": {
             "p291 4519": [
-              0,
-              0
+              105.94,
+              68.75
             ]
           }
         },
         {
           "control": "p290 32192",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              22
+            ]
+          },
           "asked": 0.2,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": -0.2,
+          "ms": 16,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p291 4519": [
-              0,
-              0
+              17.66,
+              11.46
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 4
+      "B": [
+        {
+          "control": "p290 32192",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p291 4519"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
     },
     {
       "function": 7,
       "does": "Both wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 12,
-      "msPerStep": 6,
+      "msOneCall": 34,
+      "msPerStep": 7,
       "time": {
-        "open": 1,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 6,
-        "B": 0
+        "A": 1,
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -290,8 +346,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 240,
-          "msOneCall": 10,
+          "ms": 282,
+          "msOneCall": 34,
           "stops": [],
           "moved": {}
         },
@@ -300,8 +356,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 239,
-          "msOneCall": 10,
+          "ms": 262,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -310,8 +366,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 237,
-          "msOneCall": 12,
+          "ms": 253,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -320,14 +376,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 239,
-          "msOneCall": 10,
+          "ms": 255,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p118 88517",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p233 88517",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 34
     }
   ]
 }

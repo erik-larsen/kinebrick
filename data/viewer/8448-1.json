@@ -1,26 +1,25 @@
 {
   "set": "8448-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T18:50:51.762Z",
-  "load": 21.7,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:30:37.358Z",
+  "load": 6.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1268,
-  "seconds": 134,
+  "seconds": 157,
   "functions": [
     {
       "function": 2,
       "does": "Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins.",
-      "verdict": "not shown",
-      "why": "A: p577 32073, p692 32125, p594 2851, p598 2851 not moved",
-      "msOneCall": 107,
-      "msPerStep": 41,
+      "verdict": "shown",
+      "msOneCall": 87,
+      "msPerStep": 33,
       "time": {
-        "open": 28,
+        "open": 15,
         "collisions": 0,
-        "first": 9,
+        "first": 7,
         "reach": 0,
-        "A": 28,
-        "B": 0
+        "A": 6,
+        "B": 32
       },
       "stop": null,
       "stops": [],
@@ -30,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1622,
-          "msOneCall": 80,
+          "ms": 1399,
+          "msOneCall": 87,
           "stops": [],
           "moved": {
             "p236 6573": [
@@ -48,18 +47,18 @@
             ],
             "p577 32073": [
               0,
-              0
+              322.29
             ],
             "p692 32125": [
               0,
-              0
+              322.29
             ],
             "p594 2851": [
-              0,
+              38.78,
               0
             ],
             "p598 2851": [
-              0,
+              36.69,
               0
             ]
           }
@@ -69,8 +68,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1675,
-          "msOneCall": 107,
+          "ms": 1309,
+          "msOneCall": 44,
           "stops": [],
           "moved": {
             "p236 6573": [
@@ -87,18 +86,18 @@
             ],
             "p577 32073": [
               0,
-              0
+              322.29
             ],
             "p692 32125": [
               0,
-              0
+              322.29
             ],
             "p594 2851": [
-              0,
+              35.09,
               0
             ],
             "p598 2851": [
-              0,
+              39.39,
               0
             ]
           }
@@ -108,8 +107,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1755,
-          "msOneCall": 74,
+          "ms": 1318,
+          "msOneCall": 43,
           "stops": [],
           "moved": {
             "p236 6573": [
@@ -126,18 +125,18 @@
             ],
             "p577 32073": [
               0,
-              0
+              322.29
             ],
             "p692 32125": [
               0,
-              0
+              322.29
             ],
             "p594 2851": [
-              0,
+              38.78,
               0
             ],
             "p598 2851": [
-              0,
+              36.69,
               0
             ]
           }
@@ -147,8 +146,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1623,
-          "msOneCall": 78,
+          "ms": 1327,
+          "msOneCall": 43,
           "stops": [],
           "moved": {
             "p236 6573": [
@@ -165,63 +164,110 @@
             ],
             "p577 32073": [
               0,
-              0
+              322.29
             ],
             "p692 32125": [
               0,
-              0
+              322.29
             ],
             "p594 2851": [
-              0,
+              35.09,
               0
             ],
             "p598 2851": [
-              0,
+              39.39,
               0
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 66
+      "B": [
+        {
+          "control": "p478 32196",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p236 6573",
+            "p31 3706",
+            "p100 3737",
+            "p577 32073",
+            "p692 32125",
+            "p598 2851"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p481 32196",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p236 6573",
+            "p31 3706",
+            "p100 3737",
+            "p577 32073",
+            "p692 32125",
+            "p594 2851",
+            "p598 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 60
     },
     {
       "function": 3,
       "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",
-      "verdict": "not shown",
-      "why": "A: p497 6539 not moved",
-      "msOneCall": 76,
-      "msPerStep": 15,
+      "verdict": "shown",
+      "msOneCall": 71,
+      "msPerStep": 10,
       "time": {
-        "open": 6,
+        "open": 15,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 11,
-        "B": 0
+        "A": 6,
+        "B": 13
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p576 6587",
+        "way": 1,
+        "went": 0.453,
+        "asked": 1.5,
+        "by": [
+          "564/576"
+        ]
+      },
+      "stops": [
+        "564/576",
+        "565/576"
+      ],
       "A": [
         {
           "control": "p576 6587",
           "way": 1,
-          "asked": 0.47,
-          "went": 0.47,
-          "ms": 195,
-          "msOneCall": 76,
-          "stops": [],
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": 0.453,
+          "ms": 125,
+          "msOneCall": 69,
+          "stops": [
+            "564/576"
+          ],
           "moved": {
             "p575 6641": [
-              9.31,
-              26.93
+              9.07,
+              25.98
             ],
             "p486 3707": [
               0,
-              26.93
+              25.98
             ],
             "p497 6539": [
-              0,
+              5,
               0
             ],
             "p577 32073": [
@@ -233,22 +279,25 @@
         {
           "control": "p576 6587",
           "way": -1,
-          "asked": 0.47,
-          "went": -0.47,
-          "ms": 206,
-          "msOneCall": 45,
-          "stops": [],
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": -0.453,
+          "ms": 121,
+          "msOneCall": 71,
+          "stops": [
+            "565/576"
+          ],
           "moved": {
             "p575 6641": [
-              9.31,
-              26.93
+              9.07,
+              25.98
             ],
             "p486 3707": [
               0,
-              26.93
+              25.98
             ],
             "p497 6539": [
-              0,
+              5,
               0
             ],
             "p577 32073": [
@@ -258,23 +307,51 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 20
+      "B": [
+        {
+          "control": "p576 6587",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p575 6641",
+            "p486 3707",
+            "p497 6539"
+          ],
+          "stops": [
+            "565/576",
+            "564/576",
+            "558/575"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p576 6587",
+          "judged": "stands",
+          "why": "stopped at +0.453 rad (564/576); -0.453 rad (565/576); kinds driving-ring-gearbox"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 29
     },
     {
       "function": 4,
       "does": "The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
-      "verdict": "not shown",
-      "why": "A: none not moved; p31 3706, p100 3737 listed to stay moved",
-      "msOneCall": 86,
-      "msPerStep": 43,
+      "verdict": "shown",
+      "msOneCall": 59,
+      "msPerStep": 8,
       "time": {
-        "open": 5,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 14,
-        "B": 0
+        "A": 1,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -284,8 +361,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1842,
-          "msOneCall": 86,
+          "ms": 361,
+          "msOneCall": 59,
           "stops": [],
           "moved": {
             "p481 32196": [
@@ -293,16 +370,16 @@
               85.94
             ],
             "p237 6589": [
-              23.18,
+              0,
               85.94
             ],
             "p31 3706": [
               0,
-              128.92
+              0
             ],
             "p100 3737": [
               0,
-              128.92
+              0
             ]
           }
         },
@@ -311,8 +388,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1585,
-          "msOneCall": 76,
+          "ms": 358,
+          "msOneCall": 16,
           "stops": [],
           "moved": {
             "p481 32196": [
@@ -320,36 +397,49 @@
               85.94
             ],
             "p237 6589": [
-              23.18,
+              0,
               85.94
             ],
             "p31 3706": [
               0,
-              128.92
+              0
             ],
             "p100 3737": [
               0,
-              128.92
+              0
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 21
+      "B": [
+        {
+          "control": "p478 32196",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p481 32196",
+            "p237 6589"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 24
     },
     {
       "function": 5,
       "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
       "verdict": "not decided",
-      "msOneCall": 102,
-      "msPerStep": 125,
+      "msOneCall": 68,
+      "msPerStep": 48,
       "time": {
-        "open": 4,
+        "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 20,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 26
       },
       "stop": {
         "control": "p364 32195a",
@@ -357,12 +447,14 @@
         "went": -0.035,
         "asked": 1.5,
         "by": [
-          "14/345"
+          "53/345"
         ]
       },
       "stops": [
         "345/396",
-        "14/345"
+        "53/345",
+        "14/345",
+        "345/397"
       ],
       "A": [
         {
@@ -370,8 +462,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0,
-          "ms": 63,
-          "msOneCall": 102,
+          "ms": 29,
+          "msOneCall": 68,
           "stops": [
             "345/396"
           ],
@@ -399,10 +491,10 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.035,
-          "ms": 120,
-          "msOneCall": 88,
+          "ms": 48,
+          "msOneCall": 44,
           "stops": [
-            "14/345"
+            "53/345"
           ],
           "moved": {
             "p370 32184": [
@@ -410,16 +502,16 @@
               0
             ],
             "p384 32184": [
-              1.4,
+              0,
               0
             ],
             "p475 32196": [
               3.84,
-              0.1
+              0.07
             ],
             "p484 32196": [
-              3.84,
-              0.1
+              0,
+              0
             ]
           }
         },
@@ -428,14 +520,14 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.035,
-          "ms": 125,
-          "msOneCall": 88,
+          "ms": 46,
+          "msOneCall": 31,
           "stops": [
             "14/345"
           ],
           "moved": {
             "p370 32184": [
-              1.4,
+              0,
               0
             ],
             "p384 32184": [
@@ -443,12 +535,12 @@
               0
             ],
             "p475 32196": [
-              3.84,
-              0.1
+              0,
+              0
             ],
             "p484 32196": [
               3.84,
-              0.1
+              0.07
             ]
           }
         },
@@ -457,10 +549,11 @@
           "way": -1,
           "asked": 0.03,
           "went": 0,
-          "ms": 56,
-          "msOneCall": 73,
+          "ms": 20,
+          "msOneCall": 21,
           "stops": [
-            "345/396"
+            "345/396",
+            "345/397"
           ],
           "moved": {
             "p370 32184": [
@@ -482,17 +575,52 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p364 32195a",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p475 32196"
+          ],
+          "stops": [
+            "53/345",
+            "56/345",
+            "369/368",
+            "345/397",
+            "345/396"
+          ]
+        },
+        {
+          "control": "p380 32195a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p484 32196"
+          ],
+          "stops": [
+            "345/396",
+            "345/397",
+            "14/345",
+            "17/345",
+            "395/394"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p364 32195a",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (14/345)"
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (53/345)"
         },
         {
           "control": "p380 32195a",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396)"
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396, 345/397)"
         }
       ],
       "stopVerdict": "not decided",
@@ -503,8 +631,8 @@
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (14/345); p380 32195a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396)",
-      "seconds": 27
+      "why": "not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (53/345); p380 32195a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396, 345/397)",
+      "seconds": 44
     }
   ]
 }

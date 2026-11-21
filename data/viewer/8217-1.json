@@ -1,11 +1,11 @@
 {
   "set": "8217-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:03:10.183Z",
-  "load": 24.2,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:16:02.086Z",
+  "load": 3.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 56,
-  "seconds": 20,
+  "seconds": 43,
   "functions": [
     {
       "function": 1,
@@ -14,12 +14,12 @@
       "msOneCall": 3,
       "msPerStep": 0,
       "time": {
-        "open": 9,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 6,
-        "B": 0
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 9,
+          "ms": 12,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -42,11 +42,11 @@
               85.94
             ],
             "p54 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p57 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p50 32017": [
@@ -61,7 +61,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 6,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -73,11 +73,11 @@
               85.94
             ],
             "p54 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p57 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p50 32017": [
@@ -91,8 +91,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 8,
-          "msOneCall": 1,
+          "ms": 6,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -104,11 +104,11 @@
               85.94
             ],
             "p54 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p57 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p50 32017": [
@@ -122,8 +122,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 6,
-          "msOneCall": 1,
+          "ms": 5,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -135,11 +135,11 @@
               85.94
             ],
             "p54 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p57 3737": [
-              177.23,
+              194.99,
               85.94
             ],
             "p50 32017": [
@@ -149,22 +149,49 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 16
+      "B": [
+        {
+          "control": "p1 4288",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p17 3706",
+            "p27 4519",
+            "p54 3737",
+            "p57 3737"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p25 4288",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p54 3737",
+            "p57 3737"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 28
     },
     {
       "function": 2,
       "does": "The tail rotor, a dark 5-hole beam with yellow round plates at its ends, spins freely on its pin at the end of the tail boom.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 3,
       "msPerStep": 0,
       "time": {
-        "open": 1,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 11
       },
       "stop": null,
       "stops": [],
@@ -174,8 +201,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 6,
-          "msOneCall": 1,
+          "ms": 9,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -193,7 +220,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 7,
+          "ms": 4,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -208,8 +235,18 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 4
+      "B": [
+        {
+          "control": "p50 32017",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     }
   ]
 }

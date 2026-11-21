@@ -1,15 +1,104 @@
 {
   "set": "42088-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:52:36.051Z",
-  "load": 18,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:55:58.422Z",
+  "load": 13.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 148,
-  "seconds": 9,
+  "seconds": 86,
   "functions": [
     {
       "function": 2,
       "does": "The boom's mount turns round on a single upright pin on the chassis, swinging the boom and bucket round.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 5
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p111 32138",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p124 11478": [
+              31.44,
+              85.94
+            ],
+            "p139 32270": [
+              135.03,
+              85.94
+            ],
+            "p140 32249": [
+              251.82,
+              0
+            ],
+            "p94 55981": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p111 32138",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 31,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p124 11478": [
+              31.44,
+              85.94
+            ],
+            "p139 32270": [
+              135.03,
+              85.94
+            ],
+            "p140 32249": [
+              251.82,
+              0
+            ],
+            "p94 55981": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p111 32138",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p124 11478",
+            "p139 32270",
+            "p140 32249"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 9
+    },
+    {
+      "function": 3,
+      "does": "The bucket turns round on the upright pins it hangs from at the boom's tip.",
       "verdict": "shown",
       "msOneCall": 12,
       "msPerStep": 1,
@@ -18,98 +107,23 @@
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
       "A": [
         {
-          "control": "p111 32138",
+          "control": "p140 32249",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 42,
+          "ms": 34,
           "msOneCall": 12,
           "stops": [],
           "moved": {
-            "p124 11478": [
-              28.57,
-              85.94
-            ],
-            "p139 32270": [
-              122.73,
-              85.94
-            ],
-            "p140 32249": [
-              228.88,
-              0
-            ],
-            "p94 55981": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p111 32138",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 34,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {
-            "p124 11478": [
-              28.57,
-              85.94
-            ],
-            "p139 32270": [
-              122.73,
-              85.94
-            ],
-            "p140 32249": [
-              228.88,
-              0
-            ],
-            "p94 55981": [
-              0,
-              0
-            ]
-          }
-        }
-      ],
-      "B": [],
-      "seconds": 5
-    },
-    {
-      "function": 3,
-      "does": "The bucket turns round on the upright pins it hangs from at the boom's tip.",
-      "verdict": "shown",
-      "msOneCall": 5,
-      "msPerStep": 1,
-      "time": {
-        "open": 0,
-        "collisions": 0,
-        "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
-      },
-      "stop": null,
-      "stops": [],
-      "A": [
-        {
-          "control": "p140 32249",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 38,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {
             "p140 32249 against p124 11478": [
-              34.08,
+              37.5,
               85.94
             ],
             "p124 11478": [
@@ -123,12 +137,12 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 30,
-          "msOneCall": 3,
+          "ms": 31,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p140 32249 against p124 11478": [
-              34.08,
+              37.5,
               85.94
             ],
             "p124 11478": [
@@ -138,22 +152,34 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 1
+      "B": [
+        {
+          "control": "p140 32249",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p140 32249 against p124 11478"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 5,
       "does": "The four wheels roll freely; there's no steering.",
       "verdict": "shown",
-      "msOneCall": 4,
-      "msPerStep": 1,
+      "msOneCall": 14,
+      "msPerStep": 2,
       "time": {
-        "open": 0,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 5,
+        "A": 0,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -163,8 +189,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 49,
-          "msOneCall": 4,
+          "ms": 75,
+          "msOneCall": 14,
           "stops": [],
           "moved": {}
         },
@@ -173,8 +199,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
-          "msOneCall": 3,
+          "ms": 56,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -183,8 +209,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 46,
-          "msOneCall": 3,
+          "ms": 48,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -193,38 +219,38 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 47,
+          "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 48,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p98 55981",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 47,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p98 55981",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 53,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p99 55981",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
           "ms": 49,
-          "msOneCall": 4,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p99 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 54,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -233,14 +259,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 50,
-          "msOneCall": 3,
+          "ms": 49,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p94 55981",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p96 55981",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p98 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p99 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 62
     }
   ]
 }
