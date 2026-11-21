@@ -1,6 +1,8 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/8024-Universal Set.mpd');
 
 describe('8024 Universal Set', () => {
   const { parts, mech, kin, bodyOf, turn, angleOf, frameMoved } = load('models/8024-Universal Set.mpd');

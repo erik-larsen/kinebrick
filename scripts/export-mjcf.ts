@@ -58,7 +58,7 @@ const setFile = `data/sets/${setName.includes('-') ? setName : setName + '-1'}.j
 const set = JSON.parse(readFileSync(setFile, 'utf-8'));
 const modelFile: string = set.curated.model;
 console.log(`reading ${modelFile}`);
-const loaded = loadModel(modelFile, modelFile.startsWith('omr/'));
+const loaded = await loadModel(modelFile, modelFile.startsWith('omr/'));
 const mech: Mechanism = loaded.mech;
 const parts = loaded.parts;
 

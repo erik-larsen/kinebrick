@@ -155,8 +155,8 @@ const kernels: Record<string, { old: (...args: never[]) => unknown; now: (...arg
 
 // The calls of each kernel in one turn of a control by a step, as a drag makes it: up to `most`
 // of each, the first ones and then every so often, copied as they were given.
-function callsInAStep(model: string, part: number, most = 30): Call[] {
-  const { mech, kin } = loadModel(model, true);
+async function callsInAStep(model: string, part: number, most = 30): Promise<Call[]> {
+  const { mech, kin } = await loadModel(model, true);
   const body = mech.bodyOf[part];
   const link = kin.parentLink(body)!;
   const seen: Record<string, number> = {};
@@ -287,8 +287,8 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
     ["the 42100 Liebherr R 9800, its bucket's motor", 'omr/42100-1 Liebherr R 9800.mpd', 3237],
   ];
   for (const [what, model, part] of models) {
-    it.skipIf(!existsSync(model))(`on what a step of ${what} gives them`, () => {
-      const calls = callsInAStep(model, part);
+    it.skipIf(!existsSync(model))(`on what a step of ${what} gives them`, async () => {
+      const calls = await callsInAStep(model, part);
       for (const kernel of Object.keys(kernels)) expect(calls.some((c) => c.kernel === kernel), kernel).toBe(true);
       sameOnAll(calls);
     }, 300_000);

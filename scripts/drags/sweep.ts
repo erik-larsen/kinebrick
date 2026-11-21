@@ -41,7 +41,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { loadavg } from 'node:os';
 import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
-import { open, type Viewer } from './drag.ts';
+import { LIBRARY, open, type Viewer } from './drag.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
@@ -474,7 +474,7 @@ async function opens(file: string): Promise<string | null> {
     const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
     let error: string | null = null;
     page.on('pageerror', (e) => { error ??= e.message; });
-    await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug`);
+    await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug${LIBRARY}`);
     for (let t = 0; t < 300; t++) {
       if (error) return `does not open in the viewer: ${String(error).slice(0, 200)}`;
       if (await page.evaluate(() => { const k = (window as any).kinebrick; return !!(k && k.kin && k.kin.poses.length > 0); })) return null;

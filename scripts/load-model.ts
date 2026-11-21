@@ -8,14 +8,19 @@ import { applyErrata, type Errata, setOfFile } from '../src/errata.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { embeddedParts, modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
-import { keptFileName } from '../src/collisions.ts';
+import { keptFileName, type PartMesh, touchingFrom } from '../src/collisions.ts';
+import { partShapes } from './part-shapes.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { pivotsKey } from '../src/pivotsKey.ts';
 import { drawnDirectly, piecesLines, piecesRole } from '../src/pack.ts';
 
-export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
+// The parts' shapes are read with it (see partShapes), for what its loose parts touch (see
+// touchingFrom, decision 259): or given, by a caller that has read them already.
+export async function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}, shapes?: { shape: PartMesh[] }[]) {
   status('reading it');
   const { text, table, parts, paths, errata } = readParts(file, omr);
+  status('reading its parts\' shapes');
+  const touching = touchingFrom((shapes ?? (await partShapes(file, text, parts))).map((s) => s.shape));
   const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   status('working out its mechanism');
@@ -25,14 +30,14 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   // left to turn (see pinsToFree), and the parts `slid` asked to slide on their axles (see
   // slidesAsked).
   const read = (placed: PlacedPart[], freed = new Set<number>(), slid = new Set<number>()) => {
-    const mech = inferMechanism(placed, table, roles, paths, freed, false, placed === parts ? kept : null, slid);
+    const mech = inferMechanism(placed, table, roles, paths, freed, false, placed === parts ? kept : null, slid, touching);
     const kin = new Kinematics(mech);
     kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
     return { parts: placed, mech, kin };
   };
   // The mechanism with every friction pin free, for pinsToFree.
-  const allFree = (placed: PlacedPart[]) => inferMechanism(placed, table, roles, paths, new Set(), true);
-  return { name, table, errata, slides: modelSettings(text).slides, ...read(parts), read, allFree };
+  const allFree = (placed: PlacedPart[]) => inferMechanism(placed, table, roles, paths, new Set(), true, null, new Set(), touching);
+  return { name, table, errata, slides: modelSettings(text).slides, ...read(parts), read, allFree, touching };
 }
 
 // The pins the rule for stuck actuators frees in the model, as kept for it (see keptPivots.ts in

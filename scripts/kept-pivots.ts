@@ -15,11 +15,12 @@
 //                                    that the key doesn't see
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { keptFileName } from '../src/collisions.ts';
+import { keptFileName, touchingFrom } from '../src/collisions.ts';
 import { actuatorPivots } from '../src/mechanism.ts';
 import { pivotsKey } from '../src/pivotsKey.ts';
 import { keptModels } from './collision-pairs.ts';
 import { readParts } from './load-model.ts';
+import { partShapes } from './part-shapes.ts';
 
 export const PIVOTS_DIR = 'data/pivots';
 
@@ -32,12 +33,12 @@ if (process.argv[1]?.endsWith('kept-pivots.ts')) {
   let differ = 0;
   for (const model of keptModels().filter((m) => !only.length || only.some((o) => m.includes(o)))) {
     const start = Date.now();
-    const { parts, paths, table } = readParts(model, model.startsWith('omr/'));
+    const { text, parts, paths, table } = readParts(model, model.startsWith('omr/'));
     const key = pivotsKey(parts, table, roles);
     const file = `${PIVOTS_DIR}/${keptFileName(model)}.json`;
     const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
     if (!force && !check && kept?.key === key) continue;
-    const pins = actuatorPivots(parts, table, roles, paths);
+    const pins = actuatorPivots(parts, table, roles, paths, touchingFrom((await partShapes(model, text, parts)).map((s) => s.shape)));
     const seconds = ((Date.now() - start) / 1000).toFixed(1);
     if (check) {
       const same = kept?.key === key && JSON.stringify(kept.pins) === JSON.stringify(pins);

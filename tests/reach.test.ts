@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../src/kinematics.ts';
-import { load } from './sets/load.ts';
+import { load, readShapes } from './sets/load.ts';
+
+await readShapes('models/855-Mobile Crane.mpd');
+await readShapes('models/8859-Tractor.mpd');
 
 // A drag solved only over the parts it can reach (see Options.reach): the 855 Mobile Crane's winch,
 // turned, can't reach its outriggers, which no connection joins to the winch but through the frame.

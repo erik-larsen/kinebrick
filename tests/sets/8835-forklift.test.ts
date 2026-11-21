@@ -1,6 +1,8 @@
 import { Matrix4, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/8835-Forklift.mpd');
 
 describe('8835 Forklift', () => {
   const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/8835-Forklift.mpd');
