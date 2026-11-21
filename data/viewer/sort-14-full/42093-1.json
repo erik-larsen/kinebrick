@@ -1,0 +1,108 @@
+{
+  "set": "42093-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:04:59.153Z",
+  "load": 10.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 565,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The front wheels roll freely and turn with the steering.",
+      "verdict": "not shown",
+      "msOneCall": 33,
+      "msPerStep": 9,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p567 56904",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "118/327"
+        ]
+      },
+      "stops": [
+        "118/327",
+        "118/338"
+      ],
+      "A": [
+        {
+          "control": "p567 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 18,
+          "msOneCall": 33,
+          "stops": [
+            "118/327"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p567 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 14,
+          "msOneCall": 9,
+          "stops": [
+            "118/338"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p574 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 13,
+          "msOneCall": 9,
+          "stops": [
+            "118/327"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p574 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 12,
+          "msOneCall": 8,
+          "stops": [
+            "118/338"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p567 56904",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338)"
+        },
+        {
+          "control": "p574 56904",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p567 56904: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338); p574 56904: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338)",
+      "seconds": 3
+    }
+  ]
+}
