@@ -1,0 +1,91 @@
+{
+  "set": "8258-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:48:29.945Z",
+  "load": 10.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1629,
+  "seconds": 33,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 25,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 6,
+        "reach": 0,
+        "A": 8,
+        "B": 10
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p767 58121",
+          "way": 1,
+          "asked": 5.1,
+          "went": 5.809,
+          "ms": 4126,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p2167 62274c01 against p2166 62271c01": [
+              1.16,
+              0
+            ],
+            "p2180 32524 against p2123 32526": [
+              1.52,
+              1.45
+            ],
+            "p2123 32526 against p2046 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p767 58121",
+          "way": -1,
+          "asked": 5.1,
+          "went": -6.452,
+          "ms": 4146,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p2167 62274c01 against p2166 62271c01": [
+              1.29,
+              0
+            ],
+            "p2180 32524 against p2123 32526": [
+              1.58,
+              1.51
+            ],
+            "p2123 32526 against p2046 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p767 58121",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p2167 62274c01 against p2166 62271c01",
+            "p2180 32524 against p2123 32526"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 33
+    }
+  ]
+}

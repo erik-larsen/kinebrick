@@ -1,0 +1,85 @@
+{
+  "set": "8285-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:48:39.315Z",
+  "load": 10.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1790,
+  "seconds": 92,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The bonnet, with the grille and front wings, tilts forward to show the engine.",
+      "verdict": "not shown",
+      "why": "A: p1074 3707 not moved; B: no listed part moved by hand",
+      "msOneCall": 7,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 65,
+        "A": 0,
+        "B": 19
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1069 32034",
+          "way": 1,
+          "asked": 0.15,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p1074 3707": [
+              0,
+              0
+            ],
+            "p720 3705": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1069 32034",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1074 3707": [
+              0,
+              0
+            ],
+            "p720 3705": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1069 32034",
+          "seen": true,
+          "cameraTurns": 25,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "502/1129",
+            "1075/1178",
+            "1140/1167"
+          ]
+        }
+      ],
+      "seconds": 92
+    }
+  ]
+}
