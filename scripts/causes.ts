@@ -38,6 +38,11 @@ export const CAUSES = {
   'too-little': { owner: 'solver', says: 'The control went far enough, but a part it must move hardly moved' },
   'stay-forced': { owner: 'function lists', says: 'A part that should stay has to move whenever the control does' },
   'stay-chosen': { owner: 'solver', says: 'A part that should stay moved, though the control can move without it' },
+  // A wheel, track, engine or shaft (see endless.ts) that a collision stops, where the real part
+  // turns without end (decision 279 of 2026-11-21): the parts that met overlap in a motion the real
+  // set doesn't make (a leg that swings as the model rolls), or rub where it is built tight. The
+  // pair is in the detail, and in collisionStops.
+  'stopped-endless': { owner: 'inference', says: 'A part that turns without end is stopped by a collision' },
   unknown: { owner: 'check', says: 'None of the above' },
 } as const;
 export type Cause = keyof typeof CAUSES;

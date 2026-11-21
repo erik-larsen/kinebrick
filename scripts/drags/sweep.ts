@@ -59,6 +59,7 @@ import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
 import { LAUNCH, LIBRARY, open, type Viewer } from './drag.ts';
 import { foundOf } from '../holds.ts';
+import { ENDLESS_WORDS, endlessKinds, endlessPart } from '../endless.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
@@ -68,8 +69,6 @@ const PUSHES: [number, number][] = [[120, 0], [-120, 0], [0, 120], [0, -120]];
 // has an end (a door against its frame, steering at its lock), and wrong where it turns without
 // end. The kinds that turn without end are a first sieve (a function with one of them and no kind
 // with an end); the words of the function's text that say so are recorded beside them.
-const ENDLESS = new Set(['belt-drive', 'chain-drive', 'conveyor', 'crawler-tracks', 'differential', 'driven-detail', 'driven-rotor', 'free-wheels', 'piston-engine', 'planetary-hub', 'portal-axle', 'power-take-off', 'pull-back-motor', 'rotary-tool', 'valve-train']);
-const ENDLESS_WORDS = /\b(rolls?|rolling|spins?|spinning|rotors?|fans?|engine|pistons?|tracks?|power take-off|turns? freely|runs? freely|drive shaft|propellers?|wheels?)\b/gi;
 const SHORT = 0.2; // radians each way: a travel this short is compared with the booklet's picture
 // Judgements made by hand where the sweep can't tell (a short travel against the booklet's
 // picture): data/viewer/judged.json, {"<set> <function>": {stop, why, page}}, stop "shown",
@@ -351,7 +350,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
       }
       for (const [wi, way] of [1, -1].entries()) {
-        const asked = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
+        // As far as the check turned it, but a part that turns without end (endlessPart) the full
+        // turn each way, whatever the check's record turned (ordered after decision 284): where the check stopped
+        // at a collision, asking only that far never shows whether the viewer stops there too.
+        const asked = endlessPart(ref.split(' ').slice(1).join(' ')) ? 1.5 : Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
         const r = (await v.page.evaluate(
           ({ control, asked, way, step, parts, dragEnd }) => {
             const k = (window as any).kinebrick;
@@ -704,14 +706,15 @@ function judge(key: string, fn: any, line: Record<string, any>): Record<string, 
   const stopped = [...new Set(A.filter((a) => a.stops.length).map((a) => a.control as string))];
   if (!stopped.length) return line;
   const kinds: string[] = fn.mechanisms ?? [];
-  const endlessKinds = kinds.filter((k) => ENDLESS.has(k));
-  const endless = endlessKinds.length > 0 && endlessKinds.length === kinds.length;
+  const { kinds: endlessOnes, endless } = endlessKinds(kinds);
   const words = [...new Set(((fn.does as string).match(ENDLESS_WORDS) ?? []).map((w) => w.toLowerCase()))];
   const stopsJudged = stopped.map((control) => {
     const ways = A.filter((a) => a.control === control);
     const at = ways.filter((a) => a.stops.length).map((a) => `${a.way > 0 ? '+' : '-'}${Math.abs(a.went)} rad (${a.stops.join(', ')})`).join('; ');
     const short = ways.every((a) => Math.abs(a.went) <= SHORT);
-    if (endless) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessKinds.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
+    // Judged so only where the stopped control is itself a part that turns without end
+    // (endlessPart, decision 282): a lever at the end of its travel stands.
+    if (endless && endlessPart(control.split(' ').slice(1).join(' '))) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessOnes.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
     if (short) return { control, judged: 'to compare with the booklet', why: `a travel of ${SHORT} rad or less each way, stopped at ${at}` };
     return { control, judged: 'stands', why: `stopped at ${at}; kinds ${kinds.join(', ') || 'none'}` };
   });
