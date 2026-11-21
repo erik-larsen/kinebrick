@@ -1,25 +1,26 @@
 {
   "set": "8094-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:09:46.426Z",
-  "load": 27.9,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:30:15.053Z",
+  "load": 14.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 385,
-  "seconds": 17,
+  "seconds": 40,
   "functions": [
     {
       "function": 1,
       "does": "The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth.",
-      "verdict": "shown",
-      "msOneCall": 17,
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 13,
       "msPerStep": 1,
       "time": {
-        "open": 9,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 1,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,8 +30,8 @@
           "way": 1,
           "asked": 8.8,
           "went": 8.8,
-          "ms": 366,
-          "msOneCall": 17,
+          "ms": 312,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p161 2855 against p102 3709b": [
@@ -42,7 +43,7 @@
               1
             ],
             "p281 3709b against p102 3709b": [
-              8.19,
+              8.2,
               1
             ]
           }
@@ -52,8 +53,8 @@
           "way": -1,
           "asked": 8.8,
           "went": -8.8,
-          "ms": 328,
-          "msOneCall": 3,
+          "ms": 282,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p161 2855 against p102 3709b": [
@@ -65,28 +66,39 @@
               1
             ],
             "p281 3709b against p102 3709b": [
-              8.19,
+              8.2,
               1
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 13
+      "B": [
+        {
+          "control": "p380 4185a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 18
     },
     {
       "function": 3,
       "does": "The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again.",
-      "verdict": "shown",
-      "msOneCall": 5,
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 15,
       "msPerStep": 3,
       "time": {
-        "open": 1,
+        "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -96,8 +108,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 116,
-          "msOneCall": 5,
+          "ms": 125,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p259 3703 against p161 2855": [
@@ -115,7 +127,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 111,
+          "ms": 99,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -130,8 +142,18 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p227 4185a",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 22
     }
   ]
 }

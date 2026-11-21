@@ -1,60 +1,59 @@
 {
   "set": "42083-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T18:10:51.308Z",
-  "load": 16.8,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T16:59:05.458Z",
+  "load": 10.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 3512,
-  "seconds": 403,
+  "seconds": 619,
   "functions": [
     {
       "function": 1,
       "does": "The steering wheel steers the front wheels: its column runs forward along the cockpit's left side to bevel gears under the nose, and a shaft down the middle turns the pinion on the steering rack.",
       "verdict": "shown",
-      "msOneCall": 1878,
-      "msPerStep": 546,
+      "msOneCall": 706,
+      "msPerStep": 255,
       "time": {
-        "open": 45,
+        "open": 18,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 72,
-        "B": 0
+        "A": 32,
+        "B": 53
       },
       "stop": {
         "control": "p2742 2741",
-        "way": 1,
-        "went": 1.465,
+        "way": -1,
+        "went": -1.465,
         "asked": 1.5,
         "by": [
-          "1105/1121"
+          "1106/1126"
         ]
       },
       "stops": [
-        "1105/1121"
+        "1106/1126"
       ],
       "A": [
         {
           "control": "p2742 2741",
           "way": 1,
-          "asked": 1.5,
-          "went": 1.465,
-          "ms": 22508,
-          "msOneCall": 1621,
-          "stops": [
-            "1105/1121"
-          ],
+          "ringShifted": true,
+          "asked": 1.47,
+          "went": 1.47,
+          "ms": 10241,
+          "msOneCall": 706,
+          "stops": [],
           "moved": {
             "p1039 42083 - 23801": [
               0,
-              19.21
+              19.28
             ],
             "p1046 42083 - 23801": [
               0,
-              19.29
+              19.35
             ],
             "p1119 64781": [
-              13.19,
+              13.23,
               0
             ]
           }
@@ -62,54 +61,73 @@
         {
           "control": "p2742 2741",
           "way": -1,
-          "asked": 1.47,
-          "went": -1.47,
-          "ms": 22924,
-          "msOneCall": 1878,
-          "stops": [],
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": -1.465,
+          "ms": 10673,
+          "msOneCall": 661,
+          "stops": [
+            "1106/1126"
+          ],
           "moved": {
             "p1039 42083 - 23801": [
               0,
-              19.35
+              19.29
             ],
             "p1046 42083 - 23801": [
               0,
-              19.28
+              19.21
             ],
             "p1119 64781": [
-              13.23,
+              13.19,
               0
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p2742 2741",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1039 42083 - 23801",
+            "p1046 42083 - 23801",
+            "p1119 64781"
+          ],
+          "stops": [
+            "1106/1126"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p2742 2741",
           "judged": "stands",
-          "why": "stopped at +1.465 rad (1105/1121); kinds rack-steering"
+          "why": "stopped at -1.465 rad (1106/1126); kinds rack-steering"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 126
+      "seconds": 97
     },
     {
       "function": 5,
       "does": "Each axle's differential lets its two wheels turn at different speeds, as in a corner.",
       "verdict": "shown",
-      "msOneCall": 1506,
-      "msPerStep": 769,
+      "msOneCall": 714,
+      "msPerStep": 365,
       "time": {
-        "open": 15,
+        "open": 24,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 184,
-        "B": 0
+        "reach": 16,
+        "A": 72,
+        "B": 133
       },
       "stop": null,
       "stops": [],
@@ -117,20 +135,22 @@
         {
           "control": "p3522 42083 - 37383p01",
           "way": 1,
+          "ringShifted": true,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 32965,
-          "msOneCall": 1506,
+          "ms": 15528,
+          "msOneCall": 714,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p3522 42083 - 37383p01",
           "way": -1,
+          "ringShifted": true,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 31506,
-          "msOneCall": 1233,
+          "ms": 15657,
+          "msOneCall": 676,
           "stops": [],
           "moved": {}
         },
@@ -139,8 +159,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 32151,
-          "msOneCall": 1435,
+          "ms": 15417,
+          "msOneCall": 704,
           "stops": [],
           "moved": {}
         },
@@ -149,28 +169,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 32326,
-          "msOneCall": 1481,
+          "ms": 12648,
+          "msOneCall": 566,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 202
+      "B": [
+        {
+          "control": "p3522 42083 - 37383p01",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p3519 42083 - 37383p01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 239
     },
     {
       "function": 6,
       "does": "The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat.",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows the key turned both ways to lift the wing (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310), but in the viewer a collision stops p1938 at once one way (parts 1928/2024) and at 0.14 rad the other (parts 1929/1944). Viewer sweep on today's code, decision 298."
+      },
       "verdict": "not decided",
-      "msOneCall": 702,
-      "msPerStep": 227,
+      "msOneCall": 395,
+      "msPerStep": 84,
       "time": {
-        "open": 7,
+        "open": 18,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 17,
-        "B": 0
+        "reach": 159,
+        "A": 11,
+        "B": 23
       },
       "stop": {
         "control": "p1938 59443",
@@ -188,10 +231,11 @@
         {
           "control": "p1938 59443",
           "way": 1,
+          "ringShifted": true,
           "asked": 1.5,
           "went": 0,
-          "ms": 563,
-          "msOneCall": 665,
+          "ms": 127,
+          "msOneCall": 339,
           "stops": [
             "1928/2024"
           ],
@@ -209,24 +253,41 @@
         {
           "control": "p1938 59443",
           "way": -1,
+          "ringShifted": true,
           "asked": 0.17,
           "went": -0.17,
-          "ms": 1101,
-          "msOneCall": 702,
+          "ms": 410,
+          "msOneCall": 395,
           "stops": [],
           "moved": {
             "p1939 15458": [
-              26.2,
+              26.23,
               9.74
             ],
             "p1910 32073": [
-              6.79,
+              6.8,
               9.74
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p1938 59443",
+          "seen": true,
+          "cameraTurns": 36,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1939 15458"
+          ],
+          "stops": [
+            "1928/2024",
+            "1927/1944",
+            "1929/1944"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p1938 59443",
@@ -244,21 +305,21 @@
         "verdict": "shown"
       },
       "why": "not decided: p1938 59443: a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024)",
-      "seconds": 27
+      "seconds": 205
     },
     {
       "function": 7,
       "does": "The two doors swing open on hinges at their front edges.",
       "verdict": "not decided",
-      "msOneCall": 757,
-      "msPerStep": 409,
+      "msOneCall": 397,
+      "msPerStep": 121,
       "time": {
-        "open": 7,
+        "open": 24,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 37,
-        "B": 0
+        "A": 12,
+        "B": 47
       },
       "stop": {
         "control": "p2924 62531",
@@ -277,10 +338,11 @@
         {
           "control": "p2924 62531",
           "way": 1,
+          "ringShifted": true,
           "asked": 1.5,
           "went": 0.07,
-          "ms": 814,
-          "msOneCall": 681,
+          "ms": 238,
+          "msOneCall": 397,
           "stops": [
             "2786/2943"
           ],
@@ -289,10 +351,11 @@
         {
           "control": "p2924 62531",
           "way": -1,
+          "ringShifted": true,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 780,
-          "msOneCall": 705,
+          "ms": 215,
+          "msOneCall": 372,
           "stops": [],
           "moved": {}
         },
@@ -301,8 +364,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 733,
-          "msOneCall": 683,
+          "ms": 224,
+          "msOneCall": 338,
           "stops": [],
           "moved": {}
         },
@@ -311,15 +374,43 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.07,
-          "ms": 800,
-          "msOneCall": 757,
+          "ms": 241,
+          "msOneCall": 155,
           "stops": [
             "2837/2883"
           ],
           "moved": {}
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p2924 62531",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2786/2943",
+            "2807/2924",
+            "2807/2934"
+          ]
+        },
+        {
+          "control": "p2876 62531",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2837/2883",
+            "2841/2895",
+            "2866/2876",
+            "2866/2886"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p2924 62531",
@@ -337,7 +428,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p2924 62531: a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943); p2876 62531: a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)",
-      "seconds": 48
+      "seconds": 78
     }
   ]
 }

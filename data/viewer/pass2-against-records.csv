@@ -1,0 +1,742 @@
+set,function,result,cause,held,first pass,second pass,second reason,class,note,went
+1972-1,1,works,,,shown,shown,,,,p227 +1: 1.01;p227 -1: -1.01
+1972-1,2,works,,,shown,shown,,,,p219 +1: 1.50;p219 -1: -1.50;p211 +1: 1.50;p211 -1: -1.50;p215 +1: 1.50;p215 -1: -1.50;p223 +1: 1.50;p223 -1: -1.50
+41999-1,1,works,,,shown,shown,,,,p366 +1: 0.42;p366 -1: -0.42;p439 +1: 0.42;p439 -1: -0.42
+41999-1,5,works,,,shown,shown,,,,p663 +1: 1.50;p663 -1: -1.50
+41999-1,6,works,,,shown,shown,,,,p1190 +1: 1.29;p1190 -1: 0.00;p1235 +1: 0.00;p1235 -1: -1.29
+42000-1,1,works,,,shown,shown,,,,p706 +1: 1.10;p706 -1: -1.10
+42000-1,4,works,,,not decided,not decided,"not decided: p591 32294: a travel of 0.2 rad or less each way, stopped at -0.035 rad (ground: p1012); p600 32294: a travel of 0.2 rad or less each way, stopped at +0.035 rad (ground: p1012)",,,p591 +1: 0.07;p591 -1: -0.04;p600 +1: 0.04;p600 -1: -0.07
+42000-1,5,works,,,not decided,not decided,"not decided: p278 32294: a travel of 0.2 rad or less each way, stopped at +0.067 rad (464/466); p291 32294: a travel of 0.2 rad or less each way, stopped at -0.067 rad (459/460)",,,p278 +1: 0.07;p278 -1: -0.07;p291 +1: 0.07;p291 -1: -0.07
+42000-1,7,works,,,shown,shown,,,,p585 +1: 1.50;p585 -1: -1.50;p588 +1: 1.50;p588 -1: -1.50
+42004-1,1,works,,,shown,shown,,,,p108 +1: 1.12;p108 -1: -1.12
+42004-1,2,works,,,shown,shown,,,,p40 +1: 1.50;p40 -1: -1.12
+42004-1,3,works,,,not shown,not shown,"A: p229 2951 against p50 44294, p207 6632 against p50 44294 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p227 +1: 0.00;p227 -1: 0.00
+42004-1,4,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p147 +1: 0.28;p147 -1: -0.31
+42004-1,5,works,,,not shown,shown,,,,p171 +1: 1.47;p171 -1: -0.07
+42004-1,6,works,,,not shown,shown,,,,p177 +1: 1.26;p177 -1: -0.33
+42004-1,7,works,,,shown,shown,,,,p234 +1: 1.50;p234 -1: -1.50;p236 +1: 1.50;p236 -1: -1.50;p238 +1: 1.50;p238 -1: -1.50;p240 +1: 1.50;p240 -1: -1.50
+42004-1,8,works,,,shown,shown,,,,p97 +1: 1.50;p97 -1: -1.50
+42006-1,1,works,,,shown,shown,,,,p295 +1: 1.50;p295 -1: -1.50
+42006-1,6,works,,,shown,shown,,,,p74 +1: 1.50;p74 -1: -1.50;p76 +1: 1.50;p76 -1: -1.50;p111 +1: 1.50;p111 -1: -1.50;p117 +1: 1.50;p117 -1: -1.50
+42020-1,1,works,,,shown,shown,,,,p100 +1: 1.50;p100 -1: -1.50;p137 +1: 1.50;p137 -1: -1.50
+42020-1,2,works,,,shown,shown,,,,p52 +1: 1.50;p52 -1: -1.50;p55 +1: 1.50;p55 -1: -1.50;p53 +1: 1.50;p53 -1: -1.50;p54 +1: 1.50;p54 -1: -1.50
+42020-1,3,works,,,shown,shown,,,,p83 +1: 1.50;p83 -1: -1.50
+42020-1,4,works,,,shown,shown,,,,p60 +1: 0.67;p60 -1: -0.50
+42021-1,4,works,,,shown,shown,,,,p170 +1: 0.03;p170 -1: -0.47;p179 +1: 0.03;p179 -1: -0.47
+42021-1,5,works,,,shown,shown,,,,p96 +1: 1.50;p96 -1: -1.50;p97 +1: 1.50;p97 -1: -1.50;p98 +1: 1.50;p98 -1: -1.50;p99 +1: 1.50;p99 -1: -1.50
+42022-1,1,works,,,shown,shown,,,,p177 +1: 0.30;p177 -1: -0.53
+42022-1,2,works,,,shown,shown,,,,p136 +1: 1.50;p136 -1: -1.50
+42022-1,3,works,,,shown,shown,,,,p181 +1: 1.50;p181 -1: -1.50;p213 +1: 1.50;p213 -1: -1.50;p214 +1: 1.50;p214 -1: -1.50
+42022-1,4,works,,,shown,shown,,,,p396 +1: 0.00;p396 -1: -1.50
+42023-1,2,works,,,shown,shown,,,,p313 +1: 1.50;p313 -1: -0.30;p314 +1: 1.50;p314 -1: -0.30
+42023-1,3,works,,,shown,shown,,,,p256 +1: 1.50;p256 -1: 0.00
+42023-1,4,works,,,shown,shown,,,,p112 +1: 1.50;p112 -1: -1.50;p113 +1: 1.50;p113 -1: -1.50;p120 +1: 1.50;p120 -1: -1.50;p131 +1: 1.50;p131 -1: -1.50
+42024-1,1,works,,,shown,shown,,,,p468 +1: 1.26;p468 -1: -1.26
+42024-1,5,partly,stopped-endless,,shown,not shown,"a collision stops a control: p241 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p242 15413: turns witho",collision,,p241 +1: 0.21;p241 -1: -0.21;p242 +1: 0.21;p242 -1: -0.21;p239 +1: 0.21;p239 -1: -0.21;p240 +1: 0.21;p240 -1: -0.21;p237 +1: 0.21;p237 -1: -0.21;p238 +1: 0.21;p238 -1: -0.21
+42026-1,1,works,,,shown,shown,,,,p120 +1: 1.50;p120 -1: -1.50;p121 +1: 1.50;p121 -1: -1.50
+42026-1,3,works,,,shown,shown,,,,p119 +1: 1.50;p119 -1: -1.50;p122 +1: 1.50;p122 -1: -1.50
+42026-1,4,works,,,shown,shown,,,,p49 +1: 1.50;p49 -1: -1.50
+42029-1,1,works,,,shown,shown,,,,p656 +1: 1.19;p656 -1: -1.19
+42029-1,2,works,,,shown,shown,,,,p224 +1: 1.50;p224 -1: -1.50
+42029-1,3,works,,,shown,shown,,,,p1143 +1: 1.50;p1143 -1: -1.50;p1144 +1: 1.50;p1144 -1: -1.50
+42029-1,4,works,,,shown,shown,,,,p1143 +1: 1.50;p1143 -1: -1.50
+42029-1,5,works,,,not shown,shown,,,,p133 +1: 0.60;p133 -1: -0.60
+42029-1,8,works,,,shown,shown,,,,p951 +1: 0.00;p951 -1: -1.50
+42031-1,1,works,,,shown,shown,,,,p139 +1: 0.24;p139 -1: -1.50
+42031-1,2,partly,,yes,not shown,not shown,"a collision stops a control: p101 6632: a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124) (the boom turns round on a single pin, far past 0.03 rad, https://www.le",collision,,p101 +1: 0.03;p101 -1: -0.03
+42031-1,3,works,,,shown,shown,,,,p140 +1: 1.50;p140 -1: -1.50
+42031-1,4,works,,,shown,shown,,,,p93 +1: 1.50;p93 -1: -1.50;p95 +1: 1.50;p95 -1: -1.50;p97 +1: 1.50;p97 -1: -1.50;p99 +1: 1.50;p99 -1: -1.50
+42032-1,1,works,,,shown,shown,,,,p10 +1: 1.50;p10 -1: -1.50
+42032-1,3,works,,,not shown,not shown,"A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p107 +1: 0.00;p107 -1: 0.00
+42032-1,4,works,,,shown,shown,,,,p156 +1: 1.50;p156 -1: -1.50;p205 +1: 1.50;p205 -1: -1.50
+42033-1,1,works,,,shown,shown,,,,p118 +1: 1.50;p118 -1: -1.50;p120 +1: 1.50;p120 -1: -1.50
+42033-1,4,works,,,not decided,not decided,"not decided: p110 92279: a travel of 0.2 rad or less each way, stopped at -0.035 rad (89/110)",,,p110 +1: 0.07;p110 -1: -0.04
+42033-1,5,works,,,shown,shown,,,,p93 +1: 1.50;p93 -1: -1.50
+42034-1,1,works,,,shown,shown,,,,p137 +1: 1.50;p137 -1: -1.50;p139 +1: 1.50;p139 -1: -1.50
+42034-1,3,works,,,shown,shown,,,,p135 +1: 1.50;p135 -1: -1.50;p141 +1: 1.50;p141 -1: -1.50
+42035-1,1,works,,,shown,shown,,,,p81 +1: 1.19;p81 -1: -1.19
+42035-1,2,works,,,shown,shown,,,,p353 +1: 1.50;p353 -1: -1.50
+42035-1,3,works,,,not shown,shown,,,,p351 +1: 1.50;p351 -1: -1.50
+42035-1,4,works,,,shown,shown,,,,p349 +1: 1.50;p349 -1: -1.50;p355 +1: 1.50;p355 -1: -1.50
+42035-1,5,works,,,shown,shown,,,,p335 +1: 1.22;p335 -1: 0.00
+42036-1,1,works,,,shown,shown,,,,p118 +1: 1.50;p118 -1: -1.50
+42036-1,2,works,,,not decided,shown,,,,p79 +1: 0.28;p79 -1: 0.00
+42036-1,6,works,,,not shown,shown,,,,p290 +1: 1.20;p290 -1: -0.20
+42036-1,7,works,,,shown,shown,,,,p118 +1: 1.50;p118 -1: -1.50;p233 +1: 1.50;p233 -1: -1.50
+42037-1,1,works,,,not shown,not shown,"A: p225 62821, p214 32269, p136 94925, p154 6542b, p153 94925, p113 2853, p126 2851, p127 2851, p128 2851, p129 2851 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p489 +1: 0.00;p489 -1: 0.00;p493 +1: 0.00;p493 -1: 0.00
+42037-1,2,works,,,not shown,not shown,"A: p493 45982, p225 62821 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p489 +1: 0.00;p489 -1: 0.00
+42037-1,3,works,,,not shown,shown,,,,p349 +1: 1.15;p349 -1: -1.08
+42037-1,4,works,,,not decided,not decided,"not decided: p58 57515: a travel of 0.2 rad or less each way, stopped at -0.035 rad (96/496)",,,p58 +1: 0.03;p58 -1: -0.04;p72 +1: 0.03;p72 -1: -0.63
+42037-1,5,works,,,not decided,not decided,"not decided: p241 32063: a travel of 0.2 rad or less each way, stopped at +0.066 rad (250/262)",,,p229 +1: 0.43;p229 -1: -0.07;p241 +1: 0.07;p241 -1: -0.07
+42037-1,7,works,,,shown,shown,,,,p438 +1: 1.50;p438 -1: -1.50
+42038-1,1,works,,,not shown,not shown,"A: p290 32270, p288 64781, p284 92909, p285 92909 not moved; B: no listed part moved by hand","A not moved, B nothing either",,p170 +1: 0.00;p170 -1: 0.00
+42038-1,2,works,,,not shown,shown,,,,p190 +1: 1.50;p190 -1: -0.80
+42038-1,3,works,,,not shown,shown,,,,p190 +1: 1.50;p190 -1: 0.00
+42038-1,4,works,,,not shown,not shown,B: no listed part moved by hand,B nothing by hand,,p84 +1: 0.48;p84 -1: -0.50
+42038-1,5,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p158 +1: 1.50;p158 -1: -1.50
+42038-1,6,works,,,shown,shown,,,,p902 +1: 1.50;p902 -1: -1.50
+42038-1,9,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p696 41239: a travel of 0.2 rad or less each way, stopped at +0.034 rad (238/716); p721 41239: a travel of 0.2 rad or less each way, stopped at +0.034 rad (284/741); p745 ",collision,,p646 +1: 1.50;p646 -1: -1.50;p671 +1: 1.50;p671 -1: -1.23;p696 +1: 0.03;p696 -1: -0.03;p721 +1: 0.03;p721 -1: -0.03;p745 +1: 0.14;p745 -1: 0.00;p695 +1: 1.50;p695 -1: -1.50;p670 +1: 1.50;p670 -1: -1.50;p720 +1: 0.14;p720 -1: 0.00
+42038-1,11,works,,,shown,shown,,,,p562 +1: 1.50;p562 -1: -1.50
+42039-1,1,works,,,shown,shown,,,,p1298 +1: 1.50;p1298 -1: -1.50;p1295 +1: 1.50;p1295 -1: -1.50
+42039-1,2,works,,,not shown,shown,,,,p1298 +1: 1.50;p1298 -1: -1.50
+42039-1,3,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p924 +1: 1.50;p924 -1: -1.50
+42039-1,4,works,,,shown,shown,,,,p750 +1: 1.50;p750 -1: -1.50
+42039-1,5,works,,,shown,shown,,,,p482 +1: 0.13;p482 -1: -0.30;p486 +1: 0.30;p486 -1: -0.13
+42039-1,6,works,,,not shown,shown,,,,p61 +1: 0.00;p61 -1: -0.23;p63 +1: 0.23;p63 -1: 0.00
+42039-1,8,works,,,not shown,shown,,,,p813 +1: 0.14;p813 -1: -1.50
+42039-1,9,works,,,not shown,shown,,,,p813 +1: 0.49;p813 -1: -1.50
+42039-1,10,works,,,not shown,shown,,,,p716 +1: 0.47;p716 -1: -0.47
+42040-1,2,works,,,shown,shown,,,,p557 +1: 1.50;p557 -1: -1.50
+42040-1,3,partly,,yes,not shown,not shown,"a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/pr",collision,,p251 +1: 0.07;p251 -1: -0.07
+42040-1,7,works,,,not shown,not shown,"A: p371 2739a, p330 2736, p338 18945 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p358 +1: 0.00;p358 -1: 0.00
+42040-1,9,works,,,shown,shown,,,,p35 +1: 1.50;p35 -1: -1.50;p36 +1: 1.50;p36 -1: -1.50;p169 +1: 1.50;p169 -1: -1.50;p173 +1: 1.50;p173 -1: -1.50
+42041-1,1,works,,,shown,shown,,,,p647 +1: 1.50;p647 -1: -1.50;p649 +1: 1.50;p649 -1: -1.50
+42041-1,2,works,,,not shown,shown,,,,p647 +1: 1.50;p647 -1: -1.50
+42041-1,3,works,,,shown,shown,,,,p319 +1: 1.50;p319 -1: -1.50
+42041-1,4,works,,,shown,shown,,,,p645 +1: 1.50;p645 -1: -1.50;p651 +1: 1.50;p651 -1: -1.50
+42042-1,1,works,,,shown,shown,,,,p539 +1: 1.50;p539 -1: -1.50
+42042-1,2,works,,,not shown,shown,,,,p539 +1: 1.50;p539 -1: -1.50
+42042-1,3,works,,,not shown,shown,,,,p539 +1: 1.50;p539 -1: -1.50
+42042-1,5,works,,,not shown,shown,,,,p539 +1: 1.50;p539 -1: -1.50
+42042-1,7,works,,,shown,shown,,,,p1400 +1: 1.50;p1400 -1: -1.50
+42042-1,9,works,,,shown,shown,,,,p141 +1: 1.50;p141 -1: -1.50;p199 +1: 1.50;p199 -1: -1.50
+42043-1,1,works,,,shown,shown,,,,p169 +1: -2.20;p169 -1: 2.36
+42043-1,3,works,,,shown,shown,,,,p169 +1: -2.20;p169 -1: 2.36
+42043-1,4,works,,,shown,shown,,,,p169 +1: -2.20;p169 -1: 2.04
+42043-1,6,works,,,shown,shown,,,,p1537 +1: 1.50;p1537 -1: -1.50;p1576 +1: 1.50;p1576 -1: -1.50
+42043-1,8,works,,,shown,shown,,,,p1276 +1: 1.47;p1276 -1: -1.37;p1283 +1: 1.47;p1283 -1: -1.37
+42043-1,9,works,,,shown,shown,,,,p6909 +1: 1.50;p6909 -1: -1.50
+42043-1,10,works,,,not shown,shown,,,,p2219 +1: 1.50;p2219 -1: -1.50;p2227 +1: 1.50;p2227 -1: -1.50;p2223 +1: 1.50;p2223 -1: -1.50;p2231 +1: 1.50;p2231 -1: -1.50
+42043-1,11,works,,,not shown,shown,,,,p2219 +1: 1.50;p2219 -1: -1.50;p2227 +1: 1.50;p2227 -1: -1.50
+42043-1,14,works,,,shown,shown,,,,p6740 +1: 0.00;p6740 -1: -0.87;p6747 +1: 0.87;p6747 -1: 0.00
+42044-1,1,works,,,shown,shown,,,,p97 +1: 0.98;p97 -1: -0.91
+42044-1,2,works,,,shown,shown,,,,p42 +1: 0.67;p42 -1: -1.33
+42044-1,3,works,,,shown,shown,,,,p104 +1: 1.50;p104 -1: -1.50;p105 +1: 1.50;p105 -1: -1.50;p106 +1: 1.50;p106 -1: -1.50
+42045-1,1,works,,,shown,shown,,,,p93 +1: 1.50;p93 -1: -1.50;p98 +1: 1.50;p98 -1: -1.50
+42046-1,1,works,,,shown,shown,,,,p157 +1: 1.50;p157 -1: -1.50;p163 +1: 1.50;p163 -1: -1.50
+42046-1,2,works,,,shown,shown,,,,p159 +1: 1.50;p159 -1: -1.50;p161 +1: 1.50;p161 -1: -1.50
+42047-1,1,works,,,shown,shown,,,,p171 +1: 1.50;p171 -1: -1.50;p175 +1: 1.50;p175 -1: -1.50
+42047-1,2,works,,,shown,shown,,,,p173 +1: 1.50;p173 -1: -1.50;p177 +1: 1.50;p177 -1: -1.50
+42048-1,2,works,,,not shown,shown,,,,p368 +1: 0.64;p368 -1: -0.63
+42048-1,3,works,,,shown,shown,,,,p374 +1: 1.50;p374 -1: -1.50;p376 +1: 1.50;p376 -1: -1.50
+42048-1,4,works,,,shown,shown,,,,p372 +1: 1.50;p372 -1: -1.50;p374 +1: 1.50;p374 -1: -1.50;p376 +1: 1.50;p376 -1: -1.50;p378 +1: 1.50;p378 -1: -1.50
+42049-1,1,works,,,shown,shown,,,,p96 +1: 1.50;p96 -1: -1.50
+42049-1,2,works,,,shown,shown,,,,p101 +1: 1.50;p101 -1: -1.50
+42049-1,4,works,,,shown,shown,,,,p464 +1: 1.50;p464 -1: -1.50;p468 +1: 1.50;p468 -1: -1.50
+42049-1,5,works,,,shown,shown,,,,p464 +1: 1.50;p464 -1: -1.50;p468 +1: 1.50;p468 -1: -1.50;p465 +1: 1.50;p465 -1: -1.50;p469 +1: 1.50;p469 -1: -1.50
+42050-1,1,works,,,shown,shown,,,,p864 +1: 1.50;p864 -1: -1.50;p869 +1: 1.50;p869 -1: -1.50
+42050-1,2,works,,,shown,shown,,,,p415 +1: 1.01;p415 -1: -1.01
+42050-1,4,works,,,shown,shown,,,,p257 +1: 1.50;p257 -1: -1.50
+42050-1,5,works,,,shown,shown,,,,p863 +1: 1.50;p863 -1: -1.50;p867 +1: 1.50;p867 -1: -1.50;p648 +1: 1.50;p648 -1: -1.50;p649 +1: 1.50;p649 -1: -1.50
+42052-1,1,works,,,shown,shown,,,,p407 +1: -1.62;p407 -1: 1.61
+42052-1,2,works,,,shown,shown,,,,p407 +1: 2.63;p407 -1: 1.59
+42052-1,3,works,,,shown,shown,,,,p407 +1: 1.73;p407 -1: 1.62
+42052-1,5,works,,,shown,shown,,,,p407 +1: -1.63;p407 -1: 1.60
+42052-1,7,works,,,shown,shown,,,,p1185 +1: 1.50;p1185 -1: -1.50;p1186 +1: 1.50;p1186 -1: -1.50;p1177 +1: 1.50;p1177 -1: -1.50;p1178 +1: 1.50;p1178 -1: -1.50
+42053-1,5,partly,,yes,not shown,not shown,"A: p2201 3648b, p2222 42053 - 33299b, p2407 32073 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p2207 +1: 0.07;p2207 -1: -0.07
+42053-1,6,works,,,shown,shown,,,,p201 +1: 0.84;p201 -1: -0.84
+42053-1,7,works,,,not shown,shown,,,,p284 +1: 1.50;p284 -1: -1.50
+42053-1,9,works,,,shown,shown,,,,p2692 +1: 1.50;p2692 -1: -1.50;p2691 +1: 1.50;p2691 -1: -1.50;p2693 +1: 1.50;p2693 -1: -1.50;p2690 +1: 1.50;p2690 -1: -1.50
+42054-1,1,works,,,shown,shown,,,,p543 +1: 1.61;p543 -1: -1.68
+42054-1,3,works,,,not shown,not shown,A: p692 42054 - 18938 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p543 +1: 1.43;p543 -1: -1.67
+42054-1,4,works,,,not shown,shown,,,,p543 +1: 11.36;p543 -1: -11.57
+42054-1,5,works,,,shown,shown,,,,p543 +1: 3.16;p543 -1: -3.31
+42054-1,6,works,,,shown,shown,,,,p1905 +1: 1.50;p1905 -1: -1.50
+42054-1,7,works,,,shown,shown,,,,p1945 +1: 1.50;p1945 -1: -1.50
+42054-1,8,works,,,shown,shown,,,,p1953 +1: 0.40;p1953 -1: -0.40
+42054-1,9,works,,,shown,shown,,,,p1962 +1: 1.50;p1962 -1: -1.50;p1965 +1: 1.50;p1965 -1: -1.50
+42054-1,10,works,,,not shown,not shown,"A: p1768 6558, p1779 6558 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p1765 +1: 0.00;p1765 -1: 0.00;p1776 +1: 0.00;p1776 -1: 0.00
+42054-1,12,works,,,shown,shown,,,,p250 +1: 1.50;p250 -1: -1.50
+42054-1,13,works,,,shown,shown,,,,p1443 +1: 1.50;p1443 -1: -1.50;p1455 +1: 1.50;p1455 -1: -1.50;p1449 +1: 1.50;p1449 -1: -1.50;p1461 +1: 1.50;p1461 -1: -1.50
+42054-1,14,works,,,shown,shown,,,,p1027 +1: 0.03;p1027 -1: -0.03
+42055-1,5,works,,,shown,shown,,,,p1714 +1: 1.50;p1714 -1: -1.50
+42055-1,6,works,,,not shown,shown,,,,p1678 +1: 0.50;p1678 -1: -0.50
+42055-1,7,partly,,yes,not shown,not shown,A: p2535 42055 - 55615 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p1809 +1: 0.00;p1809 -1: -1.50
+42055-1,8,works,,,shown,shown,,,,p156 +1: 0.94;p156 -1: -0.94
+42055-1,9,partly,,yes,not shown,not shown,"A: p263 18945, p264 18945 not moved; B: no listed part moved by hand","A not moved, B nothing either",,p276 +1: 0.00;p276 -1: 0.00
+42055-1,10,works,,,shown,shown,,,,p294 +1: 1.50;p294 -1: -1.50;p303 +1: 1.50;p303 -1: -1.50;p297 +1: 1.50;p297 -1: -1.50;p300 +1: 1.50;p300 -1: -1.50
+42056-1,1,works,,,shown,shown,,,,p467 +1: 1.27;p467 -1: -1.27
+42056-1,5,works,,,not decided,not decided,"not decided: p543 57515: a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)",,,p535 +1: 0.07;p535 -1: -0.27;p543 +1: 0.07;p543 -1: -0.07
+42056-1,6,works,,,shown,shown,,,,p757 +1: 0.10;p757 -1: -0.10;p784 +1: 0.10;p784 -1: -0.10
+42056-1,8,works,,,shown,shown,,,,p2437 +1: 0.00;p2437 -1: -0.73;p2462 +1: 1.50;p2462 -1: -1.15;p2610 +1: 1.12;p2610 -1: -1.50
+42056-1,9,works,,,not shown,not shown,A: p2135 41239 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p2132 +1: 0.00;p2132 -1: 0.00
+42056-1,11,works,,,not shown,not shown,A: p2553 32523 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p2530 +1: 0.00;p2530 -1: 0.00
+42056-1,12,works,,,shown,shown,,,,p1697 +1: 1.50;p1697 -1: -1.50;p1748 +1: 1.50;p1748 -1: -1.50
+42057-1,1,works,,,shown,shown,,,,p113 +1: 1.50;p113 -1: -1.50
+42057-1,4,works,,,shown,shown,,,,p142 +1: 1.30;p142 -1: -0.03
+42057-1,5,works,,,shown,shown,,,,p7 +1: 1.50;p7 -1: -1.50;p175 +1: 1.50;p175 -1: -1.50;p188 +1: 1.50;p188 -1: -1.50
+42058-1,1,works,,,shown,shown,,,,p41 +1: 1.50;p41 -1: -1.50
+42058-1,3,works,,,shown,shown,,,,p56 +1: 1.50;p56 -1: -1.50
+42059-1,1,works,,,shown,shown,,,,p126 +1: 1.50;p126 -1: -1.50;p128 +1: 1.50;p128 -1: -1.50
+42059-1,3,works,,,shown,shown,,,,p0 +1: 1.50;p0 -1: -1.50;p124 +1: 1.50;p124 -1: -1.50
+42060-1,2,works,,,shown,shown,,,,p30 +1: 0.04;p30 -1: -0.04
+42060-1,3,works,,,shown,shown,,,,p194 +1: 1.50;p194 -1: -1.50;p196 +1: 1.50;p196 -1: -1.50;p198 +1: 1.50;p198 -1: -1.50;p200 +1: 1.50;p200 -1: -1.50
+42060-1,4,works,,,shown,shown,,,,p216 +1: 0.31;p216 -1: -0.31
+42060-1,5,works,,,shown,shown,,,,p270 +1: 1.01;p270 -1: -1.50
+42060-1,6,works,,,not shown,not shown,"A: p288 42060 - 33299b, p295 32524 against p277 32316 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p287 +1: 0.00;p287 -1: 0.00
+42060-1,7,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p308 94925: turns without end (kinds crawler-tracks; the text says: tracks, rolls), but a collision stops it at +0.942 rad (202/233); -0 rad (202/304)",collision,,p308 +1: 0.94;p308 -1: 0.00;p311 +1: 1.50;p311 -1: -1.50;p313 +1: 1.50;p313 -1: -1.50
+42060-1,8,works,,,shown,shown,,,,p294 +1: 0.23;p294 -1: -0.23
+42061-1,1,works,,,shown,shown,,,,p252 +1: 0.45;p252 -1: -0.59
+42061-1,2,works,,,shown,shown,,,,p142 +1: 1.50;p142 -1: -1.50
+42061-1,3,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p199 +1: 1.50;p199 -1: -1.50
+42061-1,4,works,,,shown,shown,,,,p181 +1: 1.50;p181 -1: -1.50
+42061-1,5,works,,,shown,shown,,,,p253 +1: 1.50;p253 -1: -1.50;p255 +1: 1.50;p255 -1: -1.50;p257 +1: 1.50;p257 -1: -1.50;p259 +1: 1.50;p259 -1: -1.50
+42061-1,6,works,,,shown,shown,,,,p222 +1: 1.50;p222 -1: -1.50
+42062-1,6,works,,,shown,shown,,,,p507 +1: 1.50;p507 -1: -1.50
+42062-1,7,works,,,not shown,not shown,"A: p511 18942 against p510 18940, p547 32524 against p510 18940 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p530 +1: 0.00;p530 -1: 0.00
+42062-1,8,works,,,shown,shown,,,,p547 +1: 0.24;p547 -1: -0.23
+42062-1,10,works,,,shown,shown,,,,p597 +1: 1.50;p597 -1: -1.50;p601 +1: 1.50;p601 -1: -1.50;p603 +1: 1.50;p603 -1: -1.50;p605 +1: 1.50;p605 -1: -1.50
+42063-1,1,works,,,not shown,not shown,"A: p386 88517, p345 32278 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p418 +1: 0.00;p418 -1: 0.00;p419 +1: 0.00;p419 -1: 0.00
+42063-1,2,works,,,shown,shown,,,,p334 +1: 1.50;p334 -1: -1.50
+42063-1,3,works,,,shown,shown,,,,p386 +1: 1.50;p386 -1: -1.50
+42063-1,4,works,,,not shown,not shown,"A: p386 88517, p164 4254 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p157 +1: 0.00;p157 -1: 0.00
+42063-1,5,works,,,not shown,not shown,"A: p334 88517, p198 4254 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p72 +1: 0.00;p72 -1: 0.00
+42064-1,4,works,,,shown,shown,,,,p631 +1: 1.50;p631 -1: -1.50;p637 +1: 1.50;p637 -1: -1.50;p643 +1: 1.50;p643 -1: -1.50;p201 +1: 1.50;p201 -1: -1.50;p202 +1: 1.50;p202 -1: -1.50
+42064-1,6,works,,,shown,shown,,,,p1171 +1: 1.50;p1171 -1: -1.50
+42064-1,7,works,,,shown,shown,,,,p1186 +1: 1.50;p1186 -1: -1.50
+42064-1,8,works,,,shown,shown,,,,p1122 +1: 1.50;p1122 -1: -0.45
+42065-1,3,works,,,shown,shown,,,,p287 +1: 1.50;p287 -1: -1.50;p289 +1: 1.50;p289 -1: -1.50
+42065-1,4,works,,,shown,shown,,,,p523 +1: 1.50;p523 -1: -1.50;p522 +1: 1.50;p522 -1: -1.50;p98 +1: 1.50;p98 -1: -1.50;p102 +1: 1.50;p102 -1: -1.50;p106 +1: 1.50;p106 -1: -1.50;p110 +1: 1.50;p110 -1: -1.50
+42066-1,1,works,,,shown,shown,,,,p136 +1: 1.50;p136 -1: -1.50
+42066-1,4,works,,,shown,shown,,,,p1164 +1: 0.24;p1164 -1: -0.24
+42066-1,6,works,,,shown,shown,,,,p401 +1: 1.50;p401 -1: -1.50;p412 +1: 1.50;p412 -1: -1.50;p526 +1: 1.50;p526 -1: -1.50
+42068-1,1,works,,,shown,shown,,,,p783 +1: 0.38;p783 -1: -0.38
+42068-1,2,works,,,shown,shown,,,,p1067 +1: 1.50;p1067 -1: -1.50;p1073 +1: 1.50;p1073 -1: -1.50
+42068-1,4,works,,,shown,shown,,,,p987 +1: 1.50;p987 -1: -0.07
+42068-1,8,works,,,shown,shown,,,,p1065 +1: 1.50;p1065 -1: -1.50;p1071 +1: 1.50;p1071 -1: -1.50;p1067 +1: 1.50;p1067 -1: -1.50;p1073 +1: 1.50;p1073 -1: -1.50;p1069 +1: 1.50;p1069 -1: -1.50;p1075 +1: 1.50;p1075 -1: -1.50
+42069-1,1,works,,,shown,shown,,,,p639 +1: 1.50;p639 -1: -1.50
+42069-1,2,works,,,shown,shown,,,,p981 +1: 1.50;p981 -1: -1.50
+42069-1,5,partly,,yes,not shown,not shown,"A: p1333 62821, p146 2853, p162 2851 not moved; B: no listed part moved by hand","A not moved, B nothing either",,p1490 +1: 0.98;p1490 -1: -0.98;p1492 +1: 0.98;p1492 -1: -0.98
+42069-1,6,works,,,shown,shown,,,,p1490 +1: 0.98;p1490 -1: -0.98;p1492 +1: 0.98;p1492 -1: -0.98;p1871 +1: 1.50;p1871 -1: -1.50;p1872 +1: 0.77;p1872 -1: -0.73
+42069-1,7,partly,,yes,not shown,not shown,"a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (",collision,,p1172 +1: 0.07;p1172 -1: 0.00;p1055 +1: 0.00;p1055 -1: -0.07
+42069-1,9,works,,,shown,not decided,"not decided: p884 64782: a travel of 0.2 rad or less each way, stopped at -0.07 rad (876/884)",,,p884 +1: 0.07;p884 -1: -0.07;p896 +1: 1.50;p896 -1: -0.07
+42070-1,1,works,,,shown,not shown,B: the control could not be seen,control not seen,,p402 +1: 1.50;p402 -1: -1.50
+42070-1,3,works,,,shown,shown,,,,p372 +1: 1.50;p372 -1: -1.50
+42070-1,4,works,,,not shown,shown,,,,p1770 +1: 0.46;p1770 -1: -0.47
+42070-1,5,works,,,not shown,shown,,,,p1785 +1: 0.50;p1785 -1: -0.47
+42070-1,6,works,,,shown,not shown,B: the control could not be seen,control not seen,,p402 +1: 1.90;p402 -1: -1.90
+42070-1,8,works,,,shown,shown,,,,p372 +1: 1.50;p372 -1: -1.50
+42070-1,10,works,,,shown,shown,,,,p742 +1: 0.17;p742 -1: -0.17;p829 +1: 0.17;p829 -1: -0.17
+42071-1,1,works,,,shown,shown,,,,p92 +1: 1.33;p92 -1: -1.33
+42071-1,2,works,,,shown,shown,,,,p120 +1: 1.50;p120 -1: -1.50
+42071-1,3,works,,,shown,shown,,,,p136 +1: 1.50;p136 -1: -1.50;p137 +1: 1.50;p137 -1: -1.50;p134 +1: 1.50;p134 -1: -1.50;p139 +1: 1.50;p139 -1: -1.50
+42072-1,1,works,,,shown,shown,,,,p113 +1: 1.50;p113 -1: -1.50;p114 +1: 1.50;p114 -1: -1.50
+42072-1,2,works,,,shown,shown,,,,p115 +1: 1.50;p115 -1: -1.50;p116 +1: 1.50;p116 -1: -1.50
+42072-1,3,works,,,shown,shown,,,,p49 +1: 0.20;p49 -1: -0.07
+42073-1,1,works,,,shown,shown,,,,p117 +1: 1.50;p117 -1: -1.50;p120 +1: 1.50;p120 -1: -1.50
+42073-1,2,works,,,shown,shown,,,,p123 +1: 1.50;p123 -1: -1.50;p124 +1: 1.50;p124 -1: -1.50
+42073-1,3,works,,,shown,shown,,,,p38 +1: 0.20;p38 -1: -0.07
+42074-1,1,works,,,shown,shown,,,,p40 +1: 1.50;p40 -1: -1.50
+42074-1,2,works,,,shown,shown,,,,p161 +1: 1.50;p161 -1: -1.50;p160 +1: 1.50;p160 -1: -1.50
+42074-1,3,works,,,shown,shown,,,,p43 +1: 1.50;p43 -1: -1.50;p45 +1: 1.50;p45 -1: -1.50;p47 +1: 1.50;p47 -1: -1.50;p54 +1: 1.50;p54 -1: -1.50
+42075-1,1,works,,,shown,shown,,,,p50 +1: 0.70;p50 -1: -0.70
+42075-1,2,works,,,not shown,shown,,,,p506 +1: 1.50;p506 -1: -1.50;p510 +1: 1.50;p510 -1: -1.50
+42075-1,3,works,,,shown,shown,,,,p504 +1: 1.50;p504 -1: -1.50;p508 +1: 1.50;p508 -1: -1.50
+42075-1,4,works,,,shown,shown,,,,p329 +1: 1.50;p329 -1: -1.50
+42075-1,6,partly,,yes,not shown,not shown,"a collision stops a control: p186 3737: a travel of 0.2 rad or less each way, stopped at +0.14 rad (175/187); -0.14 rad (175/187) (the mast swings up from lying along the roof to stand upright, far pa",collision,,p186 +1: 0.14;p186 -1: -0.14
+42075-1,8,works,,,shown,shown,,,,p239 +1: 0.00;p239 -1: -0.28;p240 +1: 0.00;p240 -1: -1.47
+42076-1,1,works,,,shown,shown,,,,p32 +1: 1.50;p32 -1: -1.50;p42 +1: 1.50;p42 -1: -1.50
+42076-1,2,works,,,shown,shown,,,,p374 +1: 0.35;p374 -1: -0.35
+42076-1,8,works,,,shown,shown,,,,p982 +1: 1.50;p982 -1: -1.50;p985 +1: 1.50;p985 -1: -1.50;p987 +1: 1.50;p987 -1: -1.50;p989 +1: 1.50;p989 -1: -1.50
+42076-1,9,works,,,shown,shown,,,,p661 +1: 1.50;p661 -1: -1.50;p675 +1: 1.50;p675 -1: -1.50
+42077-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p838 +1: 1.47;p838 -1: -1.47
+42077-1,2,works,,,not shown,not shown,"A: p59 62821, p139 2853, p142 2851, p143 2851 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p1076 +1: 0.00;p1076 -1: 0.00;p1080 +1: 0.00;p1080 -1: 0.00
+42077-1,3,works,,,shown,shown,,,,p1077 +1: 1.50;p1077 -1: -1.50;p1081 +1: 1.50;p1081 -1: -1.50
+42077-1,4,works,,,shown,not shown,A: none not moved,nothing moved,,p1076 +1: 0.00;p1076 -1: 0.00;p1080 +1: 0.00;p1080 -1: 0.00;p1077 +1: 1.50;p1077 -1: -1.50;p1081 +1: 1.50;p1081 -1: -1.50
+42077-1,6,works,,,shown,shown,,,,p888 +1: 0.07;p888 -1: -0.03;p901 +1: 0.03;p901 -1: -0.07
+42077-1,7,works,,,not shown,shown,,,,p912 +1: 1.33;p912 -1: 0.00
+42078-1,1,partly,,yes,not decided,not decided,"not decided: p1146 18575: a travel of 0.2 rad or less each way, stopped at +0.07 rad (466/1065); -0.07 rad (466/872)",,,p1146 +1: 0.07;p1146 -1: -0.07
+42078-1,3,works,,,shown,shown,,,,p502 +1: 1.50;p502 -1: -1.50;p512 +1: 1.50;p512 -1: -1.50
+42078-1,4,works,,,not shown,not shown,"A: p1358 44294, p1423 40490 not moved; B: the control could not be seen","A not moved, B nothing either",,p1326 +1: 0.00;p1326 -1: 0.00
+42078-1,5,works,,,shown,shown,,,,p851 +1: 0.00;p851 -1: -1.13;p889 +1: 1.13;p889 -1: 0.00
+42078-1,7,works,,,shown,shown,,,,p1634 +1: 0.60;p1634 -1: -0.60
+42078-1,8,works,,,shown,shown,,,,p1706 +1: 0.59;p1706 -1: -0.63
+42078-1,11,works,,,shown,not shown,A: none not moved,nothing moved,,p2051 +1: 0.00;p2051 -1: 0.00;p2270 +1: 0.00;p2270 -1: 0.00
+42078-1,12,partly,,yes,not shown,not shown,"A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of ","A not moved, B nothing either",,p2631 +1: 0.59;p2631 -1: -0.20;p2665 +1: 0.20;p2665 -1: -0.63
+42078-1,13,works,,,shown,shown,,,,p1890 +1: 1.50;p1890 -1: -1.50;p1892 +1: 1.50;p1892 -1: -1.50;p1894 +1: 1.50;p1894 -1: -1.50;p1896 +1: 1.50;p1896 -1: -1.50
+42079-1,2,works,,,shown,shown,,,,p334 +1: 1.33;p334 -1: -0.07
+42079-1,3,works,,,shown,shown,,,,p578 +1: 0.43;p578 -1: -0.43
+42079-1,4,works,,,shown,shown,,,,p458 +1: 1.50;p458 -1: -1.50;p460 +1: 1.50;p460 -1: -1.50
+42079-1,5,works,,,not shown,shown,,,,p454 +1: 1.50;p454 -1: -1.50;p456 +1: 1.50;p456 -1: -1.50
+42080-1,1,works,,,not shown,not shown,"A: p821 6632, p653 42080 - u9413 not moved; B: the control could not be seen","A not moved, B nothing either",,p820 +1: 0.00;p820 -1: 0.00
+42080-1,4,works,,,shown,shown,,,,p282 +1: 1.50;p282 -1: -1.50
+42080-1,5,works,,,shown,shown,,,,p840 +1: 1.50;p840 -1: -1.50
+42080-1,7,works,,,shown,shown,,,,p1509 +1: 1.50;p1509 -1: -1.50
+42080-1,8,works,,,shown,shown,,,,p1073 +1: 1.50;p1073 -1: -1.50;p1075 +1: 1.50;p1075 -1: -1.50;p1077 +1: 1.50;p1077 -1: -1.50;p1079 +1: 1.50;p1079 -1: -1.50;p1081 +1: 1.50;p1081 -1: -1.50;p1083 +1: 1.50;p1083 -1: -1.50;p1085 +1: 1.50;p1085 -1: -1.50;p1087 +1: 1.50;p1087 -1: -1.50
+42081-1,2,works,,,shown,shown,,,,p460 +1: 1.70;p460 -1: -1.70;p463 +1: 1.70;p463 -1: -1.70
+42081-1,3,works,,,shown,shown,,,,p553 +1: 1.50;p553 -1: -1.50;p554 +1: 1.50;p554 -1: -1.50
+42081-1,5,works,,,shown,shown,,,,p943 +1: 1.50;p943 -1: -1.50
+42081-1,6,works,,,shown,shown,,,,p1098 +1: 1.50;p1098 -1: -1.50;p1064 +1: 1.50;p1064 -1: -1.50;p1081 +1: 1.50;p1081 -1: -1.50;p1115 +1: 1.50;p1115 -1: -1.50
+42081-1,7,works,,,shown,shown,,,,p1160 +1: 1.50;p1160 -1: -1.50;p1161 +1: 1.50;p1161 -1: -1.50;p1163 +1: 1.50;p1163 -1: -1.50;p1165 +1: 1.50;p1165 -1: -1.50
+42081-1,8,partly,stopped-endless,,not decided,not shown,"a collision stops a control: p694 87751: turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.07 rad (694/720); -0.733 rad (694/720); p695 87751: turns with",collision,,p694 +1: 0.07;p694 -1: -0.73;p695 +1: 0.31;p695 -1: -0.14
+42082-1,2,works,,,shown,shown,,,,p2290 +1: 1.50;p2290 -1: -1.50;p2284 +1: 1.50;p2284 -1: -1.50;p2286 +1: 1.50;p2286 -1: -1.50;p2288 +1: 1.50;p2288 -1: -1.50
+42082-1,3,works,,,not shown,shown,,,,p2290 +1: 1.50;p2290 -1: -1.50
+42082-1,9,partly,,yes,not shown,not shown,A: p3789 32524 against p2649 64179 not moved; B: no listed part moved by hand,"A not moved, B nothing either",,p3789 +1: 0.42;p3789 -1: -0.03
+42083-1,1,works,,,shown,shown,,,,p2742 +1: 1.47;p2742 -1: -1.47
+42083-1,5,works,,,shown,shown,,,,p3522 +1: 1.50;p3522 -1: -1.50;p3519 +1: 1.50;p3519 -1: -1.50
+42083-1,6,partly,,yes,not decided,not decided,"not decided: p1938 59443: a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024)",,,p1938 +1: 0.00;p1938 -1: -0.17
+42083-1,7,works,,,not decided,not decided,"not decided: p2924 62531: a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943); p2876 62531: a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)",,,p2924 +1: 0.07;p2924 -1: -0.07;p2876 +1: 0.07;p2876 -1: -0.07
+42084-1,2,works,,,shown,shown,,,,p102 +1: 0.00;p102 -1: -1.50
+42084-1,3,works,,,shown,shown,,,,p144 +1: 1.50;p144 -1: -1.50;p145 +1: 1.50;p145 -1: -1.50;p146 +1: 1.50;p146 -1: -1.50;p147 +1: 1.50;p147 -1: -1.50
+42088-1,2,works,,,shown,shown,,,,p111 +1: 1.50;p111 -1: -1.50
+42088-1,3,works,,,shown,shown,,,,p140 +1: 1.50;p140 -1: -1.50
+42088-1,5,works,,,shown,shown,,,,p94 +1: 1.50;p94 -1: -1.50;p96 +1: 1.50;p96 -1: -1.50;p98 +1: 1.50;p98 -1: -1.50;p99 +1: 1.50;p99 -1: -1.50
+42092-1,1,works,,,shown,shown,,,,p198 +1: 1.50;p198 -1: -1.50
+42092-1,2,works,,,shown,shown,,,,p312 +1: 1.50;p312 -1: -1.50
+42092-1,3,works,,,shown,shown,,,,p291 +1: 1.50;p291 -1: -1.50
+42092-1,5,works,,,shown,shown,,,,p95 +1: 1.50;p95 -1: 0.00;p108 +1: 0.00;p108 -1: -1.50
+42093-1,3,partly,stopped-endless,,shown,not shown,"a collision stops a control: p567 56904: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338); p574 56904: turns wit",collision,,p567 +1: 0.07;p567 -1: -0.07;p574 +1: 0.07;p574 -1: -0.07
+42093-1,4,works,,,shown,shown,,,,p293 +1: 1.50;p293 -1: -1.50
+42094-1,1,works,,,shown,shown,,,,p79 +1: 1.50;p79 -1: -1.50
+42094-1,3,works,,,shown,shown,,,,p208 +1: 1.50;p208 -1: -1.50
+42094-1,4,works,,,not shown,shown,,,,p148 +1: 0.50;p148 -1: -0.50
+42094-1,5,works,,,not shown,not decided,"not decided: p1064 32270: a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)",,,p1064 +1: 0.14;p1064 -1: -0.07
+42094-1,6,works,,,shown,shown,,,,p934 +1: 0.00;p934 -1: -1.50;p965 +1: 1.50;p965 -1: -0.04
+42094-1,7,works,,,shown,shown,,,,p1209 +1: 1.50;p1209 -1: -1.50;p1287 +1: 1.50;p1287 -1: -1.50
+42095-1,1,works,,,shown,shown,,,,p236 +1: 1.50;p236 -1: -1.50
+42095-1,2,works,,,shown,shown,,,,p277 +1: 1.50;p277 -1: -1.50
+42095-1,5,works,,,shown,shown,,,,p235 +1: 1.50;p235 -1: -1.50;p274 +1: 1.50;p274 -1: -1.50
+42096-1,1,works,,,shown,shown,,,,p1686 +1: 1.50;p1686 -1: -1.50;p1690 +1: 1.50;p1690 -1: -1.50
+42096-1,2,works,,,shown,shown,,,,p484 +1: 1.47;p484 -1: -1.47
+42096-1,3,works,,,shown,shown,,,,p851 +1: 0.00;p851 -1: -1.15;p1013 +1: 1.15;p1013 -1: 0.00
+42096-1,4,works,,,shown,not shown,A: none not moved,nothing moved,,p159 +1: 0.00;p159 -1: 0.00;p156 +1: 0.00;p156 -1: 0.00
+42096-1,5,partly,,yes,not decided,not decided,"not decided: p26 32063: a travel of 0.2 rad or less each way, stopped at +0.035 rad (242/243)",,,p22 +1: 0.07;p22 -1: -0.03;p26 +1: 0.04;p26 -1: -0.03
+42099-1,2,works,,,not shown,shown,,,,p363 +1: 1.50;p363 -1: -1.50
+42099-1,4,works,,,shown,shown,,,,p1096 +1: 0.49;p1096 -1: -0.49
+42099-1,5,works,,,not shown,not shown,B: no listed part moved by hand,B nothing by hand,,p1866 +1: 1.50;p1866 -1: -1.50
+42099-1,6,works,,,not shown,not shown,B: no listed part moved by hand,B nothing by hand,,p1868 +1: 1.50;p1868 -1: -1.50
+42099-1,9,works,,,shown,shown,,,,p1452 +1: 0.70;p1452 -1: -0.70
+42100-1,4,works,,,shown,not shown,B: the control could not be seen,control not seen,,p707 +1: 1.50;p707 -1: -1.50
+42100-1,5,works,,,shown,shown,,,,p1718 +1: 6.00;p1718 -1: -6.10
+42100-1,6,works,,,shown,shown,,,,p2982 +1: 1.90;p2982 -1: -1.90;p2983 +1: 1.90;p2983 -1: -1.90
+42100-1,9,partly,,yes,not shown,not shown,"a collision stops a control: p4660 40490: a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743) (the ladder swings up out of the way and down to the ground, far p",collision,,p4660 +1: 0.04;p4660 -1: 0.00
+42101-1,2,works,,,shown,shown,,,,p22 +1: 0.33;p22 -1: 0.00
+42101-1,4,works,,,shown,shown,,,,p61 +1: 1.50;p61 -1: -1.50;p68 +1: 1.50;p68 -1: -1.50;p81 +1: 1.50;p81 -1: -1.50;p84 +1: 1.50;p84 -1: -1.50
+42101-1,5,works,,,shown,shown,,,,p91 +1: 1.50;p91 -1: -1.50
+42102-1,1,works,,,shown,shown,,,,p120 +1: 0.38;p120 -1: -0.38
+42102-1,2,works,,,shown,shown,,,,p125 +1: 1.50;p125 -1: -1.50;p127 +1: 1.50;p127 -1: -1.50
+42102-1,3,works,,,not shown,not shown,"A: p103 32524, p107 32498, p108 32498 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p93 +1: 0.00;p93 -1: 0.00
+42102-1,4,works,,,shown,shown,,,,p121 +1: 1.50;p121 -1: -1.50;p123 +1: 1.50;p123 -1: -1.50;p125 +1: 1.50;p125 -1: -1.50;p127 +1: 1.50;p127 -1: -1.50
+42105-1,2,works,,,shown,shown,,,,p186 +1: 1.50;p186 -1: -1.50
+42105-1,3,works,,,shown,shown,,,,p261 +1: 1.50;p261 -1: -1.50
+42106-1,1,works,,,shown,shown,,,,p195 +1: 1.01;p195 -1: -1.01
+42106-1,2,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p322 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197); p328 56904: turns without end (k",collision,,p322 +1: 1.50;p322 -1: -0.56;p328 +1: 1.50;p328 -1: -0.56;p324 +1: 1.50;p324 -1: -0.59;p326 +1: 1.50;p326 -1: -0.56
+42106-1,3,works,,,shown,shown,,,,p2052 +1: 1.50;p2052 -1: -0.57
+42106-1,4,works,,,not shown,not shown,"A: p2084 40490, p2089 32524, p2095 32524 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p2085 +1: 0.00;p2085 -1: 0.00
+42106-1,5,partly,stopped-endless,,shown,not shown,"a collision stops a control: p2136 55982: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at -0.802 rad (2064/2197); p2138 55982: turns without end (kinds ",collision,,p2136 +1: 1.50;p2136 -1: -0.80;p2138 +1: 1.50;p2138 -1: -0.80
+42106-1,6,works,,,shown,shown,,,,p2196 +1: 1.50;p2196 -1: -1.50
+42106-1,8,works,,,shown,shown,,,,p2222 +1: 1.50;p2222 -1: -1.50
+42106-1,10,works,,,shown,shown,,,,p380 +1: 1.50;p380 -1: 0.00;p402 +1: 0.00;p402 -1: -1.50
+42107-1,1,works,,,not shown,shown,,,,p129 +1: 1.50;p129 -1: -1.50
+42107-1,3,works,,,not shown,not shown,"A: p247 35189, p284 4254 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p262 +1: 0.00;p262 -1: 0.00
+42107-1,5,works,,,not shown,shown,,,,p340 +1: 0.49;p340 -1: -0.49
+42107-1,7,works,,,shown,shown,,,,p379 +1: 1.50;p379 -1: -1.50
+42108-1,1,works,,,shown,shown,,,,p709 +1: 1.20;p709 -1: -1.20;p713 +1: 1.20;p713 -1: -1.20
+42108-1,2,works,,,shown,shown,,,,p1265 +1: 1.50;p1265 -1: -1.50;p1267 +1: 1.50;p1267 -1: -1.50;p1269 +1: 1.50;p1269 -1: -1.50;p1271 +1: 1.50;p1271 -1: -1.50;p1257 +1: 1.50;p1257 -1: -1.50;p1259 +1: 1.50;p1259 -1: -1.50;p1261 +1: 1.50;p1261 -1: -1.50;p1263 +1: 1.50;p1263 -1: -1.50
+42108-1,3,works,,,not decided,shown,,,,p354 +1: 0.17;p354 -1: -1.12;p367 +1: 1.12;p367 -1: -0.17;p244 +1: 0.17;p244 -1: -1.12;p242 +1: 1.12;p242 -1: -0.17
+42108-1,5,works,,,shown,shown,,,,p1192 +1: 0.00;p1192 -1: -1.80
+42108-1,6,works,,,shown,shown,,,,p1195 +1: 1.50;p1195 -1: -0.80
+42109-1,2,works,,,shown,shown,,,,p971 +1: 1.50;p971 -1: -1.50
+42109-1,3,works,,,shown,shown,,,,p390 +1: -0.04;p390 -1: -0.43
+42109-1,4,works,,,shown,shown,,,,p965 +1: 1.50;p965 -1: -1.50;p967 +1: 1.50;p967 -1: -1.50
+42109-1,6,works,,,not shown,not decided,"not decided: p894 64391: a travel of 0.2 rad or less each way, stopped at +0.035 rad (387/893)",,,p894 +1: 0.04;p894 -1: -0.03
+42110-1,1,works,,,shown,shown,,,,p2368 +1: 1.50;p2368 -1: -1.50
+42110-1,2,works,,,shown,shown,,,,p2368 +1: 1.50;p2368 -1: -1.50
+42110-1,4,works,,,not shown,shown,,,,p2606 +1: 1.50;p2606 -1: -1.50
+42110-1,5,partly,,yes,not decided,not decided,"not decided: p385 3706: a travel of 0.2 rad or less each way, stopped at +0.174 rad (641/642); -0.105 rad (648/714)",,,p385 +1: 0.17;p385 -1: -0.10
+42110-1,6,works,,,not shown,shown,,,,p377 +1: 0.50;p377 -1: -0.50
+42110-1,7,works,,,not shown,shown,,,,p368 +1: 0.50;p368 -1: -0.50
+42110-1,8,works,,,shown,shown,,,,p896 +1: 1.50;p896 -1: -1.50
+42110-1,10,works,,,shown,not shown,A: none not moved,nothing moved,,p1816 +1: 0.00;p1816 -1: 0.00;p1902 +1: 0.00;p1902 -1: 0.00
+42110-1,11,works,,,shown,shown,,,,p2203 +1: 0.00;p2203 -1: -1.50
+42110-1,12,works,,,not shown,not shown,A: p1504 32065 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p2614 +1: 0.00;p2614 -1: 0.00
+42110-1,13,works,,,shown,shown,,,,p2586 +1: 1.50;p2586 -1: -0.03
+42110-1,14,works,,,shown,not shown,A: none not moved,nothing moved,,p2475 +1: 0.00;p2475 -1: 0.00
+42111-1,1,works,,,shown,shown,,,,p136 +1: 0.63;p136 -1: -0.63
+42111-1,2,works,,,shown,shown,,,,p471 +1: 1.50;p471 -1: -1.50;p473 +1: 1.50;p473 -1: -1.50
+42111-1,3,works,,,shown,shown,,,,p471 +1: 1.50;p471 -1: -1.50
+42111-1,4,works,,,shown,shown,,,,p276 +1: 0.23;p276 -1: -0.03;p279 +1: 0.03;p279 -1: -0.23
+42111-1,8,works,,,not decided,not decided,"not decided: p708 41239: a travel of 0.2 rad or less each way, stopped at +0.035 rad (557/708)",,,p708 +1: 0.04;p708 -1: -0.03
+42111-1,9,works,,,not shown,not shown,"A: p964 26287, p978 32524, p979 32524 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p959 +1: 0.00;p959 -1: 0.00
+42111-1,10,works,,,not shown,not shown,"A: p326 15462, p463 3749, p466 3749 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p328 +1: 0.00;p328 -1: 0.00
+42112-1,1,works,,,shown,shown,,,,p1006 +1: 0.70;p1006 -1: -0.70
+42112-1,2,partly,stopped-endless,,shown,not shown,"a collision stops a control: p688 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p690 56145: turns without e",collision,,p688 +1: 0.52;p688 -1: -1.50;p690 +1: 0.52;p690 -1: -1.50;p696 +1: 0.52;p696 -1: -1.50;p698 +1: 0.52;p698 -1: -1.50;p692 +1: 0.52;p692 -1: -1.50;p694 +1: 0.52;p694 -1: -1.50;p700 +1: 0.52;p700 -1: -1.50;p702 +1: 0.52;p702 -1: -1.50
+42112-1,4,works,,,not shown,shown,,,,p384 +1: 0.50;p384 -1: -0.50
+42112-1,6,works,,,not shown,shown,,,,p1039 +1: 0.93;p1039 -1: -0.52
+42112-1,7,works,,,shown,shown,,,,p581 +1: 0.23;p581 -1: -0.27
+42112-1,8,works,,,shown,shown,,,,p555 +1: 0.77;p555 -1: -0.83
+42113-1,1,works,,,shown,shown,,,,p769 +1: -1.59;p769 -1: 1.66
+42113-1,6,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p105 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p106 42610: turns without end (kinds free",collision,,p105 +1: 0.38;p105 -1: -1.50;p106 +1: 0.38;p106 -1: -1.50;p130 +1: 0.38;p130 -1: -1.50;p131 +1: 0.38;p131 -1: -1.50;p353 +1: 1.50;p353 -1: -1.50;p354 +1: 1.50;p354 -1: -1.50
+42114-1,2,works,,,shown,shown,,,,p602 +1: -2.25;p602 -1: -2.24
+42114-1,5,works,,,shown,shown,,,,p995 +1: 0.20;p995 -1: -0.10
+42114-1,6,works,,,shown,shown,,,,p2535 +1: 0.13;p2535 -1: -0.34
+42115-1,3,works,,,not shown,shown,,,,p1082 +1: 0.50;p1082 -1: -0.50
+42115-1,4,works,,,shown,shown,,,,p1826 +1: 0.60;p1826 -1: -0.60
+42115-1,5,works,,,shown,shown,,,,p97 +1: 1.50;p97 -1: -1.50;p105 +1: 1.50;p105 -1: -1.50;p886 +1: 1.50;p886 -1: -1.50;p894 +1: 1.50;p894 -1: -1.50
+42115-1,9,works,,,not shown,shown,,,,p3360 +1: 0.00;p3360 -1: -1.50
+42116-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p98 +1: 1.50;p98 -1: -1.50
+42116-1,2,works,,,shown,shown,,,,p87 +1: 0.59;p87 -1: -1.12
+42116-1,3,works,,,shown,shown,,,,p121 +1: 1.50;p121 -1: -1.50;p124 +1: 1.50;p124 -1: -1.50;p127 +1: 1.50;p127 -1: -1.50;p130 +1: 1.50;p130 -1: -1.50
+42120-1,1,works,,,shown,shown,,,,p51 +1: 1.50;p51 -1: -1.50;p52 +1: 1.50;p52 -1: -1.50
+42120-1,2,works,,,shown,shown,,,,p51 +1: 1.50;p51 -1: -1.50;p52 +1: 1.50;p52 -1: -1.50
+42120-1,4,works,,,shown,shown,,,,p113 +1: 1.50;p113 -1: -1.50;p114 +1: 1.50;p114 -1: -1.50
+42120-1,5,works,,,shown,shown,,,,p583 +1: 1.50;p583 -1: -1.50
+42121-1,3,works,,,shown,shown,,,,p279 +1: 1.50;p279 -1: -1.50
+42121-1,4,works,,,shown,shown,,,,p324 +1: 1.50;p324 -1: -1.50;p325 +1: 1.50;p325 -1: -1.50;p396 +1: 1.50;p396 -1: -1.50;p397 +1: 1.50;p397 -1: -1.50
+42122-1,2,works,,,not shown,shown,,,,p122 +1: 0.13;p122 -1: -0.13
+42122-1,5,works,,,shown,shown,,,,p234 +1: 1.50;p234 -1: -1.50
+42122-1,6,partly,,yes,not shown,not shown,"a collision stops a control: p457 32524: a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458) (the bonnet lifts open (the picture), far past 0.17 rad, https://www.leg",collision,,p457 +1: 0.00;p457 -1: -0.14
+42122-1,7,works,,,shown,shown,,,,p378 +1: 1.50;p378 -1: 0.00;p421 +1: 0.00;p421 -1: -1.50
+42122-1,8,works,,,not shown,not shown,A: p398 32524 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p398 +1: 0.00;p398 -1: 0.00
+42122-1,9,works,,,shown,shown,,,,p658 +1: 1.50;p658 -1: -1.50;p662 +1: 1.50;p662 -1: -1.50;p656 +1: 1.50;p656 -1: -1.50;p661 +1: 1.50;p661 -1: -1.50
+42123-1,1,works,,,shown,shown,,,,p49 +1: 0.70;p49 -1: -0.70
+42123-1,3,works,,,shown,shown,,,,p896 +1: 1.50;p896 -1: -0.03;p918 +1: 0.03;p918 -1: -1.50
+42123-1,4,partly,stopped-endless,,shown,not shown,"a collision stops a control: p1075 42123 - 56145: turns without end (kinds free-wheels; the text says: wheels, wheel, roll), but a collision stops it at +0.105 rad (165/257); -0.105 rad (165/268)",collision,,p1071 +1: 1.50;p1071 -1: -1.50;p1074 +1: 1.50;p1074 -1: -1.50;p1075 +1: 0.10;p1075 -1: -0.10
+42124-1,4,works,,,not shown,shown,,,,p325 +1: 0.64;p325 -1: -0.03;p326 +1: 0.03;p326 -1: -0.64
+42124-1,6,works,,,shown,shown,,,,p470 +1: 0.24;p470 -1: 0.00
+42124-1,8,works,,,shown,shown,,,,p971 +1: 1.50;p971 -1: -1.50;p977 +1: 1.50;p977 -1: -1.50
+42125-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p675 +1: 1.27;p675 -1: -1.27
+42125-1,2,works,,,shown,shown,,,,p3020 +1: 1.50;p3020 -1: -1.50;p3025 +1: 1.50;p3025 -1: -1.50
+42125-1,3,works,,,shown,shown,,,,p3020 +1: 1.50;p3020 -1: -1.50
+42125-1,6,works,,,shown,shown,,,,p44 +1: 1.50;p44 -1: -1.50;p50 +1: 1.50;p50 -1: -1.50
+42125-1,7,works,,,shown,not shown,A: none not moved,nothing moved,,p2862 +1: 0.00;p2862 -1: 0.00;p2912 +1: 0.00;p2912 -1: 0.00
+42125-1,8,works,,,shown,shown,,,,p3022 +1: 1.50;p3022 -1: -1.50;p3024 +1: 1.50;p3024 -1: -1.50
+42129-1,2,works,,,shown,not shown,B: the control could not be seen,control not seen,,p466 +1: 1.50;p466 -1: -1.50
+42129-1,3,works,,,shown,shown,,,,p2930 +1: 1.50;p2930 -1: -1.50;p2932 +1: 1.50;p2932 -1: -1.50
+42129-1,4,works,,,not shown,shown,,,,p550 +1: -0.41;p550 -1: -3.62
+42129-1,5,works,,,shown,shown,,,,p1478 +1: 0.40;p1478 -1: 0.40
+42129-1,6,works,,,shown,not decided,"not decided: p1198 42129 - 31794: a travel of 0.2 rad or less each way, stopped at -0.033 rad (830/1303)",,,p958 +1: 0.03;p958 -1: -0.13;p1198 +1: 0.03;p1198 -1: -0.03
+42129-1,8,works,,,not decided,not decided,"not decided: p1935 2819: a travel of 0.2 rad or less each way, stopped at +0.133 rad (1935/2287)",,,p1935 +1: 0.13;p1935 -1: -0.13
+42131-1,1,works,,,shown,not shown,B: the control could not be seen,control not seen,,p2686 +1: 1.50;p2686 -1: -1.50
+42131-1,2,works,,,shown,not shown,B: the control could not be seen,control not seen,,p2688 +1: 1.50;p2688 -1: -1.50
+42131-1,3,works,,,shown,not shown,B: the control could not be seen,control not seen,,p2686 +1: 1.50;p2686 -1: -1.50;p2688 +1: 1.50;p2688 -1: -1.50
+42131-1,4,works,,,shown,not shown,B: the control could not be seen,control not seen,,p2686 +1: 1.50;p2686 -1: -1.50;p2688 +1: 1.50;p2688 -1: -1.50
+42131-1,10,works,,,not decided,not shown,"B: the control could not be seen; not decided: p3449 32056: a travel of 0.2 rad or less each way, stopped at -0.175 rad (3449/3650)",control not seen,,p3449 +1: 0.17;p3449 -1: -0.17
+8001-1,1,works,,,not decided,not decided,"not decided: p62 32177: a travel of 0.2 rad or less each way, stopped at +0.035 rad (23/27)",,,p62 +1: 0.04;p62 -1: -0.03
+8001-1,2,works,,,shown,shown,,,,p18 +1: 0.80;p18 -1: -0.83
+8001-1,4,works,,,shown,shown,,,,p132 +1: 0.80;p132 -1: -0.07
+8001-1,6,works,,,not decided,not decided,"not decided: p830 32177: a travel of 0.2 rad or less each way, stopped at -0.174 rad (825/830)",,,p830 +1: 0.17;p830 -1: -0.17
+8001-1,7,works,,,shown,shown,,,,p42 +1: 1.50;p42 -1: -0.43;p71 +1: 0.43;p71 -1: -0.42
+8002-1,1,works,,,not shown,not shown,A: p0 32009 against p305 32016 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p0 +1: 0.00;p0 -1: 0.00
+8002-1,2,works,,,not decided,shown,,,,p551 +1: 1.50;p551 -1: -0.10
+8002-1,3,works,,,not shown,not shown,"A: p619 6536 against p0 32009, p856 6536 against p0 32009 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p238 +1: 0.00;p238 -1: 0.00;p250 +1: 0.00;p250 -1: 0.00
+8002-1,5,partly,,yes,not decided,shown,,,,p11 +1: 0.04;p11 -1: -0.66
+8002-1,6,works,,,not shown,not shown,A: p197 32310 against p0 32009 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p197 +1: 0.00;p197 -1: 0.00
+8012-1,1,works,,,shown,shown,,,,p96 +1: 0.00;p96 -1: -1.01
+8012-1,2,works,,,shown,shown,,,,p3474 +1: 1.40;p3474 -1: -1.50
+8012-1,3,works,,,shown,shown,,,,p3833 +1: 1.50;p3833 -1: -1.50;p3441 +1: 1.50;p3441 -1: -0.28
+8012-1,6,works,,,shown,shown,,,,p2378 +1: 0.69;p2378 -1: -0.70;p2431 +1: 0.13;p2431 -1: -0.13;p2363 +1: 1.50;p2363 -1: -1.50;p2416 +1: 0.13;p2416 -1: -0.13;p2012 +1: 1.50;p2012 -1: -1.50;p2396 +1: 0.13;p2396 -1: -0.13
+8020-1,1,works,,,shown,shown,,,,p99 +1: 1.50;p99 -1: -1.50
+8020-1,2,works,,,shown,shown,,,,p101 +1: 1.50;p101 -1: -1.50;p107 +1: 1.50;p107 -1: -1.50;p103 +1: 1.50;p103 -1: -1.50;p105 +1: 1.50;p105 -1: -1.50
+8022-1,1,works,,,shown,shown,,,,p82 +1: 1.50;p82 -1: -1.50;p84 +1: 1.50;p84 -1: -1.50
+8024-1,1,works,,,shown,shown,,,,p250 +1: 1.50;p250 -1: -1.50
+8024-1,2,works,,,shown,shown,,,,p226 +1: 1.50;p226 -1: -1.50
+8024-1,3,works,,,shown,shown,,,,p255 +1: 1.50;p255 -1: -1.50;p257 +1: 1.50;p257 -1: -1.50;p226 +1: 1.50;p226 -1: -1.50;p228 +1: 1.50;p228 -1: -1.50
+8032-1,1,works,,,shown,shown,,,,p28 +1: 0.66;p28 -1: -1.50
+8032-1,2,works,,,shown,shown,,,,p59 +1: 1.50;p59 -1: -1.50
+8049-1,1,works,,,shown,shown,,,,p73 +1: 1.43;p73 -1: -1.43
+8049-1,6,works,,,shown,shown,,,,p475 +1: 1.29;p475 -1: -1.50
+8049-1,8,works,,,shown,shown,,,,p201 +1: 1.50;p201 -1: -1.50;p203 +1: 1.50;p203 -1: -1.50;p205 +1: 1.50;p205 -1: -1.50;p208 +1: 1.50;p208 -1: -1.50;p487 +1: 1.50;p487 -1: -1.50;p489 +1: 1.50;p489 -1: -1.50;p491 +1: 1.50;p491 -1: -1.50;p493 +1: 1.50;p493 -1: -1.50
+8054-1,1,works,,,shown,shown,,,,p72 +1: 1.50;p72 -1: -1.50
+8054-1,2,works,,,shown,shown,,,,p76 +1: 1.50;p76 -1: -1.50;p78 +1: 1.50;p78 -1: -1.50
+8063-1,1,works,,,shown,shown,,,,p499 +1: 1.50;p499 -1: -1.47
+8063-1,2,works,,,shown,shown,,,,p193 +1: 1.50;p193 -1: -1.50
+8063-1,3,works,,,shown,shown,,,,p701 +1: 1.50;p701 -1: -1.50;p706 +1: 1.50;p706 -1: -1.50
+8063-1,4,works,,,shown,shown,,,,p700 +1: 1.50;p700 -1: -1.50;p704 +1: 1.50;p704 -1: -1.50
+8063-1,5,works,,,not shown,shown,,,,p112 +1: 0.03;p112 -1: -0.64
+8063-1,6,works,,,not shown,not shown,"a collision stops a control: p701 44772: turns without end (kinds power-take-off; the text says: power take-off, rolls), but a collision stops it at +1.5 rad (60/106)",collision,,p701 +1: 1.50;p701 -1: -1.50;p706 +1: 1.50;p706 -1: -1.50
+8063-1,8,works,,,not shown,shown,,,,p777 +1: 1.50;p777 -1: -0.24;p778 +1: 1.50;p778 -1: -0.24
+8063-1,10,works,,,shown,shown,,,,p1126 +1: 1.50;p1126 -1: -1.50;p1128 +1: 1.50;p1128 -1: -1.50;p1130 +1: 1.50;p1130 -1: -1.50;p1132 +1: 1.50;p1132 -1: -1.50
+8081-1,1,works,,,shown,shown,,,,p410 +1: 1.22;p410 -1: -1.22
+8081-1,2,works,,,shown,shown,,,,p584 +1: 1.50;p584 -1: -1.50;p586 +1: 1.50;p586 -1: -1.50
+8081-1,3,works,,,shown,shown,,,,p584 +1: 1.50;p584 -1: -1.50
+8081-1,4,works,,,not shown,shown,,,,p520 +1: 0.00;p520 -1: -1.50
+8081-1,5,works,,,shown,not decided,"not decided: p475 41239: a travel of 0.2 rad or less each way, stopped at -0.07 rad (378/478); p507 41239: a travel of 0.2 rad or less each way, stopped at +0.07 rad (368/510)",,,p475 +1: 0.07;p475 -1: -0.07;p507 +1: 0.07;p507 -1: -0.07
+8081-1,7,works,,,not shown,shown,,,,p199 +1: 0.24;p199 -1: -0.23;p202 +1: 0.23;p202 -1: -0.24
+8081-1,9,works,,,shown,shown,,,,p317 +1: 1.50;p317 -1: -1.50
+8094-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p380 +1: 8.80;p380 -1: -8.80
+8094-1,3,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p227 +1: 1.50;p227 -1: -1.50
+8110-1,1,works,,,shown,shown,,,,p1504 +1: 0.80;p1504 -1: -0.87
+8110-1,2,works,,,shown,shown,,,,p1843 +1: 1.50;p1843 -1: -1.50
+8110-1,3,works,,,shown,shown,,,,p1437 +1: 1.50;p1437 -1: -1.50;p1438 +1: 1.50;p1438 -1: -1.50;p1439 +1: 1.50;p1439 -1: -1.50;p1440 +1: 1.50;p1440 -1: -1.50
+8110-1,4,works,,,shown,shown,,,,p1437 +1: 1.50;p1437 -1: -1.50;p1438 +1: 1.50;p1438 -1: -1.50
+8110-1,6,works,,,shown,shown,,,,p60 +1: -2.66;p60 -1: 2.01
+8110-1,7,works,,,not shown,shown,,,,p60 +1: -2.64;p60 -1: 2.76
+8110-1,8,works,,,not shown,shown,,,,p60 +1: -3.77;p60 -1: 3.77
+8110-1,13,works,,,shown,shown,,,,p3166 +1: 0.03;p3166 -1: -0.03
+8110-1,14,works,,,shown,not shown,A: none not moved,nothing moved,,p2102 +1: 0.00;p2102 -1: 0.00;p2104 +1: 0.00;p2104 -1: 0.00
+8202-1,4,works,,,shown,shown,,,,p61 +1: 1.50;p61 -1: -1.50
+8203-1,1,works,,,shown,shown,,,,p10 +1: 1.50;p10 -1: -1.50;p11 +1: 1.50;p11 -1: -1.50;p14 +1: 1.50;p14 -1: -1.50;p15 +1: 1.50;p15 -1: -1.50
+8203-1,2,works,,,not decided,not decided,"not decided: p21 6629: a travel of 0.2 rad or less each way, stopped at +0.033 rad (4/22)",,,p21 +1: 0.03;p21 -1: -0.03
+8204-1,2,works,,,shown,shown,,,,p35 +1: 1.50;p35 -1: -1.50
+8208-1,1,works,,,not shown,shown,,,,p36 +1: 0.77;p36 -1: -0.77
+8208-1,2,works,,,shown,shown,,,,p49 +1: 1.50;p49 -1: -1.50;p26 +1: 1.50;p26 -1: -1.50
+8209-1,3,works,,,shown,shown,,,,p46 +1: 1.50;p46 -1: -1.50;p45 +1: 1.50;p45 -1: -1.50;p47 +1: 1.50;p47 -1: -1.50;p48 +1: 1.50;p48 -1: -1.50
+8217-1,1,works,,,shown,shown,,,,p1 +1: 1.50;p1 -1: -1.50;p25 +1: 1.50;p25 -1: -1.50
+8217-1,2,works,,,shown,shown,,,,p50 +1: 1.50;p50 -1: -1.50
+8218-1,1,works,,,shown,shown,,,,p1 +1: 1.50;p1 -1: -1.50;p0 +1: 1.50;p0 -1: -1.50
+8218-1,3,works,,,shown,shown,,,,p66 +1: 1.50;p66 -1: -1.50
+8218-1,4,works,,,not shown,shown,,,,p60 +1: 1.29;p60 -1: -1.29;p61 +1: 1.29;p61 -1: -1.29
+8245-1,2,works,,,shown,shown,,,,p28 +1: 1.50;p28 -1: -1.50;p30 +1: 1.50;p30 -1: -1.50;p37 +1: 1.50;p37 -1: -1.50
+8245-1,3,works,,,shown,shown,,,,p278 +1: 1.50;p278 -1: -1.50;p280 +1: 1.50;p280 -1: -1.50
+8245-1,5,works,,,shown,shown,,,,p215 +1: 1.50;p215 -1: -1.50;p217 +1: 1.50;p217 -1: -1.50
+8245-1,6,works,,,shown,shown,,,,p188 +1: 1.50;p188 -1: -0.13
+8245-1,8,works,,,shown,shown,,,,p242 +1: 0.00;p242 -1: -1.15;p246 +1: 1.12;p246 -1: 0.00
+8245-1,10,works,,,shown,shown,,,,p237 +1: 0.17;p237 -1: -0.50
+8256-1,2,works,,,shown,shown,,,,p131 +1: 1.50;p131 -1: -1.50;p133 +1: 1.50;p133 -1: -1.50
+8256-1,3,works,,,shown,shown,,,,p131 +1: 1.50;p131 -1: -1.50;p133 +1: 1.50;p133 -1: -1.50;p135 +1: 1.50;p135 -1: -1.50;p137 +1: 1.50;p137 -1: -1.50
+8257-1,2,works,,,shown,shown,,,,p310 +1: 0.00;p310 -1: -1.33
+8257-1,4,works,,,not decided,not decided,"not decided: p594 6629: a travel of 0.2 rad or less each way, stopped at +0.103 rad (348/594)",,,p594 +1: 0.10;p594 -1: -0.10
+8257-1,5,works,,,shown,shown,,,,p25 +1: 1.50;p25 -1: -1.50;p43 +1: 1.50;p43 -1: -1.50;p45 +1: 1.50;p45 -1: -1.50
+8257-1,6,works,,,shown,shown,,,,p54 +1: 1.33;p54 -1: 0.00
+8257-1,8,works,,,shown,shown,,,,p156 +1: 1.50;p156 -1: -0.10
+8258-1,2,works,,,shown,shown,,,,p767 +1: 1.62;p767 -1: -1.63
+8258-1,3,works,,,shown,shown,,,,p767 +1: -0.23;p767 -1: -2.96
+8258-1,5,works,,,not shown,shown,,,,p767 +1: 6.44;p767 -1: -6.44
+8258-1,6,works,,,shown,shown,,,,p1450 +1: 1.50;p1450 -1: -1.50
+8258-1,7,partly,,yes,not shown,not shown,"A: p682 62821, p6 3708, p1351 2853, p1366 2851 against p1375 2850a, p1367 2851 against p1376 2850a not moved; B: no listed part moved by hand","A not moved, B nothing either",,p686 +1: 1.50;p686 -1: -1.50;p687 +1: 1.50;p687 -1: -1.50
+8259-1,2,works,,,shown,shown,,,,p75 +1: 1.50;p75 -1: -1.50;p74 +1: 1.50;p74 -1: -1.50
+8260-1,1,works,,,shown,shown,,,,p10 +1: 1.50;p10 -1: -1.50
+8260-1,2,works,,,not shown,shown,,,,p92 +1: 0.73;p92 -1: -1.40
+8260-1,3,works,,,shown,shown,,,,p98 +1: 1.50;p98 -1: -1.50;p100 +1: 1.50;p100 -1: -1.50;p96 +1: 1.50;p96 -1: -1.50;p97 +1: 1.50;p97 -1: -1.50
+8260-1,4,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p63 +1: 1.50;p63 -1: -1.50
+8261-1,1,partly,,yes,not decided,not decided,"not decided: p131 32270: a travel of 0.2 rad or less each way, stopped at +0.105 rad (ground: p193); -0.105 rad (ground: p191)",,,p131 +1: 0.10;p131 -1: -0.10
+8261-1,2,works,,,not decided,shown,,,,p45 +1: 0.24;p45 -1: 0.00
+8261-1,4,works,,,shown,shown,,,,p190 +1: 1.50;p190 -1: -1.50;p192 +1: 1.50;p192 -1: -1.50;p194 +1: 1.50;p194 -1: -1.50;p196 +1: 1.50;p196 -1: -1.50
+8270-1,6,works,,,shown,shown,,,,p93 +1: 1.50;p93 -1: -1.50;p94 +1: 1.50;p94 -1: -1.50;p95 +1: 1.50;p95 -1: -1.50;p96 +1: 1.50;p96 -1: -1.50
+8272-1,2,works,,,not shown,not shown,"A: p43 32063, p17 32063, p36 32063, p13 6587, p53 2736, p615 32271 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p12 +1: 0.00;p12 -1: 0.00
+8272-1,3,works,,,not shown,not shown,"A: p42 32063, p21 32063, p35 32063, p10 6587, p51 2736, p626 32271 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p9 +1: 0.00;p9 -1: 0.00
+8272-1,5,works,,,shown,shown,,,,p152 +1: 1.50;p152 -1: -1.50
+8272-1,6,works,,,not decided,not decided,"not decided: p615 32271: a travel of 0.2 rad or less each way, stopped at +0.2 rad (52/614)",,,p615 +1: 0.20;p615 -1: -0.20;p626 +1: 0.20;p626 -1: -0.30
+8273-1,1,works,,,shown,shown,,,,p644 +1: 1.50;p644 -1: -1.50
+8273-1,3,works,,,shown,shown,,,,p3956 +1: 1.50;p3956 -1: -1.40
+8273-1,6,works,,,shown,shown,,,,p465 +1: 1.50;p465 -1: -1.50
+8273-1,8,works,,,shown,shown,,,,p96 +1: 0.00;p96 -1: -1.50
+8273-1,9,works,,,not shown,not shown,A: p357 32316 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p345 +1: 0.00;p345 -1: 0.00
+8273-1,10,works,,,not shown,shown,,,,p219 +1: 0.07;p219 -1: -0.20
+8273-1,11,works,,,shown,shown,,,,p4000 +1: 1.50;p4000 -1: -1.50;p4002 +1: 1.50;p4002 -1: -1.50;p4004 +1: 1.50;p4004 -1: -1.50;p4006 +1: 1.50;p4006 -1: -1.50;p4008 +1: 1.50;p4008 -1: -1.50;p4010 +1: 1.50;p4010 -1: -1.50
+8274-1,1,works,,,shown,shown,,,,p539 +1: 1.50;p539 -1: -1.50
+8274-1,4,works,,,not shown,shown,,,,p970 +1: 1.50;p970 -1: -1.50
+8274-1,5,partly,,yes,,not decided,"not decided: p919 32278: a travel of 0.2 rad or less each way, stopped at +0.105 rad (397/701); -0 rad (395/694)",,,p919 +1: 0.10;p919 -1: 0.00
+8274-1,6,works,,,shown,shown,,,,p964 +1: 1.50;p964 -1: -1.50;p966 +1: 1.50;p966 -1: -1.50;p968 +1: 1.50;p968 -1: -1.50;p970 +1: 1.50;p970 -1: -1.50
+8275-1,3,works,,,shown,shown,,,,p569 +1: 1.50;p569 -1: -1.50;p1195 +1: 1.50;p1195 -1: -1.50
+8275-1,4,works,,,shown,shown,,,,p569 +1: 1.50;p569 -1: -1.50
+8275-1,5,partly,,yes,not shown,not shown,"A: p2715 3703, p2731 3703 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p125 +1: 1.81;p125 -1: -1.78
+8281-1,3,works,,,shown,shown,,,,p90 +1: 1.50;p90 -1: -1.50;p91 +1: 1.50;p91 -1: -1.50
+8281-1,4,works,,,shown,shown,,,,p61 +1: 1.50;p61 -1: -1.50
+8283-1,4,works,,,shown,shown,,,,p203 +1: 1.50;p203 -1: -1.50
+8283-1,5,works,,,shown,shown,,,,p311 +1: 1.50;p311 -1: -1.50;p313 +1: 1.50;p313 -1: -1.50;p315 +1: 1.50;p315 -1: -1.50;p317 +1: 1.50;p317 -1: -1.50
+8283-1,6,works,,,shown,shown,,,,p231 +1: 1.50;p231 -1: -1.50
+8285-1,1,works,,,shown,shown,,,,p2332 +1: 1.50;p2332 -1: -1.50;p2324 +1: 1.50;p2324 -1: -1.50
+8285-1,2,works,,,shown,shown,,,,p2336 +1: 1.50;p2336 -1: -1.50;p2320 +1: 1.50;p2320 -1: -1.50;p2322 +1: 1.50;p2322 -1: -1.50
+8285-1,3,works,,,shown,shown,,,,p901 +1: 1.50;p901 -1: -1.50
+8285-1,4,works,,,shown,shown,,,,p847 +1: 1.50;p847 -1: -1.50
+8285-1,5,partly,,yes,not shown,not shown,A: p1074 3707 not moved; B: no listed part moved by hand,"A not moved, B nothing either",,p1069 +1: 0.00;p1069 -1: 0.00
+8285-1,9,works,,,shown,shown,,,,p1719 +1: 1.26;p1719 -1: -1.29
+8285-1,10,works,,,shown,shown,,,,p1722 +1: 1.50;p1722 -1: -1.50
+8289-1,1,works,,,shown,shown,,,,p675 +1: 1.50;p675 -1: -1.50
+8289-1,2,works,,,shown,shown,,,,p366 +1: 1.50;p366 -1: -1.50
+8289-1,3,works,,,shown,shown,,,,p533 +1: 1.50;p533 -1: -1.50;p530 +1: 1.50;p530 -1: -1.50;p531 +1: 1.50;p531 -1: -1.50;p532 +1: 1.50;p532 -1: -1.50
+8289-1,7,works,,,shown,shown,,,,p653 +1: 1.50;p653 -1: -1.50
+8416-1,3,works,,,shown,shown,,,,p670 +1: 1.43;p670 -1: -1.43
+8416-1,4,works,,,shown,shown,,,,p708 +1: 1.50;p708 -1: -1.50;p709 +1: 1.50;p709 -1: -1.50;p712 +1: 1.50;p712 -1: -1.50;p714 +1: 1.50;p714 -1: -1.50
+8416-1,5,works,,,shown,shown,,,,p632 +1: 1.50;p632 -1: -1.50
+8418-1,1,works,,,shown,shown,,,,p21 +1: 0.14;p21 -1: -1.50
+8418-1,2,works,,,not shown,shown,,,,p57 +1: 0.04;p57 -1: -1.03
+8418-1,3,works,,,shown,shown,,,,p58 +1: 1.50;p58 -1: -1.50;p61 +1: 1.50;p61 -1: -1.50;p63 +1: 1.50;p63 -1: -1.50;p65 +1: 1.50;p65 -1: -1.50
+8419-1,2,works,,,shown,shown,,,,p205 +1: 1.50;p205 -1: -1.50
+8419-1,3,works,,,not shown,not shown,A: p284 2950 against p115 32140 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p204 +1: 0.24;p204 -1: -0.24
+8448-1,2,works,,,not shown,shown,,,,p478 +1: 1.50;p478 -1: -1.50;p481 +1: 1.50;p481 -1: -1.50
+8448-1,3,works,,,not shown,shown,,,,p576 +1: 0.45;p576 -1: -0.45
+8448-1,4,works,,,not shown,shown,,,,p478 +1: 1.50;p478 -1: -1.50
+8448-1,5,works,,,not decided,not decided,"not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (53/345); p380 32195a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 ",,,p364 +1: 0.00;p364 -1: -0.04;p380 +1: 0.04;p380 -1: 0.00
+8464-1,4,works,,,not shown,shown,,,,p565 +1: 1.50;p565 -1: -1.50
+8464-1,5,works,,,not shown,not shown,B: no listed part moved by hand,B nothing by hand,,p569 +1: 1.50;p569 -1: -1.50
+8466-1,10,works,,,shown,shown,,,,p134 +1: 1.50;p134 -1: 0.00;p138 +1: 0.00;p138 -1: -1.50
+850-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p188 +1: 1.50;p188 -1: -1.33
+850-1,2,works,,,shown,shown,,,,p178 +1: 1.50;p178 -1: -1.50
+850-1,3,works,,,shown,shown,,,,p105 +1: 1.50;p105 -1: -1.50;p107 +1: 1.50;p107 -1: -1.50;p109 +1: 1.50;p109 -1: -1.50;p111 +1: 1.50;p111 -1: -1.50
+850-1,4,works,,,not decided,not decided,"not decided: p152 3651: a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152); p155 3651: a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)",,,p152 +1: 0.07;p152 -1: -0.07;p155 +1: 0.07;p155 -1: -0.07
+851-1,1,works,,,shown,shown,,,,p67 +1: 1.50;p67 -1: -1.50
+851-1,2,works,,,shown,shown,,,,p245 +1: 1.50;p245 -1: -1.50;p246 +1: 1.50;p246 -1: -1.50
+851-1,3,works,,,shown,shown,,,,p247 +1: 1.50;p247 -1: -1.50;p248 +1: 1.50;p248 -1: -1.50
+851-1,4,works,,,not shown,shown,,,,p232 +1: 1.50;p232 -1: -0.03
+852-1,1,works,,,shown,shown,,,,p143 +1: 1.50;p143 -1: -1.50
+854-1,1,works,,,shown,shown,,,,p155 +1: 1.50;p155 -1: -1.50
+854-1,2,works,,,shown,shown,,,,p326 +1: 1.50;p326 -1: -1.50;p322 +1: 1.50;p322 -1: -1.50
+854-1,3,works,,,shown,shown,,,,p318 +1: 1.50;p318 -1: -1.50;p320 +1: 1.50;p320 -1: -1.50
+855-1,1,works,,,shown,shown,,,,p162 +1: 1.50;p162 -1: -1.50
+855-1,2,works,,,shown,shown,,,,p272 +1: 1.50;p272 -1: -1.50
+855-1,3,works,,,shown,shown,,,,p313 +1: 1.50;p313 -1: -1.50
+855-1,4,works,,,shown,shown,,,,p483 +1: 1.50;p483 -1: -1.50
+855-1,5,works,,,shown,not shown,A: none not moved,nothing moved,,p99 +1: 0.00;p99 -1: 0.00;p106 +1: 0.00;p106 -1: 0.00;p113 +1: 0.00;p113 -1: 0.00;p120 +1: 0.00;p120 -1: 0.00
+855-1,6,works,,,shown,shown,,,,p185 +1: 1.50;p185 -1: -1.50;p187 +1: 1.50;p187 -1: -1.50;p189 +1: 1.50;p189 -1: -1.50;p190 +1: 1.50;p190 -1: -1.50
+855-1,7,works,,,shown,shown,,,,p157 +1: 1.50;p157 -1: -0.03;p158 +1: 0.03;p158 -1: -1.50;p159 +1: 0.03;p159 -1: -1.50;p160 +1: 1.50;p160 -1: -0.03
+856-1,1,works,,,shown,shown,,,,p50 +1: 8.30;p50 -1: -4.60
+856-1,2,works,,,shown,shown,,,,p51 +1: 1.50;p51 -1: -0.17
+856-1,3,works,,,shown,shown,,,,p11 +1: 1.50;p11 -1: -1.50;p12 +1: 1.50;p12 -1: -1.50;p13 +1: 1.50;p13 -1: -1.50;p14 +1: 1.50;p14 -1: -1.50
+858-1,1,works,,,shown,shown,,,,p20 +1: 1.50;p20 -1: -1.50
+858-1,2,works,,,shown,shown,,,,p91 +1: 1.50;p91 -1: -1.50
+858-1,3,works,,,shown,shown,,,,p91 +1: 1.50;p91 -1: -1.50
+858-1,4,works,,,shown,shown,,,,p43 +1: 1.50;p43 -1: -1.50
+858-1,5,works,,,shown,shown,,,,p43 +1: 1.50;p43 -1: -1.50
+858-1,6,works,,,shown,shown,,,,p43 +1: 1.50;p43 -1: -1.50
+858-1,7,works,,,shown,shown,,,,p43 +1: 1.50;p43 -1: -1.50
+858-1,8,works,,,shown,shown,,,,p133 +1: 1.50;p133 -1: -1.50
+858-1,9,works,,,shown,shown,,,,p133 +1: 1.50;p133 -1: -1.50
+8808-1,1,works,,,shown,shown,,,,p79 +1: 1.50;p79 -1: -1.50
+8808-1,2,works,,,shown,shown,,,,p74 +1: 1.50;p74 -1: -1.50;p82 +1: 1.50;p82 -1: -1.50;p86 +1: 1.50;p86 -1: -1.50;p90 +1: 1.50;p90 -1: -1.50
+8808-1,3,works,,,shown,shown,,,,p72 +1: 1.50;p72 -1: -1.50;p88 +1: 1.50;p88 -1: -1.50;p80 +1: 1.50;p80 -1: -1.50;p84 +1: 1.50;p84 -1: -1.50
+8810-1,1,works,,,not shown,shown,,,,p51 +1: 0.64;p51 -1: -0.64
+8810-1,2,works,,,not shown,not shown,"A: p33 4262, p21 3706, p26 2695, p16 4254, p18 4254 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p32 +1: 0.00;p32 -1: 0.00
+8810-1,4,works,,,shown,shown,,,,p53 +1: 1.50;p53 -1: -1.50;p26 +1: 1.50;p26 -1: -1.50
+8810-1,5,works,,,not shown,shown,,,,p28 +1: 1.50;p28 -1: -1.50
+8815-1,1,works,,,shown,shown,,,,p59 +1: 1.50;p59 -1: -1.50
+8815-1,2,works,,,shown,shown,,,,p70 +1: 1.50;p70 -1: -1.50
+8815-1,3,works,,,shown,shown,,,,p70 +1: 1.50;p70 -1: -1.50;p74 +1: 1.50;p74 -1: -1.50;p66 +1: 1.50;p66 -1: -1.50;p62 +1: 1.50;p62 -1: -1.50
+8815-1,4,works,,,not shown,shown,,,,p43 +1: 0.93;p43 -1: -0.07
+8820-1,1,works,,,shown,shown,,,,p56 +1: 1.50;p56 -1: -1.50
+8820-1,2,works,,,not shown,not shown,"A: p105 3894, p32 3707, p30 4254, p125 3482, p127 3482 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p102 +1: 0.00;p102 -1: 0.00
+8820-1,4,works,,,shown,shown,,,,p129 +1: 1.50;p129 -1: -1.50;p131 +1: 1.50;p131 -1: -1.50;p125 +1: 1.50;p125 -1: -1.50;p127 +1: 1.50;p127 -1: -1.50
+8824-1,2,works,,,shown,shown,,,,p62 +1: 1.50;p62 -1: -1.50;p63 +1: 1.50;p63 -1: -1.50
+8824-1,3,works,,,shown,shown,,,,p151 +1: 1.50;p151 -1: -1.50;p153 +1: 1.50;p153 -1: -1.50
+8825-1,1,works,,,shown,shown,,,,p84 +1: 1.50;p84 -1: -1.50
+8825-1,3,works,,,shown,shown,,,,p17 +1: 1.50;p17 -1: -1.50
+8826-1,2,works,,,shown,shown,,,,p85 +1: 1.50;p85 -1: -1.50;p89 +1: 1.50;p89 -1: -1.50;p87 +1: 1.50;p87 -1: -1.50;p91 +1: 1.50;p91 -1: -1.50
+8828-1,1,works,,,shown,shown,,,,p124 +1: 1.50;p124 -1: -1.50
+8828-1,3,works,,,shown,shown,,,,p167 +1: 1.27;p167 -1: -1.27
+8828-1,4,works,,,shown,shown,,,,p18 +1: 1.50;p18 -1: -1.50;p19 +1: 1.50;p19 -1: -1.50;p21 +1: 1.50;p21 -1: -1.50;p32 +1: 1.50;p32 -1: -1.50
+8830-1,1,works,,,shown,shown,,,,p153 +1: 1.50;p153 -1: -1.50
+8830-1,2,works,,,shown,shown,,,,p154 +1: 1.50;p154 -1: -1.50;p156 +1: 1.50;p156 -1: -1.50;p158 +1: 1.50;p158 -1: -1.50;p160 +1: 1.50;p160 -1: -1.50;p162 +1: 1.50;p162 -1: -1.50;p164 +1: 1.50;p164 -1: -1.50
+8832-1,1,works,,,shown,shown,,,,p51 +1: 1.50;p51 -1: -1.50
+8832-1,2,works,,,not shown,not shown,"A: p59 3894, p42 3707, p61 3749, p60 3749 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p58 +1: 0.00;p58 -1: 0.00
+8832-1,4,works,,,shown,shown,,,,p73 +1: 1.50;p73 -1: -1.50;p81 +1: 1.50;p81 -1: -1.50;p75 +1: 1.50;p75 -1: -1.50;p78 +1: 1.50;p78 -1: -1.50
+8835-1,1,works,,,shown,shown,,,,p212 +1: 1.50;p212 -1: -1.50
+8835-1,2,works,,,not shown,not shown,"A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand","A not moved, B nothing either",,p207 +1: 0.04;p207 -1: -0.04
+8835-1,3,works,,,shown,shown,,,,p216 +1: 1.50;p216 -1: -1.50
+8835-1,4,works,,,shown,shown,,,,p231 +1: 1.50;p231 -1: -1.50;p232 +1: 1.50;p232 -1: -1.50;p14 +1: 1.50;p14 -1: -1.50;p18 +1: 1.50;p18 -1: -1.50
+8836-1,1,works,,,shown,shown,,,,p143 +1: 1.50;p143 -1: -1.50
+8836-1,3,works,,,shown,shown,,,,p148 +1: 0.53;p148 -1: -0.10
+8836-1,5,works,,,shown,shown,,,,p162 +1: 1.50;p162 -1: -1.50;p168 +1: 1.50;p168 -1: -1.50;p164 +1: 1.50;p164 -1: -1.50;p166 +1: 1.50;p166 -1: -1.50
+8837-1,4,works,,,shown,shown,,,,p227 +1: 1.03;p227 -1: -1.03
+8837-1,6,works,,,shown,shown,,,,p22 +1: 1.50;p22 -1: -1.50;p28 +1: 1.50;p28 -1: -1.50;p232 +1: 1.50;p232 -1: -1.50;p233 +1: 1.50;p233 -1: -1.50
+8838-1,2,works,,,not shown,not shown,"A: p227 2910, p219 3706, p220 8838 - 2903 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p225 +1: 0.00;p225 -1: 0.00
+8838-1,5,works,,,shown,shown,,,,p171 +1: 1.50;p171 -1: -1.50
+8838-1,6,works,,,shown,shown,,,,p220 +1: 1.50;p220 -1: -1.50
+8840-1,2,partly,stopped-endless,,shown,not shown,"a collision stops a control: p210 4266: turns without end (kinds piston-engine; the text says: wheel, engine, pistons, rolls), but a collision stops it at +0.698 rad (201/200); -1.047 rad (201/200)",collision,,p210 +1: 0.70;p210 -1: -1.05
+8840-1,3,works,,,not shown,not shown,"A: p210 4266 against p0 3703, p213 4266 against p0 3703, p200 4255 against p0 3703, p202 4255 against p0 3703 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p86 +1: 0.00;p86 -1: 0.00
+8840-1,5,partly,stopped-endless,,shown,not shown,"a collision stops a control: p210 4266: turns without end (kinds free-wheels; the text says: wheels, roll, wheel, engine), but a collision stops it at +0.698 rad (201/200); -1.047 rad (201/200)",collision,,p206 +1: 1.50;p206 -1: -1.50;p208 +1: 1.50;p208 -1: -1.50;p210 +1: 0.70;p210 -1: -1.05;p213 +1: 1.50;p213 -1: -1.50
+8841-1,1,works,,,shown,shown,,,,p683 +1: 1.50;p683 -1: -1.50
+8841-1,2,works,,,shown,shown,,,,p700 +1: 1.50;p700 -1: -1.50
+8841-1,3,works,,,shown,shown,,,,p698 +1: 1.50;p698 -1: -1.50;p701 +1: 1.50;p701 -1: -1.50
+8841-1,4,works,,,shown,shown,,,,p699 +1: 1.50;p699 -1: -1.50;p700 +1: 1.50;p700 -1: -1.50
+8844-1,1,partly,,yes,not shown,not shown,"A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved",nothing moved,,p69 +1: 0.07;p69 -1: -0.42
+8844-1,2,partly,stopped-endless,,shown,not shown,"a collision stops a control: p128 3736: turns without end (kinds driven-rotor; the text says: rotor), but a collision stops it at +0.384 rad (202/207); -0.384 rad (202/206)",collision,,p128 +1: 0.38;p128 -1: -0.38
+8844-1,4,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p284 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (36/215); -0.244 rad (90/107)",collision,,p270 +1: 1.50;p270 -1: -1.50;p279 +1: 1.50;p279 -1: -1.50;p284 +1: 0.21;p284 -1: -0.24
+8844-1,5,works,,,shown,shown,,,,p179 +1: 1.50;p179 -1: -1.50;p184 +1: 1.50;p184 -1: -1.50
+8845-1,2,works,,,not shown,not shown,"A: p172 3482, p170 3482, p105 4255 against p106 4254, p103 4255 against p104 4254 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p0 +1: 0.00;p0 -1: 0.00;p1 +1: 0.00;p1 -1: 0.00
+8845-1,4,works,,,shown,shown,,,,p168 +1: 1.50;p168 -1: -1.50;p174 +1: 1.50;p174 -1: -1.50;p170 +1: 1.50;p170 -1: -1.50;p172 +1: 1.50;p172 -1: -1.50
+8848-1,1,works,,,shown,shown,,,,p221 +1: 1.50;p221 -1: -1.50
+8848-1,2,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p387 4266: turns without end (kinds differential; the text says: rolls, wheel), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47); p390 4266: turns without ",collision,,p387 +1: 0.84;p387 -1: -0.49;p390 +1: 0.84;p390 -1: -0.49
+8848-1,3,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p387 4266: turns without end (kinds differential, power-take-off; the text says: rolls, drive shaft), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47); p39",collision,,p387 +1: 0.84;p387 -1: -0.49;p390 +1: 0.84;p390 -1: -0.49
+8848-1,4,works,,,shown,shown,,,,p177 +1: 0.40;p177 -1: 0.00
+8848-1,7,partly,stopped-endless,,shown,not shown,"a collision stops a control: p386 4266: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47); p393 4266: turns without e",collision,,p386 +1: 0.84;p386 -1: -0.49;p393 +1: 0.84;p393 -1: -0.49
+8849-1,1,works,,,shown,shown,,,,p66 +1: 1.50;p66 -1: -1.50
+8849-1,2,works,,,shown,shown,,,,p66 +1: 1.50;p66 -1: -1.50
+8849-1,3,works,,,not shown,not shown,"A: p100 4261, p101 4261, p114 3743 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p97 +1: 0.00;p97 -1: 0.00
+8849-1,4,works,,,shown,not shown,"a collision stops a control: p261 3739: turns without end (kinds power-take-off; the text says: rolling, power take-off, wheels), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58)",collision,,p261 +1: 0.77;p261 -1: -0.77
+8849-1,5,works,,,shown,shown,,,,p200 +1: 1.50;p200 -1: -1.50
+8849-1,7,works,,,shown,not shown,"a collision stops a control: p259 3739: turns without end (kinds free-wheels; the text says: wheels, roll, turn freely), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58); p261 3739: ",collision,,p259 +1: 0.77;p259 -1: -0.77;p261 +1: 0.77;p261 -1: -0.77;p263 +1: 1.50;p263 -1: -1.50;p265 +1: 1.50;p265 -1: -1.50
+8850-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p338 +1: 1.50;p338 -1: -1.47
+8850-1,2,works,,,shown,shown,,,,p346 +1: 1.50;p346 -1: -1.50;p344 +1: 1.50;p344 -1: -1.50
+8850-1,4,works,,,shown,shown,,,,p346 +1: 1.50;p346 -1: -1.50
+8850-1,5,works,,,shown,shown,,,,p342 +1: 1.50;p342 -1: -1.50;p348 +1: 1.50;p348 -1: -1.50
+8850-1,7,works,,,shown,shown,,,,p303 +1: 1.50;p303 -1: -1.50
+8851-1,5,works,,,not shown,shown,,,,p852 +1: 1.50;p852 -1: -1.50
+8851-1,6,partly,stopped-endless,,shown,not shown,"a collision stops a control: p908 3649: turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (891/893); -0.105 rad (891/893); p909 3649: turns ",collision,,p908 +1: 0.10;p908 -1: -0.10;p909 +1: 0.10;p909 -1: -0.10;p910 +1: 0.10;p910 -1: -0.10;p911 +1: 0.10;p911 -1: -0.10
+8854-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p948 +1: 1.50;p948 -1: -1.50
+8854-1,2,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p137 +1: 1.50;p137 -1: -1.50
+8854-1,3,works,,,shown,shown,,,,p491 +1: 1.50;p491 -1: -1.50
+8854-1,4,works,,,shown,shown,,,,p169 +1: 1.50;p169 -1: -1.10;p178 +1: 1.10;p178 -1: -1.50
+8854-1,10,works,,,shown,shown,,,,p960 +1: 1.50;p960 -1: -1.50;p964 +1: 1.50;p964 -1: -1.50;p962 +1: 1.50;p962 -1: -1.50;p966 +1: 1.50;p966 -1: -1.50
+8855-1,4,works,,,shown,shown,,,,p319 +1: 1.50;p319 -1: -1.50;p320 +1: 1.50;p320 -1: -1.50;p321 +1: 1.50;p321 -1: -1.50;p322 +1: 1.50;p322 -1: -1.50
+8856-1,2,works,,,shown,shown,,,,p390 +1: 0.49;p390 -1: -1.50
+8856-1,8,partly,stopped-endless,,not shown,not shown,"a collision stops a control: p129 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79); p131 3482: turns without end (kinds free-whe",collision,,p87 +1: 1.50;p87 -1: -1.50;p89 +1: 1.50;p89 -1: -1.50;p129 +1: 0.56;p129 -1: -1.50;p131 +1: 0.56;p131 -1: -1.50
+8859-1,2,works,,,shown,shown,,,,p595 +1: 1.50;p595 -1: -1.50
+8859-1,3,works,,,shown,shown,,,,p594 +1: 1.50;p594 -1: -1.50;p595 +1: 1.50;p595 -1: -1.50
+8859-1,5,works,,,shown,shown,,,,p596 +1: 1.50;p596 -1: -1.50;p597 +1: 1.50;p597 -1: -1.50
+8862-1,1,works,,,shown,shown,,,,p570 +1: 1.50;p570 -1: -1.50
+8862-1,3,works,,,shown,shown,,,,p574 +1: 1.50;p574 -1: -1.50
+8862-1,4,works,,,shown,shown,,,,p573 +1: 1.50;p573 -1: -1.50
+8862-1,5,works,,,shown,shown,,,,p159 +1: 0.94;p159 -1: -0.97;p178 +1: 1.50;p178 -1: -0.97
+8862-1,6,works,,,shown,shown,,,,p572 +1: 1.50;p572 -1: -1.50
+8862-1,7,works,,,shown,shown,,,,p264 +1: 1.50;p264 -1: -0.04
+8862-1,8,works,,,not shown,not shown,A: p281 2796c01 against p280 2793c03 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p292 +1: 0.00;p292 -1: 0.00
+8862-1,9,works,,,not shown,not shown,A: p319 2796c01 against p318 2793c03 not moved,"A not moved, but B moved listed parts (the sweep's limit)",,p302 +1: 0.00;p302 -1: 0.00
+8862-1,11,works,,,shown,shown,,,,p525 +1: 0.00;p525 -1: -0.63
+8862-1,12,works,,,shown,shown,,,,p369 +1: 1.50;p369 -1: -1.50;p376 +1: 1.50;p376 -1: -1.50;p654 +1: 1.50;p654 -1: -1.50;p655 +1: 1.50;p655 -1: -1.50
+8865-1,1,works,,,shown,shown,,,,p887 +1: 1.50;p887 -1: -1.50
+8865-1,2,works,,,shown,shown,,,,p900 +1: 1.50;p900 -1: -1.50
+8865-1,4,works,,,not shown,shown,,,,p900 +1: 1.50;p900 -1: -1.50
+8865-1,10,works,,,shown,not decided,"not decided: p840 3036: a travel of 0.2 rad or less each way, stopped at -0.1 rad (672/851); p863 3036: a travel of 0.2 rad or less each way, stopped at -0.1 rad (675/875)",,,p840 +1: 0.10;p840 -1: -0.10;p863 +1: 0.10;p863 -1: -0.10
+8868-1,1,works,,,shown,shown,,,,p2556 +1: 1.50;p2556 -1: -1.50
+8868-1,2,works,,,shown,shown,,,,p3320 +1: 1.50;p3320 -1: -1.50
+8868-1,3,works,,,shown,shown,,,,p3338 +1: 1.50;p3338 -1: -1.50;p3340 +1: 1.50;p3340 -1: -1.50
+8868-1,4,works,,,shown,shown,,,,p3342 +1: 1.50;p3342 -1: -1.50;p3344 +1: 1.50;p3344 -1: -1.50;p3346 +1: 1.50;p3346 -1: -1.50;p3348 +1: 1.50;p3348 -1: -1.50
+8880-1,1,works,,,shown,shown,,,,p1401 +1: 1.50;p1401 -1: -1.50;p1403 +1: 1.50;p1403 -1: -1.50;p1405 +1: 1.50;p1405 -1: -1.50;p1407 +1: 1.50;p1407 -1: -1.50
+8880-1,2,works,,,not shown,shown,,,,p1401 +1: 1.50;p1401 -1: -1.50;p1403 +1: 1.50;p1403 -1: -1.50;p1405 +1: 1.50;p1405 -1: -1.50;p1407 +1: 1.50;p1407 -1: -1.50
+8880-1,4,works,,,shown,shown,,,,p894 +1: 1.50;p894 -1: -1.50
+8880-1,5,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p925 +1: 1.50;p925 -1: -1.50
+8880-1,6,works,,,shown,shown,,,,p948 +1: 1.20;p948 -1: -1.50
+8880-1,12,works,,,shown,not decided,"not decided: p1092 3031: a travel of 0.2 rad or less each way, stopped at +0.105 rad (1093/1097); -0 rad (982/1092); p1126 3031: a travel of 0.2 rad or less each way, stopped at +0.105 rad (1127/1131)",,,p1092 +1: 0.10;p1092 -1: 0.00;p1126 +1: 0.10;p1126 -1: 0.00
+8880-1,13,works,,,shown,shown,,,,p826 +1: 1.50;p826 -1: -1.50
+9390-1,1,works,,,shown,shown,,,,p13 +1: 0.49;p13 -1: -0.35
+9390-1,2,works,,,shown,shown,,,,p94 +1: 1.50;p94 -1: -1.50
+9390-1,5,works,,,shown,shown,,,,p521 +1: 1.50;p521 -1: -1.50;p523 +1: 1.50;p523 -1: -1.50
+9391-1,1,works,,,shown,shown,,,,p31 +1: 1.50;p31 -1: -1.50
+9391-1,2,works,,,shown,shown,,,,p45 +1: 0.42;p45 -1: -1.50
+9391-1,3,works,,,shown,shown,,,,p120 +1: 1.50;p120 -1: -1.50
+9391-1,5,works,,,shown,shown,,,,p826 +1: 1.50;p826 -1: -1.50;p827 +1: 1.50;p827 -1: -1.50;p828 +1: 1.50;p828 -1: -1.50;p829 +1: 1.50;p829 -1: -1.50
+9392-1,1,works,,,not shown,shown,,,,p194 +1: 0.20;p194 -1: -0.20
+9392-1,2,works,,,shown,shown,,,,p182 +1: 1.50;p182 -1: -1.50;p183 +1: 1.50;p183 -1: -1.50
+9392-1,3,works,,,shown,shown,,,,p137 +1: 1.50;p137 -1: -1.50
+9392-1,5,works,,,not decided,shown,,,,p95 +1: 0.00;p95 -1: -0.53;p99 +1: 0.52;p99 -1: 0.00
+9393-1,1,works,,,shown,shown,,,,p72 +1: 1.19;p72 -1: -1.19
+9393-1,2,works,,,shown,shown,,,,p132 +1: 1.50;p132 -1: -0.31
+9393-1,3,partly,stopped-endless,,shown,not shown,"a collision stops a control: p280 56908: turns without end (kinds power-take-off; the text says: rolling, spins, rotors, wheel, power take-off, rotor), but a collision stops it at +0.698 rad (339/343)",collision,,p280 +1: 0.70;p280 -1: -0.70
+9393-1,4,works,,,not shown,shown,,,,p282 +1: 1.50;p282 -1: -1.50
+9393-1,5,works,,,shown,shown,,,,p299 +1: 0.10;p299 -1: -0.63;p309 +1: 0.60;p309 -1: -0.10
+9393-1,6,works,,,shown,shown,,,,p220 +1: 1.50;p220 -1: -1.50
+9394-1,1,works,,,shown,shown,,,,p284 +1: 1.40;p284 -1: -1.50
+9394-1,2,works,,,shown,shown,,,,p25 +1: 1.50;p25 -1: -0.17
+9394-1,4,works,,,not shown,not shown,"A: p196 40490, p305 32278, p308 32278, p244 60485, p541 64392, p546 64682 not moved","A not moved, but B moved listed parts (the sweep's limit)",,p194 +1: 0.00;p194 -1: 0.00
+9394-1,5,works,,,shown,shown,,,,p57 +1: 1.50;p57 -1: -1.50;p263 +1: 1.50;p263 -1: -1.50;p268 +1: 1.50;p268 -1: -1.50
+9395-1,1,works,,,shown,shown,,,,p779 +1: 1.50;p779 -1: -1.50
+9395-1,2,works,,,shown,shown,,,,p932 +1: 1.50;p932 -1: -1.50;p933 +1: 1.50;p933 -1: -1.50
+9395-1,4,works,,,shown,shown,,,,p542 +1: 1.50;p542 -1: -0.31
+9395-1,7,works,,,shown,shown,,,,p930 +1: 1.50;p930 -1: -1.50;p931 +1: 1.50;p931 -1: -1.50;p932 +1: 1.50;p932 -1: -1.50;p933 +1: 1.50;p933 -1: -1.50
+9396-1,3,works,,,shown,shown,,,,p367 +1: 0.91;p367 -1: -1.50
+9396-1,6,works,,,shown,shown,,,,p36 +1: 1.50;p36 -1: -1.50;p37 +1: 1.50;p37 -1: -1.50;p1198 +1: 1.50;p1198 -1: -1.50;p1224 +1: 1.50;p1224 -1: -1.50
+9397-1,1,works,,,shown,shown,,,,p240 +1: 3.08;p240 -1: -1.59
+9397-1,2,works,,,not shown,shown,,,,p240 +1: 4.71;p240 -1: -4.24
+9397-1,3,works,,,shown,shown,,,,p240 +1: 2.20;p240 -1: -2.20
+9397-1,4,works,,,shown,shown,,,,p1000 +1: 1.50;p1000 -1: -1.50
+9397-1,5,works,,,shown,shown,,,,p1450 +1: 1.50;p1450 -1: -1.50;p1451 +1: 1.50;p1451 -1: -1.50
+9397-1,6,works,,,shown,shown,,,,p1448 +1: 1.50;p1448 -1: -1.50;p1449 +1: 1.50;p1449 -1: -1.50;p1450 +1: 1.50;p1450 -1: -1.50;p1451 +1: 1.50;p1451 -1: -1.50;p1452 +1: 1.50;p1452 -1: -1.50;p1453 +1: 1.50;p1453 -1: -1.50
+950-1,1,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p188 +1: 1.50;p188 -1: -1.33
+950-1,2,works,,,shown,shown,,,,p178 +1: 1.50;p178 -1: -1.50
+950-1,3,works,,,shown,shown,,,,p105 +1: 1.50;p105 -1: -1.50;p107 +1: 1.50;p107 -1: -1.50;p109 +1: 1.50;p109 -1: -1.50;p111 +1: 1.50;p111 -1: -1.50
+950-1,4,works,,,not decided,not decided,"not decided: p152 3651: a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152); p155 3651: a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)",,,p152 +1: 0.07;p152 -1: -0.07;p155 +1: 0.07;p155 -1: -0.07
+952-1,1,works,,,shown,shown,,,,p68 +1: 1.50;p68 -1: -1.50
+952-1,2,works,,,shown,shown,,,,p251 +1: 1.50;p251 -1: -1.50;p252 +1: 1.50;p252 -1: -1.50
+952-1,3,works,,,shown,shown,,,,p247 +1: 1.50;p247 -1: -1.50;p248 +1: 1.50;p248 -1: -1.50
+952-1,4,works,,,shown,shown,,,,p235 +1: 0.14;p235 -1: -1.40
+952-1,5,works,,,shown,shown,,,,p251 +1: 1.50;p251 -1: -1.50;p252 +1: 1.50;p252 -1: -1.50
+952-1,6,works,,,shown,shown,,,,p286 +1: 1.50;p286 -1: -1.50
+952-1,7,works,,,shown,shown,,,,p298 +1: 1.50;p298 -1: -1.50;p299 +1: 1.50;p299 -1: -1.50
+956-1,1,works,,,shown,shown,,,,p354 +1: 1.50;p354 -1: -1.50
+956-1,2,works,,,shown,shown,,,,p450 +1: 1.50;p450 -1: -1.50;p452 +1: 1.50;p452 -1: -1.50
+956-1,3,works,,,shown,shown,,,,p340 +1: 1.50;p340 -1: -1.50;p342 +1: 1.50;p342 -1: -1.50
+956-1,5,works,,,shown,not shown,B: no listed part moved by hand,B nothing by hand,,p168 +1: 1.50;p168 -1: -1.50
+956-1,6,works,,,shown,shown,,,,p173 +1: 1.50;p173 -1: -1.50
+956-1,7,works,,,shown,shown,,,,p425 +1: 0.33;p425 -1: -1.50

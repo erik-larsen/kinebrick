@@ -1,25 +1,25 @@
 {
   "set": "42105-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:10:07.884Z",
-  "load": 30.1,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:31:43.901Z",
+  "load": 11.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 404,
-  "seconds": 15,
+  "seconds": 43,
   "functions": [
     {
       "function": 2,
       "does": "The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull.",
       "verdict": "shown",
-      "msOneCall": 48,
+      "msOneCall": 49,
       "msPerStep": 14,
       "time": {
-        "open": 7,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 3,
+        "A": 1,
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 602,
-          "msOneCall": 48,
+          "ms": 589,
+          "msOneCall": 49,
           "stops": [],
           "moved": {
             "p184 27938": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 581,
-          "msOneCall": 20,
+          "ms": 584,
+          "msOneCall": 16,
           "stops": [],
           "moved": {
             "p184 27938": [
@@ -95,22 +95,37 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 11
+      "B": [
+        {
+          "control": "p186 42105 - 33299b",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p184 27938",
+            "p155 42105 - 18575",
+            "p161 32278",
+            "p213 11946"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 23
     },
     {
       "function": 3,
       "does": "The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack.",
       "verdict": "shown",
-      "msOneCall": 28,
+      "msOneCall": 50,
       "msPerStep": 14,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 1,
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -120,8 +135,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 584,
-          "msOneCall": 28,
+          "ms": 603,
+          "msOneCall": 50,
           "stops": [],
           "moved": {
             "p259 27938": [
@@ -151,8 +166,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 591,
-          "msOneCall": 16,
+          "ms": 621,
+          "msOneCall": 19,
           "stops": [],
           "moved": {
             "p259 27938": [
@@ -178,8 +193,22 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p261 42105 - 33299b",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p259 27938",
+            "p230 42105 - 18575",
+            "p236 32278"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 20
     }
   ]
 }
