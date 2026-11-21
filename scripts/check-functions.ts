@@ -1513,7 +1513,9 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         for (const s of st.shadow) byDrag.set(s.drag, [...(byDrag.get(s.drag) ?? []), s]);
         const growing = [...byDrag.values()].filter((list) => list.length > 1 && list[list.length - 1].ldu >= Math.max(...list.map((s) => s.ldu)) && list[list.length - 1].ldu > list[list.length - 2].ldu).length;
         const apart = st.shadow.filter((s) => Math.abs(s.small - s.full) > 1e-12);
-        console.error(`ws-shadow function ${i + 1}: ${JSON.stringify({ calls: st.shadow.length, drags: byDrag.size, ldu: most.ldu, rad: mostRad, at: most.at, growingAtEnd: growing, turnedApart: apart.length, firstApart: apart[0] ?? null })}`);
+        // The parts of the body that came apart most (by a joint's point, and by turning): the first six.
+        const partsOf = (body: number | undefined) => mech.bodyOf.flatMap((bb: number, pp: number) => (bb === body ? [name(pp)] : [])).slice(0, 6);
+        console.error(`ws-shadow function ${i + 1}: ${JSON.stringify({ calls: st.shadow.length, drags: byDrag.size, ldu: most.ldu, rad: mostRad, at: most.at, growingAtEnd: growing, turnedApart: apart.length, firstApart: apart[0] ?? null, parts: partsOf(most.body), radParts: partsOf(st.shadow.reduce((m, s) => (s.rad > m.rad ? s : m), st.shadow[0]).radBody) })}`);
       }
       Object.assign(st, { small: 0, made: 0, excluded: 0, fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 }, compared: [], shadow: [] });
     }
