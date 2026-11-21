@@ -22,23 +22,7 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "42112-pistons-erratum",
-      "kind": "Sign-off",
-      "title": "42112 Concrete Mixer Truck: three of the engine's four pistons float 2 LDU above the plate they rest on",
-      "what": "The small engine under the cab has a camshaft that lifts four upright axles as pistons. In the OMR file one piston (lines 142 to 144) is placed lifted by its cam and rests on it. The other three (lines 136 to 141 and 145 to 147: an axle 3 at height -130, a half bush at -155, a bush at -110) hang 2 LDU above the plate they pass through, with nothing under them; on the real model their weight sits them on the plate. The rule that reads a push rod takes it only where it is built resting, so only the one piston is read and the cam runs into the others. The erratum: those nine lines 2 LDU lower (-130 to -128, -155 to -153, -110 to -108). The worker found it; Claude read the twelve lines and they are as said.",
-      "effect": "With it, all four pistons can be read as resting on the plate or on their cams, once the cam reading is merged (which waits on the worker's permission). Functions 2 and 3 of the 42112 rest on this: rolling the truck is stopped by a cam meeting a piston, and the engine's pistons do not move.",
-      "links": [
-        {
-          "label": "42112 in the viewer, a floating piston marked",
-          "url": "http://localhost:5174/?file=omr%2F42112-1%20Concrete%20Mixer%20Truck.mpd&show=170"
-        }
-      ],
-      "reply": "Sign the 42112's piston erratum",
-      "since": "2026-11-21"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
@@ -409,6 +393,10 @@
     {
       "date": "2026-11-21",
       "what": "42129 Zetros, function 8 (\"Sign the 42129's wording\"): the list now says the steering wheel in the cab is for show, fixed on its axle, from booklet step 352. Words and source only; what the check tests is unchanged."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42112 Concrete Mixer Truck, the three floating pistons (\"Sign the 42112's piston erratum\"): the worker writes the erratum, nine lines 2 LDU lower; it takes effect with the cam reading, whose proof is running."
     }
   ]
 }
