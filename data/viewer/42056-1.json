@@ -1,0 +1,582 @@
+{
+  "set": "42056-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T21:17:29.711Z",
+  "load": 14.8,
+  "part": "A",
+  "parts": 2641,
+  "seconds": 458,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column turns a cross shaft and a shaft with a constant velocity joint down to the front axle, where a 12 and a 20 tooth gear drive the steering rack under the axle.",
+      "verdict": "shown",
+      "msOneCall": 383,
+      "msPerStep": 169,
+      "time": {
+        "open": 51,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 36,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p467 2741",
+          "way": 1,
+          "asked": 1.27,
+          "went": 1.27,
+          "ms": 6133,
+          "msOneCall": 383,
+          "stops": [],
+          "moved": {
+            "p450 32270": [
+              0,
+              72.77
+            ],
+            "p626 32270": [
+              0.01,
+              72.75
+            ],
+            "p585 32269": [
+              0,
+              43.65
+            ],
+            "p574 64781": [
+              11.43,
+              0
+            ],
+            "p2731 23800": [
+              5.78,
+              16.93
+            ],
+            "p2734 23800": [
+              5.19,
+              16.83
+            ],
+            "p2725 23800": [
+              0,
+              0
+            ],
+            "p910 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p467 2741",
+          "way": -1,
+          "asked": 1.27,
+          "went": -1.27,
+          "ms": 5916,
+          "msOneCall": 380,
+          "stops": [],
+          "moved": {
+            "p450 32270": [
+              0,
+              72.77
+            ],
+            "p626 32270": [
+              0.01,
+              72.78
+            ],
+            "p585 32269": [
+              0,
+              43.67
+            ],
+            "p574 64781": [
+              11.43,
+              0
+            ],
+            "p2731 23800": [
+              5.77,
+              16.9
+            ],
+            "p2734 23800": [
+              5.21,
+              16.88
+            ],
+            "p2725 23800": [
+              0,
+              0
+            ],
+            "p910 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 93
+    },
+    {
+      "function": 5,
+      "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
+      "verdict": "not decided",
+      "msOneCall": 524,
+      "msPerStep": 580,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 54,
+        "B": 0
+      },
+      "stop": {
+        "control": "p543 57515",
+        "way": -1,
+        "went": -0.067,
+        "asked": 0.27,
+        "by": [
+          "547/546"
+        ]
+      },
+      "stops": [
+        "547/546"
+      ],
+      "A": [
+        {
+          "control": "p535 57515",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 874,
+          "msOneCall": 524,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              4.2,
+              0.39
+            ],
+            "p2734 23800": [
+              1.59,
+              0.15
+            ]
+          }
+        },
+        {
+          "control": "p535 57515",
+          "way": -1,
+          "asked": 0.27,
+          "went": -0.27,
+          "ms": 2874,
+          "msOneCall": 520,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              16.15,
+              0.15
+            ],
+            "p2734 23800": [
+              6.02,
+              0.26
+            ]
+          }
+        },
+        {
+          "control": "p543 57515",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 811,
+          "msOneCall": 498,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              1.59,
+              0.11
+            ],
+            "p2734 23800": [
+              4.2,
+              0.23
+            ]
+          }
+        },
+        {
+          "control": "p543 57515",
+          "way": -1,
+          "asked": 0.27,
+          "went": -0.067,
+          "ms": 1118,
+          "msOneCall": 501,
+          "stops": [
+            "547/546"
+          ],
+          "moved": {
+            "p2731 23800": [
+              1.53,
+              0.13
+            ],
+            "p2734 23800": [
+              4.05,
+              0.38
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p543 57515",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p543 57515: a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)",
+      "seconds": 71
+    },
+    {
+      "function": 6,
+      "does": "Each rear wheel has the same independent suspension, the half shafts reaching the wheels through constant velocity joints.",
+      "verdict": "shown",
+      "msOneCall": 518,
+      "msPerStep": 409,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 52,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p757 32063",
+          "way": 1,
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 1119,
+          "msOneCall": 508,
+          "stops": [],
+          "moved": {
+            "p2725 23800": [
+              10,
+              0.07
+            ],
+            "p2728 23800": [
+              2.89,
+              0.04
+            ]
+          }
+        },
+        {
+          "control": "p757 32063",
+          "way": -1,
+          "asked": 0.1,
+          "went": -0.1,
+          "ms": 1170,
+          "msOneCall": 512,
+          "stops": [],
+          "moved": {
+            "p2725 23800": [
+              10,
+              0.02
+            ],
+            "p2728 23800": [
+              2.91,
+              0.04
+            ]
+          }
+        },
+        {
+          "control": "p784 32063",
+          "way": 1,
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 1117,
+          "msOneCall": 518,
+          "stops": [],
+          "moved": {
+            "p2725 23800": [
+              2.91,
+              0.04
+            ],
+            "p2728 23800": [
+              10,
+              0.02
+            ]
+          }
+        },
+        {
+          "control": "p784 32063",
+          "way": -1,
+          "asked": 0.1,
+          "went": -0.1,
+          "ms": 1168,
+          "msOneCall": 497,
+          "stops": [],
+          "moved": {
+            "p2725 23800": [
+              2.89,
+              0.04
+            ],
+            "p2728 23800": [
+              10,
+              0.07
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 70
+    },
+    {
+      "function": 8,
+      "does": "The two doors swing open on hinges at their front edges.",
+      "verdict": "shown",
+      "msOneCall": 235,
+      "msPerStep": 48,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 67,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2437 64394",
+          "way": 1,
+          "asked": 0.73,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2437 64394",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2462 24316",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1958,
+          "msOneCall": 235,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2462 24316",
+          "way": -1,
+          "asked": 1.17,
+          "went": -1.17,
+          "ms": 1518,
+          "msOneCall": 196,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2610 24316",
+          "way": 1,
+          "asked": 1.13,
+          "went": 1.13,
+          "ms": 1456,
+          "msOneCall": 203,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2610 24316",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2049,
+          "msOneCall": 228,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 82
+    },
+    {
+      "function": 9,
+      "does": "The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment.",
+      "verdict": "not shown",
+      "why": "A: p2135 41239 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 20,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2132 32278",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2135 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2132 32278",
+          "way": -1,
+          "asked": 1.33,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2135 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 36
+    },
+    {
+      "function": 11,
+      "does": "The rear wing's angle can be adjusted: the wing tilts on its two supports.",
+      "verdict": "not shown",
+      "why": "A: p2553 32523 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 23,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2530 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2553 32523": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2530 87083",
+          "way": -1,
+          "asked": 1.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2553 32523": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 41
+    },
+    {
+      "function": 12,
+      "does": "The seats sit on their own pins and can be tipped or slid by hand.",
+      "verdict": "shown",
+      "msOneCall": 212,
+      "msPerStep": 45,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 49,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1697 4519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1875,
+          "msOneCall": 212,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1697 4519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1947,
+          "msOneCall": 209,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1748 4519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1945,
+          "msOneCall": 193,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1748 4519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1920,
+          "msOneCall": 208,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 66
+    }
+  ]
+}

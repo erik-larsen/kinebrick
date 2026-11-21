@@ -1,0 +1,173 @@
+{
+  "set": "42021-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:05:21.622Z",
+  "load": 10.8,
+  "part": "A",
+  "parts": 179,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Each ski pivots on its mount, so its tip can tilt up and down over bumps.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 5,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p170 92907",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 5,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p170 92907",
+          "way": -1,
+          "asked": 0.47,
+          "went": -0.47,
+          "ms": 20,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p179 92907",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 3,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p179 92907",
+          "way": -1,
+          "asked": 0.47,
+          "went": -0.47,
+          "ms": 19,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 5,
+      "does": "The track's four 20-tooth wheels turn freely, and the rubber-linked track runs round them.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p96 87407",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 49,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p96 87407",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 87407",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 36,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 87407",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 38,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 87407",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 36,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 87407",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 37,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p99 87407",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p99 87407",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 38,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

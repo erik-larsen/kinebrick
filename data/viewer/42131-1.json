@@ -1,0 +1,446 @@
+{
+  "set": "42131-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T21:49:55.411Z",
+  "load": 18.5,
+  "part": "A",
+  "parts": 3842,
+  "seconds": 626,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track.",
+      "verdict": "shown",
+      "msOneCall": 2374,
+      "msPerStep": 623,
+      "time": {
+        "open": 57,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 82,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26714,
+          "msOneCall": 2374,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p6163 42131 - 69910": [
+              36.91,
+              40.08
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 26202,
+          "msOneCall": 2127,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p6163 42131 - 69910": [
+              36.91,
+              40.08
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 145
+    },
+    {
+      "function": 2,
+      "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
+      "verdict": "shown",
+      "msOneCall": 1991,
+      "msPerStep": 610,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 81,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26142,
+          "msOneCall": 1991,
+          "stops": [],
+          "moved": {
+            "p3613 42529": [
+              0,
+              15.92
+            ],
+            "p6105 42131 - 69910": [
+              36.91,
+              40.08
+            ],
+            "p3610 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25838,
+          "msOneCall": 1936,
+          "stops": [],
+          "moved": {
+            "p3613 42529": [
+              0,
+              15.92
+            ],
+            "p6105 42131 - 69910": [
+              36.91,
+              40.08
+            ],
+            "p3610 42529": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 100
+    },
+    {
+      "function": 3,
+      "does": "With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot.",
+      "verdict": "shown",
+      "msOneCall": 1948,
+      "msPerStep": 606,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 150,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25952,
+          "msOneCall": 1948,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25762,
+          "msOneCall": 1920,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25590,
+          "msOneCall": 1937,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              0
+            ],
+            "p3613 42529": [
+              0,
+              15.92
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25697,
+          "msOneCall": 1944,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              0
+            ],
+            "p3613 42529": [
+              0,
+              15.92
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 170
+    },
+    {
+      "function": 4,
+      "does": "The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft.",
+      "verdict": "shown",
+      "msOneCall": 1941,
+      "msPerStep": 602,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 155,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25658,
+          "msOneCall": 1933,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              15.5,
+              0
+            ],
+            "p3670 2851": [
+              0.67,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25800,
+          "msOneCall": 1916,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              0.67,
+              0
+            ],
+            "p3670 2851": [
+              15.5,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25650,
+          "msOneCall": 1941,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              15.5,
+              0
+            ],
+            "p3670 2851": [
+              0.67,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25481,
+          "msOneCall": 1932,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              0.67,
+              0
+            ],
+            "p3670 2851": [
+              15.5,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 171
+    },
+    {
+      "function": 10,
+      "does": "The red lever in the engine compartment switches the Control+ hub on: pressing it pushes a pin onto the hub's button.",
+      "verdict": "not decided",
+      "msOneCall": 1889,
+      "msPerStep": 627,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 25,
+        "B": 0
+      },
+      "stop": {
+        "control": "p3449 32056",
+        "way": -1,
+        "went": -0.175,
+        "asked": 0.7,
+        "by": [
+          "3449/3650"
+        ]
+      },
+      "stops": [
+        "3449/3650"
+      ],
+      "A": [
+        {
+          "control": "p3449 32056",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.17,
+          "ms": 3045,
+          "msOneCall": 1889,
+          "stops": [],
+          "moved": {
+            "p3441 4274": [
+              9.14,
+              9.74
+            ]
+          }
+        },
+        {
+          "control": "p3449 32056",
+          "way": -1,
+          "asked": 0.7,
+          "went": -0.175,
+          "ms": 3073,
+          "msOneCall": 1825,
+          "stops": [
+            "3449/3650"
+          ],
+          "moved": {
+            "p3441 4274": [
+              9.41,
+              10.03
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p3449 32056",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.175 rad (3449/3650)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p3449 32056: a travel of 0.2 rad or less each way, stopped at -0.175 rad (3449/3650)",
+      "seconds": 40
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "set": "42076-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:47:38.962Z",
+  "load": 20.6,
+  "part": "A",
+  "parts": 1015,
+  "seconds": 167,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller.",
+      "verdict": "shown",
+      "msOneCall": 85,
+      "msPerStep": 12,
+      "time": {
+        "open": 26,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p32 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 514,
+          "msOneCall": 85,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              121.27
+            ],
+            "p647 15790": [
+              0,
+              121.27
+            ]
+          }
+        },
+        {
+          "control": "p32 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 482,
+          "msOneCall": 43,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              121.27
+            ],
+            "p647 15790": [
+              0,
+              121.27
+            ]
+          }
+        },
+        {
+          "control": "p42 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 477,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              121.27
+            ],
+            "p647 15790": [
+              0,
+              121.27
+            ]
+          }
+        },
+        {
+          "control": "p42 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 466,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              121.27
+            ],
+            "p647 15790": [
+              0,
+              121.27
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 57
+    },
+    {
+      "function": 2,
+      "does": "The black gear on top at the stern steers: it swings both propeller pods together, and the hidden wheels under the stern steer with them, so the hovercraft turns as it's pushed.",
+      "verdict": "shown",
+      "msOneCall": 45,
+      "msPerStep": 15,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p374 32269",
+          "way": 1,
+          "asked": 0.33,
+          "went": 0.33,
+          "ms": 139,
+          "msOneCall": 43,
+          "stops": [],
+          "moved": {
+            "p596 87080": [
+              24.89,
+              19.87
+            ],
+            "p628 87080": [
+              24.89,
+              19.87
+            ],
+            "p194 42610": [
+              19.71,
+              54.7
+            ],
+            "p195 42610": [
+              19.71,
+              54.7
+            ],
+            "p32 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p374 32269",
+          "way": -1,
+          "asked": 0.33,
+          "went": -0.33,
+          "ms": 138,
+          "msOneCall": 45,
+          "stops": [],
+          "moved": {
+            "p596 87080": [
+              24.89,
+              19.87
+            ],
+            "p628 87080": [
+              24.89,
+              19.87
+            ],
+            "p194 42610": [
+              19.71,
+              54.7
+            ],
+            "p195 42610": [
+              19.71,
+              54.7
+            ],
+            "p32 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    },
+    {
+      "function": 8,
+      "does": "The truck's four wheels roll; it can drive up the ramp onto the deck.",
+      "verdict": "shown",
+      "msOneCall": 46,
+      "msPerStep": 10,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 46,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p982 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 389,
+          "msOneCall": 46,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p982 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 387,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p985 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 430,
+          "msOneCall": 46,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p985 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 429,
+          "msOneCall": 42,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p987 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 427,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p987 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 424,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p989 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 382,
+          "msOneCall": 38,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p989 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 378,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 54
+    },
+    {
+      "function": 9,
+      "does": "The rotors in the two red fans on deck spin freely.",
+      "verdict": "shown",
+      "msOneCall": 56,
+      "msPerStep": 9,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 28,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p661 46667",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 392,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p661 46667",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 398,
+          "msOneCall": 52,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p675 46667",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 391,
+          "msOneCall": 56,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p675 46667",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 386,
+          "msOneCall": 44,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 38
+    }
+  ]
+}

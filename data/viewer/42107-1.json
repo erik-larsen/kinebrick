@@ -1,0 +1,288 @@
+{
+  "set": "42107-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:29:18.010Z",
+  "load": 30.5,
+  "part": "A",
+  "parts": 631,
+  "seconds": 66,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The grey gear lever on the gearbox's right side picks neutral, first or second gear: it turns the selector shaft, whose orange rotary catch slides the driving ring between the two clutch gears.",
+      "verdict": "not shown",
+      "why": "A: p127 18947 not moved",
+      "msOneCall": 49,
+      "msPerStep": 5,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p129 33299a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 193,
+          "msOneCall": 49,
+          "stops": [],
+          "moved": {
+            "p137 35188": [
+              0,
+              85.94
+            ],
+            "p127 18947": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ],
+            "p247 35189": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p129 33299a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 175,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p137 35188": [
+              0,
+              85.94
+            ],
+            "p127 18947": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ],
+            "p247 35189": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 29
+    },
+    {
+      "function": 3,
+      "does": "The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p247 35189, p284 4254 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p262 40490",
+          "way": 1,
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p284 4254": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p262 40490",
+          "way": -1,
+          "asked": 0.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p284 4254": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    },
+    {
+      "function": 5,
+      "does": "The handlebars steer: they turn the front fork with the front wheel on the steering head.",
+      "verdict": "not shown",
+      "why": "A: p351 15462, p372 44294, p379 88516 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p340 15462",
+          "way": 1,
+          "asked": 0.47,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p351 15462": [
+              0,
+              0
+            ],
+            "p372 44294": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p129 33299a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p340 15462",
+          "way": -1,
+          "asked": 0.47,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p351 15462": [
+              0,
+              0
+            ],
+            "p372 44294": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p129 33299a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    },
+    {
+      "function": 7,
+      "does": "The front wheel rolls freely on its axle between the fork legs.",
+      "verdict": "shown",
+      "msOneCall": 27,
+      "msPerStep": 10,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p379 88516",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 426,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p379 88516",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 409,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    }
+  ]
+}
