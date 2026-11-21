@@ -91,9 +91,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 8,
+    "seconds": 4,
     "counts": {
       "works": 4
     },
@@ -167,7 +167,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -309,7 +309,7 @@
             "p321 3649 against p260 3709b"
           ]
         ],
-        "seconds": 1.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -375,7 +375,7 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -439,9 +439,9 @@
             "dead point"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.4
       }
     ],
-    "peak": 313
+    "peak": 312
   }
 }

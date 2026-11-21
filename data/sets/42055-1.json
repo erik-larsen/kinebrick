@@ -181,9 +181,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 812,
+    "seconds": 506,
     "counts": {
       "no": 1,
       "partly": 3,
@@ -495,8 +495,8 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 9.2,
-        "peak": 1018
+        "seconds": 8.7,
+        "peak": 1030
       },
       {
         "result": "partly",
@@ -588,8 +588,8 @@
             0.5
           ]
         ],
-        "seconds": 25.8,
-        "peak": 965
+        "seconds": 15.7,
+        "peak": 1019
       },
       {
         "result": "partly",
@@ -663,8 +663,8 @@
             0.5
           ]
         ],
-        "seconds": 25.9,
-        "peak": 1000
+        "seconds": 15.8,
+        "peak": 1007
       },
       {
         "result": "partly",
@@ -757,8 +757,8 @@
             0.5
           ]
         ],
-        "seconds": 36.4,
-        "peak": 932
+        "seconds": 22,
+        "peak": 848
       },
       {
         "result": "works",
@@ -812,8 +812,8 @@
             ]
           ]
         ],
-        "seconds": 53,
-        "peak": 949
+        "seconds": 33.4,
+        "peak": 871
       },
       {
         "result": "works",
@@ -879,8 +879,8 @@
             0.5
           ]
         ],
-        "seconds": 20.6,
-        "peak": 991
+        "seconds": 11.6,
+        "peak": 1003
       },
       {
         "result": "works",
@@ -944,8 +944,8 @@
             "limit"
           ]
         ],
-        "seconds": 143.7,
-        "peak": 998
+        "seconds": 90.5,
+        "peak": 871
       },
       {
         "result": "works",
@@ -1035,8 +1035,8 @@
             0.93
           ]
         ],
-        "seconds": 25,
-        "peak": 937
+        "seconds": 12.7,
+        "peak": 984
       },
       {
         "result": "works",
@@ -1113,8 +1113,8 @@
             1.2
           ]
         ],
-        "seconds": 44.9,
-        "peak": 1035
+        "seconds": 20.8,
+        "peak": 971
       },
       {
         "result": "works",
@@ -1240,8 +1240,8 @@
           [],
           []
         ],
-        "seconds": 356.1,
-        "peak": 959
+        "seconds": 210.7,
+        "peak": 987
       }
     ]
   }

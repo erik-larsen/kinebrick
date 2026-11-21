@@ -2,13 +2,12 @@
 // with the one a drag turns.
 
 import type { Kinematics } from '../kinematics.ts';
-import type { Row } from '../linalg.ts';
-import { addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
 
 // Rows for bodies held still: `fixed` on their joints (or, for a root body, altogether), and
 // `toFrame` against the frame.
-export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<number>): Row[] {
-  const rows: Row[] = [];
+export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<number>): BodyRow[] {
+  const rows: BodyRow[] = [];
   const n = 6 * solver.bodyCount;
   for (const body of toFrame) {
     // Held against the frame: no turning about its joint's axis relative to what its shaft
@@ -21,10 +20,10 @@ export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<nu
     const joint = solver.mech.joints[solver.parentJoint[body]];
     const d = axisOf(joint.from, joint.to).transformDirection(solver.poses[joint.bodyA]);
     const root = solver.housing(body);
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
-      row[6 * body + k] += d.getComponent(k);
-      row[6 * root + k] -= d.getComponent(k);
+      row.add(6 * body + k, d.getComponent(k));
+      row.sub(6 * root + k, d.getComponent(k));
     }
     rows.push(row);
   }
@@ -34,10 +33,10 @@ export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<nu
       // Frozen, or held for a drag, on its joint: no turning relative to the body it turns on.
       const joint = solver.mech.joints[j];
       const d = axisOf(joint.from, joint.to).transformDirection(solver.poses[joint.bodyA]);
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
-        row[6 * joint.bodyB + k] += d.getComponent(k);
-        row[6 * joint.bodyA + k] -= d.getComponent(k);
+        row.add(6 * joint.bodyB + k, d.getComponent(k));
+        row.sub(6 * joint.bodyA + k, d.getComponent(k));
       }
       rows.push(row);
     } else {
@@ -45,9 +44,9 @@ export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<nu
       // on another (see mounts), on that.
       const mount = body === solver.fixedBody ? undefined : solver.mounts.get(body);
       for (let k = 0; k < 6; k++) {
-        const row = new Array(n).fill(0);
-        row[6 * body + k] = 1;
-        if (mount !== undefined) row[6 * mount + k] = -1;
+        const row = new BodyRow(n);
+        row.set(6 * body + k, 1);
+        if (mount !== undefined) row.set(6 * mount + k, -1);
         rows.push(row);
       }
     }
@@ -83,9 +82,9 @@ export function holds(solver: Kinematics, eq: Equations) {
   for (const body of solver.drag.outOfReach) {
     const frame = solver.frameOf[body];
     for (let k = 0; k < 6; k++) {
-      const row = new Array(n).fill(0);
-      row[6 * body + k] = 1;
-      if (frame !== body) row[6 * frame + k] = -1;
+      const row = new BodyRow(n);
+      row.set(6 * body + k, 1);
+      if (frame !== body) row.set(6 * frame + k, -1);
       add(row, 0, DRIVE_WEIGHT);
     }
   }
@@ -96,8 +95,8 @@ export function holds(solver: Kinematics, eq: Equations) {
     const joint = solver.mech.joints[solver.parentJoint[grabbed]];
     const d = axisOf(joint.from, joint.to).transformDirection(solver.poses[joint.bodyA]);
     for (const body of others) {
-      const row = new Array(n).fill(0);
-      for (const [b, sign] of [[body, 1], [solver.housing(body), -1], [grabbed, -1], [solver.housing(grabbed), 1]]) for (let k = 0; k < 3; k++) row[6 * b + k] += sign * d.getComponent(k);
+      const row = new BodyRow(n);
+      for (const [b, sign] of [[body, 1], [solver.housing(body), -1], [grabbed, -1], [solver.housing(grabbed), 1]]) for (let k = 0; k < 3; k++) row.add(6 * b + k, sign * d.getComponent(k));
       add(row);
     }
   }

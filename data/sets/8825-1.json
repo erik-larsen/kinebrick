@@ -73,9 +73,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 1,
     "counts": {
       "works": 2,
       "partly": 1,
@@ -145,7 +145,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -200,7 +200,7 @@
         ],
         "cause": "not-driven",
         "detail": "p45 3708 against p0 2825",
-        "seconds": 0.4
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -244,6 +244,6 @@
         "seconds": 0
       }
     ],
-    "peak": 273
+    "peak": 271
   }
 }

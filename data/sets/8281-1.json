@@ -83,9 +83,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 5,
+    "seconds": 2,
     "counts": {
       "partly": 2,
       "works": 2
@@ -153,7 +153,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p25 32063 against p5 32271",
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -232,7 +232,7 @@
         ],
         "cause": "not-driven",
         "detail": "p27 3707 against p5 32271",
-        "seconds": 0.9
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -298,7 +298,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -335,9 +335,9 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.1
       }
     ],
-    "peak": 306
+    "peak": 318
   }
 }
