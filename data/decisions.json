@@ -109,7 +109,7 @@
       "kind": "Permission",
       "title": "The blind trial: may Claude download the ten drawn model files from the OMR?",
       "what": "The ten models for the blind trial are drawn (306), five display and expert sets and five play sets, by a seeded random draw from the 94 candidates left after the rules set beforehand. Display and expert: 8169 Lamborghini Gallardo LP 560-4, 10226 Sopwith Camel, 5542 Black Thunder, 10179 Millennium Falcon, 10248 Ferrari F40. Play: 6821 Shovel Buggy, 6666 Ambulance, 6482 Rescue Helicopter, 6649 Street Sweeper, 6339 Shuttle Launch Pad. The files are one .mpd each, from the LDraw library's Official Model Repository (library.ldraw.org/media/omr_models): 8169-1.mpd 47 kB, 10226-1.mpd 1,144 kB, 5542-1.mpd 99 kB, 10179-1.mpd 476 kB, 10248-1.mpd 76 kB, 6821-1.mpd 4 kB, 6666-1.mpd 8 kB, 6482-1.mpd 14 kB, 6649-1.mpd 6 kB, 6339-1.mpd 119 kB; 1.99 MB together. No booklet is downloaded: the 28 functions tried are those the published descriptions name, fixed before any model is opened.",
-      "effect": "With your yes Claude downloads the ten files into omr/, a reader gives each function its parts, the check runs once and nothing is mended. The result is the share of the 28 functions that work at the first pass, beside 42% (the 186 sets on 24 October) and 57% (the 186 now, as the viewer shows them). Five of the ten have only doors, hoods and hatches among their functions, so the trial says more about hinges than about gears.",
+      "effect": "With your yes Claude downloads the ten files into omr/, a reader gives each function its parts, the check runs once and nothing is mended. The result is the share of the 28 functions that work at the first pass, beside 42% (the 186 sets on 24 October) and 67% of the functions checked (the 186 now, as the viewer shows them; it was 71% before today's holds). Five of the ten have only doors, hoods and hatches among their functions, so the trial says more about hinges than about gears.",
       "reply": "Yes, download the ten blind-trial files",
       "since": "2026-11-21"
     }
@@ -121,7 +121,7 @@
     },
     {
       "title": "A blind trial on ten models the check has never seen",
-      "what": "The ten models are drawn (306) and the download of their files waits for your yes, above. The functions tried are the 28 that published descriptions name for the ten, fixed before any model is opened; the check runs once and nothing is mended. The result is the share that works at the first pass, beside 42% (the 186 on 24 October) and 57% (the 186 now)."
+      "what": "The ten models are drawn (306) and the download of their files waits for your yes, above. The functions tried are the 28 that published descriptions name for the ten, fixed before any model is opened; the check runs once and nothing is mended. The result is the share that works at the first pass, beside 42% (the 186 on 24 October) and 67% of the functions checked (the 186 now)."
     },
     {
       "title": "The next offer of main",
