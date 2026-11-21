@@ -58,6 +58,7 @@ import { loadavg } from 'node:os';
 import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
 import { LAUNCH, LIBRARY, open, type Viewer } from './drag.ts';
+import { foundOf } from '../holds.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
@@ -98,7 +99,9 @@ const commit = process.env.KB_SWEEP_COMMIT || execSync('git rev-parse --short HE
 process.env.KB_SWEEP_COMMIT = commit;
 const setFile = (set: string) => `data/sets/${set}.json`;
 const outFile = (set: string) => `${outDir}/${set}.json`;
-const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
+// A held function (data/holds.json) is swept by what the check found (decision 279): a sweep that
+// shows it is what may lift its hold.
+const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => foundOf(g)?.result === 'works').length;
 
 const oneAt = args.indexOf('--one');
 const quiet = args.includes('--quiet');
@@ -254,7 +257,8 @@ async function sweepSet(set: string) {
   const fails = new Map<string, string | null>();
   const onlyQuiet = quiet ? new Set(quietFunctions(set)) : null;
   for (const [i, fn] of (data.curated.functions as any[]).entries()) {
-    const g = data.generated.functions[i];
+    const stored = data.generated.functions[i];
+    const g = foundOf(stored);
     if (g?.result !== 'works') continue;
     if (onlyQuiet && !onlyQuiet.has(i + 1)) continue;
     if (only && !only.has(`${set} ${i + 1}`)) continue;
@@ -277,7 +281,7 @@ async function sweepSet(set: string) {
       const fail = fails.get(file);
       line = fail ? { verdict: 'does not open', why: fail } : { verdict: 'not shown', why: `the sweep failed: ${String(e).slice(0, 200)}` };
     }
-    const record: Record<string, any> = { function: i + 1, does: fn.does, ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
+    const record: Record<string, any> = { function: i + 1, does: fn.does, ...(stored?.hold ? { held: { result: stored.result, reason: stored.hold.reason } } : {}), ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
     out.functions.push(record);
     console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msOneCall as number | undefined) ?? '-'} ms one call, ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
   }
@@ -496,7 +500,50 @@ async function firstSteps(v: Viewer, first: { control: string; by: number; slide
   for (const step of first) {
     const part = refOf(step.control).part;
     if (step.slide) {
-      notDone.push(`first step not done by the sweep: ${step.control} slid ${step.by}`);
+      // A slide on the part's axle, as a user does it (decision 279, item 4): Shift pressed on the
+      // part asks for the slide (setup.slideOnAxle), then a drag along it, which pushes its slide
+      // joint, `by` LDU along the part's own axis that runs along the slide (as the check's
+      // slidePart), a step at a time with the viewer's collision stop; the drag's end reads the
+      // model where it now is (afterSlide).
+      const went = await v.page.evaluate(
+        ({ part, by }) => {
+          const k = (window as any).kinebrick;
+          if (!k.setup.slideOnAxle?.(part)) return null;
+          const body = k.mech.bodyOf[part];
+          const link = k.kin.parentLink(body);
+          if (!link || k.mech.joints[link.joint].kind !== 'slide') return null;
+          const at = () => { const e = k.matrices()[part].elements; return [e[12], e[13], e[14]]; };
+          const own = (() => { const e = k.matrices()[part].elements; return [0, 1, 2].map((c) => { const v = [e[4 * c], e[4 * c + 1], e[4 * c + 2]]; const n = Math.hypot(...v); return v.map((x) => x / n); }); })();
+          const start = at();
+          const along = () => { const p = at(); const d = [p[0] - start[0], p[1] - start[1], p[2] - start[2]]; const dir = own.reduce((best, v) => (Math.abs(v[0] * d[0] + v[1] * d[1] + v[2] * d[2]) > Math.abs(best[0] * d[0] + best[1] * d[1] + best[2] * d[2]) ? v : best)); return dir[0] * d[0] + dir[1] * d[1] + dir[2] * d[2]; };
+          const push = (sign: number) => {
+            let total = 0;
+            for (let i = 0; i < Math.ceil(Math.abs(by)); i++) {
+              k.kin.holdWhatTheDragDoesntNeed(body, () => k.kin.jointMotion(link.joint) !== null, link.joint);
+              const w = k.kin.turnJoint(link.joint, sign, () => k.setup.blockedBy() === null);
+              k.kin.letGoAfterDrag();
+              total += w;
+              if (Math.abs(w) < 1e-3) break;
+            }
+            return total;
+          };
+          // Which way along the joint is `by`'s way along the part's own axis: a first step tells.
+          const snap = k.kin.snapshot();
+          push(1);
+          const dirOwn = (() => { const e = k.matrices()[part].elements; const d = [e[12] - start[0], e[13] - start[1], e[14] - start[2]]; return own.map((v) => v[0] * d[0] + v[1] * d[1] + v[2] * d[2]); })();
+          k.kin.restore(snap);
+          const axisK = dirOwn.reduce((best, x, i) => (Math.abs(x) > Math.abs(dirOwn[best]) ? i : best), 0);
+          const sign = Math.sign(dirOwn[axisK]) === Math.sign(by) ? 1 : -1;
+          push(sign);
+          const moved = along();
+          k.setup.onDragEnded();
+          return Math.abs(moved);
+        },
+        { part, by: step.by },
+      );
+      if (went === null) notDone.push(`first step not done by the sweep: ${step.control} slid ${step.by} (it can't slide on its axle in the viewer)`);
+      else if (went < 0.9 * Math.abs(step.by)) notDone.push(`first step short: ${step.control} slid ${Math.round(went * 10) / 10} of ${Math.abs(step.by)} LDU`);
+      await v.page.waitForTimeout(2000);
       continue;
     }
     const done = await v.page.evaluate(
@@ -509,6 +556,33 @@ async function firstSteps(v: Viewer, first: { control: string; by: number; slide
           const wanted = slide.position + by;
           const nearest = slide.positions.reduce((best: number, p: number) => (Math.abs(p - wanted) < Math.abs(best - wanted) ? p : best));
           if (Math.abs(nearest - slide.position) < 1e-6) return false;
+          // A ring a changeover catch holds: slid by hand in the viewer, it goes back where the
+          // catch's fork is when the drag ends (meshAfresh), so a user turns the catch instead,
+          // till the drag's end shifts the ring there (decision 279, item 4). The catch is dragged
+          // round its joint each way in small steps, with the viewer's collision stop, till a shift
+          // to that place is due.
+          const catchPart = k.catchOf?.(part);
+          if (catchPart !== null && catchPart !== undefined) {
+            const body = k.mech.bodyOf[catchPart];
+            const link = k.kin.parentLink(body);
+            if (!link) return false;
+            for (const way of [1, -1]) {
+              const snap = k.kin.snapshot();
+              for (let turned = 0; turned < 1.6; turned += 0.02) {
+                k.kin.holdWhatTheDragDoesntNeed(body, () => k.kin.jointMotion(link.joint) !== null, link.joint);
+                const went = k.kin.turnJoint(link.joint, way * 0.02, () => k.setup.blockedBy() === null);
+                k.kin.letGoAfterDrag();
+                const due = k.catchShiftsNow().find(([ring]: [number, number]) => ring === slide.part || ring === part);
+                if (due && Math.abs(due[1] - nearest) < 1e-6) {
+                  k.setup.onDragEnded();
+                  return Math.abs((k.setup.slideOf(part)?.position ?? NaN) - nearest) < 1e-6;
+                }
+                if (due || Math.abs(went) < 1e-4) break;
+              }
+              k.kin.restore(snap);
+            }
+            return false;
+          }
           k.setup.shift(part, nearest);
           k.setup.onDragEnded();
           return true;
