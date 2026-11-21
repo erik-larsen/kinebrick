@@ -138,12 +138,13 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 15,
+    "commit": "fe0dd791",
+    "date": "2026-11-21",
+    "seconds": 10,
     "counts": {
-      "works": 6,
-      "no": 2
+      "works": 5,
+      "no": 2,
+      "partly": 1
     },
     "loose": [
       "p331 30395"
@@ -173,7 +174,7 @@
             ],
             "p174 18575": [
               0,
-              2.05e-42
+              0
             ]
           }
         ],
@@ -225,13 +226,13 @@
             0.7
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "works",
         "turned": [
           [
-            0.3,
+            1.5,
             -1.5
           ]
         ],
@@ -239,11 +240,11 @@
           {
             "p116 62821": [
               1,
-              1.96e-13
+              3.25e-13
             ],
             "p349 2853": [
               3.89,
-              5.62e-13
+              6.42e-13
             ],
             "p352 2851": [
               0,
@@ -255,11 +256,11 @@
             ],
             "p50 32270": [
               0,
-              3.17e-24
+              8.21e-24
             ],
             "p95 87761": [
               0,
-              1.34e-13
+              9.31e-14
             ]
           }
         ],
@@ -292,23 +293,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            21,
-            95,
-            0.3,
-            0.3
-          ]
-        ],
-        "seconds": 2.4
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -326,13 +311,13 @@
           {
             "p349 2853": [
               0,
-              3.94e-31
+              3.29e-32
             ]
           },
           {
             "p349 2853": [
               0,
-              1.31e-31
+              1.64e-32
             ]
           }
         ],
@@ -384,7 +369,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -426,7 +411,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1
       },
       {
         "result": "no",
@@ -495,73 +480,80 @@
         ],
         "cause": "part-fixed",
         "detail": "p163 4254",
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.17,
-            -0.17
-          ]
-        ],
-        "rates": [
-          {
-            "p190 2654": [
-              1,
-              26
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p186 at 0.136 rad each way (parts 175/187); the mast should swing upright. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.17,
+              -0.17
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            175,
-            187,
-            0.17,
-            0.17
           ],
-          [
-            0,
-            -1,
-            175,
-            187,
-            0.17,
-            0.17
-          ]
-        ],
-        "seconds": 0.3
+          "rates": [
+            {
+              "p190 2654": [
+                1,
+                26
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              175,
+              187,
+              0.17,
+              0.17
+            ],
+            [
+              0,
+              -1,
+              175,
+              187,
+              0.17,
+              0.17
+            ]
+          ],
+          "seconds": 0.2
+        }
       },
       {
         "result": "no",
@@ -738,8 +730,9 @@
             1.47
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       }
-    ]
+    ],
+    "peak": 705
   }
 }

@@ -1,0 +1,72 @@
+{
+  "set": "8259-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:53:09.109Z",
+  "load": 14.6,
+  "part": "A",
+  "parts": 165,
+  "seconds": 8,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The two tracks roll as the bulldozer is pushed along; nothing drives them. Each track runs round a 16 tooth gear at each end of its side, so its two gears turn together: p75 with p46 on one side, p74 with p55 on the other.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p75 4019",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 31,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p75 4019",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 28,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p74 4019",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p74 4019",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}

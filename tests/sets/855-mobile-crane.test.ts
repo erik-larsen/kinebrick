@@ -2,10 +2,12 @@ import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../../src/kinematics.ts';
 import { inferMechanism, Mechanism, movePaths } from '../../src/mechanism.ts';
-import { load, roles, table } from './load.ts';
+import { load, roles, table, readShapes } from './load.ts';
+
+await readShapes('models/855-Mobile Crane.mpd');
 
 describe('855 Mobile Crane', () => {
-  const { parts, paths, mech, kin, bodyOf, turn, frameMoved } = load('models/855-Mobile Crane.mpd');
+  const { parts, paths, mech, kin, bodyOf, turn, frameMoved, touching } = load('models/855-Mobile Crane.mpd');
   const outriggers = mech.joints.flatMap((j, i) => (j.kind === 'slide' && j.bodyA === 0 && (j.range![0] === -120 || j.range![0] === -40) ? [i] : []));
   const cab = bodyOf('3404.dat');
 
@@ -128,7 +130,7 @@ describe('855 Mobile Crane', () => {
     const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
     const moved = paths.map((path) => ({ ...path, points: path.points.map((p) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() })) }));
     movePaths(moved, parts, mech.bodyOf, kin.poses);
-    const afresh = inferMechanism(now, table, roles, moved);
+    const afresh = inferMechanism(now, table, roles, moved, new Set(), false, null, new Set(), touching);
     expect(afresh.strings).toHaveLength(1);
     const [tipAfresh, hookAfresh] = pulleys(afresh, new Kinematics(afresh));
     expect(tipAfresh.distanceTo(tip)).toBeLessThan(1e-6);

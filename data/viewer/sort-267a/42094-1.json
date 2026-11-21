@@ -1,0 +1,167 @@
+{
+  "set": "42094-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:48:55.772Z",
+  "load": 33.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 809,
+  "seconds": 93,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The red lever on top at the back shifts a driving ring between two gears on the winch knob's shaft, giving the winch a fast and a slow speed, with a free middle position where the cable can be pulled out by hand.",
+      "verdict": "shown",
+      "msOneCall": 86,
+      "msPerStep": 11,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 22,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p148 41669",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 156,
+          "msOneCall": 86,
+          "stops": [],
+          "moved": {
+            "p149 6641": [
+              9.9,
+              28.65
+            ],
+            "p133 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p148 41669",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 152,
+          "msOneCall": 81,
+          "stops": [],
+          "moved": {
+            "p149 6641": [
+              9.9,
+              28.65
+            ],
+            "p133 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 39
+    },
+    {
+      "function": 5,
+      "does": "The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines.",
+      "verdict": "not decided",
+      "msOneCall": 172,
+      "msPerStep": 115,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 37,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1064 32270",
+        "way": -1,
+        "went": -0.069,
+        "asked": 1.52,
+        "by": [
+          "1073/1078"
+        ]
+      },
+      "stops": [
+        "1073/1078"
+      ],
+      "A": [
+        {
+          "control": "p1064 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 0.18,
+          "went": 0.15,
+          "ms": 450,
+          "msOneCall": 172,
+          "stops": [],
+          "moved": {
+            "p1061 60485": [
+              14.07,
+              8.6
+            ],
+            "p1094 32278": [
+              0.15,
+              0.06
+            ]
+          }
+        },
+        {
+          "control": "p1064 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.52,
+          "went": -0.069,
+          "ms": 226,
+          "msOneCall": 100,
+          "stops": [
+            "1073/1078"
+          ],
+          "moved": {
+            "p1061 60485": [
+              6.97,
+              3.97
+            ],
+            "p1094 32278": [
+              0.07,
+              0.03
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1064 32270",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p1064 32270: a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)",
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 54
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "set": "8859-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:20:48.071Z",
+  "load": 20.3,
+  "part": "A",
+  "parts": 553,
+  "seconds": 50,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down.",
+      "verdict": "shown",
+      "msOneCall": 57,
+      "msPerStep": 29,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p595 3740",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1249,
+          "msOneCall": 57,
+          "stops": [],
+          "moved": {
+            "p0 73071": [
+              0,
+              85.94
+            ],
+            "p7 4143": [
+              0,
+              171.89
+            ],
+            "p411 3648a": [
+              0,
+              171.89
+            ],
+            "p416 3648a": [
+              0,
+              171.89
+            ],
+            "p430 3652": [
+              31.8,
+              0
+            ],
+            "p431 3652": [
+              31.88,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p595 3740",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1225,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {
+            "p0 73071": [
+              0,
+              85.94
+            ],
+            "p7 4143": [
+              0,
+              171.89
+            ],
+            "p411 3648a": [
+              0,
+              171.89
+            ],
+            "p416 3648a": [
+              0,
+              171.89
+            ],
+            "p430 3652": [
+              31.8,
+              0
+            ],
+            "p431 3652": [
+              31.88,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 3,
+      "does": "The differential lets the two rear wheels turn at different speeds in a corner.",
+      "verdict": "shown",
+      "msOneCall": 24,
+      "msPerStep": 28,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 13,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p594 3740",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1195,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p594 3740",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1213,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p595 3740",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1175,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p595 3740",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1171,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    },
+    {
+      "function": 5,
+      "does": "The front wheels turn freely on short axles in the steering arms.",
+      "verdict": "shown",
+      "msOneCall": 24,
+      "msPerStep": 28,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p596 3740",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1178,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p596 3740",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1177,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p597 3740",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1187,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p597 3740",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1191,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "set": "851-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:08:59.475Z",
+  "load": 18.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 276,
+  "seconds": 13,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 4,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p232 3702",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 120,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p39 3702": [
+              36.44,
+              34.73
+            ],
+            "p102 3702": [
+              37.63,
+              36.41
+            ],
+            "p260 3709b": [
+              85.87,
+              9.81
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p232 3702",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 4,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p39 3702": [
+              3.95,
+              3.71
+            ],
+            "p102 3702": [
+              3.87,
+              3.68
+            ],
+            "p260 3709b": [
+              9.19,
+              0.95
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    }
+  ]
+}

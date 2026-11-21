@@ -99,8 +99,8 @@ function loopLength(track: Track, line: number, s: number, dir: number): number 
 }
 
 // The functions a set's model calls for: its track joining up, each train running, each switch.
-export function trainFunctions(file: string): TrainFunction[] {
-  const { parts, mech } = loadModel(file, true);
+export async function trainFunctions(file: string): Promise<TrainFunction[]> {
+  const { parts, mech } = await loadModel(file, true);
   const track = mech.track;
   if (!track) return [];
   const name = (p: number) => `p${p} ${parts[p].name.replace(/\.dat$/, '')}`;
@@ -128,12 +128,12 @@ export async function checkTrainSet(set: { curated: { model: string; functions: 
   // The parts' shapes, for collisions, as the viewer makes them: one for each part, matched by
   // name, as the Technic check reads them (decision 242).
   const read = readParts(model, true);
-  const shapes = await partShapes(model, read.text, read.parts.map((p) => p.name));
+  const shapes = await partShapes(model, read.text, read.parts);
   const checked: TrainChecked[] = [];
   let loose: string[] = [];
   for (const fn of functions) {
     // Each function on the model as loaded, afresh.
-    const { parts, mech, kin } = loadModel(model, true);
+    const { parts, mech, kin } = await loadModel(model, true, undefined, shapes);
     loose = mech.loose.map((p) => `p${p} ${parts[p].name.replace(/\.dat$/, '')}`);
     const track = mech.track;
     try {
@@ -176,7 +176,7 @@ export async function checkTrainSet(set: { curated: { model: string; functions: 
 
 // The viewer's collision test (blockedBy in src/main.ts), for a model's parts: what stops them
 // where they stand now (two parts that run into each other, a joint at its limit), or null.
-function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], parts: { name: string; matrix: Matrix4; path?: unknown }[], shapes: { name: string; shape: PartMesh[] }[]) {
+function blocker(mech: Mechanism, kin: Awaited<ReturnType<typeof loadModel>>['kin'], parts: { name: string; matrix: Matrix4; path?: unknown }[], shapes: { name: string; shape: PartMesh[] }[]) {
   // Each part's shape, in order, passing over shapes with no part's name: primitives a split
   // part's pieces draw (the monorail motor's shaft), which the scripts' part list leaves out.
   const shapeOf: PartMesh[][] = [];
@@ -206,7 +206,7 @@ function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], part
 }
 
 // Runs a train by turning one of its wheels: a lap of a loop, or to each end of a line.
-async function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number, wheelsets: number[], blockedBy: () => string | null): Promise<TrainChecked> {
+async function run(mech: Mechanism, kin: Awaited<ReturnType<typeof loadModel>>['kin'], track: Track, wheel: number, wheelsets: number[], blockedBy: () => string | null): Promise<TrainChecked> {
   const body = mech.bodyOf[wheel];
   const joint = mech.joints.findIndex((j) => j.kind === 'revolute' && (j.bodyA === body || j.bodyB === body));
   if (joint < 0) return { result: 'no', why: ['the wheel turns on nothing'] };
@@ -349,7 +349,7 @@ async function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], tr
 
 // Whether a train, run by its first rolling wheelset's axle each way in turn, gets onto a line
 // with its first wheelset (null if it has no wheel to turn).
-function onto(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, line: number): boolean | null {
+function onto(mech: Mechanism, kin: Awaited<ReturnType<typeof loadModel>>['kin'], track: Track, line: number): boolean | null {
   const riders = mech.riders ?? [];
   const lead = riders.findIndex((r) => r.rolls);
   if (lead < 0) return null;

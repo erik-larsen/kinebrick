@@ -1,0 +1,102 @@
+{
+  "set": "42107-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:04:21.464Z",
+  "load": 34.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 631,
+  "seconds": 287,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p247 35189, p284 4254 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 14,
+        "collisions": 6,
+        "first": 0,
+        "reach": 4,
+        "A": 4,
+        "B": 258
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p262 40490",
+          "way": 1,
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p284 4254": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p262 40490",
+          "way": -1,
+          "asked": 0.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p284 4254": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p262 40490",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p247 35189",
+            "p284 4254"
+          ],
+          "stops": [
+            "284/640"
+          ]
+        }
+      ],
+      "seconds": 287
+    }
+  ]
+}

@@ -111,9 +111,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 24,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 21,
     "counts": {
       "works": 4,
       "not checked": 2,
@@ -186,7 +186,7 @@
               225
             ],
             "p3851 32291": [
-              0,
+              8.16e-8,
               260
             ],
             "p3456 41680": [
@@ -257,7 +257,7 @@
             0
           ]
         ],
-        "seconds": 2.3
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -435,7 +435,7 @@
             0.3
           ]
         ],
-        "seconds": 4.4
+        "seconds": 4.6
       },
       {
         "result": "not checked",
@@ -710,12 +710,13 @@
             0.13
           ]
         ],
-        "seconds": 10.5
+        "seconds": 8.9
       },
       {
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 349
   }
 }

@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 46,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 30,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -453,7 +453,7 @@
             0.3
           ]
         ],
-        "seconds": 15.5
+        "seconds": 10.3
       },
       {
         "result": "works",
@@ -526,7 +526,7 @@
             1.33
           ]
         ],
-        "seconds": 5.6
+        "seconds": 3.4
       },
       {
         "result": "no",
@@ -579,6 +579,9 @@
               0
             ]
           ]
+        ],
+        "why": [
+          "p620 2698 against p550 32018 is held by friction pins the control doesn't reach"
         ],
         "stop": [
           [
@@ -671,7 +674,7 @@
             0.1
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -763,7 +766,7 @@
           [],
           []
         ],
-        "seconds": 10.2
+        "seconds": 7.1
       },
       {
         "result": "works",
@@ -785,11 +788,11 @@
             ],
             "p156 6629 against p112 32018": [
               0,
-              1.6e-14
+              5.33e-15
             ],
             "p166 32065 against p112 32018": [
               0,
-              0
+              9.53e-14
             ]
           }
         ],
@@ -836,7 +839,7 @@
             1.33
           ]
         ],
-        "seconds": 5.5
+        "seconds": 2.9
       },
       {
         "result": "no",
@@ -892,26 +895,20 @@
         ],
         "stop": [
           [
-            "limit",
-            "limit"
+            "no motion",
+            "no motion"
           ]
         ],
+        "pushed": [
+          true
+        ],
+        "freed": 3,
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p184 2698",
-        "collisionStops": [
-          [
-            0,
-            -1,
-            87,
-            100,
-            0,
-            0
-          ]
-        ],
-        "seconds": 0.5
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -973,7 +970,7 @@
             0.1
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -983,6 +980,7 @@
         "result": "skipped",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 715
   }
 }

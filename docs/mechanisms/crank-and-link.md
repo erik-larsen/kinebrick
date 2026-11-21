@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 45 works, 28 partly, 5 no, 1 not checked.
+Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 39 works, 34 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -85,7 +85,7 @@ Each detail by the set it first appears in.
 
 **1989, [8835 Forklift](https://erik-larsen.github.io/kinebrick/?model=8835-Forklift)**
 
-- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (works)
+- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (partly)
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
@@ -162,7 +162,7 @@ Each detail by the set it first appears in.
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
-- *blade:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
+- *blade:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
 - *ripper:* The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 
 **2012, [9391 Crawler Crane (Tracked Crane)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9391-1)**
@@ -218,7 +218,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- *cab:* The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (works)
+- *cab:* The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (partly)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
@@ -226,7 +226,7 @@ Each detail by the set it first appears in.
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
-- *dump body:* The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it. (works)
+- *dump body:* The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it. (partly)
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
@@ -250,7 +250,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (works)
+- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
 
 **2018, [42071 Dozer Compactor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42071-1)**
 
@@ -278,7 +278,7 @@ Each detail by the set it first appears in.
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
-- *cab door:* The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning. (works)
+- *cab door:* The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning. (partly)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 

@@ -1,0 +1,354 @@
+{
+  "set": "42064-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T21:03:32.617Z",
+  "load": 34.1,
+  "part": "A",
+  "parts": 1314,
+  "seconds": 246,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The ship rolls on hidden wheels under its hull: a single wheel under the bow, a pair in the middle, and a pair on a bogie at the stern.",
+      "verdict": "shown",
+      "msOneCall": 105,
+      "msPerStep": 16,
+      "time": {
+        "open": 38,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 103,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p631 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 663,
+          "msOneCall": 105,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p631 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 670,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p637 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 647,
+          "msOneCall": 55,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p637 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 629,
+          "msOneCall": 50,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p643 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 655,
+          "msOneCall": 50,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p643 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 637,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p201 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 627,
+          "msOneCall": 58,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p201 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 657,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p202 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 627,
+          "msOneCall": 50,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p202 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 630,
+          "msOneCall": 52,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 146
+    },
+    {
+      "function": 6,
+      "does": "The submarine's rear knob on top turns its two propellers: a bevel gear pair takes the knob's turn down to a 20 tooth gear, which turns a 12 tooth gear on each propeller shaft.",
+      "verdict": "shown",
+      "msOneCall": 48,
+      "msPerStep": 13,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1171 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 573,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {
+            "p1148 32269": [
+              0,
+              85.94
+            ],
+            "p1172 6041": [
+              0,
+              143.24
+            ],
+            "p1173 6041": [
+              0,
+              143.24
+            ],
+            "p1186 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1171 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 574,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {
+            "p1148 32269": [
+              0,
+              85.94
+            ],
+            "p1172 6041": [
+              0,
+              143.24
+            ],
+            "p1173 6041": [
+              0,
+              143.24
+            ],
+            "p1186 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 30
+    },
+    {
+      "function": 7,
+      "does": "The submarine's front knob on top swings its two arms with their grabbers out and in: the knob turns a worm, which turns a 24 tooth gear between two knob gears, each of which turns an arm's knob gear.",
+      "verdict": "shown",
+      "msOneCall": 61,
+      "msPerStep": 15,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 19,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1186 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 604,
+          "msOneCall": 61,
+          "stops": [],
+          "moved": {
+            "p1182 4716": [
+              0,
+              85.94
+            ],
+            "p1189 3648b": [
+              0,
+              3.58
+            ],
+            "p1215 32072": [
+              0,
+              3.58
+            ],
+            "p1216 32072": [
+              0,
+              3.58
+            ],
+            "p1171 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1186 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 624,
+          "msOneCall": 50,
+          "stops": [],
+          "moved": {
+            "p1182 4716": [
+              0,
+              85.94
+            ],
+            "p1189 3648b": [
+              0,
+              3.58
+            ],
+            "p1215 32072": [
+              0,
+              3.58
+            ],
+            "p1216 32072": [
+              0,
+              3.58
+            ],
+            "p1171 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 32
+    },
+    {
+      "function": 8,
+      "does": "The hook block hangs from the crane's boom tip, for lifting the submarine.",
+      "verdict": "shown",
+      "msOneCall": 47,
+      "msPerStep": 15,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 21,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1122 32062",
+        "way": -1,
+        "went": -0.453,
+        "asked": 1.5,
+        "by": [
+          "1114/1123"
+        ]
+      },
+      "stops": [
+        "1114/1123"
+      ],
+      "A": [
+        {
+          "control": "p1122 32062",
+          "way": 1,
+          "asked": 0.47,
+          "went": 0.47,
+          "ms": 190,
+          "msOneCall": 47,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1122 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.453,
+          "ms": 193,
+          "msOneCall": 44,
+          "stops": [
+            "1114/1123"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1122 32062",
+          "judged": "stands",
+          "why": "stopped at -0.453 rad (1114/1123); kinds hangs-free: hook"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 39
+    }
+  ]
+}

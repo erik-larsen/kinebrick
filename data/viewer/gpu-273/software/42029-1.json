@@ -1,0 +1,95 @@
+{
+  "set": "42029-1",
+  "commit": "bff67fc6",
+  "date": "2026-11-21T09:08:17.818Z",
+  "load": 16.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1053,
+  "seconds": 142,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The yellow lever inside the cab, on the right behind the seat, works a gearbox under the cab: it slides the driving ring between two clutch gears, choosing whether the black gear low on the right side drives the winch at the front (position 1) or tips the bed (position 2).",
+      "verdict": "shown",
+      "msOneCall": 135,
+      "msPerStep": 25,
+      "time": {
+        "open": 19,
+        "collisions": 8,
+        "first": 0,
+        "reach": 35,
+        "A": 14,
+        "B": 75
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p133 6632",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 419,
+          "msOneCall": 116,
+          "stops": [],
+          "moved": {
+            "p111 6641 against p0 32278": [
+              11.82,
+              34.38
+            ],
+            "p48 6539 against p47 3705": [
+              5,
+              0
+            ],
+            "p47 3705 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p133 6632",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 422,
+          "msOneCall": 135,
+          "stops": [],
+          "moved": {
+            "p111 6641 against p0 32278": [
+              11.82,
+              34.38
+            ],
+            "p48 6539 against p47 3705": [
+              5,
+              0
+            ],
+            "p47 3705 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p133 6632",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p111 6641 against p0 32278",
+            "p48 6539 against p47 3705"
+          ],
+          "stops": [
+            "105/111"
+          ]
+        }
+      ],
+      "seconds": 142
+    }
+  ]
+}

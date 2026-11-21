@@ -1,0 +1,716 @@
+{
+  "set": "8081-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:26:17.143Z",
+  "load": 14.7,
+  "part": "A",
+  "parts": 580,
+  "seconds": 156,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the roof steers the front wheels: its upright axle comes down behind the seats to a knob gear, which turns a long axle running forward under the seats to a small gear that slides the steering rack across the front axle, and steering links push the front hubs.",
+      "verdict": "shown",
+      "msOneCall": 80,
+      "msPerStep": 29,
+      "time": {
+        "open": 19,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 11,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p410 32269",
+          "way": 1,
+          "asked": 1.2,
+          "went": 1.2,
+          "ms": 984,
+          "msOneCall": 80,
+          "stops": [],
+          "moved": {
+            "p48 32072": [
+              0,
+              68.75
+            ],
+            "p52 32072": [
+              0,
+              68.75
+            ],
+            "p219 3647": [
+              0,
+              68.75
+            ],
+            "p216 6574": [
+              12,
+              0
+            ],
+            "p210 6571": [
+              0.42,
+              28.49
+            ],
+            "p213 6571": [
+              0.42,
+              32.92
+            ],
+            "p582 56908": [
+              19.73,
+              31.4
+            ],
+            "p588 56908": [
+              22.62,
+              36.23
+            ],
+            "p584 56908": [
+              0,
+              0
+            ],
+            "p586 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p410 32269",
+          "way": -1,
+          "asked": 1.2,
+          "went": -1.2,
+          "ms": 938,
+          "msOneCall": 38,
+          "stops": [],
+          "moved": {
+            "p48 32072": [
+              0,
+              68.75
+            ],
+            "p52 32072": [
+              0,
+              68.75
+            ],
+            "p219 3647": [
+              0,
+              68.75
+            ],
+            "p216 6574": [
+              12,
+              0
+            ],
+            "p210 6571": [
+              0.42,
+              32.92
+            ],
+            "p213 6571": [
+              0.42,
+              28.49
+            ],
+            "p582 56908": [
+              22.62,
+              36.23
+            ],
+            "p588 56908": [
+              19.73,
+              31.4
+            ],
+            "p584 56908": [
+              0,
+              0
+            ],
+            "p586 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 32
+    },
+    {
+      "function": 2,
+      "does": "Rolling the car turns the V4 engine: the rear wheels drive the differential, a shaft with a universal joint carries the drive forward under the seats, and its gear turns the crankshaft through an idler gear, so the four yellow pistons pump up and down.",
+      "verdict": "shown",
+      "msOneCall": 27,
+      "msPerStep": 13,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 21,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p584 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 535,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {
+            "p94 62821": [
+              0,
+              85.94
+            ],
+            "p81 32269": [
+              0,
+              120.32
+            ],
+            "p8 94925": [
+              0,
+              120.32
+            ],
+            "p60 6542a": [
+              0,
+              120.32
+            ],
+            "p183 94925": [
+              0,
+              120.32
+            ],
+            "p154 2853": [
+              0,
+              120.32
+            ],
+            "p161 2851": [
+              16.95,
+              0
+            ],
+            "p164 2851": [
+              7.66,
+              0
+            ],
+            "p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p584 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 542,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p94 62821": [
+              0,
+              85.94
+            ],
+            "p81 32269": [
+              0,
+              120.32
+            ],
+            "p8 94925": [
+              0,
+              120.32
+            ],
+            "p60 6542a": [
+              0,
+              120.32
+            ],
+            "p183 94925": [
+              0,
+              120.32
+            ],
+            "p154 2853": [
+              0,
+              120.32
+            ],
+            "p161 2851": [
+              7.66,
+              0
+            ],
+            "p164 2851": [
+              16.95,
+              0
+            ],
+            "p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p586 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 532,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {
+            "p94 62821": [
+              0,
+              85.94
+            ],
+            "p81 32269": [
+              0,
+              120.32
+            ],
+            "p8 94925": [
+              0,
+              120.32
+            ],
+            "p60 6542a": [
+              0,
+              120.32
+            ],
+            "p183 94925": [
+              0,
+              120.32
+            ],
+            "p154 2853": [
+              0,
+              120.32
+            ],
+            "p161 2851": [
+              16.95,
+              0
+            ],
+            "p164 2851": [
+              7.66,
+              0
+            ],
+            "p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p586 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 542,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p94 62821": [
+              0,
+              85.94
+            ],
+            "p81 32269": [
+              0,
+              120.32
+            ],
+            "p8 94925": [
+              0,
+              120.32
+            ],
+            "p60 6542a": [
+              0,
+              120.32
+            ],
+            "p183 94925": [
+              0,
+              120.32
+            ],
+            "p154 2853": [
+              0,
+              120.32
+            ],
+            "p161 2851": [
+              7.66,
+              0
+            ],
+            "p164 2851": [
+              16.95,
+              0
+            ],
+            "p0 64179": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 28
+    },
+    {
+      "function": 3,
+      "does": "The rear differential lets the two rear wheels turn at different speeds round corners.",
+      "verdict": "shown",
+      "msOneCall": 26,
+      "msPerStep": 12,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 11,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p584 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 529,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {
+            "p95 6589": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p584 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 534,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p95 6589": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 4,
+      "does": "The bonnet tilts up on a hinge at the windscreen, showing the engine.",
+      "verdict": "not shown",
+      "why": "A: p530 64392 not moved",
+      "msOneCall": 41,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p520 64682",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 12,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {
+            "p530 64392": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p520 64682",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 12,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {
+            "p530 64392": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 16
+    },
+    {
+      "function": 5,
+      "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 18,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p475 41239",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p475 41239",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p507 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p507 41239",
+          "way": -1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 24
+    },
+    {
+      "function": 7,
+      "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm, and moves up and down, steering as it goes; the rear axle sits on two shock absorbers.",
+      "verdict": "not shown",
+      "why": "A: p210 6571, p213 6571 not moved",
+      "msOneCall": 12,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 16,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p199 6572",
+          "way": 1,
+          "asked": 0.27,
+          "went": 0,
+          "ms": 9,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p210 6571": [
+              0,
+              0
+            ],
+            "p213 6571": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p199 6572",
+          "way": -1,
+          "asked": 0.23,
+          "went": 0,
+          "ms": 8,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p210 6571": [
+              0,
+              0
+            ],
+            "p213 6571": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p202 6572",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0,
+          "ms": 8,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p210 6571": [
+              0,
+              0
+            ],
+            "p213 6571": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p202 6572",
+          "way": -1,
+          "asked": 0.27,
+          "went": 0,
+          "ms": 9,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p210 6571": [
+              0,
+              0
+            ],
+            "p213 6571": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 22
+    },
+    {
+      "function": 9,
+      "does": "The small steering wheel in the cab turns on its own; it doesn't steer.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 4,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p317 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 177,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p216 6574": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p317 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 173,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p216 6574": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    }
+  ]
+}

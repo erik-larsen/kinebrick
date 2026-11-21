@@ -1,0 +1,249 @@
+{
+  "set": "42065-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:09:35.164Z",
+  "load": 28.8,
+  "part": "A",
+  "parts": 365,
+  "seconds": 31,
+  "functions": [
+    {
+      "function": 3,
+      "does": "With both tracks driven the same way the racer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 3,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p287 32209",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 127,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p287 32209",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 111,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p289 32209",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 106,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p289 32209",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 106,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 4,
+      "does": "The idler sprockets and the eight white road wheels turn freely as the tracks run round them.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 3,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 16,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p523 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 101,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p523 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 101,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p522 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 103,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p522 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 100,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 111,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 102,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p102 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 101,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p102 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 103,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 74,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 74,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p110 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 76,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p110 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 78,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    }
+  ]
+}

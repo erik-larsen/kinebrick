@@ -1,0 +1,399 @@
+{
+  "set": "42035-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:31:49.813Z",
+  "load": 28.5,
+  "part": "A",
+  "parts": 353,
+  "seconds": 62,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on top of the tall yellow column behind the cab steers the front wheels: the column's knob gear turns a knob gear on a lengthwise axle, whose 12-tooth gear at the front drives a steering rack between the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 3,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p81 32270",
+          "way": 1,
+          "asked": 1.17,
+          "went": 1.17,
+          "ms": 95,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {
+            "p37 32270 against p0 32525": [
+              0,
+              67.04
+            ],
+            "p28 87761 against p0 32525": [
+              17.98,
+              0
+            ],
+            "p22 48989 against p0 32525": [
+              8.99,
+              25.98
+            ],
+            "p23 48989 against p0 32525": [
+              8.99,
+              25.98
+            ],
+            "p13 42003 against p0 32525": [
+              0,
+              0
+            ],
+            "p12 42003 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p81 32270",
+          "way": -1,
+          "asked": 1.17,
+          "went": -1.17,
+          "ms": 69,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p37 32270 against p0 32525": [
+              0,
+              67.04
+            ],
+            "p28 87761 against p0 32525": [
+              17.98,
+              0
+            ],
+            "p22 48989 against p0 32525": [
+              8.99,
+              25.98
+            ],
+            "p23 48989 against p0 32525": [
+              8.99,
+              25.98
+            ],
+            "p13 42003 against p0 32525": [
+              0,
+              0
+            ],
+            "p12 42003 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 2,
+      "does": "As the truck rolls, the right rear wheel drives the engine: its 20-tooth bevel gear turns a 12-tooth bevel on a long shaft running forward, which turns an 8-tooth sprocket whose chain drives a 16-tooth gear on the crankshaft, pumping the piston up and down in its cylinder under the bonnet.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 4,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p353 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 168,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p49 6589 against p0 32525": [
+              0,
+              143.24
+            ],
+            "p96 10928 against p0 32525": [
+              0,
+              171.14
+            ],
+            "p122 94925 against p0 32525": [
+              0,
+              146.78
+            ],
+            "p105 2851 against p103 42035 - 2850b": [
+              18.74,
+              0
+            ],
+            "p103 42035 - 2850b against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p353 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 173,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p49 6589 against p0 32525": [
+              0,
+              143.24
+            ],
+            "p96 10928 against p0 32525": [
+              0,
+              171.14
+            ],
+            "p122 94925 against p0 32525": [
+              0,
+              146.78
+            ],
+            "p105 2851 against p103 42035 - 2850b": [
+              18.74,
+              0
+            ],
+            "p103 42035 - 2850b against p0 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 3,
+      "does": "The left rear wheel rolls freely on its own axle.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p38 60485 against p0 32525 listed to stay moved",
+      "msOneCall": 9,
+      "msPerStep": 8,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p351 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 295,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p38 60485 against p0 32525": [
+              0,
+              143.24
+            ]
+          }
+        },
+        {
+          "control": "p351 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 322,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p38 60485 against p0 32525": [
+              0,
+              143.24
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 4,
+      "does": "The two front wheels roll freely on their steering hubs.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 7,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p349 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 264,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p349 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 296,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p355 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 161,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p355 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 158,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 5,
+      "does": "The black gear on the axle sticking out of the left side behind the cab tips the dump body: it turns cranks under the body, which push a link up and tip the body back on its hinge at the rear.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 4,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": {
+        "control": "p335 32270",
+        "way": 1,
+        "went": 1.221,
+        "asked": 1.5,
+        "by": [
+          "249/264"
+        ]
+      },
+      "stops": [
+        "249/264",
+        "121/277"
+      ],
+      "A": [
+        {
+          "control": "p335 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.221,
+          "ms": 137,
+          "msOneCall": 9,
+          "stops": [
+            "249/264"
+          ],
+          "moved": {
+            "p262 11478 against p0 32525": [
+              45.86,
+              69.95
+            ],
+            "p250 32523 against p0 32525": [
+              79.99,
+              77.72
+            ],
+            "p227 64782 against p0 32525": [
+              32.95,
+              43.23
+            ],
+            "p275 32316 against p227 64782": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p335 32270",
+          "way": -1,
+          "asked": 1.23,
+          "went": 0,
+          "ms": 5,
+          "msOneCall": 6,
+          "stops": [
+            "121/277"
+          ],
+          "moved": {
+            "p262 11478 against p0 32525": [
+              0,
+              0
+            ],
+            "p250 32523 against p0 32525": [
+              0,
+              0
+            ],
+            "p227 64782 against p0 32525": [
+              0,
+              0
+            ],
+            "p275 32316 against p227 64782": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p335 32270",
+          "judged": "stands",
+          "why": "stopped at +1.221 rad (249/264); -0 rad (121/277); kinds crank-and-link: dump body"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 10
+    }
+  ]
+}

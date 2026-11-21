@@ -29,7 +29,7 @@ if (!file || !(Number(args[1]) >= 1)) {
 const set = JSON.parse(readFileSync(join('data', 'sets', file), 'utf-8'));
 const fn = set.curated.functions[Number(args[1]) - 1];
 const model: string = fn.model ?? set.curated.model;
-const loaded = loadModel(model, model.startsWith('omr/'));
+const loaded = await loadModel(model, model.startsWith('omr/'));
 const { parts, mech } = loaded;
 // A function worked with the model lifted (its `lifted` field) is probed so, as the function
 // check works it: the model held where it is, no tyre on the ground.

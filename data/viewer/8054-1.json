@@ -1,0 +1,147 @@
+{
+  "set": "8054-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:08:07.656Z",
+  "load": 16.1,
+  "part": "A",
+  "parts": 74,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p72 4265a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p50 4185": [
+              0,
+              24.35
+            ],
+            "p55 4185": [
+              0,
+              6.9
+            ],
+            "p53 3708": [
+              0,
+              6.9
+            ],
+            "p86 3482": [
+              0,
+              6.9
+            ]
+          }
+        },
+        {
+          "control": "p72 4265a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p50 4185": [
+              0,
+              24.35
+            ],
+            "p55 4185": [
+              0,
+              6.9
+            ],
+            "p53 3708": [
+              0,
+              6.9
+            ],
+            "p86 3482": [
+              0,
+              6.9
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 2,
+      "does": "The two front wheels roll freely on their axle; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p76 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p76 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p78 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p78 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/852-Helicopter.mpd');
 
 describe('852 Helicopter', () => {
   const { mech, kin, bodyOf, turn } = load('models/852-Helicopter.mpd');

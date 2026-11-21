@@ -74,8 +74,8 @@
 // but didn't move; "moved": in `stays` but did).
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { availableParallelism } from 'node:os';
+import { closeSync, existsSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { availableParallelism, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
@@ -195,7 +195,7 @@ const controlMovedRule = process.env.KINEBRICK_CONTROL_MOVED !== '0';
 const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
 const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
-const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
+const shapesOf = new Map<string, { name: string; shape: PartMesh[]; empty?: string }[]>();
 // With --stops, the pairs of each model's parts that touch as built, from its kept file (see
 // collision-pairs.ts), as the viewer takes them; null where the kept file's key doesn't match.
 const keptNearOf = new Map<string, [number, number][] | null>();
@@ -292,7 +292,7 @@ interface Fn {
 // Given `only`, just that function (by its place in the list) is checked, and only its model is
 // loaded: the others' entries are left out (null), for a set checked a function to a process
 // (see SPLIT_OVER).
-function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
+async function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
   const { model, functions } = set.curated;
   // What each function came to the last time, for --causes: for a held one, what was found (see holds.ts).
   const priors = (set.generated?.functions ?? []).map(foundOf);
@@ -305,7 +305,7 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
   for (const m of new Set(functions.map(modelOf))) {
     const mine = functions.flatMap((fn, i) => (modelOf(fn) === m && wanted(i) ? [i] : []));
     if (mine.length === 0) continue;
-    const found = checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
+    const found = await checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
     mine.forEach((i, at) => (checked[i] = found.checked[at]));
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
     errata.applied.push(...found.errata.applied);
@@ -352,10 +352,10 @@ function withoutChecking(fn: Fn): Checked | null {
 }
 
 // Checks functions on one model: each one's result, and the model's loose parts.
-function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
+async function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
   // A model from the OMR, or a changed copy of one (see invariance.ts), is read with the library's
   // connections.
-  const loaded = loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
+  const loaded = await loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1', undefined, shapesOf.get(model));
   const { table, slides } = loaded;
   // The model as it's being worked: as loaded, or worked out afresh after a shift (see shiftTo).
   let { parts, mech, kin } = loaded;
@@ -405,12 +405,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The parts' shapes, read with the model (see partShapes), one for each part: if they don't
   // match the parts one for one, by name, the function fails rather than going on without its
   // collision stop, or with another part's shape (decision 242 of 2026-11-20: the 4558 Metroliner's
-  // shapes, shifted by one from its part 200 on).
+  // shapes, shifted by one from its part 200 on). Nor does it go on where a part has no shape but
+  // the reading gives no reason (see partShapes' `empty`): that part would have no collision test
+  // (decision 248: the 42093's 569 parts of 576).
   const shapesHere = () => {
     const known = shapesOf.get(model);
     if (!known) return null;
-    const wrong = parts.findIndex((p, i) => !p.removed && (!known[i] || known[i].name !== normalizePartName(p.name)));
+    const wrong = parts.findIndex((p, i) => !known[i] || known[i].name !== normalizePartName(p.name));
     if (wrong >= 0) throw new Error(`the parts' shapes don't match the model's parts: part ${wrong} is ${parts[wrong].name}, its shape ${known[wrong]?.name ?? 'missing'}`);
+    const bare = parts.findIndex((p, i) => !known[i].shape.length && !known[i].empty);
+    if (bare >= 0) throw new Error(`part ${bare} (${parts[bare].name}) has no shape, and no reason is given`);
     return known;
   };
   const collisionsNow = () => {
@@ -1089,7 +1093,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const tracks = mech.loops.filter((l) => TRACK_SKIN.test(l.path.skin));
       const wheelsHere = new Set([...controls.map((r) => mech.bodyOf[part(r)]), ...moves.map((m) => mech.bodyOf[m.part])]);
       const trackRead = !runsTrack || (tracks.some((l) => l.wheels.some((w) => wheelsHere.has(w.body))) && tracks.every((l) => l.wheels.length > 0));
-      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : !trackRead ? { cause: 'track-not-read' } : null;
+      // A control worked first that didn't go its distance: turned less than 0.9 of `by`, slid
+      // less than 0.9 of it, or a driving ring left at its click-in place (each says why above).
+      // The function can't work then, whatever the drag does: before, the 9395 Pick-Up Tow Truck's
+      // winch passed with its selector lever turned 0.07 rad of 0.3, the winch's parts moving
+      // without it (2026-11-20).
+      const firstShort = why.length > whyBefore;
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : firstShort ? { cause: 'first-failed' } : !trackRead ? { cause: 'track-not-read' } : null;
       if (!trackRead) why.push(tracks.length && tracks.every((l) => l.wheels.length > 0) ? 'no track is read round a control or a part the function lists' : tracks.length ? `${tracks.filter((l) => !l.wheels.length).length} of the ${tracks.length} tracks run round no wheel` : 'no track is read');
       const nothing = (explained: Explained) => ({ works: false, pushed: false, judged: 0, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], free: [] as boolean[], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (kin.frames.includes(b) || !link) {
@@ -1322,7 +1332,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt, slow, controlMoved, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
-      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      // Two ways that went the same distance are a tie, and the tie goes to the first way (the sort
+      // keeps the order of equals). "The same" is within TIE (radians, or LDU for a slide or a push):
+      // a tolerance at rounding level, not a tuned threshold. Both ways of a free control turn the
+      // full reach, and the last bits of rounding (which the working set changes, decision 272)
+      // must not choose which way's rates are stored.
+      const TIE = 1e-9;
+      const further = (x: { turned: number }, y: { turned: number }) => (Math.abs(Math.abs(y.turned) - Math.abs(x.turned)) > TIE ? Math.abs(y.turned) - Math.abs(x.turned) : 0);
+      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || further(x, y))[0];
       let each = bothWays();
       kin.restore(start);
       let best = bestOf(each);
@@ -1344,8 +1361,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       together = [];
       const something = each.some((w) => (!controlMovedRule || w.controlMoved) && (Math.abs(w.turned) >= 0.01 || w.still.length < moves.length));
       // A function that names a loose part can't work, whatever the drag did (see loosePart), nor
-      // one that runs a track not read round its wheel (see trackRead).
-      const works = best.works && loosePart === undefined && trackRead;
+      // one that runs a track not read round its wheel (see trackRead), nor one whose control worked
+      // first didn't go its distance (see firstShort).
+      const works = best.works && loosePart === undefined && trackRead && !firstShort;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
@@ -1490,6 +1508,27 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     }
     const seconds = Math.round((Date.now() - started) / 100) / 10;
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
+    // The working set's counts for this function (decision 266), then reset: printed only when
+    // KINEBRICK_WORKING_SET=1 asks for them, though the set is on without it.
+    if (process.env.KINEBRICK_WORKING_SET === '1') {
+      const st = Kinematics.wsShared;
+      const beyond = st.compared.filter((c) => c.pose > 1e-6 || c.angle2 > 1e-6);
+      console.error(`ws-stats function ${i + 1}: ${JSON.stringify({ small: st.small, made: st.made, excluded: st.excluded, fallback: st.fallback, compared: st.compared.length, beyond: beyond.length, worstPose: Math.max(0, ...st.compared.map((c) => c.pose)), worstAngle: Math.max(0, ...st.compared.map((c) => c.angle2)), turnedApart: st.compared.filter((c) => Math.abs(c.small - c.full) > 1e-12).length, worst: beyond.sort((x, y) => y.pose - x.pose)[0] ?? null })}`);
+      if (st.shadow.length) {
+        // The shadow: the most the set and the full calculation came apart over the turn, where, and
+        // for each drag whether it was still growing at its end; and the calls that turned apart.
+        const most = st.shadow.reduce((m, s) => (s.ldu > m.ldu ? s : m), st.shadow[0]);
+        const mostRad = Math.max(...st.shadow.map((s) => s.rad));
+        const byDrag = new Map<number, typeof st.shadow>();
+        for (const s of st.shadow) byDrag.set(s.drag, [...(byDrag.get(s.drag) ?? []), s]);
+        const growing = [...byDrag.values()].filter((list) => list.length > 1 && list[list.length - 1].ldu >= Math.max(...list.map((s) => s.ldu)) && list[list.length - 1].ldu > list[list.length - 2].ldu).length;
+        const apart = st.shadow.filter((s) => Math.abs(s.small - s.full) > 1e-12);
+        // The parts of the body that came apart most (by a joint's point, and by turning): the first six.
+        const partsOf = (body: number | undefined) => mech.bodyOf.flatMap((bb: number, pp: number) => (bb === body ? [name(pp)] : [])).slice(0, 6);
+        console.error(`ws-shadow function ${i + 1}: ${JSON.stringify({ calls: st.shadow.length, drags: byDrag.size, ldu: most.ldu, rad: mostRad, at: most.at, growingAtEnd: growing, turnedApart: apart.length, firstApart: apart[0] ?? null, parts: partsOf(most.body), radParts: partsOf(st.shadow.reduce((m, s) => (s.rad > m.rad ? s : m), st.shadow[0]).radBody) })}`);
+      }
+      Object.assign(st, { small: 0, made: 0, excluded: 0, fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 }, compared: [], shadow: [] });
+    }
     return { ...found, seconds };
   });
   return { checked, loose: mech.loose.map(name), errata: loaded.errata };
@@ -1603,12 +1642,30 @@ const args = process.argv.slice(2);
 const one = args.indexOf('--one'); // (internal) check this one set's file and print what it found
 const wayAt = args.indexOf('--way'); // (internal) with --only, only this control, by its place in the list
 const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
+// A folder the run's processes share (KINEBRICK_SHAPES_SHOWN, made by the run), where each model's
+// parts with no shape are marked once shown: the first process that reads a model says them, and
+// the others, checking the same set's other functions, don't. A process run by hand says them.
+const SHOWN = process.env.KINEBRICK_SHAPES_SHOWN;
+function firstToShow(model: string): boolean {
+  if (!SHOWN) return true;
+  try {
+    closeSync(openSync(join(SHOWN, encodeURIComponent(model)), 'wx'));
+    return true;
+  } catch {
+    return false;
+  }
+}
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
   if (locks || stopsReport || collide) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
     const read = readParts(m, m.startsWith('omr/'));
-    shapesOf.set(m, await partShapes(m, read.text, read.parts.map((p) => p.name)));
+    const shapes = await partShapes(m, read.text, read.parts);
+    shapesOf.set(m, shapes);
+    // The parts with no shape, each with its reason, so none goes without its collision test unseen;
+    // once a model in a run, not once for each process a set is checked in (see SHOWN).
+    const empty = read.parts.flatMap((p, i) => (shapes[i]?.empty ? [`${i} ${p.name} (${shapes[i].empty})`] : []));
+    if (empty.length && firstToShow(m)) console.error(`${m}: ${empty.length} parts with no shape: ${empty.join(', ')}`);
     if (stopsReport || collide) {
       const file = `data/collisions/${keptFileName(m)}.json`;
       const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
@@ -1617,7 +1674,7 @@ if (one >= 0) {
     }
   }
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
-  const found = args[one + 1].startsWith(join('data', 'trains')) ? await checkTrainSet(set) : check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
+  const found = args[one + 1].startsWith(join('data', 'trains')) ? await checkTrainSet(set) : await check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // With the most memory it took (see check-pool.ts), for the next run to expect. Let the output
   // drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify({ ...found, peak: peakMb() }), () => process.exit(0));
@@ -1679,7 +1736,7 @@ async function main() {
   // How many functions have each cause, of the sets checked.
   const caused: Partial<Record<Cause, number>> = {};
   const notBack = { torn: 0, 'free-turned': 0, 'moved whole': 0 };
-  type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
+  type Found = Awaited<ReturnType<typeof check>> | { timedOut: number } | { failed: string };
   // The sets whose process failed: their files are left as they were.
   const failedSets: string[] = [];
   // Each process may take as much memory as the pool's whole budget (see check-pool.ts), half the
@@ -1693,6 +1750,9 @@ async function main() {
   // the last time (`peak` in the set's record, or the function's for a set checked a function to
   // a process), else an estimate from the set's part count.
   const pool = new Pool(poolDir());
+  // Where the processes mark the models whose parts with no shape they have said (see firstToShow).
+  process.env.KINEBRICK_SHAPES_SHOWN = mkdtempSync(join(tmpdir(), 'kinebrick-shapes-shown-'));
+  process.on('exit', () => rmSync(process.env.KINEBRICK_SHAPES_SHOWN!, { recursive: true, force: true }));
   const parts = partCounts();
   const expectedMb = (s: (typeof files)[number], only: number | null) => {
     const g = s.data.generated;
@@ -1873,7 +1933,7 @@ async function main() {
   console.log(`Checking ${files.length} sets, ${jobs} at a time`);
   if (leftOut.length) console.log(`Left for the slow check, before a merge to main (npm run functions -- --slow): ${leftOut.map((s) => s.data.set).join(', ')}`);
   // Once a minute, how far it's got, with its functions' results so far as shares of all their
-  // functions, as the README has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
+  // functions, as the Status in DEVELOPER.md has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
   // (11%), 21 skipped or not checked (26%); checking 42082-1 (14 min), 9397-1 (3 min)".
   const progress = setInterval(() => {
     const now = Date.now();

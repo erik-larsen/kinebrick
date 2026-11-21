@@ -1,0 +1,76 @@
+{
+  "set": "8285-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T04:45:58.557Z",
+  "load": 36.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1790,
+  "seconds": 1475,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The bonnet, with the grille and front wings, tilts forward to show the engine.",
+      "verdict": "not shown",
+      "why": "A: p1074 3707 not moved; B: the control could not be seen",
+      "msOneCall": 12,
+      "msPerStep": null,
+      "time": {
+        "open": 28,
+        "collisions": 16,
+        "first": 0,
+        "reach": 1419,
+        "A": 11,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1069 32034",
+          "way": 1,
+          "asked": 0.15,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p1074 3707": [
+              0,
+              0
+            ],
+            "p720 3705": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1069 32034",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1074 3707": [
+              0,
+              0
+            ],
+            "p720 3705": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1069 32034",
+          "seen": false
+        }
+      ],
+      "seconds": 1475
+    }
+  ]
+}

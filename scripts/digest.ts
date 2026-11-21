@@ -20,7 +20,10 @@ import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
+import { touchingFrom } from '../src/collisions.ts';
 import { inferMechanism } from '../src/mechanism.ts';
+import { isLayout } from '../src/track.ts';
+import { partShapes } from './part-shapes.ts';
 import { keptPivots, readParts } from './load-model.ts';
 
 // With --trains, the train sets' models (data/trains), read as the train check reads them: run it
@@ -40,10 +43,11 @@ function text(value: unknown): string {
 }
 
 // One model's line: a fingerprint for each field of its mechanism.
-function lineFor(set: string, model: string): string {
-  const { table, parts, paths } = readParts(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
+async function lineFor(set: string, model: string): Promise<string> {
+  const { text: modelText, table, parts, paths } = readParts(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-  const mech = inferMechanism(parts, table, roles, paths, new Set(), false, keptPivots(model, parts, table, roles)) as unknown as Record<string, unknown>;
+  const touching = touchingFrom((await partShapes(model, modelText, parts)).map((s) => s.shape), parts.map((p) => p.matrix), isLayout(parts, roles));
+  const mech = inferMechanism(parts, table, roles, paths, new Set(), false, keptPivots(model, parts, table, roles), new Set(), touching) as unknown as Record<string, unknown>;
   const fields = Object.keys(mech)
     .sort()
     .map((k) => `${k}=${createHash('sha256').update(text(mech[k]) ?? 'undefined').digest('hex').slice(0, 12)}`);
@@ -54,7 +58,7 @@ const args = process.argv.slice(2);
 // One model, in a process of its own (see below): its line, printed.
 const oneAt = args.indexOf('--one');
 if (oneAt >= 0) {
-  console.log(lineFor(args[oneAt + 1], args[oneAt + 2]));
+  console.log(await lineFor(args[oneAt + 1], args[oneAt + 2]));
   process.exit(0);
 }
 

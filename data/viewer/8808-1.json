@@ -1,0 +1,368 @@
+{
+  "set": "8808-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:10:51.535Z",
+  "load": 14.9,
+  "part": "A",
+  "parts": 92,
+  "seconds": 17,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: an 8 tooth gear on its column runs in a rack on the tie plate between the two steering arms, so both front wheels swing the same way.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p79 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 31,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p49 4261": [
+              0,
+              22
+            ],
+            "p53 4261": [
+              0,
+              22
+            ],
+            "p71 3743": [
+              15.27,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p79 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 29,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p49 4261": [
+              0,
+              22
+            ],
+            "p53 4261": [
+              0,
+              22
+            ],
+            "p71 3743": [
+              15.27,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 2,
+      "does": "Pushed along, the four rear wheels, doubled up on one long axle, roll together.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p74 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 21,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p74 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p82 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p82 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p86 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 15,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p86 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p90 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p90 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 3,
+      "does": "The front wheels, doubled up on a short axle in each steering arm, roll freely.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p72 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 15,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p72 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p88 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p88 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p80 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p80 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

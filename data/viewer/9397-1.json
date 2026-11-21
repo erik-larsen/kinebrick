@@ -1,0 +1,607 @@
+{
+  "set": "9397-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:38:33.642Z",
+  "load": 20.1,
+  "part": "A",
+  "parts": 1143,
+  "seconds": 1748,
+  "functions": [
+    {
+      "function": 1,
+      "does": "A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 2275,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 173,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.257,
+          "ms": 62610,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p157 6538a": [
+              0,
+              81
+            ],
+            "p160 6538a": [
+              0,
+              81
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.942,
+          "ms": 61250,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p157 6538a": [
+              0,
+              63
+            ],
+            "p160 6538a": [
+              0,
+              63
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 212
+    },
+    {
+      "function": 2,
+      "does": "With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it.",
+      "verdict": "not shown",
+      "why": "A: p624 62274c01 against p623 62271c01, p894 64178 not moved",
+      "msOneCall": null,
+      "msPerStep": 1641,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 15,
+        "reach": 0,
+        "A": 165,
+        "B": 0
+      },
+      "stop": {
+        "control": "p240 58120",
+        "way": 1,
+        "went": 1.414,
+        "asked": 4.1,
+        "by": [
+          "211/216"
+        ]
+      },
+      "stops": [
+        "211/216"
+      ],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 4.1,
+          "went": 1.414,
+          "ms": 66275,
+          "msOneCall": null,
+          "stops": [
+            "211/216"
+          ],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              0.56,
+              0
+            ],
+            "p894 64178": [
+              0.38,
+              0.27
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 4.2,
+          "went": -1.571,
+          "ms": 65294,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              0.62,
+              0
+            ],
+            "p894 64178": [
+              0.42,
+              0.3
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p240 58120",
+          "judged": "stands",
+          "why": "stopped at +1.414 rad (211/216); kinds electric-motor, function-selector, linear-actuator: container tipper"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p624 62274c01 against p623 62271c01, p894 64178 not moved"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 203
+    },
+    {
+      "function": 3,
+      "does": "With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 1391,
+      "time": {
+        "open": 36,
+        "collisions": 0,
+        "first": 13,
+        "reach": 0,
+        "A": 144,
+        "B": 0
+      },
+      "stop": {
+        "control": "p240 58120",
+        "way": 1,
+        "went": 1.571,
+        "asked": 1.5,
+        "by": [
+          "209/220"
+        ]
+      },
+      "stops": [
+        "209/220"
+      ],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.571,
+          "ms": 62439,
+          "msOneCall": null,
+          "stops": [
+            "209/220"
+          ],
+          "moved": {
+            "p464 92695 against p463 92693c01": [
+              0,
+              99
+            ],
+            "p1340 32073": [
+              1.77,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.571,
+          "ms": 58101,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p464 92695 against p463 92693c01": [
+              0,
+              99
+            ],
+            "p1340 32073": [
+              1.76,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p240 58120",
+          "judged": "stands",
+          "why": "stopped at +1.571 rad (209/220); kinds electric-motor, function-selector, linear-actuator: plough"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 195
+    },
+    {
+      "function": 4,
+      "does": "The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 1215,
+      "msPerStep": 252,
+      "time": {
+        "open": 25,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 38,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1000 3706",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 10641,
+          "msOneCall": 1215,
+          "stops": [],
+          "moved": {
+            "p813 32072": [
+              0,
+              85.94
+            ],
+            "p510 32072": [
+              0,
+              85.94
+            ],
+            "p142 87761": [
+              23.49,
+              0
+            ],
+            "p121 87083": [
+              17.61,
+              37.05
+            ],
+            "p125 87083": [
+              17.61,
+              37.22
+            ]
+          }
+        },
+        {
+          "control": "p1000 3706",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 10781,
+          "msOneCall": 1091,
+          "stops": [],
+          "moved": {
+            "p813 32072": [
+              0,
+              85.94
+            ],
+            "p510 32072": [
+              0,
+              85.94
+            ],
+            "p142 87761": [
+              23.49,
+              0
+            ],
+            "p121 87083": [
+              17.61,
+              37.05
+            ],
+            "p125 87083": [
+              17.61,
+              37.22
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 66
+    },
+    {
+      "function": 5,
+      "does": "Rolling the truck turns the engine: the two rear axles' differential drives a shaft forward to the crankshaft under the bonnet, so the four pistons go up and down.",
+      "verdict": "shown",
+      "msOneCall": 2572,
+      "msPerStep": 1829,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 326,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1450 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78365,
+          "msOneCall": 2534,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              17.35,
+              12.46
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1450 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 77635,
+          "msOneCall": 2509,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              17.35,
+              12.46
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1451 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 73676,
+          "msOneCall": 2365,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              17.35,
+              12.46
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1451 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 73193,
+          "msOneCall": 2572,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              17.35,
+              12.46
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 331
+    },
+    {
+      "function": 6,
+      "does": "All six wheels roll; the front pair steer.",
+      "verdict": "shown",
+      "msOneCall": 3323,
+      "msPerStep": 2024,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 738,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1448 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 12673,
+          "msOneCall": 1244,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1448 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12604,
+          "msOneCall": 1261,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1449 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 12333,
+          "msOneCall": 1247,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1449 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12446,
+          "msOneCall": 1193,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1450 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 73397,
+          "msOneCall": 2367,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1450 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 73242,
+          "msOneCall": 2430,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1451 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 75702,
+          "msOneCall": 2473,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1451 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 78536,
+          "msOneCall": 2582,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1452 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 84214,
+          "msOneCall": 3056,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1452 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 84945,
+          "msOneCall": 2986,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1453 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 86754,
+          "msOneCall": 3070,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1453 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 82664,
+          "msOneCall": 3323,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 741
+    }
+  ]
+}

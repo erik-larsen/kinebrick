@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 3,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 2,
     "counts": {
       "works": 4
     },
@@ -172,7 +172,7 @@
             1.33
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -198,7 +198,7 @@
             ],
             "p199 3710": [
               0,
-              3.27e-16
+              1.82e-14
             ],
             "p109 3482 against p0 3030": [
               0,
@@ -478,6 +478,7 @@
         ],
         "seconds": 0.1
       }
-    ]
+    ],
+    "peak": 290
   }
 }

@@ -1,0 +1,199 @@
+{
+  "set": "42060-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:26:28.387Z",
+  "load": 29.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 357,
+  "seconds": 60,
+  "functions": [
+    {
+      "function": 6,
+      "does": "Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom.",
+      "verdict": "not shown",
+      "why": "A: p288 42060 - 33299b, p295 32524 against p277 32316 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 25,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p287 59443",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p288 42060 - 33299b": [
+              0,
+              0
+            ],
+            "p295 32524 against p277 32316": [
+              0,
+              0
+            ],
+            "p277 32316": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p287 59443",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p288 42060 - 33299b": [
+              0,
+              0
+            ],
+            "p295 32524 against p277 32316": [
+              0,
+              0
+            ],
+            "p277 32316": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 36
+    },
+    {
+      "function": 7,
+      "does": "The excavator rides on two tracks of chain links, each over two 16 tooth gears, and rolls along on them.",
+      "verdict": "not shown",
+      "msOneCall": 20,
+      "msPerStep": 2,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": {
+        "control": "p308 94925",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "202/304"
+        ]
+      },
+      "stops": [
+        "202/304"
+      ],
+      "A": [
+        {
+          "control": "p308 94925",
+          "way": 1,
+          "asked": 0.93,
+          "went": 0.93,
+          "ms": 43,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p308 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 3,
+          "stops": [
+            "202/304"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p311 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 49,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p311 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p313 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p313 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 43,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p308 94925",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: tracks, rolls), but a collision stops it at -0 rad (202/304)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p308 94925: turns without end (kinds crawler-tracks; the text says: tracks, rolls), but a collision stops it at -0 rad (202/304)",
+      "seconds": 23
+    }
+  ]
+}

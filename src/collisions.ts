@@ -137,7 +137,52 @@ function shrink(list: PartMesh[], inset: number) {
     }
   }
 }
-import { MeshBVH } from 'three-mesh-bvh';
+import { ExtendedTriangle, MeshBVH } from 'three-mesh-bvh';
+
+// Two triangles that lie in one plane do not cross (decision 246 of 2026-11-20). three-mesh-bvh's
+// triangle test (ExtendedTriangle.intersectsTriangle, which MeshBVH.intersectsGeometry and the
+// distance routines use) takes two triangles as lying in one plane only where each corner is off
+// the other's plane by less than 1e-15, whatever the size of the coordinates. Two faces in one
+// plane of a model a few hundred LDU across are off it by the rounding of those coordinates, a
+// few 1e-15; the test then works out where two planes cross from two parallel normals, and may
+// answer that the faces meet: the 42075 First Responder's crankshaft against its engine, faces in
+// one plane 11 LDU apart in it, a hit or not by rounding (decision 245). So where the library
+// says two triangles meet, and they lie in one plane within the rounding their own coordinates
+// carry (see inOnePlane), they don't: apart in the plane, they don't meet; lying on each other,
+// they touch, and nothing passes through anything there (a crossing of the parts shows in their
+// other faces). Set once here, so the check, the viewer and the collision worker all have it.
+export const libraryIntersects = ExtendedTriangle.prototype.intersectsTriangle;
+ExtendedTriangle.prototype.intersectsTriangle = function (this: ExtendedTriangle, other: ExtendedTriangle, target?: unknown, suppressLog?: boolean) {
+  const hit = (libraryIntersects as (this: ExtendedTriangle, o: ExtendedTriangle, t?: unknown, s?: boolean) => boolean).call(this, other, target, suppressLog);
+  return hit && !inOnePlane(this, other);
+} as typeof ExtendedTriangle.prototype.intersectsTriangle;
+
+// How many rounded operations the distance of a corner from a triangle's plane takes, at most: the
+// two edges (3 subtractions each) and their cross product (2 products and a subtraction a
+// component), the corner's offset from the triangle (a subtraction), and the dot product (3
+// products and 2 additions). Each rounds by at most half an ulp of a number no bigger than the
+// coordinates' size squared or so; counted generously, the distance is good to PLANE_OPS ulps of
+// the coordinates' size.
+const PLANE_OPS = 16;
+
+// Whether two triangles lie in one plane: every corner of each is off the other's plane by no
+// more than the rounding its coordinates carry, PLANE_OPS ulps of their size (the largest of their
+// coordinates). A triangle with no area has no plane: not in one.
+export function inOnePlane(t1: { a: Vector3; b: Vector3; c: Vector3 }, t2: { a: Vector3; b: Vector3; c: Vector3 }): boolean {
+  const corners = [t1.a, t1.b, t1.c, t2.a, t2.b, t2.c];
+  const size = Math.max(...corners.map((p) => Math.max(Math.abs(p.x), Math.abs(p.y), Math.abs(p.z))));
+  const tolerance = PLANE_OPS * Number.EPSILON * Math.max(size, Number.MIN_VALUE);
+  const off = (t: { a: Vector3; b: Vector3; c: Vector3 }, points: Vector3[]) => {
+    const normal = new Vector3().subVectors(t.b, t.a).cross(new Vector3().subVectors(t.c, t.a));
+    const length = normal.length();
+    if (!(length > 0)) return null;
+    normal.multiplyScalar(1 / length);
+    return Math.max(...points.map((p) => Math.abs(normal.dot(new Vector3().subVectors(p, t.a)))));
+  };
+  const one = off(t1, [t2.a, t2.b, t2.c]);
+  const two = off(t2, [t1.a, t1.b, t1.c]);
+  return one !== null && two !== null && one <= tolerance && two <= tolerance;
+}
 
 // One mesh of a part, in the part's own coordinates.
 export interface PartMesh {
@@ -240,6 +285,89 @@ export function libraryRelease(ldconfig: string): string {
   return /^0 !LDRAW_ORG .*$/m.exec(ldconfig)?.[0].trim() ?? '';
 }
 
+// A part's shape for collision tests, from its meshes: shrunk (see shrink), each mesh with its
+// tree, and the box round them all, in the part's own coordinates. A list several parts share
+// (see part-shapes.ts) makes one shape, its tree built once; a tree built before is kept.
+const shapesMade = new WeakMap<PartMesh[], Shape>();
+function shapeOf(list: PartMesh[], inset = INSET): Shape {
+  const known = shapesMade.get(list);
+  if (known) return known;
+  const box = boxOf(list, inset);
+  const built = list.map((m) => {
+    const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
+    m.geometry.boundsTree = bvh;
+    return { geometry: m.geometry, bvh, matrix: m.matrix };
+  });
+  const shape = { meshes: built, box };
+  shapesMade.set(list, shape);
+  return shape;
+}
+
+// The box round a part's shrunk meshes, in its own coordinates (the box of shapeOf), without
+// building their trees.
+const boxesMade = new WeakMap<PartMesh[], Box3>();
+function boxOf(list: PartMesh[], inset = INSET): Box3 {
+  const known = boxesMade.get(list);
+  if (known) return known;
+  shrink(list, inset);
+  const box = new Box3();
+  for (const m of list) {
+    m.geometry.computeBoundingBox();
+    box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
+  }
+  boxesMade.set(list, box);
+  return box;
+}
+
+// What each of some parts touches as built, by the first pass's own test (see nearPairsOf): their
+// boxes within NEAR of each other, then their shrunk shapes within NEAR (shapesNear). For the
+// inference, which asks it for its loose parts (decision 259 of 2026-11-20: a loose part rides
+// with a part it touches as built; see rideAlong). `meshes` are each part's, as the collision pass
+// is given them (the viewer's from its loader, the scripts' from partShapes).
+//
+// As built: the parts placed as `built` says, or else as the first question places them (every
+// caller's first reading is of the model as built). A later question's placement is not looked
+// at: the mechanism is read again after a shift and for each trial of pins, and what a loose part
+// rides with must not change with where the mechanism stands (decision 274 of 2026-11-21).
+//
+// It is asked at every build of the mechanism, three or more for one reading, and it is the
+// slow part of a reading (28 s a time for the 42078 Mack Anthem, whose trailer is 1,100 loose
+// parts until it is read as a second model). So what it works out is kept: the pairs whose boxes
+// meet, found once, and each pair's answer once tested. And a pair of two parts both asked about
+// is left out unless `all`: both are loose, and the rule looks only at the parts a loose part
+// touches that aren't loose. The page gives `all` to its helper (pinWorker.ts), which keeps each
+// part's answer for builds whose loose parts differ.
+export type Touching = (partMatrices: Matrix4[], which: number[], all?: boolean) => Map<number, number[]>;
+// On a train layout (`layout`, see isLayout in track.ts) the shapes are pulled in and compared as
+// the layout's collision test has them (LAYOUT_INSET and LAYOUT_NEAR): a list is shrunk once only,
+// and this is the first to shrink it.
+export function touchingFrom(meshes: PartMesh[][], built?: Matrix4[], layout = false): Touching {
+  const inset = layout ? LAYOUT_INSET : INSET;
+  const near = layout ? LAYOUT_NEAR : NEAR;
+  let placed: Matrix4[] | null = built ? built.map((m) => m.clone()) : null;
+  let meeting: [number, number][] | null = null;
+  const nearBy = new Map<number, boolean>();
+  return (partMatrices, which, all = false) => {
+    placed ??= partMatrices.map((m) => m.clone());
+    const at = placed;
+    // The parts only: a script's list of meshes goes on with the shapes submodels draw.
+    meeting ??= meetingPairs(at.map((_, i) => boxOf(meshes[i] ?? [], inset)), at, () => true, near);
+    const wanted = new Set(which);
+    const out = new Map(which.map((i) => [i, [] as number[]]));
+    for (const [a, b] of meeting) {
+      if (!wanted.has(a) && !wanted.has(b)) continue;
+      if (!all && wanted.has(a) && wanted.has(b)) continue;
+      const pair = a * at.length + b;
+      let is = nearBy.get(pair);
+      if (is === undefined) nearBy.set(pair, (is = shapesNear(shapeOf(meshes[a], inset), shapeOf(meshes[b], inset), at[a].clone().invert().multiply(at[b]), near)));
+      if (!is) continue;
+      if (wanted.has(a)) out.get(a)!.push(b);
+      if (wanted.has(b)) out.get(b)!.push(a);
+    }
+    return out;
+  };
+}
+
 // The first pass's whole result, kept per model (see data/collisions/): every pair of parts
 // whose boxes meet as built, whatever bodies they're on, and which of them are near. It doesn't
 // depend on how the model is read, so a change to the inference never makes it stale.
@@ -278,28 +406,10 @@ export class Collisions {
   // placement (part -> model coordinates). With `later`, the pairs near at the start aren't
   // found here: `nearPairs` then says which they are (see setNear), and the page goes on
   // meanwhile. `inset`, how far each part's shape is pulled in; `near`, how close two parts may
-  // be as built and not be watched.
+  // be as built and not be watched (INSET and NEAR, or a train layout's: see isLayout in track.ts).
   constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false, inset = INSET, near = NEAR) {
     this.near = near;
-    // A list several parts share (see part-shapes.ts) makes one shape, its tree built once.
-    const made = new Map<PartMesh[], Shape>();
-    this.shapes = meshes.map((list) => {
-      const known = made.get(list);
-      if (known) return known;
-      shrink(list, inset);
-      const box = new Box3();
-      const built = list.map((m) => {
-        // A tree built before (by a Collisions given this list earlier) is kept.
-        const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
-        m.geometry.boundsTree = bvh;
-        m.geometry.computeBoundingBox();
-        box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
-        return { geometry: m.geometry, bvh, matrix: m.matrix };
-      });
-      const shape = { meshes: built, box };
-      made.set(list, shape);
-      return shape;
-    });
+    this.shapes = meshes.map((list) => shapeOf(list, inset));
     this.waiting = later;
     this.watch(bodyOf, connected, partMatrices);
   }

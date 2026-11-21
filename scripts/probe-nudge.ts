@@ -56,11 +56,11 @@ const totals = new Map<string, { lost: number; gained: number; sets: number }>()
 for (const set of sets) {
   const model: string = set.curated.model;
   const omr = model.startsWith('omr/');
-  const plain = loadModel(model, omr);
+  const plain = await loadModel(model, omr);
   // The copy keeps the model's file name: a model of ours finds its connections by it.
   const copy = join(dir, basename(model));
   writeFileSync(copy, changed(readFileSync(model, 'utf-8'), jitter));
-  const nudged = loadModel(copy, omr);
+  const nudged = await loadModel(copy, omr);
   const [was, now] = [contents(plain.parts, plain.mech), contents(nudged.parts, nudged.mech)];
   const lines: string[] = [];
   for (const kind of [...new Set([...was.keys(), ...now.keys()])].sort()) {

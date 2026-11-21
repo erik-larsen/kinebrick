@@ -1,0 +1,117 @@
+{
+  "set": "8208-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:05:11.272Z",
+  "load": 21.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 49,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin).",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 0,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p36 32073",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              40
+            ]
+          },
+          "asked": 0.77,
+          "went": 0.77,
+          "ms": 8,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p42 3706": [
+              27.08,
+              44.12
+            ],
+            "p43 3706": [
+              27.08,
+              44.12
+            ],
+            "p47 3705": [
+              15.02,
+              44.12
+            ],
+            "p49 2994": [
+              15.77,
+              44.12
+            ],
+            "p26 2994": [
+              0,
+              0
+            ],
+            "p0 6575": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p36 32073",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              40
+            ]
+          },
+          "asked": 0.77,
+          "went": -0.77,
+          "ms": 5,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p42 3706": [
+              27.08,
+              44.12
+            ],
+            "p43 3706": [
+              27.08,
+              44.12
+            ],
+            "p47 3705": [
+              15.02,
+              44.12
+            ],
+            "p49 2994": [
+              15.77,
+              44.12
+            ],
+            "p26 2994": [
+              0,
+              0
+            ],
+            "p0 6575": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 10
+    }
+  ]
+}

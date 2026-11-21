@@ -52,9 +52,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 2,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 1,
     "counts": {
       "works": 2,
       "skipped": 1
@@ -73,7 +73,7 @@
           {
             "p50 4185": [
               0.283,
-              1.42e-14
+              9.47e-15
             ],
             "p55 4185": [
               0.0803,
@@ -187,12 +187,13 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "skipped",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 199
   }
 }

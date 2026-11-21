@@ -1,0 +1,131 @@
+{
+  "set": "9394-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:44:11.263Z",
+  "load": 39.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 466,
+  "seconds": 268,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Moving the control stick in the cockpit forward and back tilts the two tailplanes: rods along the fuselage carry the stick's movement to a crank on the tailplanes' common axle.",
+      "verdict": "not shown",
+      "why": "A: p196 40490, p305 32278, p308 32278, p244 60485, p541 64392, p546 64682 not moved",
+      "msOneCall": 3,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 4,
+        "first": 0,
+        "reach": 3,
+        "A": 3,
+        "B": 248
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p194 6553",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p196 40490": [
+              0,
+              0
+            ],
+            "p305 32278": [
+              0,
+              0
+            ],
+            "p308 32278": [
+              0,
+              0
+            ],
+            "p244 60485": [
+              0,
+              0
+            ],
+            "p541 64392": [
+              0,
+              0
+            ],
+            "p546 64682": [
+              0,
+              0
+            ],
+            "p72 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p194 6553",
+          "way": -1,
+          "asked": 0.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p196 40490": [
+              0,
+              0
+            ],
+            "p305 32278": [
+              0,
+              0
+            ],
+            "p308 32278": [
+              0,
+              0
+            ],
+            "p244 60485": [
+              0,
+              0
+            ],
+            "p541 64392": [
+              0,
+              0
+            ],
+            "p546 64682": [
+              0,
+              0
+            ],
+            "p72 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p194 6553",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p196 40490",
+            "p305 32278",
+            "p308 32278",
+            "p244 60485",
+            "p541 64392",
+            "p546 64682"
+          ],
+          "stops": [
+            "308/550",
+            "185/196"
+          ]
+        }
+      ],
+      "seconds": 268
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "set": "42057-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:06:55.142Z",
+  "load": 16.5,
+  "part": "A",
+  "parts": 194,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the main rotor runs the three-cylinder engine behind the pilot: the rotor's mast turns the crankshaft through a pair of 12 tooth bevel gears, the three pistons pump up and down, and a 20 tooth gear on the crankshaft's back end turns the rear propeller's shaft through a 12 tooth gear, faster than the rotor.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 3,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p113 32209",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 144,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p73 2854": [
+              0,
+              85.94
+            ],
+            "p72 2851": [
+              10.56,
+              0
+            ],
+            "p76 2851": [
+              8.03,
+              0
+            ],
+            "p68 87083": [
+              0,
+              143.24
+            ]
+          }
+        },
+        {
+          "control": "p113 32209",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 127,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p73 2854": [
+              0,
+              85.94
+            ],
+            "p72 2851": [
+              10.56,
+              0
+            ],
+            "p76 2851": [
+              8.03,
+              0
+            ],
+            "p68 87083": [
+              0,
+              143.24
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 4,
+      "does": "The joystick in front of the pilot's seat tilts.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 3,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p142 40001",
+          "way": 1,
+          "asked": 1.3,
+          "went": 1.3,
+          "ms": 41,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p142 40001",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 3,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 5,
+      "does": "The nose wheel and the two wheels on the red landing legs roll freely.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p7 42057 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 58,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p7 42057 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 58,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p175 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 63,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p175 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p188 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 58,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p188 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

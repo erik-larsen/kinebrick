@@ -1,0 +1,367 @@
+{
+  "set": "42048-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:09:05.847Z",
+  "load": 24.2,
+  "part": "A",
+  "parts": 339,
+  "seconds": 38,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The red gear lever on the seat's left has three positions, 1, N and 2: it turns a cross shaft under the seat, whose liftarm on the right side pushes a black link back to rock the changeover catch at the back, which slides the driving ring on the rear axle to lock one of the two 16-tooth clutch gears to the axle, or neither.",
+      "verdict": "not shown",
+      "why": "A: p67 18947 not moved",
+      "msOneCall": 24,
+      "msPerStep": 6,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p368 32015",
+        "way": 1,
+        "went": 0.636,
+        "asked": 0.67,
+        "by": [
+          "205/215"
+        ]
+      },
+      "stops": [
+        "205/215"
+      ],
+      "A": [
+        {
+          "control": "p368 32015",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0.636,
+          "ms": 111,
+          "msOneCall": 24,
+          "stops": [
+            "205/215"
+          ],
+          "moved": {
+            "p278 32293": [
+              39.75,
+              5.26
+            ],
+            "p215 6641": [
+              9.94,
+              28.77
+            ],
+            "p67 18947": [
+              0,
+              0
+            ],
+            "p64 18946": [
+              0,
+              0
+            ],
+            "p73 18946": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p368 32015",
+          "way": -1,
+          "asked": 0.63,
+          "went": -0.63,
+          "ms": 85,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p278 32293": [
+              37.79,
+              5.99
+            ],
+            "p215 6641": [
+              9.45,
+              27.32
+            ],
+            "p67 18947": [
+              0,
+              0
+            ],
+            "p64 18946": [
+              0,
+              0
+            ],
+            "p73 18946": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p368 32015",
+          "judged": "stands",
+          "why": "stopped at +0.636 rad (205/215); kinds driving-ring-gearbox: 2 speeds"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p67 18947 not moved"
+      },
+      "seconds": 11
+    },
+    {
+      "function": 3,
+      "does": "With a gear engaged, pushing the kart along runs its one-cylinder engine: the rear axle turns the engaged clutch gear, which drives a 16-tooth gear on one of two short shafts; one shaft drives the upper shaft through a pair of 16-tooth gears, the other through an 8-tooth gear on the upper shaft's 24-tooth gear, and the 24-tooth gear turns the 12-tooth bevel gear on the crankshaft, so the piston goes up and down. One gear runs the engine three times as fast as the other; in N the engine stays still.",
+      "verdict": "shown",
+      "why": "first step not done by the sweep: p368 32015 by 0.4 (it has no joint to turn, or didn't turn)",
+      "msOneCall": 10,
+      "msPerStep": 6,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 3,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p374 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 242,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p63 44294": [
+              0,
+              85.94
+            ],
+            "p222 44294": [
+              0,
+              28.65
+            ],
+            "p246 3648b": [
+              0,
+              28.65
+            ],
+            "p235 32270": [
+              0,
+              57.3
+            ],
+            "p233 2851": [
+              3.7,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p374 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 231,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p63 44294": [
+              0,
+              85.94
+            ],
+            "p222 44294": [
+              0,
+              28.65
+            ],
+            "p246 3648b": [
+              0,
+              28.65
+            ],
+            "p235 32270": [
+              0,
+              57.3
+            ],
+            "p233 2851": [
+              3.7,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p376 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 231,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p63 44294": [
+              0,
+              85.94
+            ],
+            "p222 44294": [
+              0,
+              28.65
+            ],
+            "p246 3648b": [
+              0,
+              28.65
+            ],
+            "p235 32270": [
+              0,
+              57.3
+            ],
+            "p233 2851": [
+              3.7,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p376 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 233,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p63 44294": [
+              0,
+              85.94
+            ],
+            "p222 44294": [
+              0,
+              28.65
+            ],
+            "p246 3648b": [
+              0,
+              28.65
+            ],
+            "p235 32270": [
+              0,
+              57.3
+            ],
+            "p233 2851": [
+              3.7,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 10
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll; the rear wheels share one axle (made of two 7-long axles joined by the driving ring's joiner), and the front wheels turn on their hubs.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 4,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p372 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 170,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p372 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 161,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p374 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 149,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p374 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 145,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p376 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 146,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p376 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 147,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p378 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 147,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p378 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 143,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    }
+  ]
+}

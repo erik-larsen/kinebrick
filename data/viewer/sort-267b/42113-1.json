@@ -1,0 +1,251 @@
+{
+  "set": "42113-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T04:32:28.229Z",
+  "load": 39.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1628,
+  "seconds": 5930,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The wheels on the three landing gear legs roll freely.",
+      "verdict": "not shown",
+      "msOneCall": 143,
+      "msPerStep": 24,
+      "time": {
+        "open": 84,
+        "collisions": 48,
+        "first": 0,
+        "reach": 2723,
+        "A": 63,
+        "B": 3012
+      },
+      "stop": {
+        "control": "p105 42610",
+        "way": 1,
+        "went": 0.384,
+        "asked": 1.5,
+        "by": [
+          "337/344"
+        ]
+      },
+      "stops": [
+        "337/344"
+      ],
+      "A": [
+        {
+          "control": "p105 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.384,
+          "ms": 265,
+          "msOneCall": 143,
+          "stops": [
+            "337/344"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p105 42610",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 246,
+          "msOneCall": 75,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.384,
+          "ms": 250,
+          "msOneCall": 65,
+          "stops": [
+            "337/344"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p106 42610",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 243,
+          "msOneCall": 60,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p130 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.384,
+          "ms": 252,
+          "msOneCall": 62,
+          "stops": [
+            "337/344"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p130 42610",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 242,
+          "msOneCall": 66,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.384,
+          "ms": 249,
+          "msOneCall": 65,
+          "stops": [
+            "337/344"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p131 42610",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 237,
+          "msOneCall": 62,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p353 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 803,
+          "msOneCall": 61,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p353 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 821,
+          "msOneCall": 63,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p354 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 807,
+          "msOneCall": 63,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p354 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 820,
+          "msOneCall": 64,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p105 42610",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "337/344",
+            "337/340"
+          ]
+        },
+        {
+          "control": "p106 42610",
+          "seen": false
+        },
+        {
+          "control": "p130 42610",
+          "seen": false
+        },
+        {
+          "control": "p131 42610",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "337/344",
+            "337/340",
+            "337/343"
+          ]
+        },
+        {
+          "control": "p353 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p354 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "77/92"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p105 42610",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344)"
+        },
+        {
+          "control": "p106 42610",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344)"
+        },
+        {
+          "control": "p130 42610",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344)"
+        },
+        {
+          "control": "p131 42610",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p105 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p106 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p130 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p131 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344)",
+      "seconds": 5930
+    }
+  ]
+}

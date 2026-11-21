@@ -1,0 +1,102 @@
+{
+  "set": "42032-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:19:54.647Z",
+  "load": 29.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 245,
+  "seconds": 25,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
+      "verdict": "not shown",
+      "why": "A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 16,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p107 87083",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              105
+            ]
+          },
+          "asked": 0.47,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p107 87083 against p97 32278": [
+              0,
+              0
+            ],
+            "p139 59443 against p97 32278": [
+              0,
+              0
+            ],
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p107 87083",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              105
+            ]
+          },
+          "asked": 0.75,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p107 87083 against p97 32278": [
+              0,
+              0
+            ],
+            "p139 59443 against p97 32278": [
+              0,
+              0
+            ],
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 25
+    }
+  ]
+}

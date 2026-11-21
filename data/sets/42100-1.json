@@ -176,12 +176,12 @@
     ]
   },
   "generated": {
-    "commit": "5e17bb50",
-    "date": "2026-11-19",
-    "seconds": 9087,
+    "commit": "fe0dd791",
+    "date": "2026-11-21",
+    "seconds": 1662,
     "counts": {
-      "partly": 5,
-      "works": 4,
+      "partly": 6,
+      "works": 3,
       "not back": 2,
       "torn": 1,
       "moved whole": 1
@@ -374,7 +374,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 54.2
+        "seconds": 17.3,
+        "peak": 1243
       },
       {
         "result": "partly",
@@ -437,7 +438,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 55.5
+        "seconds": 16.7,
+        "peak": 1271
       },
       {
         "result": "partly",
@@ -531,7 +533,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 145.9
+        "seconds": 32.6,
+        "peak": 963
       },
       {
         "result": "works",
@@ -581,7 +584,8 @@
             ]
           ]
         ],
-        "seconds": 50.7
+        "seconds": 17.7,
+        "peak": 1317
       },
       {
         "result": "works",
@@ -602,7 +606,7 @@
               0.348
             ],
             "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
-              9.67e-8,
+              8.98e-8,
               0.348
             ],
             "p3322 42003 against p2971 42003": [
@@ -635,7 +639,8 @@
             ]
           ]
         ],
-        "seconds": 1621.8
+        "seconds": 573.2,
+        "peak": 1184
       },
       {
         "result": "works",
@@ -653,28 +658,10 @@
           {
             "p3322 42003 against p2971 42003": [
               0.00302,
-              0.547
+              0.548
             ],
             "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              6.65e-8,
-              0.582
-            ],
-            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
-              6.65e-8,
-              0.582
-            ],
-            "p2971 42003 against p1927 42003": [
-              0,
-              7.68e-13
-            ]
-          },
-          {
-            "p3322 42003 against p2971 42003": [
-              0.00302,
-              0.547
-            ],
-            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              6.65e-8,
+              8.87e-8,
               0.582
             ],
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
@@ -683,7 +670,25 @@
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              2.71e-13
+              8.45e-13
+            ]
+          },
+          {
+            "p3322 42003 against p2971 42003": [
+              0.00302,
+              0.548
+            ],
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
+              8.87e-8,
+              0.582
+            ],
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
+              8.87e-8,
+              0.582
+            ],
+            "p2971 42003 against p1927 42003": [
+              0,
+              4.87e-13
             ]
           }
         ],
@@ -743,7 +748,8 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 1032.8
+        "seconds": 320.4,
+        "peak": 1285
       },
       {
         "result": "partly",
@@ -816,7 +822,8 @@
         "cause": "too-little",
         "detail": "p3600 15458 against p3322 42003",
         "onPlay": 20.66,
-        "seconds": 1158.1
+        "seconds": 589.6,
+        "peak": 1037
       },
       {
         "result": "partly",
@@ -875,74 +882,83 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.33,
-        "seconds": 34.3
+        "seconds": 14.4,
+        "peak": 992
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.07,
-            0
-          ]
-        ],
-        "rates": [
-          {
-            "p4686 40490": [
-              1,
-              325
-            ]
-          }
-        ],
-        "back": [
-          [
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
             [
-              0,
-              0
-            ],
-            [
-              0,
+              0.07,
               0
             ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "freed": 1,
-        "collisionStops": [
-          [
-            0,
-            1,
-            4242,
-            4676,
-            0.07,
-            0.07
           ],
-          [
-            0,
-            -1,
-            4678,
-            4743,
-            0,
-            0
-          ]
-        ],
-        "seconds": 22.6
+          "rates": [
+            {
+              "p4686 40490": [
+                1,
+                325
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "freed": 1,
+          "collisionStops": [
+            [
+              0,
+              1,
+              4242,
+              4676,
+              0.07,
+              0.07
+            ],
+            [
+              0,
+              -1,
+              4678,
+              4743,
+              0,
+              0
+            ]
+          ],
+          "seconds": 17.3,
+          "peak": 924
+        }
       }
     ]
   }

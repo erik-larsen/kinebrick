@@ -570,6 +570,13 @@ function circleThrough(a: Vector3, b: Vector3, c: Vector3): { center: Vector3; r
 // step, couldn't both keep to it); then each arc is the circle through its ends and middle as
 // placed (a layout often places a curve with its rotation rounded, which stretches it a little).
 // Null if the model has no track.
+// Whether the model is a train layout: some part of it is a rail, as buildTrack reads the track.
+// Known before the mechanism is worked out, so the collision shapes are pulled in as a layout's
+// from the first (LAYOUT_INSET in collisions.ts). `roles` by part name, as data/roles.json.
+export function isLayout(parts: { name: string }[], roles: Record<string, string>): boolean {
+  return parts.some((p) => (roles[p.name] ?? roles[p.name.replace(/(?:p[0-9a-z]+|pb[0-9a-z]+)\.dat$/, '.dat')]) === 'rail');
+}
+
 export function buildTrack(parts: { name: string; matrix: Matrix4 }[]): Track | null {
   const track = new Track();
   // Each line's segments as placed: start, middle (for an arc) and end points.

@@ -1,0 +1,447 @@
+{
+  "set": "42068-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:56:56.533Z",
+  "load": 36.7,
+  "part": "A",
+  "parts": 1094,
+  "seconds": 257,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The tan gear on top of the body, behind the boom, steers the front and rear axles together, the front wheels further (20 degrees) than the rear (12 degrees); the middle axle doesn't steer.",
+      "verdict": "shown",
+      "msOneCall": 157,
+      "msPerStep": 65,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p783 18575",
+          "way": 1,
+          "asked": 0.37,
+          "went": 0.37,
+          "ms": 689,
+          "msOneCall": 157,
+          "stops": [],
+          "moved": {
+            "p1065 56145": [
+              18.24,
+              25.66
+            ],
+            "p1071 56145": [
+              18.24,
+              25.66
+            ],
+            "p1069 56145": [
+              9.03,
+              12.67
+            ],
+            "p1075 56145": [
+              9.03,
+              12.67
+            ],
+            "p1067 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p783 18575",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 623,
+          "msOneCall": 142,
+          "stops": [],
+          "moved": {
+            "p1065 56145": [
+              18.56,
+              26.11
+            ],
+            "p1071 56145": [
+              18.56,
+              26.11
+            ],
+            "p1069 56145": [
+              9.12,
+              12.8
+            ],
+            "p1075 56145": [
+              9.12,
+              12.8
+            ],
+            "p1067 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 52
+    },
+    {
+      "function": 2,
+      "does": "Pushing the truck along turns the V4 engine's pistons in the back: the middle axle's differential drives a shaft back to the crankshaft through two 16 tooth gears and a clutch gear.",
+      "verdict": "shown",
+      "msOneCall": 106,
+      "msPerStep": 44,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 37,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1067 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1867,
+          "msOneCall": 106,
+          "stops": [],
+          "moved": {
+            "p52 62821": [
+              0,
+              85.94
+            ],
+            "p4 94925": [
+              0,
+              120.32
+            ],
+            "p493 2853": [
+              0,
+              120.32
+            ],
+            "p496 2851": [
+              14.11,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1067 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1774,
+          "msOneCall": 100,
+          "stops": [],
+          "moved": {
+            "p52 62821": [
+              0,
+              85.94
+            ],
+            "p4 94925": [
+              0,
+              120.32
+            ],
+            "p493 2853": [
+              0,
+              120.32
+            ],
+            "p496 2851": [
+              14.11,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1073 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1756,
+          "msOneCall": 85,
+          "stops": [],
+          "moved": {
+            "p52 62821": [
+              0,
+              85.94
+            ],
+            "p4 94925": [
+              0,
+              120.32
+            ],
+            "p493 2853": [
+              0,
+              120.32
+            ],
+            "p496 2851": [
+              14.11,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1073 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1663,
+          "msOneCall": 88,
+          "stops": [],
+          "moved": {
+            "p52 62821": [
+              0,
+              85.94
+            ],
+            "p4 94925": [
+              0,
+              120.32
+            ],
+            "p493 2853": [
+              0,
+              120.32
+            ],
+            "p496 2851": [
+              14.11,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 49
+    },
+    {
+      "function": 4,
+      "does": "The black knob at the foot of the boom unfolds and folds the boom's upper section: through bevel gears and a shaft along the boom it turns a worm at the elbow, which turns the upper section's 8 tooth gear.",
+      "verdict": "shown",
+      "msOneCall": 76,
+      "msPerStep": 39,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 20,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p987 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 667,
+          "msOneCall": 76,
+          "stops": [],
+          "moved": {
+            "p983 32270": [
+              0,
+              85.94
+            ],
+            "p1000 4716": [
+              0,
+              85.94
+            ],
+            "p1002 10928": [
+              0,
+              10.74
+            ],
+            "p471 3648b": [
+              0,
+              0
+            ],
+            "p425 99010": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p987 32270",
+          "way": -1,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 78,
+          "msOneCall": 56,
+          "stops": [],
+          "moved": {
+            "p983 32270": [
+              0,
+              4.01
+            ],
+            "p1000 4716": [
+              0,
+              4.01
+            ],
+            "p1002 10928": [
+              0,
+              0.5
+            ],
+            "p471 3648b": [
+              0,
+              0
+            ],
+            "p425 99010": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 32
+    },
+    {
+      "function": 8,
+      "does": "The six wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 100,
+      "msPerStep": 40,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 113,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1065 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1659,
+          "msOneCall": 88,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1065 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1644,
+          "msOneCall": 98,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1071 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1636,
+          "msOneCall": 96,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1071 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1631,
+          "msOneCall": 98,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1067 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1625,
+          "msOneCall": 100,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1067 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1622,
+          "msOneCall": 97,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1073 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1627,
+          "msOneCall": 99,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1073 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1630,
+          "msOneCall": 98,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1069 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1613,
+          "msOneCall": 80,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1069 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1697,
+          "msOneCall": 99,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1075 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1700,
+          "msOneCall": 100,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1075 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1609,
+          "msOneCall": 94,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 124
+    }
+  ]
+}

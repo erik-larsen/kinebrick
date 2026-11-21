@@ -87,9 +87,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 4,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 2,
     "counts": {
       "works": 3,
       "skipped": 1
@@ -204,7 +204,7 @@
             1.47
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -402,8 +402,9 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       }
-    ]
+    ],
+    "peak": 334
   }
 }

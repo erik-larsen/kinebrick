@@ -108,9 +108,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 4,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -212,7 +212,7 @@
             ],
             "p116 2853 against p86 3701": [
               3,
-              4.4e-13
+              4.27e-13
             ],
             "p117 2852 against p86 3701": [
               0.751,
@@ -277,7 +277,7 @@
             0.03
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -513,6 +513,7 @@
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 331
   }
 }

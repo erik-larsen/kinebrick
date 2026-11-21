@@ -1,0 +1,278 @@
+{
+  "set": "42071-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:19:55.376Z",
+  "load": 22.6,
+  "part": "A",
+  "parts": 170,
+  "seconds": 29,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The upright axle behind the cab steers the compactor by bending it in the middle: its 12 tooth bevel gear turns a 20 tooth bevel gear that turns the turntable carrying the front half.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p92 26287",
+          "way": 1,
+          "asked": 1.33,
+          "went": 1.33,
+          "ms": 37,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p20 18575": [
+              0,
+              45.72
+            ],
+            "p22 99010": [
+              0,
+              32.66
+            ],
+            "p145 64782": [
+              118.74,
+              32.66
+            ],
+            "p139 57520": [
+              79.52,
+              32.66
+            ],
+            "p136 57520": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p92 26287",
+          "way": -1,
+          "asked": 1.33,
+          "went": -1.33,
+          "ms": 25,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p20 18575": [
+              0,
+              45.72
+            ],
+            "p22 99010": [
+              0,
+              32.66
+            ],
+            "p145 64782": [
+              118.74,
+              32.66
+            ],
+            "p139 57520": [
+              79.52,
+              32.66
+            ],
+            "p136 57520": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 2,
+      "does": "The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p120 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 79,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p118 27938": [
+              0,
+              85.94
+            ],
+            "p124 18575": [
+              0,
+              4.3
+            ],
+            "p122 32348": [
+              0,
+              4.3
+            ],
+            "p145 64782": [
+              8,
+              2.49
+            ],
+            "p22 99010": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 63,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p118 27938": [
+              0,
+              85.94
+            ],
+            "p124 18575": [
+              0,
+              4.3
+            ],
+            "p122 32348": [
+              0,
+              4.3
+            ],
+            "p145 64782": [
+              8.08,
+              2.5
+            ],
+            "p22 99010": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 3,
+      "does": "The four spiked compactor wheels roll freely; there is no drive.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p136 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 20,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p136 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p137 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p137 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p134 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p134 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p139 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p139 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    }
+  ]
+}

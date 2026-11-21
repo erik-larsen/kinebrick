@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, axisOf, STUD, UP, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, axisOf, STUD, UP, type Equations } from './equations.ts';
 
 export function rails(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -34,7 +34,7 @@ export function rails(solver: Kinematics, eq: Equations) {
     const c = rider.center.clone().applyMatrix4(pose);
     const near = solver.nearestRail(c, solver.mech.riders!.indexOf(rider));
     if (!near) continue;
-    const across = new Array(n).fill(0);
+    const across = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
       addPointVelocity(across, rider.body, c, k, near.n.getComponent(k));
       addPointVelocity(across, 0, c, k, -near.n.getComponent(k));
@@ -44,10 +44,10 @@ export function rails(solver: Kinematics, eq: Equations) {
     const axis = rider.axis.clone().transformDirection(pose);
     if (axis.dot(near.n) < 0) axis.negate();
     const skew = Math.atan2(new Vector3().crossVectors(near.n, axis).dot(UP), axis.dot(near.n));
-    const square = new Array(n).fill(0);
+    const square = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
-      square[6 * rider.body + k] += UP.getComponent(k);
-      square[k] -= UP.getComponent(k);
+      square.add(6 * rider.body + k, UP.getComponent(k));
+      square.sub(k, UP.getComponent(k));
       addPointVelocity(square, rider.body, c, k, -near.curvature * near.t.getComponent(k));
       addPointVelocity(square, 0, c, k, near.curvature * near.t.getComponent(k));
     }
@@ -76,10 +76,10 @@ export function rails(solver: Kinematics, eq: Equations) {
     // (In LDU: as far as the roll moves a point a stud from the line it rolls about, so it
     // counts alike with the rows that hold points.)
     const turn = new Vector3().crossVectors(across, up).multiplyScalar(400);
-    const roll = new Array(n).fill(0);
+    const roll = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
-      roll[6 * car + k] += turn.getComponent(k);
-      roll[6 * chassis + k] -= turn.getComponent(k);
+      roll.add(6 * car + k, turn.getComponent(k));
+      roll.sub(6 * chassis + k, turn.getComponent(k));
     }
     add(roll, 400 * (start.dot(UP) - across.dot(up)));
   }

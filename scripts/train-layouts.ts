@@ -234,11 +234,11 @@ function lineOfEachPart(lines: string[]): number[] {
 }
 
 // The model's mechanism, read as the scripts read an OMR set.
-function mechanismOf(text: string) {
+async function mechanismOf(text: string) {
   const file = join(tmpdir(), `kinebrick-train-${process.pid}.mpd`);
   writeFileSync(file, text);
   try {
-    return loadModel(file, true);
+    return await loadModel(file, true);
   } finally {
     rmSync(file);
   }
@@ -255,9 +255,9 @@ function layOut(pieces: { name: string; color: string }[]): string[] {
 // ---------------------------------------------------------------------------
 // Setting the trains on the track
 
-function setTrainsOnTrack(text: string): { text: string; trains: number; moved: number } {
+async function setTrainsOnTrack(text: string): Promise<{ text: string; trains: number; moved: number }> {
   const lines = text.split(/\r?\n/);
-  const { parts, mech } = mechanismOf(text);
+  const { parts, mech } = await mechanismOf(text);
   const track = mech.track;
   const riders = mech.riders ?? [];
   if (!track || riders.length === 0) return { text, trains: 0, moved: 0 };
@@ -517,7 +517,7 @@ const TESTS: { set: string; name: string; from: string; add: string[] }[] = [
 
 // Makes one set's model, and its function list (see the top of this file). `add`: track pieces
 // to add, which has the track laid out afresh.
-function makeModel(set: string, name: string, source: string, add: string[] = []) {
+async function makeModel(set: string, name: string, source: string, add: string[] = []) {
   let text: string;
   try {
     text = readFileSync(source, 'utf-8');
@@ -569,12 +569,12 @@ function makeModel(set: string, name: string, source: string, add: string[] = []
   const [start] = mainRange(lines);
   const firstPart = lines.findIndex((l, i) => i > start && !/^\s*0\s/.test(l) && l.trim() !== '');
   lines.splice(firstPart < 0 ? start + 1 : firstPart, 0, `0 // Kinebrick: ${note}, with the trains set on it (scripts/train-layouts.ts)`);
-  const made = setTrainsOnTrack(lines.join('\n'));
+  const made = await setTrainsOnTrack(lines.join('\n'));
   const out = join(OUT_DIR, `${set.startsWith('test') ? 'Test' : set.replace(/-1$/, '')}-${name}`.replace(/[/\\:]/g, '-') + '.mpd');
   writeFileSync(out, made.text.replace(/\n*$/, '\n'));
   const json = join(SETS_DIR, `${set}.json`);
   const was = existsSync(json) ? JSON.parse(readFileSync(json, 'utf-8')) : {};
-  const functions = trainFunctions(out);
+  const functions = await trainFunctions(out);
   writeFileSync(json, JSON.stringify({ set, curated: { model: out, functions }, generated: was.generated ?? {} }, null, 2) + '\n');
   console.log(`${out}: ${laid ? 'laid out' : 'layout made'}, ${known.length + add.length} track pieces, ${made.trains} trains, ${made.moved} lines moved, ${functions.length} functions`);
 }
@@ -588,9 +588,9 @@ const sourceOf = (row: Record<string, string>) => CORRECTED[row.set_num] ?? join
 const rows = csv.slice(1).map((l) => Object.fromEntries(header.map((h, i) => [h, csvFields(l)[i] ?? ''])));
 for (const row of rows) {
   if (only.length && !only.some((o) => row.set_num.includes(o))) continue;
-  makeModel(row.set_num, row.name, sourceOf(row));
+  await makeModel(row.set_num, row.name, sourceOf(row));
 }
 for (const test of TESTS) {
   if (only.length && !only.some((o) => test.set.includes(o))) continue;
-  makeModel(test.set, test.name, sourceOf(rows.find((r) => r.set_num === test.from)!), test.add);
+  await makeModel(test.set, test.name, sourceOf(rows.find((r) => r.set_num === test.from)!), test.add);
 }

@@ -1,0 +1,284 @@
+{
+  "set": "8416-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:35:10.317Z",
+  "load": 24.1,
+  "part": "A",
+  "parts": 722,
+  "seconds": 100,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The beacon on the cab roof is a knob that steers the rear wheels: its axle runs down through the cab to a pair of bevel gears, and two 8-tooth gears slide a rack sideways between the rear steering knuckles.",
+      "verdict": "shown",
+      "msOneCall": 40,
+      "msPerStep": 5,
+      "time": {
+        "open": 21,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p670 6143",
+          "way": 1,
+          "asked": 1.43,
+          "went": 1.43,
+          "ms": 202,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p639 3708 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p414 32198 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p399 6589 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p396 3647 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p383 3743 against p308 32526": [
+              25.03,
+              0
+            ],
+            "p366 48989 against p308 32526": [
+              12.51,
+              36.46
+            ],
+            "p372 48989 against p308 32526": [
+              12.51,
+              36.46
+            ],
+            "p712 41896 against p308 32526": [
+              31.28,
+              41.96
+            ],
+            "p708 41896 against p308 32526": [
+              31.28,
+              41.96
+            ],
+            "p714 41896 against p308 32526": [
+              0,
+              0
+            ],
+            "p49 32278 against p308 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p670 6143",
+          "way": -1,
+          "asked": 1.43,
+          "went": -1.43,
+          "ms": 191,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p639 3708 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p414 32198 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p399 6589 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p396 3647 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p383 3743 against p308 32526": [
+              25.03,
+              0
+            ],
+            "p366 48989 against p308 32526": [
+              12.51,
+              36.46
+            ],
+            "p372 48989 against p308 32526": [
+              12.51,
+              36.46
+            ],
+            "p712 41896 against p308 32526": [
+              31.28,
+              41.96
+            ],
+            "p708 41896 against p308 32526": [
+              31.28,
+              41.96
+            ],
+            "p714 41896 against p308 32526": [
+              0,
+              0
+            ],
+            "p49 32278 against p308 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 33
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll freely; nothing drives them.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 8,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 41,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p708 41896",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 342,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p708 41896",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 336,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p709 41896",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 338,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p709 41896",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 338,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p712 41896",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 335,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p712 41896",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 335,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p714 41896",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 339,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p714 41896",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 335,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 49
+    },
+    {
+      "function": 5,
+      "does": "The steering wheel in the cab is for show: it sits on an axle pin and turns, but isn't linked to the wheels.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 3,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 11,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p632 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 131,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p632 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 122,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    }
+  ]
+}

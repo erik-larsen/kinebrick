@@ -149,12 +149,12 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 447,
+    "commit": "fe0dd791",
+    "date": "2026-11-21",
+    "seconds": 119,
     "counts": {
-      "partly": 1,
-      "works": 6,
+      "partly": 2,
+      "works": 5,
       "not back": 1,
       "torn": 1,
       "skipped": 1
@@ -231,11 +231,11 @@
           {
             "p468 6573": [
               1,
-              3.79e-14
+              7.58e-14
             ],
             "p1309 65414c01": [
               0,
-              3.73e-18
+              1.1e-16
             ],
             "p1032 65414c01": [
               0,
@@ -243,7 +243,7 @@
             ],
             "p2930 42129 - 69912": [
               0,
-              2.08e-13
+              0
             ],
             "p2932 42129 - 69912": [
               0,
@@ -253,11 +253,11 @@
           {
             "p468 6573": [
               1,
-              1.89e-14
+              5.68e-14
             ],
             "p1309 65414c01": [
               0,
-              3.73e-18
+              1.28e-16
             ],
             "p1032 65414c01": [
               0,
@@ -265,7 +265,7 @@
             ],
             "p2930 42129 - 69912": [
               0,
-              7.58e-14
+              0
             ],
             "p2932 42129 - 69912": [
               0,
@@ -339,7 +339,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 94.4
+        "seconds": 33.5
       },
       {
         "result": "works",
@@ -353,7 +353,7 @@
           {
             "p471 4519 against p468 6573": [
               1,
-              1.9e-13
+              2.36e-13
             ]
           }
         ],
@@ -381,7 +381,7 @@
             ]
           ]
         ],
-        "seconds": 46.9
+        "seconds": 15.6
       },
       {
         "result": "works",
@@ -469,93 +469,100 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 40.6
+        "seconds": 14.9
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.2,
-            -3.5
-          ]
-        ],
-        "rates": [
-          {
-            "p517 35188": [
-              0.267,
-              0
-            ],
-            "p1064 35188": [
-              0.267,
-              4.99e-14
-            ],
-            "p513 18947 against p468 6573": [
-              0,
-              3.89e-34
-            ],
-            "p1030 18947 against p1032 65414c01": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "In the viewer the control turns and these listed parts stay: p513 against p468, p1030 against p1032; a push by hand does not move both. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.2,
+              -3.5
             ]
-          }
-        ],
-        "expected": [
-          {
-            "p517 35188": 0.267
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "why": [
-          "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
-        ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            20,
-            519,
-            0.2,
-            0.2
           ],
-          [
-            0,
-            1,
-            20,
-            519,
-            0.2,
-            0.2
-          ]
-        ],
-        "seconds": 84.2
+          "rates": [
+            {
+              "p517 35188": [
+                0.267,
+                0
+              ],
+              "p1064 35188": [
+                0.267,
+                4.17e-14
+              ],
+              "p513 18947 against p468 6573": [
+                0,
+                9.03e-36
+              ],
+              "p1030 18947 against p1032 65414c01": [
+                0,
+                0
+              ]
+            }
+          ],
+          "expected": [
+            {
+              "p517 35188": 0.267
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "why": [
+            "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
+          ],
+          "stop": [
+            [
+              "limit",
+              null
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              20,
+              519,
+              0.2,
+              0.2
+            ],
+            [
+              0,
+              1,
+              20,
+              519,
+              0.2,
+              0.2
+            ]
+          ],
+          "seconds": 29.8
+        }
       },
       {
         "result": "works",
@@ -629,7 +636,7 @@
             0.4
           ]
         ],
-        "seconds": 11.8
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -651,7 +658,7 @@
             ],
             "p1032 65414c01": [
               0,
-              7.34e-8
+              7.33e-8
             ],
             "p1379 4254 against p1380 4255": [
               0.141,
@@ -659,7 +666,7 @@
             ],
             "p1215 4254 against p1216 4255": [
               0,
-              6.28e-8
+              6.27e-8
             ]
           },
           {
@@ -767,10 +774,11 @@
           ]
         ],
         "onPlay": 0.27,
-        "seconds": 25.4
+        "seconds": 9.6
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -784,7 +792,7 @@
           {
             "p1402 87761": [
               0,
-              1.52e-59
+              0
             ]
           }
         ],
@@ -836,8 +844,9 @@
             0.13
           ]
         ],
-        "seconds": 9.6
+        "seconds": 4.4
       }
-    ]
+    ],
+    "peak": 986
   }
 }

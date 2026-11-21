@@ -1,0 +1,360 @@
+{
+  "set": "9391-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:26:14.827Z",
+  "load": 19.2,
+  "part": "A",
+  "parts": 204,
+  "seconds": 33,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear at the back end of the undercarriage slews the crane: its long axle runs under the turntable, where a bevel gear drives the turntable's teeth, turning the whole upper works with the boom.",
+      "verdict": "shown",
+      "msOneCall": 30,
+      "msPerStep": 8,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p31 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 332,
+          "msOneCall": 30,
+          "stops": [],
+          "moved": {
+            "p4 99010": [
+              0,
+              36.83
+            ],
+            "p78 32140": [
+              52.1,
+              36.83
+            ],
+            "p116 32062": [
+              188.12,
+              36.83
+            ],
+            "p826 94925": [
+              0,
+              0
+            ],
+            "p827 94925": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p31 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 278,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p4 99010": [
+              0,
+              36.83
+            ],
+            "p78 32140": [
+              52.1,
+              36.83
+            ],
+            "p116 32062": [
+              188.12,
+              36.83
+            ],
+            "p826 94925": [
+              0,
+              0
+            ],
+            "p827 94925": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 2,
+      "does": "The black gear at the top back of the upper works raises and lowers the boom: it turns a worm, which turns a small gear on a cross axle, whose cranks push the boom up on two links.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 9,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p45 32270",
+        "way": 1,
+        "went": 0.419,
+        "asked": 1.5,
+        "by": [
+          "63/104"
+        ]
+      },
+      "stops": [
+        "63/104"
+      ],
+      "A": [
+        {
+          "control": "p45 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.419,
+          "ms": 106,
+          "msOneCall": 13,
+          "stops": [
+            "63/104"
+          ],
+          "moved": {
+            "p38 4716": [
+              0,
+              23.98
+            ],
+            "p57 3647": [
+              0,
+              3
+            ],
+            "p97 32525": [
+              1.92,
+              1.4
+            ],
+            "p116 32062 against p78 32140": [
+              7.08,
+              1.23
+            ],
+            "p78 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p45 32270",
+          "way": -1,
+          "asked": 0.43,
+          "went": -0.43,
+          "ms": 101,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p38 4716": [
+              0,
+              24.64
+            ],
+            "p57 3647": [
+              0,
+              3.08
+            ],
+            "p97 32525": [
+              2.03,
+              1.44
+            ],
+            "p116 32062 against p78 32140": [
+              7.39,
+              1.28
+            ],
+            "p78 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p45 32270",
+          "judged": "stands",
+          "why": "stopped at +0.419 rad (63/104); kinds worm-drive, crank-and-link: boom"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 4
+    },
+    {
+      "function": 3,
+      "does": "The black gear on the left side at the back of the upper works winds the winch, raising or lowering the hook on its string over the boom tip.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 5,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p120 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 217,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p121 30395 against p116 32062": [
+              13.65,
+              0
+            ],
+            "p116 32062 against p78 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 207,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p121 30395 against p116 32062": [
+              13.67,
+              0
+            ],
+            "p116 32062 against p78 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 5,
+      "does": "The two tracks run round their sprockets and idlers, so the crane rolls along; nothing drives them.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 6,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p826 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 236,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p826 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 223,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p827 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 217,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p827 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 221,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p828 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 228,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p828 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 246,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p829 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 219,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p829 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 223,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    }
+  ]
+}
