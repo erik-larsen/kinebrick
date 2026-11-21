@@ -3,7 +3,7 @@
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import type { Kinematics } from '../kinematics.ts';
 import type { StringCircle } from '../paths.ts';
-import { addPointVelocity, DOWN, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, DOWN, type Equations } from './equations.ts';
 
 export function strings(solver: Kinematics, eq: Equations) {
   const { n, add, slip } = eq;
@@ -18,10 +18,10 @@ export function strings(solver: Kinematics, eq: Equations) {
     const start = solver.strings[i];
     if (!start) return; // still being set up
     const { circles, bodies, layout } = solver.stringNow(s);
-    const payout = s.drum ? solver.rimRate(s.drum.body, s.drum.mount, s.path.points[s.drum.point], n) : new Array(n).fill(0);
+    const payout = s.drum ? solver.rimRate(s.drum.body, s.drum.mount, s.path.points[s.drum.point], n) : new BodyRow(n);
     const length = solver.stringRate(s, (l) => l.length, n);
     add(
-      length.map((x, k) => x - payout[k]),
+      BodyRow.elementwise(n, [length, payout], ([x, p]) => x - p),
       -(layout.length - start.length - solver.payout(s)),
     );
     s.pulleys.forEach((w, k) => {
@@ -30,7 +30,7 @@ export function strings(solver: Kinematics, eq: Equations) {
       // is getting longer.
       const upTo = solver.stringRate(s, (l) => l.upTo[k + 1], n);
       const rim = solver.rimRate(w.body, w.mount, s.path.points[w.point], n);
-      add(rim.map((x, m) => x - payout[m] + upTo[m]));
+      add(BodyRow.elementwise(n, [rim, payout, upTo], ([x, p, u]) => x - p + u));
     });
     if (!s.hook || !start.hookOffset) return;
     const h = s.hook.pulley + 1; // circles start with the drum (or where it's tied)
@@ -39,7 +39,7 @@ export function strings(solver: Kinematics, eq: Equations) {
     const level = [new Vector3(1, 0, 0), new Vector3(0, 0, 1)];
     const either = h + 1 < circles.length ? [h - 1, h + 1] : [h - 1];
     for (const dir of level) {
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
         addPointVelocity(row, hook, circles[h].center, k, dir.getComponent(k));
         for (const e of either) addPointVelocity(row, bodies[e], circles[e].center, k, -dir.getComponent(k) / either.length);
@@ -55,10 +55,10 @@ export function strings(solver: Kinematics, eq: Equations) {
     const q = new Quaternion().setFromRotationMatrix(new Matrix4().extractRotation(solver.poses[hook]).multiply(target.transpose()));
     const tilt = new Vector3(q.x, q.y, q.z).multiplyScalar(2 * (q.w < 0 ? -1 : 1));
     for (const dir of [...level, DOWN]) {
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
-        row[6 * hook + k] += dir.getComponent(k);
-        if (dir === DOWN) row[6 * above + k] -= dir.getComponent(k);
+        row.add(6 * hook + k, dir.getComponent(k));
+        if (dir === DOWN) row.sub(6 * above + k, dir.getComponent(k));
       }
       add(row, -tilt.dot(dir));
     }

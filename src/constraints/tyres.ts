@@ -2,8 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Kinematics } from '../kinematics.ts';
-import type { Row } from '../linalg.ts';
-import { addPointVelocity, DOWN, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, DOWN, type Equations } from './equations.ts';
 
 export function tyres(solver: Kinematics, eq: Equations) {
   const { n, add, slip } = eq;
@@ -19,8 +18,8 @@ export function tyres(solver: Kinematics, eq: Equations) {
   // A track (a tyre whose `track` is set, see trackTreads) skids sideways freely where it
   // touches the ground under each of its wheels, as a tracked vehicle does to turn, but its
   // middle doesn't slide sideways: the average of its wheels' sideways speeds is 0.
-  const rolling = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each body, its tyres' rows
-  const tracks = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each track, its sideways rows
+  const rolling = new Map<number, { axis: Vector3; rows: BodyRow[] }>(); // for each body, its tyres' rows
+  const tracks = new Map<number, { axis: Vector3; rows: BodyRow[] }>(); // for each track, its sideways rows
   const riderBodies = new Set((solver.mech.riders ?? []).map((r) => r.body));
   // Whether a steered tyre pivots on the ground (see below): only for a drag that works the
   // steering (see dragSteers).
@@ -36,7 +35,7 @@ export function tyres(solver: Kinematics, eq: Equations) {
     const forward = new Vector3().crossVectors(DOWN, axis).normalize();
     const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
     const along = (point: Vector3, dir: Vector3) => {
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
       return row;
     };
@@ -45,13 +44,13 @@ export function tyres(solver: Kinematics, eq: Equations) {
     // scrubbing sideways or lifting (see steeringPivot). What the steering joint's turning moves
     // the contact by is taken out of those rows.
     const pivot = pivots ? solver.steeringPivot(i, p, forward) : null;
-    const pivoting = (row: Row, dir: Vector3) => {
+    const pivoting = (row: BodyRow, dir: Vector3) => {
       if (!pivot) return row;
       const j = solver.mech.joints[pivot.joint];
       const c = new Vector3().crossVectors(pivot.axis, p.clone().sub(pivot.at)).dot(dir);
       for (let k = 0; k < 3; k++) {
-        row[6 * j.bodyB + k] -= c * pivot.axis.getComponent(k);
-        row[6 * j.bodyA + k] += c * pivot.axis.getComponent(k);
+        row.sub(6 * j.bodyB + k, c * pivot.axis.getComponent(k));
+        row.add(6 * j.bodyA + k, c * pivot.axis.getComponent(k));
       }
       return row;
     };
@@ -75,7 +74,7 @@ export function tyres(solver: Kinematics, eq: Equations) {
       if (tread.track === undefined) slip.sideways.push(pivoting(along(p, sideways), sideways));
       slip.travel.push(along(hub, forward));
       slip.lift.push(pivoting(along(p, DOWN), DOWN));
-      const rise = new Array(n).fill(0);
+      const rise = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
         addPointVelocity(rise, solver.frameOf[tread.body], hub, k, DOWN.getComponent(k));
         addPointVelocity(rise, tread.body, hub, k, -DOWN.getComponent(k));
@@ -87,8 +86,9 @@ export function tyres(solver: Kinematics, eq: Equations) {
   }
   for (const { rows: tyres } of [...rolling.values(), ...tracks.values()]) {
     if (tyres.length === 0) continue;
-    const average = new Array(n).fill(0);
-    for (const row of tyres) for (let k = 0; k < n; k++) average[k] += row[k] / tyres.length;
+    const average = new BodyRow(n);
+    // Each row's places, in the rows' order (where a row has none, it added 0).
+    for (const row of tyres) for (const [k, v] of row.entries()) average.add(k, v / tyres.length);
     add(average);
   }
 }

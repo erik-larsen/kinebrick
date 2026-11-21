@@ -87,9 +87,9 @@
     }
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 7,
+    "seconds": 4,
     "counts": {
       "works": 3,
       "pivoted": 1,
@@ -171,7 +171,7 @@
           "rise": 0.32,
           "tyre": "p321 3634"
         },
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -285,7 +285,7 @@
             "p100 3652 against p0 3702"
           ]
         ],
-        "seconds": 2.4
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -351,13 +351,13 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 1.1
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 231
+    "peak": 238
   }
 }

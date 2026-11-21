@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, axisOf, UP, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, axisOf, UP, type Equations } from './equations.ts';
 
 export function rails(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -34,7 +34,7 @@ export function rails(solver: Kinematics, eq: Equations) {
     const c = rider.center.clone().applyMatrix4(pose);
     const near = solver.nearestRail(c);
     if (!near) continue;
-    const across = new Array(n).fill(0);
+    const across = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
       addPointVelocity(across, rider.body, c, k, near.n.getComponent(k));
       addPointVelocity(across, 0, c, k, -near.n.getComponent(k));
@@ -44,10 +44,10 @@ export function rails(solver: Kinematics, eq: Equations) {
     const axis = rider.axis.clone().transformDirection(pose);
     if (axis.dot(near.n) < 0) axis.negate();
     const skew = Math.atan2(new Vector3().crossVectors(near.n, axis).dot(UP), axis.dot(near.n));
-    const square = new Array(n).fill(0);
+    const square = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
-      square[6 * rider.body + k] += UP.getComponent(k);
-      square[k] -= UP.getComponent(k);
+      square.add(6 * rider.body + k, UP.getComponent(k));
+      square.sub(k, UP.getComponent(k));
       addPointVelocity(square, rider.body, c, k, -near.curvature * near.t.getComponent(k));
       addPointVelocity(square, 0, c, k, near.curvature * near.t.getComponent(k));
     }

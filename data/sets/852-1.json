@@ -75,9 +75,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 2,
     "counts": {
       "works": 1,
       "no": 1,
@@ -154,7 +154,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -312,13 +312,13 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 264
+    "peak": 265
   }
 }

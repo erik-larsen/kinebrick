@@ -79,9 +79,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "d7409032",
     "date": "2026-11-20",
-    "seconds": 5,
+    "seconds": 2,
     "counts": {
       "works": 4
     },
@@ -155,7 +155,7 @@
             0.23
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -271,7 +271,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -389,9 +389,9 @@
           [],
           []
         ],
-        "seconds": 2.6
+        "seconds": 1.1
       }
     ],
-    "peak": 311
+    "peak": 316
   }
 }
