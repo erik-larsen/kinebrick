@@ -18,6 +18,26 @@ export interface SlideState {
 // come as close as it can to where it stops.
 const STEPS = [1, 0.5, 0.25, 0.1];
 
+// Lets go, for a push of a part asked to slide on its axle, its body's own asked slides and those
+// of what turns with it (the 42078's tan pin, on its lock bar): held where they are, as friction
+// holds them (see Joint.springHeld), they'd only slide where nothing else could go, and the push
+// would be stuck at once. A hand that pulls the part overcomes that friction. Others' stay held.
+// The check's slide (slidePart) and the viewer's drag of the part (interaction.ts) both do it
+// (decision 296 of 2026-11-21). Returns what puts them back, for the push's end.
+export function letGoOwnSlides(mech: Mechanism, body: number): () => void {
+  const bodies = new Set([body]);
+  for (const j of mech.joints) {
+    if (j.asked || (j.bodyA !== body && j.bodyB !== body)) continue;
+    const next = j.bodyA === body ? j.bodyB : j.bodyA;
+    if (mech.joints.some((k) => k.asked && (k.bodyA === next || k.bodyB === next))) bodies.add(next);
+  }
+  const own = mech.joints.filter((j) => j.asked && j.springHeld && (bodies.has(j.bodyA) || bodies.has(j.bodyB)));
+  for (const j of own) j.springHeld = false;
+  return () => {
+    for (const j of own) j.springHeld = true;
+  };
+}
+
 // How far `part` went along its slide (LDU), and what stopped it short, if anything: 'met' (two
 // parts' shapes met: `allowed` said no where the slide itself would have gone on), 'stuck', or
 // 'no slide' (the part has no slide asked for). The way is along the part's own axis that runs
@@ -41,17 +61,7 @@ export function slidePart(state: () => SlideState, reread: () => void, part: num
       way = axis.clone().multiplyScalar(Math.sign(own[k].dot(axis)) * Math.sign(by));
     }
     const dir = axis.clone().multiplyScalar(Math.sign(axis.dot(way)));
-    // The part's own slides, and those of what turns with it (the 42078's tan pin, on its lock
-    // bar), are let go while it is pushed: held where they are, as friction holds them (see
-    // Joint.springHeld), they'd only slide where nothing else could go. Others' stay held.
-    const bodies = new Set([body]);
-    for (const j of mech.joints) {
-      if (j.asked || (j.bodyA !== body && j.bodyB !== body)) continue;
-      const next = j.bodyA === body ? j.bodyB : j.bodyA;
-      if (mech.joints.some((k) => k.asked && (k.bodyA === next || k.bodyB === next))) bodies.add(next);
-    }
-    const own = mech.joints.filter((j) => j.asked && j.springHeld && (bodies.has(j.bodyA) || bodies.has(j.bodyB)));
-    for (const j of own) j.springHeld = false;
+    const putBack = letGoOwnSlides(mech, body);
     // The part's middle, on its body as built.
     const grab = place(part).position.clone().applyMatrix4(kin.poses[body].clone().invert());
     const now = () => grab.clone().applyMatrix4(kin.poses[body]);
@@ -76,7 +86,7 @@ export function slidePart(state: () => SlideState, reread: () => void, part: num
     // end to say no.
     const atEnd = refused === 'blocked' && endOfSlide(kin, body, grab, dir);
     kin.letGoAfterDrag();
-    for (const j of own) j.springHeld = true;
+    putBack();
     if (!refused) return { went, halt: '' };
     if (refused === 'stuck') return { went, halt: 'stuck' };
     if (!atEnd) return { went, halt: 'met' };
