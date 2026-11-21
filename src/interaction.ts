@@ -39,6 +39,7 @@ import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
 import { Mechanism, motorRunPart } from './mechanism.ts';
 import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
+import { letGoOwnSlides } from './slide.ts';
 import { knobTurn } from './turn.ts';
 
 const HANDLE_COLOUR = 0x1d6fe0;
@@ -156,6 +157,7 @@ interface Drag {
   lastY: number;
   owed: number; // how far the joint has still to turn to catch up with the pointer (turn only)
   sideOn: boolean; // its plane of turning is seen edge-on, so it's turned by pushing its near side (turn only)
+  putSlidesBack: () => void; // puts back the friction on the slides the drag let go (see letGoOwnSlides)
   target: Vector2 | null; // where the pointer is, if the grabbed point hasn't got there (push only)
   pushSteps: number; // steps taken towards the target so far (push only)
 }
@@ -940,6 +942,7 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     if (!drag) return;
     s.kin.letGoAfterDrag();
+    drag.putSlidesBack();
     const turned = drag.joint >= 0 ? s.kin.jointAngles[drag.joint] - drag.startAngle : 0;
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
     if (drag.arc) {
@@ -1056,7 +1059,10 @@ export function setUpInteraction(s: InteractionSetup) {
       // rod) is pushed.
       const link = s.kin.parentLink(body);
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
-      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
+      // A part asked to slide on its axle (Shift, see slidesOnAxle) is pushed with its own slides
+      // let go, for the length of the drag, as a hand overcomes the friction on its axle (see
+      // letGoOwnSlides): held, the 42078's lock bar could not be lifted, where the check lifts it.
+      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false, putSlidesBack: letGoOwnSlides(s.mech, body) };
       hideLabel();
       s.onMotionStarted();
 

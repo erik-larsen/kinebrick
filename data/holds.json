@@ -285,5 +285,47 @@
     "result": "partly",
     "reason": "In the viewer the lock bars hardly slide (p2641 0 of 25 LDU, p2675 4 of 25): a collision stops the push at once at parts 2618/2641, so the doors do not open; the check makes the same slide and passes. Viewer sweep, decision 289.",
     "date": "2026-11-21"
+  },
+  {
+    "set": "42110-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The booklet shows the knob turned about half a turn each way (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490), but in the viewer a collision stops p385 at 0.17 rad (parts 641/642) and 0.105 rad (parts 648/714); the check stops there too. Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42078-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42096-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The booklet's arrow shows the suspension swinging plainly (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=291), but in the viewer a collision stops p22 and p26 at 0.035 to 0.07 rad (parts 242/243 and 239/240). Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8261-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The booklet shows the roof shaft steering to full lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=32), but in the viewer p131 stops at 0.105 rad each way, at a part against itself (193/193 and 191/191); the check turns 1.47 rad. Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42083-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "The booklet shows the key turned both ways to lift the wing (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310), but in the viewer a collision stops p1938 at once one way (parts 1928/2024) and at 0.14 rad the other (parts 1929/1944). Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8002-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The booklet folds the legs about 90 degrees (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87), but in the viewer a collision stops p11 at 0.035 rad one way (parts 16/45) and 0.66 rad the other (parts 24/118). Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
   }
 ]
