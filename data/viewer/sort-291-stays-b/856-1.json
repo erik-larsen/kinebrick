@@ -1,0 +1,118 @@
+{
+  "set": "856-1",
+  "commit": "394a3d02",
+  "date": "2026-11-21T11:38:23.766Z",
+  "load": 12.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 373,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p50 3736",
+          "way": 1,
+          "asked": 8.3,
+          "went": 8.3,
+          "ms": 555,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p56 3706": [
+              0,
+              52.84
+            ],
+            "p60 3034": [
+              9.22,
+              0
+            ],
+            "p189 3895": [
+              1.32,
+              0.94
+            ],
+            "p190 3895": [
+              1.32,
+              0.94
+            ],
+            "p202 3700": [
+              2.95,
+              0.03
+            ],
+            "p51 3736": [
+              0,
+              0.08
+            ],
+            "p115 3737": [
+              0,
+              0.03
+            ],
+            "p140 3460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 3736",
+          "way": -1,
+          "asked": 4.6,
+          "went": -4.6,
+          "ms": 310,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p56 3706": [
+              0,
+              29.28
+            ],
+            "p60 3034": [
+              5.11,
+              0
+            ],
+            "p189 3895": [
+              1.02,
+              0.73
+            ],
+            "p190 3895": [
+              1.02,
+              0.73
+            ],
+            "p202 3700": [
+              2.29,
+              0.03
+            ],
+            "p51 3736": [
+              0,
+              0.06
+            ],
+            "p115 3737": [
+              0,
+              0.02
+            ],
+            "p140 3460": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

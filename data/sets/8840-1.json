@@ -108,9 +108,9 @@
     ]
   },
   "generated": {
-    "commit": "d2731980",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "partly": 3,
       "works": 1,
@@ -198,93 +198,88 @@
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it: the rim p210 at 0.70 and 1.05 rad in one long turn (parts 201/200), and by pointer where the check stops (parts 104/113 and 105/112). Viewer sweep, decision 289.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.07,
-              -0.03
-            ]
-          ],
-          "rates": [
-            {
-              "p101 3648a against p86 3701": [
-                1,
-                8.59e-13
-              ],
-              "p116 2853 against p86 3701": [
-                3,
-                4.27e-13
-              ],
-              "p117 2852 against p86 3701": [
-                0.751,
-                30
-              ],
-              "p120 2851 against p86 3701": [
-                1.51,
-                31.2
-              ],
-              "p121 2851 against p86 3701": [
-                1.4,
-                28.2
-              ]
-            }
-          ],
-          "back": [
-            [
-              [
-                0.09,
-                0.12
-              ],
-              [
-                0.09,
-                0.14
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0.09,
-                0.12
-              ],
-              [
-                0.09,
-                0.14
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "freed": 5,
-          "collisionStops": [
-            [
-              0,
+        "turned": [
+          [
+            0.07,
+            -0.03
+          ]
+        ],
+        "rates": [
+          {
+            "p101 3648a against p86 3701": [
               1,
-              104,
-              113,
-              0.07,
-              0.07
+              8.59e-13
+            ],
+            "p116 2853 against p86 3701": [
+              3,
+              4.27e-13
+            ],
+            "p117 2852 against p86 3701": [
+              0.751,
+              30
+            ],
+            "p120 2851 against p86 3701": [
+              1.51,
+              31.2
+            ],
+            "p121 2851 against p86 3701": [
+              1.4,
+              28.2
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.09,
+              0.12
             ],
             [
-              0,
-              -1,
-              105,
-              112,
-              0.03,
-              0.03
+              0.09,
+              0.14
             ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.09,
+              0.12
+            ],
+            [
+              0.09,
+              0.14
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 5,
+        "cause": "stopped-endless",
+        "detail": "p210 4266: p104 3040b against p113 4274",
+        "collisionStops": [
+          [
+            0,
+            1,
+            104,
+            113,
+            0.07,
+            0.07
           ],
-          "seconds": 0.3
-        }
+          [
+            0,
+            -1,
+            105,
+            112,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -363,171 +358,166 @@
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it: the rim p210 as in function 2; the other three wheels turn freely. Viewer sweep, decision 289.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            0.07,
+            -0.03
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {},
+          {},
+          {},
+          {}
+        ],
+        "back": [
+          [
             [
-              1.5,
-              -1.5
+              0,
+              0
             ],
             [
-              1.5,
-              -1.5
-            ],
-            [
-              0.07,
-              -0.03
-            ],
-            [
-              1.5,
-              -1.5
+              0,
+              0
             ]
           ],
-          "rates": [
-            {},
-            {},
-            {},
-            {}
-          ],
-          "back": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0.09,
-                0.12
-              ],
-              [
-                0.09,
-                0.14
-              ]
-            ],
-            [
-              [
-                0.03,
-                0
-              ],
-              [
-                0.02,
-                0
-              ]
+              0,
+              0
             ]
           ],
-          "torn": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0.09,
+              0.12
             ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0.09,
-                0.12
-              ],
-              [
-                0.09,
-                0.14
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0.09,
+              0.14
             ]
           ],
-          "stop": [
+          [
             [
-              null,
-              null
-            ],
-            [
-              null,
-              null
-            ],
-            [
-              "limit",
-              "limit"
-            ],
-            [
-              null,
-              null
-            ]
-          ],
-          "freed": 5,
-          "movedBy": [
-            [],
-            [],
-            [],
-            []
-          ],
-          "collisionStops": [
-            [
-              2,
-              1,
-              104,
-              113,
-              0.07,
-              0.07
-            ],
-            [
-              2,
-              -1,
-              105,
-              112,
               0.03,
-              0.03
+              0
+            ],
+            [
+              0.02,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
             ]
           ],
-          "seconds": 0.9
-        }
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0.09,
+              0.12
+            ],
+            [
+              0.09,
+              0.14
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "freed": 5,
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "cause": "stopped-endless",
+        "detail": "p210 4266: p104 3040b against p113 4274",
+        "collisionStops": [
+          [
+            2,
+            1,
+            104,
+            113,
+            0.07,
+            0.07
+          ],
+          [
+            2,
+            -1,
+            105,
+            112,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 1.2
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 346
+    "peak": 316
   }
 }

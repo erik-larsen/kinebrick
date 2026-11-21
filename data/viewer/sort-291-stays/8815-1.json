@@ -1,0 +1,217 @@
+{
+  "set": "8815-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:13.344Z",
+  "load": 9.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 73,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: an 8-tooth gear at the foot of the steering column slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p59 8815 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p53 3705": [
+              0,
+              85.94
+            ],
+            "p48 2790a": [
+              15.36,
+              0
+            ],
+            "p18 4261": [
+              0,
+              22
+            ],
+            "p24 4261": [
+              0,
+              22
+            ],
+            "p66 3482": [
+              15.36,
+              30.62
+            ],
+            "p62 3482": [
+              7.68,
+              30.62
+            ],
+            "p70 3482": [
+              0,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ],
+            "p40 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p59 8815 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 46,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p53 3705": [
+              0,
+              85.94
+            ],
+            "p48 2790a": [
+              15.36,
+              0
+            ],
+            "p18 4261": [
+              0,
+              22
+            ],
+            "p24 4261": [
+              0,
+              22
+            ],
+            "p66 3482": [
+              15.36,
+              30.62
+            ],
+            "p62 3482": [
+              7.68,
+              30.62
+            ],
+            "p70 3482": [
+              0,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ],
+            "p40 2851": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 2,
+      "does": "Pushing the kart along works its engine: the crank on the rear axle on the engine's side drives a connecting rod that pumps the piston up and down in the cylinder behind the seat.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p70 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p8 3705": [
+              0,
+              85.94
+            ],
+            "p9 2853": [
+              0,
+              85.94
+            ],
+            "p10 2852": [
+              15,
+              19.82
+            ],
+            "p40 2851": [
+              6.68,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ],
+            "p38 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p70 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 60,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p8 3705": [
+              0,
+              85.94
+            ],
+            "p9 2853": [
+              0,
+              85.94
+            ],
+            "p10 2852": [
+              15,
+              7.72
+            ],
+            "p40 2851": [
+              13.64,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ],
+            "p38 3706": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

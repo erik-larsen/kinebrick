@@ -1,0 +1,70 @@
+{
+  "set": "8217-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:13.386Z",
+  "load": 9.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 56,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The tail rotor, a dark 5-hole beam with yellow round plates at its ends, spins freely on its pin at the end of the tail boom.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 0,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p50 32017",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              0
+            ],
+            "p0 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 32017",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 5,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              0
+            ],
+            "p0 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

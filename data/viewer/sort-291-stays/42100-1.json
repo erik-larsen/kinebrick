@@ -1,0 +1,78 @@
+{
+  "set": "42100-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:37:29.824Z",
+  "load": 14.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 4079,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth.",
+      "verdict": "shown",
+      "msOneCall": 418,
+      "msPerStep": 48,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p707 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2037,
+          "msOneCall": 418,
+          "stops": [],
+          "moved": {
+            "p1927 42003 against p87 42003": [
+              4.32,
+              1.06
+            ],
+            "p516 18938 against p515 18939": [
+              0,
+              1.06
+            ],
+            "p313 42100 - 42529 against p87 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p707 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1980,
+          "msOneCall": 77,
+          "stops": [],
+          "moved": {
+            "p1927 42003 against p87 42003": [
+              4.32,
+              1.06
+            ],
+            "p516 18938 against p515 18939": [
+              0,
+              1.06
+            ],
+            "p313 42100 - 42529 against p87 42003": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    }
+  ]
+}

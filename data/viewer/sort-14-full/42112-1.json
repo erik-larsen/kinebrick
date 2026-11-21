@@ -1,0 +1,265 @@
+{
+  "set": "42112-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:05:14.687Z",
+  "load": 12.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1156,
+  "seconds": 11,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The eight wheels roll. The four rear wheels drive through a differential on each rear axle; the front wheels roll freely on their steering knuckles.",
+      "verdict": "not shown",
+      "msOneCall": 135,
+      "msPerStep": 15,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": {
+        "control": "p688 56145",
+        "way": 1,
+        "went": 0.523,
+        "asked": 1.5,
+        "by": [
+          "135/175"
+        ]
+      },
+      "stops": [
+        "135/175"
+      ],
+      "A": [
+        {
+          "control": "p688 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 223,
+          "msOneCall": 135,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p688 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 577,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p690 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 211,
+          "msOneCall": 26,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p690 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 580,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p696 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 213,
+          "msOneCall": 27,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p696 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 576,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p698 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 213,
+          "msOneCall": 27,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p698 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 578,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p692 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 216,
+          "msOneCall": 27,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p692 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 574,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p694 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 223,
+          "msOneCall": 26,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p694 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 575,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p700 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 211,
+          "msOneCall": 26,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p700 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 572,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p702 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 209,
+          "msOneCall": 26,
+          "stops": [
+            "135/175"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p702 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 567,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p688 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p690 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p696 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p698 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p692 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p694 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p700 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        },
+        {
+          "control": "p702 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p688 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p690 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p696 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p698 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p692 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p694 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p700 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175); p702 56145: turns without end (kinds differential, free-wheels; the text says: wheels, roll), but a collision stops it at +0.523 rad (135/175)",
+      "seconds": 11
+    }
+  ]
+}

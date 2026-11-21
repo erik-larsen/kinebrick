@@ -77,9 +77,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
-    "seconds": 21,
+    "seconds": 46,
     "counts": {
       "works": 2,
       "partly": 2
@@ -167,7 +167,7 @@
             0.7
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -358,140 +358,135 @@
             0.03
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.9
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p1075 at 0.105 rad each way (parts 165/257 and 165/268); the other two wheels turn freely. Viewer sweep with a full turn asked, decision 288.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            0.1,
+            -0.1
+          ]
+        ],
+        "rates": [
+          {},
+          {},
+          {}
+        ],
+        "back": [
+          [
             [
-              1.5,
-              -1.5
+              0,
+              0
             ],
             [
-              1.5,
-              -1.5
-            ],
-            [
-              0.1,
-              -0.1
+              0,
+              0
             ]
           ],
-          "rates": [
-            {},
-            {},
-            {}
-          ],
-          "back": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
           ],
-          "torn": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
             ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
           ],
-          "stop": [
+          [
             [
-              null,
-              null
+              0,
+              0
             ],
             [
-              null,
-              null
-            ],
-            [
-              "limit",
-              "limit"
+              0,
+              0
             ]
           ],
-          "movedBy": [
-            [],
-            [],
-            []
-          ],
-          "collisionStops": [
+          [
             [
-              2,
-              1,
-              165,
-              257,
-              0.1,
-              0.1
+              0,
+              0
             ],
             [
-              2,
-              -1,
-              165,
-              268,
-              0.1,
-              0.1
+              0,
+              0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            null
           ],
-          "seconds": 1.9
-        }
+          [
+            null,
+            null
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "cause": "stopped-endless",
+        "detail": "p1075 42123 - 56145: p165 42123 - 60483 against p257 24316",
+        "collisionStops": [
+          [
+            2,
+            1,
+            165,
+            257,
+            0.1,
+            0.1
+          ],
+          [
+            2,
+            -1,
+            165,
+            268,
+            0.1,
+            0.1
+          ]
+        ],
+        "seconds": 2.5
       }
     ],
-    "peak": 444
+    "peak": 539
   }
 }

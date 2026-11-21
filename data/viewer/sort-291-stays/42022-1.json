@@ -1,0 +1,110 @@
+{
+  "set": "42022-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:44.949Z",
+  "load": 9.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 401,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the upright post behind the cab steers the front wheels: a bevel gear at its foot turns a long shaft forward along the chassis, whose knob gears turn a short arm that pushes the steering link across to both front wheels.",
+      "verdict": "shown",
+      "msOneCall": 28,
+      "msPerStep": 7,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p177 59443",
+          "way": 1,
+          "asked": 0.3,
+          "went": 0.3,
+          "ms": 57,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {
+            "p140 32072": [
+              0,
+              10.31
+            ],
+            "p169 32072": [
+              0,
+              10.31
+            ],
+            "p61 32293": [
+              7.24,
+              0.7
+            ],
+            "p205 48989": [
+              3.44,
+              9.84
+            ],
+            "p206 48989": [
+              3.44,
+              9.84
+            ],
+            "p136 56145": [
+              0,
+              0
+            ],
+            "p181 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p177 59443",
+          "way": -1,
+          "asked": 0.53,
+          "went": -0.53,
+          "ms": 73,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p140 32072": [
+              0,
+              18.22
+            ],
+            "p169 32072": [
+              0,
+              18.22
+            ],
+            "p61 32293": [
+              12.65,
+              1.4
+            ],
+            "p205 48989": [
+              6.01,
+              17.23
+            ],
+            "p206 48989": [
+              6.01,
+              17.23
+            ],
+            "p136 56145": [
+              0,
+              0
+            ],
+            "p181 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

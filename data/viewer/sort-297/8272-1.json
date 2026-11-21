@@ -1,0 +1,145 @@
+{
+  "set": "8272-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:15.494Z",
+  "load": 13.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 313,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 6,
+      "does": "Each ski rocks nose up and nose down on the pin that holds it under its spindle, following the ground.",
+      "verdict": "shown",
+      "msOneCall": 24,
+      "msPerStep": 4,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p615 32271",
+        "way": -1,
+        "went": -0.279,
+        "asked": 1.5,
+        "by": [
+          "14/614"
+        ]
+      },
+      "stops": [
+        "52/614",
+        "14/614",
+        "50/631",
+        "11/631"
+      ],
+      "A": [
+        {
+          "control": "p615 32271",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.174,
+          "ms": 19,
+          "msOneCall": 24,
+          "stops": [
+            "52/614"
+          ],
+          "moved": {
+            "p53 2736": [
+              0,
+              0
+            ],
+            "p51 2736": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p615 32271",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.279,
+          "ms": 15,
+          "msOneCall": 4,
+          "stops": [
+            "14/614"
+          ],
+          "moved": {
+            "p53 2736": [
+              0,
+              0
+            ],
+            "p51 2736": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p626 32271",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.174,
+          "ms": 11,
+          "msOneCall": 5,
+          "stops": [
+            "50/631"
+          ],
+          "moved": {
+            "p53 2736": [
+              0,
+              0
+            ],
+            "p51 2736": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p626 32271",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.279,
+          "ms": 13,
+          "msOneCall": 6,
+          "stops": [
+            "11/631"
+          ],
+          "moved": {
+            "p53 2736": [
+              0,
+              0
+            ],
+            "p51 2736": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p615 32271",
+          "judged": "stands",
+          "why": "stopped at +0.174 rad (52/614); -0.279 rad (14/614); kinds hinge: skis"
+        },
+        {
+          "control": "p626 32271",
+          "judged": "stands",
+          "why": "stopped at +0.174 rad (50/631); -0.279 rad (11/631); kinds hinge: skis"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "set": "42024-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:05:03.783Z",
+  "load": 11.7,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 950,
+  "seconds": 9,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The front wheels and the four wheels on the two rear axles roll freely; nothing is driven from them.",
+      "verdict": "not shown",
+      "msOneCall": 73,
+      "msPerStep": 15,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p241 15413",
+        "way": 1,
+        "went": 0.209,
+        "asked": 1.5,
+        "by": [
+          "2/279"
+        ]
+      },
+      "stops": [
+        "2/279"
+      ],
+      "A": [
+        {
+          "control": "p241 15413",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 86,
+          "msOneCall": 73,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p241 15413",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 88,
+          "msOneCall": 32,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p242 15413",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 78,
+          "msOneCall": 27,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p242 15413",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 83,
+          "msOneCall": 26,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p239 15413",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 80,
+          "msOneCall": 27,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p239 15413",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 77,
+          "msOneCall": 29,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p240 15413",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 83,
+          "msOneCall": 30,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p240 15413",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 83,
+          "msOneCall": 29,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p237 15413",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 83,
+          "msOneCall": 26,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p237 15413",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 91,
+          "msOneCall": 31,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p238 15413",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 79,
+          "msOneCall": 29,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p238 15413",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 78,
+          "msOneCall": 28,
+          "stops": [
+            "2/279"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p241 15413",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
+        },
+        {
+          "control": "p242 15413",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
+        },
+        {
+          "control": "p239 15413",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
+        },
+        {
+          "control": "p240 15413",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
+        },
+        {
+          "control": "p237 15413",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
+        },
+        {
+          "control": "p238 15413",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p241 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p242 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p239 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p240 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p237 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p238 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)",
+      "seconds": 9
+    }
+  ]
+}

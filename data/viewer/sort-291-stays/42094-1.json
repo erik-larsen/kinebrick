@@ -1,0 +1,201 @@
+{
+  "set": "42094-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:36.419Z",
+  "load": 18,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 809,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The rear one of the two black gear knobs on top of the engine cover raises and lowers the arm: its upright shaft turns a long shaft forward under the turntable to a linear actuator, which pushes the arm up.",
+      "verdict": "shown",
+      "msOneCall": 95,
+      "msPerStep": 14,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p79 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 587,
+          "msOneCall": 95,
+          "stops": [],
+          "moved": {
+            "p30 55013": [
+              0,
+              143.24
+            ],
+            "p10 92695": [
+              0.79,
+              140.71
+            ],
+            "p1094 32278": [
+              6.53,
+              2.67
+            ],
+            "p1108 32278": [
+              6.53,
+              2.67
+            ],
+            "p1099 40490": [
+              3.74,
+              2.67
+            ],
+            "p1037 32271": [
+              13.96,
+              2.67
+            ],
+            "p80 32270": [
+              0,
+              0
+            ],
+            "p42 18938": [
+              0,
+              0
+            ],
+            "p104 32012": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p79 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 549,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {
+            "p30 55013": [
+              0,
+              143.24
+            ],
+            "p10 92695": [
+              0.7,
+              141.03
+            ],
+            "p1094 32278": [
+              6.09,
+              2.49
+            ],
+            "p1108 32278": [
+              6.09,
+              2.49
+            ],
+            "p1099 40490": [
+              3.48,
+              2.49
+            ],
+            "p1037 32271": [
+              13.01,
+              2.49
+            ],
+            "p80 32270": [
+              0,
+              0
+            ],
+            "p42 18938": [
+              0,
+              0
+            ],
+            "p104 32012": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 3,
+      "does": "The black gear knob on the left side at the back winds the winch drum in the rear, reeling the cable and hook in or letting them out.",
+      "verdict": "shown",
+      "msOneCall": 22,
+      "msPerStep": 7,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p208 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 290,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {
+            "p104 32012": [
+              0,
+              40.93
+            ],
+            "p113 32073": [
+              0,
+              40.93
+            ],
+            "p79 32270": [
+              0,
+              0
+            ],
+            "p80 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p208 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 300,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p104 32012": [
+              0,
+              40.93
+            ],
+            "p113 32073": [
+              0,
+              40.93
+            ],
+            "p79 32270": [
+              0,
+              0
+            ],
+            "p80 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 1
+    }
+  ]
+}

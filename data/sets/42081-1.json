@@ -155,9 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "2555e395",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
-    "seconds": 204,
+    "seconds": 254,
     "counts": {
       "no": 1,
       "works": 5,
@@ -280,7 +280,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 6.5
+        "seconds": 15.8
       },
       {
         "result": "works",
@@ -396,7 +396,7 @@
             "p1136 15265 against p0 64179"
           ]
         ],
-        "seconds": 89.6
+        "seconds": 144.6
       },
       {
         "result": "works",
@@ -494,7 +494,7 @@
             "p506 62274c01 against p505 62271c01"
           ]
         ],
-        "seconds": 38.2
+        "seconds": 33.1
       },
       {
         "result": "partly",
@@ -609,7 +609,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 9.07,
-        "seconds": 22
+        "seconds": 18.9
       },
       {
         "result": "works",
@@ -659,7 +659,7 @@
             ]
           ]
         ],
-        "seconds": 5
+        "seconds": 4.5
       },
       {
         "result": "works",
@@ -777,7 +777,7 @@
           [],
           []
         ],
-        "seconds": 18.9
+        "seconds": 13.9
       },
       {
         "result": "works",
@@ -895,130 +895,125 @@
           [],
           []
         ],
-        "seconds": 17.6
+        "seconds": 13.7
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the fan p694 at 0.07 and 0.73 rad (parts 694/720) and the fan p695 at 0.14 and 0.31 rad (parts 694/695). Viewer sweep with a full turn asked, decision 288.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.73,
-              -0.07
-            ],
-            [
-              0.13,
-              -0.3
-            ]
+        "turned": [
+          [
+            0.73,
+            -0.07
           ],
-          "rates": [
-            {},
-            {}
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ],
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "movedBy": [
-            [],
-            []
-          ],
-          "collisionStops": [
+          [
+            0.13,
+            -0.3
+          ]
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [
             [
               0,
-              1,
-              694,
-              720,
-              0.73,
-              0.73
+              0
             ],
             [
               0,
-              -1,
-              694,
-              720,
-              0.07,
-              0.07
-            ],
-            [
-              1,
-              1,
-              694,
-              695,
-              0.13,
-              0.13
-            ],
-            [
-              1,
-              -1,
-              694,
-              695,
-              0.3,
-              0.3
+              0
             ]
           ],
-          "seconds": 2
-        }
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "movedBy": [
+          [],
+          []
+        ],
+        "cause": "stopped-endless",
+        "detail": "p694 87751: p694 87751 against p720 48989",
+        "collisionStops": [
+          [
+            0,
+            1,
+            694,
+            720,
+            0.73,
+            0.73
+          ],
+          [
+            0,
+            -1,
+            694,
+            720,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            1,
+            694,
+            695,
+            0.13,
+            0.13
+          ],
+          [
+            1,
+            -1,
+            694,
+            695,
+            0.3,
+            0.3
+          ]
+        ],
+        "seconds": 1.9
       },
       {
         "result": "skipped",
         "seconds": 0
       }
     ],
-    "peak": 962
+    "peak": 621
   }
 }

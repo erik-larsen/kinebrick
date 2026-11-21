@@ -1,0 +1,126 @@
+{
+  "set": "8110-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:49:04.182Z",
+  "load": 11.1,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1867,
+  "seconds": 104,
+  "functions": [
+    {
+      "function": 8,
+      "does": "With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 57,
+      "time": {
+        "open": 11,
+        "collisions": 10,
+        "first": 58,
+        "reach": 0,
+        "A": 12,
+        "B": 14
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p60 58120",
+          "way": 1,
+          "asked": 3,
+          "went": -3.456,
+          "ms": 5675,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p767 94925": [
+              0,
+              153
+            ],
+            "p2199 94925": [
+              0,
+              153
+            ],
+            "p2172 4716": [
+              0,
+              153
+            ],
+            "p2216 48168": [
+              0,
+              1.23
+            ],
+            "p2319 47224": [
+              0.19,
+              1.23
+            ],
+            "p2215 48452": [
+              0,
+              0
+            ],
+            "p4030 32012": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p60 58120",
+          "way": -1,
+          "asked": 3,
+          "went": 3.456,
+          "ms": 5454,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p767 94925": [
+              0,
+              153
+            ],
+            "p2199 94925": [
+              0,
+              153
+            ],
+            "p2172 4716": [
+              0,
+              153
+            ],
+            "p2216 48168": [
+              0,
+              1.23
+            ],
+            "p2319 47224": [
+              0.19,
+              1.23
+            ],
+            "p2215 48452": [
+              0,
+              0
+            ],
+            "p4030 32012": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p60 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p767 94925",
+            "p2199 94925",
+            "p2172 4716",
+            "p2216 48168",
+            "p2319 47224"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 104
+    }
+  ]
+}

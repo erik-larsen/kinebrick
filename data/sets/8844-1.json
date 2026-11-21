@@ -110,11 +110,13 @@
     ]
   },
   "generated": {
-    "commit": "2555e395",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
     "seconds": 5,
     "counts": {
       "partly": 4,
+      "not back": 1,
+      "free-turned": 1,
       "works": 1,
       "not checked": 1
     },
@@ -227,92 +229,87 @@
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the pulley p128 at 0.38 rad each way (parts 202/207 and 202/206). Viewer sweep with a full turn asked, decision 288.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.37,
-              -0.37
-            ]
-          ],
-          "rates": [
-            {
-              "p172 3648a against p65 3673": [
-                1,
-                2.33e-13
-              ],
-              "p206 4262 against p65 3673": [
-                0,
-                20
-              ],
-              "p207 4262 against p65 3673": [
-                0,
-                20
-              ],
-              "p270 3482": [
-                0,
-                0
-              ],
-              "p69 3705": [
-                0,
-                0
-              ]
-            }
-          ],
-          "back": [
-            [
-              [
-                0.48,
-                0.23
-              ],
-              [
-                0.32,
-                0.15
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0.48,
-                0.23
-              ],
-              [
-                0.32,
-                0.15
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "collisionStops": [
-            [
-              0,
+        "turned": [
+          [
+            0.37,
+            -0.37
+          ]
+        ],
+        "rates": [
+          {
+            "p172 3648a against p65 3673": [
               1,
-              202,
-              207,
-              0.37,
-              0.37
+              2.33e-13
+            ],
+            "p206 4262 against p65 3673": [
+              0,
+              20
+            ],
+            "p207 4262 against p65 3673": [
+              0,
+              20
+            ],
+            "p270 3482": [
+              0,
+              0
+            ],
+            "p69 3705": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.48,
+              0.23
             ],
             [
-              0,
-              -1,
-              202,
-              206,
-              0.37,
-              0.37
+              0.32,
+              0.15
             ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.48,
+              0.23
+            ],
+            [
+              0.32,
+              0.15
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "cause": "stopped-endless",
+        "detail": "p128 3736: p202 4273a against p207 4262",
+        "collisionStops": [
+          [
+            0,
+            1,
+            202,
+            207,
+            0.37,
+            0.37
           ],
-          "seconds": 0.2
-        }
+          [
+            0,
+            -1,
+            202,
+            206,
+            0.37,
+            0.37
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -400,138 +397,133 @@
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it: the wheel p284 at 0.2 rad (parts 36/215). Viewer sweep, decision 279.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            0.23,
+            -0.2
+          ]
+        ],
+        "rates": [
+          {},
+          {},
+          {}
+        ],
+        "back": [
+          [
             [
-              1.5,
-              -1.5
+              0.03,
+              0
             ],
             [
-              1.5,
-              -1.5
-            ],
-            [
-              0.23,
-              -0.2
+              0.03,
+              0
             ]
           ],
-          "rates": [
-            {},
-            {},
-            {}
-          ],
-          "back": [
+          [
             [
-              [
-                0.03,
-                0
-              ],
-              [
-                0.03,
-                0
-              ]
+              0.04,
+              0
             ],
             [
-              [
-                0.04,
-                0
-              ],
-              [
-                0.03,
-                0
-              ]
-            ],
-            [
-              [
-                19.39,
-                4.78
-              ],
-              [
-                15.94,
-                4.18
-              ]
+              0.03,
+              0
             ]
           ],
-          "torn": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              19.39,
+              4.78
             ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              15.94,
+              4.18
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
             ],
             [
-              [
-                20.93,
-                4.76
-              ],
-              [
-                17.96,
-                4.23
-              ]
+              0,
+              0
             ]
           ],
-          "freeTurned": true,
-          "strayed": [
-            "p301 3070b"
-          ],
-          "stop": [
+          [
             [
-              null,
-              null
+              0,
+              0
             ],
             [
-              null,
-              null
-            ],
-            [
-              "limit",
-              "limit"
+              0,
+              0
             ]
           ],
-          "movedBy": [
-            [],
-            [],
-            []
-          ],
-          "collisionStops": [
+          [
             [
-              2,
-              1,
-              90,
-              107,
-              0.23,
-              0.23
+              20.93,
+              4.76
             ],
             [
-              2,
-              -1,
-              36,
-              215,
-              0.2,
-              0.2
+              17.96,
+              4.23
             ]
+          ]
+        ],
+        "freeTurned": true,
+        "strayed": [
+          "p301 3070b"
+        ],
+        "stop": [
+          [
+            null,
+            null
           ],
-          "seconds": 1.9
-        }
+          [
+            null,
+            null
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "cause": "stopped-endless",
+        "detail": "p284 3482: p90 3710 against p107 3710",
+        "collisionStops": [
+          [
+            2,
+            1,
+            90,
+            107,
+            0.23,
+            0.23
+          ],
+          [
+            2,
+            -1,
+            36,
+            215,
+            0.2,
+            0.2
+          ]
+        ],
+        "seconds": 2
       },
       {
         "result": "works",
@@ -597,13 +589,13 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1.4
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 348
+    "peak": 326
   }
 }

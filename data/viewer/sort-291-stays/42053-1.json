@@ -1,0 +1,136 @@
+{
+  "set": "42053-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:20.269Z",
+  "load": 18.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1132,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The 20 tooth gear at the back of the chassis steers the front wheels: a long shaft down the middle of the chassis carries its turn to a 12 tooth gear at the front, which slides a rack that turns the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 102,
+      "msPerStep": 12,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p201 32269",
+        "way": 1,
+        "went": 0.837,
+        "asked": 1.5,
+        "by": [
+          "48/65"
+        ]
+      },
+      "stops": [
+        "48/65",
+        "49/64"
+      ],
+      "A": [
+        {
+          "control": "p201 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.837,
+          "ms": 290,
+          "msOneCall": 102,
+          "stops": [
+            "48/65"
+          ],
+          "moved": {
+            "p78 32270": [
+              0,
+              47.97
+            ],
+            "p66 87761": [
+              12.76,
+              0
+            ],
+            "p55 59426": [
+              8.61,
+              21.92
+            ],
+            "p56 59426": [
+              8.61,
+              21.92
+            ],
+            "p96 59426": [
+              0,
+              0
+            ],
+            "p97 59426": [
+              0,
+              0
+            ],
+            "p284 18939": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p201 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.837,
+          "ms": 278,
+          "msOneCall": 23,
+          "stops": [
+            "49/64"
+          ],
+          "moved": {
+            "p78 32270": [
+              0,
+              47.97
+            ],
+            "p66 87761": [
+              12.76,
+              0
+            ],
+            "p55 59426": [
+              8.61,
+              21.92
+            ],
+            "p56 59426": [
+              8.61,
+              21.92
+            ],
+            "p96 59426": [
+              0,
+              0
+            ],
+            "p97 59426": [
+              0,
+              0
+            ],
+            "p284 18939": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p201 32269",
+          "judged": "stands",
+          "why": "stopped at +0.837 rad (48/65); -0.837 rad (49/64); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 4
+    }
+  ]
+}
