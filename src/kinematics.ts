@@ -4400,7 +4400,7 @@ export class Kinematics {
         if (this.options.leastMotion && this.drag.turning !== null && this.options.closeStill > 0) {
           const most = Math.max(...m.map(Math.abs));
           const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
-          // A resting body follows what it stands on (decisions 317 and 319): where the support it rests
+          // A resting body follows what it stands on (decisions 317, 319 and 324): where the support it rests
           // on now moves in the step (a camshaft's lobe turning under a push rod at its top, still to
           // first order there), it isn't kept still, nor costs anything in closing's tiers (see
           // leastTiers), so closing the loops sets it on its support rather than turning the support
