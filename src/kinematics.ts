@@ -164,6 +164,12 @@ export interface Options {
   // friction holds what would only creep, rather than letting everything give a little. 0.2 does best
   // in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
   stillness: number;
+  // The free-parts rule (decisions 291, 295 and 309): a drag keeps every joint that it doesn't drive
+  // as still as it can, before everything else in its choice of motion: as few of them turning as
+  // can, as friction holds them (see leastTiers and classifyDrag). 'wheels': for a drag of a wheel
+  // on the ground only; 'all': for every drag; 'off': not at all, and the joints aren't classified.
+  // KINEBRICK_FREE_PARTS sets it, ?freeparts= in the viewer; off by default in both.
+  freeParts: 'off' | 'wheels' | 'all';
   // Least motion: a drag that turns a joint is solved only over the parts it can reach, the rest
   // held where they are on the frame (see outOfReach). It's far quicker on a big model.
   // KINEBRICK_REACH=0 turns it off.
@@ -241,6 +247,7 @@ export const experiments: Options = {
   closeStill: setting('KINEBRICK_CLOSE_STILL') !== undefined ? Number(setting('KINEBRICK_CLOSE_STILL')) : 1e-3,
   balanced: setting('KINEBRICK_BALANCED') !== '0',
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
+  freeParts: (['wheels', 'all'].includes(setting('KINEBRICK_FREE_PARTS') ?? '') ? setting('KINEBRICK_FREE_PARTS') : 'off') as Options['freeParts'],
   reach: setting('KINEBRICK_REACH') !== '0',
   centres: setting('KINEBRICK_CENTRES') === '1',
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
@@ -329,6 +336,7 @@ class Drag {
   springs = false; // whether the slides that springs hold at rest are held still for it (see chooseDragHolds)
   // The free-parts rule's classification (see Kinematics.classifyDrag), made at the drag's first step.
   free: Set<number> | null = null; // the joints free and not driven
+  candidates: number[] = []; // the joints the rule keeps as still as it can: all but the driven, the wheels on the ground and those that can't turn
   driven: Set<number> | null = null; // the joints whose turning the drag fixes
   kind: 'wheel' | 'turn' | 'push' = 'turn';
   // KINEBRICK_FREE_COUNT=1: each joint's two bodies against each other where the count last looked,
@@ -1562,7 +1570,13 @@ export class Kinematics {
     const axes = this.jointAxes();
     // How fast each tyre turns about the upright against the frame, in each motion; those rows
     // made orthonormal.
-    const headings = orthonormalize(treads.map((b) => motions.map((w) => { const f = this.frameOf[b]; return DOWN.x * (w[3 * b] - w[3 * f]) + DOWN.y * (w[3 * b + 1] - w[3 * f + 1]) + DOWN.z * (w[3 * b + 2] - w[3 * f + 2]); })));
+    const heading = treads.map((b) => motions.map((w) => { const f = this.frameOf[b]; return DOWN.x * (w[3 * b] - w[3 * f]) + DOWN.y * (w[3 * b + 1] - w[3 * f + 1]) + DOWN.z * (w[3 * b + 2] - w[3 * f + 2]); }));
+    // With the free-parts rule on (see Options.freeParts): a tyre's turning about the upright counts as
+    // a heading only above rounding, against the motions' own size, as the tests below are: where it was
+    // 1e-8 (the 8844 Helicopter after a turn of 0.01 rad, 0 at its built pose), orthonormalize made it a
+    // whole heading, and five free bodies counted as steering from a drag's second step on.
+    const most = Math.max(0, ...motions.map((w) => w.reduce((m, x) => Math.max(m, Math.abs(x)), 0)));
+    const headings = orthonormalize(this.options.freeParts === 'off' ? heading : heading.filter((r) => Math.hypot(...r) > 1e-6 * most));
     const steering = new Set<number>();
     if (headings.length === 0) return steering;
     for (const body of this.order) {
@@ -1976,18 +1990,13 @@ export class Kinematics {
     const kept = [this.scrubNeeded, this.leastScrub, this.slipRows] as const;
     // Worked out where the model is, not moved to the origin as freeMotions does: that rounds the
     // frame's place in its last bits, and this must change nothing.
-    // With the tyres rolling: of the free motions, the ones in which no tyre on the ground scrubs
-    // sideways or lifts (as motionChoices keeps them gripping), if any of those moves the control; else
-    // all of them (a parked car's steering scrubs its tyres, and in the motions that don't, it can't
-    // turn, so every joint would look free).
-    // For a turn, the motions the drag's last search found, where it was made from the same inputs (the
-    // holds' last test, at pointer-down; see lastSearch): the same motions, not worked out twice. Those
-    // were worked out with the model moved to the origin (see nearOrigin): so are a slide's points here.
+    // The motions the drag's own steps choose from (the free motions, the tyres scrubbing and lifting
+    // within what's allowed): a joint that moves only as a tyre scrubs or lifts (a plate swinging as the
+    // model rolls, the 8856) is a candidate too. The wheels on the ground are left out below.
     let motions: number[][];
     try {
       const basis = found ? found.basis : this.treeBasis();
       const inBasisAll = found ? found.motions : this.freeMotionsInBasis();
-      const slipRows = found ? found.slipRows : this.slipRows;
       // A motion that is one coordinate of the basis alone (a free hub spinning: on the 9397 Logging
       // Truck, most of them) is that coordinate's column, read off; the same numbers fromBasis gives.
       const toMotion = (z: number[]) => {
@@ -2001,11 +2010,6 @@ export class Kinematics {
       };
       const all = inBasisAll.map(toMotion);
       motions = all;
-      if (slipRows.length && all.length) {
-        const grip = orthonormalize(mixes(inBasisAll, nullSpace(dotsWith(slipRows, inBasisAll), inBasisAll.length))).map(toMotion);
-        const turns = (ms: number[][]) => ms.reduce((sum, m) => sum + control(m) ** 2, 0);
-        if (grip.length && turns(grip) > 1e-12 * turns(all)) motions = grip;
-      }
     } finally {
       [this.scrubNeeded, this.leastScrub, this.slipRows] = kept;
     }
@@ -2066,8 +2070,21 @@ export class Kinematics {
     }
     const keepMotions = motions.map((_, m) => m).filter((m) => !usedMotion.has(m));
     const rest = candidates.map((_, k) => k).filter((k) => !privateOf.has(k));
-    const solved = cc > 0 ? this.stillestMix(rest.map((k) => keepMotions.map((m) => rates[candidates[k]][m])), keepMotions.map((m) => c[m])) : null;
+    // First the cheap question, by the sparse null space: does some motion turn the control and leave
+    // every one of them still? Then all are free. Only where none does, the least squares.
+    const restRows = rest.map((k) => keepMotions.map((m) => rates[candidates[k]][m]));
+    const keptC = keepMotions.map((m) => c[m]);
+    let solved: number[] | null = null;
+    if (cc > 0) {
+      const none = restRows.length ? nullSpace(restRows, keepMotions.length) : keepMotions.map((_, i) => keepMotions.map((__, k) => (k === i ? 1 : 0)));
+      const turns = none.some((v) => Math.abs(v.reduce((sum, x, i) => sum + x * keptC[i], 0)) > 1e-9 * Math.sqrt(v.reduce((sum, x) => sum + x * x, 0) * cc));
+      solved = turns ? rest.map(() => 0) : this.stillestMix(restRows, keptC);
+    }
     const still = solved ? candidates.map((_, k) => (privateOf.has(k) ? 0 : solved[rest.indexOf(k)])) : null;
+    // The rule keeps still every joint the drag doesn't drive, not only those that move in the step's
+    // first-order motions: closing the loops moves others (the 8856's plate, still in every free motion
+    // but swung as the loops close).
+    d.candidates = this.mech.joints.flatMap((joint, j) => (driven.has(j) || rolling.has(joint.bodyA) || rolling.has(joint.bodyB) || (this.drag.turning && j === this.drag.turning.joint) ? [] : [j]));
     for (const [k, j] of candidates.entries()) {
       if (!still) free.add(j);
       else if (Math.abs(still[k]) <= 1e-6) free.add(j);
@@ -2076,7 +2093,7 @@ export class Kinematics {
     d.free = free;
     d.driven = driven;
     d.kind = kind;
-    if (setting('KINEBRICK_FREE_DEBUG')) console.error(`free parts, ${kind}: ${motions.length} motions; driven ${[...driven].join(' ')}; free ${[...free].join(' ')}`);
+    if (setting('KINEBRICK_FREE_DEBUG')) console.error(`free parts, ${kind}: ${motions.length} motions; driven ${[...driven].join(' ')}; candidates ${candidates.join(' ')}; free ${[...free].join(' ')}; on ${this.freeRuleOn()}`);
   }
 
   // Of the mixes a of the motions with sum a·c = 1 (the control turning at rate 1), the one that keeps
@@ -2105,6 +2122,23 @@ export class Kinematics {
       mix = g.map((x) => x / cg);
     }
     return rows.map((r) => r.reduce((sum, x, i) => sum + x * mix[i], 0));
+  }
+
+  // Whether the free-parts rule holds for this drag (see Options.freeParts): 'all', or 'wheels' and a
+  // wheel on the ground.
+  freeRuleOn(): boolean {
+    const f = this.options.freeParts;
+    return this.drag.free !== null && (f === 'all' || (f === 'wheels' && this.drag.kind === 'wheel'));
+  }
+
+  // The free-parts rule for a push that doesn't go by the tiers (see push.ts): of `motions` (motion
+  // vectors), the mixes that leave every candidate joint still, if any; else `motions` as they are.
+  freeStill(motions: number[][]): number[][] {
+    if (!this.freeRuleOn() || !this.drag.candidates.length || !motions.length) return motions;
+    const rows = this.drag.candidates.map((j) => motions.map((m) => this.anyJointRate(m, j)));
+    const mix = nullSpace(rows, motions.length);
+    if (!mix.length) return motions;
+    return orthonormalize(mix.map((a) => combine(motions, a)));
   }
 
   // A joint's rate in a motion: a turning joint's turning about its axis, a slide's sliding along it.
@@ -2159,7 +2193,10 @@ export class Kinematics {
       if (m > most) [most, mostJoint] = [m, j];
       if (m > 1e-6 * d.counted.travel) over++;
     }
-    Kinematics.freeCounts.push({ kind: d.kind, free: d.free.size, driven: d.driven!.size, travel: d.counted.travel, most, mostJoint, over });
+    const moving = this.mech.joints.map((_, j) => [j, d.counted!.moved[j]] as [number, number]).filter(([, m]) => m > 1e-6 * d.counted!.travel).sort((x, y) => y[1] - x[1]);
+    const cands = new Set(d.candidates);
+    const topMoving = moving.slice(0, 8).map(([j, m]) => `${j}${cands.has(j) ? 'c' : d.driven!.has(j) ? 'd' : ''}:${m.toFixed(3)}`).join(' ');
+    Kinematics.freeCounts.push({ kind: d.kind, free: d.free.size, driven: d.driven!.size, travel: d.counted.travel, most, mostJoint, over, topMoving } as never);
   }
 
   // ---------------------------------------------------------------------------
@@ -2807,7 +2844,7 @@ export class Kinematics {
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     // The classification is made in the first step's own search for a motion (see jointMotionNearOrigin),
     // from the free motions it works out or reuses; here only if that search didn't run.
-    const classify = this.drag.turning?.joint === joint && !this.drag.free;
+    const classify = this.drag.turning?.joint === joint && !this.drag.free && (FREE_COUNT() || this.options.freeParts === 'all' || (this.options.freeParts === 'wheels' && this.wheelTurned(joint)));
     if (classify) {
       this.classifyPending = joint;
       if (FREE_COUNT()) this.countFree(null, true);
@@ -4097,7 +4134,28 @@ export class Kinematics {
     // the ground, swung it round the other rear wheel and tipped it forward.
     const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
     const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
-    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
+    const list: Tier[] = [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
+    // The free-parts rule (see Options.freeParts): before all of these, every joint the drag doesn't
+    // drive kept as still as it can, as few of them turning as can (a sparse tier, as friction holds:
+    // an idle gear on a turning shaft slips on it, one joint, rather than run the train it meshes with).
+    // A slide's sliding, a turning joint's turning.
+    if (this.freeRuleOn() && this.drag.turning?.joint === joint && this.drag.candidates.length) {
+      const cands = this.drag.candidates;
+      const points = cands.map((j) => (this.mech.joints[j].kind === 'slide' ? this.mech.joints[j].from.clone().applyMatrix4(this.poses[this.mech.joints[j].bodyA]) : null));
+      const slideAxes = cands.map((j) => (this.mech.joints[j].kind === 'slide' ? axisOf(this.mech.joints[j].from, this.mech.joints[j].to).transformDirection(this.poses[this.mech.joints[j].bodyA]) : null));
+      const twist = (b: number, z: number[]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z));
+      const freeRates = (z: number[]) =>
+        cands.map((j, k) => {
+          const p = points[k];
+          if (!p) return rateOf(z, j);
+          const { bodyA, bodyB } = this.mech.joints[j];
+          const [ta, tb] = [twist(bodyA, z), twist(bodyB, z)];
+          const at = (t: number[]) => new Vector3(t[3], t[4], t[5]).add(new Vector3(t[0], t[1], t[2]).cross(p));
+          return at(tb).sub(at(ta)).dot(slideAxes[k]!);
+        });
+      list.unshift({ cost: freeRates, sparse: process.env.KINEBRICK_FREE_L2 !== "1" });
+    }
+    return list;
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when

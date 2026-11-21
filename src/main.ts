@@ -138,6 +138,8 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //                and `status` both mean `warnings`
 //   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
 //                to drive from the browser's console
+// The free-parts rule (see Options.freeParts in kinematics.ts): ?freeparts=wheels or all; off unless asked.
+const FREE_PARTS: { freeParts?: 'wheels' | 'all' } = ['wheels', 'all'].includes(params.get('freeparts') ?? '') ? { freeParts: params.get('freeparts') as 'wheels' | 'all' } : {};
 const OPTIONS = params.getAll('option').join(',').split(',').map((o) => (o === 'symbols' || o === 'status' ? 'warnings' : o));
 // ?holds has a drag that turns a joint choose its motion by holds, as before least motion (see
 // leastTurning in kinematics.ts).
@@ -693,7 +695,7 @@ async function start() {
   let scrub = SCRUB_PARAM ?? modelScrub;
   // Whether the model is lifted off the ground (see LIFTED).
   let lifted = LIFTED;
-  let kin = new Kinematics(mech, { lifted });
+  let kin = new Kinematics(mech, { lifted, ...FREE_PARTS });
   kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
   let sticks: Stick[] = [];
@@ -777,7 +779,7 @@ async function start() {
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
     mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null, slid, touching);
-    kin = new Kinematics(mech, { lifted });
+    kin = new Kinematics(mech, { lifted, ...FREE_PARTS });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
@@ -1315,7 +1317,7 @@ async function start() {
   gui.add(settings, 'lifted').name('Lift off the ground').onChange((on: boolean) => {
     lifted = on;
     const was = kin;
-    kin = new Kinematics(mech, { lifted });
+    kin = new Kinematics(mech, { lifted, ...FREE_PARTS });
     kin.scrub = scrub / 100;
     kin.poseAs(was.poses, was.jointAngles);
     for (const body of was.frozenBodies()) kin.toggleFreeze(body);

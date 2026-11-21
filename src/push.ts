@@ -48,7 +48,7 @@ export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vect
   // The free-parts rule's classification (see Kinematics.classifyDrag), at the push's first step:
   // against the grabbed point's speed along the push.
   const at = () => grab.clone().applyMatrix4(kin.poses[body]);
-  if (!kin.drag.free) {
+  if (!kin.drag.free && (kin.options.freeParts === 'all' || (typeof process !== 'undefined' && process.env?.KINEBRICK_FREE_COUNT === '1'))) {
     const g = at();
     kin.classifyDrag((m) => kin.pointVelocity(m, body, g).dot(dir), 'push');
     if (typeof process !== 'undefined' && process.env?.KINEBRICK_FREE_COUNT === '1') kin.countFree(g);
@@ -76,7 +76,9 @@ function pushStepWhole(kin: Kinematics, body: number, grab: Vector3, dir: Vector
   // Least motion, for a part on a turning joint (see Options.leastPush).
   if (kin.pushesByTiers(body)) return kin.pushStepByTiers(body, grab, dir, step, allowed);
   const g = grab.clone().applyMatrix4(kin.poses[body]);
-  const motions = kin.freeMotions();
+  // The free-parts rule (see Options.freeParts): the motions that leave the joints the push doesn't
+  // drive still, where any does.
+  const motions = kin.freeStill(kin.freeMotions());
   const speeds = motions.map((m) => kin.pointVelocity(m, body, g));
   const amounts = motions.length ? leastSquares(speeds, dir) : null;
   const move = new Vector3();

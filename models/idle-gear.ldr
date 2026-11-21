@@ -1,0 +1,24 @@
+0 Idle Gear
+0 Name: idle-gear.ldr
+0 Author: erik-larsen
+0 // A 1x8 Technic brick holding three 2L axles, 60 LDU apart. On the first, a 24 tooth gear with a round hole (2471),
+0 // free on its axle; on the other two, 24 tooth gears, meshing in a row (a train in neutral).
+0 // Turning the first axle, the round-hole gear may slip on it (one joint) or turn the train (two).
+0 // Holes are 10 LDU below the brick's top; gears sit in front of the brick, at z = -20.
+
+0 // Step 1: the brick
+1 14 0 0 0 1 0 0 0 1 0 0 0 1 3702.dat
+0 STEP
+
+0 // Step 2: 2L axles through holes 1, 4 and 7, sticking out in front
+1 0 -60 10 -10 0 0 1 0 1 0 -1 0 0 3704.dat
+1 0 0 10 -10 0 0 1 0 1 0 -1 0 0 3704.dat
+1 0 60 10 -10 0 0 1 0 1 0 -1 0 0 3704.dat
+0 STEP
+
+0 // Step 3: the round-hole gear on the first axle, then two 24 tooth gears; the middle one turned half a
+0 // tooth (7.5 degrees) so its teeth fall between its neighbours'.
+1 72 -60 10 -20 1 0 0 0 1 0 0 0 1 2471.dat
+1 71 0 10 -20 0.991445 -0.130526 0 0.130526 0.991445 0 0 0 1 3648.dat
+1 71 60 10 -20 1 0 0 0 1 0 0 0 1 3648.dat
+0 STEP

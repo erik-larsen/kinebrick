@@ -32,7 +32,7 @@ const TIER_TOLERANCE = 2 ** -34;
 // tyres, to undo a turn of a ten-thousandth of a radian.
 const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
-const SPARSE_ROUNDS = 30;
+const SPARSE_ROUNDS = Number((typeof process !== "undefined" && process.env?.KINEBRICK_SPARSE_ROUNDS) || 30);
 // A sparse tier's least sum of sizes is often not one point but many (two friction joints that
 // could each slip as much), and reweighting picked one by its path, so by rounding. Each round's
 // least squares gets a least-norm term of RIDGE of its scale (decision 191 of 2026-11-18), which
