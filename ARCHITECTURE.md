@@ -560,6 +560,11 @@ Gears keep that rate steady, and linkages change it gently, except near a dead p
 
 `KINEBRICK_LOOP_PLAY=0` turns play as an amount off. Play is then a rate, as before: at most 1 LDU of opening for each radian the joint turns, and steps on it may leave the loops up to 0.1 LDU apart.
 
+**Less work for the same steps.** Most of a step's time is finding the free motions and choosing among them (steps 4 to 6), over every joint of the model. Two things cut it:
+
+- **A drag's working set** (decision 266): a drag's first two steps are worked in full; its later steps only on the joints those steps turned and the joints tied to them, every other joint held where it is. A step that would move a joint outside that set, stops, plays, or turns short is worked again in full, and the set made afresh. The 9397's steering takes 15 ms a step on the set against 120 ms in full. `KINEBRICK_WORKING_SET=0` turns it off.
+- **A search reused:** a drag tests its holds from where it starts, then its first step searches again from the same place with the same holds. The second search takes the first one's free motions and choices, where everything they depend on (every body's place, the holds, the tyres on the ground, the scrub allowed, the options) is the same to the last bit. A drag's first move (its holds and first step) takes 384 ms against 644 on the 9397's steering, 783 against 903 on the 42083's. `KINEBRICK_REUSE_SEARCH=0` turns it off; `=check` works every such search out again and counts any that differ.
+
 ### 8. Place the bodies
 
 Positions aren't stored per body. The solver stores the frame's position and one angle per turning joint, and places each body by starting from the frame and walking outward along a tree of turning joints: an axle body is the frame's position, turned by its joint's angle.
