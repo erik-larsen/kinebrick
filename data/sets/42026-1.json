@@ -74,9 +74,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
-    "date": "2026-11-17",
-    "seconds": 1,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 2,
     "counts": {
       "works": 3,
       "skipped": 1
@@ -107,7 +107,7 @@
             ],
             "p6 12799 against p0 32525": [
               0,
-              1.35e-28
+              2.02e-28
             ]
           },
           {
@@ -121,7 +121,7 @@
             ],
             "p6 12799 against p0 32525": [
               0,
-              1.35e-28
+              2.02e-28
             ]
           }
         ],
@@ -179,7 +179,7 @@
             "p121 56145 against p6 12799"
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "skipped",
@@ -307,6 +307,7 @@
         ],
         "seconds": 0.1
       }
-    ]
+    ],
+    "peak": 357
   }
 }

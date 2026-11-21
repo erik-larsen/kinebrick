@@ -1,0 +1,142 @@
+{
+  "set": "42041-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:16.144Z",
+  "load": 16.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 603,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The gear on top of the cab's roof steers the front wheels (hand of god steering): a long vertical shaft runs down behind the seat, two knob wheels turn the drive forward, and a 12 tooth gear drives the steering rack, whose links turn both front wheels.",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 4,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p319 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 173,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p283 32072": [
+              0,
+              85.94
+            ],
+            "p69 32072": [
+              0,
+              85.94
+            ],
+            "p71 32270": [
+              0,
+              85.94
+            ],
+            "p65 87761": [
+              23.84,
+              0
+            ],
+            "p50 87083": [
+              17.88,
+              41.95
+            ],
+            "p55 87083": [
+              17.88,
+              41.95
+            ],
+            "p645 56908": [
+              29.8,
+              41.95
+            ],
+            "p651 56908": [
+              29.8,
+              41.95
+            ],
+            "p647 56908": [
+              0,
+              0
+            ],
+            "p649 56908": [
+              0,
+              0
+            ],
+            "p96 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p319 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 139,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p283 32072": [
+              0,
+              85.94
+            ],
+            "p69 32072": [
+              0,
+              85.94
+            ],
+            "p71 32270": [
+              0,
+              85.94
+            ],
+            "p65 87761": [
+              23.84,
+              0
+            ],
+            "p50 87083": [
+              17.88,
+              41.95
+            ],
+            "p55 87083": [
+              17.88,
+              41.95
+            ],
+            "p645 56908": [
+              29.8,
+              41.95
+            ],
+            "p651 56908": [
+              29.8,
+              41.95
+            ],
+            "p647 56908": [
+              0,
+              0
+            ],
+            "p649 56908": [
+              0,
+              0
+            ],
+            "p96 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

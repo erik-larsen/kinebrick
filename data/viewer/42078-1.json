@@ -1,0 +1,717 @@
+{
+  "set": "42078-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:50:19.005Z",
+  "part": "A",
+  "parts": 2651,
+  "seconds": 792,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links.",
+      "verdict": "not decided",
+      "msOneCall": 782,
+      "msPerStep": 668,
+      "time": {
+        "open": 47,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1146 18575",
+        "way": -1,
+        "went": -0.07,
+        "asked": 1.5,
+        "by": [
+          "466/872"
+        ]
+      },
+      "stops": [
+        "466/1065",
+        "466/872"
+      ],
+      "A": [
+        {
+          "control": "p1146 18575",
+          "way": 1,
+          "asked": 1.27,
+          "went": 0.069,
+          "ms": 1310,
+          "msOneCall": 782,
+          "stops": [
+            "466/1065"
+          ],
+          "moved": {
+            "p537 3648b": [
+              0,
+              1.31
+            ],
+            "p502 56145": [
+              0.96,
+              1.63
+            ],
+            "p512 56145": [
+              0.96,
+              1.63
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1146 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 1222,
+          "msOneCall": 726,
+          "stops": [
+            "466/872"
+          ],
+          "moved": {
+            "p537 3648b": [
+              0,
+              1.33
+            ],
+            "p502 56145": [
+              0.97,
+              1.66
+            ],
+            "p512 56145": [
+              0.97,
+              1.66
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1146 18575",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.069 rad (466/1065); -0.07 rad (466/872)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p1146 18575: a travel of 0.2 rad or less each way, stopped at +0.069 rad (466/1065); -0.07 rad (466/872)",
+      "seconds": 85
+    },
+    {
+      "function": 3,
+      "does": "The front wheels roll freely; they aren't driven.",
+      "verdict": "shown",
+      "msOneCall": 1050,
+      "msPerStep": 482,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 152,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p502 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 20667,
+          "msOneCall": 794,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p502 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19934,
+          "msOneCall": 1050,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p512 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19649,
+          "msOneCall": 720,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p512 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19591,
+          "msOneCall": 710,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 176
+    },
+    {
+      "function": 4,
+      "does": "The bonnet, with the grille, headlights and front wings, tips forward to show the engine.",
+      "verdict": "not shown",
+      "why": "A: p1358 44294, p1423 40490 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 30,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1326 60485",
+          "way": 1,
+          "asked": 0.02,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1358 44294": [
+              0,
+              0
+            ],
+            "p1423 40490": [
+              0,
+              0
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1326 60485",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1358 44294": [
+              0,
+              0
+            ],
+            "p1423 40490": [
+              0,
+              0
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 52
+    },
+    {
+      "function": 5,
+      "does": "The cab doors swing open.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 42,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p851 32524",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p851 32524",
+          "way": -1,
+          "asked": 1.13,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p889 32524",
+          "way": 1,
+          "asked": 1.13,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p889 32524",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 64
+    },
+    {
+      "function": 7,
+      "does": "The trailer swings on its king pin behind the tractor.",
+      "verdict": "shown",
+      "msOneCall": 487,
+      "msPerStep": 239,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1634 32278",
+          "way": 1,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 4100,
+          "msOneCall": 487,
+          "stops": [],
+          "moved": {
+            "p1890 56145": [
+              514.07,
+              78.93
+            ],
+            "p199 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1634 32278",
+          "way": -1,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 4049,
+          "msOneCall": 467,
+          "stops": [],
+          "moved": {
+            "p1890 56145": [
+              514.07,
+              78.93
+            ],
+            "p199 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 45
+    },
+    {
+      "function": 8,
+      "does": "The black gear low on the side of the trailer's front winds the landing gear's two legs, with their little wheels, down to the ground and back up.",
+      "verdict": "shown",
+      "msOneCall": 488,
+      "msPerStep": 256,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 25,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1706 18575",
+          "way": 1,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 4383,
+          "msOneCall": 488,
+          "stops": [],
+          "moved": {
+            "p1723 42610": [
+              202.13,
+              34.38
+            ],
+            "p1724 42610": [
+              202.13,
+              34.38
+            ]
+          }
+        },
+        {
+          "control": "p1706 18575",
+          "way": -1,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 4059,
+          "msOneCall": 482,
+          "stops": [],
+          "moved": {
+            "p1723 42610": [
+              202.13,
+              34.38
+            ],
+            "p1724 42610": [
+              202.13,
+              34.38
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 41
+    },
+    {
+      "function": 11,
+      "does": "Each crane leg is a rack in a housing that telescopes, so the leg can reach the ground as it swings out.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 31,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2051 18942",
+          "way": 1,
+          "asked": 0.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2051 18942",
+          "way": -1,
+          "asked": 1.05,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2270 18942",
+          "way": 1,
+          "asked": 1.05,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2270 18942",
+          "way": -1,
+          "asked": 0.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 43
+    },
+    {
+      "function": 12,
+      "does": "The container's two end doors swing open, each once its lock bar is lifted.",
+      "verdict": "not shown",
+      "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; first step not done by the sweep: p2641 99008 slid -25; first step not done by the sweep: p2675 99008 slid -25",
+      "msOneCall": 484,
+      "msPerStep": 267,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 44,
+        "B": 0
+      },
+      "stop": {
+        "control": "p2665 64782",
+        "way": -1,
+        "went": -0.628,
+        "asked": 1.5,
+        "by": [
+          "185/1685"
+        ]
+      },
+      "stops": [
+        "186/1680",
+        "185/1685"
+      ],
+      "A": [
+        {
+          "control": "p2631 64782",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.593,
+          "ms": 4038,
+          "msOneCall": 463,
+          "stops": [
+            "186/1680"
+          ],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2631 64782",
+          "way": -1,
+          "asked": 0.2,
+          "went": -0.2,
+          "ms": 1498,
+          "msOneCall": 476,
+          "stops": [],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2665 64782",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0.2,
+          "ms": 1524,
+          "msOneCall": 480,
+          "stops": [],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2665 64782",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.628,
+          "ms": 4189,
+          "msOneCall": 484,
+          "stops": [
+            "185/1685"
+          ],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p2631 64782",
+          "judged": "stands",
+          "why": "stopped at +0.593 rad (186/1680); kinds hinge: container doors"
+        },
+        {
+          "control": "p2665 64782",
+          "judged": "stands",
+          "why": "stopped at -0.628 rad (185/1685); kinds hinge: container doors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the end doors swing open, far past 0.2 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=412"
+      },
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; first step not done by the sweep: p2641 99008 slid -25; first step not done by the sweep: p2675 99008 slid -25"
+      },
+      "seconds": 55
+    },
+    {
+      "function": 13,
+      "does": "The trailer's four wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 719,
+      "msPerStep": 446,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 220,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1890 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18558,
+          "msOneCall": 718,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1890 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18738,
+          "msOneCall": 681,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1892 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18540,
+          "msOneCall": 677,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1892 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18883,
+          "msOneCall": 707,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1894 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18622,
+          "msOneCall": 719,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1894 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18663,
+          "msOneCall": 697,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1896 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19135,
+          "msOneCall": 697,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1896 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19124,
+          "msOneCall": 719,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 232
+    }
+  ]
+}

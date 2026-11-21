@@ -4,14 +4,14 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 52 works, 30 partly, 2 skipped, 1 not checked.
+Used in 53 of the 186 surveyed sets, by 83 functions. Kinebrick: 49 works, 32 partly, 2 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 4 of 18 | 4 of 32 | 13 of 23 | 30 of 83 | 3 of 21 |
-| Functions | 0 | 8 | 8 | 20 | 43 | 6 |
+| Sets | 0 of 9 | 4 of 18 | 4 of 32 | 13 of 23 | 29 of 83 | 3 of 21 |
+| Functions | 0 | 8 | 8 | 20 | 41 | 6 |
 
 ## Details
 
@@ -22,7 +22,7 @@ Each detail by the set it first appears in.
 | outriggers | 1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe) | 1 |
 | gripper | 1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1) | 1 |
 | arm | 1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1) | 1 |
-| grab | 2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1) | 3 |
+| grab | 2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1) | 2 |
 | boom | 2015, [42031 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42031-1) | 1 |
 | engine cover | 2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1) | 1 |
 | outrigger feet | 2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1) | 1 |
@@ -86,7 +86,7 @@ Each detail by the set it first appears in.
 **2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1)**
 
 - The left of the two knobs at the back (a 12-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on the boom's pivot axle. (partly)
-- The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one. (works)
+- The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one. (partly)
 - Turning the axle end at the boom's head tilts the bucket: a worm on that axle turns an 8-tooth gear on the bucket's pivot axle. (works)
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
@@ -96,7 +96,7 @@ Each detail by the set it first appears in.
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
-- The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth. (works)
+- The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth. (partly)
 - The other pair of 12-tooth gears on the truck's sides raises and lowers the ladder: their cross shaft turns, through a pair of knob gears, a vertical shaft up through the middle of the turntable to a worm, which turns the 24-tooth gear at the foot of the ladder's first section. As the first section rises, links unfold the second section from it, and the rescue cage at the end stays level. (partly)
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
@@ -114,7 +114,7 @@ Each detail by the set it first appears in.
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
-- One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
+- One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
 - The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
@@ -136,7 +136,7 @@ Each detail by the set it first appears in.
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
 - With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
-- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
+- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (works)
 
 **2012, [9391 Crawler Crane (Tracked Crane)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9391-1)**
 
@@ -155,11 +155,6 @@ Each detail by the set it first appears in.
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
 - With the selector set for the boom, the same side gear raises or lowers the boom with its towing fork: the other clutch gear drives a 16-tooth gear on a worm, which turns a 24-tooth gear on the boom's pivot. (partly)
-
-**2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
-
-- With the same lever the other way, the motor slews the crane round on its mast through a worm. (partly)
-- *grab:* The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level. (not checked)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
@@ -208,7 +203,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (works)
+- The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (partly)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 

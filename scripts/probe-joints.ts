@@ -103,8 +103,8 @@ interface Baseline {
 // would use. Only its knobs from `from` up to `to`, so a big model can be shared out between
 // processes. Says how many knobs it has in all. Tells `status` where it has got to as it goes
 // (`often` for each step of a turn, which it may skip).
-function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0, to = Infinity, status: (now: string, often?: boolean) => void = () => {}): Baseline & { knobs: number } {
-  const { name, parts, mech, kin } = loadModel(file, omr, status);
+async function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0, to = Infinity, status: (now: string, often?: boolean) => void = () => {}): Promise<Baseline & { knobs: number }> {
+  const { name, parts, mech, kin } = await loadModel(file, omr, status);
   status('finding its knobs');
 
   // A body by its first part, which stays the same as long as the model file does: "p49 3705".
@@ -251,7 +251,7 @@ if (one >= 0) {
     written = Date.now();
   };
   // Let the output drain before the process ends: a pipe takes it in pieces.
-  process.stdout.write(JSON.stringify(probe(args[one + 1], omr, all, reach, from, to, status)), () => process.exit(0));
+  process.stdout.write(JSON.stringify(await probe(args[one + 1], omr, all, reach, from, to, status)), () => process.exit(0));
 } else {
   await main();
 }

@@ -1,0 +1,656 @@
+{
+  "set": "42069-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:38:32.992Z",
+  "part": "A",
+  "parts": 2357,
+  "seconds": 444,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the roof, behind the windscreen, steers the front track units: an upright shaft with a universal joint comes down to bevel gears and a long shaft forward to a 12 tooth bevel gear on the steering rack, which swings both front track units on their turntables.",
+      "verdict": "shown",
+      "msOneCall": 385,
+      "msPerStep": 179,
+      "time": {
+        "open": 68,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 51,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p639 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 7672,
+          "msOneCall": 385,
+          "stops": [],
+          "moved": {
+            "p4 32270": [
+              0,
+              85.94
+            ],
+            "p1894 32270": [
+              0,
+              85.94
+            ],
+            "p1879 64781": [
+              22.83,
+              2.05
+            ],
+            "p1780 99010": [
+              5.76,
+              16.56
+            ],
+            "p1815 99010": [
+              5.31,
+              15.27
+            ],
+            "p1490 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p639 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 7465,
+          "msOneCall": 287,
+          "stops": [],
+          "moved": {
+            "p4 32270": [
+              0,
+              85.94
+            ],
+            "p1894 32270": [
+              0,
+              85.94
+            ],
+            "p1879 64781": [
+              22.87,
+              2.06
+            ],
+            "p1780 99010": [
+              5.32,
+              15.3
+            ],
+            "p1815 99010": [
+              5.77,
+              16.6
+            ],
+            "p1490 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 128
+    },
+    {
+      "function": 2,
+      "does": "The knob on the right side of the body (the side with the right door) winds the winch in the front bumper: through bevel gears, an upright shaft and a shaft forward with universal joints, it turns a 20 tooth bevel gear that turns the reel, pulling the hook in or letting it out.",
+      "verdict": "shown",
+      "msOneCall": 174,
+      "msPerStep": 58,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 24,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p981 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2472,
+          "msOneCall": 174,
+          "stops": [],
+          "moved": {
+            "p531 32270": [
+              0,
+              85.94
+            ],
+            "p534 6589": [
+              0,
+              85.94
+            ],
+            "p299 32270": [
+              0,
+              85.94
+            ],
+            "p316 32012": [
+              0,
+              85.94
+            ],
+            "p639 18575": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p981 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2408,
+          "msOneCall": 159,
+          "stops": [],
+          "moved": {
+            "p531 32270": [
+              0,
+              85.94
+            ],
+            "p534 6589": [
+              0,
+              85.94
+            ],
+            "p299 32270": [
+              0,
+              85.94
+            ],
+            "p316 32012": [
+              0,
+              85.94
+            ],
+            "p639 18575": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 42
+    },
+    {
+      "function": 5,
+      "does": "Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft.",
+      "verdict": "not shown",
+      "why": "A: p1333 62821, p146 2853, p162 2851 not moved",
+      "msOneCall": 173,
+      "msPerStep": 60,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 100,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1490 57519",
+        "way": 1,
+        "went": 0.977,
+        "asked": 1.5,
+        "by": [
+          "1365/1426"
+        ]
+      },
+      "stops": [
+        "1365/1426",
+        "1366/1406"
+      ],
+      "A": [
+        {
+          "control": "p1490 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.977,
+          "ms": 1615,
+          "msOneCall": 173,
+          "stops": [
+            "1365/1426"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1490 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.977,
+          "ms": 1664,
+          "msOneCall": 168,
+          "stops": [
+            "1366/1406"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1492 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.977,
+          "ms": 1540,
+          "msOneCall": 161,
+          "stops": [
+            "1366/1406"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1492 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.977,
+          "ms": 1565,
+          "msOneCall": 163,
+          "stops": [
+            "1365/1426"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 113,
+      "stopsJudged": [
+        {
+          "control": "p1490 57519",
+          "judged": "stands",
+          "why": "stopped at +0.977 rad (1365/1426); -0.977 rad (1366/1406); kinds piston-engine: V8, differential"
+        },
+        {
+          "control": "p1492 57519",
+          "judged": "stands",
+          "why": "stopped at +0.977 rad (1366/1406); -0.977 rad (1365/1426); kinds piston-engine: V8, differential"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p1333 62821, p146 2853, p162 2851 not moved"
+      }
+    },
+    {
+      "function": 6,
+      "does": "The four track units roll; each pivots on its axle to follow the ground.",
+      "verdict": "shown",
+      "msOneCall": 170,
+      "msPerStep": 59,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 64,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1872 57519",
+        "way": 1,
+        "went": 0.735,
+        "asked": 0.77,
+        "by": [
+          "1788/1811"
+        ]
+      },
+      "stops": [
+        "1788/1811"
+      ],
+      "A": [
+        {
+          "control": "p1490 57519",
+          "way": 1,
+          "asked": 1,
+          "went": 1,
+          "ms": 1599,
+          "msOneCall": 146,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1490 57519",
+          "way": -1,
+          "asked": 1,
+          "went": -1,
+          "ms": 1505,
+          "msOneCall": 147,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1492 57519",
+          "way": 1,
+          "asked": 1,
+          "went": 1,
+          "ms": 1550,
+          "msOneCall": 153,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1492 57519",
+          "way": -1,
+          "asked": 1,
+          "went": -1,
+          "ms": 1532,
+          "msOneCall": 133,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1871 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2369,
+          "msOneCall": 149,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1871 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2358,
+          "msOneCall": 131,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1872 57519",
+          "way": 1,
+          "asked": 0.77,
+          "went": 0.735,
+          "ms": 1202,
+          "msOneCall": 170,
+          "stops": [
+            "1788/1811"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p1872 57519",
+          "way": -1,
+          "asked": 0.73,
+          "went": -0.73,
+          "ms": 1233,
+          "msOneCall": 169,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 76,
+      "stopsJudged": [
+        {
+          "control": "p1872 57519",
+          "judged": "stands",
+          "why": "stopped at +0.735 rad (1788/1811); kinds crawler-tracks, bogie: track units"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      }
+    },
+    {
+      "function": 7,
+      "does": "Each front door swings open, and a steering link from the door lowers the side step under it.",
+      "verdict": "not shown",
+      "msOneCall": 336,
+      "msPerStep": 351,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 33,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1055 32525",
+        "way": -1,
+        "went": -0.07,
+        "asked": 1.5,
+        "by": [
+          "628/2405"
+        ]
+      },
+      "stops": [
+        "231/462",
+        "106/458",
+        "628/2405"
+      ],
+      "A": [
+        {
+          "control": "p1172 32525",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 568,
+          "msOneCall": 336,
+          "stops": [],
+          "moved": {
+            "p1150 62531": [
+              1.89,
+              2.42
+            ],
+            "p1033 62531": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1172 32525",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 306,
+          "msOneCall": 317,
+          "stops": [
+            "231/462"
+          ],
+          "moved": {
+            "p1150 62531": [
+              0,
+              0
+            ],
+            "p1033 62531": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1055 32525",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 249,
+          "msOneCall": 290,
+          "stops": [
+            "106/458"
+          ],
+          "moved": {
+            "p1150 62531": [
+              0,
+              0
+            ],
+            "p1033 62531": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1055 32525",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 700,
+          "msOneCall": 333,
+          "stops": [
+            "628/2405"
+          ],
+          "moved": {
+            "p1150 62531": [
+              0,
+              0
+            ],
+            "p1033 62531": [
+              1.88,
+              2.41
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 44,
+      "stopsJudged": [
+        {
+          "control": "p1172 32525",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (231/462)"
+        },
+        {
+          "control": "p1055 32525",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the door swings up and the step lowers (the picture), far past 0.07 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405) (the door swings up and the step lowers (the picture), far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388)"
+    },
+    {
+      "function": 9,
+      "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p884 64782",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p884 64782",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p896 64782",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p896 64782",
+          "way": -1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 40
+    }
+  ]
+}

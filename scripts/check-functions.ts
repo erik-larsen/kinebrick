@@ -40,17 +40,24 @@
 //   npm run functions                 every set with functions, but for the slowest (SLOW_OVER)
 //   npm run functions -- --slow       only the slowest sets, left out of the plain run: hours,
 //                                     before a merge to main
-//   npm run functions -- 855 8880     only sets whose number has one of these in it
+//   npm run functions -- 855 8880-1   only these sets: a name with a "-" is a set's whole name
+//                                     (855-1, not 8855-1), one without is a set's number in full
+//                                     (855: 855-1, 855-2, …)
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a process (a set, or one function of a slow set) that
 //                                     takes more than this many minutes (default 60), marking
 //                                     the set as timed out
 //   npm run functions -- --lock       steering's stops too (see LOCK), for now only reported
+//   npm run functions -- --stops      where the viewer's collision stop would end each way (see
+//                                     stopsReport), only reported
 //   npm run functions -- --causes     no drags: only works out afresh why each function that
 //                                     doesn't work doesn't (see causes.ts), from the results
 //                                     already written, and writes each one's `cause`
 //   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
 //                                     change; the whole check takes about an hour
+//
+// A set whose process fails (it runs out of memory, say) keeps its file as it was, and the run
+// names it at the end and exits with 1: a file with no results must not be committed.
 //
 // Each set's results are compared with what it had before, and each function that comes out
 // better or worse is listed as the run goes.
@@ -66,22 +73,29 @@
 // but didn't move; "moved": in `stays` but did).
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { availableParallelism } from 'node:os';
+import { closeSync, existsSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { availableParallelism, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Joint, Mechanism, meshesChanged, motorOutput } from '../src/mechanism.ts';
+import { heldInBodyByPins, pinsForShift } from '../src/pinSearch.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
-import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
+import { slidePart } from '../src/slide.ts';
+import { collisionKey, Collisions, connectedPairs, keptFileName, pairNumber, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
-import { loadModel } from './load-model.ts';
+import { loadModel, readParts } from './load-model.ts';
+import { modelsOf, unreadTracks } from './unread-tracks.ts';
+import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { endlessKinds, endlessPart } from './endless.ts';
+import { normalizePartName } from '../src/connections.ts';
+import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
-import { FREE_PINS, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
+import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
@@ -140,8 +154,23 @@ const FREE_BACK_GAP = 1e-3;
 // a limit.
 const LOCK = 4 * Math.PI;
 const LEVEL = Math.PI / 6;
+// A track's links (LDraw's Technic Chain Tread parts), by a path's skin (see trackRead), placed in
+// a set's file as their own part ("42069 - 88323.dat") too.
+const TRACK_SKIN = /(^|[ \/])(3873|15379|57518(c\d+)?|88323(c\d+)?|69900|69910)\.dat$/;
 const STEERING = ['rack-steering', 'linkage-steering', 'multi-axle-steering', 'fork-steering', 'articulated-steering', 'swivel-axle-steering'];
 const locks = process.env.KINEBRICK_CHECK_LOCK === '1';
+// With --stops, each way of each control also notes where the viewer's collision stop would first
+// have ended it (see Collisions.check): the pair of parts that met, and how far the control had
+// turned then (radians, or LDU for a slide), against how far the check turned it. Only reported:
+// it changes no result (decision 166 of 2026-11-17, to measure whether the check should stop
+// where the viewer does).
+const stopsReport = process.env.KINEBRICK_CHECK_STOPS === '1';
+// The check stops where the viewer stops: a turn or push that would bring two parts to push into
+// each other is stopped there (see Collisions.check), and the way is judged as one stopped at a
+// limit (decision 186 of 2026-11-18): far enough once the control turned more than 0.001, working
+// if every listed part moved MOVED and no part to stay did. On by default; KINEBRICK_COLLIDE=0
+// turns it off, for comparing. Each stop is noted in `collisionStops`, as with --stops.
+const collide = process.env.KINEBRICK_COLLIDE !== '0';
 // Where the friction pins pinsToFree names (from the build with every pin free) don't let a
 // control move, or a listed part held fast come loose, the pins are found by trying them in the
 // build as read (see pinsByTrial; decision 126 of 2026-11-16). On by default;
@@ -156,11 +185,19 @@ const controlMovedRule = process.env.KINEBRICK_CONTROL_MOVED !== '0';
 // below it, a rate is rounding), has moved too little, not been held fast: its cause is too-little, not part-fixed,
 // and the longer turn is tried (decision 121 of 2026-11-16: the 42052 Heavy Lift Helicopter's
 // doors, which a worm and a toggle move 0.001 radians for each radian of the control, read as
-// fixed). On by default; KINEBRICK_SLOW_PARTS=0 turns it off.
+// fixed). So too where its cause is not-driven: a part the control moves at a rate is driven,
+// however slowly (the 8258 Crane Truck's function 5, whose linear actuator's piston slides 0.2 LDU
+// for each radian of the control). And for a function whose controls share out its parts, the
+// longer turn is tried when the cause the controls come to together is too-little (the 42081
+// Volvo Concept Wheel Loader's function 2, whose piston slides 0.6 LDU for each radian). On by
+// default; KINEBRICK_SLOW_PARTS=0 turns it off.
 const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
 const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
-const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
+const shapesOf = new Map<string, { name: string; shape: PartMesh[]; empty?: string }[]>();
+// With --stops, the pairs of each model's parts that touch as built, from its kept file (see
+// collision-pairs.ts), as the viewer takes them; null where the kept file's key doesn't match.
+const keptNearOf = new Map<string, [number, number][] | null>();
 // The quick sets: between them, every kind of mechanism the check can work (in the mechanism
 // catalog), but two only the slow 42054 and 42055 have, chosen for the least time the check
 // takes: about 6 minutes of one core's time in all, at 0.850.
@@ -198,6 +235,7 @@ type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
   seconds?: number; // how long the function took to check
+  peak?: number; // for a set checked a function to a process: the most memory its process took, in MB (see check-pool.ts)
   turned?: [number, number][]; // each control's turn against what its shaft turns in (or push), each way
   still?: string[];
   moved?: string[];
@@ -213,9 +251,12 @@ interface Checked {
   stop?: (Halt | null)[][]; // for each control, each way: what stopped it short of its reach, if anything did
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
+  collisionStops?: [number, number, number, number, number, number][]; // with --stops: for each way a collision would have stopped, its control (by place), way (1 or -1), the two parts that met, how far the control had turned then, and how far in all (see stopsReport)
+  shiftPressed?: number[]; // the friction pins a press with Shift freed for the control, where the function came out better so than as read (see pinsForShift)
   wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
   judged?: number[]; // for a function that doesn't work: for each control, which way (0 or 1, as in `turned`) its cause was judged from, so that --causes judges it so too
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
+  freedFor?: { pin: string; for: string }[]; // each pin freed, and the part it was freed for: the control, a part in `moves`, or the control after its first steps (decision 304)
   onPlay?: number; // how far its drags went on play, all ways together (radians, or LDU for a push; see Kinematics.onPlay): a record, read beside `turned`
   pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
@@ -227,7 +268,11 @@ interface Fn {
   mechanisms?: string[];
   moves?: string[];
   stays?: string[];
-  first?: { control: string; by: number }[];
+  // Worked before the control, in order: a driving ring slid `by` LDU to its nearest click-in
+  // place; with `slide`, a part slid along its axle `by` LDU, the sign along the part's own axis
+  // that runs that way, as far as it goes before something stops it (see slideFirst); else the
+  // control's joint turned `by`.
+  first?: { control: string; by: number; slide?: boolean }[];
   together?: boolean; // the controls are worked as one, turning together (see turnTogether)
   // Parts whose bodies are frozen while the control is worked, as the viewer's Alt-click freezes
   // them: what the function's text says is held (the 8464's drive, for its differentials). Or,
@@ -247,10 +292,10 @@ interface Fn {
 // Given `only`, just that function (by its place in the list) is checked, and only its model is
 // loaded: the others' entries are left out (null), for a set checked a function to a process
 // (see SPLIT_OVER).
-function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
+async function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
   const { model, functions } = set.curated;
-  // What each function came to the last time, for --causes.
-  const priors = set.generated?.functions ?? [];
+  // What each function came to the last time, for --causes: for a held one, what was found (see holds.ts).
+  const priors = (set.generated?.functions ?? []).map(foundOf);
   const modelOf = (fn: Fn) => fn.model ?? model;
   const checked: Checked[] = [];
   const loose: string[] = [];
@@ -260,7 +305,7 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
   for (const m of new Set(functions.map(modelOf))) {
     const mine = functions.flatMap((fn, i) => (modelOf(fn) === m && wanted(i) ? [i] : []));
     if (mine.length === 0) continue;
-    const found = checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
+    const found = await checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
     mine.forEach((i, at) => (checked[i] = found.checked[at]));
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
     errata.applied.push(...found.errata.applied);
@@ -307,10 +352,10 @@ function withoutChecking(fn: Fn): Checked | null {
 }
 
 // Checks functions on one model: each one's result, and the model's loose parts.
-function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
+async function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
   // A model from the OMR, or a changed copy of one (see invariance.ts), is read with the library's
   // connections.
-  const loaded = loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
+  const loaded = await loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1', undefined, shapesOf.get(model));
   const { table, slides } = loaded;
   // The model as it's being worked: as loaded, or worked out afresh after a shift (see shiftTo).
   let { parts, mech, kin } = loaded;
@@ -336,9 +381,63 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The friction pins freed for the control being checked (see pinsToFree), and the model with
   // every pin free, worked out the first time a control needs it.
   let freed = new Set<number>();
+  // The parts a function's first steps ask to slide on their axles (see slidesAsked).
+  let slid = new Set<number>();
   let allFree: Mechanism | null = null;
   // Where everything is now, as parts placed in the model.
   const placedNow = () => parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+  // With --stops, the viewer's collision test (see stopsReport), made once for the model and told
+  // of the mechanism as it now is, placed as it now is (as the viewer does after a rebuild): pairs
+  // that touch there aren't watched. Null if the model's part shapes aren't known.
+  let stopWatch: Collisions | null = null;
+  // The collision test for the way being worked (see collide), and the first pair it stopped there
+  // with how far the control had turned (set by mayGo, read by the way).
+  let stopping: Collisions | null = null;
+  let stoppedBy: [number, number] | null = null;
+  // Whether a step may stand: no limit met, and (see collide) no two parts pushing into each other.
+  const mayGo = () => {
+    if (kin.atLimit() !== null) return false;
+    if (!stopping) return true;
+    const hit = stopping.check(placedNow().map((p) => p.matrix));
+    if (hit && !stoppedBy) stoppedBy = hit;
+    return hit === null;
+  };
+  // The parts' shapes, read with the model (see partShapes), one for each part: if they don't
+  // match the parts one for one, by name, the function fails rather than going on without its
+  // collision stop, or with another part's shape (decision 242 of 2026-11-20: the 4558 Metroliner's
+  // shapes, shifted by one from its part 200 on). Nor does it go on where a part has no shape but
+  // the reading gives no reason (see partShapes' `empty`): that part would have no collision test
+  // (decision 248: the 42093's 569 parts of 576).
+  const shapesHere = () => {
+    const known = shapesOf.get(model);
+    if (!known) return null;
+    const wrong = parts.findIndex((p, i) => !known[i] || known[i].name !== normalizePartName(p.name));
+    if (wrong >= 0) throw new Error(`the parts' shapes don't match the model's parts: part ${wrong} is ${parts[wrong].name}, its shape ${known[wrong]?.name ?? 'missing'}`);
+    const bare = parts.findIndex((p, i) => !known[i].shape.length && !known[i].empty);
+    if (bare >= 0) throw new Error(`part ${bare} (${parts[bare].name}) has no shape, and no reason is given`);
+    return known;
+  };
+  const collisionsNow = () => {
+    const known = shapesHere();
+    if (!known) return null;
+    const matrices = placedNow().map((p) => p.matrix);
+    // As the viewer: parts connected aren't tested, nor a changeover catch and the driving ring its
+    // fork sits in (see main.ts).
+    const connected = connectedPairs(mech);
+    for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
+    const near = keptNearOf.get(model);
+    if (!stopWatch && near) {
+      // The pairs that touch as built, from the kept file, as the viewer has them.
+      const built = loaded.parts.map((p) => p.matrix);
+      stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, built, true);
+      const n = parts.length;
+      stopWatch.setNear(stopWatch.candidates(mech.bodyOf, connected, built), new Set(near.map(([a, b]) => pairNumber(a, b, n))), built, matrices);
+    } else if (!stopWatch) stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, matrices);
+    else stopWatch.watch(mech.bodyOf, connected, matrices);
+    // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
+    stopWatch.ignored = new Set(mech.loose);
+    return stopWatch;
+  };
   // Slides driving rings to the click-in positions given (by each ring's part), and works the
   // mechanism out afresh from where everything now is, as the viewer does after a shift.
   const shiftTo = (shifts: Map<number, number>) => {
@@ -348,7 +447,35 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
       for (const i of slider.riders ?? [ring]) now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
     }
-    use(loaded.read(now, freed));
+    use(loaded.read(now, freed, slid));
+  };
+  // A function's first step that slides a part on its axle (decision 206 of 2026-11-18): the
+  // mechanism is worked out afresh from where everything now is, with the part asked to slide (see
+  // slidesAsked), and the part is pushed along its slide `by` LDU as the viewer pushes it (see
+  // slidePart), until it has gone that far or the viewer's collision test stops it; then the
+  // mechanism is worked out afresh again, from where it now is (a pin it lifted out of a hole no
+  // longer holds what it held). What went short or wrong, if anything, else ''.
+  const slideFirst = (p: number, by: number): string => {
+    slid.add(p);
+    const reread = () => {
+      use(loaded.read(placedNow(), freed, slid));
+      [stopping, stoppedBy] = [collide ? collisionsNow() : null, null];
+    };
+    reread();
+    if (!mech.slid?.includes(p)) {
+      stopping = null;
+      return `can't slide: ${mech.slideWhy?.[p] ?? 'no slide'}`;
+    }
+    const place = (i: number) => {
+      const m = kin.poses[mech.bodyOf[i]].clone().multiply(parts[i].matrix);
+      return { position: new Vector3().setFromMatrixPosition(m), axes: [0, 1, 2].map((k) => new Vector3().setFromMatrixColumn(m, k).normalize()) };
+    };
+    const { went, halt } = slidePart(() => ({ kin, mech, place }), reread, p, by, mayGo);
+    const met = stoppedBy;
+    stopping = null;
+    use(loaded.read(placedNow(), freed, slid));
+    if (went >= 0.9 * Math.abs(by)) return '';
+    return `went ${round(went)} of ${Math.abs(by)} LDU, ${halt === 'met' && met ? `stopped where p${met[0]} meets p${met[1]}` : halt || 'stuck'}`;
   };
   // A part named as the joints probe names it: "p483 3736".
   const part = (ref: string) => {
@@ -387,13 +514,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // wheels, which roll on play as a drag holds them, had a friction pin freed by it, and a part
   // that hangs on the pin swung 157 LDU away).
   const dragGoes = (control: number, play = false) => {
-    const b = worked(control);
-    const link = kin.parentLink(b);
-    if (kin.frames.includes(b) || !link) return false;
     const before = kin.snapshot();
-    kin.holdWhatTheDragDoesntNeed(b, () => kin.jointMotion(link.joint, false) !== null, link.joint);
-    const goes = kin.jointMotion(link.joint, play) !== null;
-    kin.letGoAfterDrag();
+    const goes = kin.dragMoves(worked(control), play);
     kin.restore(before);
     return goes;
   };
@@ -404,7 +526,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const joint = kin.parentLink(body)!.joint;
     if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
-    const turned = kin.turnJoint(joint, amount, () => kin.atLimit() === null);
+    const turned = kin.turnJoint(joint, amount, mayGo);
     kin.letGoAfterDrag();
     return turned;
   };
@@ -431,7 +553,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     let limited = false;
     let halt: Halt | null = null;
     const allowed = () => {
-      if (kin.atLimit() === null) return true;
+      if (mayGo()) return true;
       limited = true;
       return false;
     };
@@ -447,7 +569,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       });
       was = is;
       if (Math.abs(step) < Math.abs(piece) - 1e-9) {
-        halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
+        // An end of travel the slides held at their ends found (see Kinematics.endReached) is a
+        // limit as one atLimit found is.
+        halt = limited || kin.endReached ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
         break;
       }
       if (enough(turned)) break;
@@ -470,11 +594,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // point goes as the joint turns, as someone opening a door pushes it round its hinge, not along
   // the car (which would roll it). Null if the joint can't turn, or moves none of the points.
   const grabOf = (body: number, control: number) => {
-    const motion = kin.jointMotion(kin.parentLink(body)!.joint);
-    if (!motion) return null;
     const m = parts[control].matrix;
     const points = [at[control].clone()];
     for (const k of [0, 1, 2]) for (const way of [1, -1]) points.push(at[control].clone().addScaledVector(new Vector3().setFromMatrixColumn(m, k).normalize(), way * GRAB));
+    if (kin.hingeStuck(body, points)) return null;
+    const motion = kin.jointMotion(kin.parentLink(body)!.joint, false)!;
     const speeds = points.map((point) => kin.pointVelocity(motion, body, point.clone().applyMatrix4(kin.poses[body])));
     const fastest = Math.max(...speeds.map((v) => v.length()));
     if (fastest < 1e-6) return null;
@@ -526,7 +650,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const dir = axis.clone().transformDirection(kin.poses[other]).multiplyScalar(Math.sign(amount));
       const step = Math.min(PUSH_STEP, Math.abs(amount) - Math.abs(along() - start));
       const before = along();
-      const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
+      const how = pushStep(kin, body, grab, dir, step, mayGo);
       if (how !== 'moved') {
         halt = how === 'blocked' ? 'limit' : 'stuck';
         break;
@@ -606,7 +730,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         break;
       }
       dir.normalize().multiplyScalar(Math.sign(amount));
-      const how = pushStep(kin, body, grab, dir, PUSH_STEP, () => kin.atLimit() === null);
+      const how = pushStep(kin, body, grab, dir, PUSH_STEP, mayGo);
       if (how !== 'moved') {
         halt = how === 'blocked' ? 'limit' : 'stuck';
         break;
@@ -683,7 +807,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       if (way) dir.copy(way.dot(dir) >= 0 ? way : way.negate());
       const step = mending ? Math.min(PUSH_STEP, rate > 1e-9 ? Math.max(PUSH_LEAST, Math.abs(left()) / rate) : PUSH_STEP) : Math.min(PUSH_STEP, far - length);
       const angleWas = kin.jointAngles[joint];
-      const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
+      const how = pushStep(kin, body, grab, dir, step, mayGo);
       if (how !== 'moved') {
         halt = how === 'blocked' ? 'limit' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
         break;
@@ -793,6 +917,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     }
   };
 
+  // The pins a press with Shift frees for the controls of the function being checked again (see
+  // pinsForShift, and shiftPressed in checkOne): freed for each way, besides any it frees itself.
+  let shiftFreed = new Set<number>();
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
     const known = withoutChecking(fn);
     if (known) return known;
@@ -801,15 +928,29 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
     let freedPins = 0;
+    // For each friction pin freed, the part it was freed for (decision 304): the control, a part the
+    // function lists to move, or the control after its first steps; the first reason kept.
+    const freedFor = new Map<number, string>();
+    const noteFreed = (pins: Iterable<number>, forRef: string) => {
+      for (const pin of pins) if (!freedFor.has(pin)) freedFor.set(pin, forRef);
+    };
+    const collisionStops: [number, number, number, number, number, number][] = [];
     // Controls worked together are worked as one, by the first, the others turning with it.
     const controls = [fn.control!].flat();
     // Several controls not worked together: each drives its own share of the parts.
     const shared = controls.length > 1 && !fn.together;
+    // Whether each control is worked the longer turn from the start (see slowPartsRule): for a
+    // function whose controls share out its parts, their cause together too-little.
+    let longShared = false;
     const workWay = (ref: string, wi: number) => {
+      // The collision test is set for each way (see mayGo): none before, as the mechanism may be
+      // worked out afresh (pins freed, a shift) before the way starts.
+      stopping = null;
       together = [];
       use(asLoaded);
       kin.reset();
-      freed = new Set();
+      freed = new Set(shiftFreed);
+      slid = new Set();
       // A control with no exact motion at the start (play is the last resort: see
       // Kinematics.jointMotion), held by friction pins: those pins are freed, and
       // the model worked out again, for this control only (see pinsToFree). So too a control
@@ -827,7 +968,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         };
         // Whether `ok` holds with `pins` freed too: the model worked out again so, then as it was.
         const withFreed = (pins: Set<number>, ok: () => boolean) => {
-          use(loaded.read(asLoaded.parts, new Set([...freed, ...pins])));
+          use(loaded.read(asLoaded.parts, new Set([...freed, ...pins]), slid));
           const holds = ok();
           use(asLoaded);
           return holds;
@@ -836,9 +977,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const byTrial = (forPart: number, ok: () => boolean) => pinsByTrial(heldPins(asLoaded.mech, forPart, freed), (pins) => withFreed(pins, ok));
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
-          freed = new Set(pinsToFree(allFree, c));
-          // A push with no point to push can't start, on play or not (see grabOf).
-          if (pinTrial && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
+          const forControl = pinsToFree(allFree, c);
+          noteFreed(forControl, ref);
+          freed = new Set([...shiftFreed, ...forControl]);
+          // A push with no point to push can't start, on play or not (see grabOf). No pins are
+          // tried for a control that sits in the frame even with every pin free (see
+          // freeWithEveryPin), as the viewer tries none.
+          if (pinTrial && freeWithEveryPin(allFree, c) && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) {
+            freed.add(pin);
+            noteFreed([pin], ref);
+          }
         }
         // So too a part the function lists to move that friction pins hold fast to what it's
         // measured against, but only where the control doesn't go (it jams, or a push has no
@@ -864,25 +1012,36 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           if (goes() && !(pinTrial && !dragGoes(c))) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
           else {
             allFree ??= loaded.allFree(asLoaded.parts);
-            for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
+            for (const m of held) for (const pin of pinsToFree(allFree, m.part)) {
+              freed.add(pin);
+              noteFreed([pin], m.ref);
+            }
             // Whether the part has come loose from what it's measured against.
             for (const m of held) {
               const loose = () => {
                 const a = against(m.ref);
                 return mech.bodyOf[a.part] !== a.body;
               };
-              if (pinTrial && !withFreed(new Set(), loose)) for (const pin of byTrial(m.part, loose)) freed.add(pin);
+              if (pinTrial && !withFreed(new Set(), loose)) for (const pin of byTrial(m.part, loose)) {
+                freed.add(pin);
+                noteFreed([pin], m.ref);
+              }
             }
           }
         }
         if (freed.size) {
-          use(loaded.read(asLoaded.parts, freed));
+          use(loaded.read(asLoaded.parts, freed, slid));
           freedPins = Math.max(freedPins, freed.size);
         }
       }
       const whyBefore = why.length;
       for (const first of fn.first ?? []) {
         const p = part(first.control);
+        if (first.slide) {
+          const how = slideFirst(p, first.by);
+          if (how) why.push(`${first.control}, slid first, ${how}`);
+          continue;
+        }
         // A driving ring is slid by hand, `by` LDU, to the click-in position nearest that.
         const slider = sliders.find((s) => s.part === p);
         if (slider) {
@@ -900,7 +1059,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (shifts.size) shiftTo(shifts);
         // Otherwise, if it brought gears together or apart (the 952's harrow lowered onto its
         // power take-off), the mechanism is worked out afresh from where everything now is.
-        else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed));
+        else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed, slid));
       }
       // A control the controls worked first left with no motion (a gearbox's lever shifted, so
       // that the control now drives what friction pins hold: the 42039 Race Car's engine cover):
@@ -915,14 +1074,15 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           const now = placedNow();
           const current = { parts, mech, kin };
           const pins = pinsByTrial(heldPins(mech, c, freed), (more) => {
-            use(loaded.read(now, new Set([...freed, ...more])));
+            use(loaded.read(now, new Set([...freed, ...more]), slid));
             const went = goes();
             use(current);
             return went;
           });
           if (pins.length) {
             for (const pin of pins) freed.add(pin);
-            use(loaded.read(now, freed));
+            noteFreed(pins, `${ref}, after its first steps`);
+            use(loaded.read(now, freed, slid));
             freedPins = Math.max(freedPins, freed.size);
           }
         }
@@ -941,7 +1101,24 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // function that names one can't work, whatever the drag does: at most partly (the 8285's
       // wheels "rolling freely" on rims that sit on nothing).
       const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
-      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
+      // A function that runs tracks must have them: looped paths of track links (see TRACK_SKIN),
+      // one with a wheel that is a control of the function or a part it lists to move, and none
+      // with no wheel at all. Read so, the links run round with the wheel, as the solver turns the
+      // loop with it; without it they ride with whatever they touch, and the wheel turns alone
+      // (decision 185: the 9391 Crawler Crane's tracks, placed link by link, were read as no
+      // track, and its function passed), and a track with no wheel stays where it is.
+      const runsTrack = (fn.mechanisms ?? []).some((m) => m.split(':')[0] === 'crawler-tracks');
+      const tracks = mech.loops.filter((l) => TRACK_SKIN.test(l.path.skin));
+      const wheelsHere = new Set([...controls.map((r) => mech.bodyOf[part(r)]), ...moves.map((m) => mech.bodyOf[m.part])]);
+      const trackRead = !runsTrack || (tracks.some((l) => l.wheels.some((w) => wheelsHere.has(w.body))) && tracks.every((l) => l.wheels.length > 0));
+      // A control worked first that didn't go its distance: turned less than 0.9 of `by`, slid
+      // less than 0.9 of it, or a driving ring left at its click-in place (each says why above).
+      // The function can't work then, whatever the drag does: before, the 9395 Pick-Up Tow Truck's
+      // winch passed with its selector lever turned 0.07 rad of 0.3, the winch's parts moving
+      // without it (2026-11-20).
+      const firstShort = why.length > whyBefore;
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : firstShort ? { cause: 'first-failed' } : !trackRead ? { cause: 'track-not-read' } : null;
+      if (!trackRead) why.push(tracks.length && tracks.every((l) => l.wheels.length > 0) ? 'no track is read round a control or a part the function lists' : tracks.length ? `${tracks.filter((l) => !l.wheels.length).length} of the ${tracks.length} tracks run round no wheel` : 'no track is read');
       const nothing = (explained: Explained) => ({ works: false, pushed: false, judged: 0, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], free: [] as boolean[], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (kin.frames.includes(b) || !link) {
         why.push(`${ref} ${kin.frames.includes(b) ? 'is part of the frame' : 'has no joint to work'}`);
@@ -952,6 +1129,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // still counts as having gone far enough at half its usual reach.
       let reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
       const half = reach / 2;
+      if (longShared && mech.joints[link.joint].kind !== 'slide') reach = LONG_REACH;
       if (fn.together) together = controls.map((r) => worked(part(r)));
       // What the function's text says is held is frozen, as a user would freeze it in the viewer
       // (Alt-click) before working the control.
@@ -1016,6 +1194,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
         return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
       };
+      // The listed rings a rotary catch (35188) holds. A ring moves only by a shift, after a turn,
+      // so it has no rate of its own; turned at a rate, its catch moves it slowly all the same: the
+      // 42129 Mercedes-Benz Zetros's catches turn 0.27 radians for each radian of the motor, and
+      // must turn 0.91 to shift their rings. Such a ring left still is a slow part (see
+      // slowPartsRule), and the longer turn counts it as moved once its catch would shift it.
+      const rotaryRings = new Set(catches.filter((c) => c.rotary && moves.some((m) => m.part === c.ring.part)).map((c) => c.ring.part));
+      // How fast, for each radian of the control, a rotary catch that holds the ring turned
+      // against it, from the start to now (the fastest, if several hold it): 0 for any other part.
+      const catchRate = (ring: number, turned: number) => {
+        if (!rotaryRings.has(ring) || turned < 1e-6) return 0;
+        const against = mech.bodyOf[ring];
+        return Math.max(0, ...catches.filter((c) => c.rotary && c.ring.part === ring).map((c) => angle(relative(c.part, against, startPoses), relative(c.part, against, kin.poses)) / turned));
+      };
       const bothWays = () => [1, -1].map((way) => {
         kin.restore(start);
         // How far each piston should slide, piece by piece, as its crank turns.
@@ -1030,15 +1221,35 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // function 6 took over an hour.
         const enough = (turned: number) => {
           if (reach !== LONG_REACH || Math.abs(turned) < REACH) return false;
-          const done = moves.filter((m) => moved(m, startPoses, new Map())).length;
+          // A ring a rotary catch holds counts as moved once the catch has turned far enough to
+          // shift it (see rotaryRings).
+          const shiftedNow = rotaryRings.size ? new Map([...catchShifts(placedNow(), table, catches)].filter(([ring]) => rotaryRings.has(ring))) : new Map<number, number>();
+          const done = moves.filter((m) => moved(m, startPoses, shiftedNow)).length;
           if (!shared) return done === moves.length;
-          const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
+          const stirred = moves.filter((m) => moved(m, startPoses, shiftedNow, STIRRED)).length;
           return done > 0 && done === stirred;
         };
         const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : ballOf(b) >= 0 ? ballMeasuring(b, control, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         // Which parts to move got MOVED or more from their start at some step (see ON_THE_WAY).
         const gotThere = moves.map(() => false);
+        // With --stops: the first pair of parts the viewer's collision test finds meeting, and how
+        // far the control had turned then, against what its shaft turns in (or slid).
+        const watching = stopsReport || collide ? collisionsNow() : null;
+        stopping = collide ? watching : null;
+        stoppedBy = null;
+        const stop: { met: { pair: [number, number]; at: number } | null } = { met: null };
+        const controlNow = () => {
+          const [from, to] = [relative(itself.part, itself.body, startPoses), relative(itself.part, itself.body, kin.poses)];
+          return slides ? at[itself.part].clone().applyMatrix4(to).distanceTo(at[itself.part].clone().applyMatrix4(from)) : angle(from, to);
+        };
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
+          // With the stop on, a step that met parts was undone: the pair is noted where the control
+          // then stands. Without it (--stops alone), the first overlap is noted as it comes.
+          if (collide && stoppedBy && !stop.met) stop.met = { pair: stoppedBy, at: controlNow() };
+          else if (!collide && watching && !stop.met) {
+            const hit = watching.check(placedNow().map((p) => p.matrix));
+            if (hit) stop.met = { pair: hit, at: controlNow() };
+          }
           if (ON_THE_WAY) moves.forEach((m, k) => (gotThere[k] ||= moved(m, startPoses, new Map())));
           const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
           now.forEach((x, k) => {
@@ -1048,6 +1259,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           was = now;
         });
         const went = measured.went;
+        // A stop on the first step, which no step after it notes: where the control stands.
+        if (collide && stoppedBy && !stop.met) stop.met = { pair: stoppedBy, at: controlNow() };
         // A guard: a held part doesn't turn against what its shaft turns in, as a frozen part is
         // held (see holds in constraints/holds.ts). It should never be noted.
         for (const r of heldNow) {
@@ -1061,6 +1274,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // The joint's own turn, to work it back again.
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
+        if (stop.met) collisionStops.push([wi, way, stop.met.pair[0], stop.met.pair[1], round(stop.met.at), round(Math.abs(turned))]);
         const shifted = catchShifts(placedNow(), table, catches);
         const rates: Record<string, [number, number]> = {};
         listed.forEach((m, k) => (rates[m.ref] = Math.abs(turned) > 1e-6 ? [sig(went[k][0] / Math.abs(turned)), sig(went[k][1] / Math.abs(turned))] : [0, 0]));
@@ -1081,7 +1295,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // Whether every part left still moves with the control, slowly (see slowPartsRule).
         const slow = still.length > 0 && still.every((ref) => {
           const m = listed.find((l) => l.ref === ref);
-          return m !== undefined && Math.abs(rateOf(m)) > SLOW_RATE;
+          // Turning or sliding, whichever it does: a piston against its cylinder slides, whatever
+          // its own joint in the tree (the 8258's p2167, 0.2 LDU for each radian).
+          return m !== undefined && (Math.max(...rates[ref].map(Math.abs)) > SLOW_RATE || catchRate(m.part, Math.abs(turned)) > SLOW_RATE);
         });
         // Whether the control itself moved (see controlMovedRule).
         const controlMoved = Math.abs(turned) >= 0.01 || (measured.pushed !== null && Math.abs(went[listed.length][1]) >= 0.01);
@@ -1134,13 +1350,20 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt, slow, controlMoved, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
-      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      // Two ways that went the same distance are a tie, and the tie goes to the first way (the sort
+      // keeps the order of equals). "The same" is within TIE (radians, or LDU for a slide or a push):
+      // a tolerance at rounding level, not a tuned threshold. Both ways of a free control turn the
+      // full reach, and the last bits of rounding (which the working set changes, decision 272)
+      // must not choose which way's rates are stored.
+      const TIE = 1e-9;
+      const further = (x: { turned: number }, y: { turned: number }) => (Math.abs(Math.abs(y.turned) - Math.abs(x.turned)) > TIE ? Math.abs(y.turned) - Math.abs(x.turned) : 0);
+      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || further(x, y))[0];
       let each = bothWays();
       kin.restore(start);
       let best = bestOf(each);
       // Parts the control moves too slowly to see over the usual reach are too-little, not
-      // part-fixed (see slowPartsRule).
-      const slowly = (e: Explained | null): Explained | null => (slowPartsRule && e?.cause === 'part-fixed' && best.slow ? { ...e, cause: 'too-little' } : e);
+      // part-fixed or not-driven (see slowPartsRule).
+      const slowly = (e: Explained | null): Explained | null => (slowPartsRule && (e?.cause === 'part-fixed' || e?.cause === 'not-driven') && best.slow ? { ...e, cause: 'too-little' } : e);
       let explained = best.works ? null : slowly(explain(best.still, best.moved, best.turned));
       // Parts geared so far down that the usual reach moves them too little: worked again, up
       // to LONG_REACH each way, a limit met on the way ending the turn as usual. Not a slide's
@@ -1155,8 +1378,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.frozen = new Set();
       together = [];
       const something = each.some((w) => (!controlMovedRule || w.controlMoved) && (Math.abs(w.turned) >= 0.01 || w.still.length < moves.length));
-      // A function that names a loose part can't work, whatever the drag did (see loosePart).
-      const works = best.works && loosePart === undefined;
+      // A function that names a loose part can't work, whatever the drag did (see loosePart), nor
+      // one that runs a track not read round its wheel (see trackRead), nor one whose control worked
+      // first didn't go its distance (see firstShort).
+      const works = best.works && loosePart === undefined && trackRead && !firstShort;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
@@ -1187,9 +1412,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             kin.restore(start);
             // The parts' shapes, if they match the model's parts (but a path's, a chain's links,
             // which only show where it runs, as in the viewer).
-            const known = shapesOf.get(model);
-            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => known[i].name === p.name);
-            const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            const known = shapesHere();
+            const collisions = known ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
+            if (collisions) collisions.ignored = new Set(mech.loose);
             let met = false;
             const allowed = () => {
               if (kin.atLimit() !== null) return false;
@@ -1223,10 +1449,81 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     // put it to work, to put together with the others'.
     if (onlyWay !== null) {
       const { explainStill, ...share } = workWay(all[onlyWay], onlyWay);
-      return { result: 'error', way: { ...share, why, freed: freedPins } };
+      return { result: 'error', way: { ...share, why, freed: freedPins }, ...(collisionStops.length ? { collisionStops } : {}) };
     }
-    const ways = all.map(workWay);
-    return combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
+    let ways = all.map(workWay);
+    let combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
+    // Controls that share out the parts, whose cause together is too-little: each worked the
+    // longer turn, and judged then, as one control is (see slowPartsRule).
+    if (slowPartsRule && shared && !causesOnly && combined?.cause === 'too-little') {
+      longShared = true;
+      ways = all.map(workWay);
+      longShared = false;
+      combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still))!;
+    }
+    // The collisions that stopped a way (collisionStops), beside the result.
+    // A function whose kinds all turn without end (see endless.ts) works at most partly where a
+    // collision stopped a control that is itself a part that turns without end, a wheel, sprocket
+    // or shaft (endlessPart; decisions 279 and 282 of 2026-11-21), however far its parts moved
+    // first: a wheel that rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
+    // A lever stopped (the 8063's) is at the end of its travel, whatever the function's kinds.
+    // What tells such a part from a lever is the part itself (endlessPart: its role, else its LDraw
+    // title), not its joint: a wheel and a lever both turn on a revolute joint, and the 8063's lever
+    // is a connector turning on its own axle. A function with several controls or ways of which only
+    // some are stopped so is at most partly too: one stopped wheel is one the user sees stop.
+    const endless = endlessKinds(fn.mechanisms).endless;
+    const controlRefs = [fn.control!].flat();
+    const withCollisions = <T extends { result?: Result; cause?: Cause; detail?: string }>(r: T): T => {
+      if (!collisionStops.length) return r;
+      const judged = endless ? collisionStops.find(([wi]) => controlRefs[wi] !== undefined && endlessPart(parts[part(controlRefs[wi])].name)) : undefined;
+      const stopped = judged && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${controlRefs[judged[0]]}: ${name(judged[2])} against ${name(judged[3])}` } : {};
+      return { ...r, ...stopped, collisionStops };
+    };
+    // A function that doesn't work as read, whose control moves only together with a bigger body
+    // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
+    // the cab): worked again with those pins freed, as a user who sees that would press it with
+    // Shift (see pinsForShift; decision 173 of 2026-11-17). Kept only if it comes out better, and
+    // then it says so (`shiftPressed`). A function that works as read is never tried.
+    if (combined && !causesOnly && shiftFreed.size === 0 && combined.result !== 'works' && combined.result !== 'error') {
+      use(asLoaded);
+      kin.reset();
+      allFree ??= loaded.allFree(asLoaded.parts);
+      // A function whose first steps slide a part (decision 206 of 2026-11-18) is pressed as it
+      // stands after them: the 42078's container doors are free of their lock bars only then.
+      let pressed = allFree;
+      if ((fn.first ?? []).some((f) => f.slide)) {
+        freed = new Set();
+        slid = new Set();
+        for (const f of fn.first!) if (f.slide) slideFirst(part(f.control), f.by);
+        pressed = loaded.allFree(placedNow());
+      }
+      const pins = new Set<number>();
+      for (const ref of all) {
+        const c = part(ref);
+        const body = mech.roles[c] === 'motor' ? motorOutput(mech, c) : mech.bodyOf[c];
+        const link = kin.parentLink(body);
+        const moves = !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint, false) !== null;
+        if (moves && heldInBodyByPins(mech, pressed, c)) for (const pin of pinsForShift(mech, pressed, c).pins) pins.add(pin);
+      }
+      if (pins.size) {
+        const [whyBefore, freedBefore] = [why.length, freedPins];
+        // The collisions that stopped a way are the try's whose result is kept.
+        const stopsBefore = collisionStops.length;
+        shiftFreed = pins;
+        const again = combineWays(fn, all.map(workWay), why, freedPins, null);
+        shiftFreed = new Set();
+        if (again && RANK[again.result] < RANK[combined.result]) {
+          collisionStops.splice(0, stopsBefore);
+          return withCollisions({ ...again, shiftPressed: [...pins].sort((a, b) => a - b) });
+        }
+        why.length = whyBefore;
+        freedPins = freedBefore;
+        collisionStops.length = stopsBefore;
+      }
+    }
+    // The pins freed, each with the part it was freed for, beside the count (`freed`).
+    const withFreedFor = <T extends object>(r: T) => (freedFor.size ? { ...r, freedFor: [...freedFor].sort((a, b) => a[0] - b[0]).map(([pin, forRef]) => ({ pin: name(pin), for: forRef })) } : r);
+    return combined ? withFreedFor(withCollisions(combined)) : combined;
   };
 
   // Each function's entry says how long it took (`seconds`), so a slow set shows which function
@@ -1247,6 +1544,27 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     }
     const seconds = Math.round((Date.now() - started) / 100) / 10;
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
+    // The working set's counts for this function (decision 266), then reset: printed only when
+    // KINEBRICK_WORKING_SET=1 asks for them, though the set is on without it.
+    if (process.env.KINEBRICK_WORKING_SET === '1') {
+      const st = Kinematics.wsShared;
+      const beyond = st.compared.filter((c) => c.pose > 1e-6 || c.angle2 > 1e-6);
+      console.error(`ws-stats function ${i + 1}: ${JSON.stringify({ small: st.small, made: st.made, excluded: st.excluded, fallback: st.fallback, compared: st.compared.length, beyond: beyond.length, worstPose: Math.max(0, ...st.compared.map((c) => c.pose)), worstAngle: Math.max(0, ...st.compared.map((c) => c.angle2)), turnedApart: st.compared.filter((c) => Math.abs(c.small - c.full) > 1e-12).length, worst: beyond.sort((x, y) => y.pose - x.pose)[0] ?? null })}`);
+      if (st.shadow.length) {
+        // The shadow: the most the set and the full calculation came apart over the turn, where, and
+        // for each drag whether it was still growing at its end; and the calls that turned apart.
+        const most = st.shadow.reduce((m, s) => (s.ldu > m.ldu ? s : m), st.shadow[0]);
+        const mostRad = Math.max(...st.shadow.map((s) => s.rad));
+        const byDrag = new Map<number, typeof st.shadow>();
+        for (const s of st.shadow) byDrag.set(s.drag, [...(byDrag.get(s.drag) ?? []), s]);
+        const growing = [...byDrag.values()].filter((list) => list.length > 1 && list[list.length - 1].ldu >= Math.max(...list.map((s) => s.ldu)) && list[list.length - 1].ldu > list[list.length - 2].ldu).length;
+        const apart = st.shadow.filter((s) => Math.abs(s.small - s.full) > 1e-12);
+        // The parts of the body that came apart most (by a joint's point, and by turning): the first six.
+        const partsOf = (body: number | undefined) => mech.bodyOf.flatMap((bb: number, pp: number) => (bb === body ? [name(pp)] : [])).slice(0, 6);
+        console.error(`ws-shadow function ${i + 1}: ${JSON.stringify({ calls: st.shadow.length, drags: byDrag.size, ldu: most.ldu, rad: mostRad, at: most.at, growingAtEnd: growing, turnedApart: apart.length, firstApart: apart[0] ?? null, parts: partsOf(most.body), radParts: partsOf(st.shadow.reduce((m, s) => (s.rad > m.rad ? s : m), st.shadow[0]).radBody) })}`);
+      }
+      Object.assign(st, { small: 0, made: 0, excluded: 0, fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 }, compared: [], shadow: [] });
+    }
     return { ...found, seconds };
   });
   return { checked, loose: mech.loose.map(name), errata: loaded.errata };
@@ -1340,8 +1658,9 @@ function changes(functions: { does: string }[], was: Checked[], now: Checked[]):
     if (!before) return;
     if (RANK[c.result] < RANK[before.result]) lines.push(`better: ${what} ${before.result} → ${c.result}`);
     if (RANK[c.result] > RANK[before.result]) lines.push(`worse: ${what} ${before.result} → ${c.result}`);
-    // Only once both were measured for amounts.
-    if (before.rates) {
+    // Only once both were measured for amounts, and neither is held (a held record keeps its
+    // amounts in `found`; see holds.ts).
+    if (before.rates && !('hold' in c) && !('hold' in before)) {
       const [wrongBefore, wrongNow] = [before.wrong?.length ?? 0, c.wrong?.length ?? 0];
       if (wrongNow !== wrongBefore) lines.push(`${wrongNow < wrongBefore ? 'better' : 'worse'}: ${what} ${wrongNow} parts by the wrong amount, had ${wrongBefore}`);
       // (By the ways worked that leave a part out of place, not the parts named: see ratchet.ts.)
@@ -1359,13 +1678,42 @@ const args = process.argv.slice(2);
 const one = args.indexOf('--one'); // (internal) check this one set's file and print what it found
 const wayAt = args.indexOf('--way'); // (internal) with --only, only this control, by its place in the list
 const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
+// A folder the run's processes share (KINEBRICK_SHAPES_SHOWN, made by the run), where each model's
+// parts with no shape are marked once shown: the first process that reads a model says them, and
+// the others, checking the same set's other functions, don't. A process run by hand says them.
+const SHOWN = process.env.KINEBRICK_SHAPES_SHOWN;
+function firstToShow(model: string): boolean {
+  if (!SHOWN) return true;
+  try {
+    closeSync(openSync(join(SHOWN, encodeURIComponent(model)), 'wx'));
+    return true;
+  } catch {
+    return false;
+  }
+}
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
-  if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
+  // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
+  if (locks || stopsReport || collide) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
+    const read = readParts(m, m.startsWith('omr/'));
+    const shapes = await partShapes(m, read.text, read.parts);
+    shapesOf.set(m, shapes);
+    // The parts with no shape, each with its reason, so none goes without its collision test unseen;
+    // once a model in a run, not once for each process a set is checked in (see SHOWN).
+    const empty = read.parts.flatMap((p, i) => (shapes[i]?.empty ? [`${i} ${p.name} (${shapes[i].empty})`] : []));
+    if (empty.length && firstToShow(m)) console.error(`${m}: ${empty.length} parts with no shape: ${empty.join(', ')}`);
+    if (stopsReport || collide) {
+      const file = `data/collisions/${keptFileName(m)}.json`;
+      const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
+      const release = JSON.parse(readFileSync('data/collisions/library.json', 'utf-8')).release;
+      keptNearOf.set(m, kept && kept.key === (await collisionKey(read.parts, release)) ? kept.near : null);
+    }
+  }
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
-  const found = check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
-  // Let the output drain before the process ends: a pipe takes it in pieces.
-  process.stdout.write(JSON.stringify(found), () => process.exit(0));
+  const found = await check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
+  // With the most memory it took (see check-pool.ts), for the next run to expect. Let the output
+  // drain before the process ends: a pipe takes it in pieces.
+  process.stdout.write(JSON.stringify({ ...found, peak: peakMb() }), () => process.exit(0));
 } else {
   await main();
 }
@@ -1377,9 +1725,12 @@ async function main() {
   const slowOnly = args.includes('--slow');
   const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : slowOnly ? SLOW_LIMIT_MINUTES : LIMIT_MINUTES;
   const named = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
-  // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
-  const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
+  const filters = args.includes('--quick') ? QUICK : named;
+  // Whether a set's file is one of those named: by its whole name if the name has a "-" (855-1,
+  // not 8855-1), else by its number in full (855: 855-1 and 855-2, not 8855-1).
+  const isNamed = (f: string) => filters.some((x) => (x.includes('-') ? f === `${x}.json` : f.split('-')[0] === x));
   if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
+  if (args.includes('--stops')) process.env.KINEBRICK_CHECK_STOPS = '1';
   const causes = args.includes('--causes');
   if (causes) process.env.KINEBRICK_CAUSES = '1';
   // With the errata not yet signed off applied too (see src/errata.ts), to show a set before and
@@ -1393,6 +1744,8 @@ async function main() {
   const date = new Date().toISOString().slice(0, 10);
   // Checked with holds rather than least motion (KINEBRICK_LEAST=0; see docs/least-motion.md).
   const holds = !experiments.leastMotion;
+  // The results held by hand (see holds.ts).
+  const heldResults = readHolds();
 
   // The sets with functions, slowest first, by how long each took the last time (a set that timed
   // out before any), so that the longest set starts at once rather than last, on its own: then
@@ -1400,7 +1753,7 @@ async function main() {
   // model's size, biggest first.
   const took = (s: { data: { generated?: { seconds?: number; timedOut?: number } } }) => (s.data.generated?.timedOut ? Infinity : (s.data.generated?.seconds ?? -1));
   const withFunctions = readdirSync(SETS_DIR)
-    .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .filter((f) => f.endsWith('.json') && (filters.length === 0 || isNamed(f)))
     .map((f) => ({ file: join(SETS_DIR, f), data: JSON.parse(readFileSync(join(SETS_DIR, f), 'utf-8')) }))
     .filter((s) => s.data.curated.functions?.length);
   // The slowest sets are for the slow check (see SLOW_OVER), unless named. Finding the causes
@@ -1419,13 +1772,39 @@ async function main() {
   // How many functions have each cause, of the sets checked.
   const caused: Partial<Record<Cause, number>> = {};
   const notBack = { torn: 0, 'free-turned': 0, 'moved whole': 0 };
-  type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
+  type Found = Awaited<ReturnType<typeof check>> | { timedOut: number } | { failed: string };
+  // The sets whose process failed: their files are left as they were.
+  const failedSets: string[] = [];
+  // Each process may take as much memory as the pool's whole budget (see check-pool.ts), half the
+  // machine's, so that one that runs away fails alone. V8's own limit is about 4 GB on a 32 GB
+  // machine, less than the 42082's function 9 takes with the collision stop on (7.6 GB at its
+  // peak; 0.5 GB with it off): run with no limit of its own, it died 11 seconds in. Given here,
+  // every run has the same limit, by name or whole, whatever NODE_OPTIONS says.
+  const heap = `--max-old-space-size=${BUDGET_MB}`;
+  // Every child of every check on the machine is entered in the pool with the memory it is
+  // expected to take, and starts only when it fits (decision 229 of 2026-11-19): the most it took
+  // the last time (`peak` in the set's record, or the function's for a set checked a function to
+  // a process), else an estimate from the set's part count.
+  const pool = new Pool(poolDir());
+  // Where the processes mark the models whose parts with no shape they have said (see firstToShow).
+  process.env.KINEBRICK_SHAPES_SHOWN = mkdtempSync(join(tmpdir(), 'kinebrick-shapes-shown-'));
+  process.on('exit', () => rmSync(process.env.KINEBRICK_SHAPES_SHOWN!, { recursive: true, force: true }));
+  const parts = partCounts();
+  const expectedMb = (s: (typeof files)[number], only: number | null) => {
+    const g = s.data.generated;
+    const fns: Checked[] = (g?.functions ?? []).map(foundOf);
+    const peak = only !== null ? (fns[only]?.peak ?? g?.peak) : (g?.peak ?? (fns.some((c) => c?.peak) ? Math.max(...fns.map((c) => c?.peak ?? 0)) : undefined));
+    return peak ?? estimateMb(parts.get(s.data.set) ?? 0);
+  };
   // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
-  // and how long it took.
-  const inProcess = (s: (typeof files)[number], only: number | null, way: number | null = null) =>
-    new Promise<{ found: Found; seconds: number }>((resolve) => {
+  // and how long it took (not counting the wait for room in the pool).
+  const inProcess = async (s: (typeof files)[number], only: number | null, way: number | null = null) => {
+    const entry = await pool.reserve(expectedMb(s, only), `${s.data.set}${only === null ? '' : ` function ${only + 1}`}${way === null ? '' : ` control ${way + 1}`}`);
+    return new Promise<{ found: Found; seconds: number }>((resolve) => {
       const started = Date.now();
-      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)]), ...(way === null ? [] : ['--way', String(way)])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      const child = spawn(process.execPath, [...process.execArgv, heap, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)]), ...(way === null ? [] : ['--way', String(way)])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      if (child.pid) pool.started(entry, child.pid);
+      else pool.release(entry);
       let out = '';
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -1435,6 +1814,7 @@ async function main() {
       child.stdout.on('data', (d) => (out += d));
       child.on('close', (code) => {
         clearTimeout(timer);
+        pool.release(entry);
         const seconds = Math.round((Date.now() - started) / 1000);
         let found: Found;
         if (timedOut) found = { timedOut: limit };
@@ -1449,22 +1829,40 @@ async function main() {
         resolve({ found, seconds });
       });
     });
+  };
   // Writes what a set's check found into its file, and says it.
   const finish = (s: (typeof files)[number], found: Found, seconds: number) => {
+    if ('failed' in found) {
+      console.log(`${s.data.set}: failed: ${found.failed}; its file is left as it was (${seconds} s)`);
+      failedSets.push(s.data.set);
+      checking.delete(s.data.set);
+      done++;
+      return;
+    }
     // Read afresh, so only generated changes, whatever else changed meanwhile.
     const data = JSON.parse(readFileSync(s.file, 'utf-8'));
+    // The functions data/holds.json holds that came out better are stored at their held result,
+    // with what was found beside it, and counted so; for the other holds, the run says that they
+    // are no longer needed (see holds.ts).
+    if ('functions' in found) {
+      const held = applyHolds(data.set, found.functions, heldResults);
+      found = { ...found, functions: held.functions as Checked[], ...('counts' in found ? { counts: countsOf(held.functions as Checked[]) } : {}) };
+      for (const note of held.notes) console.log(`${data.set}: ${note}`);
+    }
     if (causes) {
       // Only the causes change: the results stay those of the commit they were checked at.
       if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
     } else {
       if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${proposed ? 'with proposed errata: ' : ''}${line}`);
       if ('errata' in found && found.errata) console.log(`${data.set}: errata applied: ${found.errata.applied.join(', ') || 'none'}${found.errata.refused.length ? `; refused: ${found.errata.refused.join('; ')}` : ''}`);
-      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
+      // A track drawn link by link isn't read as a track: the set's results say so (see unread-tracks.ts).
+      const unread = unreadTracks(modelsOf(data.curated));
+      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found, ...(unread ? { unreadTracks: unread } : {}) };
     }
     if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
     if ('functions' in found) for (const c of found.functions) if (c && notBackAs(c)) notBack[notBackAs(c)!]++;
-    const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
+    const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : `timed out after ${limit} minutes`;
     console.log(`${data.set}: ${summary} (${seconds} s)`);
     checking.delete(s.data.set);
     done++;
@@ -1500,7 +1898,7 @@ async function main() {
       });
       continue;
     }
-    const last: Checked[] = s.data.generated?.functions ?? [];
+    const last: Checked[] = (s.data.generated?.functions ?? []).map(foundOf);
     const checked: Checked[] = functions.map((fn) => withoutChecking(fn) ?? { result: 'error' });
     const todo = functions.flatMap((fn, i) => (withoutChecking(fn) ? [] : [i])).sort((i, j) => (last[j]?.seconds ?? Infinity) - (last[i]?.seconds ?? Infinity));
     let left = todo.length;
@@ -1526,7 +1924,8 @@ async function main() {
       }
       loose.set(modelOf(functions[i]), found.loose);
       if (found.errata) errata.set(modelOf(functions[i]), found.errata);
-      return found.functions[i];
+      const peak = (found as { peak?: number }).peak;
+      return { ...found.functions[i], ...(peak ? { peak } : {}) };
     };
     for (const i of todo) {
       const fn = functions[i];
@@ -1552,7 +1951,9 @@ async function main() {
             // The pivot that slid or rose most, the first of equals, as one process keeps it.
             const pivoted = shares.reduce<Checked['pivoted']>((most, c) => (c!.pivoted && (!most || Math.max(c!.pivoted.slide, c!.pivoted.rise) > Math.max(most.slide, most.rise)) ? c!.pivoted : most), undefined);
             const seconds = Math.round(shares.reduce((sum, c) => sum + (c!.seconds ?? 0), 0) * 10) / 10;
-            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), seconds } : ((await run(i)) ?? checked[i]);
+            const collisionStops = shares.flatMap((c) => c!.collisionStops ?? []);
+            const peak = Math.max(0, ...shares.map((c) => c!.peak ?? 0));
+            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), ...(collisionStops.length ? { collisionStops } : {}), seconds, ...(peak ? { peak } : {}) } : ((await run(i)) ?? checked[i]);
           } else {
             // A control that failed as one process would have failed the function there too.
             const error = shares.find((c) => c && !c.way);
@@ -1567,7 +1968,7 @@ async function main() {
   console.log(`Checking ${files.length} sets, ${jobs} at a time`);
   if (leftOut.length) console.log(`Left for the slow check, before a merge to main (npm run functions -- --slow): ${leftOut.map((s) => s.data.set).join(', ')}`);
   // Once a minute, how far it's got, with its functions' results so far as shares of all their
-  // functions, as the README has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
+  // functions, as the Status in DEVELOPER.md has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
   // (11%), 21 skipped or not checked (26%); checking 42082-1 (14 min), 9397-1 (3 min)".
   const progress = setInterval(() => {
     const now = Date.now();
@@ -1591,4 +1992,8 @@ async function main() {
   if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
   if (!causes && !proposed) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
+  if (failedSets.length) {
+    console.log(`Failed, their files left as they were: ${failedSets.join(', ')}`);
+    process.exitCode = 1;
+  }
 }

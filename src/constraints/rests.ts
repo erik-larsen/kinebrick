@@ -3,7 +3,7 @@
 import { Vector3 } from 'three';
 import { type Rest, restTouch } from '../mechanism.ts';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, type Equations } from './equations.ts';
 
 export function rests(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -14,7 +14,7 @@ export function rests(solver: Kinematics, eq: Equations) {
     const touch = restingOn(solver, rest);
     if (!touch) continue;
     const { body, point, dir, clearance } = touch;
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
       addPointVelocity(row, rest.body, point, k, dir.getComponent(k));
       addPointVelocity(row, body, point, k, -dir.getComponent(k));

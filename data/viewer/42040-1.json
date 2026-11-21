@@ -1,0 +1,332 @@
+{
+  "set": "42040-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:37:06.856Z",
+  "part": "A",
+  "parts": 567,
+  "seconds": 39,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The propeller turns the engine's crankshaft, and the pistons pump up and down in their cylinders.",
+      "verdict": "shown",
+      "msOneCall": 50,
+      "msPerStep": 10,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p557 99012",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 429,
+          "msOneCall": 50,
+          "stops": [],
+          "moved": {
+            "p75 2853": [
+              0,
+              85.94
+            ],
+            "p76 2852": [
+              13.63,
+              14.44
+            ],
+            "p77 2852": [
+              13.63,
+              14.44
+            ],
+            "p78 2851": [
+              8.03,
+              0
+            ],
+            "p79 2851": [
+              10.56,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p557 99012",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 398,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p75 2853": [
+              0,
+              85.94
+            ],
+            "p76 2852": [
+              13.63,
+              14.44
+            ],
+            "p77 2852": [
+              13.63,
+              14.44
+            ],
+            "p78 2851": [
+              8.03,
+              0
+            ],
+            "p79 2851": [
+              10.56,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 3,
+      "does": "The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks).",
+      "verdict": "not shown",
+      "msOneCall": 16,
+      "msPerStep": 10,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": {
+        "control": "p251 32140",
+        "way": -1,
+        "went": -0.068,
+        "asked": 0.17,
+        "by": [
+          "165/254"
+        ]
+      },
+      "stops": [
+        "165/254"
+      ],
+      "A": [
+        {
+          "control": "p251 32140",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 17,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p251 32140",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.068,
+          "ms": 19,
+          "msOneCall": 16,
+          "stops": [
+            "165/254"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p251 32140",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the hatch flips forward to fill the tank, far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115)",
+      "seconds": 6
+    },
+    {
+      "function": 7,
+      "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
+      "verdict": "not shown",
+      "why": "A: p371 2739a, p330 2736, p338 18945 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p358 6572",
+          "way": 1,
+          "asked": 0.4,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p358 6572",
+          "way": -1,
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 9,
+      "does": "The wheels under the floats roll.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 5,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 13,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p35 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 166,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p35 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 163,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p36 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 180,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p36 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 164,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p169 56903",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 204,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p169 56903",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 205,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p173 56903",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 198,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p173 56903",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 201,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    }
+  ]
+}

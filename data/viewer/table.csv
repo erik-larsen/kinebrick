@@ -1,0 +1,741 @@
+set,function,control,parts,msOneCall,msPerStep,verdict,why,collision stop,part,commit
+8110-1,1,p1504 8110 - 32269,1867,17703,4468,shown,,"p1504 8110 - 32269 way +: went 0.8 of 0.87, 954/1055",A,7023ada7
+8110-1,3,p1437 44772,1867,11671,7683,shown,,,A,7023ada7
+8110-1,4,p1437 44772,1867,11483,7785,shown,,,A,7023ada7
+8110-1,13,p3166 2944,1867,9596,9560,shown,,,A,7023ada7
+8110-1,2,p1843 2741,1867,6283,1437,shown,,,A,7023ada7
+42082-1,2,p2284 92912,4113,4414,761,shown,,,A,7023ada7
+9397-1,6,p1453 86652,1143,3323,2024,shown,,,A,7023ada7
+42082-1,3,p2290 92912,4113,2633,738,not shown,A: none not moved; p1223 2854 listed to stay moved,,A,7023ada7
+42082-1,9,p3789 32524,4113,2619,2560,not shown,A: p3789 32524 against p2649 64179 not moved,,A,7023ada7
+9397-1,5,p1451 86652,1143,2572,1829,shown,,,A,7023ada7
+42131-1,1,p2686 32062,3842,2374,623,shown,,,A,7023ada7
+9396-1,6,p36 42610,956,2031,943,shown,,,A,7023ada7
+42131-1,2,p2688 32062,3842,1991,610,shown,,,A,7023ada7
+42131-1,3,p2686 32062,3842,1948,606,shown,,,A,7023ada7
+42131-1,4,p2688 32062,3842,1941,602,shown,,,A,7023ada7
+42131-1,10,p3449 32056,3842,1889,627,not decided,"not decided: p3449 32056: a travel of 0.2 rad or less each way, stopped at -0.175 rad (3449/3650)","p3449 32056 way -: went -0.175 of 0.7, 3449/3650",A,7023ada7
+42083-1,1,p2742 2741,3512,1878,546,shown,,"p2742 2741 way +: went 1.465 of 1.5, 1105/1121",A,7023ada7
+42115-1,4,p1826 2741,3629,1673,957,shown,,,A,7023ada7
+42115-1,5,p894 35189,3629,1543,794,shown,,,A,7023ada7
+42083-1,5,p3522 42083 - 37383p01,3512,1506,769,shown,,,A,7023ada7
+42115-1,9,p3360 6632,3629,1433,,not shown,A: p3361 6632 not moved,,A,7023ada7
+42043-1,6,p1537 32270,2736,1328,297,shown,,,A,7023ada7
+42115-1,3,p1082 2736,3629,1288,199,not shown,A: p549 18947 not moved,,A,7023ada7
+42055-1,5,p1714 32269,3896,1268,189,shown,,,A,7023ada7
+42129-1,6,p958 42129 - 31794,2117,1249,922,shown,,,A,7023ada7
+9397-1,4,p1000 3706,1143,1215,252,shown,,,A,7023ada7
+42055-1,10,p297 56145,3896,1170,334,shown,,,A,7023ada7
+42100-1,5,p1718 32270,4079,1140,1007,shown,,,A,7023ada7
+9395-1,4,p542 32270,875,1102,1876,shown,,,A,7023ada7
+42043-1,8,p1283 6143,2736,1095,501,shown,,,A,7023ada7
+42078-1,3,p502 56145,2651,1050,482,shown,,,A,7023ada7
+42043-1,10,p2223 86652,2736,1002,699,not shown,"A: p102 10928, p66 2851, p67 2851, p71 2851, p73 2851, p78 2851, p82 2851 not moved",,A,7023ada7
+42043-1,11,p2227 86652,2736,997,687,not shown,A: none not moved; p2036 62821 listed to stay moved,,A,7023ada7
+42110-1,1,p2368 42110 - 18575,2565,980,442,shown,,,A,7023ada7
+9396-1,3,p367 32269,956,942,408,shown,"first step not done by the sweep: p1428 6553 by -0.3 (it has no joint to turn, or didn't turn)","p367 32269 way +: went 0.907 of 1.5, 347/1039",A,7023ada7
+42055-1,7,p1809 32269,3896,847,330,not shown,A: p2535 42055 - 55615 not moved,,A,7023ada7
+42110-1,4,p2606 42110 - 49294,2565,839,404,not shown,A: none not moved; p242 3708 listed to stay moved,,A,7023ada7
+42070-1,10,p742 64179,1834,826,,shown,,,A,7023ada7
+42078-1,1,p1146 18575,2651,782,668,not decided,"not decided: p1146 18575: a travel of 0.2 rad or less each way, stopped at +0.069 rad (466/1065); -0.07 rad (466/872)","p1146 18575 way -: went -0.07 of 1.5, 466/872",A,7023ada7
+42110-1,2,p2368 42110 - 18575,2565,781,443,shown,,,A,7023ada7
+42070-1,4,p1770 41669,1834,766,281,not shown,"A: p403 18947, p404 18947 not moved","p1770 41669 way +: went 0.464 of 0.53, 969/1055",A,7023ada7
+42083-1,7,p2876 62531,3512,757,409,not decided,"not decided: p2924 62531: a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943); p2876 62531: a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)","p2924 62531 way +: went 0.07 of 1.5, 2786/2943",A,7023ada7
+42129-1,2,p466 99008,2117,751,124,shown,,,A,7023ada7
+42055-1,6,p1678 6641,3896,745,204,not shown,A: p1710 18947 not moved,,A,7023ada7
+42043-1,9,p6909 2741,2736,726,126,shown,,,A,7023ada7
+42078-1,13,p1894 56145,2651,719,446,shown,,,A,7023ada7
+42070-1,1,p402 32073,1834,718,209,shown,"first step not done by the sweep: p1770 41669 by -0.5 (it has no joint to turn, or didn't turn)","p402 32073 way +: went 1.5 of 1.5, 969/1055",A,7023ada7
+42110-1,10,p1816 64782,2565,712,,shown,,,A,7023ada7
+42083-1,6,p1938 59443,3512,702,227,not decided,"not decided: p1938 59443: a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024)","p1938 59443 way +: went 0 of 1.5, 1928/2024",A,7023ada7
+42043-1,14,p6747 32316,2736,667,133,shown,,"p6740 32316 way -: went -0.872 of 1.5, 6816/7003",A,7023ada7
+42055-1,8,p156 32270,3896,645,132,shown,,,A,7023ada7
+42100-1,6,p2982 94925,4079,638,750,shown,,,A,7023ada7
+9395-1,7,p930 86652,875,558,205,shown,,,A,7023ada7
+42056-1,5,p535 57515,2641,524,580,not decided,"not decided: p543 57515: a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)","p543 57515 way -: went -0.067 of 0.27, 547/546",A,7023ada7
+42100-1,4,p707 32270,4079,521,117,shown,,,A,7023ada7
+42056-1,6,p784 32063,2641,518,409,shown,,,A,7023ada7
+9395-1,2,p932 86652,875,491,197,shown,,,A,7023ada7
+42070-1,5,p1785 41669,1834,490,232,not shown,"A: p135 18947, p136 18947 not moved",,A,7023ada7
+42078-1,8,p1706 18575,2651,488,256,shown,,,A,7023ada7
+42078-1,7,p1634 32278,2651,487,239,shown,,,A,7023ada7
+9395-1,1,p779 32270,875,486,81,shown,,,A,7023ada7
+42078-1,12,p2665 64782,2651,484,267,not shown,"A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; first step not done by the sweep: p2641 99008 slid -25; first step not done by the sweep: p2675 99008 slid -25","p2665 64782 way -: went -0.628 of 1.5, 185/1685",A,7023ada7
+42070-1,3,p372 94925,1834,460,101,shown,"first step not done by the sweep: p1770 41669 by -0.5 (it has no joint to turn, or didn't turn)","p372 94925 way +: went 1.5 of 1.5, 969/1055",A,7023ada7
+42070-1,6,p402 32073,1834,449,92,shown,"first step not done by the sweep: p1770 41669 by 0.5 (it has no joint to turn, or didn't turn); first step not done by the sweep: p1785 41669 by -0.5 (it has no joint to turn, or didn't turn)","p402 32073 way +: went 1.9 of 1.9, 969/1055 971/1067",A,7023ada7
+42110-1,11,p2203 62531,2565,444,70,shown,,"p2203 62531 way +: went 0 of 1.5, 2139/2207",A,7023ada7
+42110-1,6,p377 6641,2565,435,87,not shown,A: p330 18947 not moved,,A,7023ada7
+42129-1,3,p2930 42129 - 69912,2117,431,227,shown,,,A,7023ada7
+42110-1,7,p368 6641,2565,430,86,not shown,A: p331 18947 not moved,,A,7023ada7
+42070-1,8,p372 94925,1834,430,81,shown,"first step not done by the sweep: p1770 41669 by 0.5 (it has no joint to turn, or didn't turn); first step not done by the sweep: p1785 41669 by -0.5 (it has no joint to turn, or didn't turn)","p372 94925 way +: went 1.5 of 1.5, 969/1055 971/1067",A,7023ada7
+42110-1,5,p385 3706,2565,427,178,not decided,"not decided: p385 3706: a travel of 0.2 rad or less each way, stopped at -0.102 rad (648/714)","p385 3706 way -: went -0.102 of 0.17, 648/714",A,7023ada7
+8285-1,1,p2332 32020,1790,419,131,shown,,,A,7023ada7
+42129-1,8,p1935 2819,2117,410,133,not decided,"not decided: p1935 2819: a travel of 0.2 rad or less each way, stopped at +0.133 rad (1935/2287)","p1935 2819 way +: went 0.133 of 0.53, 1935/2287",A,7023ada7
+42110-1,8,p896 32270,2565,405,70,shown,,,A,7023ada7
+8285-1,9,p1719 2654,1790,390,208,shown,,,A,7023ada7
+42069-1,1,p639 18575,2357,385,179,shown,,,A,7023ada7
+42056-1,1,p467 2741,2641,383,169,shown,,,A,7023ada7
+42081-1,2,p460 32270,1155,381,190,shown,,,A,7023ada7
+42029-1,1,p656 32270,1053,371,180,shown,,,A,7023ada7
+42114-1,5,p995 99009,2135,359,155,shown,,"p995 99009 way -: went -0.1 of 0.2, 4621/4621",A,7023ada7
+42054-1,6,p1905 32270,1961,347,47,shown,,,A,7023ada7
+42096-1,5,p22 32063,1544,336,368,not decided,"not decided: p26 32063: a travel of 0.2 rad or less each way, stopped at +0.035 rad (242/243)","p26 32063 way +: went 0.035 of 0.07, 242/243",A,7023ada7
+42069-1,7,p1172 32525,2357,336,351,not shown,"a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405) (the door swings up and the step lowers (the picture), far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388)","p1055 32525 way -: went -0.07 of 1.5, 628/2405",A,7023ada7
+42000-1,4,p591 32294,1109,328,390,not decided,"not decided: p591 32294: a travel of 0.2 rad or less each way, stopped at -0.035 rad (1012/1012); p600 32294: a travel of 0.2 rad or less each way, stopped at +0.035 rad (1012/1012)","p591 32294 way -: went -0.035 of 0.07, 1012/1012",A,7023ada7
+8285-1,2,p2336 32020,1790,326,131,shown,,,A,7023ada7
+42029-1,3,p1143 45982,1053,322,192,shown,,,A,7023ada7
+42096-1,2,p484 2741,1544,319,185,shown,,,A,7023ada7
+42029-1,4,p1143 45982,1053,308,185,shown,,,A,7023ada7
+42125-1,1,p675 2741,1644,307,81,shown,,,A,7023ada7
+42096-1,1,p1686 15038,1544,302,188,shown,,,A,7023ada7
+42054-1,14,p1027 32524,1961,294,266,shown,,,A,7023ada7
+42054-1,9,p1962 32270,1961,293,87,shown,,,A,7023ada7
+42081-1,3,p553 32270,1155,262,169,shown,,,A,7023ada7
+42054-1,12,p250 6628,1961,261,49,shown,,,A,7023ada7
+42099-1,4,p1096 32270,931,258,92,shown,,,A,7023ada7
+42099-1,2,p363 42099 - 18575,931,255,,not shown,"A: p83 32270, p59 42099 - 18575, p20 32270, p43 62821, p1864 23798, p1868 23798 not moved; not decided: p363 42099 - 18575: a travel of 0.2 rad or less each way, stopped at +0 rad (445/604); -0 rad (458/604)","p363 42099 - 18575 way +: went 0 of 1.5, 445/604",A,7023ada7
+42099-1,6,p1868 23798,931,247,,not shown,"A: p1864 23798 not moved; not decided: p1868 23798: a travel of 0.2 rad or less each way, stopped at +0 rad (445/604); -0 rad (458/604)","p1868 23798 way +: went 0 of 1.5, 445/604",A,7023ada7
+42054-1,13,p1443 42054 - 23798,1961,243,59,shown,,,A,7023ada7
+42054-1,7,p1945 10928,1961,243,44,shown,,,A,7023ada7
+42125-1,2,p3020 44771,1644,239,86,shown,,,A,7023ada7
+42037-1,4,p58 57515,482,238,228,not decided,"not decided: p58 57515: a travel of 0.2 rad or less each way, stopped at -0.035 rad (96/496)","p58 57515 way -: went -0.035 of 0.63, 96/496",A,7023ada7
+42125-1,8,p3024 44771,1644,238,102,shown,,,A,7023ada7
+42056-1,8,p2462 24316,2641,235,48,shown,,,A,7023ada7
+42039-1,5,p482 57515,1189,229,168,shown,,,A,7023ada7
+42053-1,5,p2207 32270,1132,225,166,not shown,"A: p2201 3648b, p2222 42053 - 33299b, p2407 32073 not moved",,A,7023ada7
+42099-1,5,p1866 23798,931,225,,not shown,"A: p1862 23798 not moved; not decided: p1866 23798: a travel of 0.2 rad or less each way, stopped at +0 rad (458/604); -0 rad (445/607)","p1866 23798 way +: went 0 of 1.5, 458/604",A,7023ada7
+42054-1,8,p1953 99010,1961,222,55,shown,,,A,7023ada7
+42000-1,5,p278 32294,1109,218,226,not decided,"not decided: p278 32294: a travel of 0.2 rad or less each way, stopped at +0.067 rad (464/466); p291 32294: a travel of 0.2 rad or less each way, stopped at -0.067 rad (459/460)","p278 32294 way +: went 0.067 of 0.1, 464/466",A,7023ada7
+8466-1,10,p134 32009,1044,216,74,shown,,"p134 32009 way -: went 0 of 1.5, 251/605",A,7023ada7
+42037-1,3,p349 32270,482,214,95,not shown,"A: none not moved; p493 45982, p489 45982 listed to stay moved","p349 32270 way -: went -1.101 of 1.17, 76/84",A,7023ada7
+42056-1,12,p1697 4519,2641,212,45,shown,,,A,7023ada7
+8285-1,3,p901 2654,1790,212,39,shown,,,A,7023ada7
+42114-1,6,p2535 3941,2135,210,75,shown,,"p2535 3941 way -: went -0.336 of 0.37, 2405/2466",A,7023ada7
+9392-1,5,p95 6572,183,209,171,not decided,"not decided: p95 6572: a travel of 0.2 rad or less each way, stopped at +0 rad (101/200); p99 6572: a travel of 0.2 rad or less each way, stopped at -0 rad (101/200)","p95 6572 way +: went 0 of 1.5, 101/200",A,7023ada7
+42062-1,8,p547 32524,627,207,41,shown,,"p547 32524 way +: went 0.244 of 1.5, 511/591",A,7023ada7
+42125-1,6,p44 42125 - 92909,1644,203,78,shown,,,A,7023ada7
+8063-1,3,p701 44772,1124,201,119,shown,,,A,7023ada7
+42125-1,3,p3020 44771,1644,201,76,shown,,,A,7023ada7
+8285-1,10,p1722 2654,1790,196,37,shown,,,A,7023ada7
+8285-1,4,p847 2819,1790,195,40,shown,,,A,7023ada7
+42099-1,9,p1452 2819,931,191,39,shown,,"p1452 2819 way -: went -0.7 of 1.47, 1240/1452",A,7023ada7
+42111-1,10,p328 2825,1055,191,,not shown,"A: p326 15462, p463 3749, p466 3749 not moved",,A,7023ada7
+42081-1,5,p943 32270,1155,188,37,shown,,,A,7023ada7
+42113-1,6,p130 42610,1628,187,57,not shown,"a collision stops a control: p105 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p106 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p130 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344); p131 42610: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.384 rad (337/344)","p105 42610 way +: went 0.384 of 1.5, 337/344",A,7023ada7
+8868-1,1,p2556 3736,874,186,22,shown,,,A,7023ada7
+42039-1,1,p1298 15038,1189,181,57,shown,,,A,7023ada7
+8273-1,1,p644 32269,791,181,12,shown,,,A,7023ada7
+42069-1,2,p981 32270,2357,174,58,shown,,,A,7023ada7
+41999-1,1,p366 32270,1530,174,42,shown,,,A,7023ada7
+42069-1,5,p1490 57519,2357,173,60,not shown,"A: p1333 62821, p146 2853, p162 2851 not moved","p1490 57519 way +: went 0.977 of 1.5, 1365/1426",A,7023ada7
+42069-1,6,p1872 57519,2357,170,59,shown,,"p1872 57519 way +: went 0.735 of 0.77, 1788/1811",A,7023ada7
+42112-1,1,p1006 32270,1156,169,16,shown,,,A,7023ada7
+8063-1,10,p1130 32020,1124,167,118,shown,,,A,7023ada7
+8063-1,6,p701 44772,1124,167,117,not shown,"a collision stops a control: p701 44772: turns without end (kinds power-take-off; the text says: power take-off, rolls), but a collision stops it at +1.5 rad (60/106)","p701 44772 way +: went 1.5 of 1.5, 60/106",A,7023ada7
+8258-1,6,p1450 3941,1629,167,32,shown,,,A,7023ada7
+42000-1,1,p706 32138,1109,166,55,shown,,,A,7023ada7
+42111-1,4,p276 15459,1055,163,111,shown,,,A,7023ada7
+42111-1,1,p136 18575,1055,162,55,shown,,,A,7023ada7
+42068-1,1,p783 18575,1094,157,65,shown,,,A,7023ada7
+42029-1,2,p224 2819,1053,156,31,shown,,,A,7023ada7
+42081-1,7,p1160 92842,1155,153,28,shown,,,A,7023ada7
+42111-1,2,p471 56908,1055,152,49,shown,,,A,7023ada7
+42029-1,5,p133 6632,1053,151,36,not shown,A: p48 6539 against p47 3705 not moved,,A,7023ada7
+42077-1,1,p838 18575,980,148,40,shown,,,A,7023ada7
+42096-1,3,p1013 64392,1544,148,32,shown,,"p851 64682 way -: went -1.151 of 1.5, 809/851",A,7023ada7
+42081-1,6,p1098 15038,1155,144,30,shown,,,A,7023ada7
+8273-1,6,p465 32270,791,140,14,shown,,,A,7023ada7
+42080-1,4,p282 18938,1001,138,24,shown,,,A,7023ada7
+42066-1,4,p1164 32269,1140,137,73,shown,,,A,7023ada7
+42079-1,2,p334 6553,577,135,53,shown,,,A,7023ada7
+42052-1,7,p1185 42052 - 13971,1027,134,21,shown,,,A,7023ada7
+42037-1,5,p229 32063,482,133,153,not decided,"not decided: p241 32063: a travel of 0.2 rad or less each way, stopped at +0.066 rad (249/257)","p241 32063 way +: went 0.066 of 0.43, 249/257",A,7023ada7
+8273-1,3,p3956 32270,791,132,103,shown,,,A,7023ada7
+42039-1,3,p924 32269,1189,132,42,shown,,,A,7023ada7
+8880-1,1,p1401 2998,1285,131,44,shown,,,A,7023ada7
+8275-1,3,p569 4019,1366,130,31,shown,,,A,7023ada7
+42080-1,5,p840 42080 - 18575,1001,129,55,shown,,,A,7023ada7
+42108-1,1,p709 2654,1305,129,23,shown,,,A,7023ada7
+42111-1,3,p471 56908,1055,127,43,shown,,,A,7023ada7
+41999-1,5,p663 4716,1530,127,24,shown,,,A,7023ada7
+42066-1,1,p136 10928,1140,127,20,shown,,,A,7023ada7
+42050-1,1,p864 56908,632,120,49,shown,,,A,7023ada7
+42042-1,1,p539 15462,1369,119,39,shown,,,A,7023ada7
+42081-1,8,p694 87751,1155,118,64,not decided,"not decided: p694 87751: a travel of 0.2 rad or less each way, stopped at +0.07 rad (694/720); p695 87751: a travel of 0.2 rad or less each way, stopped at -0.133 rad (694/695)","p695 87751 way -: went -0.133 of 0.3, 694/695",A,7023ada7
+42042-1,7,p1400 32270,1369,115,72,shown,,,A,7023ada7
+42000-1,7,p585 92909,1109,115,51,shown,,,A,7023ada7
+42039-1,2,p1298 15038,1189,115,50,not shown,A: none not moved; p6 62821 listed to stay moved,,A,7023ada7
+42112-1,7,p581 92907,1156,115,21,shown,,,A,7023ada7
+42108-1,3,p354 32270,1305,113,80,not decided,"not decided: p354 32270: a travel of 0.2 rad or less each way, stopped at +0.174 rad (345/349); p367 32270: a travel of 0.2 rad or less each way, stopped at -0.174 rad (358/362)","p244 42108 - 33299b way -: went -1.116 of 1.5, 249/249",A,7023ada7
+8063-1,1,p499 32269,1124,113,16,shown,,,A,7023ada7
+8275-1,5,p125 3647,1366,112,70,not shown,"A: p2715 3703, p2731 3703 not moved",,A,7023ada7
+41999-1,6,p1190 43093,1530,111,23,shown,,"p1190 43093 way +: went 1.291 of 1.5, 1177/1524",A,7023ada7
+42029-1,8,p951 64392,1053,108,27,shown,,"p951 64392 way +: went 0 of 1.5, 187/886",A,7023ada7
+42024-1,1,p468 32269,950,108,15,shown,,,A,7023ada7
+8448-1,2,p478 32196,1268,107,41,not shown,"A: p577 32073, p692 32125, p594 2851, p598 2851 not moved",,A,7023ada7
+42068-1,2,p1067 56145,1094,106,44,shown,,,A,7023ada7
+42111-1,8,p708 41239,1055,105,95,not decided,"not decided: p708 41239: a travel of 0.2 rad or less each way, stopped at +0.035 rad (557/708)","p708 41239 way +: went 0.035 of 1.5, 557/708",A,7023ada7
+8257-1,2,p310 6572,392,105,43,shown,,"p310 6572 way -: went -1.326 of 1.5, 301/328",A,7023ada7
+42064-1,4,p631 42610,1314,105,16,shown,,,A,7023ada7
+8448-1,5,p364 32195a,1268,102,125,not decided,"not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (14/345); p380 32195a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396)","p364 32195a way -: went -0.035 of 1.5, 14/345",A,7023ada7
+42108-1,2,p1265 56145,1305,102,19,shown,,,A,7023ada7
+42108-1,6,p1195 2654,1305,100,42,shown,,,A,7023ada7
+8868-1,4,p3342 4266,874,100,41,shown,,,A,7023ada7
+42068-1,8,p1067 56145,1094,100,40,shown,,,A,7023ada7
+42094-1,1,p79 32270,809,99,27,shown,,,A,7023ada7
+8063-1,8,p777 32269,1124,96,37,not shown,A: p764 62274c01 not moved,"p777 32269 way -: went -0.244 of 1.5, 796/1009",A,7023ada7
+8868-1,3,p3338 4266,874,95,41,shown,,,A,7023ada7
+8880-1,5,p925 3482,1285,93,52,shown,,,A,7023ada7
+42080-1,8,p1087 56145,1001,91,22,shown,,,A,7023ada7
+42066-1,6,p401 55982,1140,91,20,shown,,,A,7023ada7
+42080-1,7,p1509 61403,1001,90,16,shown,,,A,7023ada7
+8289-1,1,p675 32269,994,89,13,shown,,,A,7023ada7
+8012-1,1,p96 32449,364,88,15,shown,,"p96 32449 way -: went -1.012 of 1.5, 55/99",A,7023ada7
+8063-1,2,p193 2819,1124,88,15,shown,,,A,7023ada7
+8880-1,2,p1403 2998,1285,87,41,not shown,"A: p750 2853, p753 2852, p767 2851, p771 2851 not moved",,A,7023ada7
+42042-1,9,p141 57519,1369,87,37,shown,,,A,7023ada7
+8865-1,2,p900 3739,868,87,27,shown,,,A,7023ada7
+8448-1,4,p478 32196,1268,86,43,not shown,"A: none not moved; p31 3706, p100 3737 listed to stay moved",,A,7023ada7
+8865-1,1,p887 2741,868,86,26,shown,,,A,7023ada7
+42039-1,4,p750 2819,1189,86,21,shown,,,A,7023ada7
+42112-1,6,p1039 42112 - 33299b,1156,86,11,not shown,"A: p361 32270, p1118 42112 - 65421p01 not moved","p1039 42112 - 33299b way +: went 0.93 of 0.93, 592/1123 603/1118",A,7023ada7
+42108-1,5,p1192 2654,1305,85,39,shown,,,A,7023ada7
+8257-1,6,p54 6572,392,85,36,shown,,"p54 6572 way -: went 0 of 1.5, 66/132",A,7023ada7
+42076-1,1,p32 55982,1015,85,12,shown,,,A,7023ada7
+42039-1,9,p813 32270,1189,84,21,not shown,"A: p633 18946, p637 94925, p780 32270, p760 4716, p773 3648b, p1157 41239 not moved",,A,7023ada7
+8880-1,13,p826 2712,1285,82,32,shown,,,A,7023ada7
+8258-1,7,p686 4519,1629,81,29,not shown,"A: p682 62821, p6 3708, p1351 2853, p1366 2851 against p1375 2850a, p1367 2851 against p1376 2850a not moved",,A,7023ada7
+8081-1,1,p410 32269,580,80,29,shown,,,A,7023ada7
+42037-1,7,p438 40001,482,80,14,shown,,,A,7023ada7
+8880-1,4,p894 2741,1285,79,52,shown,,,A,7023ada7
+42039-1,10,p716 32039,1189,79,24,not shown,A: p636 18947 not moved,"p716 32039 way -: went -0.467 of 0.6, 716/725",A,7023ada7
+42053-1,9,p2692 56145,1132,79,17,shown,,,A,7023ada7
+8880-1,6,p948 6553,1285,79,15,shown,,,A,7023ada7
+42024-1,5,p241 15413,950,78,27,shown,,,A,7023ada7
+42062-1,6,p507 32270,627,78,18,shown,,,A,7023ada7
+42042-1,5,p539 15462,1369,77,34,not shown,"A: p578 18947, p530 32269, p797 32270, p724 4716, p720 10928, p719 3737, p1206 61510 not moved",,A,7023ada7
+42053-1,7,p284 18939,1132,77,25,not shown,A: none not moved; p55 59426 against p0 92907 listed to stay moved,,A,7023ada7
+9394-1,1,p284 56145,466,77,23,shown,,"p284 56145 way +: went 1.395 of 1.5, 315/477",A,7023ada7
+42053-1,6,p201 32269,1132,77,16,shown,,,A,7023ada7
+8274-1,1,p539 32269,1008,77,11,shown,,,A,7023ada7
+42068-1,4,p987 32270,1094,76,39,shown,,,A,7023ada7
+42039-1,8,p813 32270,1189,76,28,not shown,"A: p670 18946, p653 4716, p870 32072, p857 32072, p928 62531, p929 62531 not moved",,A,7023ada7
+8448-1,3,p576 6587,1268,76,15,not shown,A: p497 6539 not moved,,A,7023ada7
+42124-1,4,p325 42124 - 31794,369,72,,not shown,"A: p343 15460, p345 15460 not moved; not decided: p325 42124 - 31794: a travel of 0.2 rad or less each way, stopped at -0 rad (265/316); p326 42124 - 31794: a travel of 0.2 rad or less each way, stopped at +0 rad (265/317)","p325 42124 - 31794 way -: went 0 of 0.03, 265/316",A,7023ada7
+42077-1,3,p1081 15038,980,71,15,shown,,,A,7023ada7
+42112-1,2,p690 56145,1156,70,21,shown,,"p690 56145 way +: went 0.523 of 1.5, 135/175",A,7023ada7
+8289-1,3,p533 56145,994,68,15,shown,,,A,7023ada7
+9394-1,5,p57 42610,466,68,14,shown,,,A,7023ada7
+8063-1,4,p700 41896,1124,67,14,shown,,,A,7023ada7
+42077-1,4,p1081 15038,980,66,15,shown,,,A,7023ada7
+42050-1,5,p867 56145,632,65,49,shown,,,A,7023ada7
+42042-1,2,p539 15462,1369,65,36,not shown,"A: p576 18947, p710 62520, p45 6589, p97 6589, p154 10928, p147 3648b, p205 3648b, p141 57519, p199 57519 not moved",,A,7023ada7
+8257-1,5,p25 6579,392,64,12,shown,,,A,7023ada7
+8855-1,4,p319 3482,570,63,22,shown,,,A,7023ada7
+9392-1,1,p194 32016,183,63,,not shown,"A: p121 32209, p114 2739a, p107 6571, p109 6571 not moved; not decided: p194 32016: a travel of 0.2 rad or less each way, stopped at +0 rad (80/111); -0 rad (79/111)","p194 32016 way +: went 0 of 0.2, 80/111",A,7023ada7
+42042-1,3,p539 15462,1369,62,35,not shown,"A: p577 18947, p581 10928, p588 76019, p639 10928, p499 3648b, p636 32269, p648 32270, p132 60484 not moved",,A,7023ada7
+42064-1,7,p1186 32270,1314,61,15,shown,,,A,7023ada7
+8865-1,4,p900 3739,868,60,28,not shown,"A: none not moved; p176 4143, p514 3708 listed to stay moved",,A,7023ada7
+8862-1,1,p570 3941,656,60,7,shown,,,A,7023ada7
+8063-1,5,p112 32039,1124,59,56,not shown,A: p33 6539 not moved,"p112 32039 way -: went -0.636 of 0.67, 106/119",A,7023ada7
+8859-1,2,p595 3740,553,57,29,shown,,,A,7023ada7
+9394-1,2,p25 59443,466,56,21,shown,,,A,7023ada7
+42076-1,9,p675 46667,1015,56,9,shown,,,A,7023ada7
+42079-1,5,p454 86652,577,55,21,not shown,A: none not moved; p245 2853 listed to stay moved,,A,7023ada7
+8257-1,4,p594 6629,392,54,26,not decided,"not decided: p594 6629: a travel of 0.2 rad or less each way, stopped at +0.103 rad (348/594)","p594 6629 way +: went 0.103 of 1.37, 348/594",A,7023ada7
+42063-1,2,p334 88517,598,53,9,shown,,,A,7023ada7
+42049-1,1,p96 32270,476,52,11,shown,,,A,7023ada7
+42075-1,1,p50 32270,507,52,6,shown,,,A,7023ada7
+8275-1,4,p569 4019,1366,50,29,shown,,,A,7023ada7
+42062-1,10,p597 55981,627,50,16,shown,,,A,7023ada7
+8868-1,2,p3320 6143,874,50,13,shown,,,A,7023ada7
+42112-1,8,p555 32140,1156,50,12,shown,,,A,7023ada7
+42040-1,2,p557 99012,567,50,10,shown,,,A,7023ada7
+42106-1,1,p195 32270,620,50,6,shown,,,A,7023ada7
+42107-1,1,p129 33299a,631,49,5,not shown,A: p127 18947 not moved,,A,7023ada7
+42079-1,4,p458 86652,577,48,21,shown,,,A,7023ada7
+8257-1,8,p156 6629,392,48,21,shown,,,A,7023ada7
+42105-1,2,p186 42105 - 33299b,404,48,14,shown,,,A,7023ada7
+42064-1,6,p1171 32270,1314,48,13,shown,,,A,7023ada7
+8274-1,6,p970 41896,1008,48,12,shown,,,A,7023ada7
+42079-1,3,p578 15535,577,48,11,shown,,,A,7023ada7
+9392-1,2,p182 56145,183,47,25,shown,,,A,7023ada7
+42064-1,8,p1122 32062,1314,47,15,shown,,"p1122 32062 way -: went -0.453 of 1.5, 1114/1123",A,7023ada7
+42006-1,1,p295 32270,686,47,9,shown,,,A,7023ada7
+42112-1,4,p384 32013,1156,46,12,not shown,A: p354 18947 not moved,,A,7023ada7
+42076-1,8,p982 55982,1015,46,10,shown,,,A,7023ada7
+8002-1,2,p551 32073,535,46,7,not decided,"not decided: p551 32073: a travel of 0.2 rad or less each way, stopped at -0.105 rad (558/560)","p551 32073 way -: went -0.105 of 1.5, 558/560",A,7023ada7
+42076-1,2,p374 32269,1015,45,15,shown,,,A,7023ada7
+8289-1,7,p653 4185,994,44,10,shown,,,A,7023ada7
+42123-1,1,p49 87083,819,44,6,shown,,,A,7023ada7
+42038-1,1,p170 32270,905,44,,not shown,"A: p290 32270, p288 64781, p284 92909, p285 92909 not moved",,A,7023ada7
+42122-1,2,p122 32524,657,44,,not shown,A: p122 32524 not moved,,A,7023ada7
+42093-1,3,p567 56904,565,43,11,shown,,,A,7023ada7
+42041-1,1,p647 56908,603,42,13,shown,,,A,7023ada7
+8289-1,2,p366 2819,994,41,9,shown,,,A,7023ada7
+42120-1,1,p51 4185a,441,41,6,shown,,,A,7023ada7
+8081-1,4,p520 64682,580,41,,not shown,A: p530 64392 not moved,,A,7023ada7
+42022-1,1,p177 59443,401,40,7,shown,,,A,7023ada7
+8464-1,4,p565 2995,544,40,6,not shown,A: none not moved; p31 3650a listed to stay moved,,A,7023ada7
+8416-1,3,p670 6143,722,40,5,shown,,,A,7023ada7
+8274-1,4,p970 41896,1008,39,12,not shown,"A: none not moved; p123 3648b, p18 6573 listed to stay moved",,A,7023ada7
+42050-1,2,p415 32270,632,39,9,shown,,,A,7023ada7
+8049-1,1,p73 2654,476,39,4,shown,,,A,7023ada7
+8245-1,2,p28 2994,236,38,9,shown,,,A,7023ada7
+8856-1,2,p390 8856 - 4185a,480,38,5,shown,,,A,7023ada7
+9392-1,3,p137 2853,183,37,23,shown,,,A,7023ada7
+8273-1,8,p96 32270,791,37,20,shown,,"p96 32270 way +: went 0 of 1.5, 98/292",A,7023ada7
+42094-1,3,p208 32270,809,37,12,shown,,,A,7023ada7
+42036-1,1,p118 88517,362,37,6,shown,,,A,7023ada7
+8273-1,10,p219 2905,791,37,,not shown,"A: p4004 56145, p4008 56145 not moved",,A,7023ada7
+8273-1,11,p4000 56145,791,36,12,shown,,,A,7023ada7
+42075-1,2,p506 56145,507,34,13,not shown,A: p352 2851 not moved,,A,7023ada7
+8862-1,3,p574 3736,656,34,10,shown,,,A,7023ada7
+42121-1,3,p279 18938,567,34,4,shown,,,A,7023ada7
+42122-1,5,p234 94925,657,33,4,shown,,,A,7023ada7
+42050-1,4,p257 59443,632,32,35,shown,,,A,7023ada7
+42094-1,6,p965 2853,809,32,29,shown,,"p934 2853 way +: went 0 of 1.5, 914/934",A,7023ada7
+42109-1,2,p971 56145,461,32,4,shown,,,A,7023ada7
+9393-1,2,p132 59443,350,31,17,shown,,"p132 59443 way -: went -0.314 of 1.5, 339/339",A,7023ada7
+8854-1,1,p948 6143,468,31,3,shown,,,A,7023ada7
+8862-1,4,p573 3736,656,30,11,shown,,,A,7023ada7
+9391-1,1,p31 32270,204,30,8,shown,,,A,7023ada7
+8838-1,5,p171 8838 - 2903,233,30,6,shown,,,A,7023ada7
+855-1,1,p162 3404,512,29,10,shown,,,A,7023ada7
+8862-1,11,p525 3958,656,29,6,shown,,"p525 3958 way +: went 0 of 1.5, 466/525",A,7023ada7
+8272-1,2,p12 32063,313,29,,not shown,"A: p43 32063, p17 32063, p36 32063, p13 6587, p53 2736, p615 32271 not moved",,A,7023ada7
+42105-1,3,p261 42105 - 33299b,404,28,14,shown,,,A,7023ada7
+8862-1,12,p369 4266c01,656,28,7,shown,,,A,7023ada7
+42061-1,1,p252 32270,256,28,6,shown,,"p252 32270 way +: went 0.436 of 0.47, 55/78",A,7023ada7
+42060-1,2,p30 59443,357,27,20,shown,,,A,7023ada7
+8081-1,2,p584 56908,580,27,13,shown,,,A,7023ada7
+42107-1,7,p379 88516,631,27,10,shown,,,A,7023ada7
+8012-1,2,p3474 6538b,364,27,10,shown,,"p3474 6538b way +: went 1.395 of 1.5, 158/3471",A,7023ada7
+8840-1,2,p210 4266,206,26,13,shown,,,A,7023ada7
+8081-1,3,p584 56908,580,26,12,shown,,,A,7023ada7
+42049-1,2,p101 32270,476,26,10,shown,,,A,7023ada7
+8862-1,7,p264 3702,656,25,21,shown,,"p264 3702 way -: went -0.035 of 0.07, 302/302",A,7023ada7
+42049-1,4,p464 86652,476,25,14,shown,,,A,7023ada7
+42049-1,5,p464 86652,476,25,14,shown,,,A,7023ada7
+42106-1,2,p322 56904,620,25,12,not shown,"a collision stops a control: p322 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197); p328 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)","p322 56904 way -: went -0.558 of 1.5, 2064/2197",A,7023ada7
+42094-1,7,p1209 57519,809,25,9,shown,,,A,7023ada7
+42074-1,1,p40 2819,325,25,2,shown,,,A,7023ada7
+8859-1,3,p595 3740,553,24,28,shown,,,A,7023ada7
+8859-1,5,p596 3740,553,24,28,shown,,,A,7023ada7
+8851-1,5,p852 3738,325,24,14,not shown,"A: none not moved; p908 3649 against p852 3738, p909 3649 against p852 3738 listed to stay moved; not decided: p852 3738: a travel of 0.2 rad or less each way, stopped at +0.035 rad (891/893); -0.035 rad (891/893)","p852 3738 way +: went 0.035 of 1.5, 891/893",A,7023ada7
+8001-1,1,p62 32177,300,24,9,not decided,"not decided: p62 32177: a travel of 0.2 rad or less each way, stopped at +0.035 rad (23/27)","p62 32177 way +: went 0.035 of 1.5, 23/27",A,7023ada7
+42048-1,2,p368 32015,339,24,6,not shown,A: p67 18947 not moved,"p368 32015 way +: went 0.636 of 0.67, 205/215",A,7023ada7
+8012-1,6,p2431 41681,364,23,14,shown,,"p2378 41681 way +: went 0.688 of 1.1, 38/2374",A,7023ada7
+42106-1,5,p2138 55982,620,23,11,shown,,,A,7023ada7
+42094-1,4,p148 41669,809,23,10,not shown,A: p133 18947 not moved,,A,7023ada7
+42122-1,9,p658 42122 - 70695,657,23,6,shown,,,A,7023ada7
+8862-1,5,p159 3701,656,22,6,shown,,"p159 3701 way +: went 0.942 of 1.5, 71/161",A,7023ada7
+8844-1,4,p284 3482,300,21,16,not shown,"a collision stops a control: p284 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.197 rad (36/215)","p284 3482 way +: went 0.197 of 0.23, 36/215",A,7023ada7
+8844-1,1,p69 3705,300,21,10,not shown,"A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved",,A,7023ada7
+8848-1,4,p177 3702,367,21,10,shown,,"p177 3702 way -: went 0 of 1.5, 171/328",A,7023ada7
+42022-1,2,p136 56145,401,21,8,shown,,,A,7023ada7
+8012-1,3,p3833 3705,364,21,8,shown,,,A,7023ada7
+956-1,1,p354 3736,543,21,8,shown,,,A,7023ada7
+42048-1,4,p372 56145,339,21,4,shown,,,A,7023ada7
+8256-1,2,p131 55982,137,21,3,shown,,,A,7023ada7
+9393-1,1,p72 32270,350,21,3,shown,,,A,7023ada7
+42038-1,9,p696 41239,905,20,21,not shown,"a collision stops a control: p696 41239: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at +0.034 rad (238/716); p721 41239: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at +0.034 rad (284/741); p745 57519: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at -0.034 rad (284/741); p720 57519: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at -0.034 rad (238/716)","p696 41239 way +: went 0.034 of 0.17, 238/716",A,7023ada7
+8862-1,6,p572 3736,656,20,5,shown,,,A,7023ada7
+42023-1,2,p313 59443,314,20,4,shown,,,A,7023ada7
+42124-1,6,p470 40490,369,19,12,shown,,"p470 40490 way +: went 0.244 of 1.5, 423/987",A,7023ada7
+9391-1,5,p826 94925,204,19,6,shown,,,A,7023ada7
+8419-1,2,p205 32269,280,19,3,shown,,,A,7023ada7
+42006-1,6,p111 57519,686,18,10,shown,,,A,7023ada7
+8416-1,4,p708 41896,722,18,8,shown,,,A,7023ada7
+42038-1,11,p562 40001,905,18,7,shown,,,A,7023ada7
+42040-1,9,p169 56903,567,18,5,shown,,,A,7023ada7
+8081-1,9,p317 2819,580,18,4,shown,,,A,7023ada7
+42074-1,2,p161 60483,325,18,3,shown,,,A,7023ada7
+42121-1,4,p324 94925,567,18,3,shown,,,A,7023ada7
+8272-1,5,p152 57520,313,18,2,shown,,,A,7023ada7
+42041-1,2,p647 56908,603,17,12,not shown,A: none not moved; p153 62821 listed to stay moved,,A,7023ada7
+42041-1,4,p645 56908,603,17,12,shown,,,A,7023ada7
+42106-1,3,p2052 87082,620,17,9,shown,,,A,7023ada7
+9391-1,2,p45 32270,204,17,9,shown,,"p45 32270 way +: went 0.419 of 1.5, 63/104",A,7023ada7
+42038-1,3,p190 59443,905,17,7,not shown,"A: p71 18946, p33 94925, p46 6589, p107 32269, p862 62520, p866 92696, p888 41239 not moved",,A,7023ada7
+42075-1,3,p504 56145,507,17,4,shown,,,A,7023ada7
+8836-1,1,p143 2952,257,17,4,shown,,,A,7023ada7
+42057-1,1,p113 32209,194,17,3,shown,,,A,7023ada7
+42065-1,3,p287 32209,365,17,3,shown,,,A,7023ada7
+42095-1,1,p236 94925,318,17,3,shown,,,A,7023ada7
+42004-1,1,p108 32270,244,17,2,shown,,,A,7023ada7
+8094-1,1,p380 4185a,385,17,1,shown,,,A,7023ada7
+42040-1,3,p251 32140,567,16,10,not shown,"a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115)","p251 32140 way -: went -0.068 of 0.17, 165/254",A,7023ada7
+8049-1,8,p201 41896,476,16,9,shown,,,A,7023ada7
+42038-1,6,p902 32270,905,16,6,shown,,,A,7023ada7
+42021-1,4,p170 92907,179,16,5,shown,,,A,7023ada7
+42124-1,8,p971 42124 - 69909,369,16,5,shown,,,A,7023ada7
+8245-1,5,p217 3482,236,16,5,shown,,,A,7023ada7
+42093-1,4,p293 2819,565,16,4,shown,,,A,7023ada7
+42106-1,10,p380 24119,620,16,4,shown,,"p380 24119 way -: went 0 of 1.5, 109/380",A,7023ada7
+42035-1,1,p81 32270,353,16,3,shown,,,A,7023ada7
+8416-1,5,p632 2819,722,16,3,shown,,,A,7023ada7
+856-1,1,p50 3736,373,16,2,shown,,,A,7023ada7
+42123-1,4,p1071 30699,819,15,9,shown,,,A,7023ada7
+42075-1,6,p186 3737,507,15,8,not shown,"a collision stops a control: p186 3737: a travel of 0.2 rad or less each way, stopped at +0.136 rad (175/187); -0.136 rad (175/187) (the mast swings up from lying along the roof to stand upright, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6279792.pdf#page=112)","p186 3737 way +: went 0.136 of 0.17, 175/187",A,7023ada7
+42038-1,2,p190 59443,905,15,7,not shown,"A: p67 18946, p6 94925, p111 62520, p113 92695, p112 92696, p323 64782 not moved",,A,7023ada7
+42038-1,4,p84 2736,905,15,7,not shown,A: p69 18947 not moved,"p84 2736 way +: went 0.485 of 0.97, 62/82",A,7023ada7
+42075-1,4,p329 32270,507,15,4,shown,,,A,7023ada7
+42106-1,6,p2196 56145,620,15,4,shown,,,A,7023ada7
+42120-1,4,p113 42610,441,15,4,shown,,,A,7023ada7
+858-1,4,p43 3649,242,15,4,shown,,,A,7023ada7
+8845-1,4,p168 3482,163,15,2,shown,,,A,7023ada7
+8002-1,5,p11 3707,535,14,10,not decided,"not decided: p11 3707: a travel of 0.2 rad or less each way, stopped at +0.034 rad (16/45)","p11 3707 way +: went 0.034 of 0.67, 16/45",A,7023ada7
+42004-1,4,p147 55013,244,14,8,shown,,,A,7023ada7
+8001-1,4,p132 32271,300,14,8,shown,,,A,7023ada7
+8854-1,2,p137 3736,468,14,6,shown,,,A,7023ada7
+42106-1,8,p2222 56145,620,14,4,shown,,,A,7023ada7
+42101-1,2,p22 32140,113,14,3,shown,,"p22 32140 way -: went 0 of 1.5, 31/30",A,7023ada7
+8049-1,6,p475 32270,476,14,3,shown,,"p475 32270 way +: went 1.291 of 1.5, 477/479",A,7023ada7
+8820-1,1,p56 8820 - 4185a,134,14,2,shown,,,A,7023ada7
+8828-1,1,p124 3704,161,14,2,shown,,,A,7023ada7
+8848-1,1,p221 3736,367,14,2,shown,,,A,7023ada7
+8850-1,1,p338 4150,332,14,2,shown,,,A,7023ada7
+8272-1,3,p9 32063,313,14,,not shown,"A: p42 32063, p21 32063, p35 32063, p10 6587, p51 2736, p626 32271 not moved",,A,7023ada7
+42038-1,5,p158 99010,905,13,6,shown,,,A,7023ada7
+42022-1,4,p396 32270,401,13,5,shown,,"p396 32270 way +: went 0 of 1.5, 79/402",A,7023ada7
+855-1,2,p272 3736,512,13,5,shown,,,A,7023ada7
+8854-1,3,p491 3736,468,13,5,shown,,,A,7023ada7
+8856-1,8,p87 3482,480,13,4,not shown,"a collision stops a control: p131 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)","p131 3482 way +: went 0.558 of 1.5, 43/79",A,7023ada7
+42022-1,3,p181 56145,401,13,3,shown,,,A,7023ada7
+42041-1,3,p319 32270,603,13,3,shown,,,A,7023ada7
+42032-1,1,p10 32270,245,13,2,shown,,,A,7023ada7
+8837-1,4,p227 3941,234,13,2,shown,,,A,7023ada7
+9393-1,6,p220 2819,350,13,2,shown,,,A,7023ada7
+952-1,1,p68 3648a,282,13,2,shown,,,A,7023ada7
+8283-1,4,p203 59426,318,13,1,shown,,,A,7023ada7
+9393-1,3,p280 56908,350,12,7,shown,,,A,7023ada7
+42036-1,7,p233 88517,362,12,6,shown,,,A,7023ada7
+42120-1,2,p51 4185a,441,12,5,shown,,,A,7023ada7
+8464-1,5,p569 2995,544,12,5,not shown,A: none not moved; p132 3650a listed to stay moved,,A,7023ada7
+42075-1,8,p239 24116,507,12,4,shown,,"p239 24116 way -: went -0.279 of 1.5, 239/308",A,7023ada7
+42004-1,2,p40 55013,244,12,3,shown,,"p40 55013 way -: went -1.116 of 1.5, 29/201",A,7023ada7
+42045-1,1,p93 4185,170,12,3,shown,,,A,7023ada7
+8261-1,1,p131 32270,191,12,3,not decided,"not decided: p131 32270: a travel of 0.2 rad or less each way, stopped at +0.105 rad (193/193); -0.105 rad (191/191)","p131 32270 way +: went 0.105 of 1.47, 193/193",A,7023ada7
+42031-1,1,p139 32270,148,12,2,shown,,,A,7023ada7
+856-1,3,p11 3649,373,12,2,shown,,,A,7023ada7
+42088-1,2,p111 32138,148,12,1,shown,,,A,7023ada7
+8081-1,7,p199 6572,580,12,,not shown,"A: p210 6571, p213 6571 not moved",,A,7023ada7
+8835-1,2,p207 4185a,235,11,12,not shown,"A: p29 3703, p128 4262, p63 2823 not moved",,A,7023ada7
+8840-1,5,p210 4266,206,11,9,shown,,,A,7023ada7
+8419-1,3,p204 32269,280,11,8,not shown,A: p284 2950 against p115 32140 not moved,,A,7023ada7
+9393-1,4,p282 56908,350,11,7,not shown,A: none not moved; p301 6587 against p299 48989 listed to stay moved,"p282 56908 way +: went 0.698 of 1.5, 339/343",A,7023ada7
+8245-1,6,p188 6629,236,11,5,shown,,,A,7023ada7
+8851-1,6,p908 3649,325,11,5,shown,,,A,7023ada7
+9391-1,3,p120 32270,204,11,5,shown,,,A,7023ada7
+42109-1,4,p965 56145,461,11,4,shown,,,A,7023ada7
+42120-1,5,p583 46667,441,11,3,shown,,,A,7023ada7
+8245-1,8,p242 32009,236,11,3,shown,,"p242 32009 way -: went -1.151 of 1.5, 234/242",A,7023ada7
+42044-1,1,p97 32270,110,11,2,shown,,"p97 32270 way -: went -0.893 of 1.03, 0/9",A,7023ada7
+8281-1,3,p90 3482,117,11,2,shown,,,A,7023ada7
+8830-1,1,p153 4185,180,11,2,shown,,,A,7023ada7
+9390-1,1,p13 32270,134,11,2,shown,,,A,7023ada7
+42033-1,1,p118 56145,122,11,1,shown,,,A,7023ada7
+42058-1,1,p41 56145,138,11,1,shown,,,A,7023ada7
+42116-1,1,p98 32270,138,11,1,shown,,,A,7023ada7
+8259-1,2,p75 4019,165,11,1,shown,,,A,7023ada7
+858-1,8,p133 3649,242,11,1,shown,,,A,7023ada7
+8832-1,1,p51 4185,83,11,1,shown,,,A,7023ada7
+952-1,6,p286 3649,282,11,1,shown,,,A,7023ada7
+956-1,3,p340 3739,543,10,8,shown,,,A,7023ada7
+42048-1,3,p374 56145,339,10,6,shown,"first step not done by the sweep: p368 32015 by 0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7
+851-1,4,p232 3702,276,10,6,not shown,A: none not moved; p309 3649 against p260 3709b listed to stay moved,,A,7023ada7
+8836-1,3,p148 4261,257,10,6,shown,,"p148 4261 way -: went -0.067 of 0.1, 165/165",A,7023ada7
+956-1,2,p450 3739,543,10,6,shown,,,A,7023ada7
+42036-1,2,p79 64290,362,10,5,not decided,"not decided: p79 64290: a travel of 0.2 rad or less each way, stopped at +0.14 rad (291/291); -0 rad (455/454)","p79 64290 way +: went 0.14 of 1.5, 291/291",A,7023ada7
+42035-1,2,p353 56145,353,10,4,shown,,,A,7023ada7
+8245-1,3,p278 2994,236,10,3,shown,,,A,7023ada7
+8844-1,2,p128 3736,300,10,3,shown,,,A,7023ada7
+42063-1,3,p386 88517,598,10,2,shown,,,A,7023ada7
+42074-1,3,p47 42074 - 13971,325,10,2,shown,,,A,7023ada7
+8024-1,1,p250 120270 - 4185a,245,10,2,shown,,,A,7023ada7
+851-1,1,p67 3648a,276,10,2,shown,,,A,7023ada7
+8849-1,1,p66 3736,329,10,2,shown,,,A,7023ada7
+1972-1,1,p227 4185a,94,10,1,shown,,,A,7023ada7
+42020-1,1,p100 57585,140,10,1,shown,,,A,7023ada7
+42071-1,1,p92 26287,170,10,1,shown,,,A,7023ada7
+42084-1,2,p102 32270,174,10,1,shown,,"p102 32270 way +: went 0 of 1.5, 19/158",A,7023ada7
+42092-1,1,p198 32270,322,10,1,shown,,,A,7023ada7
+8270-1,6,p93 55981,99,10,1,shown,,,A,7023ada7
+852-1,1,p143 3736,339,10,1,shown,,,A,7023ada7
+854-1,1,p155 3736,201,10,1,shown,,,A,7023ada7
+8841-1,1,p683 4185,185,10,1,shown,,,A,7023ada7
+42004-1,5,p171 32270,244,10,,not shown,A: p169 40490 against p159 32525 not moved,,A,7023ada7
+42004-1,6,p177 30394,244,10,,not shown,A: p177 30394 against p169 40490 not moved,,A,7023ada7
+42035-1,3,p351 56145,353,9,8,not shown,A: none not moved; p38 60485 against p0 32525 listed to stay moved,,A,7023ada7
+42035-1,4,p349 56145,353,9,7,shown,,,A,7023ada7
+8261-1,2,p45 32271,191,9,7,not decided,"not decided: p45 32271: a travel of 0.2 rad or less each way, stopped at +0.034 rad (191/191); -0 rad (3/198)","p45 32271 way +: went 0.034 of 0.27, 191/191",A,7023ada7
+9393-1,5,p299 48989,350,9,5,shown,,"p309 48989 way -: went -0.105 of 0.63, 338/338",A,7023ada7
+42035-1,5,p335 32270,353,9,4,shown,,"p335 32270 way +: went 1.221 of 1.5, 249/264",A,7023ada7
+8245-1,10,p237 6536,236,9,4,shown,,,A,7023ada7
+855-1,3,p313 3736,512,9,3,shown,,,A,7023ada7
+42102-1,1,p120 32270,128,9,2,shown,,,A,7023ada7
+8844-1,5,p179 3707,300,9,2,shown,,,A,7023ada7
+42059-1,1,p126 56145,141,9,1,shown,,,A,7023ada7
+8260-1,1,p10 3713,104,9,1,shown,,,A,7023ada7
+950-1,1,p188 3736,198,9,1,shown,,"p188 3736 way -: went -1.326 of 1.5, 184/189",A,7023ada7
+42061-1,2,p142 32270,256,8,3,shown,,,A,7023ada7
+855-1,4,p483 3736,512,8,3,shown,,,A,7023ada7
+8848-1,2,p387 4266,367,8,3,not shown,"a collision stops a control: p387 4266: turns without end (kinds differential; the text says: rolls, wheel), but a collision stops it at -0.484 rad (1/47)","p387 4266 way -: went -0.484 of 0.83, 1/47",A,7023ada7
+8001-1,2,p18 2654,300,8,2,shown,,"p18 2654 way +: went 0.802 of 1.5, 11/113",A,7023ada7
+8024-1,2,p226 3482,245,8,2,shown,,,A,7023ada7
+855-1,6,p185 3482,512,8,2,shown,,,A,7023ada7
+8810-1,1,p51 3176,74,8,2,not shown,A: none not moved; p26 2695 listed to stay moved,"p51 3176 way +: went 0.636 of 0.67, 51/68",A,7023ada7
+8837-1,6,p22 2695c01,234,8,2,shown,,,A,7023ada7
+8854-1,4,p169 4185,468,8,2,shown,,,A,7023ada7
+42026-1,1,p120 56145,128,8,1,shown,,,A,7023ada7
+42046-1,1,p157 56145,168,8,1,shown,,,A,7023ada7
+42047-1,1,p171 56145,183,8,1,shown,,,A,7023ada7
+8218-1,1,p1 2994,66,8,1,shown,,,A,7023ada7
+850-1,1,p188 3736,198,8,1,shown,,"p188 3736 way -: went -1.326 of 1.5, 184/189",A,7023ada7
+858-1,2,p91 3649,242,8,1,shown,,,A,7023ada7
+8815-1,1,p59 8815 - 4185a,73,8,1,shown,,,A,7023ada7
+8824-1,2,p62 3482,185,8,1,shown,,,A,7023ada7
+8835-1,1,p212 3736,235,8,1,shown,,,A,7023ada7
+8836-1,5,p168 3482,257,8,1,shown,,,A,7023ada7
+8202-1,4,p61 4185,67,8,0,shown,,,A,7023ada7
+42032-1,3,p107 87083,245,8,,not shown,"A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved",,A,7023ada7
+856-1,2,p51 3736,373,7,4,shown,,,A,7023ada7
+952-1,4,p235 3702,282,7,4,shown,,"p235 3702 way +: went 0.136 of 0.17, 231/237",A,7023ada7
+42004-1,7,p234 56145,244,7,3,shown,,,A,7023ada7
+42060-1,5,p270 32270,357,7,3,shown,,"p270 32270 way +: went 1.012 of 1.5, 259/277",A,7023ada7
+8848-1,3,p387 4266,367,7,3,not shown,"a collision stops a control: p387 4266: turns without end (kinds differential, power-take-off; the text says: rolls, drive shaft), but a collision stops it at -0.484 rad (1/47)","p387 4266 way -: went -0.484 of 0.83, 1/47",A,7023ada7
+8854-1,10,p960 4266,468,7,3,shown,,,A,7023ada7
+42023-1,4,p131 55982,314,7,2,shown,,,A,7023ada7
+8850-1,4,p346 4266,332,7,2,shown,,,A,7023ada7
+8850-1,5,p342 4266,332,7,2,shown,,,A,7023ada7
+42023-1,3,p256 6558,314,7,1,shown,,"p256 6558 way -: went 0 of 1.5, 206/249",A,7023ada7
+42032-1,4,p156 32556,245,7,1,shown,,,A,7023ada7
+42034-1,1,p137 56145,146,7,1,shown,,,A,7023ada7
+8020-1,1,p99 3482,95,7,1,shown,,,A,7023ada7
+8054-1,1,p72 4265a,74,7,1,shown,,,A,7023ada7
+8261-1,4,p190 56145,191,7,1,shown,,,A,7023ada7
+8418-1,1,p21 32270,64,7,1,shown,,"p21 32270 way +: went 0.138 of 1.1, 57/57",A,7023ada7
+8830-1,2,p154 3482,180,7,1,shown,,,A,7023ada7
+42073-1,1,p117 54087,138,7,0,shown,,,A,7023ada7
+8001-1,6,p830 32177,300,6,3,not decided,"not decided: p830 32177: a travel of 0.2 rad or less each way, stopped at -0.174 rad (825/830)","p830 32177 way -: went -0.174 of 0.8, 825/830",A,7023ada7
+858-1,5,p43 3649,242,6,3,shown,,,A,7023ada7
+8848-1,7,p386 4266,367,6,3,shown,,,A,7023ada7
+42060-1,3,p194 55981,357,6,2,shown,,,A,7023ada7
+42061-1,4,p181 59443,256,6,2,shown,,,A,7023ada7
+42061-1,5,p253 56145,256,6,2,shown,,,A,7023ada7
+8256-1,3,p131 55982,137,6,2,shown,,,A,7023ada7
+8815-1,2,p70 3482,73,6,2,shown,,,A,7023ada7
+8838-1,6,p220 8838 - 2903,233,6,2,shown,,,A,7023ada7
+8841-1,2,p700 3482,185,6,2,shown,,,A,7023ada7
+8850-1,2,p346 4266,332,6,2,shown,,,A,7023ada7
+42057-1,5,p7 42057 - 13971,194,6,1,shown,,,A,7023ada7
+42061-1,3,p199 59443,256,6,1,shown,,,A,7023ada7
+42072-1,1,p113 54087,134,6,1,shown,,,A,7023ada7
+42084-1,3,p144 55982,174,6,1,shown,,,A,7023ada7
+8032-1,1,p28 3736,61,6,1,shown,,,A,7023ada7
+8808-1,1,p79 2819,92,6,1,shown,,,A,7023ada7
+956-1,5,p168 3648a,543,6,1,shown,,,A,7023ada7
+8209-1,3,p46 32193,47,6,0,shown,,,A,7023ada7
+8826-1,2,p85 3482,89,6,0,shown,,,A,7023ada7
+42102-1,3,p93 32140,128,6,,not shown,"A: p103 32524, p107 32498, p108 32498 not moved",,A,7023ada7
+42057-1,4,p142 40001,194,5,3,shown,,,A,7023ada7
+42060-1,4,p216 32062,357,5,3,shown,,,A,7023ada7
+42065-1,4,p98 42065 - 4185,365,5,3,shown,,,A,7023ada7
+8094-1,3,p227 4185a,385,5,3,shown,,,A,7023ada7
+858-1,6,p43 3649,242,5,3,shown,,,A,7023ada7
+858-1,7,p43 3649,242,5,3,shown,,,A,7023ada7
+42095-1,2,p277 94925,318,5,2,shown,,,A,7023ada7
+8024-1,3,p257 3482,245,5,2,shown,,,A,7023ada7
+8272-1,6,p615 32271,313,5,2,not decided,"not decided: p615 32271: a travel of 0.2 rad or less each way, stopped at +0.2 rad (52/614)","p615 32271 way +: went 0.2 of 0.3, 52/614",A,7023ada7
+854-1,2,p326 3482,201,5,2,shown,,,A,7023ada7
+8828-1,4,p18 3749,161,5,2,shown,,,A,7023ada7
+952-1,2,p251 952-3739c01,282,5,2,shown,,,A,7023ada7
+952-1,5,p251 952-3739c01,282,5,2,shown,"first step not done by the sweep: p235 3702 by -1.39 (it has no joint to turn, or didn't turn)",,A,7023ada7
+42004-1,8,p97 30663,244,5,1,shown,,,A,7023ada7
+42020-1,3,p83 87083,140,5,1,shown,,,A,7023ada7
+42031-1,4,p93 55981,148,5,1,shown,,,A,7023ada7
+42060-1,7,p308 94925,357,5,1,not shown,"a collision stops a control: p308 94925: turns without end (kinds crawler-tracks; the text says: tracks, rolls), but a collision stops it at -0 rad (202/304)","p308 94925 way -: went 0 of 1.5, 202/304",A,7023ada7
+42061-1,6,p222 42061 - 16091,256,5,1,shown,,,A,7023ada7
+42088-1,3,p140 32249,148,5,1,shown,,,A,7023ada7
+42101-1,4,p61 55982,113,5,1,shown,,,A,7023ada7
+42102-1,2,p125 55982,128,5,1,shown,,,A,7023ada7
+851-1,2,p245 3739,276,5,1,shown,,,A,7023ada7
+8820-1,4,p129 3482,134,5,1,shown,,,A,7023ada7
+8825-1,1,p84 4185,105,5,1,shown,,,A,7023ada7
+8849-1,4,p261 3739,329,5,1,shown,,,A,7023ada7
+8850-1,7,p303 4185,332,5,1,shown,,,A,7023ada7
+952-1,3,p247 3482,282,5,1,shown,,,A,7023ada7
+956-1,7,p425 3701,543,5,1,shown,,,A,7023ada7
+8022-1,1,p82 3482,78,5,0,shown,,,A,7023ada7
+8203-1,1,p10 6118,31,5,0,shown,,,A,7023ada7
+858-1,1,p20 3648a,242,5,0,shown,,,A,7023ada7
+42031-1,2,p101 6632,148,4,4,not shown,"a collision stops a control: p101 6632: a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124) (the boom turns round on a single pin, far past 0.03 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36)","p101 6632 way +: went 0.03 of 0.03, 92/130",A,7023ada7
+42071-1,2,p120 32270,170,4,2,shown,,,A,7023ada7
+8001-1,7,p42 32165,300,4,2,shown,,"p71 32165 way -: went -0.419 of 1.5, 80/91",A,7023ada7
+8283-1,5,p311 6595,318,4,2,shown,,,A,7023ada7
+8841-1,3,p698 3482,185,4,2,shown,,,A,7023ada7
+8841-1,4,p699 3482,185,4,2,shown,,,A,7023ada7
+1972-1,2,p211 3482,94,4,1,shown,,,A,7023ada7
+42020-1,2,p52 42610,140,4,1,shown,,,A,7023ada7
+42021-1,5,p96 87407,179,4,1,shown,,,A,7023ada7
+42088-1,5,p94 55981,148,4,1,shown,,,A,7023ada7
+42102-1,4,p127 55982,128,4,1,shown,,,A,7023ada7
+42116-1,2,p87 32270,138,4,1,shown,,"p87 32270 way +: went 0.584 of 1.1, 70/94",A,7023ada7
+42116-1,3,p121 55981,138,4,1,shown,,,A,7023ada7
+850-1,2,p178 3736,198,4,1,shown,,,A,7023ada7
+851-1,3,p247 3482,276,4,1,shown,,,A,7023ada7
+854-1,3,p318 3482,201,4,1,shown,,,A,7023ada7
+8810-1,4,p53 2695,74,4,1,shown,,,A,7023ada7
+8815-1,3,p70 3482,73,4,1,shown,,,A,7023ada7
+8828-1,3,p167 3941,161,4,1,shown,,,A,7023ada7
+8849-1,2,p66 3736,329,4,1,shown,,,A,7023ada7
+8849-1,7,p261 3739,329,4,1,shown,,,A,7023ada7
+9390-1,2,p94 32270,134,4,1,shown,,,A,7023ada7
+9390-1,5,p521 55982,134,4,1,shown,,,A,7023ada7
+950-1,2,p178 3736,198,4,1,shown,,,A,7023ada7
+952-1,7,p298 3464c01,282,4,1,shown,,,A,7023ada7
+956-1,6,p173 3648a,543,4,1,shown,,,A,7023ada7
+8204-1,2,p35 32125,36,4,0,shown,,,A,7023ada7
+8208-1,2,p49 2994,49,4,0,shown,,,A,7023ada7
+8810-1,5,p28 4276b,74,4,,not shown,"A: p30 4276b, p34 3710 not moved",,A,7023ada7
+850-1,4,p152 3651,198,3,2,not decided,"not decided: p152 3651: a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152); p155 3651: a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)","p152 3651 way +: went 0.067 of 0.6, 127/152",A,7023ada7
+950-1,4,p152 3651,198,3,2,not decided,"not decided: p152 3651: a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152); p155 3651: a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)","p152 3651 way +: went 0.067 of 0.6, 127/152",A,7023ada7
+42020-1,4,p60 32140,140,3,1,shown,,,A,7023ada7
+42026-1,3,p119 56145,128,3,1,shown,,,A,7023ada7
+42031-1,3,p140 32249,148,3,1,shown,,,A,7023ada7
+42044-1,2,p42 6536,110,3,1,shown,,,A,7023ada7
+42044-1,3,p104 42610,110,3,1,shown,,,A,7023ada7
+42095-1,5,p235 42610,318,3,1,shown,,,A,7023ada7
+42101-1,5,p91 16091,113,3,1,shown,,,A,7023ada7
+8020-1,2,p101 3482,95,3,1,shown,,,A,7023ada7
+8054-1,2,p76 3482,74,3,1,shown,,,A,7023ada7
+850-1,3,p105 3482,198,3,1,shown,,,A,7023ada7
+858-1,9,p133 3649,242,3,1,shown,,,A,7023ada7
+8832-1,4,p73 3482,83,3,1,shown,,,A,7023ada7
+8835-1,3,p216 3941,235,3,1,shown,,,A,7023ada7
+8835-1,4,p231 2695c01,235,3,1,shown,,,A,7023ada7
+8849-1,5,p200 4185,329,3,1,shown,,,A,7023ada7
+950-1,3,p105 3482,198,3,1,shown,,,A,7023ada7
+8217-1,1,p1 4288,56,3,0,shown,,,A,7023ada7
+8281-1,4,p61 30663,117,3,0,shown,,,A,7023ada7
+8283-1,6,p231 30663,318,3,0,shown,,,A,7023ada7
+8808-1,2,p74 3482,92,3,0,shown,,,A,7023ada7
+42033-1,4,p110 92279,122,2,2,not decided,"not decided: p110 92279: a travel of 0.2 rad or less each way, stopped at -0.035 rad (89/110)","p110 92279 way -: went -0.035 of 1.5, 89/110",A,7023ada7
+42033-1,5,p93 40001,122,2,1,shown,,,A,7023ada7
+42034-1,3,p135 56145,146,2,1,shown,,,A,7023ada7
+42046-1,2,p159 56145,168,2,1,shown,,,A,7023ada7
+42047-1,2,p173 56145,183,2,1,shown,,,A,7023ada7
+42058-1,3,p56 56145,138,2,1,shown,,,A,7023ada7
+42072-1,3,p49 32140,134,2,1,shown,,,A,7023ada7
+42073-1,3,p38 32140,138,2,1,shown,,,A,7023ada7
+42092-1,2,p312 6589,322,2,1,shown,,,A,7023ada7
+42092-1,3,p291 32270,322,2,1,shown,,,A,7023ada7
+42092-1,5,p95 24116,322,2,1,shown,,"p95 24116 way -: went 0 of 1.5, 95/118",A,7023ada7
+8203-1,2,p21 6629,31,2,1,not decided,"not decided: p21 6629: a travel of 0.2 rad or less each way, stopped at +0.033 rad (4/22)","p21 6629 way +: went 0.033 of 0.43, 4/22",A,7023ada7
+8418-1,3,p58 30285,64,2,1,shown,,,A,7023ada7
+858-1,3,p91 3649,242,2,1,shown,,,A,7023ada7
+42026-1,4,p49 18352,128,2,0,shown,,,A,7023ada7
+42059-1,3,p0 56145,141,2,0,shown,,,A,7023ada7
+42071-1,3,p136 57520,170,2,0,shown,,,A,7023ada7
+42073-1,2,p123 54087,138,2,0,shown,,,A,7023ada7
+8218-1,3,p66 2994,66,2,0,shown,,,A,7023ada7
+8260-1,3,p98 56904,104,2,0,shown,,,A,7023ada7
+8260-1,4,p63 30663,104,2,0,shown,,,A,7023ada7
+8808-1,3,p72 3482,92,2,0,shown,,,A,7023ada7
+8824-1,3,p151 3482,185,2,0,shown,,,A,7023ada7
+8260-1,2,p92 47508,104,2,,not shown,A: p92 47508 against p86 32348 not moved,,A,7023ada7
+8418-1,2,p57 30394,64,2,,not shown,A: p57 30394 against p47 3706 not moved,,A,7023ada7
+42072-1,2,p115 54087,134,1,1,shown,,,A,7023ada7
+8032-1,2,p59 3650c,61,1,0,shown,,,A,7023ada7
+8217-1,2,p50 32017,56,1,0,shown,,,A,7023ada7
+8825-1,3,p17 4032a,105,1,0,shown,,,A,7023ada7
+42004-1,3,p227 32270,244,0,,not shown,"A: p229 2951 against p50 44294, p207 6632 against p50 44294 not moved",,A,7023ada7
+42036-1,6,p290 32192,362,0,,not shown,A: p291 4519 not moved,,A,7023ada7
+42037-1,1,p489 45982,482,0,,not shown,"A: p225 62821, p214 32269, p136 94925, p154 6542b, p153 94925, p113 2853, p126 2851, p127 2851, p128 2851, p129 2851 not moved",,A,7023ada7
+42037-1,2,p489 45982,482,0,,not shown,"A: p493 45982, p225 62821 not moved",,A,7023ada7
+42039-1,6,p61 32524,1189,0,,not shown,"A: p80 4254, p82 4254 not moved",,A,7023ada7
+42040-1,7,p358 6572,567,0,,not shown,"A: p371 2739a, p330 2736, p338 18945 not moved",,A,7023ada7
+42054-1,10,p1765 32524,1961,0,,not shown,"A: p1768 6558, p1779 6558 not moved",,A,7023ada7
+42055-1,9,p276 32270,3896,0,,not shown,"A: p263 18945, p264 18945 not moved",,A,7023ada7
+42056-1,9,p2132 32278,2641,0,,not shown,A: p2135 41239 not moved,,A,7023ada7
+42056-1,11,p2530 87083,2641,0,,not shown,A: p2553 32523 not moved,,A,7023ada7
+42060-1,6,p287 59443,357,0,,not shown,"A: p288 42060 - 33299b, p295 32524 against p277 32316 not moved",,A,7023ada7
+42060-1,8,p294 30394,357,0,,shown,,,A,7023ada7
+42062-1,7,p530 6553,627,0,,not shown,"A: p511 18942 against p510 18940, p547 32524 against p510 18940 not moved",,A,7023ada7
+42063-1,1,p418 32016,598,0,,not shown,"A: p386 88517, p345 32278 not moved",,A,7023ada7
+42063-1,4,p157 57515,598,0,,not shown,"A: p386 88517, p164 4254 not moved",,A,7023ada7
+42063-1,5,p72 14720,598,0,,not shown,"A: p334 88517, p198 4254 not moved",,A,7023ada7
+42069-1,9,p884 64782,2357,0,,shown,,,A,7023ada7
+42077-1,2,p1076 15038,980,0,,not shown,"A: p59 62821, p139 2853, p142 2851, p143 2851 not moved",,A,7023ada7
+42077-1,6,p888 64682,980,0,,shown,,,A,7023ada7
+42077-1,7,p912 64782,980,0,,not shown,"A: p922 62531, p969 15458 not moved",,A,7023ada7
+42078-1,4,p1326 60485,2651,0,,not shown,"A: p1358 44294, p1423 40490 not moved",,A,7023ada7
+42078-1,5,p851 32524,2651,0,,shown,,,A,7023ada7
+42078-1,11,p2051 18942,2651,0,,shown,,,A,7023ada7
+42080-1,1,p820 44294,1001,0,,not shown,"A: p821 6632, p653 42080 - u9413 not moved",,A,7023ada7
+42094-1,5,p1064 32270,809,0,,not shown,A: p1061 60485 not moved,,A,7023ada7
+42096-1,4,p159 57515,1544,0,,shown,,,A,7023ada7
+42100-1,9,p4660 40490,4079,0,,not shown,A: p4686 40490 not moved,,A,7023ada7
+42106-1,4,p2085 32270,620,0,,not shown,"A: p2084 40490, p2089 32524, p2095 32524 not moved",,A,7023ada7
+42107-1,3,p262 40490,631,0,,not shown,"A: p247 35189, p284 4254 not moved",,A,7023ada7
+42107-1,5,p340 15462,631,0,,not shown,"A: p351 15462, p372 44294, p379 88516 not moved",,A,7023ada7
+42109-1,6,p894 64391,461,0,,not shown,"A: p893 64683, p890 32524 not moved",,A,7023ada7
+42110-1,12,p2614 42110 - 49294,2565,0,,not shown,A: p1504 32065 not moved,,A,7023ada7
+42110-1,13,p2586 32739,2565,0,,shown,,,A,7023ada7
+42110-1,14,p2475 3710,2565,0,,shown,,,A,7023ada7
+42111-1,9,p959 64782,1055,0,,not shown,"A: p964 26287, p978 32524, p979 32524 not moved",,A,7023ada7
+42122-1,6,p457 32524,657,0,,not shown,"A: p448 42122 - 71709, p459 32524 not moved",,A,7023ada7
+42122-1,7,p378 32524,657,0,,shown,,,A,7023ada7
+42122-1,8,p398 32524,657,0,,not shown,A: p398 32524 not moved,,A,7023ada7
+42123-1,3,p896 32524,819,0,,shown,,,A,7023ada7
+42125-1,7,p2862 64682,1644,0,,shown,,,A,7023ada7
+8002-1,1,p0 32009,535,0,,not shown,A: p0 32009 against p305 32016 not moved,,A,7023ada7
+8002-1,3,p238 6632,535,0,,not shown,"A: p619 6536 against p0 32009, p856 6536 against p0 32009 not moved",,A,7023ada7
+8002-1,6,p197 32310,535,0,,not shown,A: p197 32310 against p0 32009 not moved,,A,7023ada7
+8081-1,5,p475 41239,580,0,,shown,,,A,7023ada7
+8110-1,14,p2102 32270,1867,0,,shown,,,A,7023ada7
+8208-1,1,p36 32073,49,0,,not shown,"A: p42 3706, p43 3706, p47 3705, p49 2994 not moved",,A,7023ada7
+8218-1,4,p60 32062,66,0,,not shown,"A: p49 4519 against p8 32009, p66 2994 against p8 32009 not moved",,A,7023ada7
+8273-1,9,p345 32316,791,0,,not shown,A: p357 32316 not moved,,A,7023ada7
+8285-1,5,p1069 32034,1790,0,,not shown,A: p1074 3707 not moved,,A,7023ada7
+855-1,5,p99 3008,512,0,,shown,,,A,7023ada7
+855-1,7,p157 3582,512,0,,shown,,,A,7023ada7
+8810-1,2,p32 4262,74,0,,not shown,"A: p33 4262, p21 3706, p26 2695, p16 4254, p18 4254 not moved",,A,7023ada7
+8815-1,4,p43 3938,73,0,,not shown,A: p61 3068bp81 not moved,,A,7023ada7
+8820-1,2,p102 3894,134,0,,not shown,"A: p105 3894, p32 3707, p30 4254, p125 3482, p127 3482 not moved",,A,7023ada7
+8832-1,2,p58 3894,83,0,,not shown,"A: p59 3894, p42 3707, p61 3749, p60 3749 not moved",,A,7023ada7
+8838-1,2,p225 2910,233,0,,not shown,"A: p227 2910, p219 3706, p220 8838 - 2903 not moved",,A,7023ada7
+8840-1,3,p86 3701,206,0,,not shown,"A: p210 4266 against p0 3703, p213 4266 against p0 3703, p200 4255 against p0 3703, p202 4255 against p0 3703 not moved",,A,7023ada7
+8845-1,2,p0 3702,163,0,,not shown,"A: p172 3482, p170 3482, p105 4255 against p106 4254, p103 4255 against p104 4254 not moved",,A,7023ada7
+8849-1,3,p97 4442,329,0,,not shown,"A: p100 4261, p101 4261, p114 3743 not moved",,A,7023ada7
+8862-1,8,p292 3703,656,0,,not shown,A: p281 2796c01 against p280 2793c03 not moved,,A,7023ada7
+8862-1,9,p302 4700,656,0,,not shown,A: p319 2796c01 against p318 2793c03 not moved,,A,7023ada7
+8865-1,10,p840 3036,868,0,,shown,,,A,7023ada7
+8880-1,12,p1092 3031,1285,0,,shown,,,A,7023ada7
+9394-1,4,p194 6553,466,0,,not shown,"A: p196 40490, p305 32278, p308 32278, p244 60485, p541 64392, p546 64682 not moved",,A,7023ada7
+42109-1,3,p390 22169,461,,13445,shown,,"p390 22169 way -: went -0.314 of 1.1, 369/670 682/696 369/674 685/700",A,7023ada7
+42054-1,1,p543 58120,1961,,3345,shown,,,A,7023ada7
+42052-1,3,p407 58120,1027,,3272,shown,,"p407 58120 way +: went 0.66 of 1.5, 916/942",A,7023ada7
+42129-1,4,p550 21980,2117,,3002,not shown,"A: p513 18947 against p468 6573, p1030 18947 against p1032 65414c01 not moved","p550 21980 way +: went 0.22 of 0.2, 20/519",A,7023ada7
+8258-1,3,p767 58121,1629,,2903,shown,"first step not done by the sweep: p166 6641 by 0.4 (it has no joint to turn, or didn't turn)","p767 58121 way +: went -0.094 of 0.07, 2097/2096",A,7023ada7
+42114-1,2,p602 22169,2135,,2791,shown,,,A,7023ada7
+42129-1,5,p1478 22169,2117,,2298,shown,,"p1478 22169 way +: went 0.408 of 0.4, 1351/1366",A,7023ada7
+9397-1,1,p240 58120,1143,,2275,shown,,,A,7023ada7
+42043-1,1,p169 99499,2736,,2132,shown,,,A,7023ada7
+42054-1,3,p543 58120,1961,,2063,not shown,"A: p692 42054 - 18938 not moved; first step not done by the sweep: p825 41669 by 0.5 (it has no joint to turn, or didn't turn)","p543 58120 way +: went 1.257 of 1.43, 700/1310 700/1318",A,7023ada7
+42043-1,4,p169 99499,2736,,1878,shown,"first step not done by the sweep: p2181 6536 by 0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7
+42043-1,3,p169 99499,2736,,1755,shown,"first step not done by the sweep: p2200 6536 by 0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7
+9397-1,2,p240 58120,1143,,1641,not shown,"A: p624 62274c01 against p623 62271c01, p894 64178 not moved","p240 58120 way +: went 1.414 of 4.1, 211/216",A,7023ada7
+42054-1,4,p543 58120,1961,,1447,not shown,"A: p1820 92696 against p1818 92693c01, p1841 40490 against p1659 42054 - 18938 not moved; first step not done by the sweep: p1714 43093 by 0.5 (it has no joint to turn, or didn't turn)",,A,7023ada7
+9397-1,3,p240 58120,1143,,1391,shown,,"p240 58120 way +: went 1.571 of 1.5, 209/220",A,7023ada7
+42052-1,2,p407 58120,1027,,1377,shown,,"p407 58120 way +: went 1.508 of 1.5, 367/379",A,7023ada7
+8110-1,7,p60 58120,1867,,1177,not shown,"A: p4019 94925, p4001 4716, p4029 76019, p4030 32012 not moved; first step not done by the sweep: p512 6641 by 0.4 (it has no joint to turn, or didn't turn); first step not done by the sweep: p516 6641 by 0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7
+8110-1,8,p60 58120,1867,,1169,not shown,"A: p767 94925, p2199 94925, p2172 4716, p2216 48168, p2319 47224 not moved; first step not done by the sweep: p512 6641 by -0.4 (it has no joint to turn, or didn't turn); first step not done by the sweep: p516 6641 by 0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7
+8110-1,6,p60 58120,1867,,1162,shown,,,A,7023ada7
+42052-1,5,p407 58120,1027,,1109,shown,,,A,7023ada7
+42052-1,1,p407 58120,1027,,1068,shown,,,A,7023ada7
+8258-1,5,p767 58121,1629,,963,not shown,"A: p2167 62274c01 against p2166 62271c01, p2180 32524 against p2123 32526 not moved; first step not done by the sweep: p166 6641 by -0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7
+42054-1,5,p543 58120,1961,,835,shown,"first step not done by the sweep: p1715 43093 by 0.5 (it has no joint to turn, or didn't turn)",,A,7023ada7
+42113-1,1,p769 22169,1628,,656,shown,,,A,7023ada7
+8258-1,2,p767 58121,1629,,576,shown,"first step not done by the sweep: p171 6641 by -0.4 (it has no joint to turn, or didn't turn)",,A,7023ada7

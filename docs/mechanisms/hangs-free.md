@@ -4,14 +4,14 @@ A part swings free under gravity: a hook, claw or bucket hangs straight, a tailg
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The hook hangs straight down beneath the boom tip as the cab slews and the boom luffs.
 
-Used in 18 of the 186 surveyed sets, by 18 functions. Kinebrick: 5 works, 1 partly, 6 skipped, 6 not checked.
+Used in 17 of the 186 surveyed sets, by 17 functions. Kinebrick: 5 works, 1 partly, 6 skipped, 5 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 1 of 9 | 1 of 18 | 2 of 32 | 4 of 23 | 10 of 83 | 0 of 21 |
-| Functions | 1 | 1 | 2 | 4 | 10 | 0 |
+| Sets | 1 of 9 | 1 of 18 | 2 of 32 | 4 of 23 | 9 of 83 | 0 of 21 |
+| Functions | 1 | 1 | 2 | 4 | 9 | 0 |
 
 ## Details
 
@@ -24,7 +24,7 @@ Each detail by the set it first appears in.
 | foot | 1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1) | 1 |
 | fork | 2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1) | 1 |
 | chain | 2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) | 1 |
-| grab | 2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1) | 2 |
+| grab | 2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1) | 1 |
 | tailgate | 2014, [42023 Construction Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42023-1) | 2 |
 | basket | 2015, [42031 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42031-1) | 1 |
 | trapdoor | 2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1) | 1 |
@@ -68,10 +68,6 @@ Each detail by the set it first appears in.
 **2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1)**
 
 - *grab:* The grab hangs from the end of the outer arm on two pivots, so it swings and stays hanging straight down as the arm moves. (skipped)
-
-**2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
-
-- *grab:* The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level. (not checked)
 
 **2014, [42020 Twin-rotor Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42020-1)**
 

@@ -15,8 +15,15 @@ export const EPSILON = 1e-9;
 // independent, jamming it.
 export const RANK_TOLERANCE = 1e-6;
 // A tier's motions count as costing nothing (see leastTurning) below this, as a fraction of the
-// most a free motion of unit size costs there.
-const TIER_TOLERANCE = 1e-10;
+// most a free motion of unit size costs there, both squared (the eigenvalues of the tier's Gram
+// matrix); and the free ones must be set apart from the rest by at least as much (see freeCut).
+// Derived from double precision's 2⁻⁵², in cost units (decision 191 of 2026-11-18): a cut or gap g
+// leaves free motions that cost up to √g of the scale, and lets rounding (about 2⁻⁵² of the
+// scale) through at up to 2⁻⁵²/g, turning the free directions or scaling a costly one's share.
+// The sum √g + 2⁻⁵²/g is least at g = (2 × 2⁻⁵²)^(2/3) = 2⁻³⁴. (It was 10⁻¹⁰, picked. Taken as 2⁻²⁶,
+// in costs squared, it left motions costing 2⁻¹³ free: the 8880's gear ratio of 2.25 came out
+// 2.251.)
+const TIER_TOLERANCE = 2 ** -34;
 // A tier counts as costing nothing at all (see leastTurning) if its costs are at most this, as a
 // fraction of the most a motion of unit size turns the joints (both squared): a hundred-millionth
 // of a radian for each unit of motion is what's left of rounding, not a motion of the tier. At a
@@ -26,6 +33,27 @@ const TIER_TOLERANCE = 1e-10;
 const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
+// A sparse tier's least sum of sizes is often not one point but many (two friction joints that
+// could each slip as much), and reweighting picked one by its path, so by rounding. Each round's
+// least squares gets a least-norm term of RIDGE of its scale (decision 191 of 2026-11-18), which
+// makes its answer one point: it moves the answer by about RIDGE and lets rounding through at
+// most about 2⁻⁵² ÷ RIDGE, both measured on the same Gram matrix, and the sum of the two is least
+// where they're equal, at 2⁻²⁶.
+const RIDGE = 2 ** -26;
+
+// Of eigenvalues of a tier's problem (`unit` its scale), the most that counts as free: every one
+// at most `tiny`, and every one above them but nearer than TIER_TOLERANCE × unit to the largest so
+// far, so that rounding can't move a direction from one side to the other (see TIER_TOLERANCE).
+export function freeCut(values: number[], tiny: number, unit: number): number {
+  let cut = tiny;
+  let largest = 0;
+  for (const x of [...values].sort((a, b) => a - b)) {
+    if (x <= tiny) largest = Math.max(largest, x);
+    else if (x - largest < TIER_TOLERANCE * unit) cut = largest = x;
+    else break;
+  }
+  return cut;
+}
 
 // Of orthonormal motions, the smallest mix that turns at rate 1 (by `rate`), or null if none
 // of them turns at all, its size measured by the length of `size` of it: the mix a minimizing
@@ -116,7 +144,7 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       const unit = Math.max(...matrix.map((row, i) => row[i]));
       if (!(unit > 0)) return null;
       const scaled = symmetricEigen(matrix.map((row) => row.map((x) => x / unit)));
-      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors };
+      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors, unit };
     };
     if (!tier.sparse && c < m) {
       // Fewer components than free directions (most tiers on a big model): C N has rank at most
@@ -132,8 +160,9 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       if (!solved) return;
       const y = new Array(m).fill(0);
       const costly: number[][] = [];
+      const cut = freeCut(solved.values, tiny, solved.unit);
       solved.vectors.forEach((u, e) => {
-        if (solved.values[e] <= tiny) return;
+        if (solved.values[e] <= cut) return;
         const s = Math.sqrt(solved.values[e]);
         const v = columns.map((col) => dot(col, u) / s);
         const amount = -dot(u, b) / s;
@@ -167,15 +196,22 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
         const weighed = w ? columns.map((x) => x.map((xi, j) => w[j] * xi)) : columns;
         gram = gramOf(weighed, columns);
         g = weighed.map((x) => dot(x, b));
+        // Reweighted: the least-norm term (see RIDGE), so that the round has one answer.
+        if (w) {
+          const ridge = RIDGE * Math.max(0, ...gram.map((row, i) => row[i]));
+          gram.forEach((row, i) => (row[i] += ridge));
+        }
       }
       const solved = eigen(gram);
       if (!solved) return { y: new Array(m).fill(0), left: w ? [] : free.slice() };
       const { values, vectors } = solved;
-      const top = Math.max(0, ...values);
       const y = new Array(m).fill(0);
       const left: number[][] = [];
+      // A reweighted round's least-norm term (see RIDGE) leaves no eigenvalue below it, so every
+      // direction counts there (it was cut at 10⁻¹² of the largest, picked).
+      const cut = w ? -Infinity : freeCut(values, tiny, solved.unit);
       vectors.forEach((v, e) => {
-        if (values[e] <= (w ? 1e-12 * top : tiny)) {
+        if (values[e] <= cut) {
           if (!w) left.push(combine(free, v));
           return;
         }
@@ -289,15 +325,81 @@ export function withoutDirections(basis: number[][], taken: number[][]): number[
   return rows.slice(t.length);
 }
 
-// The mix of `vectors` with these amounts.
+// What a test may watch: each call of the kernels below, with what it was given, so that a test
+// can run an old kernel and the new one on the same real inputs (tests/kernels.test.ts).
+export const kernelSpy: { on: ((kernel: string, args: unknown[]) => void) | null } = { on: null };
+
+// The mix of `vectors` with these amounts. A product with an exact 0 is passed over, an amount of
+// 0 or an entry of 0: each sum starts at +0, and adding ±0 (0 times a finite number) to +0 or to
+// any other number leaves it as it was, so the sums are the same to the last bit (see sparseDot).
+// Not where the amount or the vector holds something not finite (0 times it is not 0): every
+// product is made then, as before. A motion's vector is mostly 0 (98% on the 9397 Logging Truck).
 export function combine(vectors: number[][], amounts: number[]): number[] {
+  kernelSpy.on?.('combine', [vectors, amounts]);
   const out = new Array(vectors[0]?.length ?? 0).fill(0);
   for (let i = 0; i < vectors.length; i++) {
     const v = vectors[i];
     const a = amounts[i];
-    for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+    if (!Number.isFinite(a)) {
+      for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+      continue;
+    }
+    if (a === 0 && allFinite(v)) continue;
+    for (let j = 0; j < v.length; j++) {
+      const x = v[j];
+      // x of ±0, times a finite a, adds ±0: no change (see above). Not so if x is not finite.
+      if (x !== 0) out[j] += a * x;
+    }
   }
   return out;
+}
+
+// Each list of amounts' mix of the same `vectors`: what combine gives for each, to the last bit,
+// with the vectors checked once for anything not finite and their places that are not 0 found once
+// (see nonzeros), rather than for each mix. A null space's vectors mixing a list of motions are
+// mostly 0, and so are the motions (chooseMotion's, 1,700 mixes a step of the 9397 Logging Truck).
+export function mixes(vectors: number[][], amountsList: number[][]): number[][] {
+  kernelSpy.on?.('mixes', [vectors, amountsList]);
+  const places = vectors.map(nonzeros);
+  if (places.some((p) => p === null)) return amountsList.map((amounts) => combine(vectors, amounts));
+  const n = vectors[0]?.length ?? 0;
+  return amountsList.map((amounts) => {
+    const out = new Array(n).fill(0);
+    for (let i = 0; i < vectors.length; i++) {
+      const v = vectors[i];
+      const a = amounts[i];
+      if (!Number.isFinite(a)) {
+        for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+        continue;
+      }
+      if (a === 0) continue;
+      for (const j of places[i]!) out[j] += a * v[j];
+    }
+    return out;
+  });
+}
+
+// Each row's dot product with each vector, z · row, summed in order: the same numbers as dot, to
+// the last bit, over each row's places that are not 0 only, found once (see sparseDot). The
+// vectors are checked once for anything not finite; if one holds any, or a row does, it's as
+// before, every product made.
+export function dotsWith(rows: number[][], vectors: number[][]): number[][] {
+  kernelSpy.on?.('dotsWith', [rows, vectors]);
+  const finite = vectors.every(allFinite);
+  return rows.map((row) => {
+    const places = finite ? nonzeros(row) : null;
+    return vectors.map((z) => {
+      if (!places) return dot(z, row);
+      let sum = 0;
+      for (let i = 0; i < places.length; i++) sum += z[places[i]] * row[places[i]];
+      return sum;
+    });
+  });
+}
+
+function allFinite(v: number[]): boolean {
+  for (let j = 0; j < v.length; j++) if (!Number.isFinite(v[j])) return false;
+  return true;
 }
 
 // The x with  a · x = b  for a small symmetric a, ignoring directions with eigenvalues below
@@ -314,10 +416,55 @@ export function solveSymmetric(a: number[][], b: number[], tiny: number): number
   return x;
 }
 
-// The dot products of each of `rows` with each of `columns`, x · z, summed in order: plain loops,
-// as on a big model these take much of a step.
+// The dot products of each of `rows` with each of `columns`, x · z, summed in order: the same
+// numbers as dot gives, to the last bit, but over only the places where both are not 0 (see
+// sparseDot), and for a Gram matrix of a list with itself, from one half (x · z and z · x are
+// the same sums of the same products, x_j z_j = z_j x_j). On a big model these take much of a
+// step: the costs of a tier of least motion, three for each body a motion turns, are mostly 0
+// (the 9397 Logging Truck's 426 bodies, 2026-11-20). A vector holding something not finite (0
+// times it is not 0) has its products made as before, every one.
 export function gramOf(rows: number[][], columns: number[][]): number[][] {
-  return rows.map((x) => columns.map((z) => dot(x, z)));
+  kernelSpy.on?.('gramOf', [rows, columns]);
+  const same = columns === rows;
+  const ofRows = rows.map(nonzeros);
+  const ofColumns = same ? ofRows : columns.map(nonzeros);
+  const out = rows.map(() => new Array<number>(columns.length));
+  for (let i = 0; i < rows.length; i++) {
+    for (let j = same ? i : 0; j < columns.length; j++) {
+      const [a, b] = [ofRows[i], ofColumns[j]];
+      out[i][j] = a && b ? sparseDot(rows[i], a, columns[j], b) : dot(rows[i], columns[j]);
+      if (same) out[j][i] = out[i][j];
+    }
+  }
+  return out;
+}
+
+// The places where a vector is not 0, in order; null if it holds something not finite.
+function nonzeros(x: number[]): Int32Array | null {
+  let n = 0;
+  for (let j = 0; j < x.length; j++) {
+    if (!Number.isFinite(x[j])) return null;
+    if (x[j] !== 0) n++;
+  }
+  const out = new Int32Array(n);
+  for (let j = 0, k = 0; j < x.length; j++) if (x[j] !== 0) out[k++] = j;
+  return out;
+}
+
+// x · z over the places where one of them is not 0 (`a` and `b`, from nonzeros: the shorter is
+// gone over), in order: the same sum as dot's. dot adds x_j z_j at every place; where either is 0
+// (and both are finite) that product is ±0, and adding ±0 changes no sum: dot's sum starts at +0,
+// adding ±0 to +0 gives +0 (to nearest, +0 + −0 = +0), and adding it to any other number gives that
+// number. So the sum is never −0 to begin with, and the products left out never change it. A
+// product at a place in the list may still be ±0 (the other is 0 there): it changes nothing either.
+function sparseDot(x: number[], a: Int32Array, z: number[], b: Int32Array): number {
+  const at = a.length <= b.length ? a : b;
+  let sum = 0;
+  for (let i = 0; i < at.length; i++) {
+    const p = at[i];
+    sum += x[p] * z[p];
+  }
+  return sum;
 }
 
 export function dot(x: number[], z: number[]): number {
@@ -492,13 +639,25 @@ export function dampedSolution(rows: Row[], values: number[], order?: number[], 
   const n = rows[0].length;
   // Each row scaled to length 1, so that rows of turning and of moving count alike. Rows next
   // to nothing long are left out: the tree already keeps them (their length is rounding).
-  const lengths = rows.map((row) => Math.sqrt(row.reduce((sum, x) => sum + x * x, 0)));
+  // Plain loops below: the same sums and products, in the same order, without a function call
+  // for each entry (a big model's rows are long, and this runs in every round of a step).
+  const lengths = rows.map((row) => {
+    let sum = 0;
+    for (let j = 0; j < row.length; j++) sum += row[j] * row[j];
+    return Math.sqrt(sum);
+  });
   const longest = Math.max(...lengths);
   const kept = rows.flatMap((_, i) => (lengths[i] > 1e-9 * longest ? [i] : []));
   if (kept.length === 0) return null;
   const weight = (i: number) => (weights?.[i] ?? 1) / lengths[i];
   return leastSquares(
-    kept.map((i) => rows[i].map((x) => x * weight(i))),
+    kept.map((i) => {
+      const w = weight(i);
+      const row = rows[i];
+      const out = new Array<number>(row.length);
+      for (let j = 0; j < row.length; j++) out[j] = row[j] * w;
+      return out;
+    }),
     kept.map((i) => values[i] * weight(i)),
     Math.sqrt(1e-13),
     order ?? Array.from({ length: n }, (_, i) => i),
@@ -591,21 +750,122 @@ export function leastSquares(a: number[][], b: number[], damping: number, order:
   return x;
 }
 
+// A row of the equations on the bodies' motions (6 numbers for each body), kept as its places and
+// values rather than as a list of every number: a row is about two bodies or so, of hundreds (a
+// big model's rows were lists of 2,500 numbers, nearly all 0, made and gone over in every round
+// of a step). It is written as a list was: add, sub and set do what row[i] += v, row[i] -= v and
+// row[i] = v did, starting from 0. A place not written reads 0. Those reading it (inBasis, and
+// buildEquations' rows on held bodies only) go over its places in order and pass 0s, as they
+// passed them in a list: so they see the same numbers, to the last bit. (A place that comes to
+// 0, of either sign, is passed either way; and a 0, of either sign, added to a number that is not
+// 0 changes nothing, so where a list started at +0 and this starts at nothing makes no difference
+// to any number that is not 0.)
+export class BodyRow {
+  private readonly at = new Map<number, number>();
+  constructor(readonly n: number) {}
+  add(i: number, v: number) {
+    this.at.set(i, (this.at.get(i) ?? 0) + v);
+  }
+  sub(i: number, v: number) {
+    this.at.set(i, (this.at.get(i) ?? 0) - v);
+  }
+  set(i: number, v: number) {
+    this.at.set(i, v);
+  }
+  get(i: number): number {
+    return this.at.get(i) ?? 0;
+  }
+  // The places written, in order, and their values.
+  entries(): [number, number][] {
+    return [...this.at].sort((x, y) => x[0] - y[0]);
+  }
+  // A row made entry by entry from rows (a list's rows.map((x, k) => x - other[k]) and the like):
+  // f of their values at each place any of them has, in order, with 0 where one has none. Where
+  // none has a place, a list got f of 0s, which for the sums and differences these are is 0.
+  static elementwise(n: number, rows: BodyRow[], f: (values: number[]) => number): BodyRow {
+    const places = new Set<number>();
+    for (const row of rows) for (const i of row.at.keys()) places.add(i);
+    const out = new BodyRow(n);
+    for (const i of [...places].sort((x, y) => x - y)) out.set(i, f(rows.map((row) => row.get(i))));
+    return out;
+  }
+  // Its dot product with a motion vector, over its places in order, passing 0s, as
+  // for (c...) if (row[c] !== 0) rate += row[c] * motion[c] went over a list: the same sum.
+  dotDense(z: number[]): number {
+    let sum = 0;
+    for (const [i, v] of this.entries()) if (v !== 0) sum += v * z[i];
+    return sum;
+  }
+  // As a list of every number (for what still wants one).
+  dense(): number[] {
+    const out = new Array<number>(this.n).fill(0);
+    for (const [i, v] of this.at) out[i] = v;
+    return out;
+  }
+}
+
 // Equation rows (on motion vectors) as rows on coordinates in a basis (see treeBasis).
-export function inBasis(rows: Row[], basis: number[][]): Row[] {
+export function inBasis(rows: (Row | BodyRow)[], basis: number[][]): Row[] {
   const q = basis[0]?.length ?? 0;
   const support = supportOf(basis);
+  if (written.length < q) written = new Int32Array(q);
   return rows.map((row) => {
     const out = new Array(q).fill(0);
-    for (let i = 0; i < row.length; i++) {
-      const x = row[i];
-      if (x === 0) continue;
-      const b = basis[i];
-      for (const c of support[i]) out[c] += x * b[c];
+    // The places written (see placesOf): every other one holds the +0 it started with. A place is
+    // noted the first time this row writes it: `written` holds, for each place, the last row that did.
+    const places: number[] = [];
+    if (++rowCount === 2 ** 31 - 1) {
+      written.fill(0);
+      rowCount = 1;
     }
+    const me = rowCount;
+    // Its places in order, as the list's were gone over: the same sums. (Written out twice, for a row
+    // kept as its places and one as a list, rather than in a function made for each row.)
+    if (row instanceof BodyRow) {
+      for (const [i, x] of row.entries()) {
+        if (x === 0) continue;
+        const b = basis[i];
+        const at = support[i];
+        for (let a = 0; a < at.length; a++) {
+          const c = at[a];
+          out[c] += x * b[c];
+          if (written[c] === me) continue;
+          written[c] = me;
+          places.push(c);
+        }
+      }
+    } else {
+      for (let i = 0; i < row.length; i++) {
+        const x = row[i];
+        if (x === 0) continue;
+        const b = basis[i];
+        const at = support[i];
+        for (let a = 0; a < at.length; a++) {
+          const c = at[a];
+          out[c] += x * b[c];
+          if (written[c] === me) continue;
+          written[c] = me;
+          places.push(c);
+        }
+      }
+    }
+    placesOf.set(out, places);
     return out;
   });
 }
+// For each place, the last row inBasis wrote it in (see inBasis): one list for every call, where each
+// row had a list of marks of its own, made and dropped (the 42083's steps on the working set took 8%
+// longer for those, decision 290).
+let written = new Int32Array(0);
+let rowCount = 0;
+
+// The places of a row inBasis made that may not be 0, for nullSpace to go over those only: every other
+// place holds +0. Kept beside the row, for as long as the row is; a row changed after inBasis made it
+// must not be given to nullSpace (none is: the rows are made for it, or read). KINEBRICK_CHECK_PLACES=1
+// checks that it holds: nullSpace goes over every place of such a row as well, and throws on one that
+// isn't +0 and isn't among its places (see checkPlaces).
+const placesOf = new WeakMap<Row, number[]>();
+const checkingPlaces = () => typeof process !== 'undefined' && process.env?.KINEBRICK_CHECK_PLACES === '1';
 
 // The motion vector with these coordinates in a basis (see treeBasis).
 export function fromBasis(z: number[], basis: number[][]): number[] {
@@ -624,23 +884,108 @@ const supports = new WeakMap<number[][], Int32Array[]>();
 export function supportOf(basis: number[][]): Int32Array[] {
   let support = supports.get(basis);
   if (!support) {
-    support = basis.map((row) => Int32Array.from(row.flatMap((x, c) => (x !== 0 ? [c] : []))));
+    support = basis.map((row) => {
+      let count = 0;
+      for (let c = 0; c < row.length; c++) if (row[c] !== 0) count++;
+      const places = new Int32Array(count);
+      for (let c = 0, k = 0; c < row.length; c++) if (row[c] !== 0) places[k++] = c;
+      return places;
+    });
     supports.set(basis, support);
   }
   return support;
 }
 
+// Whether every row of a basis holds only finite numbers, worked out once a basis (as supportOf).
+const finiteBases = new WeakMap<number[][], boolean>();
+function basisFinite(basis: number[][]): boolean {
+  let finite = finiteBases.get(basis);
+  if (finite === undefined) {
+    finite = basis.every(allFinite);
+    finiteBases.set(basis, finite);
+  }
+  return finite;
+}
+
+// Rows `list` of a basis times z: for each, the sum over the row's places that are not 0 (supportOf),
+// in order, of row_c z_c. Where z has fewer places that are not 0, the sum goes over those: the same
+// sum to the last bit, the products left out on either side being ±0 (see sparseDot), as long as
+// both hold only finite numbers (z is checked here, a basis once).
+export function rowsTimes(basis: number[][], list: ArrayLike<number>, z: number[]): number[] {
+  const support = supportOf(basis);
+  const zPlaces = basisFinite(basis) ? nonzeros(z) : null;
+  const out = new Array<number>(list.length);
+  for (let l = 0; l < list.length; l++) {
+    const i = list[l];
+    const row = basis[i];
+    const own = support[i];
+    let sum = 0;
+    if (zPlaces && zPlaces.length < own.length) {
+      for (let p = 0; p < zPlaces.length; p++) sum += row[zPlaces[p]] * z[zPlaces[p]];
+    } else {
+      for (let p = 0; p < own.length; p++) sum += row[own[p]] * z[own[p]];
+    }
+    out[l] = sum;
+  }
+  return out;
+}
+
 // The same vectors made orthonormal (unit length, at right angles to each other), by
 // Gram-Schmidt. Plain loops: this runs many times a step.
+//
+// Each vector found is kept with its places that are not 0, and each new one is taken against it
+// over those places only: the same numbers to the last bit. Its dot product with the new one (a
+// sum from +0) leaves out only products with a 0 (see sparseDot); the new one's entries less d times
+// it leave out only subtractions of ±0, which change nothing but a −0 (−0 − −0 = +0): the new one's
+// places holding −0 are listed, and there each subtraction is made. A new one holding anything
+// not finite, or coming to (an overflow), is made as before from there on. Its length is summed
+// over every place, as before.
 export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] {
+  kernelSpy.on?.('orthonormalize', [vectors, tiny]);
   const result: number[][] = [];
+  const places: (Int32Array | null)[] = [];
   for (const v of vectors) {
+    const n = v.length;
+    // Worked as before (every product and subtraction) once it holds anything not finite.
+    let plain = false;
+    // Its places that hold −0: there a subtraction of ±0 can make +0 (−0 − −0), so each is made.
+    let zeros: number[] = [];
+    for (let i = 0; i < n; i++) {
+      const x = v[i];
+      if (!Number.isFinite(x)) {
+        plain = true;
+        break;
+      }
+      if (x === 0 && 1 / x < 0) zeros.push(i);
+    }
     const u = v.slice();
-    const n = u.length;
-    for (const b of result) {
+    for (let r = 0; r < result.length; r++) {
+      const b = result[r];
+      const at = places[r];
+      if (plain || !at) {
+        let d = 0;
+        for (let i = 0; i < n; i++) d += u[i] * b[i];
+        for (let i = 0; i < n; i++) u[i] -= d * b[i];
+        continue;
+      }
       let d = 0;
-      for (let i = 0; i < n; i++) d += u[i] * b[i];
-      for (let i = 0; i < n; i++) u[i] -= d * b[i];
+      for (let p = 0; p < at.length; p++) d += u[at[p]] * b[at[p]];
+      if (!Number.isFinite(d)) {
+        for (let i = 0; i < n; i++) u[i] -= d * b[i];
+        plain = true;
+        continue;
+      }
+      for (let p = 0; p < at.length; p++) {
+        const i = at[p];
+        u[i] -= d * b[i];
+        if (!Number.isFinite(u[i])) plain = true;
+      }
+      // Where b is 0 the subtraction is of ±0: it changes only a −0, so only those are made. No
+      // new −0 comes (x − x is +0, +0 − ±0 is +0), so the list only gets shorter.
+      if (zeros.length) {
+        for (const i of zeros) if (b[i] === 0) u[i] -= d * b[i];
+        zeros = zeros.filter((i) => u[i] === 0 && 1 / u[i] < 0);
+      }
     }
     let len = 0;
     for (let i = 0; i < n; i++) len += u[i] * u[i];
@@ -648,35 +993,116 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
     if (len > tiny) {
       for (let i = 0; i < n; i++) u[i] /= len;
       result.push(u);
+      places.push(nonzeros(u));
     }
   }
   return result;
 }
 
+// Thrown where the rows of a null space hold a value that is not finite (NaN or ±∞), or come to one:
+// no sum makes sense of it, and on a NaN the rook pivoting never settled (a NaN is never as large as
+// itself). The step that met it is refused (see Kinematics.refuseNotFinite; decision 280).
+export class NotFinite extends Error {}
+
+// With KINEBRICK_CHECK_PLACES=1: that every place of a row inBasis made holds +0 but its places (see
+// placesOf), else an error naming the first that doesn't. Off, nullSpace trusts them.
+function checkPlaces(r: Row, known: number[], n: number) {
+  const listed = new Set(known);
+  for (let k = 0; k < n; k++) {
+    if (listed.has(k) || Object.is(r[k], 0)) continue;
+    throw new Error(`a row's places, noted as inBasis made it, leave out place ${k}, which holds ${r[k]}: the row was written into after inBasis`);
+  }
+}
+
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
-// Plain loops on typed arrays: this runs many times a step.
+// Plain loops on typed arrays: this runs many times a step. Each row's places that may not be 0, and
+// each column's rows that may not be 0 there, are kept, so that the searches and the elimination go
+// over those only: a step's rows have a few places each out of hundreds (decision 277). A row inBasis
+// made comes with its places (see placesOf), and isn't gone over whole. The pivots, and every sum,
+// are those of the plain elimination (the test keeps it, oldNullSpace).
 export function nullSpace(rows: Row[], n: number): number[][] {
-  const a = rows.map((r) => Float64Array.from(r));
+  kernelSpy.on?.('nullSpace', [rows, n]);
+  // Each row as a line: its numbers; its places that may not be 0 (all those that aren't, and some
+  // that came to 0), with a mark for each, so that the search for a row's largest goes over these only;
+  // where it stands among the rows; and whether it was found to have nothing left above
+  // RANK_TOLERANCE (a row that depends on others), until it next changes: the search everywhere left
+  // (below) skips it, as it can't be chosen. A row's entries left only get fewer, as columns are used,
+  // so it stays tiny until taking a pivot row from it changes it. Without this, a big model's search
+  // went over its dependent rows again for every pivot, and took most of a step. Taking a pivot row
+  // from a row changes only the pivot row's places, which are added.
+  const checking = checkingPlaces();
+  const lines = rows.map((r, i) => {
+    const x = new Float64Array(n);
+    const list: number[] = [];
+    const mark = new Uint8Array(n);
+    const known = placesOf.get(r);
+    if (known && checking) checkPlaces(r, known, n);
+    if (known) {
+      // Every other place holds +0 (see inBasis), as the copy would.
+      for (const k of known) {
+        const v = r[k];
+        x[k] = v;
+        if (v === 0) continue;
+        if (!Number.isFinite(v)) throw new NotFinite(`a null space's row holds ${v}`);
+        list.push(k);
+        mark[k] = 1;
+      }
+    } else {
+      for (let k = 0; k < n; k++) {
+        const v = r[k];
+        x[k] = v;
+        if (v === 0) continue;
+        if (!Number.isFinite(v)) throw new NotFinite(`a null space's row holds ${v}`);
+        list.push(k);
+        mark[k] = 1;
+      }
+    }
+    return { x, list, mark, at: i, tiny: false };
+  });
+  type Line = (typeof lines)[number];
   const pivotColumns: number[] = [];
-  const used = new Array(n).fill(false);
-  // Rows found to have nothing left above RANK_TOLERANCE (rows that depend on others), until
-  // they next change: the search everywhere left (below) skips them, as they can't be chosen. A
-  // row's entries left only get fewer, as columns are used, so it stays tiny until taking a
-  // pivot row from it changes it. Without this, a big model's search went over its dependent rows
-  // again for every pivot, and took most of a step.
-  const tiny = new Set<Float64Array>();
-  for (let r = 0; r < a.length; r++) {
+  const used = new Uint8Array(n);
+  // The first column not used yet: a row's largest is looked for from it, in the order and with the
+  // comparisons it always was (going over every column and passing the used ones).
+  let first = 0;
+  // Each column's lines that may not be 0 there: those whose places list it, each once (its mark),
+  // listed still when its entry there comes to 0.
+  const inColumn: Line[][] = Array.from({ length: n }, () => []);
+  for (const line of lines) for (const k of line.list) inColumn[k].push(line);
+  for (let r = 0; r < lines.length; r++) {
     // Pivot on an entry that's the largest in both its row and its column ("rook pivoting"),
     // for accuracy: picking only down a column lets rounding errors grow until an equation
     // implied by the others looks independent. If that finds nothing, look everywhere left.
+    // The first column left, unless a later one is larger (strictly): of the largest, the first. The
+    // same as going over every column left in order: a 0 is never larger than anything, and NaN
+    // neither, so only the row's places that may not be 0 can take over from the first column left,
+    // and of two as large the earlier wins whichever order they come in.
+    while (first < n && used[first]) first++;
     const largestInRow = (i: number) => {
-      let best = -1;
-      for (let k = 0; k < n; k++) if (!used[k] && (best < 0 || Math.abs(a[i][k]) > Math.abs(a[i][best]))) best = k;
+      if (first >= n) return -1;
+      const { x, list } = lines[i];
+      let best = first;
+      for (const k of list) {
+        if (used[k] || k === best) continue;
+        const v = Math.abs(x[k]);
+        const w = Math.abs(x[best]);
+        if (v > w || (v === w && k < best)) best = k;
+      }
       return best;
     };
+    // Of the rows from r on, the first with the largest entry in column k: r, unless a later row's
+    // is larger (strictly). The same as going down every row in order: a 0 is never larger than
+    // anything, nor NaN, so only the rows listed in the column can take over from r, and of two as
+    // large the earlier wins whichever order they come in.
     const largestInColumn = (k: number) => {
       let best = r;
-      for (let i = r + 1; i < a.length; i++) if (Math.abs(a[i][k]) > Math.abs(a[best][k])) best = i;
+      let most = Math.abs(lines[r].x[k]);
+      for (const line of inColumn[k]) {
+        const i = line.at;
+        if (i <= r) continue;
+        const v = Math.abs(line.x[k]);
+        if (v > most || (v === most && best !== r && i < best)) [best, most] = [i, v];
+      }
       return best;
     };
     let best = r;
@@ -685,37 +1111,53 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     for (;;) {
       const i = largestInColumn(c);
       const k = largestInRow(i);
-      const done = Math.abs(a[i][k]) <= Math.abs(a[i][c]);
+      const done = Math.abs(lines[i].x[k]) <= Math.abs(lines[i].x[c]);
+      // Neither larger nor not: a NaN, come of sums too large for a number (finite rows can overflow).
+      if (!done && !(Math.abs(lines[i].x[k]) > Math.abs(lines[i].x[c]))) throw new NotFinite('a null space came to NaN');
       best = i;
       if (done) break;
       c = k;
     }
-    if (Math.abs(a[best][c]) < RANK_TOLERANCE) {
-      for (let i = r; i < a.length; i++) {
-        if (tiny.has(a[i])) continue;
+    if (Math.abs(lines[best].x[c]) < RANK_TOLERANCE) {
+      for (let i = r; i < lines.length; i++) {
+        if (lines[i].tiny) continue;
         const k = largestInRow(i);
-        if (Math.abs(a[i][k]) < RANK_TOLERANCE) tiny.add(a[i]);
-        if (Math.abs(a[i][k]) > Math.abs(a[best][c])) [best, c] = [i, k];
+        if (Math.abs(lines[i].x[k]) < RANK_TOLERANCE) lines[i].tiny = true;
+        if (Math.abs(lines[i].x[k]) > Math.abs(lines[best].x[c])) [best, c] = [i, k];
       }
-      if (Math.abs(a[best][c]) < RANK_TOLERANCE) break;
+      if (Math.abs(lines[best].x[c]) < RANK_TOLERANCE) break;
     }
-    used[c] = true;
-    [a[r], a[best]] = [a[best], a[r]];
-    const row = a[r];
+    used[c] = 1;
+    [lines[r], lines[best]] = [lines[best], lines[r]];
+    lines[r].at = r;
+    lines[best].at = best;
+    const pivotLine = lines[r];
+    const row = pivotLine.x;
     const pivot = row[c];
     // The pivot row's nonzero entries: the only columns taking it from another row changes.
+    // (Found among its places that may not be 0, the order of no matter: each is worked on its own.)
     const nonzero: number[] = [];
-    for (let k = 0; k < n; k++) {
+    for (const k of pivotLine.list) {
       if (row[k] === 0) continue;
       row[k] /= pivot;
       nonzero.push(k);
     }
-    for (let i = 0; i < a.length; i++) {
-      const other = a[i];
-      if (i === r || other[c] === 0) continue;
+    // The other rows with an entry in the pivot column: those listed in it (each row is worked on
+    // its own, so in whatever order). A place a row gains lists it in that column too; never in
+    // column c itself, where every row taken is listed already.
+    for (const line of inColumn[c]) {
+      const other = line.x;
+      if (line === pivotLine || other[c] === 0) continue;
       const factor = other[c];
-      for (const k of nonzero) other[k] -= factor * row[k];
-      tiny.delete(other);
+      const { mark, list } = line;
+      for (const k of nonzero) {
+        other[k] -= factor * row[k];
+        if (mark[k]) continue;
+        mark[k] = 1;
+        list.push(k);
+        inColumn[k].push(line);
+      }
+      line.tiny = false;
     }
     pivotColumns.push(c);
   }
@@ -725,7 +1167,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     const x = new Array(n).fill(0);
     x[free] = 1;
     pivotColumns.forEach((pc, row) => {
-      x[pc] = -a[row][free];
+      x[pc] = -lines[row].x[free];
     });
     basis.push(x);
   }

@@ -66,6 +66,18 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
 #trend th, #trend td { padding: 3px 12px 3px 0; text-align: right; white-space: nowrap; }
 #trend th { color: var(--muted); font-weight: 600; }
 #trend th:first-child, #trend td:first-child, #trend th:nth-child(2), #trend td:nth-child(2) { text-align: left; }
+#times { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+#times h2 { font-family: var(--display); font-size: 21px; font-weight: 700; }
+#times .scroll { overflow: auto; max-height: 70vh; }
+#times table { border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; width: 100%; }
+#times th, #times td { padding: 5px 14px 5px 0; text-align: right; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line); }
+#times th { position: sticky; top: 0; background: var(--panel); color: var(--muted); font-weight: 600; }
+#times th button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+#times th[aria-sort] button { color: var(--fg); }
+#times th:nth-child(-n+2), #times td:nth-child(-n+2) { text-align: left; }
+#times td:nth-child(2) { white-space: normal; min-width: 260px; max-width: 520px; }
+#times a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+#times .none { color: var(--muted); }
 @media (max-width: 640px) { #map { height: 150vw; } h1 { font-size: 24px; } }
 </style>
 <div class="page">
@@ -84,6 +96,11 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
   <div class="legend" id="legend"></div>
   <div id="map" aria-label="One box for each set. A box's area is the set's number of pieces. Its colour is the share of its checked functions that work."></div>
   <section id="detail" aria-live="polite"><p class="sub">Pick a box to see that set's functions. A box's area is the set's number of pieces.</p></section>
+  <section id="times" hidden>
+    <h2>Time for One Small Turn in the Viewer</h2>
+    <p class="sub" id="times-sub"></p>
+    <div class="scroll"><table id="times-table"></table></div>
+  </section>
   <section id="causes" hidden></section>
 </div>
 <script>
@@ -104,7 +121,8 @@ const sets = (DATA ? DATA.sets : []).map((s) => {
   const works = count(s, 'works'), partly = count(s, 'partly'), no = count(s, 'no');
   const checked = works + partly + no;
   const share = checked ? works / checked : null;
-  const bucket = share === null ? 5 : share >= 1 ? 4 : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
+  // A set whose track isn't read as a track is never green, whatever its functions' results.
+  const bucket = share === null ? 5 : share >= 1 ? (s.unreadTracks ? 3 : 4) : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
   return { ...s, works, partly, no, checked, share, bucket, number: s.set.replace(/-1$/, '') };
 }).sort((a, b) => b.pieces - a.pieces);
 
@@ -140,6 +158,11 @@ function treemap(items, W, H) {
 }
 
 const pct = (s) => (s.share === null ? 'nothing checked' : Math.round(s.share * 100) + '%');
+// A time in the viewer, in ms, as the page writes it.
+const ms = (n) => (n === null || n === undefined ? 'not timed' : Math.round(n).toLocaleString('en') + ' ms');
+// Where a set opens in Kinebrick: on the preview site where it has the set, else in the viewer on this computer.
+const plus = (text) => encodeURIComponent(text).replace(/%20/g, '+');
+const opens = (s) => (s.viewer ? PREVIEW + '?model=' + plus(s.viewer) : LOCAL + '?file=' + s.file.split('/').map(plus).join('/'));
 let picked = null;
 
 function show(s) {
@@ -150,19 +173,20 @@ function show(s) {
   // The title opens the set in Kinebrick: on the preview site where it has the set, and otherwise in
   // the viewer on this computer (LOCAL), which reads the set's file from the OMR. The pieces open its page in the OMR.
   const title = el('h2');
-  const plus = (text) => encodeURIComponent(text).replace(/%20/g, '+');
-  title.append(link(`${s.number} ${s.name}`, s.viewer ? PREVIEW + '?model=' + plus(s.viewer) : LOCAL + '?file=' + s.file.split('/').map(plus).join('/')));
+  title.append(link(`${s.number} ${s.name}`, opens(s)));
   const sub = el('p', 'sub', `${s.year} · `);
   const pieces = `${s.pieces.toLocaleString('en')} pieces`;
   sub.append(s.omr ? link(pieces, s.omr) : pieces, ` · ${s.works} of ${s.checked} checked functions work (${pct(s)})` + (s.loose ? ` · ${s.loose.toLocaleString('en')} loose parts` : '') + (s.viewer ? '' : ' · opens in the viewer on this computer (port 5174)'));
   d.replaceChildren(title, sub);
+  if (s.unreadTracks) d.append(el('p', 'why', `Not green: its track is not read as a track. The file draws ${s.unreadTracks.links} track links (${s.unreadTracks.parts.join(', ')}) one by one, with no path, so they do not run round their wheels: turning a sprocket moves a few links and leaves the rest.`));
   const list = el('ul');
   const order = { no: 0, partly: 1, works: 2 };
-  for (const [does, result, cause, about] of [...s.functions].sort((a, b) => (order[a[1]] ?? 3) - (order[b[1]] ?? 3))) {
+  for (const [does, result, cause, about, time] of [...s.functions].sort((a, b) => (order[a[1]] ?? 3) - (order[b[1]] ?? 3))) {
     const li = el('li');
     const label = result === 'no' ? "doesn't work" : result;
     const text = el('span', '', does);
     if (cause && DATA.causes[cause]) text.append(el('br'), el('span', 'why', `Why: ${DATA.causes[cause].says}${about ? ` (${about})` : ''}. For: ${DATA.causes[cause].owner}.`));
+    if (time) text.append(el('br'), el('span', 'why', `In the viewer: one small turn takes ${ms(time[0])}, a step in a long turn ${ms(time[1])}.`));
     li.append(el('span', 'tag ' + (result in order ? result : 'other'), label), text);
     list.append(li);
   }
@@ -186,6 +210,54 @@ function draw() {
     if (r.w > 96 && r.h > 50) b.append(el('small', '', s.name), el('small', '', pct(s)));
     b.addEventListener('click', () => show(s));
     map.append(b);
+  }
+}
+
+// The table of times: every function the viewer sweep has timed, the slowest first, or in the
+// order of the column picked.
+let timesBy = 2, timesDown = true;
+function times() {
+  const rows = [];
+  for (const s of sets) s.functions.forEach((f, i) => { if (f[4]) rows.push({ s, n: i + 1, does: f[0], one: f[4][0], step: f[4][1], verdict: f[4][2] }); });
+  if (!rows.length) return;
+  document.getElementById('times').hidden = false;
+  const working = sets.reduce((t, s) => t + s.works, 0);
+  const timedSets = new Set(rows.map((r) => r.s.set)).size;
+  const noOne = rows.filter((r) => r.one === null).length;
+  document.getElementById('times-sub').textContent = `${rows.length.toLocaleString('en')} of the ${working.toLocaleString('en')} working functions timed so far, in ${timedSets} sets` + (rows.length < working ? '; the sweep is still running' : '') + `. One small turn is the first move of a drag: the viewer chooses what to hold still and turns the control by one solver step (0.035 radian). A step in a long turn is about what each further frame of the same drag costs. All of these were measured while checks ran on the same computer, so they are higher than on a quiet one, by a factor not known; the slowest are timed again on a quiet computer when the run is through (decision 261).` + (noOne ? ` ${noOne} were timed before the sweep measured one small turn.` : '') + ' The last column is not final: where it says no, the sweep either found a fault or could not yet do what the check does (it does not free pins that friction holds, and some controls it cannot turn); those are being sorted (decision 267). A set opens in the viewer from its number.';
+  const cols = [
+    ['Set', (r) => r.s.set.replace(/-1$/, '').padStart(6, '0') + String(r.n).padStart(3, '0')],
+    ['Function', (r) => r.does],
+    ['One small turn', (r) => r.one ?? r.step ?? -1],
+    ['A step in a long turn', (r) => r.step ?? -1],
+    ['Pieces', (r) => r.s.pieces],
+    ['The turn moves it', (r) => r.verdict],
+  ];
+  const key = cols[timesBy][1];
+  rows.sort((a, b) => { const x = key(a), y = key(b); return (x < y ? -1 : x > y ? 1 : 0) * (timesDown ? -1 : 1); });
+  const table = document.getElementById('times-table');
+  table.replaceChildren();
+  const head = el('tr');
+  cols.forEach(([label], c) => {
+    const th = el('th');
+    const b = el('button', '', label);
+    b.type = 'button';
+    b.title = 'Sort by this column';
+    b.addEventListener('click', () => { timesDown = timesBy === c ? !timesDown : c >= 2 && c <= 4; timesBy = c; times(); });
+    if (timesBy === c) th.setAttribute('aria-sort', timesDown ? 'descending' : 'ascending');
+    th.append(b, timesBy === c ? (timesDown ? ' ↓' : ' ↑') : '');
+    head.append(th);
+  });
+  table.append(head);
+  const said = { shown: 'yes', 'not shown': 'no', 'not decided': 'not decided' };
+  for (const r of rows) {
+    const tr = el('tr');
+    const set = el('td');
+    const a = el('a', '', r.s.number); a.href = opens(r.s); a.target = '_blank'; a.rel = 'noopener'; a.title = r.s.name;
+    set.append(a, ` fn ${r.n}`);
+    const one = el('td', r.one === null ? 'none' : '', ms(r.one));
+    tr.append(set, el('td', '', r.does), one, el('td', r.step === null ? 'none' : '', ms(r.step)), el('td', '', r.s.pieces.toLocaleString('en')), el('td', '', said[r.verdict] ?? r.verdict));
+    table.append(tr);
   }
 }
 
@@ -296,6 +368,7 @@ if (DATA) {
   }
   draw();
   trend();
+  times();
   let timer = 0;
   window.addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(() => { draw(); trend(); }, 120); });
 } else {

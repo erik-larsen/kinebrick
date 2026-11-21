@@ -1,0 +1,267 @@
+{
+  "set": "42039-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:02:02.967Z",
+  "load": 39.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1189,
+  "seconds": 2707,
+  "functions": [
+    {
+      "function": 8,
+      "does": "With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open.",
+      "verdict": "not shown",
+      "why": "A: p670 18946, p653 4716, p870 32072, p857 32072, p928 62531, p929 62531 not moved",
+      "msOneCall": 77,
+      "msPerStep": 20,
+      "time": {
+        "open": 20,
+        "collisions": 15,
+        "first": 11,
+        "reach": 541,
+        "A": 11,
+        "B": 746
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p813 32270",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 75,
+          "msOneCall": 77,
+          "stops": [],
+          "moved": {
+            "p636 18947": [
+              0,
+              4.47
+            ],
+            "p670 18946": [
+              0,
+              0
+            ],
+            "p653 4716": [
+              0,
+              0
+            ],
+            "p870 32072": [
+              0,
+              0
+            ],
+            "p857 32072": [
+              0,
+              0
+            ],
+            "p928 62531": [
+              0,
+              0
+            ],
+            "p929 62531": [
+              0,
+              0
+            ],
+            "p773 3648b": [
+              0,
+              0
+            ],
+            "p1157 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p813 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 486,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {
+            "p636 18947": [
+              0,
+              51.57
+            ],
+            "p670 18946": [
+              0,
+              0
+            ],
+            "p653 4716": [
+              0,
+              0
+            ],
+            "p870 32072": [
+              0,
+              0
+            ],
+            "p857 32072": [
+              0,
+              0
+            ],
+            "p928 62531": [
+              0,
+              0
+            ],
+            "p929 62531": [
+              0,
+              0
+            ],
+            "p773 3648b": [
+              0,
+              0
+            ],
+            "p1157 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p813 32270",
+          "seen": true,
+          "cameraTurns": 6,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p636 18947"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 1344
+    },
+    {
+      "function": 9,
+      "does": "With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover.",
+      "verdict": "not shown",
+      "why": "A: p633 18946, p637 94925, p780 32270, p760 4716, p773 3648b, p1157 41239 not moved",
+      "msOneCall": 79,
+      "msPerStep": 14,
+      "time": {
+        "open": 20,
+        "collisions": 14,
+        "first": 10,
+        "reach": 541,
+        "A": 11,
+        "B": 766
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p813 32270",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 197,
+          "msOneCall": 79,
+          "stops": [],
+          "moved": {
+            "p636 18947": [
+              0,
+              17.19
+            ],
+            "p633 18946": [
+              0,
+              0
+            ],
+            "p637 94925": [
+              0,
+              0
+            ],
+            "p780 32270": [
+              0,
+              0
+            ],
+            "p760 4716": [
+              0,
+              0
+            ],
+            "p773 3648b": [
+              0,
+              0
+            ],
+            "p1157 41239": [
+              0,
+              0
+            ],
+            "p928 62531": [
+              0,
+              0
+            ],
+            "p929 62531": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p813 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 465,
+          "msOneCall": 36,
+          "stops": [],
+          "moved": {
+            "p636 18947": [
+              0,
+              51.57
+            ],
+            "p633 18946": [
+              0,
+              0
+            ],
+            "p637 94925": [
+              0,
+              0
+            ],
+            "p780 32270": [
+              0,
+              0
+            ],
+            "p760 4716": [
+              0,
+              0
+            ],
+            "p773 3648b": [
+              0,
+              0
+            ],
+            "p1157 41239": [
+              0,
+              0
+            ],
+            "p928 62531": [
+              0,
+              0
+            ],
+            "p929 62531": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p813 32270",
+          "seen": true,
+          "cameraTurns": 6,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p636 18947"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 1363
+    }
+  ]
+}

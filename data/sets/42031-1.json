@@ -79,11 +79,12 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
-    "date": "2026-11-17",
-    "seconds": 1,
+    "commit": "fe0dd791",
+    "date": "2026-11-21",
+    "seconds": 2,
     "counts": {
-      "works": 4
+      "works": 3,
+      "partly": 1
     },
     "loose": [],
     "functions": [
@@ -91,7 +92,7 @@
         "result": "works",
         "turned": [
           [
-            1.5,
+            0.23,
             -1.5
           ]
         ],
@@ -99,7 +100,7 @@
           {
             "p120 4716 against p101 6632": [
               1,
-              0
+              9.47e-15
             ],
             "p133 3648b against p101 6632": [
               0.0417,
@@ -111,7 +112,7 @@
             ],
             "p101 6632 against p1 64289": [
               0,
-              4.74e-15
+              0
             ]
           }
         ],
@@ -137,59 +138,106 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            83,
+            124,
+            0.23,
+            0.23
           ]
         ],
         "seconds": 0.2
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p101 6632 against p1 64289": [
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p101 at 0.03 rad each way (parts 92/130 and 91/124); the check stops at the same angle and judges by rates. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.03,
+              -0.03
+            ]
+          ],
+          "rates": [
+            {
+              "p101 6632 against p1 64289": [
+                1,
+                40.3
+              ],
+              "p122 11478 against p1 64289": [
+                1,
+                25
+              ],
+              "p122 11478 against p101 6632": [
+                0,
+                5.33e-14
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
               1,
-              40.3
+              90,
+              130,
+              0.03,
+              0.03
             ],
-            "p122 11478 against p1 64289": [
-              1,
-              25
-            ],
-            "p122 11478 against p101 6632": [
-              2.81e-8,
-              5.54e-14
+            [
+              0,
+              -1,
+              89,
+              124,
+              0.03,
+              0.03
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "seconds": 0.1
+          ],
+          "seconds": 0
+        }
       },
       {
         "result": "works",
@@ -231,7 +279,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -349,8 +397,9 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 1.1
       }
-    ]
+    ],
+    "peak": 318
   }
 }

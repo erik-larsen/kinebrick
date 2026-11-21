@@ -1,0 +1,388 @@
+{
+  "set": "42022-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:33:57.840Z",
+  "load": 29.1,
+  "part": "A",
+  "parts": 401,
+  "seconds": 58,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the upright post behind the cab steers the front wheels: a bevel gear at its foot turns a long shaft forward along the chassis, whose knob gears turn a short arm that pushes the steering link across to both front wheels.",
+      "verdict": "shown",
+      "msOneCall": 40,
+      "msPerStep": 7,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p177 59443",
+          "way": 1,
+          "asked": 0.3,
+          "went": 0.3,
+          "ms": 63,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p140 32072": [
+              0,
+              10.31
+            ],
+            "p169 32072": [
+              0,
+              10.31
+            ],
+            "p61 32293": [
+              7.22,
+              0.69
+            ],
+            "p205 48989": [
+              3.43,
+              9.84
+            ],
+            "p206 48989": [
+              3.43,
+              9.84
+            ],
+            "p136 56145": [
+              0,
+              0
+            ],
+            "p181 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p177 59443",
+          "way": -1,
+          "asked": 0.53,
+          "went": -0.53,
+          "ms": 103,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p140 32072": [
+              0,
+              18.22
+            ],
+            "p169 32072": [
+              0,
+              18.22
+            ],
+            "p61 32293": [
+              12.59,
+              1.36
+            ],
+            "p205 48989": [
+              5.99,
+              17.23
+            ],
+            "p206 48989": [
+              5.99,
+              17.23
+            ],
+            "p136 56145": [
+              0,
+              0
+            ],
+            "p181 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 20
+    },
+    {
+      "function": 2,
+      "does": "Rolling the car turns the V6 engine: one rear wheel's axle drives, through bevel gears and a shaft forward to an 8-tooth gear pair, the crankshaft, and the six pistons go up and down in their cylinders.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 8,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p136 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 326,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p231 32270": [
+              0,
+              85.94
+            ],
+            "p340 10928": [
+              0,
+              85.94
+            ],
+            "p297 10928": [
+              0,
+              85.94
+            ],
+            "p299 2852": [
+              13.63,
+              2.06
+            ],
+            "p303 2852": [
+              13.63,
+              2.07
+            ],
+            "p314 2851 against p306 2850": [
+              13.8,
+              0
+            ],
+            "p306 2850 against p0 99008": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p136 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 337,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p231 32270": [
+              0,
+              85.94
+            ],
+            "p340 10928": [
+              0,
+              85.94
+            ],
+            "p297 10928": [
+              0,
+              85.94
+            ],
+            "p299 2852": [
+              13.63,
+              19.33
+            ],
+            "p303 2852": [
+              13.63,
+              19.34
+            ],
+            "p314 2851 against p306 2850": [
+              2.06,
+              0
+            ],
+            "p306 2850 against p0 99008": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 3,
+      "does": "The other rear wheel and the two front wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 3,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p181 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 114,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p181 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 93,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p213 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 81,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p213 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 79,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p214 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 80,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p214 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 81,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 21
+    },
+    {
+      "function": 4,
+      "does": "The black gear knob on the cab's side opens the body: turning it swings the blue side panels open and folds the black seat-back frame forward, through two long links; turned back, it closes them.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 5,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": {
+        "control": "p396 32270",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "79/402"
+        ]
+      },
+      "stops": [
+        "79/402"
+      ],
+      "A": [
+        {
+          "control": "p396 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 9,
+          "msOneCall": 10,
+          "stops": [
+            "79/402"
+          ],
+          "moved": {
+            "p399 32271": [
+              0,
+              0
+            ],
+            "p402 64391": [
+              0,
+              0
+            ],
+            "p397 32525": [
+              0,
+              0
+            ],
+            "p368 32063": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p396 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 215,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p399 32271": [
+              162.03,
+              66.63
+            ],
+            "p402 64391": [
+              162.03,
+              66.63
+            ],
+            "p397 32525": [
+              44.82,
+              12.09
+            ],
+            "p368 32063": [
+              87.3,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p396 32270",
+          "judged": "stands",
+          "why": "stopped at +0 rad (79/402); kinds crank-and-link: body panels"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 7
+    }
+  ]
+}

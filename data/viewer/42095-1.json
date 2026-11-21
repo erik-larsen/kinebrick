@@ -1,0 +1,238 @@
+{
+  "set": "42095-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:08:30.346Z",
+  "load": 22.4,
+  "part": "A",
+  "parts": 318,
+  "seconds": 21,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The left track: a Power Functions L motor, worked by one lever on the remote through the IR receiver, turns a 16 tooth gear on its shaft, which drives the 16 tooth gear on the big yellow sprocket at the back of the left track, running the track forward or back.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 3,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p236 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 117,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p232 94925": [
+              0,
+              85.94
+            ],
+            "p335 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p306 57519": [
+              0,
+              116.76
+            ],
+            "p334 42095 - 42529": [
+              0,
+              0
+            ],
+            "p287 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p236 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 101,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p232 94925": [
+              0,
+              85.94
+            ],
+            "p335 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p306 57519": [
+              0,
+              116.76
+            ],
+            "p334 42095 - 42529": [
+              0,
+              0
+            ],
+            "p287 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 2,
+      "does": "The right track: the other L motor, worked by the remote's other lever, drives the right track's big yellow sprocket the same way.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p277 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 91,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p272 94925": [
+              0,
+              85.94
+            ],
+            "p334 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p287 57519": [
+              0,
+              116.76
+            ],
+            "p335 42095 - 42529": [
+              0,
+              0
+            ],
+            "p306 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p277 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 93,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p272 94925": [
+              0,
+              85.94
+            ],
+            "p334 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p287 57519": [
+              0,
+              116.76
+            ],
+            "p335 42095 - 42529": [
+              0,
+              0
+            ],
+            "p306 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 5,
+      "does": "The two small yellow wheels on the tail, behind and above the tracks, roll freely, so the racer can run on them when it rears up.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p235 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 50,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p235 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 49,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p274 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 50,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p274 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 49,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "set": "42040-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:38:43.462Z",
+  "load": 15.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 567,
+  "seconds": 83,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks).",
+      "verdict": "not shown",
+      "msOneCall": 42,
+      "msPerStep": 10,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": {
+        "control": "p251 32140",
+        "way": -1,
+        "went": -0.068,
+        "asked": 0.17,
+        "by": [
+          "165/254"
+        ]
+      },
+      "stops": [
+        "165/254"
+      ],
+      "A": [
+        {
+          "control": "p251 32140",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 19,
+          "msOneCall": 42,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p251 32140",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.068,
+          "ms": 18,
+          "msOneCall": 13,
+          "stops": [
+            "165/254"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p251 32140",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the hatch flips forward to fill the tank, far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115)",
+      "seconds": 17
+    },
+    {
+      "function": 7,
+      "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
+      "verdict": "not shown",
+      "why": "A: p371 2739a, p330 2736, p338 18945 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 62,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p358 6572",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.4,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p358 6572",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 66
+    }
+  ]
+}

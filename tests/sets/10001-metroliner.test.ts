@@ -1,6 +1,8 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/10001-Metroliner.mpd');
 
 // The 10001 Metroliner: an oval of 9V track, a platform, and three cars coupled by magnets, one
 // of them the motor car. The layout's cars are placed a little off the rails and the magnets a

@@ -1,0 +1,163 @@
+{
+  "set": "8862-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:09:01.064Z",
+  "load": 37.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 656,
+  "seconds": 508,
+  "functions": [
+    {
+      "function": 8,
+      "does": "The cylinder along the top of the boom swings the dipper arm in and out.",
+      "verdict": "not shown",
+      "why": "A: p281 2796c01 against p280 2793c03 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 12,
+        "collisions": 4,
+        "first": 0,
+        "reach": 3,
+        "A": 3,
+        "B": 233
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p292 3703",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p281 2796c01 against p280 2793c03": [
+              0,
+              0
+            ],
+            "p264 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p292 3703",
+          "way": -1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p281 2796c01 against p280 2793c03": [
+              0,
+              0
+            ],
+            "p264 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p292 3703",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p281 2796c01 against p280 2793c03"
+          ],
+          "stops": [
+            "264/281",
+            "306/318",
+            "302/302"
+          ]
+        }
+      ],
+      "seconds": 254
+    },
+    {
+      "function": 9,
+      "does": "The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage.",
+      "verdict": "not shown",
+      "why": "A: p319 2796c01 against p318 2793c03 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 12,
+        "collisions": 5,
+        "first": 0,
+        "reach": 3,
+        "A": 3,
+        "B": 231
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p302 4700",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p319 2796c01 against p318 2793c03": [
+              0,
+              0
+            ],
+            "p292 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p302 4700",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p319 2796c01 against p318 2793c03": [
+              0,
+              0
+            ],
+            "p292 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p302 4700",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p319 2796c01 against p318 2793c03"
+          ],
+          "stops": [
+            "232/234",
+            "306/318",
+            "302/302"
+          ]
+        }
+      ],
+      "seconds": 254
+    }
+  ]
+}

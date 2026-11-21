@@ -1,0 +1,78 @@
+{
+  "set": "8204-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:47:48.734Z",
+  "load": 24.3,
+  "part": "A",
+  "parts": 36,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The propeller spins by hand, turning the two bevel gears and, through the band, the wheels.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 0,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p35 32125",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 12,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p25 6589": [
+              0,
+              85.94
+            ],
+            "p10 6589": [
+              0,
+              85.94
+            ],
+            "p5 6629": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p35 32125",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 9,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p25 6589": [
+              0,
+              85.94
+            ],
+            "p10 6589": [
+              0,
+              85.94
+            ],
+            "p5 6629": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

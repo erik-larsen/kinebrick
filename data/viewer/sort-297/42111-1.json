@@ -1,0 +1,98 @@
+{
+  "set": "42111-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:02:08.505Z",
+  "load": 14,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1055,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 8,
+      "does": "The bonnet opens: it lifts on hinges at the windscreen end to show the engine and supercharger.",
+      "verdict": "shown",
+      "msOneCall": 103,
+      "msPerStep": 55,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p708 41239",
+        "way": 1,
+        "went": 0.035,
+        "asked": 1.5,
+        "by": [
+          "557/708"
+        ]
+      },
+      "stops": [
+        "557/708"
+      ],
+      "A": [
+        {
+          "control": "p708 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 55,
+          "msOneCall": 103,
+          "stops": [
+            "557/708"
+          ],
+          "moved": {
+            "p721 15458": [
+              4.19,
+              2
+            ],
+            "p390 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p708 41239",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 448,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {
+            "p721 15458": [
+              179.99,
+              85.94
+            ],
+            "p390 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p708 41239",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (557/708); kinds hinge: bonnet"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the page 229 top inset shows the bonnet lifted on its windscreen-end hinges to near vertical (about 80-90 degrees), with a curved arrow, far beyond the viewer's stop at 0.035 rad.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=229"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 4
+    }
+  ]
+}

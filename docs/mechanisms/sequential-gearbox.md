@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
 - All four wheels are driven: pushing the car along turns the wheels, which through the front and rear differentials, a centre differential, the gearbox and the range and D-N-R selectors turn the engine's crankshaft, so the six pistons of the straight-six engine pump up and down. (partly)
-- *4 speeds:* The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down. (works)
+- *4 speeds:* The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down. (partly)
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
@@ -48,7 +48,7 @@ Each detail by the set it first appears in.
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
-- *3 speeds and reverse:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (partly)
+- *3 speeds and reverse:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (works)
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 

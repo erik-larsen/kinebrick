@@ -4,6 +4,8 @@ import { ConnectionTable } from '../../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../../src/kinematics.ts';
 import { modelSettings, parseModel } from '../../src/ldr.ts';
 import { inferMechanism } from '../../src/mechanism.ts';
+import type { Touching } from '../../src/collisions.ts';
+import { touchingOf } from '../touching.ts';
 
 // Loads a real LEGO Technic set from the LDraw Official Model Repository for its tests (one file
 // per set beside this one), as the viewer does: its mechanism, ready to move, and helpers to move it.
@@ -14,12 +16,21 @@ export const roles: Record<string, string> = JSON.parse(readFileSync('data/roles
 // are read as their pieces, as the packer found.
 const packed: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
 
+// Each model's part shapes, for what its loose parts touch (see touchingFrom, decision 259):
+// read by readShapes, at the top of each test file (load can't wait, inside a describe).
+const shapesRead = new Map<string, Touching>();
+export async function readShapes(file: string) {
+  if (!shapesRead.has(file)) shapesRead.set(file, await touchingOf(file));
+}
+
 export function load(file: string) {
+  const touching = shapesRead.get(file);
+  if (!touching) throw new Error(`${file}: its shapes aren't read: await readShapes('${file}') at the top of the test file`);
   const model = packed[file.replace(/^models\//, '').replace(/\.(ldr|mpd)$/, '')];
   const primitives = new Set(model?.primitives ?? []);
   const text = readFileSync(file, 'utf-8');
   const { parts, paths } = parseModel(text, (name) => primitives.has(name), (name) => model?.pieces[name] ?? null);
-  const mech = inferMechanism(parts, table, roles, paths);
+  const mech = inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), touching);
   const kin = new Kinematics(mech);
   kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100; // as the viewer does
   // The body of the n-th copy of a part.
@@ -59,5 +70,5 @@ export function load(file: string) {
   // The bodies that turn on the frame on a 2x2 turntable (whose top, 3679, they carry).
   const turntables = () =>
     mech.joints.flatMap((j) => (j.kind === 'revolute' && j.bodyA === 0 && mech.bodies[j.bodyB].parts.some((p) => parts[p].name === '3679.dat') ? [j.bodyB] : []));
-  return { parts, paths, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables };
+  return { parts, paths, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables, touching };
 }

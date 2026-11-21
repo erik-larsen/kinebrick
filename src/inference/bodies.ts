@@ -17,7 +17,8 @@ const ON_THE_GROUND = 48;
 // height, as LDraw's y, which points down): a group whose lowest part is no more than two bricks
 // above the model's lowest part. Without the vehicle beside it, the 8245's robot's head, which
 // flips back on its axle, had more structure parts than the robot's body it turns on.
-export function groupIntoBodies(count: number, roles: string[], connections: Connection[], notFrame: Set<number> = new Set(), heights: number[] = []): number[] {
+// `framePart`: a part of the frame, chosen elsewhere (see buildMechanism's tracks placed by hand).
+export function groupIntoBodies(count: number, roles: string[], connections: Connection[], notFrame: Set<number> = new Set(), heights: number[] = [], framePart = -1): number[] {
   // Union-find: each part points towards a representative part of its group.
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {
@@ -69,6 +70,7 @@ export function groupIntoBodies(count: number, roles: string[], connections: Con
   }
   let frame = -1;
   for (const [group, n] of structureCount) if (frame < 0 || n > structureCount.get(frame)!) frame = group;
+  if (framePart >= 0) frame = find(framePart);
 
   // Number the groups 0, 1, 2, ... with the frame (if any) first.
   const bodyOfLeader = new Map<number, number>();

@@ -1,0 +1,288 @@
+{
+  "set": "42038-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:47:05.246Z",
+  "load": 10,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 905,
+  "seconds": 52,
+  "functions": [
+    {
+      "function": 2,
+      "does": "With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed.",
+      "verdict": "shown",
+      "msOneCall": 41,
+      "msPerStep": 11,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 1,
+        "B": 14
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p190 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 487,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              143.24
+            ],
+            "p67 18946": [
+              0,
+              143.24
+            ],
+            "p6 94925": [
+              0,
+              143.24
+            ],
+            "p111 62520": [
+              0,
+              143.24
+            ],
+            "p113 92695": [
+              0.05,
+              143.24
+            ],
+            "p112 92696": [
+              1.23,
+              0.1
+            ],
+            "p323 64782": [
+              0.62,
+              1.77
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p190 59443",
+          "way": -1,
+          "asked": 0.8,
+          "went": -0.8,
+          "ms": 258,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              76.39
+            ],
+            "p67 18946": [
+              0,
+              76.39
+            ],
+            "p6 94925": [
+              0,
+              76.39
+            ],
+            "p111 62520": [
+              0,
+              76.39
+            ],
+            "p113 92695": [
+              0.03,
+              76.39
+            ],
+            "p112 92696": [
+              0.66,
+              0.06
+            ],
+            "p323 64782": [
+              0.33,
+              0.95
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p190 59443",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p69 18947",
+            "p67 18946",
+            "p6 94925",
+            "p111 62520",
+            "p113 92695",
+            "p112 92696",
+            "p323 64782"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 26
+    },
+    {
+      "function": 3,
+      "does": "With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom.",
+      "verdict": "shown",
+      "msOneCall": 44,
+      "msPerStep": 12,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 1,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p190 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 519,
+          "msOneCall": 44,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              143.24
+            ],
+            "p71 18946": [
+              0,
+              143.24
+            ],
+            "p33 94925": [
+              0,
+              143.24
+            ],
+            "p46 6589": [
+              0,
+              143.24
+            ],
+            "p107 32269": [
+              0,
+              85.94
+            ],
+            "p862 62520": [
+              0,
+              85.94
+            ],
+            "p866 92696": [
+              1.47,
+              0.41
+            ],
+            "p888 41239": [
+              1.26,
+              0.6
+            ],
+            "p323 64782": [
+              0,
+              0
+            ],
+            "p112 92696": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p190 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 6,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              0
+            ],
+            "p71 18946": [
+              0,
+              0
+            ],
+            "p33 94925": [
+              0,
+              0
+            ],
+            "p46 6589": [
+              0,
+              0
+            ],
+            "p107 32269": [
+              0,
+              0
+            ],
+            "p862 62520": [
+              0,
+              0
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ],
+            "p323 64782": [
+              0,
+              0
+            ],
+            "p112 92696": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p190 59443",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p69 18947",
+            "p71 18946",
+            "p33 94925",
+            "p46 6589",
+            "p107 32269",
+            "p862 62520",
+            "p866 92696",
+            "p888 41239"
+          ],
+          "stops": [
+            "866/864"
+          ]
+        }
+      ],
+      "seconds": 26
+    }
+  ]
+}

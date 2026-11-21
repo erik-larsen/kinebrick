@@ -146,13 +146,15 @@
     ]
   },
   "generated": {
-    "commit": "f20682cb",
-    "date": "2026-11-17",
-    "seconds": 31,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 48,
     "counts": {
-      "works": 3,
+      "works": 4,
       "no": 1,
-      "partly": 2,
+      "partly": 1,
+      "not back": 1,
+      "moved whole": 1,
       "skipped": 1
     },
     "loose": [
@@ -167,32 +169,59 @@
       "p618 u9269",
       "p619 u9269"
     ],
+    "errata": {
+      "applied": [
+        "right-rear-driver-in-its-hub",
+        "left-rear-driver-in-its-hub",
+        "left-front-rocker-p559",
+        "left-front-rocker-p560",
+        "left-front-rocker-p561",
+        "left-front-rocker-p562",
+        "left-front-rocker-p563",
+        "left-front-rocker-p564",
+        "left-front-rocker-p568",
+        "left-front-rocker-p569",
+        "left-front-pushrod-p571",
+        "left-front-shock-cylinder-p566",
+        "right-front-rocker-p573",
+        "right-front-rocker-p574",
+        "right-front-rocker-p575",
+        "right-front-rocker-p576",
+        "right-front-rocker-p577",
+        "right-front-rocker-p578",
+        "right-front-rocker-p579",
+        "right-front-rocker-p581",
+        "right-front-pushrod-p580",
+        "right-front-shock-cylinder-p582"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.1,
+            -1.1
           ]
         ],
         "rates": [
           {
             "p644 32269": [
               1,
-              7.56e-31
+              9.38e-32
             ],
             "p497 32270": [
               1,
               0
             ],
             "p585 92909": [
-              0.464,
-              12
+              0.448,
+              11.6
             ],
             "p588 92909": [
-              0.457,
-              11.9
+              0.446,
+              11.6
             ],
             "p350 92909": [
               0,
@@ -233,7 +262,31 @@
             ]
           ]
         ],
-        "seconds": 12.6
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            545,
+            589,
+            1.1,
+            1.1
+          ],
+          [
+            0,
+            -1,
+            555,
+            590,
+            1.1,
+            1.1
+          ]
+        ],
+        "seconds": 6.7
       },
       {
         "result": "no",
@@ -273,6 +326,12 @@
             ]
           }
         ],
+        "expected": [
+          {
+            "p274 62821": 1,
+            "p395 2853": 2.33
+          }
+        ],
         "back": [
           [
             [
@@ -307,7 +366,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -372,111 +431,125 @@
         ],
         "cause": "part-fixed",
         "detail": "p105 92693c01",
-        "seconds": 4.1
+        "seconds": 2.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.02,
-            -0.03
+            0.07,
+            -0.07
           ],
           [
-            0.03,
-            -0.02
+            0.07,
+            -0.07
           ]
-        ],
-        "still": [
-          "p559 32056",
-          "p566 4255"
         ],
         "rates": [
           {
             "p559 32056": [
-              0,
-              1.76e-12
+              1.77,
+              0
             ],
             "p566 4255": [
-              0,
-              1.76e-12
+              0.0728,
+              70.9
             ]
           },
           {
             "p559 32056": [
-              0,
-              1.76e-12
+              1.75,
+              2.13e-13
             ],
             "p566 4255": [
-              0,
-              1.76e-12
+              0.17,
+              70
             ]
           }
         ],
         "back": [
           [
             [
-              0.01,
-              0
+              0.11,
+              0.13
             ],
             [
-              0.02,
-              0
+              0.04,
+              0.1
             ]
           ],
           [
             [
-              0.02,
-              0
+              0.04,
+              0.1
             ],
             [
-              0.01,
-              0
+              0.11,
+              0.13
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.15,
+              0.13
             ],
             [
-              0,
-              0
+              0.04,
+              0.1
             ]
           ],
           [
             [
-              0,
-              0
+              0.04,
+              0.1
             ],
             [
-              0,
-              0
+              0.15,
+              0.13
             ]
           ]
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p559 32056",
+            "p566 4255"
+          ],
+          [
+            "p559 32056",
+            "p566 4255"
+          ]
         ],
-        "judged": [
-          1,
-          0
+        "collisionStops": [
+          [
+            0,
+            1,
+            499,
+            566,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            -1,
+            499,
+            566,
+            0.07,
+            0.07
+          ]
         ],
-        "cause": "not-driven",
-        "detail": "p559 32056",
-        "seconds": 2.7
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -494,33 +567,33 @@
           {
             "p298 87083": [
               2.7,
-              1.15e-12
+              4.02e-13
             ],
             "p464 4254": [
               0.163,
               108
             ],
             "p304 87083": [
-              4.21e-7,
-              1.42e-13
+              0.377,
+              3.18e-13
             ],
             "p459 4254": [
-              4.21e-7,
-              1.15e-12
+              0.00288,
+              15.1
             ]
           },
           {
             "p298 87083": [
-              0,
-              1.59e-13
+              0.454,
+              1.18e-12
             ],
             "p464 4254": [
-              0,
-              1.59e-13
+              0.00419,
+              18.1
             ],
             "p304 87083": [
               2.7,
-              1.28e-12
+              3.18e-13
             ],
             "p459 4254": [
               0.163,
@@ -531,46 +604,50 @@
         "back": [
           [
             [
-              0.22,
+              0.52,
               0.23
             ],
             [
-              0.15,
-              0.16
+              0.4,
+              0.22
             ]
           ],
           [
             [
-              0.15,
+              0.13,
               0.16
             ],
             [
-              0.22,
-              0.23
+              0.83,
+              1.24
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0.22
+              0.45,
+              0.23
             ],
             [
-              0,
-              0.15
+              0.43,
+              0.22
             ]
           ],
           [
             [
-              0,
+              0.06,
               0.15
             ],
             [
-              0,
-              0.22
+              0.22,
+              1.24
             ]
           ]
+        ],
+        "strayed": [
+          "p336 32293",
+          "p395 2853"
         ],
         "stop": [
           [
@@ -585,14 +662,18 @@
         "movedBy": [
           [
             "p298 87083",
-            "p464 4254"
+            "p464 4254",
+            "p304 87083",
+            "p459 4254"
           ],
           [
+            "p298 87083",
+            "p464 4254",
             "p304 87083",
             "p459 4254"
           ]
         ],
-        "seconds": 2.8
+        "seconds": 4
       },
       {
         "result": "skipped",
@@ -662,8 +743,9 @@
           [],
           []
         ],
-        "seconds": 8.3
+        "seconds": 25.3
       }
-    ]
+    ],
+    "peak": 840
   }
 }

@@ -1,0 +1,581 @@
+{
+  "set": "42004-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:07:23.970Z",
+  "load": 17.3,
+  "part": "A",
+  "parts": 244,
+  "seconds": 31,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the cab roof steers: its vertical shaft drives a 20-tooth gear that turns the turntable between the front and rear halves, so the machine bends in the middle (articulated steering).",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 2,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p108 32270",
+          "way": 1,
+          "asked": 1.1,
+          "went": 1.1,
+          "ms": 78,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p5 99010": [
+              0,
+              27.01
+            ],
+            "p25 40490": [
+              29.54,
+              27.01
+            ],
+            "p20 32269": [
+              0,
+              37.82
+            ],
+            "p236 56145": [
+              0,
+              0
+            ],
+            "p238 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p108 32270",
+          "way": -1,
+          "asked": 1.1,
+          "went": -1.1,
+          "ms": 66,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p5 99010": [
+              0,
+              27.01
+            ],
+            "p25 40490": [
+              29.54,
+              27.01
+            ],
+            "p20 32269": [
+              0,
+              37.82
+            ],
+            "p236 56145": [
+              0,
+              0
+            ],
+            "p238 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    },
+    {
+      "function": 2,
+      "does": "Turning the exhaust stack raises and lowers the loader arm: the stack is the top of a vertical shaft with a worm at its foot, which turns an 8-tooth gear on the loader arm's pivot axle.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 3,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p40 55013",
+        "way": -1,
+        "went": -1.116,
+        "asked": 1.5,
+        "by": [
+          "29/201"
+        ]
+      },
+      "stops": [
+        "29/201"
+      ],
+      "A": [
+        {
+          "control": "p40 55013",
+          "way": 1,
+          "asked": 1.1,
+          "went": 1.1,
+          "ms": 107,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p50 44294": [
+              0,
+              7.88
+            ],
+            "p227 32270": [
+              16.02,
+              3.14
+            ],
+            "p229 2951": [
+              22.15,
+              0.01
+            ],
+            "p25 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p40 55013",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.116,
+          "ms": 110,
+          "msOneCall": 8,
+          "stops": [
+            "29/201"
+          ],
+          "moved": {
+            "p50 44294": [
+              0,
+              7.99
+            ],
+            "p227 32270": [
+              16.26,
+              4.59
+            ],
+            "p229 2951": [
+              22.48,
+              0.66
+            ],
+            "p25 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p40 55013",
+          "judged": "stands",
+          "why": "stopped at -1.116 rad (29/201); kinds worm-drive"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
+      "verdict": "not shown",
+      "why": "A: p229 2951 against p50 44294, p207 6632 against p50 44294 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p227 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p229 2951 against p50 44294": [
+              0,
+              0
+            ],
+            "p207 6632 against p50 44294": [
+              0,
+              0
+            ],
+            "p50 44294": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p227 32270",
+          "way": -1,
+          "asked": 1.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p229 2951 against p50 44294": [
+              0,
+              0
+            ],
+            "p207 6632 against p50 44294": [
+              0,
+              0
+            ],
+            "p50 44294": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 4,
+      "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 8,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p147 55013",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.279,
+          "ms": 61,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p159 32525": [
+              1.17,
+              0.6
+            ],
+            "p158 10928": [
+              0.42,
+              2.02
+            ],
+            "p25 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p147 55013",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.314,
+          "ms": 54,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p159 32525": [
+              1.25,
+              0.64
+            ],
+            "p158 10928": [
+              0.45,
+              2.22
+            ],
+            "p25 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 5,
+      "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
+      "verdict": "not shown",
+      "why": "A: p169 40490 against p159 32525 not moved",
+      "msOneCall": 10,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p171 32270",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 3,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p169 40490 against p159 32525": [
+              0,
+              0
+            ],
+            "p159 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p171 32270",
+          "way": -1,
+          "asked": 1.47,
+          "went": 0,
+          "ms": 3,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p169 40490 against p159 32525": [
+              0,
+              0
+            ],
+            "p159 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 6,
+      "does": "The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand.",
+      "verdict": "not shown",
+      "why": "A: p177 30394 against p169 40490 not moved",
+      "msOneCall": 10,
+      "msPerStep": null,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p177 30394",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p177 30394 against p169 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p177 30394",
+          "way": -1,
+          "asked": 0.33,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p177 30394 against p169 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 7,
+      "does": "The four wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 3,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p234 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 111,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p234 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 110,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p236 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 109,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p236 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 112,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p238 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 109,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p238 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 111,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p240 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 109,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p240 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 110,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    },
+    {
+      "function": 8,
+      "does": "The steering wheel in the cab turns on its pin; it isn't connected to anything.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p97 30663",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 30663",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

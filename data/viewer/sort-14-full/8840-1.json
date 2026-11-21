@@ -1,0 +1,248 @@
+{
+  "set": "8840-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:04:49.706Z",
+  "load": 8.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 206,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls.",
+      "verdict": "not shown",
+      "why": "A: p101 3648a against p86 3701, p116 2853 against p86 3701, p117 2852 against p86 3701, p120 2851 against p86 3701, p121 2851 against p86 3701 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p210 4266",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p101 3648a against p86 3701": [
+              0,
+              0
+            ],
+            "p116 2853 against p86 3701": [
+              0,
+              0
+            ],
+            "p117 2852 against p86 3701": [
+              0,
+              0
+            ],
+            "p120 2851 against p86 3701": [
+              0,
+              0
+            ],
+            "p121 2851 against p86 3701": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p210 4266",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p101 3648a against p86 3701": [
+              0,
+              0
+            ],
+            "p116 2853 against p86 3701": [
+              0,
+              0
+            ],
+            "p117 2852 against p86 3701": [
+              0,
+              0
+            ],
+            "p120 2851 against p86 3701": [
+              0,
+              0
+            ],
+            "p121 2851 against p86 3701": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 5
+    },
+    {
+      "function": 5,
+      "does": "Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p206 4266",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p206 4266",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p208 4266",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p208 4266",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p210 4266",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p210 4266",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p213 4266",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p213 4266",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 7
+    }
+  ]
+}

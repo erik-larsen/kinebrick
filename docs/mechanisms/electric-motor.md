@@ -4,14 +4,14 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 39 works, 44 partly, 1 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 39 works, 41 partly, 2 no, 5 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 1 of 18 | 2 of 32 | 2 of 23 | 20 of 83 | 6 of 21 |
-| Functions | 0 | 1 | 4 | 9 | 52 | 23 |
+| Functions | 0 | 1 | 4 | 9 | 50 | 23 |
 
 ## Details
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 - *PF XL:* The left XL motor drives the left track: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the left front sprocket. (partly)
 - *PF XL:* The right XL motor drives the right track the same way, from the back: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the right rear sprocket. (partly)
-- *PF M:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
+- *PF M:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
 - *PF M:* The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
@@ -63,23 +63,21 @@ Each detail by the set it first appears in.
 - The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (works)
 - The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (works)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
-- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
+- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (works)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *PF:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output. (works)
+- *PF:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (works)
 - With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
-- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
+- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (works)
 - With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
-- With the yellow lever down and the red knob pushed in, the motor works a fourth output. (works)
+- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (partly)
 
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
-- *PF M:* A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with four driving rings; two blue-handled change-over levers, one on each side of the chassis behind the cab, choose which of the crane's four functions it works. (works)
-- With one lever to one side, the motor lowers and raises the outrigger legs behind the cab, which stand the truck firm for craning. (partly)
-- With the same lever the other way, the motor slews the crane round on its mast through a worm. (partly)
-- With the other lever to one side, the motor raises and lowers the crane's main boom by spinning the big linear actuator under it. (partly)
-- With the other lever the other way, the motor folds the crane's outer arm (the yellow jib) in and out with a second linear actuator. (works)
+- *PF M:* A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift. (works)
+- With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it. (works)
+- With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (works)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
@@ -163,9 +161,9 @@ Each detail by the set it first appears in.
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
-- *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
+- *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
 - *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (works)
-- *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (works)
+- *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (partly)
 - *Control+ L:* The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs. (works)
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
@@ -193,19 +191,19 @@ Each detail by the set it first appears in.
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
 - *XL:* The XL motor in the rear frame, just behind the articulation, drives all six wheels through the gearbox: the gearbox's output runs back to a centre differential, which drives the front axle's differential through a shaft with universal joints across the articulation, and both rear axles' differentials by a shaft running back between them, to the portal hubs. (partly)
-- *L:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (partly)
+- *L:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (works)
 - *XL:* With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back. (partly)
 - *large angular:* The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab. (partly)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (works)
+- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (no)
 - The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (partly)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
 - *L:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
-- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (partly)
+- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (works)
 - *L:* The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

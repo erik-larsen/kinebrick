@@ -1,0 +1,118 @@
+{
+  "set": "8274-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:01.127Z",
+  "load": 18.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1008,
+  "seconds": 7,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 20-tooth gear on top behind the cab steers the rear wheels: its shaft runs down to a knob gear that meshes with the knob gear on the 8-tooth pinions' shaft, which drive the rack between the rear wheels.",
+      "verdict": "shown",
+      "msOneCall": 54,
+      "msPerStep": 9,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p539 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 396,
+          "msOneCall": 54,
+          "stops": [],
+          "moved": {
+            "p257 32072": [
+              0,
+              85.94
+            ],
+            "p260 32072": [
+              0,
+              85.94
+            ],
+            "p261 3647": [
+              0,
+              85.94
+            ],
+            "p237 3743": [
+              15.36,
+              0
+            ],
+            "p964 56145": [
+              23.04,
+              28.81
+            ],
+            "p966 56145": [
+              23.04,
+              28.81
+            ],
+            "p968 41896": [
+              0,
+              0
+            ],
+            "p970 41896": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p539 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 354,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p257 32072": [
+              0,
+              85.94
+            ],
+            "p260 32072": [
+              0,
+              85.94
+            ],
+            "p261 3647": [
+              0,
+              85.94
+            ],
+            "p237 3743": [
+              15.36,
+              0
+            ],
+            "p964 56145": [
+              23.04,
+              28.81
+            ],
+            "p966 56145": [
+              23.04,
+              28.81
+            ],
+            "p968 41896": [
+              0,
+              0
+            ],
+            "p970 41896": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    }
+  ]
+}

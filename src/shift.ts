@@ -148,13 +148,28 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: strin
     }
     if (roles[i] !== 'changeover catch') return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
-    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
+    // A catch found before keeps its ring, wherever the ring has slid since: measured afresh, a
+    // ring slid half a stud may no longer be CATCH_REACH from the catch to within 1 LDU (the
+    // 42054's lever A, its fork drawn 2 LDU off the ring's middle: slid one way the ring stood
+    // 61.2 LDU off, the catch was lost, and the ring never came back).
+    const kept = known.find((c) => c.part === i && !c.rotary);
+    const ring = (kept && sliders.find((s) => s.part === kept.ring.part)) ?? sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
     if (!ring) return;
     const before = known.find((c) => c.part === i && c.ring.part === ring.part && !c.rotary);
     const fork = before ? before.fork.clone() : new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
     catches.push({ part: i, ring, fork });
   });
   return catches;
+}
+
+// Whether any catch now holds its ring at another click-in place than the one it's in, the parts
+// placed by `placeOf` (a part as built, moved to where it now is): asked after each step of a
+// motor (decision 152 of 2026-11-17), so only the parts catchShifts looks at are placed.
+export function catchShiftDue(parts: PlacedPart[], placeOf: (i: number) => Matrix4, table: ConnectionTable, catches: Catch[]): boolean {
+  if (!catches.length) return false;
+  const now = parts.slice();
+  for (const c of catches) for (const i of [c.part, c.ring.part, c.ring.base]) if (i >= 0) now[i] = { ...parts[i], matrix: placeOf(i) };
+  return catchShifts(now, table, catches).size > 0;
 }
 
 // Where the catches have swung their rings' forks to: for each ring whose fork is now nearer

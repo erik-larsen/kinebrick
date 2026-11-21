@@ -1,0 +1,79 @@
+{
+  "set": "42110-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T06:04:03.581Z",
+  "load": 41.1,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2565,
+  "seconds": 1058,
+  "functions": [
+    {
+      "function": 12,
+      "does": "Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways.",
+      "verdict": "not shown",
+      "why": "A: p1504 32065 not moved",
+      "msOneCall": 20,
+      "msPerStep": null,
+      "time": {
+        "open": 37,
+        "collisions": 23,
+        "first": 0,
+        "reach": 16,
+        "A": 15,
+        "B": 967
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2614 42110 - 49294",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p1504 32065": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2614 42110 - 49294",
+          "way": -1,
+          "asked": 0.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1504 32065": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2614 42110 - 49294",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1504 32065"
+          ],
+          "stops": [
+            "1503/1508",
+            "726/1501",
+            "1435/1504"
+          ]
+        }
+      ],
+      "seconds": 1058
+    }
+  ]
+}

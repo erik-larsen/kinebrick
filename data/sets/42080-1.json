@@ -19,12 +19,12 @@
           "pneumatic-pump"
         ],
         "source": "book: page 203 (the Power Functions and Pneumatic V2 badges; picture 1 of each pair shows the battery box switched on); the pump's build steps are inferred",
-        "control": "p820 44294",
+        "control": "p654 99499",
         "moves": [
           "p821 6632",
-          "p653 42080 - 26674-f1"
+          "p653 42080 - u9413"
         ],
-        "note": "the motor (p654 99499) is the control; the axle named is its output. Unsure which parts make up the pump"
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself (p654 99499); the axle p820 named before is a pivot at the pump's head that rocks, not the motor's output (booklet page 92). Unsure which parts make up the pump"
       },
       {
         "does": "The black gear on the machine's left, by the cab, turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
@@ -129,16 +129,15 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
-    "date": "2026-11-17",
-    "seconds": 191,
+    "commit": "1ec25498",
+    "date": "2026-11-21",
+    "seconds": 118,
     "counts": {
-      "works": 7,
-      "not back": 4,
+      "works": 5,
+      "not back": 2,
       "torn": 1,
-      "pivoted": 1,
-      "free-turned": 3,
-      "no": 1
+      "no": 3,
+      "free-turned": 1
     },
     "loose": [
       "p403 165",
@@ -370,177 +369,132 @@
         "result": "works",
         "turned": [
           [
-            -1.17,
-            0.38
+            0.1,
+            -0.1
           ]
         ],
         "rates": [
           {
             "p821 6632": [
-              1,
-              183
+              2.99,
+              540
             ],
-            "p653 42080 - 26674-f1": [
-              1,
-              161
+            "p653 42080 - u9413": [
+              3.19,
+              474
             ]
           }
         ],
         "back": [
           [
             [
-              1.76,
-              0.32
+              223.65,
+              79.49
             ],
             [
-              551.53,
-              119.65
+              350.92,
+              120.77
             ]
           ]
         ],
         "torn": [
           [
             [
-              1.76,
-              0.32
+              223.65,
+              79.49
             ],
             [
-              551.53,
-              119.65
+              350.92,
+              120.77
             ]
           ]
         ],
         "strayed": [
-          "p1041 26603",
-          "p2048 42080 - 10197"
+          "p2048 42080 - 10197",
+          "p2044 3062b"
         ],
         "stop": [
           [
-            "stuck",
+            "limit",
             "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "pivoted": {
-          "slide": 415.94,
-          "rise": 270.32,
-          "tyre": "p1074 55976"
-        },
-        "seconds": 63.1
+        "collisionStops": [
+          [
+            0,
+            1,
+            56,
+            71,
+            0.1,
+            0.1
+          ]
+        ],
+        "seconds": 71.2
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p1946 19466c01",
+          "p1949 19466c01",
+          "p1317 3703"
         ],
         "rates": [
-          {
-            "p1946 19466c01": [
-              1,
-              102
-            ],
-            "p1949 19466c01": [
-              1,
-              76.2
-            ],
-            "p1317 3703": [
-              1,
-              122
-            ]
-          }
+          {}
         ],
         "back": [
-          [
-            [
-              3.52,
-              1.12
-            ],
-            [
-              4.78,
-              1.12
-            ]
-          ]
+          []
         ],
         "torn": [
-          [
-            [
-              3.52,
-              1.12
-            ],
-            [
-              4.78,
-              1.12
-            ]
-          ]
+          []
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p1535 74695",
-          "p2029 60474"
+        "why": [
+          "p1893 42080 - 18575 is part of the frame"
         ],
-        "freed": 1,
-        "seconds": 32.2
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0.1
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p1421 2947b",
+          "p1522 42080 - 27266",
+          "p1529 42080 - 27266"
         ],
         "rates": [
-          {
-            "p1421 2947b": [
-              0.969,
-              498
-            ],
-            "p1522 42080 - 27266": [
-              1.01,
-              631
-            ],
-            "p1529 42080 - 27266": [
-              0.948,
-              624
-            ]
-          }
+          {}
         ],
         "back": [
-          [
-            [
-              3.52,
-              1.12
-            ],
-            [
-              4.78,
-              1.12
-            ]
-          ]
+          []
         ],
         "torn": [
-          [
-            [
-              3.52,
-              1.12
-            ],
-            [
-              4.78,
-              1.12
-            ]
-          ]
+          []
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p1535 74695",
-          "p2029 60474"
+        "why": [
+          "p1892 42080 - 18575 is part of the frame"
         ],
-        "freed": 1,
-        "seconds": 31.3
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -582,7 +536,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -636,7 +590,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 10.9
+        "seconds": 8.3
       },
       {
         "result": "no",
@@ -736,7 +690,7 @@
             ]
           ]
         ],
-        "seconds": 5.8
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -958,8 +912,9 @@
           [],
           []
         ],
-        "seconds": 42.5
+        "seconds": 26.9
       }
-    ]
+    ],
+    "peak": 694
   }
 }

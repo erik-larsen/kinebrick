@@ -1,0 +1,164 @@
+{
+  "set": "8208-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:02:18.524Z",
+  "load": 23.9,
+  "part": "A",
+  "parts": 49,
+  "seconds": 8,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin).",
+      "verdict": "not shown",
+      "why": "A: p42 3706, p43 3706, p47 3705, p49 2994 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p36 32073",
+          "way": 1,
+          "asked": 0.77,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p42 3706": [
+              0,
+              0
+            ],
+            "p43 3706": [
+              0,
+              0
+            ],
+            "p47 3705": [
+              0,
+              0
+            ],
+            "p49 2994": [
+              0,
+              0
+            ],
+            "p26 2994": [
+              0,
+              0
+            ],
+            "p0 6575": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p36 32073",
+          "way": -1,
+          "asked": 0.77,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p42 3706": [
+              0,
+              0
+            ],
+            "p43 3706": [
+              0,
+              0
+            ],
+            "p47 3705": [
+              0,
+              0
+            ],
+            "p49 2994": [
+              0,
+              0
+            ],
+            "p26 2994": [
+              0,
+              0
+            ],
+            "p0 6575": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 2,
+      "does": "Both wheels roll freely: the front one on an axle between the fork's two toggle joints, the rear one on an axle at the back of the frame; nothing is driven, and the cams of the engine are fixed.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p49 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 6,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p49 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 6,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p26 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 8,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p26 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

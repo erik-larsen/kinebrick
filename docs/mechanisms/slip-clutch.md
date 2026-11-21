@@ -4,14 +4,14 @@ A clutch gear or band slips when the part it drives can go no further, at the en
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The rubber bands slip when the wheels are held, so the motor can't stall.
 
-Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 5 works, 6 partly, 4 skipped.
+Used in 10 of the 186 surveyed sets, by 14 functions. Kinebrick: 5 works, 5 partly, 4 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 1 of 18 | 0 of 32 | 1 of 23 | 8 of 83 | 1 of 21 |
-| Functions | 0 | 1 | 0 | 3 | 10 | 1 |
+| Sets | 0 of 9 | 1 of 18 | 0 of 32 | 1 of 23 | 7 of 83 | 1 of 21 |
+| Functions | 0 | 1 | 0 | 3 | 9 | 1 |
 
 ## Details
 
@@ -29,13 +29,9 @@ Each detail by the set it first appears in.
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
-- One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
+- One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
 - The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 - The two 24 tooth clutch gears slip when the blade or the ripper reaches the end of its travel, so the M motors can keep running without breaking anything. (skipped)
-
-**2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
-
-- With the same lever the other way, the motor slews the crane round on its mast through a worm. (partly)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
@@ -69,7 +65,7 @@ Each detail by the set it first appears in.
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
-- The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (partly)
+- The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (works)
 
 ---
 

@@ -1,0 +1,196 @@
+{
+  "set": "42040-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:02:52.406Z",
+  "load": 34.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 567,
+  "seconds": 502,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks).",
+      "verdict": "not shown",
+      "msOneCall": 40,
+      "msPerStep": 10,
+      "time": {
+        "open": 10,
+        "collisions": 4,
+        "first": 0,
+        "reach": 3,
+        "A": 3,
+        "B": 240
+      },
+      "stop": {
+        "control": "p251 32140",
+        "way": -1,
+        "went": -0.068,
+        "asked": 0.17,
+        "by": [
+          "165/254"
+        ]
+      },
+      "stops": [
+        "165/254"
+      ],
+      "A": [
+        {
+          "control": "p251 32140",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 20,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p251 32140",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.068,
+          "ms": 15,
+          "msOneCall": 13,
+          "stops": [
+            "165/254"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p251 32140",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "165/254",
+            "251/424",
+            "254/422",
+            "249/254"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p251 32140",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the hatch flips forward to fill the tank, far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115)",
+      "seconds": 260
+    },
+    {
+      "function": 7,
+      "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
+      "verdict": "not shown",
+      "why": "A: p371 2739a, p330 2736, p338 18945 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 11,
+        "collisions": 5,
+        "first": 0,
+        "reach": 34,
+        "A": 50,
+        "B": 142
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p358 6572",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.4,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p358 6572",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p358 6572",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "moved": [
+            "p371 2739a",
+            "p330 2736",
+            "p338 18945"
+          ],
+          "stops": [
+            "304/339"
+          ]
+        }
+      ],
+      "seconds": 242
+    }
+  ]
+}

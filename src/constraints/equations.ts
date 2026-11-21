@@ -4,19 +4,21 @@
 
 import { Vector3 } from 'three';
 import type { Kinematics, Slip } from '../kinematics.ts';
-import type { Row } from '../linalg.ts';
+import { BodyRow } from '../linalg.ts';
+
+export { BodyRow };
 
 // Where a kind of connection writes its rows.
 export interface Equations {
   n: number; // a row's length: 6 numbers for each body (see Kinematics)
   gaps: boolean; // whether each row's gap is wanted, for closing the loops (see closeLoops): some take work to find
   skipTree: boolean; // the tree's joints left out, for solving in the tree's coordinates (see treeBasis), which keep them together anyway
-  slip: Slip | null; // if given, gets the tyres' rows for scrubbing, travel, lift and rise, which then aren't equations (see freeMotions)
+  slip: Slip<BodyRow> | null; // if given, gets the tyres' rows for scrubbing, travel, lift and rise, which then aren't equations (see freeMotions)
   // Adds a row, all equal to zero, with its gap: what its motion should be to close how far the
   // connection has come apart (0 for a connection that can't come apart); its weight: how much
   // it counts in closing the loops (1, or DRIVE_WEIGHT); and its play: how much it counts in
   // taking up play (see playMotion), 0 for a row that may not open.
-  add(row: Row, gap?: number, weight?: number, play?: number): void;
+  add(row: BodyRow, gap?: number, weight?: number, play?: number): void;
 }
 
 // A kind of connection: adds its rows to the equations, where the bodies are now.
@@ -46,18 +48,18 @@ export function acrossDirections(d: Vector3): Vector3[] {
 }
 
 // Adds (sign ×) component k of a body's point velocity, v + ω × p, to an equation row.
-export function addPointVelocity(row: Row, body: number, p: Vector3, k: number, sign: number) {
+export function addPointVelocity(row: BodyRow, body: number, p: Vector3, k: number, sign: number) {
   const w = 6 * body;
   const v = w + 3;
   if (k === 0) {
-    row[w + 1] += sign * p.z;
-    row[w + 2] -= sign * p.y;
+    row.add(w + 1, sign * p.z);
+    row.sub(w + 2, sign * p.y);
   } else if (k === 1) {
-    row[w + 2] += sign * p.x;
-    row[w + 0] -= sign * p.z;
+    row.add(w + 2, sign * p.x);
+    row.sub(w + 0, sign * p.z);
   } else {
-    row[w + 0] += sign * p.y;
-    row[w + 1] -= sign * p.x;
+    row.add(w + 0, sign * p.y);
+    row.sub(w + 1, sign * p.x);
   }
-  row[v + k] += sign;
+  row.add(v + k, sign);
 }

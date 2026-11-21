@@ -5,9 +5,11 @@ import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr, parseModel, PlacedPart } from '../src/ldr.ts';
 import { Vector3 } from 'three';
 import { findMeshes, type Gear, inferMechanism, Mechanism } from '../src/mechanism.ts';
+import { touchingOf } from './touching.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+const testCarTouching = await touchingOf('models/8865-Test Car.mpd');
 
 function load(file: string) {
   const parts = parseLdr(readFileSync(file, 'utf-8'));
@@ -110,7 +112,7 @@ describe('differential', () => {
 describe("the 8865 Test Car's differential, the old one (73071), with its 28 tooth crown wheel", () => {
   const packed = JSON.parse(readFileSync('packed/models.json', 'utf-8'))['8865-Test Car'];
   const { parts, paths } = parseModel(readFileSync('models/8865-Test Car.mpd', 'utf-8'), (n) => packed.primitives.includes(n), (n) => packed.pieces[n] ?? null);
-  const mech = inferMechanism(parts, table, roles, paths);
+  const mech = inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), testCarTouching);
   const gear = (part: number) => mech.gears.findIndex((g) => g.part === part);
   const has = (a: number, b: number) => mech.meshes.some((m) => (m.gearA === gear(a) && m.gearB === gear(b)) || (m.gearA === gear(b) && m.gearB === gear(a)));
 

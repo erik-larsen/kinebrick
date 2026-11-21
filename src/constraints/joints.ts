@@ -3,7 +3,7 @@
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import type { Joint } from '../mechanism.ts';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, acrossDirections, axisOf, STUD, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, acrossDirections, axisOf, STUD, type Equations } from './equations.ts';
 
 export function joints(solver: Kinematics, eq: Equations) {
   const { n, add, gaps, skipTree } = eq;
@@ -24,7 +24,7 @@ export function joints(solver: Kinematics, eq: Equations) {
     const twist = loose ? misalignment(solver, joint) : new Vector3();
 
     const pointRow = (dir: Vector3) => {
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
         addPointVelocity(row, joint.bodyA, c, k, dir.getComponent(k));
         addPointVelocity(row, joint.bodyB, c, k, -dir.getComponent(k));
@@ -32,10 +32,10 @@ export function joints(solver: Kinematics, eq: Equations) {
       add(row, gap.dot(dir), 1, closesLoop ? 1 : 0);
     };
     const turnRow = (dir: Vector3) => {
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
-        row[6 * joint.bodyA + k] += dir.getComponent(k);
-        row[6 * joint.bodyB + k] -= dir.getComponent(k);
+        row.add(6 * joint.bodyA + k, dir.getComponent(k));
+        row.sub(6 * joint.bodyB + k, dir.getComponent(k));
       }
       add(row, -twist.dot(dir), 1, closesLoop ? STUD : 0);
     };

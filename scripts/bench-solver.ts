@@ -48,7 +48,7 @@ for (const { set, fn } of drags) {
   const f = data.curated.functions[fn - 1];
   const model = f.model ?? data.curated.model;
   let t = performance.now();
-  const { mech, kin } = loadModel(model, model.startsWith('omr/'));
+  const { mech, kin } = await loadModel(model, model.startsWith('omr/'));
   const load = seconds(t);
   const part = (ref: string) => Number(/^p(\d+)/.exec(ref)![1]);
   const controls = [f.control].flat().map((r: string) => mech.bodyOf[part(r)]);

@@ -1,0 +1,723 @@
+{
+  "set": "42110-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T18:29:06.860Z",
+  "load": 16.3,
+  "part": "A",
+  "parts": 2565,
+  "seconds": 693,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear knob on the roof (hand of God) steers the front wheels: a vertical shaft down the left of the cab turns a long shaft forward through bevel gears, and a train of gears at the front turns the 12 tooth pinion on the steering rack, which pushes the steering links to swing both front hubs.",
+      "verdict": "shown",
+      "msOneCall": 980,
+      "msPerStep": 442,
+      "time": {
+        "open": 59,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 65,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2368 42110 - 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18934,
+          "msOneCall": 876,
+          "stops": [],
+          "moved": {
+            "p171 87761": [
+              12.96,
+              0
+            ],
+            "p81 42110 - 23801": [
+              0,
+              18.94
+            ],
+            "p86 42110 - 23801": [
+              0,
+              18.87
+            ],
+            "p509 42110 - 23801": [
+              0,
+              0
+            ],
+            "p516 42110 - 23801": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2368 42110 - 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17890,
+          "msOneCall": 980,
+          "stops": [],
+          "moved": {
+            "p171 87761": [
+              12.96,
+              0
+            ],
+            "p81 42110 - 23801": [
+              0,
+              18.87
+            ],
+            "p86 42110 - 23801": [
+              0,
+              18.94
+            ],
+            "p509 42110 - 23801": [
+              0,
+              0
+            ],
+            "p516 42110 - 23801": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 130
+    },
+    {
+      "function": 2,
+      "does": "The steering wheel turns with the steering, through universal joints from the steering gear train.",
+      "verdict": "shown",
+      "msOneCall": 781,
+      "msPerStep": 443,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 68,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2368 42110 - 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18966,
+          "msOneCall": 764,
+          "stops": [],
+          "moved": {
+            "p849 2741": [
+              0.02,
+              103.13
+            ]
+          }
+        },
+        {
+          "control": "p2368 42110 - 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18573,
+          "msOneCall": 781,
+          "stops": [],
+          "moved": {
+            "p849 2741": [
+              0.02,
+              103.13
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 89
+    },
+    {
+      "function": 4,
+      "does": "Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p242 3708 listed to stay moved",
+      "msOneCall": 839,
+      "msPerStep": 404,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 60,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2606 42110 - 49294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17318,
+          "msOneCall": 839,
+          "stops": [],
+          "moved": {
+            "p2613 42110 - 49294": [
+              0,
+              85.93
+            ],
+            "p38 62821": [
+              0,
+              85.94
+            ],
+            "p242 3708": [
+              0,
+              1.53
+            ]
+          }
+        },
+        {
+          "control": "p2606 42110 - 49294",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 17048,
+          "msOneCall": 809,
+          "stops": [],
+          "moved": {
+            "p2613 42110 - 49294": [
+              0,
+              85.96
+            ],
+            "p38 62821": [
+              0,
+              85.95
+            ],
+            "p242 3708": [
+              0,
+              1.53
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 78
+    },
+    {
+      "function": 5,
+      "does": "The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
+      "verdict": "not decided",
+      "msOneCall": 427,
+      "msPerStep": 178,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 24,
+        "B": 0
+      },
+      "stop": {
+        "control": "p385 3706",
+        "way": -1,
+        "went": -0.102,
+        "asked": 0.17,
+        "by": [
+          "648/714"
+        ]
+      },
+      "stops": [
+        "648/714"
+      ],
+      "A": [
+        {
+          "control": "p385 3706",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 568,
+          "msOneCall": 427,
+          "stops": [],
+          "moved": {
+            "p723 32072": [
+              0,
+              7.45
+            ],
+            "p715 32072": [
+              0,
+              7.45
+            ],
+            "p578 42110 - 35188": [
+              0,
+              7.45
+            ]
+          }
+        },
+        {
+          "control": "p385 3706",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.102,
+          "ms": 517,
+          "msOneCall": 411,
+          "stops": [
+            "648/714"
+          ],
+          "moved": {
+            "p723 32072": [
+              0,
+              5.84
+            ],
+            "p715 32072": [
+              0,
+              5.84
+            ],
+            "p578 42110 - 35188": [
+              0,
+              5.84
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p385 3706",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.102 rad (648/714)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "byHand": {
+        "stop": "not decided",
+        "why": "the knob rocks to shift; whether 0.13 to 0.17 rad indexes the gearbox is not seen in the picture",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p385 3706: a travel of 0.2 rad or less each way, stopped at -0.102 rad (648/714)",
+      "seconds": 40
+    },
+    {
+      "function": 6,
+      "does": "The D-N-R lever in the console slides a driving ring in the gearbox in front of the console, choosing forward, neutral or reverse.",
+      "verdict": "not shown",
+      "why": "A: p330 18947 not moved",
+      "msOneCall": 435,
+      "msPerStep": 87,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 26,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p377 6641",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 1237,
+          "msOneCall": 435,
+          "stops": [],
+          "moved": {
+            "p330 18947": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p377 6641",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 1209,
+          "msOneCall": 424,
+          "stops": [],
+          "moved": {
+            "p330 18947": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 42
+    },
+    {
+      "function": 7,
+      "does": "The HI-LO lever beside it slides the other driving ring in the same gearbox, choosing the high or low range.",
+      "verdict": "not shown",
+      "why": "A: p331 18947 not moved",
+      "msOneCall": 430,
+      "msPerStep": 86,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 26,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p368 6641",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 1224,
+          "msOneCall": 430,
+          "stops": [],
+          "moved": {
+            "p331 18947": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p368 6641",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 1224,
+          "msOneCall": 429,
+          "stops": [],
+          "moved": {
+            "p331 18947": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 43
+    },
+    {
+      "function": 8,
+      "does": "The winch in the front bumper: the hook pulls the string out, and turning the 12 tooth knob under the bonnet, front right, winds it back in through a vertical shaft, bevel gears and a shaft across the bumper to the reel.",
+      "verdict": "shown",
+      "msOneCall": 405,
+      "msPerStep": 70,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 59,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p896 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2825,
+          "msOneCall": 369,
+          "stops": [],
+          "moved": {
+            "p958 32012": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p896 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2984,
+          "msOneCall": 405,
+          "stops": [],
+          "moved": {
+            "p958 32012": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 73
+    },
+    {
+      "function": 10,
+      "does": "The two front doors open on their hinges.",
+      "verdict": "shown",
+      "msOneCall": 712,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 36,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1816 64782",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 300,
+          "msOneCall": 675,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1816 64782",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 276,
+          "msOneCall": 712,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1902 64782",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 273,
+          "msOneCall": 639,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1902 64782",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 268,
+          "msOneCall": 638,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 50
+    },
+    {
+      "function": 11,
+      "does": "The bonnet lifts, hinged at its back edge, showing the engine.",
+      "verdict": "shown",
+      "msOneCall": 444,
+      "msPerStep": 70,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 28,
+        "B": 0
+      },
+      "stop": {
+        "control": "p2203 62531",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "2139/2207"
+        ]
+      },
+      "stops": [
+        "2139/2207"
+      ],
+      "A": [
+        {
+          "control": "p2203 62531",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 370,
+          "msOneCall": 396,
+          "stops": [
+            "2139/2207"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p2203 62531",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2989,
+          "msOneCall": 444,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p2203 62531",
+          "judged": "stands",
+          "why": "stopped at +0 rad (2139/2207); kinds hinge: bonnet"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 45
+    },
+    {
+      "function": 12,
+      "does": "Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways.",
+      "verdict": "not shown",
+      "why": "A: p1504 32065 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 21,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2614 42110 - 49294",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1504 32065": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2614 42110 - 49294",
+          "way": -1,
+          "asked": 0.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1504 32065": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 36
+    },
+    {
+      "function": 13,
+      "does": "The lid of the box on the roof rack lifts open.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2586 32739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2586 32739",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 30
+    },
+    {
+      "function": 14,
+      "does": "The lid of the case on the right side of the roof swings open.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 21,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2475 3710",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2475 3710",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 35
+    }
+  ]
+}

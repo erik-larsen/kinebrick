@@ -1,0 +1,143 @@
+{
+  "set": "950-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:00:30.237Z",
+  "load": 13.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 198,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p152 3651",
+        "way": -1,
+        "went": -0.593,
+        "asked": 1.5,
+        "by": [
+          "127/152"
+        ]
+      },
+      "stops": [
+        "127/152",
+        "127/155"
+      ],
+      "A": [
+        {
+          "control": "p152 3651",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 5,
+          "msOneCall": 10,
+          "stops": [
+            "127/152"
+          ],
+          "moved": {
+            "p199 3710": [
+              0,
+              0
+            ],
+            "p44 3679": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p152 3651",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.593,
+          "ms": 15,
+          "msOneCall": 3,
+          "stops": [
+            "127/152"
+          ],
+          "moved": {
+            "p199 3710": [
+              0,
+              0
+            ],
+            "p44 3679": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p155 3651",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.593,
+          "ms": 12,
+          "msOneCall": 2,
+          "stops": [
+            "127/155"
+          ],
+          "moved": {
+            "p199 3710": [
+              0,
+              0
+            ],
+            "p44 3679": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p155 3651",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 3,
+          "msOneCall": 2,
+          "stops": [
+            "127/155"
+          ],
+          "moved": {
+            "p199 3710": [
+              0,
+              0
+            ],
+            "p44 3679": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p152 3651",
+          "judged": "stands",
+          "why": "stopped at +0.07 rad (127/152); -0.593 rad (127/152); kinds for-show: levers"
+        },
+        {
+          "control": "p155 3651",
+          "judged": "stands",
+          "why": "stopped at +0.593 rad (127/155); -0.07 rad (127/155); kinds for-show: levers"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

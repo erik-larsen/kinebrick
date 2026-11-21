@@ -1,0 +1,250 @@
+{
+  "set": "42024-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:29:08.239Z",
+  "part": "A",
+  "parts": 950,
+  "seconds": 66,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on top of the upright axle behind the cab steers the front wheels: knob gears at the axle's foot turn a lengthwise axle whose 12-tooth gear drives the steering rack between the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 108,
+      "msPerStep": 15,
+      "time": {
+        "open": 17,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p468 32269",
+          "way": 1,
+          "asked": 1.23,
+          "went": 1.23,
+          "ms": 541,
+          "msOneCall": 108,
+          "stops": [],
+          "moved": {
+            "p462 32072 against p0 4519": [
+              0,
+              70.47
+            ],
+            "p439 32072 against p0 4519": [
+              0,
+              70.47
+            ],
+            "p436 32270 against p0 4519": [
+              0,
+              70.47
+            ],
+            "p249 87761 against p0 4519": [
+              18.96,
+              0
+            ],
+            "p223 48989 against p0 4519": [
+              9.48,
+              27.42
+            ],
+            "p224 48989 against p0 4519": [
+              9.48,
+              27.42
+            ],
+            "p610 62271c01 against p0 4519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p468 32269",
+          "way": -1,
+          "asked": 1.23,
+          "went": -1.23,
+          "ms": 514,
+          "msOneCall": 59,
+          "stops": [],
+          "moved": {
+            "p462 32072 against p0 4519": [
+              0,
+              70.47
+            ],
+            "p439 32072 against p0 4519": [
+              0,
+              70.47
+            ],
+            "p436 32270 against p0 4519": [
+              0,
+              70.47
+            ],
+            "p249 87761 against p0 4519": [
+              18.96,
+              0
+            ],
+            "p223 48989 against p0 4519": [
+              9.48,
+              27.42
+            ],
+            "p224 48989 against p0 4519": [
+              9.48,
+              27.42
+            ],
+            "p610 62271c01 against p0 4519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 26
+    },
+    {
+      "function": 5,
+      "does": "The front wheels and the four wheels on the two rear axles roll freely; nothing is driven from them.",
+      "verdict": "shown",
+      "msOneCall": 78,
+      "msPerStep": 27,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 35,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p241 15413",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 153,
+          "msOneCall": 78,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p241 15413",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 162,
+          "msOneCall": 69,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p242 15413",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 151,
+          "msOneCall": 66,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p242 15413",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 144,
+          "msOneCall": 60,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p239 15413",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 137,
+          "msOneCall": 57,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p239 15413",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 141,
+          "msOneCall": 55,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p240 15413",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 135,
+          "msOneCall": 57,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p240 15413",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 139,
+          "msOneCall": 57,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p237 15413",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 154,
+          "msOneCall": 66,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p237 15413",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 176,
+          "msOneCall": 78,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p238 15413",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 160,
+          "msOneCall": 66,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p238 15413",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 145,
+          "msOneCall": 62,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 39
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "set": "852-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:09:05.912Z",
+  "load": 24.2,
+  "part": "A",
+  "parts": 339,
+  "seconds": 9,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p143 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p253 3708": [
+              0,
+              28.65
+            ],
+            "p282 3034": [
+              138.55,
+              28.65
+            ],
+            "p229 3650a": [
+              0,
+              85.94
+            ],
+            "p230 3706": [
+              0,
+              85.94
+            ],
+            "p184 3709b": [
+              0,
+              0
+            ],
+            "p37 3707": [
+              0,
+              0
+            ],
+            "p193 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p143 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 53,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p253 3708": [
+              0,
+              28.65
+            ],
+            "p282 3034": [
+              138.55,
+              28.65
+            ],
+            "p229 3650a": [
+              0,
+              85.94
+            ],
+            "p230 3706": [
+              0,
+              85.94
+            ],
+            "p184 3709b": [
+              0,
+              0
+            ],
+            "p37 3707": [
+              0,
+              0
+            ],
+            "p193 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    }
+  ]
+}

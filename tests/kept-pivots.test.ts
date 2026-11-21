@@ -6,6 +6,7 @@ import { pivotsKey } from '../src/pivotsKey.ts';
 import { keptModels } from '../scripts/collision-pairs.ts';
 import { PIVOTS_DIR } from '../scripts/kept-pivots.ts';
 import { readParts } from '../scripts/load-model.ts';
+import { touchingOf } from './touching.ts';
 
 // The kept results of the rule for stuck actuators (npm run pivots) are filed under a key made
 // from what they depend on: a kept file whose model has changed since is stale, and a reading
@@ -32,10 +33,10 @@ describe('the kept pins of stuck actuators', () => {
   // (npm run pivots -- --check does this for every model.)
   for (const set of ['42023-1', '42061-1', '42006-1', '42050-1']) {
     const model = models.find((m) => m.includes(`/${set} `));
-    it.skipIf(!model || !existsSync(model))(`frees what is kept, worked out again: ${set}`, () => {
-      const { parts, table, paths } = readParts(model!, true);
+    it.skipIf(!model || !existsSync(model) || !existsSync('ldraw/parts'))(`frees what is kept, worked out again: ${set}`, async () => {
+      const { text, parts, table, paths } = readParts(model!, true);
       const kept = JSON.parse(readFileSync(`${PIVOTS_DIR}/${keptFileName(model!)}.json`, 'utf-8'));
-      expect(actuatorPivots(parts, table, roles, paths)).toEqual(kept.pins);
+      expect(actuatorPivots(parts, table, roles, paths, await touchingOf(model!, text, parts))).toEqual(kept.pins);
     }, 60000);
   }
 });

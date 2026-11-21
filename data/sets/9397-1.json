@@ -13,31 +13,43 @@
       {
         "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf",
         "file": "omr/instructions/9397-1-3.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf",
+        "file": "omr/instructions/9397-1-4.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf",
+        "file": "omr/instructions/9397-1-5.pdf"
       }
     ]
   },
   "curated": {
     "model": "omr/9397-1 Logging Truck.mpd",
-    "instructions": "omr/instructions/9397-1-1.pdf, 9397-1-2.pdf, 9397-1-3.pdf (all three books build the logging truck; function pages: 9397-1-3.pdf pages 58-59)",
+    "instructions": "omr/instructions/9397-1-4.pdf and 9397-1-5.pdf (LEGO's two books for the set's second model, a container truck with a snowplough, which is the model in the OMR's file; neither has a functions page, so each function's source is the build steps that show its mechanism); 9397-1-1.pdf to 9397-1-3.pdf build the logging truck, which is not the model in the file. The function list is for the snowplough (Erik chose it, \"9397 - go with the snowplow\", and signed the list, \"Sign 9397 list\", 2026-11-17)",
     "functions": [
       {
-        "does": "A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with four driving rings; two blue-handled change-over levers, one on each side of the chassis behind the cab, choose which of the crane's four functions it works.",
+        "does": "A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift.",
         "mechanisms": [
           "electric-motor: PF M",
-          "function-selector: 4 functions"
+          "function-selector"
         ],
-        "source": "book 1: gearbox sub-build steps 1-15 (pages 43-48) and steps 50-57; book 3: function pages 58-59 (each photo shows a lever's position and the battery box switch)",
+        "source": "book 4 (the snowplough): the gearbox sub-build, pages 37 to 61 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=37 to #page=61), the motor at page 59; book 5: the battery box, step 142 (page 103, https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=103)",
         "control": "p240 58120",
-        "note": "levers: p217 3749 (handle, with catch p216 6641) and p221 3749 (handle, with catch p220 6641); battery box switch p1287 920; the motor is a control like a crank, and each function below names it with the lever setting it needs"
+        "moves": [
+          "p157 6538a",
+          "p160 6538a"
+        ],
+        "note": "the two ring shafts turn whenever the motor runs: p157 6538a on axle p170 3737 (ring p171) and p160 6538a on axle p161 44294 (ring p162); levers: p217 3749 (catch p216 6641, ring p171 6539) and p221 3749 (catch p220 6641, ring p162 6539); of their four settings two drive something (functions 2 and 3); p217 at -20 and p221 at +20 reach nothing that moves; inferred: the snowplough booklets have no functions page"
       },
       {
-        "does": "With one lever to one side, the motor lowers and raises the outrigger legs behind the cab, which stand the truck firm for craning.",
+        "does": "With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it.",
         "mechanisms": [
           "electric-motor",
           "function-selector",
-          "linear-actuator: outriggers"
+          "linear-actuator: container tipper"
         ],
-        "source": "book 3: page 58 top (lever, switch, and the up-down arrow at the striped leg)",
+        "source": "book 5: steps 110 to 113, pages 34 to 37 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=34 to #page=37): the tipping frame pinned at the rear and the actuator rod fixed to it",
         "control": "p240 58120",
         "first": [
           {
@@ -46,41 +58,19 @@
           }
         ],
         "moves": [
-          "p464 92695 against p463 92693c01"
+          "p624 62274c01 against p623 62271c01",
+          "p894 64178"
         ],
-        "note": "inferred: the legs' parts weren't pinned down; the small linear actuator p463 is the likeliest drive. The lever direction (20 LDU) is a guess"
+        "note": "inferred: which lever and which way, from the gearbox trial (p217 at +20 turns the actuator input p622); the tipping frame is body p894 (64178, with its beams and 48989s), hinged at the rear"
       },
       {
-        "does": "With the same lever the other way, the motor slews the crane round on its mast through a worm.",
+        "does": "With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator.",
         "mechanisms": [
           "electric-motor",
           "function-selector",
-          "worm-drive",
-          "slip-clutch",
-          "turntable: crane"
+          "linear-actuator: plough"
         ],
-        "source": "book 3: page 58 bottom (the turning arrow round the crane's mast)",
-        "control": "p240 58120",
-        "first": [
-          {
-            "control": "p217 3749",
-            "by": -20
-          }
-        ],
-        "moves": [
-          "p534 4716",
-          "p528 32140"
-        ],
-        "note": "the worm p534 drives a 24-tooth clutch gear (p551-p553) so the slewing slips at its ends; inferred: lever direction"
-      },
-      {
-        "does": "With the other lever to one side, the motor raises and lowers the crane's main boom by spinning the big linear actuator under it.",
-        "mechanisms": [
-          "electric-motor",
-          "function-selector",
-          "linear-actuator: boom"
-        ],
-        "source": "book 3: page 59 top (the arrow lifting the boom)",
+        "source": "book 4: step 84, page 143 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=143): the plough mount swinging on its pins; book 5: the plough, steps 152 to 160, pages 130 to 145 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=130 to #page=145)",
         "control": "p240 58120",
         "first": [
           {
@@ -89,42 +79,17 @@
           }
         ],
         "moves": [
-          "p624 62274c01 against p623 62271c01"
+          "p464 92695 against p463 92693c01",
+          "p1340 32073"
         ],
-        "note": "inferred: lever direction"
-      },
-      {
-        "does": "With the other lever the other way, the motor folds the crane's outer arm (the yellow jib) in and out with a second linear actuator.",
-        "mechanisms": [
-          "electric-motor",
-          "function-selector",
-          "linear-actuator: jib"
-        ],
-        "source": "book 3: page 59 bottom (the arrow at the jib's tip)",
-        "control": "p240 58120",
-        "first": [
-          {
-            "control": "p221 3749",
-            "by": 20
-          }
-        ],
-        "note": "inferred: lever direction and the jib actuator's part"
-      },
-      {
-        "does": "The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level.",
-        "mechanisms": [
-          "worm-drive: grab",
-          "hinge: grab claws",
-          "hangs-free: grab"
-        ],
-        "source": "book 3: steps 140-152 (grab sub-build); inferred: the book draws no arrow for it"
+        "note": "inferred: which lever and which way, from the gearbox trial"
       },
       {
         "does": "The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack.",
         "mechanisms": [
           "rack-steering"
         ],
-        "source": "book 1: steering sub-build (steps 37-42); inferred: no arrow in the book",
+        "source": "book 5: step 115, page 39 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=39): the upright steering shaft put in behind the cab",
         "control": "p1000 3706",
         "moves": [
           "p813 32072",
@@ -140,7 +105,7 @@
           "piston-engine: 4 cylinders",
           "differential"
         ],
-        "source": "book 1: steps 1-24 (differential, long shaft, engine); inferred: no arrow in the book",
+        "source": "inferred from the build: book 4, the engine, steps 86 and 87, pages 145 to 151 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=145 to #page=151)",
         "control": [
           "p1450 86652",
           "p1451 86652"
@@ -160,7 +125,7 @@
         "mechanisms": [
           "free-wheels"
         ],
-        "source": "book 3: step 154",
+        "source": "book 5: step 163, page 148 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=148)",
         "control": [
           "p1448 86652",
           "p1449 86652",
@@ -173,20 +138,18 @@
     ],
     "questions": [
       {
-        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+        "question": "The snowplough booklets have no functions page: which lever and which way works the tipper and the plough is from Kinebrick's gearbox trial, and the plough's hand-set worm (p1346 4716 on the 24 tooth gear p1352) is not listed yet."
       }
     ]
   },
   "generated": {
-    "commit": "f20682cb",
-    "date": "2026-11-17",
-    "seconds": 4978,
+    "commit": "12570d92",
+    "date": "2026-11-21",
+    "seconds": 3379,
     "counts": {
-      "works": 5,
-      "not back": 2,
-      "moved whole": 2,
-      "partly": 3,
-      "not checked": 1
+      "works": 6,
+      "not back": 1,
+      "moved whole": 1
     },
     "loose": [
       "p241 58124",
@@ -212,6 +175,13 @@
       "p1286 918",
       "p1287 920"
     ],
+    "errata": {
+      "applied": [
+        "plough-link-beam-level",
+        "plough-link-pin-in-its-hole"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "works",
@@ -222,17 +192,26 @@
           ]
         ],
         "rates": [
-          {}
+          {
+            "p157 6538a": [
+              1,
+              0
+            ],
+            "p160 6538a": [
+              1,
+              7.64e-14
+            ]
+          }
         ],
         "back": [
           [
             [
               0,
-              1.34
+              6.63
             ],
             [
               0,
-              0.96
+              8.57
             ]
           ]
         ],
@@ -240,182 +219,66 @@
           [
             [
               0,
-              1.34
+              6.63
             ],
             [
               0,
-              0.96
+              8.57
             ]
           ]
         ],
         "strayed": [
           "p184 6542b"
         ],
-        "seconds": 97.2
+        "seconds": 25.4,
+        "peak": 841
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            4.1,
+            -4.2
           ]
-        ],
-        "still": [
-          "p464 92695 against p463 92693c01"
-        ],
-        "rates": [
-          {
-            "p464 92695 against p463 92693c01": [
-              0,
-              4.61e-28
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "part-fixed",
-        "detail": "p464 92695 against p463 92693c01",
-        "seconds": 743.6
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "still": [
-          "p534 4716",
-          "p528 32140"
-        ],
-        "rates": [
-          {
-            "p534 4716": [
-              0,
-              9.47e-51
-            ],
-            "p528 32140": [
-              0,
-              0
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "part-fixed",
-        "detail": "p528 32140",
-        "seconds": 424.6
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            0.07,
-            -0.07
-          ]
-        ],
-        "still": [
-          "p624 62274c01 against p623 62271c01"
         ],
         "rates": [
           {
             "p624 62274c01 against p623 62271c01": [
-              6.32e-7,
-              1.66e-11
+              7.02e-8,
+              0.356
+            ],
+            "p894 64178": [
+              0.003,
+              0.24
             ]
           }
         ],
         "back": [
           [
             [
-              0.07,
-              0.36
+              0,
+              0
             ],
             [
-              0.09,
-              0.65
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.02,
-              0.36
+              0,
+              0
             ],
             [
-              0.02,
-              0.65
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p186 6542b"
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "control-jammed",
-        "onPlay": 0.2,
-        "seconds": 356.5
+        "seconds": 862.3,
+        "peak": 837
       },
       {
         "result": "works",
@@ -426,17 +289,26 @@
           ]
         ],
         "rates": [
-          {}
+          {
+            "p464 92695 against p463 92693c01": [
+              1,
+              0.000138
+            ],
+            "p1340 32073": [
+              0.00000257,
+              1.03
+            ]
+          }
         ],
         "back": [
           [
             [
               0,
-              0.16
+              0
             ],
             [
               0,
-              0.19
+              0
             ]
           ]
         ],
@@ -444,18 +316,16 @@
           [
             [
               0,
-              0.16
+              0
             ],
             [
               0,
-              0.19
+              0
             ]
           ]
         ],
-        "seconds": 425.4
-      },
-      {
-        "result": "not checked"
+        "seconds": 383,
+        "peak": 830
       },
       {
         "result": "works",
@@ -513,7 +383,8 @@
             ]
           ]
         ],
-        "seconds": 96.9
+        "seconds": 25.2,
+        "peak": 860
       },
       {
         "result": "works",
@@ -531,11 +402,11 @@
           {
             "p22 62821": [
               1,
-              4.4e-13
+              5.64e-13
             ],
             "p778 2853": [
               1.4,
-              1.63e-13
+              1.51e-13
             ],
             "p779 2852": [
               0.192,
@@ -553,11 +424,11 @@
           {
             "p22 62821": [
               1,
-              7.3e-13
+              7.54e-13
             ],
             "p778 2853": [
               1.4,
-              1.97e-13
+              2.03e-13
             ],
             "p779 2852": [
               0.192,
@@ -639,7 +510,8 @@
             "p790 2851 against p775 2850a"
           ]
         ],
-        "seconds": 860.9
+        "seconds": 670.9,
+        "peak": 785
       },
       {
         "result": "works",
@@ -809,7 +681,8 @@
           [],
           []
         ],
-        "seconds": 1967.5
+        "seconds": 1385.1,
+        "peak": 817
       }
     ]
   }

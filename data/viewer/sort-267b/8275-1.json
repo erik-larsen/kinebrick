@@ -1,0 +1,138 @@
+{
+  "set": "8275-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T04:13:25.534Z",
+  "load": 35.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1366,
+  "seconds": 1952,
+  "functions": [
+    {
+      "function": 5,
+      "does": "One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame.",
+      "verdict": "not shown",
+      "why": "A: p2715 3703, p2731 3703 not moved; B: the control could not be seen",
+      "msOneCall": 133,
+      "msPerStep": 42,
+      "time": {
+        "open": 26,
+        "collisions": 12,
+        "first": 0,
+        "reach": 941,
+        "A": 974,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p125 3647",
+          "way": 1,
+          "shift": {
+            "seen": false
+          },
+          "asked": 6,
+          "went": 1.814,
+          "ms": 2180,
+          "msOneCall": 133,
+          "stops": [],
+          "moved": {
+            "p1449 4716": [
+              0,
+              34.64
+            ],
+            "p1465 3648b": [
+              0,
+              1.44
+            ],
+            "p2780 32140": [
+              0,
+              1.44
+            ],
+            "p2805 32140": [
+              0,
+              1.44
+            ],
+            "p2901 6178": [
+              1,
+              0.11
+            ],
+            "p2715 3703": [
+              0.23,
+              0.11
+            ],
+            "p2731 3703": [
+              0.23,
+              0.11
+            ],
+            "p2983 32278": [
+              0,
+              0
+            ],
+            "p2611 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p125 3647",
+          "way": -1,
+          "shift": {
+            "seen": false
+          },
+          "asked": 6.8,
+          "went": -1.778,
+          "ms": 2047,
+          "msOneCall": 45,
+          "stops": [],
+          "moved": {
+            "p1449 4716": [
+              0,
+              33.97
+            ],
+            "p1465 3648b": [
+              0,
+              1.42
+            ],
+            "p2780 32140": [
+              0,
+              1.42
+            ],
+            "p2805 32140": [
+              0,
+              1.42
+            ],
+            "p2901 6178": [
+              0.94,
+              0.1
+            ],
+            "p2715 3703": [
+              0.22,
+              0.1
+            ],
+            "p2731 3703": [
+              0.22,
+              0.1
+            ],
+            "p2983 32278": [
+              0,
+              0
+            ],
+            "p2611 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p125 3647",
+          "seen": false
+        }
+      ],
+      "seconds": 1952
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "set": "8419-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:25.198Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 280,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams.",
+      "verdict": "shown",
+      "msOneCall": 22,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p205 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 130,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {
+            "p180 4716 against p212 32009": [
+              0,
+              85.94
+            ],
+            "p172 3648b against p212 32009": [
+              0,
+              3.58
+            ],
+            "p144 32449 against p212 32009": [
+              1.56,
+              2.98
+            ],
+            "p148 32063 against p212 32009": [
+              3.34,
+              1.03
+            ],
+            "p115 32140 against p212 32009": [
+              1.88,
+              1.71
+            ],
+            "p284 2950 against p212 32009": [
+              10.79,
+              1.71
+            ],
+            "p204 32269 against p212 32009": [
+              0,
+              0
+            ],
+            "p57 48168 against p0 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p205 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 115,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p180 4716 against p212 32009": [
+              0,
+              85.94
+            ],
+            "p172 3648b against p212 32009": [
+              0,
+              3.58
+            ],
+            "p144 32449 against p212 32009": [
+              1.49,
+              2.84
+            ],
+            "p148 32063 against p212 32009": [
+              3.17,
+              1.02
+            ],
+            "p115 32140 against p212 32009": [
+              1.79,
+              1.62
+            ],
+            "p284 2950 against p212 32009": [
+              10.25,
+              1.62
+            ],
+            "p204 32269 against p212 32009": [
+              0,
+              0
+            ],
+            "p57 48168 against p0 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "set": "42055-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T21:55:08.270Z",
+  "load": 16.1,
+  "part": "A",
+  "parts": 3896,
+  "seconds": 498,
+  "functions": [
+    {
+      "function": 5,
+      "does": "With the red lever at the back of the upper works in the middle (N), the black gear behind it, used as a knob, swings the discharge belt round on its own turntable, so it can be aimed over the mine truck: its shaft runs forward through two universal joints and bevel gears to a 12 tooth gear on the turntable.",
+      "verdict": "shown",
+      "msOneCall": 1268,
+      "msPerStep": 189,
+      "time": {
+        "open": 47,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 38,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1714 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 8085,
+          "msOneCall": 903,
+          "stops": [],
+          "moved": {
+            "p1616 32270": [
+              0,
+              4.19
+            ],
+            "p1599 42055 - 18938": [
+              0,
+              17.19
+            ],
+            "p1869 57520": [
+              170.78,
+              19.74
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1714 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 7957,
+          "msOneCall": 1268,
+          "stops": [],
+          "moved": {
+            "p1616 32270": [
+              0,
+              4.19
+            ],
+            "p1599 42055 - 18938": [
+              0,
+              17.19
+            ],
+            "p1869 57520": [
+              170.78,
+              19.74
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 89
+    },
+    {
+      "function": 6,
+      "does": "The red lever at the back, pushed down (lock), slides a driving ring that ties the discharge belt's turntable to the crawler base, so when the upper works slews the discharge belt stays aimed where it was, over the truck.",
+      "verdict": "not shown",
+      "why": "A: p1710 18947 not moved",
+      "msOneCall": 745,
+      "msPerStep": 204,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 30,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1678 6641",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 2912,
+          "msOneCall": 745,
+          "stops": [],
+          "moved": {
+            "p1710 18947": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1678 6641",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 2901,
+          "msOneCall": 717,
+          "stops": [],
+          "moved": {
+            "p1710 18947": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 48
+    },
+    {
+      "function": 7,
+      "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
+      "verdict": "not shown",
+      "why": "A: p2535 42055 - 55615 not moved",
+      "msOneCall": 847,
+      "msPerStep": 330,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 37,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1809 32269",
+          "way": 1,
+          "asked": 2.6,
+          "went": 0,
+          "ms": 484,
+          "msOneCall": 508,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              0,
+              0
+            ],
+            "p1513 62274c01": [
+              0,
+              0
+            ],
+            "p2535 42055 - 55615": [
+              0,
+              0
+            ],
+            "p3153 58121": [
+              0,
+              0
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1809 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14131,
+          "msOneCall": 847,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              1,
+              0.08
+            ],
+            "p1513 62274c01": [
+              1,
+              0.08
+            ],
+            "p2535 42055 - 55615": [
+              0.58,
+              0.15
+            ],
+            "p3153 58121": [
+              1.59,
+              0.15
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 55
+    },
+    {
+      "function": 8,
+      "does": "The mine truck's white knob on top of its cab, a 12 tooth gear on an upright axle, steers its front wheels: knob gears at the bottom of the axle turn a 12 tooth gear on a gear rack across the front axle.",
+      "verdict": "shown",
+      "msOneCall": 645,
+      "msPerStep": 132,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p156 32270",
+          "way": 1,
+          "asked": 0.93,
+          "went": 0.93,
+          "ms": 3512,
+          "msOneCall": 645,
+          "stops": [],
+          "moved": {
+            "p13 32072": [
+              0,
+              53.29
+            ],
+            "p51 32072": [
+              0,
+              53.29
+            ],
+            "p49 87761": [
+              14.16,
+              0
+            ],
+            "p294 56145": [
+              17.7,
+              26.15
+            ],
+            "p303 56145": [
+              17.7,
+              26.15
+            ],
+            "p297 56145": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p156 32270",
+          "way": -1,
+          "asked": 0.93,
+          "went": -0.93,
+          "ms": 3450,
+          "msOneCall": 603,
+          "stops": [],
+          "moved": {
+            "p13 32072": [
+              0,
+              53.29
+            ],
+            "p51 32072": [
+              0,
+              53.29
+            ],
+            "p49 87761": [
+              14.16,
+              0
+            ],
+            "p294 56145": [
+              17.7,
+              26.15
+            ],
+            "p303 56145": [
+              17.7,
+              26.15
+            ],
+            "p297 56145": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 45
+    },
+    {
+      "function": 9,
+      "does": "The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it.",
+      "verdict": "not shown",
+      "why": "A: p263 18945, p264 18945 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 19,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p276 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p263 18945": [
+              0,
+              0
+            ],
+            "p264 18945": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p276 32270",
+          "way": -1,
+          "asked": 1.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p263 18945": [
+              0,
+              0
+            ],
+            "p264 18945": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 35
+    },
+    {
+      "function": 10,
+      "does": "The mine truck's four wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 1170,
+      "msPerStep": 334,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 206,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p294 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13868,
+          "msOneCall": 1124,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p294 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14303,
+          "msOneCall": 1108,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p303 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13873,
+          "msOneCall": 1080,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p303 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13901,
+          "msOneCall": 1094,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p297 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14019,
+          "msOneCall": 1103,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p297 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13914,
+          "msOneCall": 1170,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p300 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13853,
+          "msOneCall": 1114,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p300 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13940,
+          "msOneCall": 1104,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 226
+    }
+  ]
+}

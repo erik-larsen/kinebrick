@@ -1,0 +1,331 @@
+{
+  "set": "42023-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:08:21.243Z",
+  "load": 22.9,
+  "part": "A",
+  "parts": 314,
+  "seconds": 23,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Turning the cross axle under the front of the dump body (by either end) tips the body: a 20-tooth bevel gear on it turns the 12-tooth bevel on a linear actuator, which pushes up under the body so it tips back on its hinge at the rear.",
+      "verdict": "shown",
+      "msOneCall": 20,
+      "msPerStep": 4,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p313 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 180,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p317 32198 against p0 32140": [
+              0,
+              85.94
+            ],
+            "p247 6589 against p0 32140": [
+              0.51,
+              141.43
+            ],
+            "p244 92695 against p245 92693c01": [
+              0,
+              141.42
+            ],
+            "p213 64782 against p300 32278": [
+              4.17,
+              2.05
+            ],
+            "p300 32278 against p0 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p313 59443",
+          "way": -1,
+          "asked": 0.3,
+          "went": -0.3,
+          "ms": 36,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p317 32198 against p0 32140": [
+              0,
+              17.19
+            ],
+            "p247 6589 against p0 32140": [
+              0.11,
+              28.25
+            ],
+            "p244 92695 against p245 92693c01": [
+              0,
+              28.25
+            ],
+            "p213 64782 against p300 32278": [
+              0.9,
+              0.44
+            ],
+            "p300 32278 against p0 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p314 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 158,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p317 32198 against p0 32140": [
+              0,
+              85.94
+            ],
+            "p247 6589 against p0 32140": [
+              0.51,
+              141.43
+            ],
+            "p244 92695 against p245 92693c01": [
+              0,
+              141.42
+            ],
+            "p213 64782 against p300 32278": [
+              4.17,
+              2.05
+            ],
+            "p300 32278 against p0 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p314 59443",
+          "way": -1,
+          "asked": 0.3,
+          "went": -0.3,
+          "ms": 37,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p317 32198 against p0 32140": [
+              0,
+              17.19
+            ],
+            "p247 6589 against p0 32140": [
+              0.11,
+              28.25
+            ],
+            "p244 92695 against p245 92693c01": [
+              0,
+              28.25
+            ],
+            "p213 64782 against p300 32278": [
+              0.9,
+              0.44
+            ],
+            "p300 32278 against p0 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 3,
+      "does": "The dump body's tailgate hangs from pins at its top and swings open as the body tips, letting the load out.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p256 6558",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "206/249"
+        ]
+      },
+      "stops": [
+        "206/249"
+      ],
+      "A": [
+        {
+          "control": "p256 6558",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 59,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p256 6558 against p213 64782": [
+              109.11,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p256 6558",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 4,
+          "msOneCall": 4,
+          "stops": [
+            "206/249"
+          ],
+          "moved": {
+            "p256 6558 against p213 64782": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p256 6558",
+          "judged": "stands",
+          "why": "stopped at -0 rad (206/249); kinds hangs-free: tailgate"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    },
+    {
+      "function": 4,
+      "does": "The two front wheels and the four wheels on the two rear axles roll freely.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p112 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p112 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 79,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p113 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 79,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p113 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 77,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p120 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p120 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 75,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 77,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 76,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    }
+  ]
+}

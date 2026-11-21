@@ -1,0 +1,136 @@
+{
+  "set": "8856-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:29:47.031Z",
+  "load": 31.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 480,
+  "seconds": 26,
+  "functions": [
+    {
+      "function": 8,
+      "does": "The three landing gear wheels roll freely.",
+      "verdict": "not shown",
+      "msOneCall": 25,
+      "msPerStep": 3,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 13,
+        "B": 0
+      },
+      "stop": {
+        "control": "p131 3482",
+        "way": 1,
+        "went": 0.558,
+        "asked": 1.5,
+        "by": [
+          "43/79"
+        ]
+      },
+      "stops": [
+        "43/79"
+      ],
+      "A": [
+        {
+          "control": "p87 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 141,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p87 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 107,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p89 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 103,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p89 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 106,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p129 3482",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 46,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p129 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 107,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.558,
+          "ms": 49,
+          "msOneCall": 7,
+          "stops": [
+            "43/79"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p131 3482",
+          "way": -1,
+          "asked": 0.57,
+          "went": -0.57,
+          "ms": 44,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p131 3482",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p131 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)",
+      "seconds": 26
+    }
+  ]
+}

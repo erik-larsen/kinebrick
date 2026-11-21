@@ -110,14 +110,14 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
-    "date": "2026-11-17",
-    "seconds": 9,
+    "commit": "6797e6f7",
+    "date": "2026-11-21",
+    "seconds": 5,
     "counts": {
-      "works": 4,
-      "not back": 4,
-      "free-turned": 4,
-      "partly": 1,
+      "partly": 4,
+      "not back": 1,
+      "free-turned": 1,
+      "works": 1,
       "not checked": 1
     },
     "loose": [
@@ -131,92 +131,122 @@
     ],
     "functions": [
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p270 3482 against p0 3034": [
-              3.3,
-              177
-            ],
-            "p279 3482 against p0 3034": [
-              3.29,
-              177
-            ],
-            "p284 3482 against p0 3034": [
-              2.23,
-              267
-            ],
-            "p14 3895 against p0 3034": [
-              5.62e-8,
-              5.11e-13
-            ],
-            "p65 3673 against p0 3034": [
-              2.81e-8,
-              6.93e-13
-            ],
-            "p172 3648a against p65 3673": [
-              5.62e-8,
-              4.2e-13
+        "result": "partly",
+        "hold": {
+          "reason": "In the viewer two parts listed to stay move 3 to 6 LDU: p14 and p65 against p0. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.07,
+              -0.17
             ]
-          }
-        ],
-        "back": [
-          [
+          ],
+          "rates": [
+            {
+              "p270 3482 against p0 3034": [
+                2.79,
+                177
+              ],
+              "p279 3482 against p0 3034": [
+                2.8,
+                177
+              ],
+              "p284 3482 against p0 3034": [
+                2.2,
+                267
+              ],
+              "p14 3895 against p0 3034": [
+                0,
+                4.26e-13
+              ],
+              "p65 3673 against p0 3034": [
+                0,
+                8.53e-13
+              ],
+              "p172 3648a against p65 3673": [
+                0,
+                4.26e-13
+              ]
+            }
+          ],
+          "back": [
             [
-              6.67,
-              10.37
+              [
+                0.12,
+                0
+              ],
+              [
+                11.12,
+                10.22
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                15.61,
+                11.97
+              ]
+            ]
+          ],
+          "freeTurned": true,
+          "strayed": [
+            "p238 4274"
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              78,
+              274,
+              0.07,
+              0.07
             ],
             [
-              17.18,
-              8.38
+              0,
+              -1,
+              36,
+              215,
+              0.17,
+              0.17
             ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0.1,
-              0.06
-            ],
-            [
-              16.39,
-              6.58
-            ]
-          ]
-        ],
-        "freeTurned": true,
-        "strayed": [
-          "p283 3749",
-          "p238 4274"
-        ],
-        "seconds": 1.5
+          ],
+          "seconds": 0.3
+        }
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.37,
+            -0.37
           ]
         ],
         "rates": [
           {
             "p172 3648a against p65 3673": [
               1,
-              2.83e-13
+              2.33e-13
             ],
             "p206 4262 against p65 3673": [
-              2.81e-8,
+              0,
               20
             ],
             "p207 4262 against p65 3673": [
-              2.81e-8,
+              0,
               20
             ],
             "p270 3482": [
@@ -232,39 +262,61 @@
         "back": [
           [
             [
-              1,
-              2.49
+              0.48,
+              0.23
             ],
             [
-              1.11,
-              1.96
+              0.32,
+              0.15
             ]
           ]
         ],
         "torn": [
           [
             [
-              1,
-              2.49
+              0.48,
+              0.23
             ],
             [
-              1.11,
-              1.96
+              0.32,
+              0.15
             ]
           ]
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p123 3737"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
-        "seconds": 0.5
+        "cause": "stopped-endless",
+        "detail": "p128 3736: p202 4273a against p207 4262",
+        "collisionStops": [
+          [
+            0,
+            1,
+            202,
+            207,
+            0.37,
+            0.37
+          ],
+          [
+            0,
+            -1,
+            202,
+            206,
+            0.37,
+            0.37
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.37,
+            -0.37
           ]
         ],
         "still": [
@@ -291,40 +343,60 @@
         "back": [
           [
             [
-              1,
-              2.49
+              0.48,
+              0.23
             ],
             [
-              1.11,
-              1.96
+              0.32,
+              0.15
             ]
           ]
         ],
         "torn": [
           [
             [
-              1,
-              2.49
+              0.48,
+              0.23
             ],
             [
-              1.11,
-              1.96
+              0.32,
+              0.15
             ]
           ]
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p123 3737"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p134 3650b against p65 3673",
-        "seconds": 0.5
+        "collisionStops": [
+          [
+            0,
+            1,
+            202,
+            207,
+            0.37,
+            0.37
+          ],
+          [
+            0,
+            -1,
+            202,
+            206,
+            0.37,
+            0.37
+          ]
+        ],
+        "seconds": 0.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -335,8 +407,8 @@
             -1.5
           ],
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.2
           ]
         ],
         "rates": [
@@ -357,7 +429,7 @@
           ],
           [
             [
-              0.03,
+              0.04,
               0
             ],
             [
@@ -367,12 +439,12 @@
           ],
           [
             [
-              138.55,
-              32.77
+              19.39,
+              4.78
             ],
             [
-              104.07,
-              32.35
+              15.94,
+              4.18
             ]
           ]
         ],
@@ -399,12 +471,12 @@
           ],
           [
             [
-              134.1,
-              31.43
+              20.93,
+              4.76
             ],
             [
-              135.63,
-              34.26
+              17.96,
+              4.23
             ]
           ]
         ],
@@ -412,12 +484,46 @@
         "strayed": [
           "p301 3070b"
         ],
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           [],
           []
         ],
-        "seconds": 4.8
+        "cause": "stopped-endless",
+        "detail": "p284 3482: p90 3710 against p107 3710",
+        "collisionStops": [
+          [
+            2,
+            1,
+            90,
+            107,
+            0.23,
+            0.23
+          ],
+          [
+            2,
+            -1,
+            36,
+            215,
+            0.2,
+            0.2
+          ]
+        ],
+        "seconds": 2
       },
       {
         "result": "works",
@@ -483,12 +589,13 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1.4
       },
       {
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 326
   }
 }

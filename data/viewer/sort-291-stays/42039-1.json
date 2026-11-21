@@ -1,0 +1,126 @@
+{
+  "set": "42039-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:48.752Z",
+  "load": 10.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1189,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The black gear on top of the roof steers the front wheels (hand of god steering): its vertical shaft drives, through bevel gears, a long shaft running forward to a 12 tooth gear on the steering rack, whose links turn both front hubs.",
+      "verdict": "shown",
+      "msOneCall": 99,
+      "msPerStep": 26,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p924 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1126,
+          "msOneCall": 99,
+          "stops": [],
+          "moved": {
+            "p560 3737": [
+              0,
+              51.57
+            ],
+            "p558 32270": [
+              0,
+              51.57
+            ],
+            "p548 87761": [
+              13.5,
+              0
+            ],
+            "p515 11949": [
+              0,
+              19.77
+            ],
+            "p520 11949": [
+              0,
+              19.68
+            ],
+            "p1296 15038": [
+              16.21,
+              19.77
+            ],
+            "p1292 15038": [
+              16.15,
+              19.68
+            ],
+            "p1298 15038": [
+              0,
+              0
+            ],
+            "p1295 15038": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p924 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1063,
+          "msOneCall": 49,
+          "stops": [],
+          "moved": {
+            "p560 3737": [
+              0,
+              51.57
+            ],
+            "p558 32270": [
+              0,
+              51.57
+            ],
+            "p548 87761": [
+              13.5,
+              0
+            ],
+            "p515 11949": [
+              0,
+              19.68
+            ],
+            "p520 11949": [
+              0,
+              19.77
+            ],
+            "p1296 15038": [
+              16.15,
+              19.68
+            ],
+            "p1292 15038": [
+              16.21,
+              19.77
+            ],
+            "p1298 15038": [
+              0,
+              0
+            ],
+            "p1295 15038": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    }
+  ]
+}

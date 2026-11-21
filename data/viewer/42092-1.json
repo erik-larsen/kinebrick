@@ -1,0 +1,320 @@
+{
+  "set": "42092-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:08:45.123Z",
+  "load": 22.5,
+  "part": "A",
+  "parts": 322,
+  "seconds": 18,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12 tooth gear under the belly spins the main rotor on its upright shaft, and a 20 tooth bevel gear on that shaft drives a long shaft down the tail to bevel gears at its end, which spin the tail rotor.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p198 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p314 62743": [
+              43.11,
+              85.94
+            ],
+            "p225 3708": [
+              0,
+              143.24
+            ],
+            "p275 6589": [
+              0,
+              143.24
+            ],
+            "p277 92842": [
+              0,
+              143.24
+            ],
+            "p309 61510": [
+              0,
+              0
+            ],
+            "p95 24116": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p198 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 52,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p314 62743": [
+              43.11,
+              85.94
+            ],
+            "p225 3708": [
+              0,
+              143.24
+            ],
+            "p275 6589": [
+              0,
+              143.24
+            ],
+            "p277 92842": [
+              0,
+              143.24
+            ],
+            "p309 61510": [
+              0,
+              0
+            ],
+            "p95 24116": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 2,
+      "does": "The tan gear beside the winch drum, high on the left side behind the cockpit, winds the winch, raising and lowering the stretcher on its string over the pulley at the end of the winch's arm.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p312 6589",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 33,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p312 6589",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 3,
+      "does": "The 12 tooth gear high on the right side turns the winch too: it is on a cross axle whose other end's 12 tooth gear meshes with the tan gear on the drum.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p291 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 35,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p312 6589": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p291 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p312 6589": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 5,
+      "does": "The two rear doors swing open sideways.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p95 24116",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "95/118"
+        ]
+      },
+      "stops": [
+        "95/118",
+        "108/117"
+      ],
+      "A": [
+        {
+          "control": "p95 24116",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p95 24116",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 1,
+          "stops": [
+            "95/118"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p108 24116",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 1,
+          "stops": [
+            "108/117"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p108 24116",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 43,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p95 24116",
+          "judged": "stands",
+          "why": "stopped at -0 rad (95/118); kinds hinge: rear doors"
+        },
+        {
+          "control": "p108 24116",
+          "judged": "stands",
+          "why": "stopped at +0 rad (108/117); kinds hinge: rear doors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    }
+  ]
+}

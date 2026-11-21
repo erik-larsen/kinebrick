@@ -1,0 +1,188 @@
+{
+  "set": "8002-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:45.645Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 535,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The head on the front end of the shell, with its red-tipped sensors, folds down against the body.",
+      "verdict": "shown",
+      "msOneCall": 40,
+      "msPerStep": 5,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p551 32073",
+        "way": -1,
+        "went": -0.105,
+        "asked": 1.5,
+        "by": [
+          "558/560"
+        ]
+      },
+      "stops": [
+        "558/560"
+      ],
+      "A": [
+        {
+          "control": "p551 32073",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 126,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p564 6536 against p305 32016": [
+              94.87,
+              85.94
+            ],
+            "p0 32009 against p305 32016": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p551 32073",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 14,
+          "msOneCall": 8,
+          "stops": [
+            "558/560"
+          ],
+          "moved": {
+            "p564 6536 against p305 32016": [
+              6.62,
+              6
+            ],
+            "p0 32009 against p305 32016": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p551 32073",
+          "judged": "stands",
+          "why": "stopped at -0.105 rad (558/560); kinds hinge: head"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the photo on page 85 has a hand and a curved arrow folding the head down through roughly a right angle or more; page 86 shows it fully folded, so the 0.105 rad stop is a fault.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=85"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    },
+    {
+      "function": 5,
+      "does": "The two front legs fold back under the body for rolling and swing down to stand on.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 9,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p11 3707",
+        "way": -1,
+        "went": -0.663,
+        "asked": 1.5,
+        "by": [
+          "24/118"
+        ]
+      },
+      "stops": [
+        "16/45",
+        "24/118"
+      ],
+      "A": [
+        {
+          "control": "p11 3707",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 9,
+          "msOneCall": 8,
+          "stops": [
+            "16/45"
+          ],
+          "moved": {
+            "p164 32310 against p0 32009": [
+              5.92,
+              2
+            ],
+            "p182 32310 against p0 32009": [
+              5.92,
+              2
+            ]
+          }
+        },
+        {
+          "control": "p11 3707",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.663,
+          "ms": 51,
+          "msOneCall": 7,
+          "stops": [
+            "24/118"
+          ],
+          "moved": {
+            "p164 32310 against p0 32009": [
+              112.42,
+              37.98
+            ],
+            "p182 32310 against p0 32009": [
+              112.42,
+              37.98
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p11 3707",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (16/45); -0.663 rad (24/118); kinds hinge: front legs"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "pages 85-88 show the droid going from standing to curled up with the legs folded under, a swing of roughly 90 degrees, far past 0.034 rad.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 0
+    }
+  ]
+}

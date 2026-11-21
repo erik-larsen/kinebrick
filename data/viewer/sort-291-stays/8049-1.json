@@ -1,0 +1,110 @@
+{
+  "set": "8049-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:53.381Z",
+  "load": 16.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 476,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The round yellow knob on the cab roof steers the front wheels: its upright axle comes down through the cab to a knob gear, which turns a long axle forward to a gear that slides the steering rack across the front axle.",
+      "verdict": "shown",
+      "msOneCall": 37,
+      "msPerStep": 4,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p73 2654",
+          "way": 1,
+          "asked": 1.43,
+          "went": 1.43,
+          "ms": 164,
+          "msOneCall": 37,
+          "stops": [],
+          "moved": {
+            "p62 32072": [
+              0,
+              81.93
+            ],
+            "p52 32270": [
+              0,
+              81.93
+            ],
+            "p34 87761": [
+              22.59,
+              0
+            ],
+            "p205 56145": [
+              28.22,
+              39.54
+            ],
+            "p208 56145": [
+              28.22,
+              39.54
+            ],
+            "p201 41896 against p0 32316": [
+              0,
+              0
+            ],
+            "p203 41896 against p0 32316": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p73 2654",
+          "way": -1,
+          "asked": 1.43,
+          "went": -1.43,
+          "ms": 134,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p62 32072": [
+              0,
+              81.93
+            ],
+            "p52 32270": [
+              0,
+              81.93
+            ],
+            "p34 87761": [
+              22.59,
+              0
+            ],
+            "p205 56145": [
+              28.22,
+              39.54
+            ],
+            "p208 56145": [
+              28.22,
+              39.54
+            ],
+            "p201 41896 against p0 32316": [
+              0,
+              0
+            ],
+            "p203 41896 against p0 32316": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

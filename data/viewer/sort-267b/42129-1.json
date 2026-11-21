@@ -1,0 +1,125 @@
+{
+  "set": "42129-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T05:32:11.926Z",
+  "load": 31.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2117,
+  "seconds": 483,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
+      "verdict": "not shown",
+      "why": "A: p513 18947 against p468 6573, p1030 18947 against p1032 65414c01 not moved",
+      "msOneCall": null,
+      "msPerStep": 1686,
+      "time": {
+        "open": 29,
+        "collisions": 16,
+        "first": 0,
+        "reach": 299,
+        "A": 94,
+        "B": 46
+      },
+      "stop": {
+        "control": "p550 21980",
+        "way": 1,
+        "went": 0.22,
+        "asked": 0.2,
+        "by": [
+          "20/519"
+        ]
+      },
+      "stops": [
+        "20/519"
+      ],
+      "A": [
+        {
+          "control": "p550 21980",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0.22,
+          "ms": 10591,
+          "msOneCall": null,
+          "stops": [
+            "20/519"
+          ],
+          "moved": {
+            "p517 35188": [
+              0,
+              0.96
+            ],
+            "p1064 35188": [
+              0,
+              0.96
+            ],
+            "p513 18947 against p468 6573": [
+              0,
+              0
+            ],
+            "p1030 18947 against p1032 65414c01": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p550 21980",
+          "way": -1,
+          "asked": 3.5,
+          "went": -2.67,
+          "ms": 63307,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p517 35188": [
+              0,
+              43.2
+            ],
+            "p1064 35188": [
+              0,
+              43.2
+            ],
+            "p513 18947 against p468 6573": [
+              0,
+              0
+            ],
+            "p1030 18947 against p1032 65414c01": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p550 21980",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p517 35188",
+            "p1064 35188",
+            "p513 18947 against p468 6573"
+          ],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p550 21980",
+          "judged": "stands",
+          "why": "stopped at +0.22 rad (20/519); kinds electric-motor: medium, differential-lock: centre and rear, slip-clutch"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p513 18947 against p468 6573, p1030 18947 against p1032 65414c01 not moved"
+      },
+      "seconds": 483
+    }
+  ]
+}

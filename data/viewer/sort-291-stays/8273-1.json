@@ -1,0 +1,224 @@
+{
+  "set": "8273-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:29.752Z",
+  "load": 16.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 791,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear on the cab roof steers the front wheels: its shaft runs down through the cab to a knob gear that meshes with the chassis's knob gear, whose 8-tooth pinion drives the rack behind the front axle.",
+      "verdict": "shown",
+      "msOneCall": 143,
+      "msPerStep": 10,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p644 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 437,
+          "msOneCall": 143,
+          "stops": [],
+          "moved": {
+            "p518 32072": [
+              0,
+              85.94
+            ],
+            "p52 32072": [
+              0,
+              85.94
+            ],
+            "p51 3647": [
+              0,
+              85.94
+            ],
+            "p32 3743": [
+              15.36,
+              0
+            ],
+            "p4000 56145": [
+              19.2,
+              26.91
+            ],
+            "p4002 56145": [
+              19.2,
+              26.91
+            ],
+            "p4004 56145": [
+              0,
+              0
+            ],
+            "p4006 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p644 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 347,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p518 32072": [
+              0,
+              85.94
+            ],
+            "p52 32072": [
+              0,
+              85.94
+            ],
+            "p51 3647": [
+              0,
+              85.94
+            ],
+            "p32 3743": [
+              15.36,
+              0
+            ],
+            "p4000 56145": [
+              19.2,
+              26.91
+            ],
+            "p4002 56145": [
+              19.2,
+              26.91
+            ],
+            "p4004 56145": [
+              0,
+              0
+            ],
+            "p4006 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 8,
+      "does": "The gear knob low on the right side, behind the cab, tips the grey bed: its shaft's crank, an offset axle joiner in the middle of the frame, pushes the bed's front up through a lever and links, the bed pivoting at its back end.",
+      "verdict": "shown",
+      "msOneCall": 26,
+      "msPerStep": 15,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p96 32270",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "98/292"
+        ]
+      },
+      "stops": [
+        "98/292"
+      ],
+      "A": [
+        {
+          "control": "p96 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 16,
+          "msOneCall": 20,
+          "stops": [
+            "98/292"
+          ],
+          "moved": {
+            "p114 6538b": [
+              0,
+              0
+            ],
+            "p296 40490": [
+              0,
+              0
+            ],
+            "p370 40490": [
+              0,
+              0
+            ],
+            "p4008 56145": [
+              0,
+              0
+            ],
+            "p212 48168": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p96 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 659,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {
+            "p114 6538b": [
+              0,
+              85.94
+            ],
+            "p296 40490": [
+              80.75,
+              32.08
+            ],
+            "p370 40490": [
+              46.17,
+              32.08
+            ],
+            "p4008 56145": [
+              0,
+              0
+            ],
+            "p212 48168": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p96 32270",
+          "judged": "stands",
+          "why": "stopped at +0 rad (98/292); kinds crank-and-link: bed"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 1
+    }
+  ]
+}

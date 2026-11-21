@@ -5,10 +5,12 @@ import { Kinematics } from '../../src/kinematics.ts';
 import { modelSettings } from '../../src/ldr.ts';
 import { inferMechanism } from '../../src/mechanism.ts';
 import { findSliders, sliderMovedTo, sliderPosition } from '../../src/shift.ts';
-import { load, roles, table } from './load.ts';
+import { load, roles, table, readShapes } from './load.ts';
+
+await readShapes('models/956-Auto Chassis.mpd');
 
 describe('956 Auto Chassis', () => {
-  const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
+  const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables, touching } = load('models/956-Auto Chassis.mpd');
   // The rear axle: both rear tyres on one body, with no differential between them.
   const rearAxle = mech.treads.find((t) => mech.treads.filter((u) => u.body === t.body).length === 2)!.body;
 
@@ -182,7 +184,7 @@ describe('956 Auto Chassis', () => {
     const ratios = [0, 20].map((position) => {
       const by = sliderMovedTo(parts, table, shaft, position).multiply(parts[shaft.part].matrix.clone().invert());
       const shifted = parts.map((p, i) => (shaft.riders!.includes(i) ? { ...p, matrix: by.clone().multiply(p.matrix) } : p));
-      const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path));
+      const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path), new Set(), false, null, new Set(), touching);
       expect(m.loose).toEqual([]);
       const k = new Kinematics(m);
       const axle = m.treads.find((t) => m.treads.filter((u) => u.body === t.body).length === 2)!.body;
@@ -218,7 +220,7 @@ describe('956 Auto Chassis', () => {
       const body = back.clone().multiply(kin.poses[mech.bodyOf[i]]);
       return { ...p, matrix: body.clone().invert().multiply(by).multiply(body).multiply(p.matrix) };
     });
-    const shifted = inferMechanism(placed, table, roles, mech.loops.map((l) => l.path));
+    const shifted = inferMechanism(placed, table, roles, mech.loops.map((l) => l.path), new Set(), false, null, new Set(), touching);
     expect(shifted.loose).toEqual([]);
     expect(shifted.couplings).toHaveLength(4); // the steering column's universal joints, and the two in the drive from the front wheels
     const again = findSliders(placed, shifted, table, slides).find((s) => s.origin)!;

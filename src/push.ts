@@ -1,12 +1,12 @@
 // A push: a part moved so that a point on it goes a given way, by whatever the mechanism allows
-// (see "Interaction" in the README). The viewer pushes a part that doesn't spin on an axle (the
+// (see "Viewer" in the README). The viewer pushes a part that doesn't spin on an axle (the
 // frame, a door, an arm of a linkage), and the function check pushes such a control as the
 // viewer would (scripts/check-functions.ts), so both use the steps here.
 
 import { Vector2, Vector3 } from 'three';
 import { Kinematics } from './kinematics.ts';
 import { heldCount, trace, TRACE, withoutHolds } from './trace.ts';
-import { combine, nullSpace, orthonormalize } from './linalg.ts';
+import { combine, NotFinite, nullSpace, orthonormalize } from './linalg.ts';
 
 // In how many independent directions a point on a body can move.
 export function pointDirections(kin: Kinematics, body: number, g: Vector3): number {
@@ -43,7 +43,20 @@ export function wayOnJoint(kin: Kinematics, body: number, g: Vector3): Vector3 |
 // rolling round, a door swinging on its hinge). Returns 'stuck', with nothing moved, if the point
 // has nowhere to go, or only well off `dir`; and 'blocked', with the step undone, if `allowed`
 // says no to where the step left the model (it ran into something, or past the end of a slide).
+// A step whose sums meet a value that is not finite is undone, and 'stuck' (see Kinematics.refuseNotFinite).
 export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
+  const before = kin.snapshot();
+  try {
+    return pushStepWhole(kin, body, grab, dir, step, allowed);
+  } catch (err) {
+    if (!(err instanceof NotFinite)) throw err;
+    kin.restore(before);
+    kin.refuseNotFinite(err);
+    return 'stuck';
+  }
+}
+
+function pushStepWhole(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean): 'moved' | 'stuck' | 'blocked' {
   // Least motion, for a part on a turning joint (see Options.leastPush).
   if (kin.pushesByTiers(body)) return kin.pushStepByTiers(body, grab, dir, step, allowed);
   const g = grab.clone().applyMatrix4(kin.poses[body]);

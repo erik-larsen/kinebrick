@@ -4,14 +4,14 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 44 works, 28 partly, 5 no, 1 not checked.
+Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 39 works, 34 partly, 5 no, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 1 of 9 | 6 of 18 | 6 of 32 | 9 of 23 | 27 of 83 | 7 of 21 |
-| Functions | 2 | 10 | 9 | 14 | 34 | 9 |
+| Sets | 1 of 9 | 6 of 18 | 6 of 32 | 9 of 23 | 28 of 83 | 7 of 21 |
+| Functions | 2 | 10 | 9 | 14 | 35 | 9 |
 
 ## Details
 
@@ -54,6 +54,7 @@ Each detail by the set it first appears in.
 | canopy, air brake and exhaust | 2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1) | 1 |
 | side steps | 2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1) | 1 |
 | bonnet flick | 2018, [42072 WHACK!](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42072-1) | 2 |
+| cab door | 2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1) | 1 |
 | rear wing | 2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1) | 1 |
 | sails | 2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1) | 1 |
 | legs | 2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1) | 1 |
@@ -161,7 +162,7 @@ Each detail by the set it first appears in.
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
-- *blade:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
+- *blade:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
 - *ripper:* The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 
 **2012, [9391 Crawler Crane (Tracked Crane)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9391-1)**
@@ -217,7 +218,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- *cab:* The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (works)
+- *cab:* The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (partly)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
@@ -225,7 +226,7 @@ Each detail by the set it first appears in.
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
-- *dump body:* The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it. (works)
+- *dump body:* The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it. (partly)
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
@@ -249,7 +250,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (works)
+- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
 
 **2018, [42071 Dozer Compactor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42071-1)**
 
@@ -275,9 +276,13 @@ Each detail by the set it first appears in.
 
 - *bucket:* Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip. (works)
 
+**2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
+
+- *cab door:* The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning. (partly)
+
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
-- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (works)
+- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (partly)
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 

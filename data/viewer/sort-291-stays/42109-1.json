@@ -1,0 +1,230 @@
+{
+  "set": "42109-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:47.494Z",
+  "load": 16.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 461,
+  "seconds": 62,
+  "functions": [
+    {
+      "function": 2,
+      "does": "With the XL motor still, turning one rear wheel turns the other the opposite way through the differential.",
+      "verdict": "shown",
+      "msOneCall": 23,
+      "msPerStep": 3,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p971 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 132,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {
+            "p15 59426": [
+              0,
+              85.94
+            ],
+            "p27 3707": [
+              0,
+              85.94
+            ],
+            "p969 56145": [
+              0,
+              85.94
+            ],
+            "p351 32498": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p971 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 114,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p15 59426": [
+              0,
+              85.94
+            ],
+            "p27 3707": [
+              0,
+              85.94
+            ],
+            "p969 56145": [
+              0,
+              85.94
+            ],
+            "p351 32498": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 3,
+      "does": "The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 879,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 55,
+        "B": 0
+      },
+      "stop": {
+        "control": "p390 22169",
+        "way": 1,
+        "went": -1.111,
+        "asked": 1.1,
+        "by": [
+          "685/700",
+          "682/696"
+        ]
+      },
+      "stops": [
+        "685/700",
+        "682/696"
+      ],
+      "A": [
+        {
+          "control": "p390 22169",
+          "way": 1,
+          "asked": 1.1,
+          "went": -1.111,
+          "ms": 27549,
+          "msOneCall": null,
+          "stops": [
+            "685/700",
+            "682/696"
+          ],
+          "moved": {
+            "p692 32270": [
+              0,
+              63.63
+            ],
+            "p686 87761": [
+              16.66,
+              0
+            ],
+            "p670 48989": [
+              8.62,
+              24.88
+            ],
+            "p674 48989": [
+              8.44,
+              24.36
+            ],
+            "p965 56145": [
+              17.23,
+              30.87
+            ],
+            "p967 56145": [
+              16.87,
+              30.23
+            ],
+            "p969 56145": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p390 22169",
+          "way": -1,
+          "asked": 1.1,
+          "went": 1.101,
+          "ms": 27629,
+          "msOneCall": null,
+          "stops": [
+            "682/696",
+            "685/700"
+          ],
+          "moved": {
+            "p692 32270": [
+              0,
+              63.06
+            ],
+            "p686 87761": [
+              16.51,
+              0
+            ],
+            "p670 48989": [
+              8.36,
+              24.13
+            ],
+            "p674 48989": [
+              8.53,
+              24.63
+            ],
+            "p965 56145": [
+              16.72,
+              29.95
+            ],
+            "p967 56145": [
+              17.06,
+              30.57
+            ],
+            "p969 56145": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p390 22169",
+          "judged": "stands",
+          "why": "stopped at +1.111 rad (685/700, 682/696); -1.101 rad (682/696, 685/700); kinds electric-motor: Control+ L, rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 58
+    }
+  ]
+}

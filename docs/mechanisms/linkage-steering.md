@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 14 works, 13 partly, 2 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 10 works, 15 partly, 4 no.
 
 ## By decade
 
@@ -31,7 +31,7 @@ Each detail by the set it first appears in.
 
 **2007, [8272 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8272-1)**
 
-- The handlebars steer the two skis: the steering column turns the red steering arm at its foot, whose two steering links push the skis' spindles round. (works)
+- The handlebars steer the two skis: the steering column turns the red steering arm at its foot, whose two steering links push the skis' spindles round. (partly)
 
 **2009, [8256 Super Kart](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8256-1)**
 
@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 
 **2009, [8261 Rally Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8261-1)**
 
-- The 12 tooth gear on the roof steers the front wheels: it turns a vertical shaft down through the cab, whose 12 tooth bevel gear at the foot turns the 20 tooth gear on a shaft running forward under the truck; a knob gear at that shaft's front end turns the knob gear on the front axle's steering post, swinging its steering arm, which pushes the tie rod that turns both front wheels. (works)
+- The 12 tooth gear on the roof steers the front wheels: it turns a vertical shaft down through the cab, whose 12 tooth bevel gear at the foot turns the 20 tooth gear on a shaft running forward under the truck; a knob gear at that shaft's front end turns the knob gear on the front axle's steering post, swinging its steering arm, which pushes the tie rod that turns both front wheels. (partly)
 
 **2012, [9390 Mini Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9390-1)**
 
@@ -51,7 +51,7 @@ Each detail by the set it first appears in.
 
 **2014, [42021 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42021-1)**
 
-- Turning the handlebars steers both front skis: the steering column turns a short arm under the nose, which pushes two steering links out to the ski uprights. (partly)
+- Turning the handlebars steers both front skis: the steering column turns a short arm under the nose, which pushes two steering links out to the ski uprights. (no)
 
 **2014, [42022 Hot Rod](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42022-1)**
 
@@ -96,7 +96,7 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links. (works)
+- The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links. (partly)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
@@ -136,7 +136,7 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (works)
+- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (no)
 
 ---
 

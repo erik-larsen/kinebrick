@@ -1,0 +1,303 @@
+{
+  "set": "956-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:06.199Z",
+  "load": 16.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 543,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel turns the front wheels: its column bends through a double universal joint to an 8 tooth gear, which drives a guided rack through a second pair of 8 tooth gears, and tie rods from the rack swing both front wheels the same way on their turntables.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 7,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p354 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 311,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p342 3739": [
+              42.49,
+              28.06
+            ],
+            "p340 3739": [
+              42.07,
+              27.78
+            ],
+            "p295 3743": [
+              15,
+              0
+            ],
+            "p450 3739": [
+              0,
+              0
+            ],
+            "p571 3652": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p354 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 283,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p342 3739": [
+              42.07,
+              27.78
+            ],
+            "p340 3739": [
+              42.49,
+              28.06
+            ],
+            "p295 3743": [
+              15,
+              0
+            ],
+            "p450 3739": [
+              0,
+              0
+            ],
+            "p571 3652": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 2,
+      "does": "As it rolls, the rear axle runs the four-cylinder engine: the rear axle's 24 tooth gear turns a crown gear on the drive shaft, which through universal joints and gears turns the crankshaft, so the four pistons run up and down, and the crankshaft's 40 tooth gear at the engine's front spins the 24 tooth gear above it.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 6,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p450 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 249,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p571 3652": [
+              141.36,
+              0
+            ],
+            "p577 3652": [
+              138.23,
+              0
+            ],
+            "p583 3652": [
+              141.36,
+              0
+            ],
+            "p589 3652": [
+              138.23,
+              0
+            ],
+            "p600 3648a": [
+              0,
+              1289.16
+            ],
+            "p354 3736": [
+              0,
+              0
+            ],
+            "p559 3705": [
+              0,
+              0
+            ],
+            "p143 3031": [
+              0,
+              0
+            ],
+            "p148 3031": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p450 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 252,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p571 3652": [
+              131.94,
+              0
+            ],
+            "p577 3652": [
+              130.22,
+              0
+            ],
+            "p583 3652": [
+              131.94,
+              0
+            ],
+            "p589 3652": [
+              130.22,
+              0
+            ],
+            "p600 3648a": [
+              0,
+              1289.16
+            ],
+            "p354 3736": [
+              0,
+              0
+            ],
+            "p559 3705": [
+              0,
+              0
+            ],
+            "p143 3031": [
+              0,
+              0
+            ],
+            "p148 3031": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p452 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 258,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p571 3652": [
+              141.36,
+              0
+            ],
+            "p577 3652": [
+              138.23,
+              0
+            ],
+            "p583 3652": [
+              141.36,
+              0
+            ],
+            "p589 3652": [
+              138.23,
+              0
+            ],
+            "p600 3648a": [
+              0,
+              1289.16
+            ],
+            "p354 3736": [
+              0,
+              0
+            ],
+            "p559 3705": [
+              0,
+              0
+            ],
+            "p143 3031": [
+              0,
+              0
+            ],
+            "p148 3031": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p452 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 251,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p571 3652": [
+              131.94,
+              0
+            ],
+            "p577 3652": [
+              130.22,
+              0
+            ],
+            "p583 3652": [
+              131.94,
+              0
+            ],
+            "p589 3652": [
+              130.22,
+              0
+            ],
+            "p600 3648a": [
+              0,
+              1289.16
+            ],
+            "p354 3736": [
+              0,
+              0
+            ],
+            "p559 3705": [
+              0,
+              0
+            ],
+            "p143 3031": [
+              0,
+              0
+            ],
+            "p148 3031": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 1
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "set": "42054-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:50:13.092Z",
+  "load": 11.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1961,
+  "seconds": 81,
+  "functions": [
+    {
+      "function": 3,
+      "does": "Lever A, the lower grey lever on the fuel tank, turned up or down, rotates the whole cab one way or the other on its turntable (so it can face backwards to work the crane): through a 16 and a 20 tooth gear it tips a changeover catch that slides a driving ring up or down a vertical shaft between two clutch gears turning opposite ways, and the shaft's 12 tooth gear at the top turns the cab's turntable.",
+      "verdict": "not shown",
+      "why": "A: p692 42054 - 18938 not moved",
+      "msOneCall": null,
+      "msPerStep": 28,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 13,
+        "reach": 0,
+        "A": 2,
+        "B": 11
+      },
+      "stop": {
+        "control": "p543 58120",
+        "way": 1,
+        "went": 1.435,
+        "asked": 1.43,
+        "by": [
+          "700/1318"
+        ]
+      },
+      "stops": [
+        "700/1318"
+      ],
+      "A": [
+        {
+          "control": "p543 58120",
+          "way": 1,
+          "asked": 1.43,
+          "went": 1.435,
+          "ms": 1153,
+          "msOneCall": null,
+          "stops": [
+            "700/1318"
+          ],
+          "moved": {
+            "p692 42054 - 18938": [
+              0,
+              0.59
+            ],
+            "p1176 64782": [
+              1.37,
+              0.59
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p543 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.613,
+          "ms": 1090,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p692 42054 - 18938": [
+              0,
+              0.78
+            ],
+            "p1176 64782": [
+              1.82,
+              0.78
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p543 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p692 42054 - 18938",
+            "p1176 64782"
+          ],
+          "stops": [
+            "700/1318",
+            "302/1354"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p543 58120",
+          "judged": "stands",
+          "why": "stopped at +1.435 rad (700/1318); kinds function-selector, turntable: cab"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p692 42054 - 18938 not moved"
+      },
+      "seconds": 35
+    },
+    {
+      "function": 4,
+      "does": "Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 23,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 12,
+        "reach": 0,
+        "A": 15,
+        "B": 11
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p543 58120",
+          "way": 1,
+          "asked": 10.5,
+          "went": 11.235,
+          "ms": 7407,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p1820 92696 against p1818 92693c01": [
+              1.09,
+              0
+            ],
+            "p1841 40490 against p1659 42054 - 18938": [
+              1.51,
+              1.08
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p543 58120",
+          "way": -1,
+          "asked": 10.5,
+          "went": -11.187,
+          "ms": 7333,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p1820 92696 against p1818 92693c01": [
+              1.09,
+              0
+            ],
+            "p1841 40490 against p1659 42054 - 18938": [
+              1.49,
+              1.07
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p543 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p1820 92696 against p1818 92693c01",
+            "p1841 40490 against p1659 42054 - 18938"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 46
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "set": "8837-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:07:08.621Z",
+  "load": 16.9,
+  "part": "A",
+  "parts": 234,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 2,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p227 3941",
+          "way": 1,
+          "asked": 1.03,
+          "went": 1.03,
+          "ms": 59,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p19 2790a against p0 3738": [
+              21.32,
+              0
+            ],
+            "p16 4261 against p0 3738": [
+              0,
+              30.91
+            ],
+            "p23 4261 against p0 3738": [
+              0,
+              30.91
+            ],
+            "p230 3650a against p0 3738": [
+              0,
+              19.67
+            ],
+            "p15 4019 against p0 3738": [
+              0,
+              59.01
+            ],
+            "p54 3703 against p0 3738": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p227 3941",
+          "way": -1,
+          "asked": 1.03,
+          "went": -1.03,
+          "ms": 52,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p19 2790a against p0 3738": [
+              21.32,
+              0
+            ],
+            "p16 4261 against p0 3738": [
+              0,
+              30.91
+            ],
+            "p23 4261 against p0 3738": [
+              0,
+              30.91
+            ],
+            "p230 3650a against p0 3738": [
+              0,
+              19.67
+            ],
+            "p15 4019 against p0 3738": [
+              0,
+              59.01
+            ],
+            "p54 3703 against p0 3738": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    },
+    {
+      "function": 6,
+      "does": "The four wheels roll freely; nothing drives them. The two under the boom end steer, the two at the cab end are on a fixed axle.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p22 2695c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p22 2695c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 69,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p28 2695c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p28 2695c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p232 2695c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p232 2695c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p233 2695c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 57,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p233 2695c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 63,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    }
+  ]
+}

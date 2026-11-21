@@ -1,0 +1,111 @@
+{
+  "set": "8260-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:06:56.688Z",
+  "load": 21,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 104,
+  "seconds": 11,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The bucket tips forward and back by hand on its click hinge at the arms' ends, holding where it's left.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 0,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": {
+        "control": "p92 47508",
+        "way": -1,
+        "went": -1.395,
+        "asked": 1.5,
+        "by": [
+          "86/92"
+        ]
+      },
+      "stops": [
+        "92/92",
+        "86/92"
+      ],
+      "A": [
+        {
+          "control": "p92 47508",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              91
+            ]
+          },
+          "asked": 1.4,
+          "went": 0.735,
+          "ms": 8,
+          "msOneCall": 8,
+          "stops": [
+            "92/92"
+          ],
+          "moved": {
+            "p92 47508 against p86 32348": [
+              0.01,
+              42.11
+            ],
+            "p86 32348": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p92 47508",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              91
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.395,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [
+            "86/92"
+          ],
+          "moved": {
+            "p92 47508 against p86 32348": [
+              0.02,
+              79.95
+            ],
+            "p86 32348": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p92 47508",
+          "judged": "stands",
+          "why": "stopped at +0.735 rad (92/92); -1.395 rad (86/92); kinds posable-joint: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 11
+    }
+  ]
+}

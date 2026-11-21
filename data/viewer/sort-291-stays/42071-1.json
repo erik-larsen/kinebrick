@@ -1,0 +1,94 @@
+{
+  "set": "42071-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:26.094Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 170,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The upright axle behind the cab steers the compactor by bending it in the middle: its 12 tooth bevel gear turns a 20 tooth bevel gear that turns the turntable carrying the front half.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p92 26287",
+          "way": 1,
+          "asked": 1.33,
+          "went": 1.33,
+          "ms": 32,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p20 18575": [
+              0,
+              45.72
+            ],
+            "p22 99010": [
+              0,
+              32.66
+            ],
+            "p145 64782": [
+              120.37,
+              32.66
+            ],
+            "p139 57520": [
+              80.61,
+              32.66
+            ],
+            "p136 57520": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p92 26287",
+          "way": -1,
+          "asked": 1.33,
+          "went": -1.33,
+          "ms": 31,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p20 18575": [
+              0,
+              45.72
+            ],
+            "p22 99010": [
+              0,
+              32.66
+            ],
+            "p145 64782": [
+              120.37,
+              32.66
+            ],
+            "p139 57520": [
+              80.61,
+              32.66
+            ],
+            "p136 57520": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

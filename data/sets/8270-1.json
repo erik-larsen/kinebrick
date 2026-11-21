@@ -145,9 +145,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
-    "date": "2026-11-17",
-    "seconds": 1,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 2,
     "counts": {
       "no": 2,
       "partly": 3,
@@ -197,8 +197,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.47,
+            -1.2
           ]
         ],
         "still": [
@@ -224,7 +224,7 @@
             ],
             "p0 2905 against p61 32184": [
               0,
-              9.51e-124
+              0
             ],
             "p34 2585 against p0 2905": [
               0,
@@ -262,12 +262,36 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.1
+        "collisionStops": [
+          [
+            0,
+            1,
+            26,
+            30,
+            0.47,
+            0.47
+          ],
+          [
+            0,
+            -1,
+            17,
+            25,
+            1.2,
+            1.2
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -335,7 +359,7 @@
         "turned": [
           [
             1.5,
-            -1.5
+            -0.03
           ]
         ],
         "still": [
@@ -389,11 +413,27 @@
           "p55 32278 against p30 57779 is held by friction pins the control doesn't reach",
           "p50 6632 against p30 57779 is held by friction pins the control doesn't reach"
         ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
         "judged": [
           0
         ],
         "cause": "part-fixed",
         "detail": "p55 32278 against p30 57779",
+        "collisionStops": [
+          [
+            0,
+            -1,
+            26,
+            30,
+            0.03,
+            0.03
+          ]
+        ],
         "seconds": 0.1
       },
       {
@@ -554,7 +594,7 @@
               0
             ],
             [
-              0.64,
+              0.65,
               0
             ]
           ],
@@ -564,13 +604,13 @@
               0
             ],
             [
-              0.64,
+              0.65,
               0
             ]
           ],
           [
             [
-              0.64,
+              0.65,
               0
             ],
             [
@@ -580,7 +620,7 @@
           ],
           [
             [
-              0.64,
+              0.65,
               0
             ],
             [
@@ -633,7 +673,8 @@
         ],
         "strayed": [
           "p102 2432",
-          "p39 32270"
+          "p39 32270",
+          "p101 3702"
         ],
         "movedBy": [
           [],
@@ -641,7 +682,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -651,6 +692,7 @@
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 308
   }
 }

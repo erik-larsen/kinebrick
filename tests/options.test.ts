@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../src/kinematics.ts';
-import { load } from './sets/load.ts';
+import { load, readShapes } from './sets/load.ts';
+
+await readShapes('models/ackermann-car.ldr');
 
 // The solver's switches are its own (see Options in kinematics.ts): two settings compared on one
 // loaded model. The Ackermann car's differential, turned by its housing: least motion rolls the
