@@ -212,9 +212,9 @@
     ]
   },
   "generated": {
-    "commit": "6797e6f7",
+    "commit": "12570d92",
     "date": "2026-11-21",
-    "seconds": 27,
+    "seconds": 30,
     "counts": {
       "works": 7,
       "no": 1,
@@ -299,7 +299,17 @@
           ]
         ],
         "freed": 2,
-        "seconds": 3.1
+        "freedFor": [
+          {
+            "pin": "p278 6558",
+            "for": "p170 32270"
+          },
+          {
+            "pin": "p279 6558",
+            "for": "p170 32270"
+          }
+        ],
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -389,7 +399,7 @@
             0.8
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -473,7 +483,7 @@
             "limit"
           ]
         ],
-        "seconds": 1.8
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -539,7 +549,7 @@
             0.5
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -635,7 +645,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "no",
@@ -751,7 +761,7 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 3.4
+        "seconds": 3.3
       },
       {
         "result": "skipped",
@@ -1087,7 +1097,7 @@
             0.17
           ]
         ],
-        "seconds": 7
+        "seconds": 8.7
       },
       {
         "result": "not checked",
@@ -1128,13 +1138,13 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.6
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 795
+    "peak": 668
   }
 }
