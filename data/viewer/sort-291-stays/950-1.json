@@ -1,0 +1,200 @@
+{
+  "set": "950-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:29.616Z",
+  "load": 9.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 198,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p188 3736",
+        "way": -1,
+        "went": -1.326,
+        "asked": 1.5,
+        "by": [
+          "184/189"
+        ]
+      },
+      "stops": [
+        "184/189"
+      ],
+      "A": [
+        {
+          "control": "p188 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p199 3710": [
+              5,
+              0
+            ],
+            "p191 3460": [
+              5,
+              0
+            ],
+            "p192 3460": [
+              5,
+              0
+            ],
+            "p178 3736": [
+              0,
+              0
+            ],
+            "p44 3679": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p188 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.326,
+          "ms": 30,
+          "msOneCall": 2,
+          "stops": [
+            "184/189"
+          ],
+          "moved": {
+            "p199 3710": [
+              4.42,
+              0
+            ],
+            "p191 3460": [
+              4.42,
+              0
+            ],
+            "p192 3460": [
+              4.42,
+              0
+            ],
+            "p178 3736": [
+              0,
+              0
+            ],
+            "p44 3679": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p188 3736",
+          "judged": "stands",
+          "why": "stopped at -1.326 rad (184/189); kinds rack-and-pinion: forks"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    },
+    {
+      "function": 2,
+      "does": "The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p178 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p44 3679": [
+              0,
+              14.47
+            ],
+            "p46 3679": [
+              0,
+              14.47
+            ],
+            "p64 3743": [
+              15.16,
+              0
+            ],
+            "p199 3710": [
+              0,
+              0
+            ],
+            "p109 3482 against p0 3030": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p178 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 30,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p44 3679": [
+              0,
+              14.47
+            ],
+            "p46 3679": [
+              0,
+              14.47
+            ],
+            "p64 3743": [
+              15.16,
+              0
+            ],
+            "p199 3710": [
+              0,
+              0
+            ],
+            "p109 3482 against p0 3030": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

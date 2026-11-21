@@ -1,0 +1,102 @@
+{
+  "set": "8841-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:27.987Z",
+  "load": 9.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 185,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs down through a universal joint to an 8-tooth pinion on a toothed rack, and the rack pushes both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p683 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 52,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p677 3647": [
+              0,
+              85.94
+            ],
+            "p646 3743": [
+              15.36,
+              0
+            ],
+            "p42 4261": [
+              0,
+              22
+            ],
+            "p43 4261": [
+              0,
+              22
+            ],
+            "p14 3707": [
+              0,
+              0
+            ],
+            "p15 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p683 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p677 3647": [
+              0,
+              85.94
+            ],
+            "p646 3743": [
+              15.36,
+              0
+            ],
+            "p42 4261": [
+              0,
+              22
+            ],
+            "p43 4261": [
+              0,
+              22
+            ],
+            "p14 3707": [
+              0,
+              0
+            ],
+            "p15 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

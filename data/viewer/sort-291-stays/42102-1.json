@@ -1,0 +1,159 @@
+{
+  "set": "42102-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:21.818Z",
+  "load": 9.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 128,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black 12 tooth gear on top of the cab steers the front wheels: its shaft runs down to a 16 tooth gear, which drives a second 16 tooth gear and then a third on the steering post between the front wheels; that post's arm swings the two steering knuckles.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p120 32270",
+        "way": 1,
+        "went": 0.384,
+        "asked": 1.5,
+        "by": [
+          "0/8"
+        ]
+      },
+      "stops": [
+        "0/8"
+      ],
+      "A": [
+        {
+          "control": "p120 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.384,
+          "ms": 22,
+          "msOneCall": 10,
+          "stops": [
+            "0/8"
+          ],
+          "moved": {
+            "p13 94925": [
+              0,
+              21.99
+            ],
+            "p22 94925": [
+              0,
+              21.99
+            ],
+            "p15 94925": [
+              0,
+              21.99
+            ],
+            "p0 48989": [
+              7.67,
+              21.99
+            ],
+            "p5 48989": [
+              7.67,
+              21.99
+            ],
+            "p121 55982": [
+              15.35,
+              31.92
+            ],
+            "p123 55982": [
+              15.35,
+              31.92
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p103 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.384,
+          "ms": 18,
+          "msOneCall": 3,
+          "stops": [
+            "0/8"
+          ],
+          "moved": {
+            "p13 94925": [
+              0,
+              21.99
+            ],
+            "p22 94925": [
+              0,
+              21.99
+            ],
+            "p15 94925": [
+              0,
+              21.99
+            ],
+            "p0 48989": [
+              7.67,
+              21.99
+            ],
+            "p5 48989": [
+              7.67,
+              21.99
+            ],
+            "p121 55982": [
+              15.35,
+              31.92
+            ],
+            "p123 55982": [
+              15.35,
+              31.92
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p103 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p120 32270",
+          "judged": "stands",
+          "why": "stopped at +0.384 rad (0/8); -0.384 rad (0/8); kinds linkage-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

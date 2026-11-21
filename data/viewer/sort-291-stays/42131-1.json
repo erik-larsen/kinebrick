@@ -1,0 +1,145 @@
+{
+  "set": "42131-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:36:20.887Z",
+  "load": 16.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3842,
+  "seconds": 69,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track.",
+      "verdict": "shown",
+      "msOneCall": 1257,
+      "msPerStep": 338,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 31,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14135,
+          "msOneCall": 1257,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p6163 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14477,
+          "msOneCall": 826,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p6163 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 38
+    },
+    {
+      "function": 2,
+      "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
+      "verdict": "shown",
+      "msOneCall": 844,
+      "msPerStep": 337,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 31,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14430,
+          "msOneCall": 844,
+          "stops": [],
+          "moved": {
+            "p3613 42529": [
+              0,
+              15.92
+            ],
+            "p6105 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3610 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14391,
+          "msOneCall": 829,
+          "stops": [],
+          "moved": {
+            "p3613 42529": [
+              0,
+              15.92
+            ],
+            "p6105 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3610 42529": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 31
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "set": "8820-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:22.494Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 134,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p56 8820 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 72,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p58 3647": [
+              0.01,
+              85.94
+            ],
+            "p25 2790a": [
+              15.36,
+              0
+            ],
+            "p10 4261": [
+              0,
+              22
+            ],
+            "p11 4261": [
+              0,
+              22
+            ],
+            "p129 3482": [
+              7.68,
+              26.92
+            ],
+            "p131 3482": [
+              7.68,
+              26.92
+            ],
+            "p46 3709b": [
+              0,
+              0
+            ],
+            "p17 2791a": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p56 8820 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 62,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p58 3647": [
+              0.01,
+              85.94
+            ],
+            "p25 2790a": [
+              15.36,
+              0
+            ],
+            "p10 4261": [
+              0,
+              22
+            ],
+            "p11 4261": [
+              0,
+              22
+            ],
+            "p129 3482": [
+              7.68,
+              26.92
+            ],
+            "p131 3482": [
+              7.68,
+              26.92
+            ],
+            "p46 3709b": [
+              0,
+              0
+            ],
+            "p17 2791a": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

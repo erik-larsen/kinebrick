@@ -1,0 +1,186 @@
+{
+  "set": "42078-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:03:03.861Z",
+  "load": 14,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2651,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links.",
+      "verdict": "not shown",
+      "msOneCall": 194,
+      "msPerStep": 179,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1146 18575",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "466/1065"
+        ]
+      },
+      "stops": [
+        "466/1065",
+        "466/872"
+      ],
+      "A": [
+        {
+          "control": "p1146 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 357,
+          "msOneCall": 177,
+          "stops": [
+            "466/1065"
+          ],
+          "moved": {
+            "p537 3648b": [
+              0,
+              1.33
+            ],
+            "p502 56145": [
+              0.97,
+              1.66
+            ],
+            "p512 56145": [
+              0.97,
+              1.66
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1146 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 328,
+          "msOneCall": 194,
+          "stops": [
+            "466/872"
+          ],
+          "moved": {
+            "p537 3648b": [
+              0,
+              1.33
+            ],
+            "p502 56145": [
+              0.97,
+              1.66
+            ],
+            "p512 56145": [
+              0.97,
+              1.66
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1146 18575",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (466/1065); -0.07 rad (466/872)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the bottom-left photo shows a circular arrow on the roof gear and a steering arrow on the front wheel: turning the gear steers the wheels from lock to lock, so the gear turns far more than the viewer's 0.069 rad.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p1146 18575: a travel of 0.2 rad or less each way, stopped at +0.07 rad (466/1065); -0.07 rad (466/872) (the bottom-left photo shows a circular arrow on the roof gear and a steering arrow on the front wheel: turning the gear steers the wheels from lock to lock, so the gear turns far more than the viewer's 0.069 rad., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420)",
+      "seconds": 6
+    },
+    {
+      "function": 4,
+      "does": "The bonnet, with the grille, headlights and front wings, tips forward to show the engine.",
+      "verdict": "not shown",
+      "why": "A: p1358 44294, p1423 40490 not moved",
+      "msOneCall": 11,
+      "msPerStep": null,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1326 60485",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p1358 44294": [
+              0,
+              0
+            ],
+            "p1423 40490": [
+              0,
+              0
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1326 60485",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1358 44294": [
+              0,
+              0
+            ],
+            "p1423 40490": [
+              0,
+              0
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

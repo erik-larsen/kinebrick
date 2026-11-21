@@ -1,0 +1,118 @@
+{
+  "set": "8024-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:33.079Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 245,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the rear deck steers the front wheels: its upright shaft has a crown gear at the foot that turns a 24-tooth gear on a long shaft running forward under the cockpit, and an 8-tooth gear at the shaft's front end slides the steering rack, which swings both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p250 120270 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 81,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p107 3737": [
+              0,
+              85.94
+            ],
+            "p98 2790a": [
+              15.36,
+              0
+            ],
+            "p37 4261": [
+              0,
+              22
+            ],
+            "p52 4261": [
+              0,
+              22
+            ],
+            "p39 3705": [
+              7.68,
+              35.84
+            ],
+            "p54 3705": [
+              7.68,
+              35.84
+            ],
+            "p16 3706": [
+              0,
+              0
+            ],
+            "p45 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p250 120270 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 56,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p107 3737": [
+              0,
+              85.94
+            ],
+            "p98 2790a": [
+              15.36,
+              0
+            ],
+            "p37 4261": [
+              0,
+              22
+            ],
+            "p52 4261": [
+              0,
+              22
+            ],
+            "p39 3705": [
+              7.68,
+              35.84
+            ],
+            "p54 3705": [
+              7.68,
+              35.84
+            ],
+            "p16 3706": [
+              0,
+              0
+            ],
+            "p45 3706": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

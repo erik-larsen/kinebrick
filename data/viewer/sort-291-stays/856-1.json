@@ -1,0 +1,249 @@
+{
+  "set": "856-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:44.243Z",
+  "load": 9.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 373,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.",
+      "verdict": "not shown",
+      "why": "A: p189 3895, p190 3895, p202 3700 not moved",
+      "msOneCall": 18,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p50 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 115,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p56 3706": [
+              0,
+              9.55
+            ],
+            "p60 3034": [
+              1.67,
+              0
+            ],
+            "p189 3895": [
+              0.13,
+              0.09
+            ],
+            "p190 3895": [
+              0.13,
+              0.09
+            ],
+            "p202 3700": [
+              0.28,
+              0
+            ],
+            "p51 3736": [
+              0,
+              0.01
+            ],
+            "p115 3737": [
+              0,
+              0
+            ],
+            "p140 3460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 86,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p56 3706": [
+              0,
+              9.55
+            ],
+            "p60 3034": [
+              1.67,
+              0
+            ],
+            "p189 3895": [
+              0.24,
+              0.17
+            ],
+            "p190 3895": [
+              0.24,
+              0.17
+            ],
+            "p202 3700": [
+              0.53,
+              0.01
+            ],
+            "p51 3736": [
+              0,
+              0.01
+            ],
+            "p115 3737": [
+              0,
+              0
+            ],
+            "p140 3460": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 2,
+      "does": "The handwheel at the back on the right tips the bucket: its 8-tooth gear turns a crown gear, which turns the 24-tooth gear on the axle across the top of the cab; that axle's two 8-tooth gears slide two racks along the cab sides, which work a pair of levers on the arms' pivot axle, and rods from there through levers on the arms tip the bucket at the arm tips.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 3,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p51 3736",
+        "way": -1,
+        "went": -0.174,
+        "asked": 1.5,
+        "by": [
+          "142/207"
+        ]
+      },
+      "stops": [
+        "142/207"
+      ],
+      "A": [
+        {
+          "control": "p51 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 109,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p115 3737": [
+              0,
+              28.65
+            ],
+            "p140 3460": [
+              5.04,
+              0
+            ],
+            "p145 3460": [
+              5.04,
+              0
+            ],
+            "p206 3894": [
+              10.17,
+              26.07
+            ],
+            "p202 3700 against p189 3895": [
+              4.42,
+              25.34
+            ],
+            "p50 3736": [
+              0,
+              0.01
+            ],
+            "p60 3034": [
+              0,
+              0
+            ],
+            "p189 3895": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p51 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.174,
+          "ms": 16,
+          "msOneCall": 4,
+          "stops": [
+            "142/207"
+          ],
+          "moved": {
+            "p115 3737": [
+              0,
+              3.33
+            ],
+            "p140 3460": [
+              0.57,
+              0
+            ],
+            "p145 3460": [
+              0.57,
+              0
+            ],
+            "p206 3894": [
+              1.83,
+              4.7
+            ],
+            "p202 3700 against p189 3895": [
+              0.76,
+              4.35
+            ],
+            "p50 3736": [
+              0,
+              0
+            ],
+            "p60 3034": [
+              0,
+              0
+            ],
+            "p189 3895": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p51 3736",
+          "judged": "stands",
+          "why": "stopped at -0.174 rad (142/207); kinds rack-and-pinion: bucket, crank-and-link: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 0
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "set": "42033-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:02.607Z",
+  "load": 12.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 122,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The steering wheel in the cockpit turns, but steers nothing: the front wheels are on a fixed axle.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p93 40001",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p111 3706 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p93 40001",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 27,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p111 3706 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

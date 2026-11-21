@@ -1,0 +1,102 @@
+{
+  "set": "42063-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:48.038Z",
+  "load": 10.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 598,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Pushing the bike along turns the boxer engine: the rear wheel's 20 tooth bevel gear turns a 12 tooth bevel gear on a drive shaft that runs forward along the swing arm through two universal joints, and a 20 and 12 tooth gear pair turns the crankshaft, so the two pistons slide in and out of their cylinders on either side of the bike.",
+      "verdict": "shown",
+      "msOneCall": 39,
+      "msPerStep": 9,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p334 88517",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 367,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {
+            "p83 6589": [
+              0,
+              143.24
+            ],
+            "p23 32269": [
+              0,
+              143.24
+            ],
+            "p64 2853": [
+              0,
+              238.73
+            ],
+            "p67 2851": [
+              23.87,
+              0
+            ],
+            "p68 2851": [
+              25.71,
+              0
+            ],
+            "p386 88517": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p334 88517",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 309,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p83 6589": [
+              0,
+              143.24
+            ],
+            "p23 32269": [
+              0,
+              143.24
+            ],
+            "p64 2853": [
+              0,
+              238.73
+            ],
+            "p67 2851": [
+              23.87,
+              0
+            ],
+            "p68 2851": [
+              25.71,
+              0
+            ],
+            "p386 88517": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

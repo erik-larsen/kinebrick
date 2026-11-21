@@ -1,0 +1,208 @@
+{
+  "set": "8848-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:42.662Z",
+  "load": 16.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 367,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel on top of the cab turns the front wheels: its column's bevel gear turns a shaft with an 8 tooth gear that drives a rack on a tie plate between the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p221 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 85,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p386 4266": [
+              16.13,
+              24.85
+            ],
+            "p393 4266": [
+              16.13,
+              24.98
+            ],
+            "p77 3743": [
+              15.36,
+              0
+            ],
+            "p387 4266": [
+              0,
+              0
+            ],
+            "p328 3028": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p221 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 67,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p386 4266": [
+              16.13,
+              24.85
+            ],
+            "p393 4266": [
+              16.13,
+              24.98
+            ],
+            "p77 3743": [
+              15.36,
+              0
+            ],
+            "p387 4266": [
+              0,
+              0
+            ],
+            "p328 3028": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 4,
+      "does": "The yellow lever on the right of the steering wheel tips the body: a link from it turns a 24 tooth gear like a crank, whose axle's other 24 tooth gear turns the 8 tooth gears on the cross axle under the body, and they push two racks that lift the body on struts about its hinge at the back.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 7,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p177 3702",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "171/328"
+        ]
+      },
+      "stops": [
+        "171/328"
+      ],
+      "A": [
+        {
+          "control": "p177 3702",
+          "way": 1,
+          "asked": 0.4,
+          "went": 0.4,
+          "ms": 74,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p328 3028": [
+              79.86,
+              35.99
+            ],
+            "p114 3743": [
+              27.64,
+              1.65
+            ],
+            "p121 3743": [
+              27.63,
+              1.65
+            ],
+            "p127 3737": [
+              0,
+              157.02
+            ],
+            "p387 4266": [
+              0,
+              0
+            ],
+            "p359 3034": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p177 3702",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 8,
+          "msOneCall": 9,
+          "stops": [
+            "171/328"
+          ],
+          "moved": {
+            "p328 3028": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p121 3743": [
+              0,
+              0
+            ],
+            "p127 3737": [
+              0,
+              0
+            ],
+            "p387 4266": [
+              0,
+              0
+            ],
+            "p359 3034": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p177 3702",
+          "judged": "stands",
+          "why": "stopped at -0 rad (171/328); kinds rack-and-pinion: tipping body, crank-and-link: lever"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 0
+    }
+  ]
+}

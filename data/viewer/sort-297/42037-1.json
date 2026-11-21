@@ -1,0 +1,351 @@
+{
+  "set": "42037-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:00.123Z",
+  "load": 14.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 482,
+  "seconds": 7,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes.",
+      "verdict": "shown",
+      "msOneCall": 92,
+      "msPerStep": 104,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": {
+        "control": "p58 57515",
+        "way": 1,
+        "went": 0.628,
+        "asked": 1.5,
+        "by": [
+          "96/496"
+        ]
+      },
+      "stops": [
+        "96/496",
+        "97/498"
+      ],
+      "A": [
+        {
+          "control": "p58 57515",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.628,
+          "ms": 980,
+          "msOneCall": 92,
+          "stops": [
+            "96/496"
+          ],
+          "moved": {
+            "p66 11949": [
+              62.79,
+              0.01
+            ],
+            "p76 11949": [
+              8.92,
+              0.01
+            ],
+            "p96 4254": [
+              25.12,
+              8.02
+            ],
+            "p97 4254": [
+              3.57,
+              1.36
+            ]
+          }
+        },
+        {
+          "control": "p58 57515",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 99,
+          "msOneCall": 75,
+          "stops": [
+            "96/496"
+          ],
+          "moved": {
+            "p66 11949": [
+              3.49,
+              0
+            ],
+            "p76 11949": [
+              0.48,
+              0
+            ],
+            "p96 4254": [
+              1.4,
+              0.55
+            ],
+            "p97 4254": [
+              0.19,
+              0.07
+            ]
+          }
+        },
+        {
+          "control": "p72 57515",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 104,
+          "msOneCall": 87,
+          "stops": [
+            "97/498"
+          ],
+          "moved": {
+            "p66 11949": [
+              0.48,
+              0
+            ],
+            "p76 11949": [
+              3.49,
+              0
+            ],
+            "p96 4254": [
+              0.19,
+              0.07
+            ],
+            "p97 4254": [
+              1.4,
+              0.55
+            ]
+          }
+        },
+        {
+          "control": "p72 57515",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.628,
+          "ms": 910,
+          "msOneCall": 79,
+          "stops": [
+            "97/498"
+          ],
+          "moved": {
+            "p66 11949": [
+              8.92,
+              0.02
+            ],
+            "p76 11949": [
+              62.79,
+              0.03
+            ],
+            "p96 4254": [
+              3.57,
+              1.36
+            ],
+            "p97 4254": [
+              25.12,
+              8.02
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p58 57515",
+          "judged": "stands",
+          "why": "stopped at +0.628 rad (96/496); -0.035 rad (96/496); kinds double-wishbone: front"
+        },
+        {
+          "control": "p72 57515",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (97/498); -0.628 rad (97/498); kinds double-wishbone: front"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "steps 6-27 build each front hub between two black suspension arms, and step 26 swings a yellow sprung shock absorber into place between arm and frame, so the arm swings up by the shock's stroke, clearly more than 0.035 rad. No page draws the suspension moving, so the exact travel isn't shown.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112296.pdf#page=16"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 5
+    },
+    {
+      "function": 5,
+      "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
+      "verdict": "shown",
+      "msOneCall": 75,
+      "msPerStep": 75,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p229 32063",
+        "way": 1,
+        "went": 0.419,
+        "asked": 1.5,
+        "by": [
+          "290/289"
+        ]
+      },
+      "stops": [
+        "290/289",
+        "249/257",
+        "250/262",
+        "292/291"
+      ],
+      "A": [
+        {
+          "control": "p229 32063",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.419,
+          "ms": 550,
+          "msOneCall": 75,
+          "stops": [
+            "290/289"
+          ],
+          "moved": {
+            "p235 11950": [
+              41.86,
+              0
+            ],
+            "p236 11950": [
+              0,
+              0
+            ],
+            "p290 4254": [
+              16.74,
+              5.82
+            ],
+            "p292 4254": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p229 32063",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 93,
+          "msOneCall": 35,
+          "stops": [
+            "249/257"
+          ],
+          "moved": {
+            "p235 11950": [
+              6.98,
+              0
+            ],
+            "p236 11950": [
+              0,
+              0
+            ],
+            "p290 4254": [
+              2.79,
+              1.12
+            ],
+            "p292 4254": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p241 32063",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 149,
+          "msOneCall": 59,
+          "stops": [
+            "250/262"
+          ],
+          "moved": {
+            "p235 11950": [
+              0,
+              0
+            ],
+            "p236 11950": [
+              6.98,
+              0
+            ],
+            "p290 4254": [
+              0,
+              0
+            ],
+            "p292 4254": [
+              2.79,
+              1.12
+            ]
+          }
+        },
+        {
+          "control": "p241 32063",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.419,
+          "ms": 565,
+          "msOneCall": 64,
+          "stops": [
+            "292/291"
+          ],
+          "moved": {
+            "p235 11950": [
+              0,
+              0
+            ],
+            "p236 11950": [
+              41.86,
+              0
+            ],
+            "p290 4254": [
+              0,
+              0
+            ],
+            "p292 4254": [
+              16.74,
+              5.82
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p229 32063",
+          "judged": "stands",
+          "why": "stopped at +0.419 rad (290/289); -0.07 rad (249/257); kinds double-wishbone: rear"
+        },
+        {
+          "control": "p241 32063",
+          "judged": "stands",
+          "why": "stopped at +0.07 rad (250/262); -0.419 rad (292/291); kinds double-wishbone: rear"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "rear module steps 11-14 fit yellow sprung shock absorbers to the pivoting arms (with CV joints in the drive shafts), so each rear hub rises by the shock's stroke, well beyond the viewer's 0.066 rad. As with the front, no page draws the motion.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112296.pdf#page=38"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

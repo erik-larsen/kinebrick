@@ -1,0 +1,160 @@
+{
+  "set": "8081-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:13.293Z",
+  "load": 16.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 580,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the roof steers the front wheels: its upright axle comes down behind the seats to a knob gear, which turns a long axle running forward under the seats to a small gear that slides the steering rack across the front axle, and steering links push the front hubs.",
+      "verdict": "shown",
+      "msOneCall": 71,
+      "msPerStep": 29,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p410 32269",
+        "way": 1,
+        "went": 1.221,
+        "asked": 1.5,
+        "by": [
+          "202/217"
+        ]
+      },
+      "stops": [
+        "202/217",
+        "199/218"
+      ],
+      "A": [
+        {
+          "control": "p410 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.221,
+          "ms": 1015,
+          "msOneCall": 71,
+          "stops": [
+            "202/217"
+          ],
+          "moved": {
+            "p48 32072": [
+              0,
+              69.95
+            ],
+            "p52 32072": [
+              0,
+              69.95
+            ],
+            "p219 3647": [
+              0,
+              69.95
+            ],
+            "p216 6574": [
+              12.21,
+              0
+            ],
+            "p210 6571": [
+              0.43,
+              29
+            ],
+            "p213 6571": [
+              0.43,
+              33.65
+            ],
+            "p582 56908": [
+              20.29,
+              32.02
+            ],
+            "p588 56908": [
+              23.45,
+              37.13
+            ],
+            "p584 56908": [
+              0,
+              0
+            ],
+            "p586 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p410 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.221,
+          "ms": 946,
+          "msOneCall": 43,
+          "stops": [
+            "199/218"
+          ],
+          "moved": {
+            "p48 32072": [
+              0,
+              69.95
+            ],
+            "p52 32072": [
+              0,
+              69.95
+            ],
+            "p219 3647": [
+              0,
+              69.95
+            ],
+            "p216 6574": [
+              12.21,
+              0
+            ],
+            "p210 6571": [
+              0.43,
+              33.65
+            ],
+            "p213 6571": [
+              0.43,
+              29
+            ],
+            "p582 56908": [
+              23.45,
+              37.13
+            ],
+            "p588 56908": [
+              20.29,
+              32.02
+            ],
+            "p584 56908": [
+              0,
+              0
+            ],
+            "p586 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p410 32269",
+          "judged": "stands",
+          "why": "stopped at +1.221 rad (202/217); -1.221 rad (199/218); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 5
+    }
+  ]
+}

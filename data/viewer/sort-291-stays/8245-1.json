@@ -1,0 +1,86 @@
+{
+  "set": "8245-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:18.698Z",
+  "load": 13,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 236,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 5,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p188 6629",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 138,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p285 2723 against p177 32009": [
+              212.64,
+              85.94
+            ],
+            "p189 99773 against p177 32009": [
+              60,
+              85.94
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ],
+            "p278 2994 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p188 6629",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 17,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p285 2723 against p177 32009": [
+              18.43,
+              7.45
+            ],
+            "p189 99773 against p177 32009": [
+              5.2,
+              7.45
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ],
+            "p278 2994 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

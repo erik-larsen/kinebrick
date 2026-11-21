@@ -1,0 +1,86 @@
+{
+  "set": "42125-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:33.776Z",
+  "load": 17.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1644,
+  "seconds": 23,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs forward through two universal joints to a pair of 16 tooth gears, then a pair of 8 tooth gears to a 12 tooth gear that slides the steering rack across, turning both front hubs.",
+      "verdict": "shown",
+      "msOneCall": 206,
+      "msPerStep": 57,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p675 2741",
+          "way": 1,
+          "asked": 1.27,
+          "went": 1.27,
+          "ms": 2050,
+          "msOneCall": 206,
+          "stops": [],
+          "moved": {
+            "p441 87761": [
+              19.05,
+              0
+            ],
+            "p339 42125 - 23801": [
+              0.4,
+              28.26
+            ],
+            "p343 42125 - 23801": [
+              0.42,
+              28.64
+            ],
+            "p165 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p675 2741",
+          "way": -1,
+          "asked": 1.27,
+          "went": -1.27,
+          "ms": 1953,
+          "msOneCall": 102,
+          "stops": [],
+          "moved": {
+            "p441 87761": [
+              19.05,
+              0
+            ],
+            "p339 42125 - 23801": [
+              0.42,
+              28.64
+            ],
+            "p343 42125 - 23801": [
+              0.4,
+              28.26
+            ],
+            "p165 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 23
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "set": "42074-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:38.879Z",
+  "load": 9.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 325,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The helm, a small steering wheel on the deck, turns the rudder at the stern: its 16 tooth gear drives, through a 16 tooth idler, a 16 tooth gear on the long shaft down the hull, whose 12 tooth bevel gear at the stern turns the 20 tooth bevel gear on the rudder's upright axle.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p40 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 86,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p37 94925": [
+              0,
+              85.94
+            ],
+            "p33 94925": [
+              0,
+              85.94
+            ],
+            "p90 6589": [
+              0,
+              85.94
+            ],
+            "p93 42074 - 32198": [
+              0,
+              51.57
+            ],
+            "p95 32316": [
+              36,
+              51.57
+            ],
+            "p34 32316": [
+              0,
+              0
+            ],
+            "p150 3648b": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p40 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 65,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p37 94925": [
+              0,
+              85.94
+            ],
+            "p33 94925": [
+              0,
+              85.94
+            ],
+            "p90 6589": [
+              0,
+              85.94
+            ],
+            "p93 42074 - 32198": [
+              0,
+              51.57
+            ],
+            "p95 32316": [
+              36,
+              51.57
+            ],
+            "p34 32316": [
+              0,
+              0
+            ],
+            "p150 3648b": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

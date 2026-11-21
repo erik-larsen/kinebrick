@@ -1,0 +1,246 @@
+{
+  "set": "952-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:36.617Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 282,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The big rear wheels drive the power take-off: a crown gear on the right half axle turns an 8 tooth gear on a short shaft running back, so the crown gear on its end, behind the tractor, turns three times as fast as the wheels.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p251 952-3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 93,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.83
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p251 952-3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 55,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.83
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p252 952-3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 51,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.8
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p252 952-3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 50,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.8
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 4,
+      "does": "The lever on the right beside the seat raises and lowers the hitch: a short link from it swings the hitch's arms on the rear half axles, and the harrow, hung on the cross axle at the arms' ends and held upright by a top link pivoting behind the seat, rises and falls with them.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 4,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p235 3702",
+        "way": 1,
+        "went": 0.136,
+        "asked": 0.17,
+        "by": [
+          "231/237"
+        ]
+      },
+      "stops": [
+        "231/237"
+      ],
+      "A": [
+        {
+          "control": "p235 3702",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.136,
+          "ms": 16,
+          "msOneCall": 6,
+          "stops": [
+            "231/237"
+          ],
+          "moved": {
+            "p37 3702": [
+              5.29,
+              4.99
+            ],
+            "p256 3709b": [
+              12.6,
+              1.7
+            ],
+            "p102 3702": [
+              5.92,
+              5.58
+            ],
+            "p251 952-3739c01": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p235 3702",
+          "way": -1,
+          "asked": 1.4,
+          "went": -1.4,
+          "ms": 114,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p37 3702": [
+              50.23,
+              47.31
+            ],
+            "p256 3709b": [
+              117.87,
+              14.2
+            ],
+            "p102 3702": [
+              53.88,
+              50.76
+            ],
+            "p251 952-3739c01": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p235 3702",
+          "judged": "stands",
+          "why": "stopped at +0.136 rad (231/237); kinds three-point-hitch"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 0
+    }
+  ]
+}
