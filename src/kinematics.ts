@@ -1971,7 +1971,7 @@ export class Kinematics {
   //   neither: it turns in no motion.
   // "The same" and "turns" are to 1e-6 of the fastest joint in any of the motions. A track holds to
   // the ground as a tyre does: each wheel in it is a tread (see trackTreads).
-  classifyDrag(control: (m: number[]) => number, kind: Drag['kind']) {
+  classifyDrag(control: (m: number[]) => number, kind: Drag['kind'], found?: { basis: number[][]; motions: number[][]; slipRows: number[][] }) {
     const d = this.drag;
     const kept = [this.scrubNeeded, this.leastScrub, this.slipRows] as const;
     // Worked out where the model is, not moved to the origin as freeMotions does: that rounds the
@@ -1980,14 +1980,29 @@ export class Kinematics {
     // sideways or lifts (as motionChoices keeps them gripping), if any of those moves the control; else
     // all of them (a parked car's steering scrubs its tyres, and in the motions that don't, it can't
     // turn, so every joint would look free).
+    // For a turn, the motions the drag's last search found, where it was made from the same inputs (the
+    // holds' last test, at pointer-down; see lastSearch): the same motions, not worked out twice. Those
+    // were worked out with the model moved to the origin (see nearOrigin): so are a slide's points here.
     let motions: number[][];
     try {
-      const basis = this.treeBasis();
-      const all = this.freeMotionsInBasis().map((z) => fromBasis(z, basis));
+      const basis = found ? found.basis : this.treeBasis();
+      const inBasisAll = found ? found.motions : this.freeMotionsInBasis();
+      const slipRows = found ? found.slipRows : this.slipRows;
+      // A motion that is one coordinate of the basis alone (a free hub spinning: on the 9397 Logging
+      // Truck, most of them) is that coordinate's column, read off; the same numbers fromBasis gives.
+      const toMotion = (z: number[]) => {
+        let only = -1;
+        for (let c = 0; c < z.length; c++) {
+          if (z[c] === 0) continue;
+          if (only >= 0) return fromBasis(z, basis);
+          only = c;
+        }
+        return only < 0 ? fromBasis(z, basis) : basis.map((row) => row[only] * z[only]);
+      };
+      const all = inBasisAll.map(toMotion);
       motions = all;
-      if (this.slipRows.length && all.length) {
-        const inBasisAll = this.freeMotionsInBasis();
-        const grip = orthonormalize(mixes(inBasisAll, nullSpace(dotsWith(this.slipRows, inBasisAll), inBasisAll.length))).map((z) => fromBasis(z, basis));
+      if (slipRows.length && all.length) {
+        const grip = orthonormalize(mixes(inBasisAll, nullSpace(dotsWith(slipRows, inBasisAll), inBasisAll.length))).map(toMotion);
         const turns = (ms: number[][]) => ms.reduce((sum, m) => sum + control(m) ** 2, 0);
         if (grip.length && turns(grip) > 1e-12 * turns(all)) motions = grip;
       }
@@ -1996,7 +2011,20 @@ export class Kinematics {
     }
     const c = motions.map(control);
     const cc = c.reduce((sum, x) => sum + x * x, 0);
-    const rates = this.mech.joints.map((_, j) => motions.map((m) => this.anyJointRate(m, j)));
+    // Each joint's axis (and a slide's point) where the model is, once: its rate in a motion is then
+    // a few sums (see anyJointRate, which this works out the same way).
+    const axes = this.mech.joints.map((joint) => ({ d: axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]), p: joint.from.clone().applyMatrix4(this.poses[joint.bodyA]) }));
+    const rates = this.mech.joints.map((joint, j) => {
+      const { d, p } = axes[j];
+      const [a, b] = [6 * joint.bodyA, 6 * joint.bodyB];
+      return motions.map((m) => {
+        if (joint.kind !== 'slide') return (m[b] - m[a]) * d.x + (m[b + 1] - m[a + 1]) * d.y + (m[b + 2] - m[a + 2]) * d.z;
+        // A point's velocity on a body: the body's velocity at the origin plus its turning × the point.
+        const v = (o: number) => [m[o + 3] + m[o + 1] * p.z - m[o + 2] * p.y, m[o + 4] + m[o + 2] * p.x - m[o] * p.z, m[o + 5] + m[o] * p.y - m[o + 1] * p.x];
+        const [vb, va] = [v(b), v(a)];
+        return (vb[0] - va[0]) * d.x + (vb[1] - va[1]) * d.y + (vb[2] - va[2]) * d.z;
+      });
+    });
     const size = (r: number[]) => Math.sqrt(r.reduce((sum, x) => sum + x * x, 0));
     const scale = Math.max(0, ...rates.map(size));
     const free = new Set<number>();
@@ -2020,7 +2048,26 @@ export class Kinematics {
       if (rest <= 1e-6 * scale) driven.add(j);
       else candidates.push(j);
     });
-    const still = cc > 0 ? this.stillestMix(candidates.map((j) => rates[j]), c) : null;
+    // A motion that turns one candidate alone and not the control can always undo that joint's turning
+    // in any mix, touching nothing else: that joint is free, and it and the motion are left out of the
+    // least squares (the same answer for the rest, from a far smaller problem: on the 9397, most).
+    const tol = 1e-6 * scale;
+    const privateOf = new Map<number, number>(); // candidate's place -> its motion
+    const usedMotion = new Set<number>();
+    for (let m = 0; m < motions.length; m++) {
+      if (Math.abs(c[m]) > tol) continue;
+      let only = -1;
+      for (let k = 0; k < candidates.length; k++) {
+        if (Math.abs(rates[candidates[k]][m]) <= tol) continue;
+        if (only >= 0) { only = -2; break; }
+        only = k;
+      }
+      if (only >= 0 && !privateOf.has(only)) { privateOf.set(only, m); usedMotion.add(m); }
+    }
+    const keepMotions = motions.map((_, m) => m).filter((m) => !usedMotion.has(m));
+    const rest = candidates.map((_, k) => k).filter((k) => !privateOf.has(k));
+    const solved = cc > 0 ? this.stillestMix(rest.map((k) => keepMotions.map((m) => rates[candidates[k]][m])), keepMotions.map((m) => c[m])) : null;
+    const still = solved ? candidates.map((_, k) => (privateOf.has(k) ? 0 : solved[rest.indexOf(k)])) : null;
     for (const [k, j] of candidates.entries()) {
       if (!still) free.add(j);
       else if (Math.abs(still[k]) <= 1e-6) free.add(j);
@@ -2079,9 +2126,10 @@ export class Kinematics {
   // KINEBRICK_FREE_COUNT=1: how far each joint has moved since the count last looked (the turn
   // between its two bodies, or the slide), added up over the drag, and how far the control has.
   // Counted over every joint, the free ones picked out at the drag's end.
-  countFree(grabPoint: Vector3 | null = null) {
+  // `start`: the drag's first step is about to be taken (before its classification is made).
+  countFree(grabPoint: Vector3 | null = null, start = false) {
     const d = this.drag;
-    if (!d.free) return;
+    if (!d.free && !start) return;
     const rel = this.mech.joints.map((j) => this.poses[j.bodyA].clone().invert().multiply(this.poses[j.bodyB]));
     if (!d.counted) {
       d.counted = { rel, moved: rel.map(() => 0), travel: 0, grab: grabPoint };
@@ -2757,10 +2805,27 @@ export class Kinematics {
   // A turn whose sums meet a value that is not finite (see NotFinite) is refused: undone, with
   // nothing turned (see refuseNotFinite).
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
-    if (this.drag.turning?.joint === joint && !this.drag.free) {
-      this.classifyDrag((m) => this.jointRate(m, joint), this.wheelTurned(joint) ? 'wheel' : 'turn');
-      if (FREE_COUNT()) this.countFree();
+    // The classification is made in the first step's own search for a motion (see jointMotionNearOrigin),
+    // from the free motions it works out or reuses; here only if that search didn't run.
+    const classify = this.drag.turning?.joint === joint && !this.drag.free;
+    if (classify) {
+      this.classifyPending = joint;
+      if (FREE_COUNT()) this.countFree(null, true);
     }
+    try {
+      return this.turnJointClassified(joint, angle, allowed, maxStep);
+    } finally {
+      if (classify && this.classifyPending === joint) {
+        this.classifyPending = -1;
+        this.classifyDrag((m) => this.jointRate(m, joint), this.wheelTurned(joint) ? 'wheel' : 'turn');
+      }
+    }
+  }
+
+  // The joint whose drag's first step is to classify the drag's joints (see classifyDrag), or -1.
+  private classifyPending = -1;
+
+  private turnJointClassified(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     try {
       return this.turnJointGuarded(joint, angle, allowed, maxStep);
     } finally {
@@ -3639,6 +3704,12 @@ export class Kinematics {
     }
     const basis = reuse ? last.basis : this.treeBasis();
     const [usual, suspension] = reuse ? [last.usual, last.suspension] : this.freeMotionsApart();
+    // A drag's first step classifies its joints from these (see classifyDrag), where the model is now
+    // (moved to the origin, as these were worked out).
+    if (this.classifyPending === joint && !this.drag.choosingHolds) {
+      this.classifyPending = -1;
+      this.classifyDrag((m) => this.jointRate(m, joint), this.wheelTurned(joint) ? 'wheel' : 'turn', { basis, motions: orthonormalize([...usual, ...suspension]), slipRows: this.slipRows });
+    }
     const { turning, rateOf, rate, size } = this.measures(joint, basis);
     // The car moves on its suspension only if nothing else turns the joint without turning the
     // joints SUSPENSION_GAIN times as fast or more (where the only way is a hair of rolling, scaled
