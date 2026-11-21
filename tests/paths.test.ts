@@ -6,6 +6,7 @@ import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr, parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { LoopPath, loopLinks } from '../src/paths.ts';
+import { touchingOf } from './touching.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -236,10 +237,11 @@ ${order.map((i) => links[i]).join('\n')}
 
 // A model in models/, read as the viewer reads it, with what the packer found.
 const packed: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
+const touchings = new Map(await Promise.all(['8835-Forklift', '8844-Helicopter'].map(async (name) => [name, await touchingOf(`models/${name}.mpd`)] as const)));
 function model(name: string) {
   const { primitives, pieces } = packed[name] ?? { primitives: [], pieces: {} };
   const { parts, paths } = parseModel(readFileSync(`models/${name}.mpd`, 'utf-8'), (n) => primitives.includes(n), (n) => pieces[n] ?? null);
-  return { parts, mech: inferMechanism(parts, table, roles, paths) };
+  return { parts, mech: inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), touchings.get(name)!) };
 }
 
 describe('chains placed link by link', () => {

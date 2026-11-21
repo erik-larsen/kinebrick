@@ -66,8 +66,8 @@ function auditRows(text: string): { part: string; set: string; fns: number[]; te
 type Verdict = 'agrees' | 'disagrees' | 'cannot tell';
 
 // Each set's model, read once, and a function's verdict on it.
-const models = new Map<string, ReturnType<typeof loadModel>>();
-function judge(set: string, n: number): { verdict: Verdict; why: string } {
+const models = new Map<string, Awaited<ReturnType<typeof loadModel>>>();
+async function judge(set: string, n: number): Promise<{ verdict: Verdict; why: string }> {
   const data = JSON.parse(readFileSync(`data/sets/${set}.json`, 'utf-8'));
   const fn: Fn | undefined = data.curated.functions?.[n - 1];
   if (!fn) return { verdict: 'cannot tell', why: `no function ${n} in the list` };
@@ -76,7 +76,7 @@ function judge(set: string, n: number): { verdict: Verdict; why: string } {
   // Only the last model read is kept: the rows are judged set by set (see below).
   if (!models.has(file)) {
     models.clear();
-    models.set(file, loadModel(file, file.startsWith('omr/')));
+    models.set(file, await loadModel(file, file.startsWith('omr/')));
   }
   const loaded = models.get(file)!;
   if (fn.first?.length) {
@@ -139,7 +139,7 @@ if (process.argv[1]?.endsWith('what-moves-audit.ts')) {
   const counts: Record<string, number> = {};
   // Judged set by set, so each model is read once; written in the audit's order.
   const judged = new Map<string, { verdict: Verdict; why: string }>();
-  for (const r of [...rows].sort((a, b) => a.set.localeCompare(b.set))) for (const n of r.fns) if (!judged.has(`${r.set} ${n}`)) judged.set(`${r.set} ${n}`, judge(r.set, n));
+  for (const r of [...rows].sort((a, b) => a.set.localeCompare(b.set))) for (const n of r.fns) if (!judged.has(`${r.set} ${n}`)) judged.set(`${r.set} ${n}`, await judge(r.set, n));
   for (const r of rows) {
     const verdicts = r.fns.length ? r.fns.map((n) => ({ n, ...judged.get(`${r.set} ${n}`)! })) : [{ n: 0, verdict: 'cannot tell' as Verdict, why: 'names no function' }];
     for (const v of verdicts) {
@@ -162,7 +162,7 @@ if (process.argv[1]?.endsWith('what-moves-audit.ts')) {
 // A function's first steps worked, as the check works them: a driving ring slid to the click-in
 // position nearest `by` LDU on, else the control's joint turned `by` and the rings its catch moves
 // shifted; the mechanism then read afresh from where everything is. Or why a step couldn't be.
-function setFirst(loaded: ReturnType<typeof loadModel>, steps: { control: string; by: number }[]): { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics } | { why: string } {
+function setFirst(loaded: Awaited<ReturnType<typeof loadModel>>, steps: { control: string; by: number }[]): { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics } | { why: string } {
   let { parts, mech, kin } = loaded.read(loaded.parts);
   const { table, slides } = loaded;
   const placedNow = () => parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));

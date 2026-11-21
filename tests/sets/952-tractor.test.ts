@@ -2,10 +2,12 @@ import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../../src/kinematics.ts';
 import { inferMechanism, meshesChanged } from '../../src/mechanism.ts';
-import { load, roles, table } from './load.ts';
+import { load, roles, table, readShapes } from './load.ts';
+
+await readShapes('models/952-Tractor.mpd');
 
 describe('952 Tractor', () => {
-  const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
+  const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables, touching } = load('models/952-Tractor.mpd');
 
   it('is fully attached: its big rear wheels are tyres, and two plates stand on edge between studs', () => {
     expect(mech.loose).toEqual([]);
@@ -94,7 +96,7 @@ describe('952 Tractor', () => {
     kin.letGoAfterDrag();
     expect(meshesChanged(mech, kin.poses)).toBe(true);
     const lowered = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
-    const after = inferMechanism(lowered, table, roles);
+    const after = inferMechanism(lowered, table, roles, [], new Set(), false, null, new Set(), touching);
     const pto = after.meshes.find((m) => [after.gears[m.gearA].part, after.gears[m.gearB].part].sort().join() === [27, 286].sort().join());
     expect(pto?.kind).toBe('crown');
     const kin2 = new Kinematics(after);

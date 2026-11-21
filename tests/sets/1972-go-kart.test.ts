@@ -1,6 +1,8 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/1972-Go-Kart.mpd');
 
 describe('1972 Go-Kart', () => {
   const { parts, mech, kin, bodyOf, turn, angleOf, frameMoved } = load('models/1972-Go-Kart.mpd');

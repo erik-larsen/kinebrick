@@ -12,8 +12,8 @@ import { canMove, pinsForDrag } from '../src/pinSearch.ts';
 // no friction pin (decision 155 of 2026-11-17).
 describe("the pins a motor's start frees", () => {
   const towTruck = 'omr/42070-1 6x6 All Terrain Tow Truck.mpd';
-  it.skipIf(!existsSync(towTruck))("frees none for the 42070 Tow Truck's stuck motor, and never names the motor's own joint", () => {
-    const loaded = loadModel(towTruck, true);
+  it.skipIf(!existsSync(towTruck))("frees none for the 42070 Tow Truck's stuck motor, and never names the motor's own joint", async () => {
+    const loaded = await loadModel(towTruck, true);
     const output = motorRunPart(loaded.mech, 593);
     const at = new Vector3().setFromMatrixPosition(loaded.parts[output].matrix);
     expect(canMove(loaded.mech, output, at)).toBe(false);

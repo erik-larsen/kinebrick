@@ -7,14 +7,14 @@ import { catchShiftDue, catchShifts, findCatches, findSliders } from '../src/shi
 // The model is read from the OMR files, which a checkout on GitHub does not have (omr/ is not in
 // the repository): there the tests are skipped.
 const FILE = 'omr/42114-1 6x6 Volvo Articulated Hauler.mpd';
-if (existsSync(FILE)) withTheModel();
+if (existsSync(FILE)) await withTheModel();
 else describe.skip('a motor spun in the viewer (the 42114)', () => it('needs the OMR files', () => {}));
 
-function withTheModel() {
+async function withTheModel() {
   // A motor spun in the viewer, and a ring shifted while it runs (decision 152 of 2026-11-17), on
   // the 42114 6x6 Volvo Articulated Hauler: its L motor p602 shifts the gearbox through a rotary
   // catch p129, which slides three driving rings in turn.
-  const loaded = loadModel(FILE, true);
+  const loaded = await loadModel(FILE, true);
   const { parts, mech, kin, table } = loaded;
   const MOTOR = 602;
   const CATCH = 129;

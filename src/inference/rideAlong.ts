@@ -45,7 +45,17 @@ export function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCyl
 // more than one part ride on each other changed the bodies of 19 sets, and letting single loose
 // parts do so too, 33, the 9391's frame among them: see the branch's history,
 // claude/ride-on-loose df978eec and adc91b2f.)
-export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>, carried: number[][] = []): Connection[] {
+//
+// A group that touches, as built, parts that aren't loose (`touches`, each loose part's, see
+// touchingFrom in collisions.ts) rides on one of those, the one whose connection point is nearest,
+// or, if none of them has one, whose origin is (decision 259 of 2026-11-20: the 9397's battery
+// box lid touches only the box, but rode on the steering shaft, whose axle passes 23 LDU from the
+// lid's origin). That holds only where the parts it touches are all of one body (`bodyOf`, the
+// bodies as the connections found before the welds make them): it rides with that body. A group
+// that touches parts of several bodies, or none, rides as above (the 42084's carried model touched
+// a gear of its hook arm's drive as well as the bed, and rode on the gear; the 42069's hoses lie
+// between door and frame).
+export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>, carried: number[][] = [], touches: Map<number, number[]> | null = null, bodyOf: number[] | null = null): Connection[] {
   if (loose.length === 0) return [];
   const isLoose = new Set(loose);
   const leader = new Map(loose.map((i) => [i, i]));
@@ -61,14 +71,27 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
   // anchors at first: scenery rides with a train track's rails.
   type Best = { part: number; anchor: number; distance: number };
   const best = new Map<number, Best>();
+  // Each group's parts that aren't loose it touches, if any and all of one body: it rides on one of them alone.
+  const touchedOf = new Map<number, Set<number>>();
+  if (touches) {
+    for (const [g, members] of groups) {
+      const touched = new Set(members.flatMap((i) => (touches.get(i) ?? []).filter((p) => !isLoose.has(p) && (!among || among.has(p)))));
+      if (touched.size && (!bodyOf || new Set([...touched].map((p) => bodyOf[p])).size === 1)) touchedOf.set(g, touched);
+    }
+  }
+  // A point an anchor offers: a connection point's start, or (`own`) the origin of a touched part
+  // that has none, offered only to the groups that touch it.
+  type Point = { part: number; start: Vector3; own?: boolean };
   // `ofAnotherModel`: the anchors are another second model's parts, which count as another
   // submodel's even where they are a copy of the same one: two containers of one design are two
   // things (the 42062 Container Yard's, the one standing apart rode on the one held in the
   // spreader, as a part "of its own submodel").
-  const offer = (anchorCyls: WorldCylinder[], ofAnotherModel = false) => {
+  const offer = (anchorCyls: Point[], ofAnotherModel = false) => {
     for (const [g, members] of groups) {
+      const touched = touchedOf.get(g);
       for (const i of members) {
         for (const c of anchorCyls) {
+          if (touched ? !touched.has(c.part) : c.own) continue;
           // Another submodel's part counts as much further away.
           const distance = c.start.distanceTo(at.get(i)!) + (!ofAnotherModel && parts[c.part].submodel === parts[i].submodel ? 0 : 1e6);
           const b = best.get(g);
@@ -79,7 +102,9 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
   };
   const cylsOf = new Map<number, WorldCylinder[]>();
   for (const c of cyls) if (isLoose.has(c.part)) cylsOf.set(c.part, [...(cylsOf.get(c.part) ?? []), c]);
-  offer(cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part))));
+  const withPoints = new Set(cyls.map((c) => c.part));
+  const ownPoints = [...new Set([...touchedOf.values()].flatMap((t) => [...t]))].filter((p) => !withPoints.has(p)).map((p) => ({ part: p, start: new Vector3().setFromMatrixPosition(parts[p].matrix), own: true }));
+  offer([...cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part))), ...ownPoints]);
   // The other groups' nearest anchor is fixed now: they ride on the parts that aren't loose.
   const ofSecondModel = new Set(carried.flat());
   const singles = [...groups].filter(([, members]) => !members.some((i) => ofSecondModel.has(i))).map(([g]) => g);
