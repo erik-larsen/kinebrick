@@ -24,6 +24,9 @@ export function endlessKinds(mechanisms: string[] | undefined): { kinds: string[
 // is judged only where the control it stopped is such a part, never by the function's kinds
 // alone: the 8063's lever (a connector on the catch's axle) stops at the end of its real travel.
 // Not a steering wheel, a hub, a spindle, a joiner, a connector or a towball: those turn so far.
+// The title words are a stopgap (decision 284 of 2026-11-21): data/roles.json holds few of these
+// parts yet (most rims have none), and as the roles are filled in they take over, a part's role
+// deciding wherever it has one.
 const ENDLESS_ROLES = new Set(['tyre', 'rim', 'gear', 'axle', 'differential', 'crankshaft', 'worm', 'train wheel']);
 const ENDLESS_TITLE = /\b(wheel|rim|tyre|tire|gear|sprocket|pulley|propeller|rotor|axle|worm|crankshaft|differential)\b/i;
 const NOT_ENDLESS_TITLE = /\b(steering|hub|spindle|joiner|connector|towball)\b/i;
