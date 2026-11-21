@@ -266,7 +266,7 @@ async function sweepSet(set: string) {
     const file: string = fn.model ?? model;
     try {
       if (fails.get(file)) throw new Error('known');
-      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null));
+      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null, `${set} ${i + 1}`));
       if (aOnly) {
         const why = await untrusted(file, listed && fn.lifted ? 'lifted=1' : '');
         if (why) line.reopened = why;
@@ -302,7 +302,7 @@ async function sweepSet(set: string) {
 
 // One function, A and B. `fn` is the list's entry, `g` the check's record of it.
 // With `viewerFor`, part A alone, on a viewer kept open for the set (see --a).
-async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: string) => Promise<Viewer>) | null = null): Promise<Record<string, any>> {
+async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: string) => Promise<Viewer>) | null = null, fnKey = ''): Promise<Record<string, any>> {
   const controls: string[] = [fn.control].flat();
   const moves = (fn.moves ?? []).map(refOf);
   const stays = (fn.stays ?? []).map(refOf);
@@ -328,6 +328,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const v = viewerFor ? await timed('open', viewerFor(file)) : await timed('open', open(file, settings));
     if (!viewerFor) await timed('collisions', collisionsReady(v));
     const notDone = await timed('first', firstSteps(v, fn.first ?? []));
+    // KB_FREE_PINS (decision 304): {"set fn": [pins]}, the pins the viewer's Shift frees on a listed
+    // part (setup.pinsToShift on it), freed before the turn, as a user's Shift press on that part.
+    const freeAsked = process.env.KB_FREE_PINS ? (JSON.parse(process.env.KB_FREE_PINS) as Record<string, number[]>)[fnKey] : undefined;
+    if (freeAsked?.length) await v.page.evaluate((pins) => (window as any).kinebrick.setup.freePins(pins), freeAsked);
     if (noteLimits) limits.push(...notDone);
     if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
     return v;
