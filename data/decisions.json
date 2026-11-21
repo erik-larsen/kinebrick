@@ -22,7 +22,17 @@
       }
     ]
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "system-hinges",
+      "kind": "Decision",
+      "title": "After the blind trial: should Kinebrick learn System hinges, doors and clips?",
+      "what": "The blind trial (315) tried 28 functions on ten non-Technic models. Of the 15 that do not work in full, 12 fail for one kind of reason: a hinged or clipped part is read as fixed to the body (5) or as tied to nothing (7). Examples: the 6666 Ambulance's side doors (parts 3821 and 3822) and roof hatch (4213), the 6482 Rescue Helicopter's rear hatch, the 6649 Street Sweeper's cockpit. These are the studded-brick ways of making a hinge: a door in its frame, a hinge plate, a clip on a bar. Technic sets hinge with pins and axles, which Kinebrick reads well, so these other ways were never needed for the 186 sets. \"Connection data\" means the table that says, for each part, where and how it can join another: a pin in a hole, an axle in a gear. Kinebrick builds that table from LDCad's shadow library. The parts above are in the table, but Claude has not yet looked at whether the table lacks their hinge and clip points or Kinebrick's reading does not use them. Three ways on. (A) Not now: the work stays on the 186 Technic sets (speed, the rolling rule, the true state of the green sets). (B) A look only: the worker finds, for the 12 failed functions, why each part is read fixed or loose, and counts how many OMR sets outside Technic it would open; about a day, nothing changed, no check runs. (C) Build it now, as a line of work of its own.",
+      "effect": "With (B) you would have the size of the job and of the gain before deciding. With (C) the non-Technic OMR sets with moving parts could come into Kinebrick, which you named as a good chance on 20 November; it would take the worker off the Technic sets for days. Claude recommends (B), once the worker's second sweep is reported: it costs little and turns a guess into figures.",
+      "reply": "B: a look only",
+      "since": "2026-11-21"
+    }
+  ],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
