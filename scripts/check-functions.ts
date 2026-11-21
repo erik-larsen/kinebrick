@@ -1479,6 +1479,8 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
       const stopped = judged && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${controlRefs[judged[0]]}: ${name(judged[2])} against ${name(judged[3])}` } : {};
       return { ...r, ...stopped, collisionStops };
     };
+    // The pins freed, each with the part it was freed for, beside the count (`freed`).
+    const withFreedFor = <T extends object>(r: T) => (freedFor.size ? { ...r, freedFor: [...freedFor].sort((a, b) => a[0] - b[0]).map(([pin, forRef]) => ({ pin: name(pin), for: forRef })) } : r);
     // A function that doesn't work as read, whose control moves only together with a bigger body
     // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
     // the cab): worked again with those pins freed, as a user who sees that would press it with
@@ -1498,12 +1500,17 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         pressed = loaded.allFree(placedNow());
       }
       const pins = new Set<number>();
+      const shiftFor = new Map<number, string>();
       for (const ref of all) {
         const c = part(ref);
         const body = mech.roles[c] === 'motor' ? motorOutput(mech, c) : mech.bodyOf[c];
         const link = kin.parentLink(body);
         const moves = !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint, false) !== null;
-        if (moves && heldInBodyByPins(mech, pressed, c)) for (const pin of pinsForShift(mech, pressed, c).pins) pins.add(pin);
+        if (moves && heldInBodyByPins(mech, pressed, c)) for (const pin of pinsForShift(mech, pressed, c).pins) {
+          pins.add(pin);
+          // Freed for the part Shift was pressed on (the 42060's fn8: freed 1, and said for none).
+          if (!shiftFor.has(pin)) shiftFor.set(pin, ref);
+        }
       }
       if (pins.size) {
         const [whyBefore, freedBefore] = [why.length, freedPins];
@@ -1514,15 +1521,14 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         shiftFreed = new Set();
         if (again && RANK[again.result] < RANK[combined.result]) {
           collisionStops.splice(0, stopsBefore);
-          return withCollisions({ ...again, shiftPressed: [...pins].sort((a, b) => a - b) });
+          for (const [pin, ref] of shiftFor) noteFreed([pin], ref);
+          return withFreedFor(withCollisions({ ...again, shiftPressed: [...pins].sort((a, b) => a - b) }));
         }
         why.length = whyBefore;
         freedPins = freedBefore;
         collisionStops.length = stopsBefore;
       }
     }
-    // The pins freed, each with the part it was freed for, beside the count (`freed`).
-    const withFreedFor = <T extends object>(r: T) => (freedFor.size ? { ...r, freedFor: [...freedFor].sort((a, b) => a[0] - b[0]).map(([pin, forRef]) => ({ pin: name(pin), for: forRef })) } : r);
     return combined ? withFreedFor(withCollisions(combined)) : combined;
   };
 
