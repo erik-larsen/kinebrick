@@ -309,6 +309,10 @@
     {
       "date": "2026-11-21",
       "what": "The sweep's 144 are sorted (279): 100 shown after all, 27 held at partly, 17 doubtful and still at works. Working functions: 713, were 740. Stage A of the cheaper search gives the same results and almost no gain, so it is not merged (280)."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your point that all cores were busy day and night (281): most of that load was the test browsers, which drew the model in software, 3 to 4 cores each, idle or not. They now draw with the Mac's graphics card and take 0.2 of a core. The machine's load fell from about 40 to about 6, and a viewer test of five functions takes 135 s against 1,282 s."
     }
   ]
 }
