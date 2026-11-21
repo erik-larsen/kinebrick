@@ -218,6 +218,13 @@ export interface Options {
   workingSet: boolean;
   workingSetAudit: number;
   workingSetCompare: boolean;
+  // A search for a turn's motion from the same state, with the same holds, as the last one takes
+  // that one's free motions and the motions its tiers chose (see jointMotionNearOrigin): a drag's
+  // first step after its holds were tested from where it starts. The same bits. On;
+  // KINEBRICK_REUSE_SEARCH=0 turns it off, for comparing; =check works each such search out
+  // afresh too and counts the motions that differ in a bit (see searchStats).
+  reuseSearch: boolean;
+  reuseSearchCheck: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
@@ -244,6 +251,8 @@ export const experiments: Options = {
   workingSet: setting('KINEBRICK_WORKING_SET') !== '0',
   workingSetAudit: Number(setting('KINEBRICK_WORKING_SET_AUDIT') ?? 0),
   workingSetCompare: setting('KINEBRICK_WORKING_SET_COMPARE') === '1',
+  reuseSearch: setting('KINEBRICK_REUSE_SEARCH') !== '0',
+  reuseSearchCheck: setting('KINEBRICK_REUSE_SEARCH') === 'check',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -287,6 +296,15 @@ export interface Slip<R = Row> {
   travel: R[]; // how fast each tyre's hub travels along the way it rolls
   lift: R[]; // how fast each tyre's contact point rises or sinks
   rise: R[]; // how fast the frame rises or sinks over each tyre's hub, on its suspension
+}
+
+// What a search for a turn's motion depends on besides the mechanism (see Kinematics.searchInputs).
+interface SearchInputs {
+  angles: Float64Array;
+  poses: Float64Array;
+  rest: string;
+  drag: Drag;
+  ws: object | null;
 }
 
 // A drag's state: what it holds still and what it has found out, made when the drag starts
@@ -3336,12 +3354,64 @@ export class Kinematics {
     return { turning, rateOf, rate, size };
   }
 
+  // The last search for a turn's motion (see jointMotionNearOrigin and Options.reuseSearch): what
+  // it depended on, and what it found. A drag tests its holds from where it starts (jointMotion,
+  // through stillPossible), then its first step searches again from the same place with the same
+  // holds: on the 9397 Logging Truck's steering, two searches of about 200 ms each for one answer.
+  private lastSearch: {
+    on: SearchInputs;
+    basis: number[][];
+    usual: number[][];
+    suspension: number[][];
+    plain: { motion: number[] | null; parked: number[] | null };
+    any: { motion: number[] | null; parked: number[] | null };
+    scrub: [number | null, number, number[][]];
+    gripped: boolean;
+  } | null = null;
+  // How often a search was reused, worked out, and (with reuseSearchCheck) found to differ in a bit
+  // from the one reused.
+  searchStats = { reused: 0, worked: 0, differ: 0 };
+
+  // What a search for joint's motion depends on besides the mechanism: the state (where every body
+  // is, and the tyres' travel and scrub; see snapshot), the drag's holds and what it has found, the slides held at their ends, the tyres on the ground, the
+  // scrub allowed, the working set in use, and the options. Compared exactly (see sameInputs).
+  private searchInputs(joint: number, play: boolean): SearchInputs {
+    const poses = new Float64Array(16 * this.poses.length);
+    this.poses.forEach((m, b) => poses.set(m.elements, 16 * b));
+    const d = this.drag;
+    const list = (s: Iterable<number>) => [...s].sort((a, b) => a - b).join(',');
+    return {
+      angles: Float64Array.from([...this.jointAngles, ...this.treadTravel, ...this.treadScrub]),
+      poses,
+      rest: [joint, play, this.scrub, list(d.held), list(d.heldToFrame), list(d.outOfReach), d.together.join(','), d.turning ? `${d.turning.grabbed},${d.turning.joint}` : '', d.springs, d.grip, list(this.frozen), list(this.endHeld), list(this.turnHeld), this.contactTreads.join(','), this.springsHeld, this.wsActive, JSON.stringify(this.options)].join('|'),
+      drag: d,
+      ws: this.ws,
+    };
+  }
+
+  private static sameInputs(a: SearchInputs, b: SearchInputs): boolean {
+    if (a.drag !== b.drag || a.ws !== b.ws || a.rest !== b.rest || a.angles.length !== b.angles.length || a.poses.length !== b.poses.length) return false;
+    for (let i = 0; i < a.angles.length; i++) if (!Object.is(a.angles[i], b.angles[i])) return false;
+    for (let i = 0; i < a.poses.length; i++) if (!Object.is(a.poses[i], b.poses[i])) return false;
+    return true;
+  }
+
   private jointMotionNearOrigin(joint: number, play: boolean): number[] | null {
     // Chosen in the tree basis's coordinates (see freeMotionsInBasis), each motion's bodies'
     // turning read off the basis's rows as they're needed, and only the motion chosen turned
     // back into a motion vector: a big model has many free motions, most of them left out.
-    const basis = this.treeBasis();
-    const [usual, suspension] = this.freeMotionsApart();
+    // The free motions and the motions the tiers choose, from the last search if it was made from
+    // the same inputs (see lastSearch), else worked out: with what working them out sets.
+    const inputs = this.options.reuseSearch ? this.searchInputs(joint, play) : null;
+    const last = inputs && this.lastSearch && Kinematics.sameInputs(this.lastSearch.on, inputs) ? this.lastSearch : null;
+    const reuse = last !== null && !this.options.reuseSearchCheck;
+    if (reuse) {
+      this.searchStats.reused++;
+      [this.scrubNeeded, this.leastScrub, this.slipRows] = last.scrub;
+      if (last.gripped) this.gripped = true;
+    }
+    const basis = reuse ? last.basis : this.treeBasis();
+    const [usual, suspension] = reuse ? [last.usual, last.suspension] : this.freeMotionsApart();
     const { turning, rateOf, rate, size } = this.measures(joint, basis);
     // The car moves on its suspension only if nothing else turns the joint without turning the
     // joints SUSPENSION_GAIN times as fast or more (where the only way is a hair of rolling, scaled
@@ -3349,8 +3419,27 @@ export class Kinematics {
     // to turn the other joints a little less, a motion that, closing the loops, can jump far from
     // where it had them going (the 41999 Crawler's portal hubs, stopped as at a dead point).
     const tiers = this.options.leastMotion && this.drag.turning?.joint === joint ? this.leastTiers(joint, turning, rateOf, size) : undefined;
-    const plain = this.chooseMotion(joint, usual, rate, size, tiers);
-    const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers) : plain;
+    let choices: { plain: { motion: number[] | null; parked: number[] | null }; any: { motion: number[] | null; parked: number[] | null } };
+    if (reuse) choices = { plain: last.plain, any: last.any };
+    else {
+      const gripped = this.gripped;
+      this.gripped = false;
+      const plainChoices = this.motionChoices(joint, usual, rate, size, tiers);
+      choices = { plain: plainChoices, any: suspension.length ? this.motionChoices(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers) : plainChoices };
+      const found = { scrub: [this.scrubNeeded, this.leastScrub, this.slipRows] as [number | null, number, number[][]], gripped: this.gripped };
+      this.gripped = gripped || found.gripped;
+      if (last) {
+        const same = (a: number[] | null, b: number[] | null) => (a === null || b === null ? a === b : a.length === b.length && a.every((x, i) => Object.is(x, b[i])));
+        const sameChoice = (a: { motion: number[] | null; parked: number[] | null }, b: { motion: number[] | null; parked: number[] | null }) => same(a.motion, b.motion) && same(a.parked, b.parked);
+        if (!sameChoice(last.plain, choices.plain) || !sameChoice(last.any, choices.any) || last.gripped !== found.gripped || !Object.is(last.scrub[0], found.scrub[0]) || !Object.is(last.scrub[1], found.scrub[1])) this.searchStats.differ++;
+      }
+      if (inputs) {
+        this.searchStats.worked++;
+        this.lastSearch = { on: inputs, basis, usual, suspension, plain: choices.plain, any: choices.any, ...found };
+      }
+    }
+    const plain = this.chosen(choices.plain);
+    const any = this.chosen(choices.any);
     const length = (z: number[]) => Math.hypot(...size(z));
     let z = this.drag.choosingHolds && this.drag.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
     // Least motion: a drag keeps to the choice its first step made, while it can, rather than
@@ -3508,6 +3597,19 @@ export class Kinematics {
   // With `tiers` (least motion, see leastTiers), the motion is chosen by them rather than by
   // `size` alone.
   private chooseMotion(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[], tiers?: Tier[]): number[] | null {
+    return this.chosen(this.motionChoices(joint, all, rate, size, tiers));
+  }
+
+  // chooseMotion's answer from motionChoices': while a drag's holds are chosen, a rolling tyre's
+  // motion that only parks the car doesn't count (see the end of motionChoices).
+  private chosen(c: { motion: number[] | null; parked: number[] | null }): number[] | null {
+    return c.motion ?? (this.drag.choosingHolds ? null : c.parked);
+  }
+
+  // chooseMotion's work: the motion chosen, and, where only a motion that parks a rolling tyre's
+  // car was found (the last line), that one as `parked`, for chosen to take or not. Kept apart so
+  // that a search can be reused whether or not holds are being chosen (see jointMotionNearOrigin).
+  private motionChoices(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[], tiers?: Tier[]): { motion: number[] | null; parked: number[] | null } {
     const basis = this.treeBasis();
     const smallest = (motions: number[][]) => (tiers ? leastTurning(motions, rate, tiers) : smallestTurning(motions, rate, size));
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
@@ -3526,13 +3628,13 @@ export class Kinematics {
     }
     if (gripped) this.gripped = true;
     const parked = gripped ?? smallest(still);
-    if (!parked) return smallest(all);
+    if (!parked) return { motion: smallest(all), parked: null };
     const { bodyA, bodyB } = this.mech.joints[joint];
-    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return parked;
+    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return { motion: parked, parked: null };
     // Least motion: the tyre's turning rolls the car, the tiers (what steers it among them) kept
     // still as they can be; taking the way that leaves the frame where it is out first, as below,
     // would leave the rest a hair of steering in each, and the tiers no way to keep it still.
-    if (tiers) return smallest(all);
+    if (tiers) return { motion: smallest(all), parked: null };
     // The tyre's: of the motions that leave the frame where it is, the one way among them that
     // turns it is taken out (they're orthonormal, so that's the mix of them in proportion to how
     // fast each turns it), and the smallest of the rest that turns it, which rolls the car.
@@ -3550,7 +3652,7 @@ export class Kinematics {
       }),
       1e-6,
     );
-    return smallest(rest) ?? (this.drag.choosingHolds ? null : parked);
+    return { motion: smallest(rest), parked };
   }
 
   // Least motion's tiers, most important first, each saying how much a motion (in the tree
