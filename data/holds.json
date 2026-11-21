@@ -285,5 +285,26 @@
     "result": "partly",
     "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p280 at 0.70 rad each way (parts 339/343 and 342/343). Viewer sweep with a full turn asked, decision 288.",
     "date": "2026-11-21"
+  },
+  {
+    "set": "8840-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it: the rim p210 at 0.70 and 1.05 rad in one long turn (parts 201/200), and by pointer where the check stops (parts 104/113 and 105/112). Viewer sweep, decision 289.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8840-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it: the rim p210 as in function 2; the other three wheels turn freely. Viewer sweep, decision 289.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42078-1",
+    "function": 12,
+    "result": "partly",
+    "reason": "In the viewer the lock bars hardly slide (p2641 0 of 25 LDU, p2675 4 of 25): a collision stops the push at once at parts 2618/2641, so the doors do not open; the check makes the same slide and passes. Viewer sweep, decision 289.",
+    "date": "2026-11-21"
   }
 ]
