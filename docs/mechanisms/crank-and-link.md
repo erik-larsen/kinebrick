@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 39 works, 34 partly, 5 no, 1 not checked.
+Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 38 works, 35 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -282,7 +282,7 @@ Each detail by the set it first appears in.
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
-- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (works)
+- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (partly)
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 
