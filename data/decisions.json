@@ -405,6 +405,10 @@
     {
       "date": "2026-11-21",
       "what": "The blind trial is run (315): 10 of 28 functions work at the first pass on ten unseen models, 40% of those tried. The failures are System hinges, doors and clips that the model reads as fixed or loose, not the solver."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The rule for parts that nothing drives, tried on rolling a model (319): five stopped wheels now turn the whole way (8844, 8851, 8856, 42113, 42123), but the 9397's six wheels are lost to it, stopping after 0.23 radian. So it stays off and unmerged. Next: a part the rule holds still must give way when the motion comes to need it, as friction does; the same mend frees the parked cam reading."
     }
   ]
 }
