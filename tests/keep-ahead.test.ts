@@ -7,11 +7,14 @@ import { motorOutput } from '../src/mechanism.ts';
 // A turn keeps the motion it found for the step after its last, for the next turn of the same joint
 // the same way (see Kinematics.turnJoint, keepAhead). Turned in the viewer's steps (0.035 rad, a
 // call each), every pose and joint angle comes out the same, number for number, with the motion
-// kept and without (decision 174 of 2026-11-17); on play, within 1e-4 (see `same`).
+// kept and without (decision 174 of 2026-11-17); on play, within 1e-4 (see `same`). With the working
+// set off: a drag's first step on the set takes the motion its last full turn kept (decision 278 of
+// 2026-11-21), and worked afresh it would be worked on the set, whose sums differ from the full ones in
+// their last bits (the 42061's boom, 3.0476566892860184e-28 against 3.047656181651347e-28).
 describe('the motion kept for the next turn', () => {
   const turned = async (model: string, part: number, amount: number, keepAhead: boolean) => {
     const loaded = await loadModel(model, true);
-    const kin = new Kinematics(loaded.mech, { keepAhead });
+    const kin = new Kinematics(loaded.mech, { keepAhead, workingSet: false });
     kin.scrub = loaded.kin.scrub;
     const body = loaded.mech.roles[part] === 'motor' ? motorOutput(loaded.mech, part) : loaded.mech.bodyOf[part];
     const joint = kin.parentLink(body)!.joint;
