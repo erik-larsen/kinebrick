@@ -1,26 +1,26 @@
 {
   "set": "8272-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:08:11.635Z",
-  "load": 22.9,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:15:48.575Z",
+  "load": 12.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 313,
-  "seconds": 19,
+  "seconds": 82,
   "functions": [
     {
       "function": 2,
       "does": "The left ski has independent suspension: it rides on two wishbones of thin grey beams, upper and lower, and moves up and down, the yellow shock absorber squeezing.",
       "verdict": "not shown",
       "why": "A: p43 32063, p17 32063, p36 32063, p13 6587, p53 2736, p615 32271 not moved",
-      "msOneCall": 29,
+      "msOneCall": 11,
       "msPerStep": null,
       "time": {
-        "open": 7,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 0
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -28,10 +28,17 @@
         {
           "control": "p12 32063",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 0.3,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 29,
+          "ms": 1,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p43 32063": [
@@ -71,10 +78,17 @@
         {
           "control": "p12 32063",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 1.5,
           "went": 0,
           "ms": 1,
-          "msOneCall": 14,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p43 32063": [
@@ -112,23 +126,44 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 9
+      "B": [
+        {
+          "control": "p12 32063",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "moved": [
+            "p43 32063",
+            "p17 32063",
+            "p36 32063",
+            "p13 6587",
+            "p53 2736",
+            "p615 32271"
+          ],
+          "stops": [
+            "33/648"
+          ]
+        }
+      ],
+      "seconds": 18
     },
     {
       "function": 3,
       "does": "The right ski has independent suspension, as the left.",
       "verdict": "not shown",
       "why": "A: p42 32063, p21 32063, p35 32063, p10 6587, p51 2736, p626 32271 not moved",
-      "msOneCall": 14,
+      "msOneCall": 12,
       "msPerStep": null,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 0
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -136,10 +171,17 @@
         {
           "control": "p9 32063",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 1.5,
           "went": 0,
           "ms": 1,
-          "msOneCall": 14,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p42 32063": [
@@ -179,10 +221,17 @@
         {
           "control": "p9 32063",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 0.3,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 13,
+          "ms": 2,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p42 32063": [
@@ -220,22 +269,43 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p9 32063",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "moved": [
+            "p42 32063",
+            "p21 32063",
+            "p35 32063",
+            "p10 6587",
+            "p51 2736",
+            "p626 32271"
+          ],
+          "stops": [
+            "34/650"
+          ]
+        }
+      ],
+      "seconds": 18
     },
     {
       "function": 5,
       "does": "The track runs round its three black sprockets and the grey wheels beside them as the snowmobile is pushed along; nothing drives it.",
       "verdict": "shown",
-      "msOneCall": 18,
+      "msOneCall": 23,
       "msPerStep": 2,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -245,8 +315,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 78,
-          "msOneCall": 18,
+          "ms": 71,
+          "msOneCall": 23,
           "stops": [],
           "moved": {
             "p142 57520": [
@@ -264,8 +334,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 67,
-          "msOneCall": 4,
+          "ms": 56,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p142 57520": [
@@ -279,22 +349,35 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p152 57520",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p142 57520",
+            "p150 57520"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 17
     },
     {
       "function": 6,
       "does": "Each ski rocks nose up and nose down on the pin that holds it under its spindle, following the ground.",
       "verdict": "not decided",
-      "msOneCall": 5,
-      "msPerStep": 2,
+      "msOneCall": 23,
+      "msPerStep": 4,
       "time": {
-        "open": 1,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 23
       },
       "stop": {
         "control": "p615 32271",
@@ -314,8 +397,8 @@
           "way": 1,
           "asked": 0.3,
           "went": 0.2,
-          "ms": 13,
-          "msOneCall": 5,
+          "ms": 20,
+          "msOneCall": 23,
           "stops": [
             "52/614"
           ],
@@ -335,7 +418,7 @@
           "way": -1,
           "asked": 0.2,
           "went": -0.2,
-          "ms": 11,
+          "ms": 12,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -354,8 +437,8 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 12,
-          "msOneCall": 4,
+          "ms": 11,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -373,8 +456,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 13,
-          "msOneCall": 4,
+          "ms": 15,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -388,7 +471,32 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p615 32271",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "52/614",
+            "14/614"
+          ]
+        },
+        {
+          "control": "p626 32271",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "50/631",
+            "11/631"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p615 32271",
@@ -401,7 +509,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p615 32271: a travel of 0.2 rad or less each way, stopped at +0.2 rad (52/614)",
-      "seconds": 5
+      "seconds": 30
     }
   ]
 }

@@ -1,25 +1,26 @@
 {
   "set": "850-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:22:53.588Z",
-  "load": 17.1,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:28:03.343Z",
+  "load": 5.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 198,
-  "seconds": 28,
+  "seconds": 120,
   "functions": [
     {
       "function": 1,
       "does": "The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.",
-      "verdict": "shown",
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
       "msOneCall": 8,
       "msPerStep": 1,
       "time": {
-        "open": 8,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p188 3736",
@@ -37,22 +38,22 @@
         {
           "control": "p188 3736",
           "way": 1,
-          "asked": 1.33,
-          "went": 1.33,
-          "ms": 39,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 38,
           "msOneCall": 8,
           "stops": [],
           "moved": {
             "p199 3710": [
-              4.43,
+              5,
               0
             ],
             "p191 3460": [
-              4.43,
+              5,
               0
             ],
             "p192 3460": [
-              4.43,
+              5,
               0
             ],
             "p178 3736": [
@@ -70,8 +71,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.326,
-          "ms": 32,
-          "msOneCall": 3,
+          "ms": 30,
+          "msOneCall": 2,
           "stops": [
             "184/189"
           ],
@@ -99,7 +100,19 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p188 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "184/189"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p188 3736",
@@ -109,23 +122,24 @@
       ],
       "stopVerdict": "shown",
       "moved": {
-        "verdict": "shown"
+        "verdict": "not shown",
+        "why": "B: no listed part moved by hand"
       },
-      "seconds": 10
+      "seconds": 15
     },
     {
       "function": 2,
       "does": "The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.",
       "verdict": "shown",
-      "msOneCall": 4,
+      "msOneCall": 7,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -135,8 +149,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 41,
-          "msOneCall": 4,
+          "ms": 43,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p44 3679": [
@@ -148,7 +162,7 @@
               14.47
             ],
             "p64 3743": [
-              15.11,
+              15.16,
               0
             ],
             "p199 3710": [
@@ -166,8 +180,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 33,
-          "msOneCall": 3,
+          "ms": 36,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p44 3679": [
@@ -179,7 +193,7 @@
               14.47
             ],
             "p64 3743": [
-              15.11,
+              15.16,
               0
             ],
             "p199 3710": [
@@ -193,22 +207,36 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p178 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p44 3679",
+            "p46 3679",
+            "p64 3743"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     },
     {
       "function": 3,
       "does": "The four wheels roll freely; the front pair are on short axles of their own.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 8,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 9,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 46
       },
       "stop": null,
       "stops": [],
@@ -218,8 +246,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 32,
-          "msOneCall": 3,
+          "ms": 40,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -228,7 +256,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 28,
+          "ms": 40,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -238,8 +266,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 27,
-          "msOneCall": 2,
+          "ms": 30,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -248,38 +276,38 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 29,
-          "msOneCall": 3,
+          "ms": 27,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p109 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 33,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p109 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 31,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p111 3482",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
           "ms": 27,
-          "msOneCall": 3,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p109 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 27,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p111 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -288,28 +316,65 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 28,
-          "msOneCall": 2,
+          "ms": 26,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 11
+      "B": [
+        {
+          "control": "p105 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p107 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p109 3482",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p111 3482",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 59
     },
     {
       "function": 4,
       "does": "The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.",
       "verdict": "not decided",
-      "msOneCall": 3,
+      "msOneCall": 8,
       "msPerStep": 2,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 23
       },
       "stop": {
         "control": "p152 3651",
@@ -330,8 +395,8 @@
           "way": 1,
           "asked": 0.6,
           "went": 0.067,
-          "ms": 3,
-          "msOneCall": 3,
+          "ms": 4,
+          "msOneCall": 8,
           "stops": [
             "127/152"
           ],
@@ -352,7 +417,7 @@
           "asked": 0.07,
           "went": -0.07,
           "ms": 3,
-          "msOneCall": 2,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -370,7 +435,7 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 3,
+          "ms": 2,
           "msOneCall": 2,
           "stops": [],
           "moved": {
@@ -389,8 +454,8 @@
           "way": -1,
           "asked": 0.6,
           "went": -0.067,
-          "ms": 3,
-          "msOneCall": 2,
+          "ms": 2,
+          "msOneCall": 1,
           "stops": [
             "127/155"
           ],
@@ -406,7 +471,30 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p152 3651",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "127/152"
+          ]
+        },
+        {
+          "control": "p155 3651",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "127/155"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p152 3651",
@@ -424,7 +512,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p152 3651: a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152); p155 3651: a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)",
-      "seconds": 5
+      "seconds": 30
     }
   ]
 }

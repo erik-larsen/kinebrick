@@ -1,25 +1,25 @@
 {
   "set": "956-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:19:14.205Z",
-  "load": 13.8,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:41:38.028Z",
+  "load": 10.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 543,
-  "seconds": 62,
+  "seconds": 133,
   "functions": [
     {
       "function": 1,
       "does": "The steering wheel turns the front wheels: its column bends through a double universal joint to an 8 tooth gear, which drives a guided rack through a second pair of 8 tooth gears, and tie rods from the rack swing both front wheels the same way on their turntables.",
       "verdict": "shown",
-      "msOneCall": 21,
-      "msPerStep": 8,
+      "msOneCall": 19,
+      "msPerStep": 6,
       "time": {
-        "open": 13,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 1,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,17 +29,17 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 347,
-          "msOneCall": 21,
+          "ms": 273,
+          "msOneCall": 19,
           "stops": [],
           "moved": {
             "p342 3739": [
-              42.23,
-              27.99
+              42.49,
+              28.06
             ],
             "p340 3739": [
-              41.82,
-              27.71
+              42.07,
+              27.78
             ],
             "p295 3743": [
               15,
@@ -60,17 +60,17 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 297,
-          "msOneCall": 7,
+          "ms": 243,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p342 3739": [
-              41.82,
-              27.71
+              42.07,
+              27.78
             ],
             "p340 3739": [
-              42.23,
-              27.99
+              42.49,
+              28.06
             ],
             "p295 3743": [
               15,
@@ -87,22 +87,36 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p354 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p342 3739",
+            "p340 3739",
+            "p295 3743"
+          ],
+          "stops": []
+        }
+      ],
       "seconds": 18
     },
     {
       "function": 2,
       "does": "As it rolls, the rear axle runs the four-cylinder engine: the rear axle's 24 tooth gear turns a crown gear on the drive shaft, which through universal joints and gears turns the crankshaft, so the four pistons run up and down, and the crankshaft's 40 tooth gear at the engine's front spins the 24 tooth gear above it.",
       "verdict": "shown",
-      "msOneCall": 10,
+      "msOneCall": 22,
       "msPerStep": 6,
       "time": {
-        "open": 2,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 9,
-        "B": 0
+        "reach": 1,
+        "A": 1,
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -112,29 +126,29 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 239,
-          "msOneCall": 10,
+          "ms": 240,
+          "msOneCall": 22,
           "stops": [],
           "moved": {
             "p571 3652": [
-              13.81,
+              141.36,
               0
             ],
             "p577 3652": [
-              10.68,
+              138.23,
               0
             ],
             "p583 3652": [
-              13.81,
+              141.36,
               0
             ],
             "p589 3652": [
-              10.68,
+              138.23,
               0
             ],
             "p600 3648a": [
               0,
-              150.84
+              1289.16
             ],
             "p354 3736": [
               0,
@@ -159,29 +173,29 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 236,
-          "msOneCall": 8,
+          "ms": 239,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p571 3652": [
-              1.48,
+              131.94,
               0
             ],
             "p577 3652": [
-              0.91,
+              130.22,
               0
             ],
             "p583 3652": [
-              1.48,
+              131.94,
               0
             ],
             "p589 3652": [
-              0.91,
+              130.22,
               0
             ],
             "p600 3648a": [
               0,
-              150.84
+              1289.16
             ],
             "p354 3736": [
               0,
@@ -206,29 +220,29 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 236,
-          "msOneCall": 9,
+          "ms": 215,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p571 3652": [
-              13.81,
+              141.36,
               0
             ],
             "p577 3652": [
-              10.68,
+              138.23,
               0
             ],
             "p583 3652": [
-              13.81,
+              141.36,
               0
             ],
             "p589 3652": [
-              10.68,
+              138.23,
               0
             ],
             "p600 3648a": [
               0,
-              150.84
+              1289.16
             ],
             "p354 3736": [
               0,
@@ -253,29 +267,29 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 234,
-          "msOneCall": 8,
+          "ms": 208,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p571 3652": [
-              1.48,
+              131.94,
               0
             ],
             "p577 3652": [
-              0.91,
+              130.22,
               0
             ],
             "p583 3652": [
-              1.48,
+              131.94,
               0
             ],
             "p589 3652": [
-              0.91,
+              130.22,
               0
             ],
             "p600 3648a": [
               0,
-              150.84
+              1289.16
             ],
             "p354 3736": [
               0,
@@ -296,22 +310,53 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 12
+      "B": [
+        {
+          "control": "p450 3739",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p571 3652",
+            "p577 3652",
+            "p583 3652",
+            "p589 3652",
+            "p600 3648a"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p452 3739",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p571 3652",
+            "p577 3652",
+            "p583 3652",
+            "p589 3652",
+            "p600 3648a"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 35
     },
     {
       "function": 3,
       "does": "Pushed along, the front wheels roll freely on their own axles.",
       "verdict": "shown",
-      "msOneCall": 10,
+      "msOneCall": 24,
       "msPerStep": 8,
       "time": {
-        "open": 2,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 9,
-        "B": 0
+        "reach": 1,
+        "A": 1,
+        "B": 20
       },
       "stop": null,
       "stops": [],
@@ -321,8 +366,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 327,
-          "msOneCall": 10,
+          "ms": 341,
+          "msOneCall": 24,
           "stops": [],
           "moved": {}
         },
@@ -331,8 +376,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 315,
-          "msOneCall": 8,
+          "ms": 305,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -341,8 +386,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 330,
-          "msOneCall": 9,
+          "ms": 310,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -351,28 +396,48 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 330,
-          "msOneCall": 8,
+          "ms": 329,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 12
+      "B": [
+        {
+          "control": "p340 3739",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p342 3739",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 30
     },
     {
       "function": 5,
       "does": "The 24 tooth gear on the right side of the chassis slides the right front seat forward and back: its 8 tooth gear runs in a rack under the seat.",
-      "verdict": "shown",
-      "msOneCall": 6,
-      "msPerStep": 1,
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 18,
+      "msPerStep": 2,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -382,8 +447,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 59,
-          "msOneCall": 6,
+          "ms": 77,
+          "msOneCall": 18,
           "stops": [],
           "moved": {
             "p143 3031": [
@@ -401,8 +466,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 57,
-          "msOneCall": 4,
+          "ms": 65,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p143 3031": [
@@ -416,22 +481,32 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p168 3648a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 17
     },
     {
       "function": 6,
       "does": "The 24 tooth gear on the left side of the chassis slides the left (driver's) front seat forward and back the same way.",
       "verdict": "shown",
-      "msOneCall": 4,
-      "msPerStep": 1,
+      "msOneCall": 17,
+      "msPerStep": 2,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -441,8 +516,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 58,
-          "msOneCall": 4,
+          "ms": 71,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p148 3031": [
@@ -460,8 +535,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 57,
-          "msOneCall": 4,
+          "ms": 58,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p148 3031": [
@@ -475,22 +550,34 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 6
+      "B": [
+        {
+          "control": "p173 3648a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p148 3031"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 17
     },
     {
       "function": 7,
       "does": "The rear seat's centre armrest, two Technic bricks pinned between its backs, folds up into the slot in the seat back.",
       "verdict": "shown",
-      "msOneCall": 5,
-      "msPerStep": 1,
+      "msOneCall": 16,
+      "msPerStep": 2,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -500,8 +587,8 @@
           "way": 1,
           "asked": 0.33,
           "went": 0.33,
-          "ms": 14,
-          "msOneCall": 5,
+          "ms": 17,
+          "msOneCall": 16,
           "stops": [],
           "moved": {}
         },
@@ -510,14 +597,26 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 48,
-          "msOneCall": 4,
+          "ms": 55,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p425 3701",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "401/425"
+          ]
+        }
+      ],
+      "seconds": 17
     }
   ]
 }

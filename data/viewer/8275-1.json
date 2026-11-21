@@ -1,25 +1,25 @@
 {
   "set": "8275-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T21:03:44.024Z",
-  "load": 33.1,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:39:26.842Z",
+  "load": 8.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1366,
-  "seconds": 183,
+  "seconds": 202,
   "functions": [
     {
       "function": 3,
       "does": "With both tracks driven the same way the bulldozer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
       "verdict": "shown",
-      "msOneCall": 130,
-      "msPerStep": 31,
+      "msOneCall": 109,
+      "msPerStep": 18,
       "time": {
-        "open": 51,
+        "open": 14,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 47,
-        "B": 0
+        "reach": 18,
+        "A": 2,
+        "B": 33
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1343,
-          "msOneCall": 130,
+          "ms": 782,
+          "msOneCall": 109,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -48,8 +48,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1210,
-          "msOneCall": 46,
+          "ms": 736,
+          "msOneCall": 21,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -67,8 +67,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 480,
-          "msOneCall": 32,
+          "ms": 293,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -86,8 +86,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 469,
-          "msOneCall": 18,
+          "ms": 290,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -101,22 +101,45 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 103
+      "B": [
+        {
+          "control": "p569 4019",
+          "seen": true,
+          "cameraTurns": 4,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p2611 57519"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p1195 4019",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p2613 57519"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 69
     },
     {
       "function": 4,
       "does": "The six pistons of the V6 engine in the middle of the bulldozer pump in their cylinders as it drives: the left track's drive turns the crankshaft through 12 and 20 tooth double bevel gears.",
       "verdict": "shown",
-      "msOneCall": 50,
-      "msPerStep": 29,
+      "msOneCall": 112,
+      "msPerStep": 18,
       "time": {
-        "open": 11,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 23,
-        "B": 0
+        "reach": 14,
+        "A": 2,
+        "B": 18
       },
       "stop": null,
       "stops": [],
@@ -126,8 +149,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1223,
-          "msOneCall": 50,
+          "ms": 771,
+          "msOneCall": 112,
           "stops": [],
           "moved": {
             "p1397 2853": [
@@ -139,11 +162,11 @@
               0
             ],
             "p1410 2851": [
-              1.18,
+              4.27,
               0
             ],
             "p1398 2852": [
-              13.63,
+              15,
               19.51
             ],
             "p1386 2850a": [
@@ -157,8 +180,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1174,
-          "msOneCall": 46,
+          "ms": 741,
+          "msOneCall": 23,
           "stops": [],
           "moved": {
             "p1397 2853": [
@@ -166,7 +189,7 @@
               85.94
             ],
             "p1409 2851": [
-              1.72,
+              6.62,
               0
             ],
             "p1410 2851": [
@@ -174,8 +197,8 @@
               0
             ],
             "p1398 2852": [
-              13.63,
-              3.5
+              15,
+              8.2
             ],
             "p1386 2850a": [
               0,
@@ -184,23 +207,42 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 40
+      "B": [
+        {
+          "control": "p569 4019",
+          "seen": true,
+          "cameraTurns": 4,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1397 2853",
+            "p1409 2851",
+            "p1410 2851",
+            "p1398 2852"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 44
     },
     {
       "function": 5,
       "does": "One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame.",
+      "held": {
+        "result": "partly",
+        "reason": "In the viewer the control turns and these listed parts stay: p2715, p2731. Viewer sweep, decision 279."
+      },
       "verdict": "not shown",
       "why": "A: p2715 3703, p2731 3703 not moved",
-      "msOneCall": 112,
-      "msPerStep": 70,
+      "msOneCall": 69,
+      "msPerStep": 44,
       "time": {
-        "open": 10,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 25,
-        "B": 0
+        "reach": 47,
+        "A": 5,
+        "B": 27
       },
       "stop": null,
       "stops": [],
@@ -210,8 +252,8 @@
           "way": 1,
           "asked": 6,
           "went": 1.814,
-          "ms": 3643,
-          "msOneCall": 112,
+          "ms": 2258,
+          "msOneCall": 69,
           "stops": [],
           "moved": {
             "p1449 4716": [
@@ -257,8 +299,8 @@
           "way": -1,
           "asked": 6.8,
           "went": -1.778,
-          "ms": 3579,
-          "msOneCall": 94,
+          "ms": 2210,
+          "msOneCall": 57,
           "stops": [],
           "moved": {
             "p1449 4716": [
@@ -300,8 +342,23 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 40
+      "B": [
+        {
+          "control": "p125 3647",
+          "seen": true,
+          "cameraTurns": 13,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1449 4716",
+            "p2780 32140",
+            "p2805 32140",
+            "p2901 6178"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 89
     }
   ]
 }

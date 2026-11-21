@@ -129,14 +129,14 @@
     ]
   },
   "generated": {
-    "commit": "1ec25498",
+    "commit": "112aab69",
     "date": "2026-11-21",
-    "seconds": 118,
+    "seconds": 122,
     "counts": {
-      "works": 5,
-      "not back": 2,
-      "torn": 1,
+      "partly": 1,
       "no": 3,
+      "works": 4,
+      "not back": 1,
       "free-turned": 1
     },
     "loose": [
@@ -366,73 +366,80 @@
     ],
     "functions": [
       {
-        "result": "works",
-        "turned": [
-          [
-            0.1,
-            -0.1
-          ]
-        ],
-        "rates": [
-          {
-            "p821 6632": [
-              2.99,
-              540
-            ],
-            "p653 42080 - u9413": [
-              3.19,
-              474
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet's motor drives the pump crank round without end (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=92), but the check runs the motor only 0.1 rad each way before a collision (parts 56/71), and in the viewer the listed parts do not move. Second viewer sweep, decision 327.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.1,
+              -0.1
             ]
-          }
-        ],
-        "back": [
-          [
+          ],
+          "rates": [
+            {
+              "p821 6632": [
+                2.99,
+                540
+              ],
+              "p653 42080 - u9413": [
+                3.19,
+                474
+              ]
+            }
+          ],
+          "back": [
             [
-              223.65,
-              79.49
-            ],
-            [
-              350.92,
-              120.77
+              [
+                223.65,
+                79.49
+              ],
+              [
+                350.92,
+                120.77
+              ]
             ]
-          ]
-        ],
-        "torn": [
-          [
+          ],
+          "torn": [
             [
-              223.65,
-              79.49
-            ],
-            [
-              350.92,
-              120.77
+              [
+                223.65,
+                79.49
+              ],
+              [
+                350.92,
+                120.77
+              ]
             ]
-          ]
-        ],
-        "strayed": [
-          "p2048 42080 - 10197",
-          "p2044 3062b"
-        ],
-        "stop": [
-          [
-            "limit",
-            "stuck"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            56,
-            71,
-            0.1,
-            0.1
-          ]
-        ],
-        "seconds": 71.2
+          ],
+          "strayed": [
+            "p2048 42080 - 10197",
+            "p2044 3062b"
+          ],
+          "stop": [
+            [
+              "limit",
+              "stuck"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              56,
+              71,
+              0.1,
+              0.1
+            ]
+          ],
+          "seconds": 74.6
+        }
       },
       {
         "result": "no",
@@ -463,7 +470,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -536,7 +543,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 4.2
       },
       {
         "result": "works",
@@ -590,7 +597,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 8.3
+        "seconds": 7.4
       },
       {
         "result": "no",
@@ -653,7 +660,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -690,7 +697,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 3
       },
       {
         "result": "works",
@@ -912,9 +919,9 @@
           [],
           []
         ],
-        "seconds": 26.9
+        "seconds": 28.9
       }
     ],
-    "peak": 694
+    "peak": 1003
   }
 }

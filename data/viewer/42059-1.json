@@ -1,25 +1,25 @@
 {
   "set": "42059-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:19:06.024Z",
-  "load": 22.1,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:25:24.431Z",
+  "load": 9.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 141,
-  "seconds": 21,
+  "seconds": 59,
   "functions": [
     {
       "function": 1,
       "does": "Pull the truck back and let go: the pull-back motor at the back turns the rear axle, a 12 long axle straight through it carrying both rear wheels, and the truck races forward.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 6,
       "msPerStep": 1,
       "time": {
-        "open": 9,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 5,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 26,
-          "msOneCall": 9,
+          "ms": 22,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p30 3708": [
@@ -44,8 +44,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 24,
-          "msOneCall": 3,
+          "ms": 17,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p30 3708": [
@@ -74,8 +74,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 19,
-          "msOneCall": 2,
+          "ms": 14,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p30 3708": [
@@ -85,22 +85,45 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 15
+      "B": [
+        {
+          "control": "p126 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p30 3708"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p128 56145",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p30 3708"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 31
     },
     {
       "function": 3,
       "does": "The front wheels roll freely, both on one 12 long axle; there's no steering.",
       "verdict": "shown",
-      "msOneCall": 2,
-      "msPerStep": 0,
+      "msOneCall": 6,
+      "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -110,8 +133,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 18,
-          "msOneCall": 2,
+          "ms": 22,
+          "msOneCall": 6,
           "stops": [],
           "moved": {}
         },
@@ -130,8 +153,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 19,
-          "msOneCall": 2,
+          "ms": 16,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -140,14 +163,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 20,
-          "msOneCall": 2,
+          "ms": 16,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 6
+      "B": [
+        {
+          "control": "p0 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p124 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 28
     }
   ]
 }

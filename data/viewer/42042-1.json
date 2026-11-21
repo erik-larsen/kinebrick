@@ -1,25 +1,25 @@
 {
   "set": "42042-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T21:07:22.643Z",
-  "load": 40.4,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:40:04.574Z",
+  "load": 9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1369,
-  "seconds": 249,
+  "seconds": 578,
   "functions": [
     {
       "function": 1,
       "does": "The Power Functions L motor at the back of the superstructure runs the gearbox: a 24 tooth clutch gear on its shaft drives a 24 tooth gear, and rows of 16 tooth clutch gears carry the turn across the gearbox, one pair (one turning each way) beside each of the four driving rings.",
       "verdict": "shown",
-      "msOneCall": 119,
-      "msPerStep": 39,
+      "msOneCall": 98,
+      "msPerStep": 22,
       "time": {
-        "open": 35,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 19,
-        "B": 0
+        "reach": 95,
+        "A": 2,
+        "B": 10
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1670,
-          "msOneCall": 119,
+          "ms": 948,
+          "msOneCall": 98,
           "stops": [],
           "moved": {
             "p586 3648b": [
@@ -76,8 +76,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1596,
-          "msOneCall": 82,
+          "ms": 871,
+          "msOneCall": 36,
           "stops": [],
           "moved": {
             "p586 3648b": [
@@ -119,23 +119,42 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 59
+      "B": [
+        {
+          "control": "p539 15462",
+          "seen": true,
+          "cameraTurns": 39,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p586 3648b",
+            "p522 18946",
+            "p526 18946",
+            "p529 18946",
+            "p569 18946",
+            "p584 18946",
+            "p602 18946",
+            "p605 18946",
+            "p582 18946"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 115
     },
     {
       "function": 2,
       "does": "Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets.",
-      "verdict": "not shown",
-      "why": "A: p576 18947, p710 62520, p45 6589, p97 6589, p154 10928, p147 3648b, p205 3648b, p141 57519, p199 57519 not moved",
-      "msOneCall": 65,
-      "msPerStep": 36,
+      "verdict": "shown",
+      "msOneCall": 94,
+      "msPerStep": 34,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
-        "first": 44,
-        "reach": 0,
-        "A": 13,
-        "B": 0
+        "first": 6,
+        "reach": 90,
+        "A": 3,
+        "B": 10
       },
       "stop": null,
       "stops": [],
@@ -145,45 +164,45 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1547,
-          "msOneCall": 60,
+          "ms": 1448,
+          "msOneCall": 94,
           "stops": [],
           "moved": {
             "p576 18947": [
               0,
-              0
+              51.57
             ],
             "p710 62520": [
               0,
-              0
+              51.57
             ],
             "p45 6589": [
               0,
-              0
+              30.94
             ],
             "p97 6589": [
-              0,
-              0
+              0.05,
+              18.56
             ],
             "p154 10928": [
-              0,
-              0
+              0.07,
+              11.13
             ],
             "p147 3648b": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p205 3648b": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p141 57519": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p199 57519": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p720 10928": [
               0,
@@ -200,45 +219,45 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1526,
-          "msOneCall": 65,
+          "ms": 1377,
+          "msOneCall": 51,
           "stops": [],
           "moved": {
             "p576 18947": [
               0,
-              0
+              51.57
             ],
             "p710 62520": [
               0,
-              0
+              51.57
             ],
             "p45 6589": [
               0,
-              0
+              30.94
             ],
             "p97 6589": [
-              0,
-              0
+              0.05,
+              18.55
             ],
             "p154 10928": [
-              0,
-              0
+              0.07,
+              11.13
             ],
             "p147 3648b": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p205 3648b": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p141 57519": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p199 57519": [
-              0,
-              0
+              0.08,
+              3.71
             ],
             "p720 10928": [
               0,
@@ -251,23 +270,42 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 67
+      "B": [
+        {
+          "control": "p539 15462",
+          "seen": true,
+          "cameraTurns": 39,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p576 18947",
+            "p710 62520",
+            "p45 6589",
+            "p97 6589",
+            "p154 10928",
+            "p147 3648b",
+            "p205 3648b",
+            "p141 57519",
+            "p199 57519"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 116
     },
     {
       "function": 3,
       "does": "Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth.",
-      "verdict": "not shown",
-      "why": "A: p577 18947, p581 10928, p588 76019, p639 10928, p499 3648b, p636 32269, p648 32270, p132 60484 not moved",
-      "msOneCall": 62,
-      "msPerStep": 35,
+      "verdict": "shown",
+      "msOneCall": 96,
+      "msPerStep": 30,
       "time": {
-        "open": 5,
+        "open": 8,
         "collisions": 0,
-        "first": 17,
-        "reach": 0,
-        "A": 10,
-        "B": 0
+        "first": 6,
+        "reach": 106,
+        "A": 3,
+        "B": 10
       },
       "stop": null,
       "stops": [],
@@ -277,45 +315,45 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1507,
-          "msOneCall": 58,
+          "ms": 1253,
+          "msOneCall": 96,
           "stops": [],
           "moved": {
             "p577 18947": [
               0,
-              0
+              51.57
             ],
             "p581 10928": [
               0,
-              0
+              51.57
             ],
             "p588 76019": [
               0,
-              0
+              17.19
             ],
             "p639 10928": [
               0,
-              0
+              17.19
             ],
             "p499 3648b": [
               0,
-              0
+              5.73
             ],
             "p636 32269": [
               0,
-              0
+              4.58
             ],
             "p648 32270": [
               0,
-              0
+              4.58
             ],
             "p132 60484": [
-              0,
-              0
+              4.35,
+              0.92
             ],
             "p141 57519 against p132 60484": [
               0,
-              0
+              0.08
             ]
           }
         },
@@ -324,66 +362,84 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1508,
-          "msOneCall": 62,
+          "ms": 1292,
+          "msOneCall": 47,
           "stops": [],
           "moved": {
             "p577 18947": [
               0,
-              0
+              51.57
             ],
             "p581 10928": [
               0,
-              0
+              51.57
             ],
             "p588 76019": [
               0,
-              0
+              17.19
             ],
             "p639 10928": [
               0,
-              0
+              17.19
             ],
             "p499 3648b": [
               0,
-              0
+              5.73
             ],
             "p636 32269": [
               0,
-              0
+              4.58
             ],
             "p648 32270": [
               0,
-              0
+              4.58
             ],
             "p132 60484": [
-              0,
-              0
+              4.35,
+              0.92
             ],
             "p141 57519 against p132 60484": [
               0,
-              0
+              0.08
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 34
+      "B": [
+        {
+          "control": "p539 15462",
+          "seen": true,
+          "cameraTurns": 39,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p577 18947",
+            "p581 10928",
+            "p588 76019",
+            "p639 10928",
+            "p499 3648b",
+            "p636 32269",
+            "p648 32270",
+            "p132 60484"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 132
     },
     {
       "function": 5,
       "does": "Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab.",
-      "verdict": "not shown",
-      "why": "A: p578 18947, p530 32269, p797 32270, p724 4716, p720 10928, p719 3737, p1206 61510 not moved",
-      "msOneCall": 77,
-      "msPerStep": 34,
+      "verdict": "shown",
+      "msOneCall": 145,
+      "msPerStep": 64,
       "time": {
-        "open": 4,
+        "open": 7,
         "collisions": 0,
-        "first": 41,
-        "reach": 0,
-        "A": 7,
-        "B": 0
+        "first": 5,
+        "reach": 104,
+        "A": 6,
+        "B": 11
       },
       "stop": null,
       "stops": [],
@@ -393,37 +449,37 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1447,
-          "msOneCall": 60,
+          "ms": 2742,
+          "msOneCall": 145,
           "stops": [],
           "moved": {
             "p578 18947": [
               0,
-              0
+              51.57
             ],
             "p530 32269": [
               0,
-              0
+              51.57
             ],
             "p797 32270": [
               0,
-              0
+              85.94
             ],
             "p724 4716": [
               0,
-              0
+              85.94
             ],
             "p720 10928": [
               0,
-              0
+              10.74
             ],
             "p719 3737": [
               0,
-              0
+              10.74
             ],
             "p1206 61510": [
               0,
-              0
+              13.83
             ],
             "p747 10928": [
               0,
@@ -440,37 +496,37 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1404,
-          "msOneCall": 77,
+          "ms": 2718,
+          "msOneCall": 76,
           "stops": [],
           "moved": {
             "p578 18947": [
               0,
-              0
+              51.57
             ],
             "p530 32269": [
               0,
-              0
+              51.57
             ],
             "p797 32270": [
               0,
-              0
+              85.94
             ],
             "p724 4716": [
               0,
-              0
+              85.94
             ],
             "p720 10928": [
               0,
-              0
+              10.74
             ],
             "p719 3737": [
               0,
-              0
+              10.74
             ],
             "p1206 61510": [
               0,
-              0
+              13.93
             ],
             "p747 10928": [
               0,
@@ -483,22 +539,40 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 54
+      "B": [
+        {
+          "control": "p539 15462",
+          "seen": true,
+          "cameraTurns": 39,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p578 18947",
+            "p530 32269",
+            "p797 32270",
+            "p724 4716",
+            "p720 10928",
+            "p719 3737",
+            "p1206 61510"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 134
     },
     {
       "function": 7,
       "does": "The black knob gear on top of the grab opens and closes its four claws: it turns a 20 tooth bevel gear and a 12 tooth bevel gear on a small linear actuator, whose piston pushes the claws' arms.",
       "verdict": "shown",
-      "msOneCall": 115,
-      "msPerStep": 72,
+      "msOneCall": 135,
+      "msPerStep": 48,
       "time": {
-        "open": 3,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 11,
-        "B": 0
+        "A": 4,
+        "B": 16
       },
       "stop": null,
       "stops": [],
@@ -508,8 +582,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3043,
-          "msOneCall": 115,
+          "ms": 2038,
+          "msOneCall": 135,
           "stops": [],
           "moved": {
             "p1344 6589": [
@@ -547,8 +621,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3077,
-          "msOneCall": 97,
+          "ms": 2038,
+          "msOneCall": 66,
           "stops": [],
           "moved": {
             "p1344 6589": [
@@ -582,22 +656,35 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 16
+      "B": [
+        {
+          "control": "p1400 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1344 6589",
+            "p1342 92695"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 28
     },
     {
       "function": 9,
       "does": "The tracks run round their sprockets and rollers when driven.",
       "verdict": "shown",
-      "msOneCall": 87,
-      "msPerStep": 37,
+      "msOneCall": 112,
+      "msPerStep": 26,
       "time": {
-        "open": 3,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 17,
-        "B": 0
+        "reach": 7,
+        "A": 4,
+        "B": 30
       },
       "stop": null,
       "stops": [],
@@ -607,8 +694,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1591,
-          "msOneCall": 87,
+          "ms": 1100,
+          "msOneCall": 112,
           "stops": [],
           "moved": {}
         },
@@ -617,8 +704,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1578,
-          "msOneCall": 65,
+          "ms": 1039,
+          "msOneCall": 43,
           "stops": [],
           "moved": {}
         },
@@ -627,8 +714,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1597,
-          "msOneCall": 64,
+          "ms": 1001,
+          "msOneCall": 45,
           "stops": [],
           "moved": {}
         },
@@ -637,14 +724,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1582,
-          "msOneCall": 64,
+          "ms": 1011,
+          "msOneCall": 54,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 21
+      "B": [
+        {
+          "control": "p141 57519",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p199 57519",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 53
     }
   ]
 }

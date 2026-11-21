@@ -1,25 +1,25 @@
 {
   "set": "42101-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:50:34.624Z",
-  "load": 21.4,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:51:33.425Z",
+  "load": 12.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 113,
-  "seconds": 20,
+  "seconds": 89,
   "functions": [
     {
       "function": 2,
       "does": "The rear wheels ride on a swinging arm: the arm pivots under the seat and carries the 9-long rear axle, and the shock absorber runs from the frame behind the seat down to the arm's back, so the rear wheels rise and fall together.",
       "verdict": "shown",
-      "msOneCall": 14,
-      "msPerStep": 3,
+      "msOneCall": 10,
+      "msPerStep": 2,
       "time": {
-        "open": 7,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p22 32140",
@@ -39,28 +39,28 @@
           "way": 1,
           "asked": 0.33,
           "went": 0.33,
-          "ms": 28,
-          "msOneCall": 14,
+          "ms": 16,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p34 32140": [
-              13.14,
+              13.2,
               18.91
             ],
             "p25 32316": [
-              13.14,
+              13.2,
               18.91
             ],
             "p37 32316": [
-              13.14,
+              13.2,
               18.91
             ],
             "p79 60485": [
-              26.28,
-              5.13
+              26.4,
+              18.91
             ],
             "p31 4254": [
-              33.51,
+              33.66,
               15.86
             ],
             "p57 32184": [
@@ -82,8 +82,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 4,
-          "msOneCall": 6,
+          "ms": 2,
+          "msOneCall": 2,
           "stops": [
             "31/30"
           ],
@@ -123,7 +123,25 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p22 32140",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p34 32140",
+            "p25 32316",
+            "p37 32316",
+            "p79 60485",
+            "p31 4254"
+          ],
+          "stops": [
+            "31/30"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p22 32140",
@@ -135,21 +153,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 9
+      "seconds": 15
     },
     {
       "function": 4,
       "does": "The four wheels roll freely; there's no drive and no engine. The two rear wheels turn together on one 9-long axle; each front wheel turns on its own 3-long axle in its steering knuckle.",
       "verdict": "shown",
-      "msOneCall": 5,
+      "msOneCall": 11,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 7,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -159,8 +177,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 38,
-          "msOneCall": 5,
+          "ms": 39,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -169,8 +187,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 27,
-          "msOneCall": 4,
+          "ms": 32,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -179,8 +197,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 28,
-          "msOneCall": 4,
+          "ms": 26,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -189,8 +207,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 23,
-          "msOneCall": 3,
+          "ms": 25,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -200,7 +218,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 25,
-          "msOneCall": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -209,8 +227,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 28,
-          "msOneCall": 3,
+          "ms": 25,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -219,8 +237,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 27,
-          "msOneCall": 3,
+          "ms": 25,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -229,28 +247,65 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 31,
-          "msOneCall": 3,
+          "ms": 25,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p61 55982",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p68 55982",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p81 55982",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p84 55982",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 59
     },
     {
       "function": 5,
       "does": "The steering wheel in front of the seat spins on its half pin; it isn't joined to the steering.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 12,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -260,6 +315,25 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
+          "ms": 28,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p57 32184": [
+              0,
+              0
+            ],
+            "p94 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p91 16091",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
           "ms": 23,
           "msOneCall": 3,
           "stops": [],
@@ -273,29 +347,20 @@
               0
             ]
           }
-        },
-        {
-          "control": "p91 16091",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 22,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p57 32184": [
-              0,
-              0
-            ],
-            "p94 32270": [
-              0,
-              0
-            ]
-          }
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p91 16091",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     }
   ]
 }

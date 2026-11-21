@@ -1,11 +1,11 @@
 {
   "set": "42058-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:17:10.827Z",
-  "load": 21.5,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:24:03.903Z",
+  "load": 16.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 138,
-  "seconds": 14,
+  "seconds": 31,
   "functions": [
     {
       "function": 1,
@@ -14,12 +14,12 @@
       "msOneCall": 11,
       "msPerStep": 1,
       "time": {
-        "open": 8,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 34,
+          "ms": 33,
           "msOneCall": 11,
           "stops": [],
           "moved": {
@@ -52,8 +52,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 29,
-          "msOneCall": 3,
+          "ms": 27,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p18 94925": [
@@ -71,22 +71,36 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 11
+      "B": [
+        {
+          "control": "p41 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p18 94925",
+            "p21 18946",
+            "p17 94925"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 3,
       "does": "The front wheel rolls freely.",
       "verdict": "shown",
-      "msOneCall": 2,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -97,7 +111,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 27,
-          "msOneCall": 2,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -106,14 +120,24 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 22,
-          "msOneCall": 2,
+          "ms": 21,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p56 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     }
   ]
 }
