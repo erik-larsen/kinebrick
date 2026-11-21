@@ -1977,16 +1977,20 @@ export class Kinematics {
     // Worked out where the model is, not moved to the origin as freeMotions does: that rounds the
     // frame's place in its last bits, and this must change nothing.
     // With the tyres rolling: of the free motions, the ones in which no tyre on the ground scrubs
-    // sideways or lifts (as motionChoices keeps them gripping), if any; else all of them.
+    // sideways or lifts (as motionChoices keeps them gripping), if any of those moves the control; else
+    // all of them (a parked car's steering scrubs its tyres, and in the motions that don't, it can't
+    // turn, so every joint would look free).
     let motions: number[][];
     try {
       const basis = this.treeBasis();
-      let all = this.freeMotionsInBasis();
+      const all = this.freeMotionsInBasis().map((z) => fromBasis(z, basis));
+      motions = all;
       if (this.slipRows.length && all.length) {
-        const grip = orthonormalize(mixes(all, nullSpace(dotsWith(this.slipRows, all), all.length)));
-        if (grip.length) all = grip;
+        const inBasisAll = this.freeMotionsInBasis();
+        const grip = orthonormalize(mixes(inBasisAll, nullSpace(dotsWith(this.slipRows, inBasisAll), inBasisAll.length))).map((z) => fromBasis(z, basis));
+        const turns = (ms: number[][]) => ms.reduce((sum, m) => sum + control(m) ** 2, 0);
+        if (grip.length && turns(grip) > 1e-12 * turns(all)) motions = grip;
       }
-      motions = all.map((z) => fromBasis(z, basis));
     } finally {
       [this.scrubNeeded, this.leastScrub, this.slipRows] = kept;
     }
@@ -2000,18 +2004,60 @@ export class Kinematics {
     // A wheel on the ground (a tyre, or a track's wheel) is no free part: it rolls as the model goes.
     // Its joint is left out, neither free nor driven.
     const rolling = new Set(this.contactTreads.map((i) => this.mech.treads[i].body));
+    // Each joint that turns in some motion that leaves the control still could, alone, stay still
+    // while the control turns; together they may not (a steering linkage's joints, each of which some
+    // motion keeps still, but not all at once). So: the motion that turns the control and keeps those
+    // joints, all together, as still as it can (the least sum of their rates squared, as the rule's
+    // tier would): the ones it keeps still are free and not driven; the ones it must move are driven,
+    // with those whose rate is the control's in every motion.
+    const candidates: number[] = [];
     rates.forEach((r, j) => {
       const { bodyA, bodyB } = this.mech.joints[j];
       if (rolling.has(bodyA) || rolling.has(bodyB)) return;
       if (size(r) <= 1e-6 * scale) return;
       const along = cc > 0 ? r.reduce((sum, x, i) => sum + x * c[i], 0) / cc : 0;
       const rest = size(r.map((x, i) => x - along * c[i]));
-      (rest > 1e-6 * scale ? free : driven).add(j);
+      if (rest <= 1e-6 * scale) driven.add(j);
+      else candidates.push(j);
     });
+    const still = cc > 0 ? this.stillestMix(candidates.map((j) => rates[j]), c) : null;
+    for (const [k, j] of candidates.entries()) {
+      if (!still) free.add(j);
+      else if (Math.abs(still[k]) <= 1e-6) free.add(j);
+      else driven.add(j);
+    }
     d.free = free;
     d.driven = driven;
     d.kind = kind;
     if (setting('KINEBRICK_FREE_DEBUG')) console.error(`free parts, ${kind}: ${motions.length} motions; driven ${[...driven].join(' ')}; free ${[...free].join(' ')}`);
+  }
+
+  // Of the mixes a of the motions with sum a·c = 1 (the control turning at rate 1), the one that keeps
+  // the joints' rates (each row of `rows`, a joint's rate in each motion) least, summed squared; their
+  // rates in it. Where some mix keeps them all still and turns the control, one of those.
+  private stillestMix(rows: number[][], c: number[]): number[] {
+    const k = c.length;
+    const gram = Array.from({ length: k }, (_, a) => Array.from({ length: k }, (_, b) => rows.reduce((sum, r) => sum + r[a] * r[b], 0)));
+    const { values, vectors } = symmetricEigen(gram);
+    const top = Math.max(0, ...values);
+    const tiny = 1e-12 * (top || 1);
+    const onto = (v: number[]) => v.reduce((sum, x, i) => sum + x * c[i], 0);
+    const nothing = vectors.filter((_, e) => values[e] <= tiny);
+    const turnsNothing = nothing.reduce((sum, v) => sum + onto(v) ** 2, 0);
+    let mix: number[];
+    if (turnsNothing > 1e-12 * c.reduce((sum, x) => sum + x * x, 0)) {
+      mix = new Array(k).fill(0);
+      for (const v of nothing) v.forEach((x, i) => (mix[i] += (x * onto(v)) / turnsNothing));
+    } else {
+      const g = new Array(k).fill(0);
+      vectors.forEach((v, e) => {
+        if (values[e] <= tiny) return;
+        v.forEach((x, i) => (g[i] += (x * onto(v)) / values[e]));
+      });
+      const cg = onto(g);
+      mix = g.map((x) => x / cg);
+    }
+    return rows.map((r) => r.reduce((sum, x, i) => sum + x * mix[i], 0));
   }
 
   // A joint's rate in a motion: a turning joint's turning about its axis, a slide's sliding along it.

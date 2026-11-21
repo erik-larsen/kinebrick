@@ -502,6 +502,12 @@ export class Collisions {
     return this.lowest(part, matrix) > ground - NEAR;
   }
 
+  // How far a part's shape reaches below the ground (LDraw y `ground`), placed as `matrix` says: 0
+  // if it doesn't.
+  belowBy(part: number, matrix: Matrix4, ground: number): number {
+    return Math.max(0, this.lowest(part, matrix) - ground);
+  }
+
   // How low a part's shape reaches (its greatest LDraw y), placed as `matrix` says.
   private lowest(part: number, matrix: Matrix4): number {
     let low = -Infinity;

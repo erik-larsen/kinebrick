@@ -170,6 +170,8 @@ const stopsReport = process.env.KINEBRICK_CHECK_STOPS === '1';
 // if every listed part moved MOVED and no part to stay did. On by default; KINEBRICK_COLLIDE=0
 // turns it off, for comparing. Each stop is noted in `collisionStops`, as with --stops.
 const collide = process.env.KINEBRICK_COLLIDE !== '0';
+// KINEBRICK_GROUND_COUNT=1: each turn's would-be ground stop (see bothWays), printed for each function.
+const groundCounts: Record<string, unknown>[] = [];
 // Where the friction pins pinsToFree names (from the build with every pin free) don't let a
 // control move, or a listed part held fast come loose, the pins are found by trying them in the
 // build as read (see pinsByTrial; decision 126 of 2026-11-16). On by default;
@@ -1222,7 +1224,17 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
           const [from, to] = [relative(itself.part, itself.body, startPoses), relative(itself.part, itself.body, kin.poses)];
           return slides ? at[itself.part].clone().applyMatrix4(to).distanceTo(at[itself.part].clone().applyMatrix4(from)) : angle(from, to);
         };
+        // KINEBRICK_GROUND_COUNT=1 (decision 299): where the viewer's ground test (Collisions.belowGround,
+        // as setup.blockedBy asks it) would stop this turn, and how far below the ground that part is at
+        // the turn's end. Counted only: the check has no ground test.
+        const ground: { at: number; part: number } | null = null as { at: number; part: number } | null;
+        const groundSeen = { first: ground };
+        const groundTest = process.env.KINEBRICK_GROUND_COUNT === '1' && watching && kin.groundY !== null ? watching : null;
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
+          if (groundTest && !groundSeen.first) {
+            const hit = groundTest.belowGround(placedNow().map((p) => p.matrix), kin.groundY!, loaded.parts.map((p) => p.matrix));
+            if (hit) groundSeen.first = { at: controlNow(), part: hit[0] };
+          }
           // With the stop on, a step that met parts was undone: the pair is noted where the control
           // then stands. Without it (--stops alone), the first overlap is noted as it comes.
           if (collide && stoppedBy && !stop.met) stop.met = { pair: stoppedBy, at: controlNow() };
@@ -1255,6 +1267,11 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
         if (stop.met) collisionStops.push([wi, way, stop.met.pair[0], stop.met.pair[1], round(stop.met.at), round(Math.abs(turned))]);
+        if (groundTest) {
+          const g = groundSeen.first;
+          const deepest = g ? groundTest.belowBy(g.part, placedNow()[g.part].matrix, kin.groundY!) : 0;
+          groundCounts.push({ control: wi, way, turned: round(Math.abs(turned)), at: g ? Number(g.at.toFixed(4)) : null, part: g ? `p${g.part} ${parts[g.part].name}` : null, below: Number(deepest.toFixed(2)), tyre: g ? mech.treads.some((t) => t.part === g.part) || mech.roles[g.part] === 'tyre' || mech.roles[g.part] === 'rim' : null });
+        }
         const shifted = catchShifts(placedNow(), table, catches);
         const rates: Record<string, [number, number]> = {};
         listed.forEach((m, k) => (rates[m.ref] = Math.abs(turned) > 1e-6 ? [sig(went[k][0] / Math.abs(turned)), sig(went[k][1] / Math.abs(turned))] : [0, 0]));
@@ -1508,6 +1525,10 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
     // The working set's counts for this function (decision 266), then reset: printed only when
     // KINEBRICK_WORKING_SET=1 asks for them, though the set is on without it.
+    if (process.env.KINEBRICK_GROUND_COUNT === '1') {
+      console.error(`ground-count function ${i + 1}: ${JSON.stringify(groundCounts)}`);
+      groundCounts.length = 0;
+    }
     if (process.env.KINEBRICK_FREE_COUNT === '1') {
       console.error(`free-count function ${i + 1}: ${JSON.stringify(Kinematics.freeCounts)}`);
       Kinematics.freeCounts = [];
