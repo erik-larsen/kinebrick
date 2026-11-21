@@ -26,7 +26,7 @@ export function rests(solver: Kinematics, eq: Equations) {
 // What a resting body (see Rest) rests on now: of the ways it may, the one where it's nearest
 // to touching, or deepest in (the highest thing under it), with where and which way (see
 // restTouch); or null if nothing is under it.
-function restingOn(solver: Kinematics, rest: Rest): { body: number; point: Vector3; dir: Vector3; clearance: number } | null {
+export function restingOn(solver: Kinematics, rest: Rest): { body: number; point: Vector3; dir: Vector3; clearance: number } | null {
   let best: { body: number; point: Vector3; dir: Vector3; clearance: number } | null = null;
   for (const contact of rest.on) {
     const touch = restTouch(contact, solver.poses[rest.body], solver.poses[contact.body]);
