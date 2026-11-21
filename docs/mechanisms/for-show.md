@@ -159,7 +159,7 @@ Each detail by the set it first appears in.
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
-- *steering wheel:* The steering wheel in the cab turns freely; it isn't connected to the steering. (works)
+- *steering wheel:* The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle. (works)
 
 ---
 

@@ -131,15 +131,16 @@
         "skip": "only matters under gravity or force"
       },
       {
-        "does": "The steering wheel in the cab turns freely; it isn't connected to the steering.",
+        "does": "The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle.",
         "mechanisms": [
           "for-show: steering wheel"
         ],
-        "source": "inferred: the wheel sits on a short axle in the cab with nothing below it",
+        "source": "book step 352 (page 216): the wheel built onto its axle and connector in the inset, then fitted in the cab",
         "control": "p1935 2819",
         "stays": [
           "p1402 87761"
-        ]
+        ],
+        "note": "Signed by Erik, 2026-11-21: the words and the source, from the booklet. The step does not show whether the piece can rock on its pin, so the control and the part that stays are as before."
       }
     ],
     "questions": [
