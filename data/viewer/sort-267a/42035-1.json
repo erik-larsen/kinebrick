@@ -1,0 +1,62 @@
+{
+  "set": "42035-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:09:49.667Z",
+  "load": 18.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 353,
+  "seconds": 17,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The left rear wheel rolls freely on its own axle.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 1,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p351 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 57,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p38 60485 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p351 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 49,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p38 60485 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    }
+  ]
+}

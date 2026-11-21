@@ -1,0 +1,341 @@
+{
+  "set": "8848-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:32:11.924Z",
+  "load": 39,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 367,
+  "seconds": 718,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.",
+      "verdict": "not shown",
+      "msOneCall": 13,
+      "msPerStep": 3,
+      "time": {
+        "open": 14,
+        "collisions": 4,
+        "first": 0,
+        "reach": 40,
+        "A": 4,
+        "B": 295
+      },
+      "stop": {
+        "control": "p387 4266",
+        "way": -1,
+        "went": -0.484,
+        "asked": 0.83,
+        "by": [
+          "1/47"
+        ]
+      },
+      "stops": [
+        "1/47"
+      ],
+      "A": [
+        {
+          "control": "p387 4266",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 50,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p0 73071": [
+              0,
+              28.65
+            ],
+            "p221 3736": [
+              0,
+              0
+            ],
+            "p177 3702": [
+              0,
+              0
+            ],
+            "p239 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p387 4266",
+          "way": -1,
+          "asked": 0.83,
+          "went": -0.484,
+          "ms": 40,
+          "msOneCall": 5,
+          "stops": [
+            "1/47"
+          ],
+          "moved": {
+            "p0 73071": [
+              0,
+              27.74
+            ],
+            "p221 3736": [
+              0,
+              0
+            ],
+            "p177 3702": [
+              0,
+              0
+            ],
+            "p239 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p390 4266",
+          "way": 1,
+          "asked": 0.83,
+          "went": 0.83,
+          "ms": 59,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p0 73071": [
+              0,
+              47.56
+            ],
+            "p221 3736": [
+              0,
+              0
+            ],
+            "p177 3702": [
+              0,
+              0
+            ],
+            "p239 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p390 4266",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 37,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p0 73071": [
+              0,
+              28.65
+            ],
+            "p221 3736": [
+              0,
+              0
+            ],
+            "p177 3702": [
+              0,
+              0
+            ],
+            "p239 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p387 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p0 73071"
+          ],
+          "stops": [
+            "1/47"
+          ]
+        },
+        {
+          "control": "p390 4266",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p0 73071"
+          ],
+          "stops": [
+            "1/47"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p387 4266",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential; the text says: rolls, wheel), but a collision stops it at -0.484 rad (1/47)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p387 4266: turns without end (kinds differential; the text says: rolls, wheel), but a collision stops it at -0.484 rad (1/47)",
+      "seconds": 358
+    },
+    {
+      "function": 3,
+      "does": "As it rolls, the differential's big gear also turns two bevel gears: one on a drive shaft running forward under the cab through a universal joint, one on a short axle sticking out at the back.",
+      "verdict": "not shown",
+      "msOneCall": 12,
+      "msPerStep": 4,
+      "time": {
+        "open": 15,
+        "collisions": 4,
+        "first": 0,
+        "reach": 40,
+        "A": 4,
+        "B": 297
+      },
+      "stop": {
+        "control": "p387 4266",
+        "way": -1,
+        "went": -0.484,
+        "asked": 0.83,
+        "by": [
+          "1/47"
+        ]
+      },
+      "stops": [
+        "1/47"
+      ],
+      "A": [
+        {
+          "control": "p387 4266",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 51,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p40 3708 against p8 3895": [
+              0,
+              57.3
+            ],
+            "p86 3705 against p8 3895": [
+              0,
+              57.3
+            ]
+          }
+        },
+        {
+          "control": "p387 4266",
+          "way": -1,
+          "asked": 0.83,
+          "went": -0.484,
+          "ms": 40,
+          "msOneCall": 5,
+          "stops": [
+            "1/47"
+          ],
+          "moved": {
+            "p40 3708 against p8 3895": [
+              0,
+              55.48
+            ],
+            "p86 3705 against p8 3895": [
+              0,
+              55.48
+            ]
+          }
+        },
+        {
+          "control": "p390 4266",
+          "way": 1,
+          "asked": 0.83,
+          "went": 0.83,
+          "ms": 62,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p40 3708 against p8 3895": [
+              0,
+              95.11
+            ],
+            "p86 3705 against p8 3895": [
+              0,
+              95.11
+            ]
+          }
+        },
+        {
+          "control": "p390 4266",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 36,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p40 3708 against p8 3895": [
+              0,
+              57.3
+            ],
+            "p86 3705 against p8 3895": [
+              0,
+              57.3
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p387 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p40 3708 against p8 3895",
+            "p86 3705 against p8 3895"
+          ],
+          "stops": [
+            "1/47"
+          ]
+        },
+        {
+          "control": "p390 4266",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p40 3708 against p8 3895",
+            "p86 3705 against p8 3895"
+          ],
+          "stops": [
+            "1/47"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p387 4266",
+          "judged": "not shown",
+          "why": "turns without end (kinds differential, power-take-off; the text says: rolls, drive shaft), but a collision stops it at -0.484 rad (1/47)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p387 4266: turns without end (kinds differential, power-take-off; the text says: rolls, drive shaft), but a collision stops it at -0.484 rad (1/47)",
+      "seconds": 360
+    }
+  ]
+}

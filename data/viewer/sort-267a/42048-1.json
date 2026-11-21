@@ -1,0 +1,120 @@
+{
+  "set": "42048-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:26:17.238Z",
+  "load": 29.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 339,
+  "seconds": 26,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The red gear lever on the seat's left has three positions, 1, N and 2: it turns a cross shaft under the seat, whose liftarm on the right side pushes a black link back to rock the changeover catch at the back, which slides the driving ring on the rear axle to lock one of the two 16-tooth clutch gears to the axle, or neither.",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 6,
+      "time": {
+        "open": 21,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 15,
+        "B": 0
+      },
+      "stop": {
+        "control": "p368 32015",
+        "way": 1,
+        "went": 0.636,
+        "asked": 0.67,
+        "by": [
+          "205/215"
+        ]
+      },
+      "stops": [
+        "205/215"
+      ],
+      "A": [
+        {
+          "control": "p368 32015",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.67,
+          "went": 0.636,
+          "ms": 112,
+          "msOneCall": 29,
+          "stops": [
+            "205/215"
+          ],
+          "moved": {
+            "p278 32293": [
+              39.75,
+              5.26
+            ],
+            "p215 6641": [
+              9.94,
+              28.77
+            ],
+            "p67 18947": [
+              10,
+              0
+            ],
+            "p64 18946": [
+              0,
+              0
+            ],
+            "p73 18946": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p368 32015",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.63,
+          "went": -0.63,
+          "ms": 91,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {
+            "p278 32293": [
+              37.79,
+              5.99
+            ],
+            "p215 6641": [
+              9.45,
+              27.32
+            ],
+            "p67 18947": [
+              10,
+              0
+            ],
+            "p64 18946": [
+              0,
+              0
+            ],
+            "p73 18946": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p368 32015",
+          "judged": "stands",
+          "why": "stopped at +0.636 rad (205/215); kinds driving-ring-gearbox: 2 speeds"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 26
+    }
+  ]
+}

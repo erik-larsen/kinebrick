@@ -1,0 +1,177 @@
+{
+  "set": "8856-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:47:11.319Z",
+  "load": 38.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 480,
+  "seconds": 1029,
+  "functions": [
+    {
+      "function": 8,
+      "does": "The three landing gear wheels roll freely.",
+      "verdict": "not shown",
+      "msOneCall": 26,
+      "msPerStep": 3,
+      "time": {
+        "open": 35,
+        "collisions": 11,
+        "first": 0,
+        "reach": 116,
+        "A": 16,
+        "B": 852
+      },
+      "stop": {
+        "control": "p131 3482",
+        "way": 1,
+        "went": 0.558,
+        "asked": 1.5,
+        "by": [
+          "43/79"
+        ]
+      },
+      "stops": [
+        "43/79"
+      ],
+      "A": [
+        {
+          "control": "p87 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 122,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p87 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 104,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p89 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 96,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p89 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 100,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p129 3482",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 46,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p129 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 104,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.558,
+          "ms": 43,
+          "msOneCall": 7,
+          "stops": [
+            "43/79"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p131 3482",
+          "way": -1,
+          "asked": 0.57,
+          "went": -0.57,
+          "ms": 46,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p87 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p89 3482",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p129 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "43/79"
+          ]
+        },
+        {
+          "control": "p131 3482",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "43/79"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p131 3482",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p131 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)",
+      "seconds": 1029
+    }
+  ]
+}

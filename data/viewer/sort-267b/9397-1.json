@@ -1,0 +1,107 @@
+{
+  "set": "9397-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T01:58:11.715Z",
+  "load": 41.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1143,
+  "seconds": 230,
+  "functions": [
+    {
+      "function": 2,
+      "does": "With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it.",
+      "verdict": "not shown",
+      "why": "A: p894 64178 not moved; B: no listed part moved by hand",
+      "msOneCall": null,
+      "msPerStep": 809,
+      "time": {
+        "open": 22,
+        "collisions": 12,
+        "first": 15,
+        "reach": 8,
+        "A": 139,
+        "B": 33
+      },
+      "stop": {
+        "control": "p240 58120",
+        "way": 1,
+        "went": 2.67,
+        "asked": 4.1,
+        "by": [
+          "211/216"
+        ]
+      },
+      "stops": [
+        "211/216"
+      ],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 4.1,
+          "went": 2.67,
+          "ms": 61752,
+          "msOneCall": null,
+          "stops": [
+            "211/216"
+          ],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              1.01,
+              0
+            ],
+            "p894 64178": [
+              0.69,
+              0.5
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 4.2,
+          "went": -2.67,
+          "ms": 60074,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              1.01,
+              0
+            ],
+            "p894 64178": [
+              0.68,
+              0.49
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p240 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "211/216"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p240 58120",
+          "judged": "stands",
+          "why": "stopped at +2.67 rad (211/216); kinds electric-motor, function-selector, linear-actuator: container tipper"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p894 64178 not moved; B: no listed part moved by hand"
+      },
+      "seconds": 230
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "set": "8840-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:12:12.585Z",
+  "load": 40.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 206,
+  "seconds": 56,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts.",
+      "verdict": "not shown",
+      "why": "A: p210 4266 against p0 3703, p213 4266 against p0 3703, p200 4255 against p0 3703, p202 4255 against p0 3703 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 7,
+        "collisions": 2,
+        "first": 0,
+        "reach": 14,
+        "A": 1,
+        "B": 32
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p86 3701",
+          "way": 1,
+          "asked": 0.24,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p210 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p213 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p200 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p202 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p206 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p208 4266 against p0 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p86 3701",
+          "way": -1,
+          "asked": 0.35,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p210 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p213 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p200 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p202 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p206 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p208 4266 against p0 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p86 3701",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p210 4266 against p0 3703",
+            "p213 4266 against p0 3703",
+            "p200 4255 against p0 3703",
+            "p202 4255 against p0 3703"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 56
+    }
+  ]
+}

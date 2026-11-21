@@ -1,0 +1,150 @@
+{
+  "set": "8835-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T01:41:38.942Z",
+  "load": 33.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 235,
+  "seconds": 114,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
+      "verdict": "not shown",
+      "why": "A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand; not decided: p207 4185a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)",
+      "msOneCall": 17,
+      "msPerStep": 13,
+      "time": {
+        "open": 10,
+        "collisions": 3,
+        "first": 0,
+        "reach": 2,
+        "A": 11,
+        "B": 89
+      },
+      "stop": {
+        "control": "p207 4185a",
+        "way": 1,
+        "went": 0.035,
+        "asked": 1.07,
+        "by": [
+          "71/123"
+        ]
+      },
+      "stops": [
+        "71/123"
+      ],
+      "A": [
+        {
+          "control": "p207 4185a",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.07,
+          "went": 0.035,
+          "ms": 13,
+          "msOneCall": 17,
+          "stops": [
+            "71/123"
+          ],
+          "moved": {
+            "p29 3703": [
+              0.59,
+              0.21
+            ],
+            "p128 4262": [
+              0.52,
+              0.21
+            ],
+            "p63 2823": [
+              0,
+              0
+            ],
+            "p212 3736": [
+              0,
+              0
+            ],
+            "p216 3941": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p207 4185a",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 10,
+          "msOneCall": 10,
+          "stops": [
+            "71/123"
+          ],
+          "moved": {
+            "p29 3703": [
+              0.6,
+              0.21
+            ],
+            "p128 4262": [
+              0.52,
+              0.21
+            ],
+            "p63 2823": [
+              0,
+              0
+            ],
+            "p212 3736": [
+              0,
+              0
+            ],
+            "p216 3941": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p207 4185a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "71/123",
+            "29/232",
+            "29/56",
+            "33/54",
+            "25/29",
+            "179/207",
+            "75/123",
+            "33/59"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p207 4185a",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand"
+      },
+      "seconds": 114
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "set": "9393-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:09:47.947Z",
+  "load": 18.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 350,
+  "seconds": 17,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The left rear wheel turns on its own short axle, so only the right one drives the tedder.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 4,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p282 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 150,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p301 6587 against p299 48989": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p282 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 129,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p301 6587 against p299 48989": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    }
+  ]
+}

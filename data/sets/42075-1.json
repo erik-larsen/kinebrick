@@ -138,12 +138,13 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "fe0dd791",
     "date": "2026-11-21",
-    "seconds": 9,
+    "seconds": 10,
     "counts": {
-      "works": 6,
-      "no": 2
+      "works": 5,
+      "no": 2,
+      "partly": 1
     },
     "loose": [
       "p331 30395"
@@ -225,7 +226,7 @@
             0.7
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -292,7 +293,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -368,7 +369,7 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -410,7 +411,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1
       },
       {
         "result": "no",
@@ -482,70 +483,77 @@
         "seconds": 0.5
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.17,
-            -0.17
-          ]
-        ],
-        "rates": [
-          {
-            "p190 2654": [
-              1,
-              26
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p186 at 0.136 rad each way (parts 175/187); the mast should swing upright. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.17,
+              -0.17
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            175,
-            187,
-            0.17,
-            0.17
           ],
-          [
-            0,
-            -1,
-            175,
-            187,
-            0.17,
-            0.17
-          ]
-        ],
-        "seconds": 0.1
+          "rates": [
+            {
+              "p190 2654": [
+                1,
+                26
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              175,
+              187,
+              0.17,
+              0.17
+            ],
+            [
+              0,
+              -1,
+              175,
+              187,
+              0.17,
+              0.17
+            ]
+          ],
+          "seconds": 0.2
+        }
       },
       {
         "result": "no",
@@ -612,7 +620,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -722,9 +730,9 @@
             1.47
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       }
     ],
-    "peak": 690
+    "peak": 705
   }
 }

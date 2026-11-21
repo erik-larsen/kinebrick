@@ -1,0 +1,309 @@
+{
+  "set": "42054-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:59:16.619Z",
+  "load": 26.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1961,
+  "seconds": 714,
+  "functions": [
+    {
+      "function": 3,
+      "does": "Lever A, the lower grey lever on the fuel tank, turned up or down, rotates the whole cab one way or the other on its turntable (so it can face backwards to work the crane): through a 16 and a 20 tooth gear it tips a changeover catch that slides a driving ring up or down a vertical shaft between two clutch gears turning opposite ways, and the shaft's 12 tooth gear at the top turns the cab's turntable.",
+      "verdict": "not shown",
+      "why": "A: p692 42054 - 18938 not moved",
+      "msOneCall": null,
+      "msPerStep": 2054,
+      "time": {
+        "open": 26,
+        "collisions": 0,
+        "first": 8,
+        "reach": 0,
+        "A": 152,
+        "B": 0
+      },
+      "stop": {
+        "control": "p543 58120",
+        "way": 1,
+        "went": 1.1,
+        "asked": 1.43,
+        "by": [
+          "700/1310",
+          "700/1318"
+        ]
+      },
+      "stops": [
+        "700/1310",
+        "700/1318"
+      ],
+      "A": [
+        {
+          "control": "p543 58120",
+          "way": 1,
+          "asked": 1.43,
+          "went": 1.1,
+          "ms": 64541,
+          "msOneCall": null,
+          "stops": [
+            "700/1310",
+            "700/1318"
+          ],
+          "moved": {
+            "p692 42054 - 18938": [
+              0,
+              0.43
+            ],
+            "p1176 64782": [
+              1.01,
+              0.43
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p543 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.571,
+          "ms": 57315,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p692 42054 - 18938": [
+              0,
+              0.79
+            ],
+            "p1176 64782": [
+              1.85,
+              0.79
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p543 58120",
+          "judged": "stands",
+          "why": "stopped at +1.1 rad (700/1310, 700/1318); kinds function-selector, turntable: cab"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p692 42054 - 18938 not moved"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 191
+    },
+    {
+      "function": 4,
+      "does": "Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom.",
+      "verdict": "not shown",
+      "why": "A: p1820 92696 against p1818 92693c01, p1841 40490 against p1659 42054 - 18938 not moved",
+      "msOneCall": null,
+      "msPerStep": 1073,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 9,
+        "reach": 0,
+        "A": 149,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p543 58120",
+          "way": 1,
+          "asked": 10.5,
+          "went": 2.042,
+          "ms": 62576,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p1820 92696 against p1818 92693c01": [
+              0.21,
+              0
+            ],
+            "p1841 40490 against p1659 42054 - 18938": [
+              0.29,
+              0.21
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p543 58120",
+          "way": -1,
+          "asked": 10.5,
+          "went": -2.199,
+          "ms": 64222,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p1820 92696 against p1818 92693c01": [
+              0.23,
+              0
+            ],
+            "p1841 40490 against p1659 42054 - 18938": [
+              0.31,
+              0.22
+            ],
+            "p1659 42054 - 18938 against p1660 18939": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 193
+    },
+    {
+      "function": 10,
+      "does": "The crane's two legs fold down from its base to stand on the ground, and lock there.",
+      "verdict": "not shown",
+      "why": "A: p1768 6558, p1779 6558 not moved",
+      "msOneCall": 24,
+      "msPerStep": null,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 295,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1765 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              1764
+            ]
+          },
+          "asked": 1.42,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p1768 6558": [
+              0,
+              0
+            ],
+            "p1779 6558": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1765 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              1764
+            ]
+          },
+          "asked": 1.51,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1768 6558": [
+              0,
+              0
+            ],
+            "p1779 6558": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1776 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              1764,
+              1775
+            ]
+          },
+          "asked": 1.42,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p1768 6558": [
+              0,
+              0
+            ],
+            "p1779 6558": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1776 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              1764,
+              1775
+            ]
+          },
+          "asked": 1.51,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1768 6558": [
+              0,
+              0
+            ],
+            "p1779 6558": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 330
+    }
+  ]
+}
