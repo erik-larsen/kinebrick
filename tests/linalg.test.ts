@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { dampedSolution, dot, freeCut, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, symmetricEigen, Tier, withoutDirections } from '../src/linalg.ts';
+import { dampedSolution, dot, freeCut, leastTurning, NotFinite, nullSpace, orthonormalize, RANK_TOLERANCE, symmetricEigen, Tier, withoutDirections } from '../src/linalg.ts';
 
 // The rows times a vector.
 const times = (rows: number[][], x: number[]) => rows.map((row) => dot(row, x));
@@ -61,6 +61,24 @@ describe('the null space', () => {
 
   it('leaves everything free with no equations', () => {
     expect(nullSpace([], 3).length).toBe(3);
+  });
+
+  // A value that is not finite ends it at once (decision 280): on a NaN, the rook pivoting went round
+  // for ever. A NaN in a row, an ∞, and a NaN that comes of sums too large for a number.
+  it('ends with NotFinite on a row that holds NaN or ∞, or comes to NaN', () => {
+    expect(() => nullSpace([[1, 2, 0], [0, NaN, 1]], 3)).toThrow(NotFinite);
+    expect(() => nullSpace([[NaN, 0, 0]], 3)).toThrow(NotFinite);
+    expect(() => nullSpace([[1, Infinity, 0]], 3)).toThrow(NotFinite);
+    expect(() => nullSpace([[0, -Infinity, 1], [1, 1, 1]], 3)).toThrow(NotFinite);
+    // Sums too large for a number: it ends, with an answer or with NotFinite.
+    let ended: boolean;
+    try {
+      nullSpace([[1e308, 1e308, 0], [1e-308, 1e308, 1e308], [1, -1e308, 1e308]], 3);
+      ended = true;
+    } catch (err) {
+      ended = err instanceof NotFinite;
+    }
+    expect(ended).toBe(true);
   });
 });
 

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { Vector3 } from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { ConnectionTable } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr } from '../src/ldr.ts';
@@ -100,5 +100,26 @@ describe('the same parts with no tyres', () => {
     const kin = new Kinematics(mech);
     expect(kin.groundY).toBeNull();
     expect(kin.freeMotions()).toHaveLength(2); // each axle turns on its own
+  });
+});
+
+describe('a step that meets a value that is not finite', () => {
+  // Refused as a step that can't be taken is (decision 280): nothing turned, the state as it was, one
+  // line in the console for the drag, and no hang (the null space went round for ever on a NaN).
+  it('is refused, with the state as it was and one line told', () => {
+    const { kin } = simpleCar();
+    const state = kin.snapshot();
+    state.jointAngles[0] = NaN;
+    kin.restore(state);
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      expect(kin.turnJoint(0, 0.1)).toBe(0);
+      expect(kin.turnJoint(0, 0.1)).toBe(0);
+      expect(Number.isNaN(kin.jointAngles[0])).toBe(true);
+      expect(kin.jointAngles.slice(1)).toEqual(state.jointAngles.slice(1));
+      expect(warn.mock.calls.filter(([line]) => String(line).includes('refused'))).toHaveLength(1);
+    } finally {
+      warn.mockRestore();
+    }
   });
 });

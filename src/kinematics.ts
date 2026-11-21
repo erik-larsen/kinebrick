@@ -36,7 +36,7 @@ import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { TRACE, trace, traceJam } from './trace.ts';
-import { BodyRow, combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, nullSpace, orthonormalize, rowsTimes, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
+import { BodyRow, combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, NotFinite, nullSpace, orthonormalize, rowsTimes, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
@@ -1384,7 +1384,18 @@ export class Kinematics {
   // but the car's steering (and the usual USUAL_SCRUB): a model allowed more scrub would
   // otherwise keep holds it can scrub its way past (the Ackermann car's differential, its tyres
   // scrubbing round a bend rather than its rear wheels turning at different speeds).
+  // Holds nothing more where its sums meet a value that is not finite (see refuseNotFinite).
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean, joint = -1): boolean {
+    try {
+      return this.holdWhatTheDragDoesntNeedWhole(grabbed, stillPossible, joint);
+    } catch (err) {
+      if (!(err instanceof NotFinite)) throw err;
+      this.refuseNotFinite(err);
+      return false;
+    }
+  }
+
+  private holdWhatTheDragDoesntNeedWhole(grabbed: number, stillPossible: () => boolean, joint: number): boolean {
     // Least motion for a push (see Options.leastPush): a push of a part that hangs on a turning
     // joint is held as a drag that turns that joint, and its steps are chosen by the tiers.
     if (joint < 0 && this.options.leastPush && this.options.leastMotion) {
@@ -2578,7 +2589,22 @@ export class Kinematics {
   // holds afresh, or turns a column of the ring, is undone and worked again in full: the set must
   // never end, or bend, a motion the whole mechanism would make. A turn worked in full makes the
   // set afresh from what it turned.
+  // A turn whose sums meet a value that is not finite (see NotFinite) is refused: undone, with
+  // nothing turned (see refuseNotFinite).
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
+    const before = this.stepState();
+    try {
+      return this.turnJointWhole(joint, angle, allowed, maxStep);
+    } catch (err) {
+      if (!(err instanceof NotFinite)) throw err;
+      this.restoreStepState(before);
+      this.aheadKept = null;
+      this.refuseNotFinite(err);
+      return 0;
+    }
+  }
+
+  private turnJointWhole(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     if (!this.options.workingSet) return this.turnJointPlain(joint, angle, allowed, maxStep);
     if (setting('KINEBRICK_WORKING_SET_SHADOW') !== '1') return this.turnJointSet(joint, angle, allowed, maxStep);
     // The shadow: the same turn in full from the full drag's own state (or from here, at a drag's
@@ -2671,6 +2697,16 @@ export class Kinematics {
     }
     this.ws = this.makeWorkingSet(joint, before, turned, ours && !ws!.confirmed ? ws!.w : null);
     return turned;
+  }
+
+  // A step whose sums met a value that is not finite (NaN or ±∞, see NotFinite) is refused as a step
+  // that can't be taken is: undone, the drag going no further (decision 280 of 2026-11-21). No sum
+  // makes sense of such a value, and on a NaN the null space never ended. Told in one line, once a drag.
+  private notFiniteDrag: Drag | null = null;
+  refuseNotFinite(err: NotFinite) {
+    if (this.notFiniteDrag === this.drag) return;
+    this.notFiniteDrag = this.drag;
+    console.warn(`kinebrick: a step was refused: ${err.message}`);
   }
 
   // The state a turn changes, to undo a turn on the working set.
@@ -3221,7 +3257,18 @@ export class Kinematics {
   // Super Car's steering, once its tyres stood on the ground). Null if the joint can't turn.
   // With `play` false, and with loopPlay, only an exact motion: for a test of whether a control
   // can move at all, before friction pins are freed for it (see playMotion).
+  // Null too where its sums meet a value that is not finite (see refuseNotFinite).
   jointMotion(joint: number, play = true): number[] | null {
+    try {
+      return this.jointMotionWhole(joint, play);
+    } catch (err) {
+      if (!(err instanceof NotFinite)) throw err;
+      this.refuseNotFinite(err);
+      return null;
+    }
+  }
+
+  private jointMotionWhole(joint: number, play: boolean): number[] | null {
     return this.nearOrigin((toModel) => {
       this.endHeld = new Set(this.turnHeld);
       this.blockedByEnds = false;
