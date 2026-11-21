@@ -1,0 +1,218 @@
+{
+  "set": "6666-1",
+  "curated": {
+    "model": "omr/blind-trial/6666-1 Ambulance.mpd",
+    "functions": [
+      {
+        "does": "roof hatch flaps open",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6666-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p45 4213",
+        "moves": [
+          "p45 4213"
+        ],
+        "stays": [
+          "p44 4315",
+          "p41 3032"
+        ],
+        "note": "A 4213 hinged car roof 4x4 lies flat on the roof (y=-136) over the cab, held by the 4315 hinge plate with car roof holder just behind it."
+      },
+      {
+        "does": "side doors open",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6666-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p31 3822",
+          "p32 3821"
+        ],
+        "moves": [
+          "p31 3822",
+          "p32 3821"
+        ],
+        "stays": [
+          "p40 3823"
+        ],
+        "note": "Car doors 3822 (left) and 3821 (right) are at the cab sides at the same z as the 3823 windscreen, whose hinge holes they pivot in."
+      },
+      {
+        "does": "rear door opens",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6666-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p39 2349a",
+        "moves": [
+          "p39 2349a",
+          "p36 2348b"
+        ],
+        "stays": [
+          "p38 4315",
+          "p41 3032"
+        ],
+        "note": "A 2349a hinged roof panel with 2348b glass is turned to hang vertical at the back (z about 188), hinged on the 4315 roof holder at the rear roof edge. It serves as the rear door."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 2,
+    "counts": {
+      "no": 2,
+      "works": 1
+    },
+    "loose": [
+      "p57 4624",
+      "p58 3641",
+      "p59 4624",
+      "p60 3641",
+      "p61 4624",
+      "p62 3641",
+      "p63 4624",
+      "p64 3641",
+      "p66 4714",
+      "p67 4715",
+      "p68 4715"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p45 4213"
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          []
+        ],
+        "torn": [
+          []
+        ],
+        "why": [
+          "p45 4213 is part of the frame"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0.1
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p31 3822",
+          "p32 3821"
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [],
+          []
+        ],
+        "torn": [
+          [],
+          []
+        ],
+        "why": [
+          "p31 3822 is part of the frame",
+          "p32 3821 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          []
+        ],
+        "judged": [
+          0,
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0.1
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.57,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p39 2349a": [
+              1,
+              36.2
+            ],
+            "p36 2348b": [
+              1,
+              21
+            ],
+            "p38 4315": [
+              0,
+              0
+            ],
+            "p41 3032": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            24,
+            39,
+            0.57,
+            0.57
+          ]
+        ],
+        "seconds": 0.2
+      }
+    ],
+    "peak": 261
+  }
+}

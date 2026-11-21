@@ -42,19 +42,21 @@ export async function loadModel(file: string, omr: boolean, status: (now: string
 
 // What the model's loose parts touch as built (see touchingFrom): from its kept first collision
 // pass (data/collisions/<model>.json, made by npm run collisions), whose near pairs are the same
-// test's answers, where its key matches the parts as read; else worked out from the parts' shapes,
+// test's answers (a path's parts given no shape in both), where its key matches the parts as read; else worked out from the parts' shapes,
 // read only then (decision 274's open point). KINEBRICK_KEPT_TOUCHES=0 always works it out, for
 // comparing.
 export async function touchingFor(file: string, parts: PlacedPart[], shapes: () => Promise<PartMesh[][]>): Promise<Touching> {
   const kept = `data/collisions/${keptFileName(file)}.json`;
-  // Not for a model with a path (a chain, a hose): the scripts give its parts shapes here, where the
-  // kept pass gives them none (see the viewer's main.ts), so the kept pairs would not be the same.
-  if (process.env.KINEBRICK_KEPT_TOUCHES !== '0' && !parts.some((p) => p.path) && existsSync(kept) && existsSync('data/collisions/library.json')) {
+  if (process.env.KINEBRICK_KEPT_TOUCHES !== '0' && existsSync(kept) && existsSync('data/collisions/library.json')) {
     const { key, near } = JSON.parse(readFileSync(kept, 'utf-8'));
     const release = JSON.parse(readFileSync('data/collisions/library.json', 'utf-8')).release;
     if (key === (await collisionKey(parts, release))) return keptTouching(near);
   }
-  return touchingFrom(await shapes(), parts.map((p) => p.matrix));
+  // A path's parts (a chain's links, a hose's segments) have no shape here, as in the viewer and
+  // the collision pass (main.ts): they only show where the path runs. Until 2026-11-21 the scripts
+  // gave them their shapes, and the check's mechanism differed from the viewer's in the models with
+  // a path a loose part touches.
+  return touchingFrom((await shapes()).map((s, i) => (parts[i]?.path ? [] : s)), parts.map((p) => p.matrix));
 }
 
 // The pins the rule for stuck actuators frees in the model, as kept for it (see keptPivots.ts in

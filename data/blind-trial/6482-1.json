@@ -1,0 +1,262 @@
+{
+  "set": "6482-1",
+  "curated": {
+    "model": "omr/blind-trial/6482-1 Rescue Helicopter.mpd",
+    "functions": [
+      {
+        "does": "side of helicopter flips up",
+        "source": "blind trial (decision 306): the words from https://brickipedia.fandom.com/wiki/6482_Rescue_Helicopter; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p140 4863",
+        "moves": [
+          "p169 4857 against p154 4625",
+          "p170 4857 against p153 4625",
+          "p140 4863",
+          "p141 2377",
+          "p138 4862",
+          "p152 3460"
+        ],
+        "stays": [
+          "p63 4863",
+          "p64 4863",
+          "p34 2431"
+        ],
+        "note": "The two 4857 'slope 4x4 double with hinge' roof pieces hinge on 4625 hinge tiles along the z=140 side. The z=80 side wall (windows 4863 and 2377 with 4862 glass, under 3666 and 3460 plates) hangs from that roof and stands on smooth tiles (2431, 3069b), so the roof and that side lift together. The z=140 windows are studded to plates and stay."
+      },
+      {
+        "does": "rear hatch opens",
+        "source": "blind trial (decision 306): the words from https://brickipedia.fandom.com/wiki/6482_Rescue_Helicopter; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p48 3660",
+          "p49 3660"
+        ],
+        "moves": [
+          "p48 3660 against p81 2430",
+          "p31 3023",
+          "p57 3040b",
+          "p55 3660",
+          "p49 3660 against p83 2430",
+          "p32 3023",
+          "p56 3040b",
+          "p54 3660"
+        ],
+        "stays": [
+          "p129 3035",
+          "p59 4864b"
+        ],
+        "note": "Two pairs of 2429/2430 hinge plates at the tail (x=310, at y=-64 and -128) have vertical pivots at z=70 and z=150. They carry two leaves of the rear (3660 inverted slopes, 3040b, 3023, 2420, 3068b), split at z=110 and opening like barn doors. The leaves are taken as the hatch."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 8,
+    "counts": {
+      "partly": 1,
+      "not back": 1,
+      "moved whole": 1,
+      "no": 1
+    },
+    "loose": [
+      "p46 4865a",
+      "p53 4762",
+      "p65 4862",
+      "p66 4862",
+      "p67 4862",
+      "p68 4862",
+      "p69 4862",
+      "p107 6141",
+      "p116 3139",
+      "p117 4624",
+      "p118 3139",
+      "p119 4624",
+      "p120 3139",
+      "p121 4624",
+      "p122 3139",
+      "p123 4624",
+      "p137 4862",
+      "p138 4862",
+      "p139 4862",
+      "p186 4714",
+      "p187 4715",
+      "p188 4715"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.03,
+            -1
+          ]
+        ],
+        "rates": [
+          {
+            "p169 4857 against p154 4625": [
+              1,
+              41.2
+            ],
+            "p170 4857 against p153 4625": [
+              1,
+              41.2
+            ],
+            "p140 4863": [
+              1,
+              71.7
+            ],
+            "p141 2377": [
+              1,
+              71.7
+            ],
+            "p138 4862": [
+              1,
+              71.7
+            ],
+            "p152 3460": [
+              1,
+              66.1
+            ],
+            "p63 4863": [
+              8.43e-8,
+              4.37e-13
+            ],
+            "p64 4863": [
+              8.43e-8,
+              4.13e-13
+            ],
+            "p34 2431": [
+              8.43e-8,
+              2.96e-13
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.12,
+              0.01
+            ],
+            [
+              596.95,
+              73.58
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "strayed": [
+          "p178 4162"
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 4,
+        "judged": [
+          1
+        ],
+        "cause": "loose-part",
+        "detail": "p138 4862",
+        "collisionStops": [
+          [
+            0,
+            1,
+            27,
+            140,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            169,
+            182,
+            1,
+            1
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p153 4625",
+            "for": "p140 4863"
+          },
+          {
+            "pin": "p154 4625",
+            "for": "p140 4863"
+          },
+          {
+            "pin": "p169 4857",
+            "for": "p140 4863"
+          },
+          {
+            "pin": "p170 4857",
+            "for": "p140 4863"
+          }
+        ],
+        "seconds": 0.8
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p48 3660 against p81 2430",
+          "p31 3023",
+          "p57 3040b",
+          "p55 3660",
+          "p49 3660 against p83 2430",
+          "p32 3023",
+          "p56 3040b",
+          "p54 3660"
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [],
+          []
+        ],
+        "torn": [
+          [],
+          []
+        ],
+        "why": [
+          "p48 3660 is part of the frame",
+          "p49 3660 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          []
+        ],
+        "judged": [
+          0,
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 6.2
+      }
+    ],
+    "peak": 351
+  }
+}
