@@ -78,7 +78,7 @@
           "turntable: superstructure"
         ],
         "source": "book 1: turntable and slewing steps 91-131 (motor at step 104, the gear train inset at step 102); the gear train is inferred from the model",
-        "control": "p707 32270",
+        "control": "p536 42100 - 22169",
         "moves": [
           "p1927 42003 against p87 42003",
           "p516 18938 against p515 18939"
@@ -86,7 +86,7 @@
         "stays": [
           "p313 42100 - 42529 against p87 42003"
         ],
-        "note": "The motor (p536 42100 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its axle."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p536 42100 - 22169, a Control+ L motor) turns the 12 tooth gear p707 on its axle, the control named before."
       },
       {
         "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",

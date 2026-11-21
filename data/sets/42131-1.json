@@ -25,7 +25,7 @@
           "crawler-tracks"
         ],
         "source": "book 1 page 15 (the track drawing); steps 1-21 (the two drive motors); the gearing is inferred from the model",
-        "control": "p2686 32062",
+        "control": "p13 42131 - 69730",
         "moves": [
           "p3610 42529",
           "p6163 42131 - 69910"
@@ -33,7 +33,7 @@
         "stays": [
           "p3613 42529"
         ],
-        "note": "The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
       },
       {
         "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
@@ -43,7 +43,7 @@
           "crawler-tracks"
         ],
         "source": "book 1 page 15 and steps 1-21; the gearing is inferred from the model",
-        "control": "p2688 32062",
+        "control": "p1319 42131 - 69730",
         "moves": [
           "p3613 42529",
           "p6105 42131 - 69910"
@@ -51,7 +51,7 @@
         "stays": [
           "p3610 42529"
         ],
-        "note": "The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
       },
       {
         "does": "With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot.",
@@ -60,8 +60,8 @@
         ],
         "source": "book 1 page 15; what the two track motors do together",
         "control": [
-          "p2686 32062",
-          "p2688 32062"
+          "p13 42131 - 69730",
+          "p1319 42131 - 69730"
         ],
         "moves": [
           "p3610 42529",
@@ -76,8 +76,8 @@
         ],
         "source": "book 1 steps 241-262 (the engine); that it is driven by the differential between the drive motors is inferred from the model (p5 62821, p2647 42131 - 18575, p2685 32270, p3433 94925, p3413 18946, p3746 94925)",
         "control": [
-          "p2686 32062",
-          "p2688 32062"
+          "p13 42131 - 69730",
+          "p1319 42131 - 69730"
         ],
         "moves": [
           "p5 62821",
