@@ -13,7 +13,8 @@ const shapes = await partShapes(m, readParts(m, true).text, L.parts);
 const near = JSON.parse(readFileSync(`data/collisions/${keptFileName(m)}.json`, 'utf-8')).near as [number, number][];
 const built = L.parts.map((p) => p.matrix);
 const n = L.parts.length;
-let cur = L.read(L.parts, new Set(), new Set([2641]));
+const FREED = new Set<number>(JSON.parse(process.env.KB_FREED ?? '[]'));
+let cur = L.read(L.parts, FREED, new Set([2641]));
 const mk = () => {
   const connected = connectedPairs(cur.mech);
   const c = new Collisions(L.parts.map((p, i) => (p.path ? [] : shapes[i].shape)), cur.mech.bodyOf, connected, built, true);
@@ -27,5 +28,5 @@ const placedNow = () => cur.parts.map((p, i) => ({ ...p, matrix: cur.kin.poses[c
 const place = (i: number) => { const mm = cur.kin.poses[cur.mech.bodyOf[i]].clone().multiply(cur.parts[i].matrix); return { position: new Vector3().setFromMatrixPosition(mm), axes: [0, 1, 2].map((k) => new Vector3().setFromMatrixColumn(mm, k).normalize()) }; };
 let met: number[] | null = null;
 const allowed = () => { const hit = c.check(placedNow().map((p) => p.matrix)); if (hit) met = hit; return !hit && cur.kin.atLimit() === null; };
-const res = slidePart(() => ({ kin: cur.kin, mech: cur.mech, place }), () => { cur = L.read(placedNow(), new Set(), new Set([2641])); ({ c, connected } = mk()); }, 2641, -25, allowed);
+const res = slidePart(() => ({ kin: cur.kin, mech: cur.mech, place }), () => { cur = L.read(placedNow(), FREED, new Set([2641])); ({ c, connected } = mk()); }, 2641, -25, allowed);
 console.log(JSON.stringify({ slidePart: res, met }));
