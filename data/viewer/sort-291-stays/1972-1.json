@@ -1,0 +1,136 @@
+{
+  "set": "1972-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:16.454Z",
+  "load": 9.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 94,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: a 16-tooth gear on the slanted steering column turns against a rack on the tie rod, which swings both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p227 4185a",
+        "way": 1,
+        "went": 1.012,
+        "asked": 1.5,
+        "by": [
+          "6/41"
+        ]
+      },
+      "stops": [
+        "6/41",
+        "21/42"
+      ],
+      "A": [
+        {
+          "control": "p227 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.012,
+          "ms": 35,
+          "msOneCall": 6,
+          "stops": [
+            "6/41"
+          ],
+          "moved": {
+            "p58 3743": [
+              21.16,
+              0
+            ],
+            "p41 4261": [
+              0,
+              30.3
+            ],
+            "p42 4261": [
+              0,
+              30.3
+            ],
+            "p43 3705": [
+              5.29,
+              42.17
+            ],
+            "p44 3705": [
+              5.29,
+              42.17
+            ],
+            "p11 3706": [
+              0,
+              0
+            ],
+            "p24 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p227 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.012,
+          "ms": 30,
+          "msOneCall": 2,
+          "stops": [
+            "21/42"
+          ],
+          "moved": {
+            "p58 3743": [
+              21.16,
+              0
+            ],
+            "p41 4261": [
+              0,
+              30.3
+            ],
+            "p42 4261": [
+              0,
+              30.3
+            ],
+            "p43 3705": [
+              5.29,
+              42.17
+            ],
+            "p44 3705": [
+              5.29,
+              42.17
+            ],
+            "p11 3706": [
+              0,
+              0
+            ],
+            "p24 3706": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p227 4185a",
+          "judged": "stands",
+          "why": "stopped at +1.012 rad (6/41); -1.012 rad (21/42); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

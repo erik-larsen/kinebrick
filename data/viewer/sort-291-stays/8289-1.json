@@ -1,0 +1,94 @@
+{
+  "set": "8289-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:56.330Z",
+  "load": 18.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 994,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear at the back of the truck, under the rear bumper, steers the front wheels: a long shaft runs forward under the chassis to two 8-tooth pinions on the steering rack, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 72,
+      "msPerStep": 9,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p675 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 405,
+          "msOneCall": 72,
+          "stops": [],
+          "moved": {
+            "p24 3743": [
+              15.36,
+              0
+            ],
+            "p26 59426": [
+              10.37,
+              26.91
+            ],
+            "p30 59426": [
+              10.37,
+              26.91
+            ],
+            "p531 56145": [
+              0,
+              0
+            ],
+            "p532 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p675 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 389,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p24 3743": [
+              15.36,
+              0
+            ],
+            "p26 59426": [
+              10.37,
+              26.91
+            ],
+            "p30 59426": [
+              10.37,
+              26.91
+            ],
+            "p531 56145": [
+              0,
+              0
+            ],
+            "p532 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

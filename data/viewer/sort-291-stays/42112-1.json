@@ -1,0 +1,242 @@
+{
+  "set": "42112-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:26.408Z",
+  "load": 18.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1156,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black 12 tooth gear on top of the cab steers the front two axles (hand of God steering): its upright shaft runs down behind the cab to a shaft along the chassis that works the steering links of both front axles, the first axle turning further than the second.",
+      "verdict": "shown",
+      "msOneCall": 137,
+      "msPerStep": 13,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1006 32270",
+        "way": 1,
+        "went": 0.698,
+        "asked": 1.5,
+        "by": [
+          "95/109"
+        ]
+      },
+      "stops": [
+        "95/109"
+      ],
+      "A": [
+        {
+          "control": "p1006 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 251,
+          "msOneCall": 137,
+          "stops": [
+            "95/109"
+          ],
+          "moved": {
+            "p147 32270": [
+              0,
+              39.97
+            ],
+            "p61 48989": [
+              5.29,
+              15.15
+            ],
+            "p65 48989": [
+              5.29,
+              15.15
+            ],
+            "p69 48989": [
+              3.5,
+              10.04
+            ],
+            "p77 48989": [
+              3.5,
+              10.04
+            ],
+            "p694 56145": [
+              13.22,
+              19.48
+            ],
+            "p702 56145": [
+              15.87,
+              21.1
+            ],
+            "p692 56145": [
+              8.76,
+              12.91
+            ],
+            "p700 56145": [
+              10.51,
+              13.98
+            ],
+            "p688 56145": [
+              0,
+              0
+            ],
+            "p696 56145": [
+              0,
+              0
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1006 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.698,
+          "ms": 240,
+          "msOneCall": 27,
+          "stops": [
+            "95/109"
+          ],
+          "moved": {
+            "p147 32270": [
+              0,
+              39.97
+            ],
+            "p61 48989": [
+              5.29,
+              15.15
+            ],
+            "p65 48989": [
+              5.29,
+              15.15
+            ],
+            "p69 48989": [
+              3.5,
+              10.04
+            ],
+            "p77 48989": [
+              3.5,
+              10.04
+            ],
+            "p694 56145": [
+              13.22,
+              19.48
+            ],
+            "p702 56145": [
+              15.87,
+              21.1
+            ],
+            "p692 56145": [
+              8.76,
+              12.91
+            ],
+            "p700 56145": [
+              10.51,
+              13.98
+            ],
+            "p688 56145": [
+              0,
+              0
+            ],
+            "p696 56145": [
+              0,
+              0
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1006 32270",
+          "judged": "stands",
+          "why": "stopped at +0.698 rad (95/109); -0.698 rad (95/109); kinds multi-axle-steering: front two axles, linkage-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 5
+    },
+    {
+      "function": 8,
+      "does": "The chute at the back swings down from its stowed position for pouring.",
+      "verdict": "shown",
+      "msOneCall": 28,
+      "msPerStep": 10,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p555 32140",
+          "way": 1,
+          "asked": 0.77,
+          "went": 0.77,
+          "ms": 222,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {
+            "p559 57585": [
+              21.78,
+              44.12
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              0
+            ],
+            "p696 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p555 32140",
+          "way": -1,
+          "asked": 0.83,
+          "went": -0.83,
+          "ms": 226,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {
+            "p559 57585": [
+              23.48,
+              47.56
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              0
+            ],
+            "p696 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 1
+    }
+  ]
+}

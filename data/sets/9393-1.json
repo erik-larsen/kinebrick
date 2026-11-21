@@ -129,9 +129,9 @@
     ]
   },
   "generated": {
-    "commit": "2555e395",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
-    "seconds": 9,
+    "seconds": 10,
     "counts": {
       "works": 5,
       "pivoted": 1,
@@ -236,7 +236,7 @@
           "rise": 0.32,
           "tyre": "p287 55976"
         },
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -309,116 +309,111 @@
           ]
         ],
         "onPlay": 6,
-        "seconds": 4.3
+        "seconds": 4.8
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p280 at 0.70 rad each way (parts 339/343 and 342/343). Viewer sweep with a full turn asked, decision 288.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.7,
-              -0.7
-            ]
-          ],
-          "rates": [
-            {
-              "p103 6589": [
-                1,
-                0
-              ],
-              "p100 6589": [
-                1,
-                9.76e-14
-              ],
-              "p328 6589": [
-                1,
-                0.199
-              ],
-              "p337 3648b": [
-                0.985,
-                4.32e-13
-              ],
-              "p305 3648b": [
-                0.985,
-                4.81e-13
-              ],
-              "p315 3648b": [
-                0.985,
-                4.55e-13
-              ],
-              "p301 6587": [
-                2.95,
-                9.33e-13
-              ],
-              "p311 6587": [
-                2.95,
-                5.68e-13
-              ],
-              "p299 48989 against p93 32140": [
-                0,
-                2e-13
-              ],
-              "p309 48989 against p93 32140": [
-                0,
-                1.22e-13
-              ]
-            }
-          ],
-          "back": [
-            [
-              [
-                0.01,
-                0.02
-              ],
-              [
-                0.01,
-                0.02
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0.01,
-                0.02
-              ],
-              [
-                0.01,
-                0.02
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "collisionStops": [
-            [
-              0,
+        "turned": [
+          [
+            0.7,
+            -0.7
+          ]
+        ],
+        "rates": [
+          {
+            "p103 6589": [
               1,
-              339,
-              343,
-              0.7,
-              0.7
+              0
+            ],
+            "p100 6589": [
+              1,
+              9.76e-14
+            ],
+            "p328 6589": [
+              1,
+              0.199
+            ],
+            "p337 3648b": [
+              0.985,
+              4.32e-13
+            ],
+            "p305 3648b": [
+              0.985,
+              4.81e-13
+            ],
+            "p315 3648b": [
+              0.985,
+              4.55e-13
+            ],
+            "p301 6587": [
+              2.95,
+              9.33e-13
+            ],
+            "p311 6587": [
+              2.95,
+              5.68e-13
+            ],
+            "p299 48989 against p93 32140": [
+              0,
+              2e-13
+            ],
+            "p309 48989 against p93 32140": [
+              0,
+              1.22e-13
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.01,
+              0.02
             ],
             [
-              0,
-              -1,
-              342,
-              343,
-              0.7,
-              0.7
+              0.01,
+              0.02
             ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.01,
+              0.02
+            ],
+            [
+              0.01,
+              0.02
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "cause": "stopped-endless",
+        "detail": "p280 56908: p339 32002 against p343 32017",
+        "collisionStops": [
+          [
+            0,
+            1,
+            339,
+            343,
+            0.7,
+            0.7
           ],
-          "seconds": 0.7
-        }
+          [
+            0,
+            -1,
+            342,
+            343,
+            0.7,
+            0.7
+          ]
+        ],
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -460,7 +455,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -646,9 +641,9 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       }
     ],
-    "peak": 420
+    "peak": 499
   }
 }

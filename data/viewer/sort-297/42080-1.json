@@ -1,0 +1,71 @@
+{
+  "set": "42080-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:02:03.756Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1001,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air.",
+      "verdict": "not shown",
+      "why": "A: p821 6632, p653 42080 - u9413 not moved",
+      "msOneCall": 8,
+      "msPerStep": null,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p820 44294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p821 6632": [
+              0,
+              0
+            ],
+            "p653 42080 - u9413": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p820 44294",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p821 6632": [
+              0,
+              0
+            ],
+            "p653 42080 - u9413": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

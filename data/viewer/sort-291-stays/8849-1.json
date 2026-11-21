@@ -1,0 +1,209 @@
+{
+  "set": "8849-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:40.390Z",
+  "load": 9.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 329,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: the column drives a shaft under the bonnet through a universal joint, and two 8-tooth gears at the front of that shaft slide the rack on the tie rod, which swings both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 72,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p118 3707": [
+              0,
+              85.94
+            ],
+            "p114 3743": [
+              15.36,
+              0
+            ],
+            "p100 4261": [
+              0,
+              22
+            ],
+            "p101 4261": [
+              0,
+              22
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p261 3739": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p66 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 60,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p118 3707": [
+              0,
+              85.94
+            ],
+            "p114 3743": [
+              15.36,
+              0
+            ],
+            "p100 4261": [
+              0,
+              22
+            ],
+            "p101 4261": [
+              0,
+              22
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p261 3739": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 5,
+      "does": "The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p200 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p55 4716": [
+              0,
+              28.64
+            ],
+            "p77 3708": [
+              0,
+              1.19
+            ],
+            "p81 3737": [
+              0,
+              1.19
+            ],
+            "p90 3705": [
+              1.04,
+              1.19
+            ],
+            "p93 3705": [
+              1.04,
+              1.19
+            ],
+            "p269 3894": [
+              2.08,
+              0
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p66 3736": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p200 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p55 4716": [
+              0,
+              28.64
+            ],
+            "p77 3708": [
+              0,
+              1.19
+            ],
+            "p81 3737": [
+              0,
+              1.19
+            ],
+            "p90 3705": [
+              1.04,
+              1.19
+            ],
+            "p93 3705": [
+              1.04,
+              1.19
+            ],
+            "p269 3894": [
+              2.08,
+              0
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p66 3736": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

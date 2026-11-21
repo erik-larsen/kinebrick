@@ -1,0 +1,102 @@
+{
+  "set": "8828-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:08.385Z",
+  "load": 12.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 161,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The round knob on the cab roof steers the rear wheels: its long vertical axle turns a pair of bevel gears and an 8-tooth pinion on a shaft running back to a rack, which swings both rear steering arms.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p167 3941",
+          "way": 1,
+          "asked": 1.27,
+          "went": 1.27,
+          "ms": 49,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p57 3705": [
+              0,
+              72.77
+            ],
+            "p44 3743": [
+              12.91,
+              0
+            ],
+            "p20 4261": [
+              0,
+              18.5
+            ],
+            "p30 4261": [
+              0,
+              18.5
+            ],
+            "p124 3704": [
+              0,
+              0
+            ],
+            "p127 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p167 3941",
+          "way": -1,
+          "asked": 1.27,
+          "went": -1.27,
+          "ms": 38,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p57 3705": [
+              0,
+              72.77
+            ],
+            "p44 3743": [
+              12.91,
+              0
+            ],
+            "p20 4261": [
+              0,
+              18.5
+            ],
+            "p30 4261": [
+              0,
+              18.5
+            ],
+            "p124 3704": [
+              0,
+              0
+            ],
+            "p127 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

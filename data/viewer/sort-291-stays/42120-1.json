@@ -1,0 +1,156 @@
+{
+  "set": "42120-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:46.591Z",
+  "load": 16.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 441,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushing the hovercraft along spins the two big fans at the back: two hidden rubber-tyred wheels under the hull turn a bevel gear, a shaft running back, two cross shafts and two upright shafts that come up inside the fans' mounts and drive each fan through bevel gears.",
+      "verdict": "shown",
+      "msOneCall": 51,
+      "msPerStep": 6,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p51 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 243,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p51 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 198,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p52 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 196,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p52 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 195,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

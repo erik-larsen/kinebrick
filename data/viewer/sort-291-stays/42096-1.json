@@ -1,0 +1,102 @@
+{
+  "set": "42096-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:53.150Z",
+  "load": 11.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1544,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The steering wheel steers the front wheels: its column runs forward through two universal joints to a 12 tooth gear, which turns a 20 tooth gear beside it; a pair of 16 tooth gears takes the turn down to a 12 tooth pinion on the steering rack between the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 210,
+      "msPerStep": 94,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p484 2741",
+          "way": 1,
+          "asked": 1.47,
+          "went": 1.47,
+          "ms": 3942,
+          "msOneCall": 210,
+          "stops": [],
+          "moved": {
+            "p264 18575": [
+              0,
+              50.53
+            ],
+            "p192 32270": [
+              0,
+              50.53
+            ],
+            "p182 87761": [
+              13.23,
+              0
+            ],
+            "p199 92909": [
+              10.08,
+              22.62
+            ],
+            "p204 92909": [
+              10.12,
+              22.71
+            ],
+            "p404 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p484 2741",
+          "way": -1,
+          "asked": 1.47,
+          "went": -1.47,
+          "ms": 3897,
+          "msOneCall": 137,
+          "stops": [],
+          "moved": {
+            "p264 18575": [
+              0,
+              50.53
+            ],
+            "p192 32270": [
+              0,
+              50.53
+            ],
+            "p182 87761": [
+              13.23,
+              0
+            ],
+            "p199 92909": [
+              10.12,
+              22.71
+            ],
+            "p204 92909": [
+              10.08,
+              22.62
+            ],
+            "p404 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    }
+  ]
+}

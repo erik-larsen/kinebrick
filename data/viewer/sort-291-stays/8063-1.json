@@ -1,0 +1,149 @@
+{
+  "set": "8063-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:20.101Z",
+  "load": 18.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1124,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black 20 tooth gear on the cab roof steers the front wheels: its shaft runs down to a pair of knob wheels, which turn a shaft running forward to two 16 tooth gears and on to two 8 tooth gears on the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 80,
+      "msPerStep": 12,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p499 32269",
+        "way": -1,
+        "went": -1.465,
+        "asked": 1.5,
+        "by": [
+          "462/619"
+        ]
+      },
+      "stops": [
+        "462/619"
+      ],
+      "A": [
+        {
+          "control": "p499 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 512,
+          "msOneCall": 80,
+          "stops": [],
+          "moved": {
+            "p94 32072": [
+              0,
+              85.94
+            ],
+            "p120 4019": [
+              0,
+              85.94
+            ],
+            "p134 4019": [
+              0,
+              85.94
+            ],
+            "p357 3647": [
+              0,
+              85.94
+            ],
+            "p355 3743": [
+              15.36,
+              0
+            ],
+            "p700 41896": [
+              19.2,
+              22
+            ],
+            "p704 41896": [
+              19.97,
+              22
+            ],
+            "p701 44772": [
+              0,
+              0
+            ],
+            "p257 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p499 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.465,
+          "ms": 438,
+          "msOneCall": 27,
+          "stops": [
+            "462/619"
+          ],
+          "moved": {
+            "p94 32072": [
+              0,
+              83.94
+            ],
+            "p120 4019": [
+              0,
+              83.94
+            ],
+            "p134 4019": [
+              0,
+              83.94
+            ],
+            "p357 3647": [
+              0,
+              83.94
+            ],
+            "p355 3743": [
+              14.99,
+              0
+            ],
+            "p700 41896": [
+              18.73,
+              21.47
+            ],
+            "p704 41896": [
+              19.48,
+              21.47
+            ],
+            "p701 44772": [
+              0,
+              0
+            ],
+            "p257 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p499 32269",
+          "judged": "stands",
+          "why": "stopped at -1.465 rad (462/619); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 5
+    }
+  ]
+}

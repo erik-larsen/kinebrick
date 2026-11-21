@@ -1,0 +1,137 @@
+{
+  "set": "42092-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:33.248Z",
+  "load": 14.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 322,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The tan gear beside the winch drum, high on the left side behind the cockpit, winds the winch, raising and lowering the stretcher on its string over the pulley at the end of the winch's arm.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p312 6589",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p312 6589",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The 12 tooth gear high on the right side turns the winch too: it is on a cross axle whose other end's 12 tooth gear meshes with the tan gear on the drum.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p291 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 33,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p312 6589": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p291 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 36,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p309 61510": [
+              0,
+              85.94
+            ],
+            "p312 6589": [
+              0,
+              85.94
+            ],
+            "p198 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

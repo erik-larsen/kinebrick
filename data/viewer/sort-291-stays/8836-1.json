@@ -1,0 +1,102 @@
+{
+  "set": "8836-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:22.744Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 257,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The main landing gear is sprung: the two legs swing together on their pivots, joined by a cross axle under the fuselage, and the shock absorber between that axle and the fuselage shortens as they swing.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p148 4261",
+          "way": 1,
+          "asked": 0.53,
+          "went": 0.53,
+          "ms": 51,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p151 4261": [
+              5.3,
+              30.37
+            ],
+            "p145 3706": [
+              21.62,
+              30.37
+            ],
+            "p22 4254": [
+              21.61,
+              8.07
+            ],
+            "p164 3482": [
+              33.11,
+              30.37
+            ],
+            "p166 3482": [
+              33.11,
+              30.37
+            ],
+            "p162 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p148 4261",
+          "way": -1,
+          "asked": 0.1,
+          "went": -0.1,
+          "ms": 8,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p151 4261": [
+              1,
+              5.73
+            ],
+            "p145 3706": [
+              4.08,
+              5.73
+            ],
+            "p22 4254": [
+              4.08,
+              1.75
+            ],
+            "p164 3482": [
+              6.25,
+              5.73
+            ],
+            "p166 3482": [
+              6.25,
+              5.73
+            ],
+            "p162 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

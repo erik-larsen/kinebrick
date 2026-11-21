@@ -1,0 +1,94 @@
+{
+  "set": "8868-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:49.439Z",
+  "load": 17.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 874,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The knob on the cab roof steers the front wheels: its upright shaft, through a universal joint, turns a bevel gear on a lengthwise shaft, which through two 16 tooth gears turns an 8 tooth gear on the toothed rack between the steering arms.",
+      "verdict": "shown",
+      "msOneCall": 141,
+      "msPerStep": 11,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p3320 6143",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 493,
+          "msOneCall": 141,
+          "stops": [],
+          "moved": {
+            "p75 4261": [
+              0,
+              22
+            ],
+            "p80 4261": [
+              0,
+              22
+            ],
+            "p132 3743": [
+              15.36,
+              0
+            ],
+            "p3342 4266": [
+              0,
+              0
+            ],
+            "p3348 4266": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3320 6143",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 485,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {
+            "p75 4261": [
+              0,
+              22
+            ],
+            "p80 4261": [
+              0,
+              22
+            ],
+            "p132 3743": [
+              15.36,
+              0
+            ],
+            "p3342 4266": [
+              0,
+              0
+            ],
+            "p3348 4266": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

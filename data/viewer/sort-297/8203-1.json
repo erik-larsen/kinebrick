@@ -1,0 +1,144 @@
+{
+  "set": "8203-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:00:26.352Z",
+  "load": 13.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 31,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The black arm carrying the hose roll cage tilts on the 4-long axle through the middle of the yellow chassis: pressing the cage's nose down lifts the arm's back end, with its yellow hose connectors, off the chassis.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p21 6629",
+        "way": -1,
+        "went": -0.419,
+        "asked": 1.5,
+        "by": [
+          "0/21"
+        ]
+      },
+      "stops": [
+        "4/22",
+        "0/21"
+      ],
+      "A": [
+        {
+          "control": "p21 6629",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 3,
+          "msOneCall": 10,
+          "stops": [
+            "4/22"
+          ],
+          "moved": {
+            "p31 32015": [
+              3.64,
+              2
+            ],
+            "p32 32015": [
+              3.64,
+              2
+            ],
+            "p25 6536": [
+              3.13,
+              2
+            ],
+            "p26 6536": [
+              3.13,
+              2
+            ],
+            "p3 6629": [
+              0,
+              0
+            ],
+            "p4 6629": [
+              0,
+              0
+            ],
+            "p10 6118": [
+              0,
+              0
+            ],
+            "p14 6118": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p21 6629",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.419,
+          "ms": 10,
+          "msOneCall": 2,
+          "stops": [
+            "0/21"
+          ],
+          "moved": {
+            "p31 32015": [
+              43.65,
+              23.98
+            ],
+            "p32 32015": [
+              43.65,
+              23.98
+            ],
+            "p25 6536": [
+              37.62,
+              23.98
+            ],
+            "p26 6536": [
+              37.62,
+              23.98
+            ],
+            "p3 6629": [
+              0,
+              0
+            ],
+            "p4 6629": [
+              0,
+              0
+            ],
+            "p10 6118": [
+              0,
+              0
+            ],
+            "p14 6118": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p21 6629",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (4/22); -0.419 rad (0/21); kinds hinge: roll cage"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

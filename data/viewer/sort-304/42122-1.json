@@ -1,0 +1,133 @@
+{
+  "set": "42122-1",
+  "commit": "de85a882",
+  "date": "2026-11-21T12:45:22.400Z",
+  "load": 4.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 657,
+  "seconds": 17,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine.",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p457 at once and at 0.14 rad (parts 269/472 and 323/458); the bonnet should lift open. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "msOneCall": 11,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p457 32524",
+        "way": -1,
+        "went": -0.14,
+        "asked": 1.5,
+        "by": [
+          "323/458"
+        ]
+      },
+      "stops": [
+        "269/472",
+        "323/458"
+      ],
+      "A": [
+        {
+          "control": "p457 32524",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 6,
+          "msOneCall": 9,
+          "stops": [
+            "269/472"
+          ],
+          "moved": {
+            "p448 42122 - 71709": [
+              0,
+              0
+            ],
+            "p459 32524": [
+              0,
+              0
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p457 32524",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.14,
+          "ms": 24,
+          "msOneCall": 11,
+          "stops": [
+            "323/458"
+          ],
+          "moved": {
+            "p448 42122 - 71709": [
+              11.16,
+              7.99
+            ],
+            "p459 32524": [
+              16.74,
+              7.99
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p457 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "moved": [
+            "p448 42122 - 71709",
+            "p459 32524"
+          ],
+          "stops": [
+            "269/472",
+            "323/458"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p457 32524",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the middle inset on page 118 shows the bonnet swung up at its back edge to about 45 degrees, far past the 0.17 rad the solver reached.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p457 32524: a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458) (the middle inset on page 118 shows the bonnet swung up at its back edge to about 45 degrees, far past the 0.17 rad the solver reached., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118)",
+      "seconds": 17
+    }
+  ]
+}
