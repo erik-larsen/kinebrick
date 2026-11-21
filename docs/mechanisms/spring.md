@@ -4,7 +4,7 @@ A spring or rubber band holds a part up, pulls it back, or springs it back once 
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The rubber band pulls the ratchet's lever down onto the gears.
 
-Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 4 works, 1 partly, 2 no, 56 skipped.
+Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 3 works, 2 partly, 2 no, 56 skipped.
 
 ## By decade
 
@@ -220,7 +220,7 @@ Each detail by the set it first appears in.
 
 **2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
 
-- *suspension:* The rear wheels have independent suspension too, on pairs of arms with a shock absorber each. (works)
+- *suspension:* The rear wheels have independent suspension too, on pairs of arms with a shock absorber each. (partly)
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
