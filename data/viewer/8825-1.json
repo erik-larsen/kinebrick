@@ -1,0 +1,127 @@
+{
+  "set": "8825-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:50:09.970Z",
+  "load": 24,
+  "part": "A",
+  "parts": 105,
+  "seconds": 13,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel on the right side turns the main rotor: the crown gear on its cross axle drives the 8 tooth gear at the foot of the rotor mast.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p84 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 23,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p57 3706 against p0 2825": [
+              0,
+              102.17
+            ],
+            "p82 4477 against p0 2825": [
+              171.18,
+              102.17
+            ],
+            "p83 4477 against p0 2825": [
+              171.18,
+              102.17
+            ],
+            "p96 3895 against p0 2825": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p57 3706 against p0 2825": [
+              0,
+              102.17
+            ],
+            "p82 4477 against p0 2825": [
+              171.18,
+              102.17
+            ],
+            "p83 4477 against p0 2825": [
+              171.18,
+              102.17
+            ],
+            "p96 3895 against p0 2825": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 3,
+      "does": "The round white light on the nose turns freely on its pin.",
+      "verdict": "shown",
+      "msOneCall": 1,
+      "msPerStep": 0,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p17 4032a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p17 4032a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

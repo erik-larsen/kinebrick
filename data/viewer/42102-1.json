@@ -1,0 +1,488 @@
+{
+  "set": "42102-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:14:13.922Z",
+  "load": 20.1,
+  "part": "A",
+  "parts": 128,
+  "seconds": 33,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black 12 tooth gear on top of the cab steers the front wheels: its shaft runs down to a 16 tooth gear, which drives a second 16 tooth gear and then a third on the steering post between the front wheels; that post's arm swings the two steering knuckles.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 2,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p120 32270",
+          "way": 1,
+          "asked": 0.37,
+          "went": 0.37,
+          "ms": 23,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p13 94925": [
+              0,
+              21.2
+            ],
+            "p22 94925": [
+              0,
+              21.2
+            ],
+            "p15 94925": [
+              0,
+              21.2
+            ],
+            "p0 48989": [
+              7.36,
+              21.2
+            ],
+            "p5 48989": [
+              7.36,
+              21.2
+            ],
+            "p121 55982": [
+              14.72,
+              30.69
+            ],
+            "p123 55982": [
+              14.72,
+              30.69
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p103 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 32270",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 18,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p13 94925": [
+              0,
+              21.2
+            ],
+            "p22 94925": [
+              0,
+              21.2
+            ],
+            "p15 94925": [
+              0,
+              21.2
+            ],
+            "p0 48989": [
+              7.36,
+              21.2
+            ],
+            "p5 48989": [
+              7.36,
+              21.2
+            ],
+            "p121 55982": [
+              14.72,
+              30.69
+            ],
+            "p123 55982": [
+              14.72,
+              30.69
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p103 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    },
+    {
+      "function": 2,
+      "does": "Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p125 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p112 44294": [
+              0,
+              85.94
+            ],
+            "p87 3705": [
+              0,
+              143.24
+            ],
+            "p109 32270": [
+              0,
+              143.24
+            ],
+            "p107 32498": [
+              0,
+              47.75
+            ],
+            "p108 32498": [
+              0,
+              47.75
+            ],
+            "p103 32524 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p125 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 60,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p112 44294": [
+              0,
+              85.94
+            ],
+            "p87 3705": [
+              0,
+              143.24
+            ],
+            "p109 32270": [
+              0,
+              143.24
+            ],
+            "p107 32498": [
+              0,
+              47.75
+            ],
+            "p108 32498": [
+              0,
+              47.75
+            ],
+            "p103 32524 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p127 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 56,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p112 44294": [
+              0,
+              85.94
+            ],
+            "p87 3705": [
+              0,
+              143.24
+            ],
+            "p109 32270": [
+              0,
+              143.24
+            ],
+            "p107 32498": [
+              0,
+              47.75
+            ],
+            "p108 32498": [
+              0,
+              47.75
+            ],
+            "p103 32524 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p127 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p112 44294": [
+              0,
+              85.94
+            ],
+            "p87 3705": [
+              0,
+              143.24
+            ],
+            "p109 32270": [
+              0,
+              143.24
+            ],
+            "p107 32498": [
+              0,
+              47.75
+            ],
+            "p108 32498": [
+              0,
+              47.75
+            ],
+            "p103 32524 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 3,
+      "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
+      "verdict": "not shown",
+      "why": "A: p103 32524, p107 32498, p108 32498 not moved",
+      "msOneCall": 6,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p93 32140",
+          "way": 1,
+          "asked": 0.16,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p103 32524": [
+              0,
+              0
+            ],
+            "p107 32498": [
+              0,
+              0
+            ],
+            "p108 32498": [
+              0,
+              0
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p120 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p93 32140",
+          "way": -1,
+          "asked": 0.69,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p103 32524": [
+              0,
+              0
+            ],
+            "p107 32498": [
+              0,
+              0
+            ],
+            "p108 32498": [
+              0,
+              0
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p120 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll freely: each front wheel on its own short axle in its steering knuckle, the two rear wheels together on the 7-long rear axle that drives the rake.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p121 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 47,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p121 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 53,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p123 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 58,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p123 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 46,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p125 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p125 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 50,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 53,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 52,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    }
+  ]
+}

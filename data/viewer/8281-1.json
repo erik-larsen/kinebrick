@@ -1,0 +1,113 @@
+{
+  "set": "8281-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:51:08.304Z",
+  "load": 21.8,
+  "part": "A",
+  "parts": 117,
+  "seconds": 13,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The front wheels roll freely on their axle; nothing steers them.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p90 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 90,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p90 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 75,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p91 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 74,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p91 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 72,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 4,
+      "does": "The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 0,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p61 30663",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p61 30663",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 21,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "set": "8464-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:20:18.165Z",
+  "load": 19.3,
+  "part": "A",
+  "parts": 544,
+  "seconds": 28,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p31 3650a listed to stay moved",
+      "msOneCall": 40,
+      "msPerStep": 6,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p565 2995",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 249,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p567 2995": [
+              0,
+              85.94
+            ],
+            "p17 6589": [
+              0,
+              85.94
+            ],
+            "p31 3650a": [
+              0,
+              57.3
+            ],
+            "p427 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p565 2995",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 226,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p567 2995": [
+              0,
+              85.94
+            ],
+            "p17 6589": [
+              0,
+              85.94
+            ],
+            "p31 3650a": [
+              0,
+              57.3
+            ],
+            "p427 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 20
+    },
+    {
+      "function": 5,
+      "does": "The front differential does the same for the front wheels.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p132 3650a listed to stay moved",
+      "msOneCall": 12,
+      "msPerStep": 5,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p569 2995",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 228,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p571 2995": [
+              0,
+              85.94
+            ],
+            "p99 6589": [
+              0,
+              85.94
+            ],
+            "p132 3650a": [
+              0,
+              57.3
+            ],
+            "p427 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p569 2995",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 228,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p571 2995": [
+              0,
+              85.94
+            ],
+            "p99 6589": [
+              0,
+              85.94
+            ],
+            "p132 3650a": [
+              0,
+              57.3
+            ],
+            "p427 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}

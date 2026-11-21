@@ -1,0 +1,163 @@
+{
+  "set": "42006-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:33:49.712Z",
+  "load": 18.6,
+  "part": "A",
+  "parts": 686,
+  "seconds": 79,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black knob at the back of the superstructure drives a gearbox; two red change-over levers on the superstructure's side choose which function it works (boom, stick or grab), each by sliding a driving ring between two clutch gears.",
+      "verdict": "shown",
+      "msOneCall": 47,
+      "msPerStep": 9,
+      "time": {
+        "open": 28,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p295 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 384,
+          "msOneCall": 47,
+          "stops": [],
+          "moved": {
+            "p237 6590": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p295 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 354,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p237 6590": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 39
+    },
+    {
+      "function": 6,
+      "does": "The tracks run freely round their sprockets; nothing drives them.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 10,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 35,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p74 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 407,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p74 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 404,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p76 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 400,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p76 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 404,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p111 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 410,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p111 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 408,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p117 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 421,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p117 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 405,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 40
+    }
+  ]
+}

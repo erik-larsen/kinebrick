@@ -1,0 +1,286 @@
+{
+  "set": "8024-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:27:25.154Z",
+  "load": 21.6,
+  "part": "A",
+  "parts": 245,
+  "seconds": 66,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the rear deck steers the front wheels: its upright shaft has a crown gear at the foot that turns a 24-tooth gear on a long shaft running forward under the cockpit, and an 8-tooth gear at the shaft's front end slides the steering rack, which swings both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p250 120270 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p107 3737": [
+              0,
+              85.94
+            ],
+            "p98 2790a": [
+              15.27,
+              0
+            ],
+            "p37 4261": [
+              0,
+              22
+            ],
+            "p52 4261": [
+              0,
+              22
+            ],
+            "p39 3705": [
+              7.63,
+              35.7
+            ],
+            "p54 3705": [
+              7.63,
+              35.7
+            ],
+            "p16 3706": [
+              0,
+              0
+            ],
+            "p45 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p250 120270 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 59,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p107 3737": [
+              0,
+              85.94
+            ],
+            "p98 2790a": [
+              15.27,
+              0
+            ],
+            "p37 4261": [
+              0,
+              22
+            ],
+            "p52 4261": [
+              0,
+              22
+            ],
+            "p39 3705": [
+              7.63,
+              35.7
+            ],
+            "p54 3705": [
+              7.63,
+              35.7
+            ],
+            "p16 3706": [
+              0,
+              0
+            ],
+            "p45 3706": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 20
+    },
+    {
+      "function": 2,
+      "does": "Rolling the racer works its engine: the right rear half-axle carries a crankshaft, and the connecting rod on it pumps the piston up and down in the cylinder on the rear deck.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p226 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p17 2853": [
+              0,
+              85.94
+            ],
+            "p18 2852": [
+              13.63,
+              14.44
+            ],
+            "p28 2851": [
+              10.56,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p226 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 90,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p17 2853": [
+              0,
+              85.94
+            ],
+            "p18 2852": [
+              13.63,
+              14.44
+            ],
+            "p28 2851": [
+              10.56,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    },
+    {
+      "function": 3,
+      "does": "The four wheels roll freely, the rear two each on its own half-axle.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 31,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p255 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 86,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p255 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 90,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p257 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p257 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 92,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p226 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 90,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p226 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 84,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p228 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 81,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p228 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 85,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 34
+    }
+  ]
+}

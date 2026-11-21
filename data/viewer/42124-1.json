@@ -1,0 +1,286 @@
+{
+  "set": "42124-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:09:44.607Z",
+  "load": 29.8,
+  "part": "A",
+  "parts": 369,
+  "seconds": 30,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",
+      "verdict": "not shown",
+      "why": "A: p343 15460, p345 15460 not moved; not decided: p325 42124 - 31794: a travel of 0.2 rad or less each way, stopped at -0 rad (265/316); p326 42124 - 31794: a travel of 0.2 rad or less each way, stopped at +0 rad (265/317)",
+      "msOneCall": 72,
+      "msPerStep": null,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": {
+        "control": "p325 42124 - 31794",
+        "way": -1,
+        "went": 0,
+        "asked": 0.03,
+        "by": [
+          "265/316"
+        ]
+      },
+      "stops": [
+        "265/316",
+        "265/317"
+      ],
+      "A": [
+        {
+          "control": "p325 42124 - 31794",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0,
+          "ms": 10,
+          "msOneCall": 72,
+          "stops": [],
+          "moved": {
+            "p343 15460": [
+              0,
+              0
+            ],
+            "p345 15460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p325 42124 - 31794",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 34,
+          "msOneCall": 71,
+          "stops": [
+            "265/316"
+          ],
+          "moved": {
+            "p343 15460": [
+              0,
+              0
+            ],
+            "p345 15460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 33,
+          "msOneCall": 60,
+          "stops": [
+            "265/317"
+          ],
+          "moved": {
+            "p343 15460": [
+              0,
+              0
+            ],
+            "p345 15460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "way": -1,
+          "asked": 0.67,
+          "went": 0,
+          "ms": 6,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {
+            "p343 15460": [
+              0,
+              0
+            ],
+            "p345 15460": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p325 42124 - 31794",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (265/316)"
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (265/317)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p343 15460, p345 15460 not moved"
+      },
+      "seconds": 17
+    },
+    {
+      "function": 6,
+      "does": "The rear unit (motor, gears, differential and rear wheels) swings up and down on a pivot at its front, sprung by two soft shock absorbers from the roll cage.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 12,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": {
+        "control": "p470 40490",
+        "way": 1,
+        "went": 0.244,
+        "asked": 1.5,
+        "by": [
+          "423/987"
+        ]
+      },
+      "stops": [
+        "423/987"
+      ],
+      "A": [
+        {
+          "control": "p470 40490",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.244,
+          "ms": 83,
+          "msOneCall": 19,
+          "stops": [
+            "423/987"
+          ],
+          "moved": {
+            "p464 65414c01 against p270 14720": [
+              21.92,
+              7.07
+            ],
+            "p501 22169 against p270 14720": [
+              29.33,
+              13.99
+            ]
+          }
+        },
+        {
+          "control": "p470 40490",
+          "way": -1,
+          "asked": 0.23,
+          "went": 0,
+          "ms": 16,
+          "msOneCall": 15,
+          "stops": [
+            "423/987"
+          ],
+          "moved": {
+            "p464 65414c01 against p270 14720": [
+              0,
+              0
+            ],
+            "p501 22169 against p270 14720": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p470 40490",
+          "judged": "stands",
+          "why": "stopped at +0.244 rad (423/987); -0 rad (423/987); kinds swing-arm: rear unit"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 5
+    },
+    {
+      "function": 8,
+      "does": "The front wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 5,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p971 42124 - 69909",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 193,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p971 42124 - 69909",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 194,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p977 42124 - 69909",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 197,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p977 42124 - 69909",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 191,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}

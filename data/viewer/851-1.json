@@ -1,0 +1,424 @@
+{
+  "set": "851-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:29:07.020Z",
+  "load": 35.8,
+  "part": "A",
+  "parts": 276,
+  "seconds": 25,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 24-tooth gear on top of the steering column, used as the steering wheel, steers the front wheels: the column runs down through a universal joint to a lengthwise axle whose 8-tooth gears under the front slide the rack on the tie rod between the two wheel turntables.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p67 3648a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 67,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p165 3743": [
+              15.11,
+              0
+            ],
+            "p152 3706": [
+              2.52,
+              20.3
+            ],
+            "p151 3706": [
+              2.52,
+              20.3
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p67 3648a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 58,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p165 3743": [
+              15.11,
+              0
+            ],
+            "p152 3706": [
+              2.52,
+              20.3
+            ],
+            "p151 3706": [
+              2.52,
+              20.3
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 2,
+      "does": "The two big rear wheels roll and drive the rotary harrow: the crown gear on the rear half-axle with wheel p239 turns an 8-tooth gear on a short lengthwise axle, whose crown gear at the back drives the harrow's flat 40-tooth gear; that turns an 8-tooth gear on the middle rotor, and the middle rotor's 40-tooth gear turns the two outer rotors, so all three sets of yellow tines spin as the tractor rolls.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p245 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 59,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p22 3705 against p0 3710": [
+              0,
+              102.17
+            ],
+            "p287 3649 against p260 3709b": [
+              0,
+              154.7
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p315 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p321 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p39 3702 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p245 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p22 3705 against p0 3710": [
+              0,
+              102.17
+            ],
+            "p287 3649 against p260 3709b": [
+              0,
+              154.7
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p315 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p321 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p39 3702 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p246 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p22 3705 against p0 3710": [
+              0,
+              102.17
+            ],
+            "p287 3649 against p260 3709b": [
+              0,
+              154.7
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p315 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p321 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p39 3702 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p246 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 51,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p22 3705 against p0 3710": [
+              0,
+              102.17
+            ],
+            "p287 3649 against p260 3709b": [
+              0,
+              154.7
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p315 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p321 3649 against p260 3709b": [
+              0,
+              53.49
+            ],
+            "p39 3702 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 3,
+      "does": "The two small front wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p247 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 53,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p247 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 51,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p248 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p248 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 53,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 4,
+      "does": "The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p309 3649 against p260 3709b listed to stay moved",
+      "msOneCall": 10,
+      "msPerStep": 6,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p232 3702",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 197,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p39 3702": [
+              36.56,
+              34.85
+            ],
+            "p102 3702": [
+              37.77,
+              36.54
+            ],
+            "p260 3709b": [
+              86.17,
+              9.85
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0.17
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              1.52
+            ]
+          }
+        },
+        {
+          "control": "p232 3702",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 6,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p39 3702": [
+              3.63,
+              3.41
+            ],
+            "p102 3702": [
+              3.55,
+              3.38
+            ],
+            "p260 3709b": [
+              8.44,
+              0.87
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0.02
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              0.25
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

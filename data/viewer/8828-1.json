@@ -1,0 +1,310 @@
+{
+  "set": "8828-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:52:46.614Z",
+  "load": 16.9,
+  "part": "A",
+  "parts": 161,
+  "seconds": 11,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The crank on the right side raises and lowers the loader arms with the bucket: it turns a worm, which turns a 24-tooth gear and, through a pair of bevel gears, a cross axle under the front of the chassis; two arms on that axle push the black arms up through a pair of black links.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 2,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p124 3704",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 98,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p107 4716": [
+              0,
+              85.94
+            ],
+            "p64 3650c": [
+              0,
+              3.58
+            ],
+            "p72 2825": [
+              3.75,
+              3.58
+            ],
+            "p127 3702": [
+              3.8,
+              3.58
+            ],
+            "p128 3702": [
+              3.8,
+              3.58
+            ],
+            "p163 2951": [
+              7.5,
+              0.24
+            ],
+            "p167 3941": [
+              0,
+              0
+            ],
+            "p20 4261": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p124 3704",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 72,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p107 4716": [
+              0,
+              85.94
+            ],
+            "p64 3650c": [
+              0,
+              3.58
+            ],
+            "p72 2825": [
+              3.75,
+              3.58
+            ],
+            "p127 3702": [
+              3.8,
+              3.58
+            ],
+            "p128 3702": [
+              3.8,
+              3.58
+            ],
+            "p163 2951": [
+              7.5,
+              0.22
+            ],
+            "p167 3941": [
+              0,
+              0
+            ],
+            "p20 4261": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 3,
+      "does": "The round knob on the cab roof steers the rear wheels: its long vertical axle turns a pair of bevel gears and an 8-tooth pinion on a shaft running back to a rack, which swings both rear steering arms.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p167 3941",
+          "way": 1,
+          "asked": 1.27,
+          "went": 1.27,
+          "ms": 42,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p57 3705": [
+              0,
+              72.77
+            ],
+            "p44 3743": [
+              12.86,
+              0
+            ],
+            "p20 4261": [
+              0,
+              18.5
+            ],
+            "p30 4261": [
+              0,
+              18.5
+            ],
+            "p124 3704": [
+              0,
+              0
+            ],
+            "p127 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p167 3941",
+          "way": -1,
+          "asked": 1.27,
+          "went": -1.27,
+          "ms": 41,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p57 3705": [
+              0,
+              72.77
+            ],
+            "p44 3743": [
+              12.86,
+              0
+            ],
+            "p20 4261": [
+              0,
+              18.5
+            ],
+            "p30 4261": [
+              0,
+              18.5
+            ],
+            "p124 3704": [
+              0,
+              0
+            ],
+            "p127 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 1
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll freely; nothing drives them. The front wheels are on fixed pins, the rear wheels on the steering arms.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 2,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p18 3749",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 57,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p18 3749",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p19 3749",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p19 3749",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 65,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p21 3705",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p21 3705",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 60,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p32 3705",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 67,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p32 3705",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 64,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

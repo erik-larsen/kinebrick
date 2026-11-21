@@ -1,0 +1,112 @@
+{
+  "set": "8855-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:21:51.948Z",
+  "load": 23.5,
+  "part": "A",
+  "parts": 570,
+  "seconds": 43,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The four small wheels set into the pontoons roll freely, so the seaplane can roll on land.",
+      "verdict": "shown",
+      "msOneCall": 63,
+      "msPerStep": 22,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p319 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 888,
+          "msOneCall": 63,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p319 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 739,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p320 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 629,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p320 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 639,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p321 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 924,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p321 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 729,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p322 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 811,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p322 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 745,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 43
+    }
+  ]
+}

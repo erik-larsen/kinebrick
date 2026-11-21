@@ -1,0 +1,217 @@
+{
+  "set": "8824-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:06:43.682Z",
+  "load": 15.9,
+  "part": "A",
+  "parts": 185,
+  "seconds": 11,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Rolling the hovercraft on its front wheels spins the propeller: a bevel gear on the front wheels' axle turns a lengthwise shaft, whose crown gear turns an upright shaft with two 16 tooth gears; those drive a chain of 16 tooth clutch gears riding free on the steering knob's shaft and on the steering column, and the last one turns the crown gear on the propeller's shaft.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p62 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p62 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p63 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p63 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    },
+    {
+      "function": 3,
+      "does": "The two rear wheels roll freely under the steering column.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p151 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p151 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p153 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p153 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

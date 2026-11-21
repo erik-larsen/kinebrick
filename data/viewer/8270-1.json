@@ -1,0 +1,112 @@
+{
+  "set": "8270-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:49:48.660Z",
+  "load": 26.8,
+  "part": "A",
+  "parts": 99,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The four wheels roll freely on their pins; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p93 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p93 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p94 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p94 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 30,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p95 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p95 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 33,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p96 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p96 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 33,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "set": "42058-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:17:10.827Z",
+  "load": 21.5,
+  "part": "A",
+  "parts": 138,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pull the bike back and let go: the pull-back motor drives the rear wheel through three 16 tooth gears, the middle one an idler, and the bike races forward.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p41 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 34,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p18 94925": [
+              0,
+              85.94
+            ],
+            "p21 18946": [
+              0,
+              85.94
+            ],
+            "p17 94925": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p41 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 29,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p18 94925": [
+              0,
+              85.94
+            ],
+            "p21 18946": [
+              0,
+              85.94
+            ],
+            "p17 94925": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 3,
+      "does": "The front wheel rolls freely.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p56 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 27,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p56 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 22,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

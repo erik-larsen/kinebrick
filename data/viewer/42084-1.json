@@ -1,0 +1,226 @@
+{
+  "set": "42084-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:00:37.836Z",
+  "load": 9.8,
+  "part": "A",
+  "parts": 174,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The gear low on the side of the bed, behind the cab, swings the hook arm back over the rear through a row of three 8 tooth gears: the hook at the arm's top lifts the container's front, tips it up and sets it down behind the truck, and swinging the arm forward pulls it back up onto the bed.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p102 32270",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "19/158"
+        ]
+      },
+      "stops": [
+        "19/158"
+      ],
+      "A": [
+        {
+          "control": "p102 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 4,
+          "msOneCall": 10,
+          "stops": [
+            "19/158"
+          ],
+          "moved": {
+            "p81 32014": [
+              0,
+              0
+            ],
+            "p96 10928": [
+              0,
+              0
+            ],
+            "p99 10928": [
+              0,
+              0
+            ],
+            "p169 62531": [
+              0,
+              0
+            ],
+            "p108 32270": [
+              0,
+              0
+            ],
+            "p146 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p102 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p81 32014": [
+              136.33,
+              85.94
+            ],
+            "p96 10928": [
+              0,
+              85.94
+            ],
+            "p99 10928": [
+              0,
+              85.94
+            ],
+            "p169 62531": [
+              182.9,
+              0
+            ],
+            "p108 32270": [
+              0,
+              0
+            ],
+            "p146 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p102 32270",
+          "judged": "stands",
+          "why": "stopped at +0 rad (19/158); kinds hook-lift"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 7
+    },
+    {
+      "function": 3,
+      "does": "The four wheels roll freely; there's no drive.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p144 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 63,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p144 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p145 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p145 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p146 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p146 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p147 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 45,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p147 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 46,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "set": "8256-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:52:05.853Z",
+  "load": 19.1,
+  "part": "A",
+  "parts": 137,
+  "seconds": 23,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Pushing the kart along turns the engine: the rear axle's 16 tooth gear turns the 16 tooth gear on the crankshaft, and the crank drives the connecting rod and pushes the piston up and down in its cylinder.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 3,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p131 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 110,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p16 4019": [
+              0,
+              85.94
+            ],
+            "p12 2853": [
+              0,
+              85.94
+            ],
+            "p14 2852": [
+              13.63,
+              19.44
+            ],
+            "p15 2851 against p10 2850a": [
+              2.24,
+              0
+            ],
+            "p10 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p131 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 97,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p16 4019": [
+              0,
+              85.94
+            ],
+            "p12 2853": [
+              0,
+              85.94
+            ],
+            "p14 2852": [
+              13.63,
+              4.13
+            ],
+            "p15 2851 against p10 2850a": [
+              13.85,
+              0
+            ],
+            "p10 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p133 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 104,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p16 4019": [
+              0,
+              85.94
+            ],
+            "p12 2853": [
+              0,
+              85.94
+            ],
+            "p14 2852": [
+              13.63,
+              19.44
+            ],
+            "p15 2851 against p10 2850a": [
+              2.24,
+              0
+            ],
+            "p10 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p133 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 99,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p16 4019": [
+              0,
+              85.94
+            ],
+            "p12 2853": [
+              0,
+              85.94
+            ],
+            "p14 2852": [
+              13.63,
+              4.13
+            ],
+            "p15 2851 against p10 2850a": [
+              13.85,
+              0
+            ],
+            "p10 2850a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    },
+    {
+      "function": 3,
+      "does": "The wheels roll freely: the two rear wheels together on their 7-long axle, the two front wheels each on its own axle pin in its steering arm.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p131 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 96,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 86,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p133 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 99,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p133 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 92,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p135 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 92,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p135 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 97,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p137 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p137 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 92,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    }
+  ]
+}

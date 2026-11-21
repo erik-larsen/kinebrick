@@ -1,0 +1,362 @@
+{
+  "set": "8865-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:36:42.411Z",
+  "load": 31.1,
+  "part": "A",
+  "parts": 868,
+  "seconds": 65,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel on the left steers the front wheels: its column, through two universal joints and a row of three 16-tooth gears, turns the 8-tooth pinion on the rack behind the front axle, and the rack's two links push the tall steering arms.",
+      "verdict": "shown",
+      "msOneCall": 86,
+      "msPerStep": 26,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p887 2741",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1122,
+          "msOneCall": 86,
+          "stops": [],
+          "moved": {
+            "p287 3743": [
+              15,
+              0
+            ],
+            "p423 2737": [
+              0,
+              13.72
+            ],
+            "p424 2737": [
+              0,
+              15.78
+            ],
+            "p898 3739": [
+              14.33,
+              13.72
+            ],
+            "p902 3739": [
+              16.48,
+              15.78
+            ],
+            "p900 3739": [
+              0,
+              0
+            ],
+            "p904 3739": [
+              0,
+              0
+            ],
+            "p833 3958": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p887 2741",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1028,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {
+            "p287 3743": [
+              15,
+              0
+            ],
+            "p423 2737": [
+              0,
+              15.78
+            ],
+            "p424 2737": [
+              0,
+              13.72
+            ],
+            "p898 3739": [
+              16.48,
+              15.78
+            ],
+            "p902 3739": [
+              14.33,
+              13.72
+            ],
+            "p900 3739": [
+              0,
+              0
+            ],
+            "p904 3739": [
+              0,
+              0
+            ],
+            "p833 3958": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 29
+    },
+    {
+      "function": 2,
+      "does": "Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins.",
+      "verdict": "shown",
+      "msOneCall": 87,
+      "msPerStep": 27,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p900 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1156,
+          "msOneCall": 87,
+          "stops": [],
+          "moved": {
+            "p904 3739": [
+              0,
+              85.94
+            ],
+            "p149 73071": [
+              0,
+              85.94
+            ],
+            "p175 3706": [
+              0,
+              171.89
+            ],
+            "p178 3737": [
+              0,
+              171.89
+            ],
+            "p400 3707": [
+              0,
+              114.59
+            ],
+            "p514 3708": [
+              0,
+              114.59
+            ],
+            "p536 3652": [
+              19.97,
+              0
+            ],
+            "p659 4032a": [
+              0,
+              114.59
+            ]
+          }
+        },
+        {
+          "control": "p900 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1162,
+          "msOneCall": 62,
+          "stops": [],
+          "moved": {
+            "p904 3739": [
+              0,
+              85.94
+            ],
+            "p149 73071": [
+              0,
+              85.94
+            ],
+            "p175 3706": [
+              0,
+              171.89
+            ],
+            "p178 3737": [
+              0,
+              171.89
+            ],
+            "p400 3707": [
+              0,
+              114.59
+            ],
+            "p514 3708": [
+              0,
+              114.59
+            ],
+            "p536 3652": [
+              21.98,
+              0
+            ],
+            "p659 4032a": [
+              0,
+              114.59
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 4,
+      "does": "The differential lets the rear wheels turn at different speeds in a bend: with the engine held, turning one rear wheel turns the other the opposite way.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p176 4143, p514 3708 listed to stay moved",
+      "msOneCall": 60,
+      "msPerStep": 28,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p900 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1199,
+          "msOneCall": 60,
+          "stops": [],
+          "moved": {
+            "p904 3739": [
+              0,
+              85.94
+            ],
+            "p150 4143": [
+              23.18,
+              85.94
+            ],
+            "p176 4143": [
+              0,
+              171.89
+            ],
+            "p514 3708": [
+              0,
+              114.59
+            ]
+          }
+        },
+        {
+          "control": "p900 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1198,
+          "msOneCall": 59,
+          "stops": [],
+          "moved": {
+            "p904 3739": [
+              0,
+              85.94
+            ],
+            "p150 4143": [
+              23.18,
+              85.94
+            ],
+            "p176 4143": [
+              0,
+              171.89
+            ],
+            "p514 3708": [
+              0,
+              114.59
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 11
+    },
+    {
+      "function": 10,
+      "does": "Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p840 3036",
+          "way": 1,
+          "asked": 0.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p840 3036",
+          "way": -1,
+          "asked": 0.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p863 3036",
+          "way": 1,
+          "asked": 0.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p863 3036",
+          "way": -1,
+          "asked": 0.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    }
+  ]
+}
