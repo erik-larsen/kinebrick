@@ -22,7 +22,17 @@
       }
     ]
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "worker-check-permission",
+      "kind": "Permission",
+      "title": "The worker's session was refused a run of the function check",
+      "what": "The worker (the session named \"Inference worker\") wrote the rule by which the check itself marks a wheel, track or engine that a collision stops (279, 282). To prove it, the worker must run the function check on 19 named sets on its own branch, claude/stop-judge. Its session's permission check refused that command. Claude does not run for a session what that session was refused, so the proof waits for you. The rule is being changed first (it must go by the stopped part, not by the function's kind), so nothing is lost if you answer later today. The command it needs is: npm run functions with the names of the sets.",
+      "effect": "With your yes in the worker's own chat, the worker proves the rule and Claude merges it. The rule is expected to mark about 14 more working functions as partly, each a wheel, track or engine that a collision stops in the check today; Claude sees the list before any of them drops.",
+      "reply": "You may run the function check by name on your own branches",
+      "since": "2026-11-21"
+    }
+  ],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
