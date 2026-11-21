@@ -257,14 +257,14 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "fe0dd791",
     "date": "2026-11-21",
-    "seconds": 1191,
+    "seconds": 1371,
     "counts": {
-      "partly": 6,
+      "partly": 7,
       "not back": 1,
       "torn": 1,
-      "works": 3,
+      "works": 2,
       "not checked": 1
     },
     "loose": [
@@ -596,8 +596,8 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.1,
-        "seconds": 66.3,
-        "peak": 1139
+        "seconds": 100.4,
+        "peak": 1083
       },
       {
         "result": "works",
@@ -869,8 +869,8 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 403.1,
-        "peak": 962
+        "seconds": 482.5,
+        "peak": 1002
       },
       {
         "result": "works",
@@ -916,8 +916,8 @@
             ]
           ]
         ],
-        "seconds": 22.3,
-        "peak": 1144
+        "seconds": 23.1,
+        "peak": 1269
       },
       {
         "result": "partly",
@@ -1011,8 +1011,8 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 80.2,
-        "peak": 1343
+        "seconds": 79.2,
+        "peak": 1387
       },
       {
         "result": "partly",
@@ -1075,8 +1075,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 61.4,
-        "peak": 1253
+        "seconds": 62.9,
+        "peak": 1193
       },
       {
         "result": "partly",
@@ -1144,8 +1144,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 59.9,
-        "peak": 1043
+        "seconds": 62.3,
+        "peak": 1031
       },
       {
         "result": "partly",
@@ -1208,8 +1208,8 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 62.9,
-        "peak": 1097
+        "seconds": 61.5,
+        "peak": 1033
       },
       {
         "result": "partly",
@@ -1275,86 +1275,93 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 58.8,
-        "peak": 1063
+        "seconds": 65.5,
+        "peak": 1021
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            -0.42,
-            0.03
-          ]
-        ],
-        "rates": [
-          {
-            "p3789 32524 against p2649 64179": [
-              0.00000111,
-              44.7
+        "result": "partly",
+        "hold": {
+          "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p3789 against p2649. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              -0.42,
+              0.03
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "why": [
-          "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "freed": 2,
-        "shiftPressed": [
-          3792,
-          3793
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            3802,
-            3838,
-            0.42,
-            0.42
           ],
-          [
-            0,
-            -1,
-            3725,
-            3789,
-            0.03,
-            0.03
-          ]
-        ],
-        "seconds": 218.5,
-        "peak": 1163
+          "rates": [
+            {
+              "p3789 32524 against p2649 64179": [
+                0.00000111,
+                44.7
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "why": [
+            "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "freed": 2,
+          "shiftPressed": [
+            3792,
+            3793
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              3802,
+              3838,
+              0.42,
+              0.42
+            ],
+            [
+              0,
+              -1,
+              3725,
+              3789,
+              0.03,
+              0.03
+            ]
+          ],
+          "seconds": 267.3,
+          "peak": 1180
+        }
       },
       {
         "result": "not checked"

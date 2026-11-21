@@ -1,0 +1,261 @@
+{
+  "set": "42063-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:12:26.573Z",
+  "load": 16.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 598,
+  "seconds": 95,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handlebars steer the front wheel: the whole front fork turns with them.",
+      "verdict": "not shown",
+      "why": "A: p386 88517, p345 32278 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p418 32016",
+          "way": 1,
+          "asked": 0.36,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p386 88517": [
+              0,
+              0
+            ],
+            "p345 32278": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p418 32016",
+          "way": -1,
+          "asked": 0.37,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p386 88517": [
+              0,
+              0
+            ],
+            "p345 32278": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p419 32016",
+          "way": 1,
+          "asked": 0.36,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p386 88517": [
+              0,
+              0
+            ],
+            "p345 32278": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p419 32016",
+          "way": -1,
+          "asked": 0.37,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p386 88517": [
+              0,
+              0
+            ],
+            "p345 32278": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 35
+    },
+    {
+      "function": 4,
+      "does": "The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p386 88517, p164 4254 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 22,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p157 57515",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p386 88517": [
+              0,
+              0
+            ],
+            "p164 4254": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p157 57515",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p386 88517": [
+              0,
+              0
+            ],
+            "p164 4254": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 37
+    },
+    {
+      "function": 5,
+      "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",
+      "verdict": "not shown",
+      "why": "A: p334 88517, p198 4254 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p72 14720",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p334 88517": [
+              0,
+              0
+            ],
+            "p198 4254": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p72 14720",
+          "way": -1,
+          "asked": 0.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p334 88517": [
+              0,
+              0
+            ],
+            "p198 4254": [
+              0,
+              0
+            ],
+            "p142 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 24
+    }
+  ]
+}

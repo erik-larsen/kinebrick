@@ -1,0 +1,181 @@
+{
+  "set": "42053-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:02:38.175Z",
+  "load": 26.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1132,
+  "seconds": 124,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level.",
+      "verdict": "not shown",
+      "why": "A: p2196 4716, p2201 3648b, p2222 42053 - 33299b, p2407 32073 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 25,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 60,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2207 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2196 4716": [
+              0,
+              0
+            ],
+            "p2201 3648b": [
+              0,
+              0
+            ],
+            "p2222 42053 - 33299b": [
+              0,
+              0
+            ],
+            "p2407 32073": [
+              0,
+              0
+            ],
+            "p285 42053 - 18938": [
+              0,
+              0
+            ],
+            "p756 2730": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2207 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2196 4716": [
+              0,
+              0
+            ],
+            "p2201 3648b": [
+              0,
+              0
+            ],
+            "p2222 42053 - 33299b": [
+              0,
+              0
+            ],
+            "p2407 32073": [
+              0,
+              0
+            ],
+            "p285 42053 - 18938": [
+              0,
+              0
+            ],
+            "p756 2730": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 88
+    },
+    {
+      "function": 7,
+      "does": "The upper body, with the boom and cab, slews round by hand on the turntable on top of the chassis.",
+      "verdict": "shown",
+      "msOneCall": 112,
+      "msPerStep": 22,
+      "time": {
+        "open": 25,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p284 18939",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 924,
+          "msOneCall": 112,
+          "stops": [],
+          "moved": {
+            "p0 92907": [
+              136.33,
+              85.94
+            ],
+            "p66 87761 against p0 92907": [
+              0,
+              0
+            ],
+            "p55 59426 against p0 92907": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p284 18939",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 873,
+          "msOneCall": 36,
+          "stops": [],
+          "moved": {
+            "p0 92907": [
+              136.33,
+              85.94
+            ],
+            "p66 87761 against p0 92907": [
+              0,
+              0
+            ],
+            "p55 59426 against p0 92907": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 36
+    }
+  ]
+}

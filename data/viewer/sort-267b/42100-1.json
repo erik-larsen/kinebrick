@@ -1,0 +1,124 @@
+{
+  "set": "42100-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T08:02:08.915Z",
+  "load": 32.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 4079,
+  "seconds": 2123,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The access ladder at the back left of the superstructure swings up out of the way and down to the ground.",
+      "verdict": "not shown",
+      "msOneCall": 378,
+      "msPerStep": 96,
+      "time": {
+        "open": 54,
+        "collisions": 36,
+        "first": 0,
+        "reach": 25,
+        "A": 147,
+        "B": 1862
+      },
+      "stop": {
+        "control": "p4660 40490",
+        "way": 1,
+        "went": 0.035,
+        "asked": 0.07,
+        "by": [
+          "4244/4678"
+        ]
+      },
+      "stops": [
+        "4244/4678",
+        "4678/4743"
+      ],
+      "A": [
+        {
+          "control": "p4660 40490",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              4671
+            ]
+          },
+          "asked": 0.07,
+          "went": 0.035,
+          "ms": 96,
+          "msOneCall": 378,
+          "stops": [
+            "4244/4678"
+          ],
+          "moved": {
+            "p4686 40490": [
+              11.38,
+              2.01
+            ]
+          }
+        },
+        {
+          "control": "p4660 40490",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              4671
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 50,
+          "msOneCall": 43,
+          "stops": [
+            "4678/4743"
+          ],
+          "moved": {
+            "p4686 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p4660 40490",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p4686 40490"
+          ],
+          "stops": [
+            "4678/4743",
+            "4242/4684",
+            "4244/4678"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p4660 40490",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the ladder swings up out of the way and down to the ground, far past 0.07 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p4660 40490: a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743) (the ladder swings up out of the way and down to the ground, far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307)",
+      "seconds": 2123
+    }
+  ]
+}

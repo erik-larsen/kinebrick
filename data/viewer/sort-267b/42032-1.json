@@ -1,0 +1,117 @@
+{
+  "set": "42032-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:19:06.693Z",
+  "load": 39.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 245,
+  "seconds": 153,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
+      "verdict": "not shown",
+      "why": "A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 2,
+        "first": 0,
+        "reach": 2,
+        "A": 9,
+        "B": 131
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p107 87083",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              105
+            ]
+          },
+          "asked": 0.47,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p107 87083 against p97 32278": [
+              0,
+              0
+            ],
+            "p139 59443 against p97 32278": [
+              0,
+              0
+            ],
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p107 87083",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              105
+            ]
+          },
+          "asked": 0.75,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p107 87083 against p97 32278": [
+              0,
+              0
+            ],
+            "p139 59443 against p97 32278": [
+              0,
+              0
+            ],
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p107 87083",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p107 87083 against p97 32278",
+            "p139 59443 against p97 32278"
+          ],
+          "stops": [
+            "97/149",
+            "117/144"
+          ]
+        }
+      ],
+      "seconds": 153
+    }
+  ]
+}

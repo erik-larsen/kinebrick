@@ -1,0 +1,119 @@
+{
+  "set": "8838-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:13:09.847Z",
+  "load": 39.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 233,
+  "seconds": 45,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p227 2910, p219 3706, p220 8838 - 2903 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 2,
+        "first": 0,
+        "reach": 1,
+        "A": 1,
+        "B": 32
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p225 2910",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p227 2910": [
+              0,
+              0
+            ],
+            "p219 3706": [
+              0,
+              0
+            ],
+            "p220 8838 - 2903": [
+              0,
+              0
+            ],
+            "p224 2909": [
+              0,
+              0
+            ],
+            "p226 2909": [
+              0,
+              0
+            ],
+            "p77 2905": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p225 2910",
+          "way": -1,
+          "asked": 1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p227 2910": [
+              0,
+              0
+            ],
+            "p219 3706": [
+              0,
+              0
+            ],
+            "p220 8838 - 2903": [
+              0,
+              0
+            ],
+            "p224 2909": [
+              0,
+              0
+            ],
+            "p226 2909": [
+              0,
+              0
+            ],
+            "p77 2905": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p225 2910",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p227 2910",
+            "p219 3706",
+            "p220 8838 - 2903"
+          ],
+          "stops": [
+            "81/113"
+          ]
+        }
+      ],
+      "seconds": 45
+    }
+  ]
+}

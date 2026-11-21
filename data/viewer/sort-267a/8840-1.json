@@ -1,0 +1,103 @@
+{
+  "set": "8840-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:17:35.051Z",
+  "load": 25.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 206,
+  "seconds": 9,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts.",
+      "verdict": "not shown",
+      "why": "A: p210 4266 against p0 3703, p213 4266 against p0 3703, p200 4255 against p0 3703, p202 4255 against p0 3703 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p86 3701",
+          "way": 1,
+          "asked": 0.24,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p210 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p213 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p200 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p202 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p206 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p208 4266 against p0 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p86 3701",
+          "way": -1,
+          "asked": 0.35,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p210 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p213 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p200 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p202 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p206 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p208 4266 against p0 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    }
+  ]
+}

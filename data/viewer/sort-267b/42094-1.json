@@ -1,0 +1,128 @@
+{
+  "set": "42094-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:17:29.907Z",
+  "load": 38.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 809,
+  "seconds": 390,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines.",
+      "verdict": "not decided",
+      "msOneCall": 89,
+      "msPerStep": 38,
+      "time": {
+        "open": 14,
+        "collisions": 6,
+        "first": 0,
+        "reach": 5,
+        "A": 27,
+        "B": 338
+      },
+      "stop": {
+        "control": "p1064 32270",
+        "way": -1,
+        "went": -0.069,
+        "asked": 1.52,
+        "by": [
+          "1073/1078"
+        ]
+      },
+      "stops": [
+        "1073/1078"
+      ],
+      "A": [
+        {
+          "control": "p1064 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 0.18,
+          "went": 0.15,
+          "ms": 158,
+          "msOneCall": 89,
+          "stops": [],
+          "moved": {
+            "p1061 60485": [
+              14.07,
+              8.6
+            ],
+            "p1094 32278": [
+              0.15,
+              0.06
+            ]
+          }
+        },
+        {
+          "control": "p1064 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": []
+          },
+          "asked": 1.52,
+          "went": -0.069,
+          "ms": 75,
+          "msOneCall": 36,
+          "stops": [
+            "1073/1078"
+          ],
+          "moved": {
+            "p1061 60485": [
+              6.97,
+              3.97
+            ],
+            "p1094 32278": [
+              0.07,
+              0.03
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1064 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1061 60485"
+          ],
+          "stops": [
+            "1073/1078",
+            "1037/1045",
+            "1061/1077",
+            "1069/1092",
+            "1070/1078",
+            "1071/1078",
+            "1072/1078",
+            "1037/1069",
+            "1053/1071",
+            "1053/1070",
+            "1063/1077"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p1064 32270",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p1064 32270: a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)",
+      "seconds": 390
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "set": "8845-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:15:52.293Z",
+  "load": 31.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 163,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Each rear wheel rides on its own trailing arm, which pivots on the cross axle ahead of it: pushed up, the arm swings up and the shock absorber between it and the frame shortens.",
+      "verdict": "not shown",
+      "why": "A: p172 3482, p170 3482, p105 4255 against p106 4254, p103 4255 against p104 4254 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p0 3702",
+          "way": 1,
+          "asked": 0.18,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p0 3702",
+          "way": -1,
+          "asked": 0.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 3702",
+          "way": 1,
+          "asked": 0.18,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 3702",
+          "way": -1,
+          "asked": 0.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    }
+  ]
+}

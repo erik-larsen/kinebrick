@@ -1,0 +1,86 @@
+{
+  "set": "8865-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:50:29.560Z",
+  "load": 24.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 868,
+  "seconds": 24,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The differential lets the rear wheels turn at different speeds in a bend: with the engine held, turning one rear wheel turns the other the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 55,
+      "msPerStep": 10,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p900 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 413,
+          "msOneCall": 55,
+          "stops": [],
+          "moved": {
+            "p904 3739": [
+              0,
+              85.94
+            ],
+            "p150 4143": [
+              0,
+              85.94
+            ],
+            "p176 4143": [
+              0,
+              0
+            ],
+            "p514 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p900 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 391,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p904 3739": [
+              0,
+              85.94
+            ],
+            "p150 4143": [
+              0,
+              85.94
+            ],
+            "p176 4143": [
+              0,
+              0
+            ],
+            "p514 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 23
+    }
+  ]
+}

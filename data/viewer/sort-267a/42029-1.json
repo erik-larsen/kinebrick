@@ -1,0 +1,81 @@
+{
+  "set": "42029-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:01:33.693Z",
+  "load": 12.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1053,
+  "seconds": 63,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The yellow lever inside the cab, on the right behind the seat, works a gearbox under the cab: it slides the driving ring between two clutch gears, choosing whether the black gear low on the right side drives the winch at the front (position 1) or tips the bed (position 2).",
+      "verdict": "shown",
+      "msOneCall": 167,
+      "msPerStep": 37,
+      "time": {
+        "open": 48,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 37,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p133 6632",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 625,
+          "msOneCall": 167,
+          "stops": [],
+          "moved": {
+            "p111 6641 against p0 32278": [
+              11.82,
+              34.38
+            ],
+            "p48 6539 against p47 3705": [
+              5,
+              0
+            ],
+            "p47 3705 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p133 6632",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 634,
+          "msOneCall": 161,
+          "stops": [],
+          "moved": {
+            "p111 6641 against p0 32278": [
+              11.82,
+              34.38
+            ],
+            "p48 6539 against p47 3705": [
+              5,
+              0
+            ],
+            "p47 3705 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 63
+    }
+  ]
+}

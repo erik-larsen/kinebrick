@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 148 works, 2 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 144 works, 6 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -66,7 +66,7 @@ Each detail by the set it first appears in.
 
 **1981, [8844 Helicopter](https://erik-larsen.github.io/kinebrick/?model=8844-Helicopter)**
 
-- Pushed along, the three wheels roll freely on their axle pins. (works)
+- Pushed along, the three wheels roll freely on their axle pins. (partly)
 - *engines:* The two yellow engines either side of the rotor housing turn freely on their axles. (works)
 
 **1981, [8845 Dune Buggy](https://erik-larsen.github.io/kinebrick/?model=8845-Dune%20Buggy)**
@@ -161,7 +161,7 @@ Each detail by the set it first appears in.
 
 **1991, [8856 Whirlwind Rescue](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8856-1)**
 
-- The three landing gear wheels roll freely. (works)
+- The three landing gear wheels roll freely. (partly)
 
 **1992, [8826 ATX Sport Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8826-1)**
 
@@ -536,7 +536,7 @@ Each detail by the set it first appears in.
 
 **2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1)**
 
-- The truck's four wheels roll freely; there's no drive. The two rear wheels turn together on one axle; each front wheel turns on its own short axle in its steering knuckle. (works)
+- The truck's four wheels roll freely; there's no drive. The two rear wheels turn together on one axle; each front wheel turns on its own short axle in its steering knuckle. (partly)
 - The trailer's two wheels roll freely together on one axle line. (works)
 - The bike's front wheel rolls freely on its axle in the fork. (works)
 
@@ -558,7 +558,7 @@ Each detail by the set it first appears in.
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 
-- The wheels on the three landing gear legs roll freely. (works)
+- The wheels on the three landing gear legs roll freely. (partly)
 
 **2021, [42116 Skid Steer Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42116-1)**
 

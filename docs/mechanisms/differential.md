@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 57 works, 19 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 53 works, 23 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -29,8 +29,8 @@ Each detail by the set it first appears in.
 
 **1981, [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck)**
 
-- The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed. (works)
-- As it rolls, the differential's big gear also turns two bevel gears: one on a drive shaft running forward under the cab through a universal joint, one on a short axle sticking out at the back. (works)
+- The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed. (partly)
+- As it rolls, the differential's big gear also turns two bevel gears: one on a drive shaft running forward under the cab through a universal joint, one on a short axle sticking out at the back. (partly)
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
@@ -88,7 +88,7 @@ Each detail by the set it first appears in.
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
-- The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down. (works)
+- The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down. (partly)
 
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
@@ -151,7 +151,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (works)
+- Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (partly)
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 

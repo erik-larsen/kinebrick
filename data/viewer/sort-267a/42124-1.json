@@ -1,0 +1,139 @@
+{
+  "set": "42124-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:28:47.926Z",
+  "load": 29.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 369,
+  "seconds": 25,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",
+      "verdict": "shown",
+      "msOneCall": 42,
+      "msPerStep": 9,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": {
+        "control": "p325 42124 - 31794",
+        "way": 1,
+        "went": 0.636,
+        "asked": 0.67,
+        "by": [
+          "359/983"
+        ]
+      },
+      "stops": [
+        "359/983",
+        "361/985"
+      ],
+      "A": [
+        {
+          "control": "p325 42124 - 31794",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0.636,
+          "ms": 163,
+          "msOneCall": 42,
+          "stops": [
+            "359/983"
+          ],
+          "moved": {
+            "p343 15460": [
+              0,
+              0.34
+            ],
+            "p345 15460": [
+              50.06,
+              1.24
+            ]
+          }
+        },
+        {
+          "control": "p325 42124 - 31794",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 9,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p343 15460": [
+              0,
+              0
+            ],
+            "p345 15460": [
+              2.4,
+              0.52
+            ]
+          }
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 9,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p343 15460": [
+              2.4,
+              0.52
+            ],
+            "p345 15460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "way": -1,
+          "asked": 0.67,
+          "went": -0.636,
+          "ms": 149,
+          "msOneCall": 11,
+          "stops": [
+            "361/985"
+          ],
+          "moved": {
+            "p343 15460": [
+              50.06,
+              1.24
+            ],
+            "p345 15460": [
+              0,
+              0.34
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p325 42124 - 31794",
+          "judged": "stands",
+          "why": "stopped at +0.636 rad (359/983); kinds double-wishbone"
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "judged": "stands",
+          "why": "stopped at -0.636 rad (361/985); kinds double-wishbone"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 25
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "set": "8218-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:04:59.269Z",
+  "load": 22.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 66,
+  "seconds": 24,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 0,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p60 32062",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              45
+            ]
+          },
+          "asked": 1.3,
+          "went": 1.3,
+          "ms": 14,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p66 2994 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p60 32062",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              45
+            ]
+          },
+          "asked": 1.3,
+          "went": -1.3,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p66 2994 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p61 32062",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": [
+              45
+            ]
+          },
+          "asked": 1.3,
+          "went": 1.3,
+          "ms": 11,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p66 2994 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p61 32062",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": [
+              45
+            ]
+          },
+          "asked": 1.3,
+          "went": -1.3,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p66 2994 against p8 32009": [
+              24.2,
+              74.48
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 24
+    }
+  ]
+}
