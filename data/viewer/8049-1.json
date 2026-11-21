@@ -1,25 +1,25 @@
 {
   "set": "8049-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:15:20.887Z",
-  "load": 16.2,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:38:34.870Z",
+  "load": 17.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 476,
-  "seconds": 95,
+  "seconds": 182,
   "functions": [
     {
       "function": 1,
       "does": "The round yellow knob on the cab roof steers the front wheels: its upright axle comes down through the cab to a knob gear, which turns a long axle forward to a gear that slides the steering rack across the front axle.",
       "verdict": "shown",
-      "msOneCall": 39,
-      "msPerStep": 4,
+      "msOneCall": 29,
+      "msPerStep": 3,
       "time": {
-        "open": 14,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 7,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.43,
           "went": 1.43,
-          "ms": 146,
-          "msOneCall": 39,
+          "ms": 119,
+          "msOneCall": 29,
           "stops": [],
           "moved": {
             "p62 32072": [
@@ -42,16 +42,16 @@
               81.93
             ],
             "p34 87761": [
-              22.29,
+              22.59,
               0
             ],
             "p205 56145": [
-              27.85,
-              39.37
+              28.22,
+              39.54
             ],
             "p208 56145": [
-              27.85,
-              39.37
+              28.22,
+              39.54
             ],
             "p201 41896 against p0 32316": [
               0,
@@ -68,8 +68,8 @@
           "way": -1,
           "asked": 1.43,
           "went": -1.43,
-          "ms": 136,
-          "msOneCall": 13,
+          "ms": 98,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p62 32072": [
@@ -81,16 +81,16 @@
               81.93
             ],
             "p34 87761": [
-              22.29,
+              22.59,
               0
             ],
             "p205 56145": [
-              27.85,
-              39.37
+              28.22,
+              39.54
             ],
             "p208 56145": [
-              27.85,
-              39.37
+              28.22,
+              39.54
             ],
             "p201 41896 against p0 32316": [
               0,
@@ -103,22 +103,40 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 23
+      "B": [
+        {
+          "control": "p73 2654",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p62 32072",
+            "p52 32270",
+            "p34 87761",
+            "p205 56145",
+            "p208 56145"
+          ],
+          "stops": [
+            "14/24"
+          ]
+        }
+      ],
+      "seconds": 19
     },
     {
       "function": 6,
       "does": "The black gear on the grab opens and closes its two jaws: it turns a worm, which turns an 8-tooth gear on one jaw's axle, and two 16-tooth gears mesh between the jaws so they swing together.",
       "verdict": "shown",
-      "msOneCall": 14,
+      "msOneCall": 28,
       "msPerStep": 3,
       "time": {
-        "open": 3,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 7,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p475 32270",
@@ -138,8 +156,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.291,
-          "ms": 126,
-          "msOneCall": 14,
+          "ms": 116,
+          "msOneCall": 28,
           "stops": [
             "477/479"
           ],
@@ -177,35 +195,35 @@
         {
           "control": "p475 32270",
           "way": -1,
-          "asked": 1.3,
-          "went": -1.3,
-          "ms": 125,
-          "msOneCall": 10,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 119,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p466 4716": [
               0,
-              74.48
+              85.94
             ],
             "p473 10928": [
               0,
-              9.31
+              10.74
             ],
             "p482 94925": [
               0,
-              9.31
+              10.74
             ],
             "p483 94925": [
               0,
-              9.31
+              10.74
             ],
             "p477 32348": [
               0,
-              9.31
+              10.74
             ],
             "p479 32348": [
               0,
-              9.31
+              10.74
             ],
             "p471 2905": [
               0,
@@ -214,7 +232,21 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p475 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p466 4716"
+          ],
+          "stops": [
+            "477/479"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p475 32270",
@@ -226,21 +258,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 11
+      "seconds": 18
     },
     {
       "function": 8,
       "does": "The tractor's four wheels and the trailer's four wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 16,
-      "msPerStep": 9,
+      "msOneCall": 27,
+      "msPerStep": 8,
       "time": {
-        "open": 3,
+        "open": 28,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 56,
-        "B": 0
+        "reach": 7,
+        "A": 5,
+        "B": 104
       },
       "stop": null,
       "stops": [],
@@ -250,8 +282,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 349,
-          "msOneCall": 16,
+          "ms": 341,
+          "msOneCall": 27,
           "stops": [],
           "moved": {}
         },
@@ -260,8 +292,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 349,
-          "msOneCall": 15,
+          "ms": 319,
+          "msOneCall": 10,
           "stops": [],
           "moved": {}
         },
@@ -270,8 +302,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 350,
-          "msOneCall": 14,
+          "ms": 322,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -280,8 +312,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 352,
-          "msOneCall": 15,
+          "ms": 309,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -290,8 +322,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 358,
-          "msOneCall": 16,
+          "ms": 318,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -300,8 +332,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 353,
-          "msOneCall": 15,
+          "ms": 312,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -310,8 +342,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 354,
-          "msOneCall": 14,
+          "ms": 314,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -320,8 +352,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 345,
-          "msOneCall": 14,
+          "ms": 320,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -330,8 +362,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 349,
-          "msOneCall": 14,
+          "ms": 321,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -340,8 +372,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 357,
-          "msOneCall": 14,
+          "ms": 319,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -350,8 +382,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 363,
-          "msOneCall": 16,
+          "ms": 310,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -360,8 +392,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 354,
-          "msOneCall": 15,
+          "ms": 311,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -370,8 +402,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 346,
-          "msOneCall": 14,
+          "ms": 312,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -380,8 +412,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 351,
-          "msOneCall": 14,
+          "ms": 311,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -390,8 +422,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 355,
-          "msOneCall": 14,
+          "ms": 321,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -400,14 +432,87 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 365,
-          "msOneCall": 15,
+          "ms": 322,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 61
+      "B": [
+        {
+          "control": "p201 41896",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p203 41896",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p205 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p208 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p487 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p489 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p491 56145",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p493 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 145
     }
   ]
 }

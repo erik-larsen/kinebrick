@@ -1,10 +1,11 @@
 {
   "set": "8032-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:28:53.222Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:16:45.613Z",
+  "load": 3.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 61,
-  "seconds": 5,
+  "seconds": 29,
   "functions": [
     {
       "function": 1,
@@ -13,32 +14,44 @@
       "msOneCall": 6,
       "msPerStep": 1,
       "time": {
-        "open": 5,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 0
+        "B": 11
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p28 3736",
+        "way": 1,
+        "went": 0.663,
+        "asked": 1.5,
+        "by": [
+          "57/64"
+        ]
+      },
+      "stops": [
+        "57/64"
+      ],
       "A": [
         {
           "control": "p28 3736",
           "way": 1,
-          "asked": 0.67,
-          "went": 0.67,
-          "ms": 13,
+          "asked": 1.5,
+          "went": 0.663,
+          "ms": 14,
           "msOneCall": 6,
-          "stops": [],
+          "stops": [
+            "57/64"
+          ],
           "moved": {
             "p37 3743": [
-              5.8,
-              3.81
+              5.79,
+              3.76
             ],
             "p42 3709b": [
-              12.46,
-              8.8
+              12.34,
+              8.7
             ],
             "p0 3795": [
               0,
@@ -56,12 +69,12 @@
           "stops": [],
           "moved": {
             "p37 3743": [
-              19.64,
-              1.09
+              20.79,
+              3.25
             ],
             "p42 3709b": [
-              12.15,
-              8.58
+              12.22,
+              8.62
             ],
             "p0 3795": [
               0,
@@ -70,22 +83,48 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p28 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p37 3743",
+            "p42 3709b"
+          ],
+          "stops": [
+            "57/64"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p28 3736",
+          "judged": "stands",
+          "why": "stopped at +0.663 rad (57/64); kinds crank-and-link: saw"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 15
     },
     {
       "function": 2,
       "does": "The crown gear on top of the tilted frame turns freely on its axle, like a saw blade.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 5,
       "msPerStep": 0,
       "time": {
-        "open": 0,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 0
+        "B": 11
       },
       "stop": null,
       "stops": [],
@@ -95,8 +134,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 9,
-          "msOneCall": 1,
+          "ms": 14,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p42 3709b": [
@@ -111,7 +150,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 8,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p42 3709b": [
@@ -121,8 +160,18 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 0
+      "B": [
+        {
+          "control": "p59 3650c",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     }
   ]
 }

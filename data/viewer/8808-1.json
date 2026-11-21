@@ -1,11 +1,11 @@
 {
   "set": "8808-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:10:51.535Z",
-  "load": 14.9,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:19:11.902Z",
+  "load": 5.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 92,
-  "seconds": 17,
+  "seconds": 105,
   "functions": [
     {
       "function": 1,
@@ -14,12 +14,12 @@
       "msOneCall": 6,
       "msPerStep": 1,
       "time": {
-        "open": 6,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -42,7 +42,7 @@
               22
             ],
             "p71 3743": [
-              15.27,
+              15.36,
               0
             ],
             "p74 3482": [
@@ -56,8 +56,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 29,
-          "msOneCall": 2,
+          "ms": 25,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p49 4261": [
@@ -69,7 +69,7 @@
               22
             ],
             "p71 3743": [
-              15.27,
+              15.36,
               0
             ],
             "p74 3482": [
@@ -79,22 +79,38 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p79 2819",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p49 4261",
+            "p53 4261",
+            "p71 3743"
+          ],
+          "stops": [
+            "3/53"
+          ]
+        }
+      ],
+      "seconds": 15
     },
     {
       "function": 2,
       "does": "Pushed along, the four rear wheels, doubled up on one long axle, roll together.",
       "verdict": "shown",
-      "msOneCall": 3,
-      "msPerStep": 0,
+      "msOneCall": 7,
+      "msPerStep": 1,
       "time": {
-        "open": 0,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 33
       },
       "stop": null,
       "stops": [],
@@ -104,8 +120,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 21,
-          "msOneCall": 3,
+          "ms": 27,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -119,67 +135,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 19,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p79 2819": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p82 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 17,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p79 2819": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p82 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 17,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p79 2819": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p86 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 15,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p79 2819": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p86 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 17,
+          "ms": 24,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -190,7 +146,37 @@
           }
         },
         {
-          "control": "p90 3482",
+          "control": "p82 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p82 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p86 3482",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
@@ -205,12 +191,12 @@
           }
         },
         {
-          "control": "p90 3482",
+          "control": "p86 3482",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 17,
-          "msOneCall": 2,
+          "ms": 16,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -218,30 +204,9 @@
               0
             ]
           }
-        }
-      ],
-      "B": [],
-      "seconds": 4
-    },
-    {
-      "function": 3,
-      "does": "The front wheels, doubled up on a short axle in each steering arm, roll freely.",
-      "verdict": "shown",
-      "msOneCall": 2,
-      "msPerStep": 0,
-      "time": {
-        "open": 0,
-        "collisions": 0,
-        "first": 0,
-        "reach": 0,
-        "A": 5,
-        "B": 0
-      },
-      "stop": null,
-      "stops": [],
-      "A": [
+        },
         {
-          "control": "p72 3482",
+          "control": "p90 3482",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
@@ -256,12 +221,100 @@
           }
         },
         {
+          "control": "p90 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 16,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p74 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p82 3482",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p86 3482",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p90 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 43
+    },
+    {
+      "function": 3,
+      "does": "The front wheels, doubled up on a short axle in each steering arm, roll freely.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 38
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p72 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p79 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
           "control": "p72 3482",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 17,
-          "msOneCall": 2,
+          "ms": 23,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -275,8 +328,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 17,
-          "msOneCall": 2,
+          "ms": 18,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -305,8 +358,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 16,
-          "msOneCall": 2,
+          "ms": 15,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -320,8 +373,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 17,
-          "msOneCall": 2,
+          "ms": 16,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -335,7 +388,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 19,
+          "ms": 15,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -350,8 +403,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 20,
-          "msOneCall": 2,
+          "ms": 15,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p79 2819": [
@@ -361,8 +414,45 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p72 3482",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p88 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p80 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p84 3482",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 48
     }
   ]
 }

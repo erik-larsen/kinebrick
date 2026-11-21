@@ -1,11 +1,11 @@
 {
   "set": "8826-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:49:22.912Z",
-  "load": 24.8,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:49:34.962Z",
+  "load": 10.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 89,
-  "seconds": 10,
+  "seconds": 57,
   "functions": [
     {
       "function": 2,
@@ -14,12 +14,12 @@
       "msOneCall": 6,
       "msPerStep": 0,
       "time": {
-        "open": 6,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 4,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 19,
+          "ms": 20,
           "msOneCall": 6,
           "stops": [],
           "moved": {
@@ -45,7 +45,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 14,
-          "msOneCall": 2,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p26 3021": [
@@ -59,7 +59,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 11,
+          "ms": 12,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -74,8 +74,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 15,
-          "msOneCall": 2,
+          "ms": 12,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p26 3021": [
@@ -104,7 +104,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 15,
+          "ms": 13,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -119,7 +119,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 13,
+          "ms": 12,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -134,7 +134,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 14,
+          "ms": 10,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -145,8 +145,45 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p85 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p89 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p87 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p91 3482",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 57
     }
   ]
 }

@@ -1,26 +1,25 @@
 {
   "set": "9396-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:42:46.168Z",
-  "load": 19.4,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:07:02.098Z",
+  "load": 11.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 956,
-  "seconds": 290,
+  "seconds": 497,
   "functions": [
     {
       "function": 3,
       "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
       "verdict": "shown",
-      "why": "first step not done by the sweep: p1428 6553 by -0.3 (it has no joint to turn, or didn't turn)",
-      "msOneCall": 942,
-      "msPerStep": 408,
+      "msOneCall": 353,
+      "msPerStep": 201,
       "time": {
-        "open": 17,
+        "open": 6,
         "collisions": 0,
         "first": 7,
         "reach": 0,
-        "A": 29,
-        "B": 0
+        "A": 14,
+        "B": 23
       },
       "stop": {
         "control": "p367 32269",
@@ -40,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.907,
-          "ms": 10581,
-          "msOneCall": 942,
+          "ms": 5108,
+          "msOneCall": 353,
           "stops": [
             "347/1039"
           ],
@@ -59,24 +58,37 @@
         {
           "control": "p367 32269",
           "way": -1,
-          "asked": 0.93,
-          "went": -0.93,
-          "ms": 8906,
-          "msOneCall": 882,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8621,
+          "msOneCall": 310,
           "stops": [],
           "moved": {
             "p570 32073": [
               0,
-              88.81
+              143.24
             ],
             "p575 30395": [
-              17.76,
+              28.64,
               0
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p367 32269",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p570 32073",
+            "p575 30395"
+          ],
+          "stops": []
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p367 32269",
@@ -86,25 +98,23 @@
       ],
       "stopVerdict": "shown",
       "moved": {
-        "verdict": "shown",
-        "why": "first step not done by the sweep: p1428 6553 by -0.3 (it has no joint to turn, or didn't turn)"
+        "verdict": "shown"
       },
-      "reopened": "the mechanism was rebuilt (a ring shifted)",
-      "seconds": 54
+      "seconds": 50
     },
     {
       "function": 6,
       "does": "The wheels roll freely when the landing gear is down.",
       "verdict": "shown",
-      "msOneCall": 2031,
-      "msPerStep": 943,
+      "msOneCall": 806,
+      "msPerStep": 478,
       "time": {
-        "open": 22,
+        "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 211,
-        "B": 0
+        "reach": 53,
+        "A": 86,
+        "B": 292
       },
       "stop": null,
       "stops": [],
@@ -114,8 +124,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 40429,
-          "msOneCall": 1770,
+          "ms": 20498,
+          "msOneCall": 806,
           "stops": [],
           "moved": {}
         },
@@ -124,8 +134,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 32513,
-          "msOneCall": 2031,
+          "ms": 16351,
+          "msOneCall": 692,
           "stops": [],
           "moved": {}
         },
@@ -134,8 +144,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 28726,
-          "msOneCall": 1607,
+          "ms": 14117,
+          "msOneCall": 644,
           "stops": [],
           "moved": {}
         },
@@ -144,8 +154,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 28784,
-          "msOneCall": 1698,
+          "ms": 13915,
+          "msOneCall": 680,
           "stops": [],
           "moved": {}
         },
@@ -154,8 +164,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 8531,
-          "msOneCall": 851,
+          "ms": 4387,
+          "msOneCall": 278,
           "stops": [],
           "moved": {}
         },
@@ -164,8 +174,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 8294,
-          "msOneCall": 826,
+          "ms": 4269,
+          "msOneCall": 288,
           "stops": [],
           "moved": {}
         },
@@ -174,8 +184,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 8283,
-          "msOneCall": 801,
+          "ms": 4291,
+          "msOneCall": 261,
           "stops": [],
           "moved": {}
         },
@@ -184,14 +194,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 8286,
-          "msOneCall": 803,
+          "ms": 4268,
+          "msOneCall": 267,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 236
+      "B": [
+        {
+          "control": "p36 42610",
+          "seen": true,
+          "cameraTurns": 25,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p37 42610",
+          "seen": true,
+          "cameraTurns": 11,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1198 42610",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1224 42610",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 447
     }
   ]
 }

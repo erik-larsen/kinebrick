@@ -1,11 +1,11 @@
 {
   "set": "8270-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:49:48.660Z",
-  "load": 26.8,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:49:37.050Z",
+  "load": 10.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 99,
-  "seconds": 10,
+  "seconds": 51,
   "functions": [
     {
       "function": 6,
@@ -14,12 +14,12 @@
       "msOneCall": 10,
       "msPerStep": 1,
       "time": {
-        "open": 5,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 5,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 39
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 37,
+          "ms": 42,
           "msOneCall": 10,
           "stops": [],
           "moved": {}
@@ -39,8 +39,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 34,
-          "msOneCall": 4,
+          "ms": 45,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -49,8 +49,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 29,
-          "msOneCall": 2,
+          "ms": 33,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -59,6 +59,16 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
+          "ms": 29,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p95 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
           "ms": 30,
           "msOneCall": 2,
           "stops": [],
@@ -66,21 +76,11 @@
         },
         {
           "control": "p95 55981",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 29,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p95 55981",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 33,
-          "msOneCall": 3,
+          "ms": 29,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -89,8 +89,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 29,
-          "msOneCall": 3,
+          "ms": 33,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -99,14 +99,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 33,
+          "ms": 29,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p93 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p94 55981",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p95 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p96 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 51
     }
   ]
 }

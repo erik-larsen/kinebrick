@@ -1,24 +1,25 @@
 {
   "set": "42000-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:36:43.648Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:23:22.335Z",
+  "load": 8.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1109,
-  "seconds": 94,
+  "seconds": 187,
   "functions": [
     {
       "function": 1,
       "does": "The steering wheel in the cockpit steers the front wheels: its column runs forward under the nose through bevel gears to a gear on the steering rack, which pushes the track rods out to both front uprights.",
       "verdict": "shown",
-      "msOneCall": 166,
-      "msPerStep": 55,
+      "msOneCall": 99,
+      "msPerStep": 30,
       "time": {
-        "open": 14,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 11,
-        "B": 0
+        "A": 2,
+        "B": 10
       },
       "stop": null,
       "stops": [],
@@ -28,8 +29,8 @@
           "way": 1,
           "asked": 1.1,
           "went": 1.1,
-          "ms": 1720,
-          "msOneCall": 166,
+          "ms": 944,
+          "msOneCall": 99,
           "stops": [],
           "moved": {
             "p644 32269": [
@@ -41,12 +42,12 @@
               63.03
             ],
             "p585 92909": [
-              12.69,
-              28.19
+              12.79,
+              28.24
             ],
             "p588 92909": [
-              12.63,
-              28.05
+              12.72,
+              28.1
             ],
             "p350 92909": [
               0,
@@ -63,8 +64,8 @@
           "way": -1,
           "asked": 1.1,
           "went": -1.1,
-          "ms": 1562,
-          "msOneCall": 103,
+          "ms": 931,
+          "msOneCall": 48,
           "stops": [],
           "moved": {
             "p644 32269": [
@@ -76,12 +77,12 @@
               63.03
             ],
             "p585 92909": [
-              12.63,
-              28.05
+              12.72,
+              28.1
             ],
             "p588 92909": [
-              12.69,
-              28.19
+              12.79,
+              28.24
             ],
             "p350 92909": [
               0,
@@ -94,22 +95,39 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 27
+      "B": [
+        {
+          "control": "p706 32138",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p644 32269",
+            "p497 32270",
+            "p585 92909",
+            "p588 92909"
+          ],
+          "stops": [
+            "555/590"
+          ]
+        }
+      ],
+      "seconds": 19
     },
     {
       "function": 4,
       "does": "Each front wheel rides on double wishbones with a pushrod to a rocker inside the nose, which works a shock absorber lying across the car (pushrod suspension).",
       "verdict": "not decided",
-      "msOneCall": 328,
-      "msPerStep": 390,
+      "msOneCall": 206,
+      "msPerStep": 197,
       "time": {
-        "open": 3,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 17,
-        "B": 0
+        "A": 2,
+        "B": 36
       },
       "stop": {
         "control": "p591 32294",
@@ -117,11 +135,11 @@
         "went": -0.035,
         "asked": 0.07,
         "by": [
-          "1012/1012"
+          "ground: p1012"
         ]
       },
       "stops": [
-        "1012/1012"
+        "ground: p1012"
       ],
       "A": [
         {
@@ -129,8 +147,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 428,
-          "msOneCall": 328,
+          "ms": 204,
+          "msOneCall": 206,
           "stops": [],
           "moved": {
             "p559 32056": [
@@ -138,7 +156,7 @@
               7.11
             ],
             "p566 4255": [
-              4.96,
+              4.97,
               0.28
             ]
           }
@@ -148,10 +166,10 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.035,
-          "ms": 390,
-          "msOneCall": 290,
+          "ms": 193,
+          "msOneCall": 155,
           "stops": [
-            "1012/1012"
+            "ground: p1012"
           ],
           "moved": {
             "p559 32056": [
@@ -169,10 +187,10 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.035,
-          "ms": 386,
-          "msOneCall": 300,
+          "ms": 197,
+          "msOneCall": 150,
           "stops": [
-            "1012/1012"
+            "ground: p1012"
           ],
           "moved": {
             "p559 32056": [
@@ -190,8 +208,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 410,
-          "msOneCall": 311,
+          "ms": 204,
+          "msOneCall": 146,
           "stops": [],
           "moved": {
             "p559 32056": [
@@ -205,17 +223,50 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p591 32294",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p559 32056",
+            "p566 4255"
+          ],
+          "stops": [
+            "ground: p1012",
+            "499/566",
+            "499/564"
+          ]
+        },
+        {
+          "control": "p600 32294",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p559 32056",
+            "p566 4255"
+          ],
+          "stops": [
+            "ground: p1012",
+            "499/566",
+            "499/564"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p591 32294",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.035 rad (1012/1012)"
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.035 rad (ground: p1012)"
         },
         {
           "control": "p600 32294",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (1012/1012)"
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (ground: p1012)"
         }
       ],
       "stopVerdict": "not decided",
@@ -226,22 +277,22 @@
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p591 32294: a travel of 0.2 rad or less each way, stopped at -0.035 rad (1012/1012); p600 32294: a travel of 0.2 rad or less each way, stopped at +0.035 rad (1012/1012)",
-      "seconds": 22
+      "why": "not decided: p591 32294: a travel of 0.2 rad or less each way, stopped at -0.035 rad (ground: p1012); p600 32294: a travel of 0.2 rad or less each way, stopped at +0.035 rad (ground: p1012)",
+      "seconds": 49
     },
     {
       "function": 5,
       "does": "Each rear wheel rides on double wishbones with a pushrod to a rocker above the gearbox, which works a shock absorber (pushrod suspension).",
       "verdict": "not decided",
-      "msOneCall": 218,
-      "msPerStep": 226,
+      "msOneCall": 180,
+      "msPerStep": 142,
       "time": {
-        "open": 4,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 14,
-        "B": 0
+        "reach": 6,
+        "A": 1,
+        "B": 36
       },
       "stop": {
         "control": "p278 32294",
@@ -262,8 +313,8 @@
           "way": 1,
           "asked": 0.1,
           "went": 0.067,
-          "ms": 431,
-          "msOneCall": 218,
+          "ms": 271,
+          "msOneCall": 180,
           "stops": [
             "464/466"
           ],
@@ -273,7 +324,7 @@
               11.03
             ],
             "p464 4254": [
-              7.69,
+              7.7,
               0.39
             ],
             "p304 87083": [
@@ -291,8 +342,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 289,
-          "msOneCall": 171,
+          "ms": 180,
+          "msOneCall": 110,
           "stops": [],
           "moved": {
             "p298 87083": [
@@ -300,7 +351,7 @@
               10.89
             ],
             "p464 4254": [
-              7.59,
+              7.6,
               0.45
             ],
             "p304 87083": [
@@ -318,8 +369,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 204,
-          "msOneCall": 149,
+          "ms": 121,
+          "msOneCall": 78,
           "stops": [],
           "moved": {
             "p298 87083": [
@@ -335,7 +386,7 @@
               10.89
             ],
             "p459 4254": [
-              7.59,
+              7.6,
               0.45
             ]
           }
@@ -345,8 +396,8 @@
           "way": -1,
           "asked": 0.1,
           "went": -0.067,
-          "ms": 312,
-          "msOneCall": 157,
+          "ms": 204,
+          "msOneCall": 82,
           "stops": [
             "459/460"
           ],
@@ -364,13 +415,46 @@
               11.03
             ],
             "p459 4254": [
-              7.69,
+              7.7,
               0.39
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p278 32294",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p298 87083",
+            "p464 4254",
+            "p304 87083",
+            "p459 4254"
+          ],
+          "stops": [
+            "464/466"
+          ]
+        },
+        {
+          "control": "p291 32294",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p298 87083",
+            "p464 4254",
+            "p304 87083",
+            "p459 4254"
+          ],
+          "stops": [
+            "459/460"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p278 32294",
@@ -388,21 +472,21 @@
         "verdict": "shown"
       },
       "why": "not decided: p278 32294: a travel of 0.2 rad or less each way, stopped at +0.067 rad (464/466); p291 32294: a travel of 0.2 rad or less each way, stopped at -0.067 rad (459/460)",
-      "seconds": 19
+      "seconds": 55
     },
     {
       "function": 7,
       "does": "The front wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 115,
-      "msPerStep": 51,
+      "msOneCall": 119,
+      "msPerStep": 35,
       "time": {
-        "open": 2,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 22,
-        "B": 0
+        "A": 6,
+        "B": 49
       },
       "stop": null,
       "stops": [],
@@ -412,8 +496,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2129,
-          "msOneCall": 115,
+          "ms": 1514,
+          "msOneCall": 119,
           "stops": [],
           "moved": {}
         },
@@ -422,8 +506,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2198,
-          "msOneCall": 96,
+          "ms": 1426,
+          "msOneCall": 48,
           "stops": [],
           "moved": {}
         },
@@ -432,8 +516,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2154,
-          "msOneCall": 97,
+          "ms": 1479,
+          "msOneCall": 53,
           "stops": [],
           "moved": {}
         },
@@ -442,14 +526,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2192,
-          "msOneCall": 100,
+          "ms": 1390,
+          "msOneCall": 50,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 25
+      "B": [
+        {
+          "control": "p585 92909",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p588 92909",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 65
     }
   ]
 }
