@@ -23,7 +23,9 @@ import { join } from 'node:path';
 import { inferMechanism } from '../src/mechanism.ts';
 import { keptPivots, readParts } from './load-model.ts';
 
-const SETS_DIR = join('data', 'sets');
+// With --trains, the train sets' models (data/trains), read as the train check reads them: run it
+// with KINEBRICK_AS_OMR=1.
+const SETS_DIR = process.argv.includes('--trains') ? join('data', 'trains') : join('data', 'sets');
 
 // A value as text, with everything JSON leaves out put in: maps and sets by what they hold, and
 // the numbers JSON can't write.
