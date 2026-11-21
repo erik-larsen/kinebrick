@@ -189,10 +189,12 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     // little, so resting on the hole's top doesn't count as the end of its travel.
     for (const c of holes) {
       const room: [number, number] = [-(Math.min(drop, REACH) + 1), Math.min(rise, REACH)];
+      // `room` is up and down the rod; the slide measures the axle along the hole's own line, so
+      // it is turned round where that line points down.
       const way = new Vector3().subVectors(c.to, c.from).dot(up) >= 0 ? 1 : -1;
       c.kind = 'slide';
       c.turns = true;
-      c.extents = { male: [0, 0], female: way > 0 ? [-room[1], -room[0]] : room, overlap: 0 };
+      c.extents = { male: [0, 0], female: way > 0 ? room : [-room[1], -room[0]], overlap: 0 };
     }
     rests.push({ body: rod, on });
     // A rocker lying on its top bush: a part's underside (its anti-studs' mouths) over the bush's
