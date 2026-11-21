@@ -146,10 +146,10 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 698 | 57% |
+| Works | 696 | 57% |
 | Partly | 256 | 21% |
-| Doesn't work | 91 | 7% |
-| Skipped or not checked | 178 | 15% |
+| Doesn't work | 92 | 8% |
+| Skipped or not checked | 179 | 15% |
 
 Of the functions checked, 67% work in full. Only 25 of the 186 sets have every function working.
 

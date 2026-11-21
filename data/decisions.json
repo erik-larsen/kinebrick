@@ -5,9 +5,9 @@
       "moved": "2026-11-18"
     },
     "preview": {
-      "works": 698,
+      "works": 696,
       "partly": 256,
-      "no": 91,
+      "no": 92,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -31,30 +31,6 @@
       "effect": "Three choices. Not now: the worker stays on the 186 Technic sets. Quick wins: doors on stud pivots and the two fittings, about 2 days, which opens the door functions and little else. All of it: about 11 days, the worker off the Technic sets for that time, and lids on studs is a change in every set. Claude advises not now: the rolling rule, the second sweep's findings and the first move's speed are open on the 186, and lids on studs is the largest and riskiest part of the gain.",
       "reply": "Not now",
       "since": "2026-11-21"
-    },
-    {
-      "id": "two-functions-no-hand",
-      "kind": "Decision",
-      "title": "Two functions that no hand can work on the real set: keep, rewrite or skip?",
-      "what": "Two more of the buried controls are not at a motor. 42129 Zetros, function 2 (the centre differential): the list says to hold the motors and turn the front drive shaft, and names an axle inside the differential as the control. On the real truck that axle is enclosed; one sees the differential work only when the truck is driven or its wheels are turned. The worker proposes a control a hand can reach: with the motors held, turning the front wheels turns the rear ones through the shafts and the differential. 42131 Cat D11, function 10 (the red lever that switches the Control+ hub on): booklet 1, steps 169 to 174, builds the lever onto the hub's button inside the chassis, under the engine. It switches the electronics on; nothing mechanical follows from it, and Kinebrick has no hub button to press. The worker proposes to skip it, with the reason that it is a switch and not a mechanism, as the 42110's roof rack was skipped on 14 November as taken off by hand.",
-      "effect": "Both are works today, by the check turning a part no user can reach. With the changes, the 42129's function 2 is tested from the front wheels and may change its result, and the 42131's function 10 is skipped and leaves the count of working functions.",
-      "links": [
-        {
-          "label": "42131 booklet 1, page 154: the lever on the hub's button",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=154"
-        }
-      ],
-      "reply": "Rewrite the 42129's and skip the 42131's",
-      "since": "2026-11-21"
-    },
-    {
-      "id": "42070-fn2-fn7",
-      "kind": "Sign-off",
-      "title": "42070: the same motor control for functions 2 and 7",
-      "what": "You signed the XL motor as the control of the 42070's functions 1 and 6, which is applied and checked: both work from the motor. Functions 2 (the V8's pistons pump as the truck drives) and 7 (the motor raises and lowers the outriggers) name the same buried axle, part 402, as their control. They were not in what you signed, because the sweep had only flagged working functions and these two are partly. The change is the same: the motor, part 593, in place of the axle.",
-      "effect": "All four of the motor's functions are then worked the same way. Both are partly today and may stay so; the check will say.",
-      "reply": "Sign the 42070's functions 2 and 7 too",
-      "since": "2026-11-21"
     }
   ],
   "coming": [
@@ -68,7 +44,7 @@
     },
     {
       "title": "The next offer of main",
-      "what": "preview has 698 working functions after the sweep's holds of 21 November (740 before them) and main 701, counted before any hold. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
+      "what": "preview has 696 working functions after the sweep's holds of 21 November (740 before them) and main 701, counted before any hold. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
     },
     {
       "title": "A second worker, looked at again after 23 November",
@@ -495,6 +471,10 @@
     {
       "date": "2026-11-21",
       "what": "The worker's last work before the pause is merged (339): the viewer now offers to free friction pins also when a drag stops short on slack (the 42004's knob then turns); the 42070's XL motor is on its axle by your signed erratum and is the control of functions 1 and 6, which both work from it. The sweep's mended pointer shows 28 of the 29 functions it had failed on. 698 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your three answers are applied (340). The function lists document every function. The 42131's hub power switch stays in the list with its parts and is marked not checked, with a reason that begins \"electrical:\", until electrical functions are in Kinebrick's scope. The 42129's centre differential is now worked as a hand works it: a front wheel turned with the other front wheel held and the motors still. Worked so it does not work, which is the true state: the drive does not pass between the centre differential and the axles in Kinebrick's reading of the truck (the same fault keeps function 1 partly); the old control, an axle inside the differential, had hidden it. The 42070's functions 2 and 7 have the motor as their control; both stay partly. 696 functions work."
     }
   ]
 }

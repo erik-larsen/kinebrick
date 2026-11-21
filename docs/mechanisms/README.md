@@ -124,7 +124,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 54 works, 22 partly, 1 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 53 works, 22 partly, 2 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 works |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 3 works, 2 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 3 works, 3 partly |
@@ -153,7 +153,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 18 works, 8 partly, 4 no |
 | [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 19 works, 29 partly, 1 no |
 | [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 4 works, 8 partly, 11 no, 6 skipped |
-| [Crank and link](crank-and-link.md) | 57 | 1979 | 1 | 6 | 6 | 9 | 28 | 7 | 39 works, 34 partly, 5 no, 1 not checked |
+| [Crank and link](crank-and-link.md) | 57 | 1979 | 1 | 6 | 6 | 9 | 28 | 7 | 38 works, 34 partly, 5 no, 1 skipped, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 21 works, 8 partly |

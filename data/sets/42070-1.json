@@ -48,12 +48,13 @@
           "piston-engine: V8"
         ],
         "source": "book: page 394 (top middle inset: the engine under the bonnet, arrow on the pistons); the gears are read from the model",
-        "control": "p402 32073",
+        "control": "p593 58121",
         "moves": [
           "p592 18946",
           "p1057 94925",
           "p1137 2853"
-        ]
+        ],
+        "note": "The control is the XL motor p593 58121, as in function 1 (Erik signed it, \"Sign the 42070's functions 2 and 7 too\", 2026-11-21); it was the axle p402 32073 in the motor's shaft."
       },
       {
         "does": "The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive.",
@@ -159,7 +160,7 @@
           "linear-actuator: outriggers"
         ],
         "source": "book: page 397 (bottom left inset: all four legs going down, the left remote lever); the gears and actuators are read from the model",
-        "control": "p402 32073",
+        "control": "p593 58121",
         "first": [
           {
             "control": "p1770 41669",
@@ -184,7 +185,7 @@
         "stays": [
           "p1320 18938"
         ],
-        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped down (by +0.5) sets outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
+        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped down (by +0.5) sets outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15). The control is the XL motor p593 58121, as in function 6 (Erik signed it, \"Sign the 42070's functions 2 and 7 too\", 2026-11-21); it was the axle p402 32073 in the motor's shaft."
       },
       {
         "does": "In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook.",
@@ -283,9 +284,9 @@
     ]
   },
   "generated": {
-    "commit": "549bd8a3",
+    "commit": "460068e4",
     "date": "2026-11-21",
-    "seconds": 285,
+    "seconds": 197,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -433,8 +434,7 @@
             ]
           ]
         ],
-        "seconds": 31.7,
-        "peak": 945
+        "seconds": 30.9
       },
       {
         "result": "partly",
@@ -494,8 +494,7 @@
         ],
         "cause": "not-driven",
         "detail": "p592 18946",
-        "seconds": 8,
-        "peak": 935
+        "seconds": 7.2
       },
       {
         "result": "works",
@@ -565,8 +564,7 @@
             ]
           ]
         ],
-        "seconds": 14,
-        "peak": 980
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -644,8 +642,7 @@
             0.47
           ]
         ],
-        "seconds": 8.4,
-        "peak": 907
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -723,8 +720,7 @@
             0.47
           ]
         ],
-        "seconds": 5.3,
-        "peak": 977
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -802,8 +798,7 @@
             ]
           ]
         ],
-        "seconds": 30.9,
-        "peak": 942
+        "seconds": 21.4
       },
       {
         "result": "partly",
@@ -913,8 +908,7 @@
             0.43
           ]
         ],
-        "seconds": 89.9,
-        "peak": 931
+        "seconds": 79.2
       },
       {
         "result": "works",
@@ -984,8 +978,7 @@
             ]
           ]
         ],
-        "seconds": 17.4,
-        "peak": 935
+        "seconds": 12.1
       },
       {
         "result": "partly",
@@ -1072,8 +1065,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2086 40490",
-        "seconds": 22.7,
-        "peak": 914
+        "seconds": 15.7
       },
       {
         "result": "works",
@@ -1183,12 +1175,13 @@
             0.17
           ]
         ],
-        "seconds": 7.3,
-        "peak": 903
+        "seconds": 5.2
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
-    ]
+    ],
+    "peak": 1199
   }
 }
