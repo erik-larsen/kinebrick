@@ -281,9 +281,42 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
     }
   });
 
+  it('the null space on rows as big and as sparse as a step\'s, with ties, rows that repeat others and −0', () => {
+    let seed = 4242;
+    const random = () => ((seed = (seed * 1103515245 + 12345) % 2 ** 31) / 2 ** 31);
+    // Entries from a few values, so that many are as large as each other (ties for the pivot), and some
+    // of any size.
+    const value = (): number => {
+      const r = random();
+      if (r < 0.3) return [1, -1, 0.5, -0.5, 2][Math.floor(random() * 5)];
+      if (r < 0.35) return -0;
+      if (r < 0.37) return 1e-12 * (random() - 0.5);
+      return random() * 2 - 1;
+    };
+    const calls: Call[] = [];
+    for (let t = 0; t < 40; t++) {
+      const n = 5 + Math.floor(random() * 120);
+      const count = 1 + Math.floor(random() * 200);
+      const share = 0.01 + random() * 0.08;
+      const rows = Array.from({ length: count }, () => Array.from({ length: n }, () => (random() < share ? value() : 0)));
+      // Rows that repeat others (a sum, a multiple, a copy), as the equations of a loop do.
+      for (let d = 0; d < 1 + Math.floor(random() * 10) && count > 2; d++) {
+        const [i, j] = [Math.floor(random() * count), Math.floor(random() * count)];
+        const how = random();
+        rows.push(rows[i].map((x, k) => (how < 0.4 ? x + rows[j][k] : how < 0.7 ? 3 * x : x)));
+      }
+      // No NaN: the rook pivoting never ends on one, in the present elimination as in this (a NaN is
+      // never as large as itself, so the search goes on round it).
+      calls.push({ kernel: 'nullSpace', args: [rows, n] });
+    }
+    sameOnAll(calls);
+  });
+
   const models: [string, string, number][] = [
     ['the 9397 Logging Truck, its steering', 'omr/9397-1 Logging Truck.mpd', 1000],
     ['the 8110 Unimog, its steering', 'omr/8110-1 Mercedes-Benz Unimog U 400.mpd', 1504],
+    ["the 8110 Unimog, its slewing motor (function 8's holds)", 'omr/8110-1 Mercedes-Benz Unimog U 400.mpd', 60],
+    ['the 42083 Bugatti Chiron, its steering', 'omr/42083-1 Bugatti Chiron.mpd', 2742],
     ["the 42100 Liebherr R 9800, its bucket's motor", 'omr/42100-1 Liebherr R 9800.mpd', 3237],
   ];
   for (const [what, model, part] of models) {

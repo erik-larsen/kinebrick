@@ -962,7 +962,10 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
 }
 
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
-// Plain loops on typed arrays: this runs many times a step.
+// Plain loops on typed arrays: this runs many times a step. Each row's places that may not be 0, and
+// each column's rows that may not be 0 there, are kept, so that the searches and the elimination go
+// over those only: a step's rows have a few places each out of hundreds (decision 277). The pivots,
+// and every sum, are those of the plain elimination (the test keeps it, oldNullSpace).
 export function nullSpace(rows: Row[], n: number): number[][] {
   kernelSpy.on?.('nullSpace', [rows, n]);
   const a = rows.map((r) => Float64Array.from(r));
@@ -992,6 +995,14 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     }
     places.set(x, { list, mark });
   }
+  // Each column's rows that may not be 0 there: those whose places list it, each once (its mark),
+  // listed still when its entry there comes to 0. And each row's position in `a`, as rows change places.
+  const inColumn: Float64Array[][] = Array.from({ length: n }, () => []);
+  const at = new Map<Float64Array, number>();
+  a.forEach((x, i) => {
+    at.set(x, i);
+    for (const k of places.get(x)!.list) inColumn[k].push(x);
+  });
   for (let r = 0; r < a.length; r++) {
     // Pivot on an entry that's the largest in both its row and its column ("rook pivoting"),
     // for accuracy: picking only down a column lets rounding errors grow until an equation
@@ -1012,9 +1023,19 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       }
       return best;
     };
+    // Of the rows from r on, the first with the largest entry in column k: r, unless a later row's
+    // is larger (strictly). The same as going down every row in order: a 0 is never larger than
+    // anything, nor NaN, so only the rows listed in the column can take over from r, and of two as
+    // large the earlier wins whichever order they come in.
     const largestInColumn = (k: number) => {
       let best = r;
-      for (let i = r + 1; i < a.length; i++) if (Math.abs(a[i][k]) > Math.abs(a[best][k])) best = i;
+      let most = Math.abs(a[r][k]);
+      for (const x of inColumn[k]) {
+        const i = at.get(x)!;
+        if (i <= r) continue;
+        const v = Math.abs(x[k]);
+        if (v > most || (v === most && best !== r && i < best)) [best, most] = [i, v];
+      }
       return best;
     };
     let best = r;
@@ -1040,6 +1061,8 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     used[c] = true;
     unused = unused.filter((k) => k !== c);
     [a[r], a[best]] = [a[best], a[r]];
+    at.set(a[r], r);
+    at.set(a[best], best);
     const row = a[r];
     const pivot = row[c];
     // The pivot row's nonzero entries: the only columns taking it from another row changes.
@@ -1050,9 +1073,11 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       row[k] /= pivot;
       nonzero.push(k);
     }
-    for (let i = 0; i < a.length; i++) {
-      const other = a[i];
-      if (i === r || other[c] === 0) continue;
+    // The other rows with an entry in the pivot column: those listed in it (each row is worked on
+    // its own, so in whatever order). A place a row gains lists it in that column too; never in
+    // column c itself, where every row taken is listed already.
+    for (const other of inColumn[c]) {
+      if (other === row || other[c] === 0) continue;
       const factor = other[c];
       for (const k of nonzero) other[k] -= factor * row[k];
       const own = places.get(other)!;
@@ -1060,6 +1085,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
         if (own.mark[k]) continue;
         own.mark[k] = 1;
         own.list.push(k);
+        inColumn[k].push(other);
       }
       tiny.delete(other);
     }
