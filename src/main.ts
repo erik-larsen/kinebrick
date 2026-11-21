@@ -627,6 +627,29 @@ async function start() {
     readAsBuilt(new Map());
     return false;
   };
+  // Takes back a slide asked for (decision 305 of 2026-11-21): the part comes out of the parts asked
+  // to slide, and of the address, and the mechanism is worked out afresh as it now stands, so the
+  // part turns on its axle again. Shift on a wheel or gear that no pin holds asks it to slide, and
+  // it then turned no more until Reset; Shift again now takes that back. Whether it was asked.
+  const unslideOnAxle = (part: number) => {
+    if (!slid.has(part)) return false;
+    slid.delete(part);
+    // Its body's parts back where they were built, if the slide moved them (the 42078's roof gear,
+    // slid out of its mesh, turned freely after): each the move that takes it from where it is read
+    // now to its place as built, as the frame sees it (see readAsBuilt's asBuilt).
+    const moves = new Map<number, Matrix4>();
+    const back = kin.poses[0].clone().invert();
+    const body = mech.bodyOf[part];
+    for (const i of mech.bodies[body].parts) {
+      const toBuilt = startParts[i].matrix.clone().multiply(parts[i].matrix.clone().invert());
+      if (toBuilt.equals(new Matrix4())) continue;
+      const onFrame = back.clone().multiply(kin.poses[mech.bodyOf[i]]);
+      moves.set(i, onFrame.clone().multiply(toBuilt).multiply(onFrame.clone().invert()));
+    }
+    readAsBuilt(moves);
+    showSlid();
+    return true;
+  };
   // After a drag, a part asked to slide that has moved along its slide is read where it now is
   // against the body it slides on (see readAsBuilt), so that an axle it took out of a hole no
   // longer holds what the hole is in (the 42078's door, once its lock bar is lifted).
@@ -1219,6 +1242,7 @@ async function start() {
     pinsToShift,
     freePins,
     slideOnAxle,
+    unslideOnAxle,
   };
   summary.textContent = 'Setting up…';
   await shown();
