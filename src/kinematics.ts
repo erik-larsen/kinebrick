@@ -31,7 +31,7 @@ import { holdRows, holds } from './constraints/holds.ts';
 import { joints } from './constraints/joints.ts';
 import { loops } from './constraints/loops.ts';
 import { rails } from './constraints/rails.ts';
-import { rests } from './constraints/rests.ts';
+import { rests, restingOn } from './constraints/rests.ts';
 import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
@@ -440,6 +440,7 @@ export class Kinematics {
   private traceName = ''; // with TRACE, the kind of connection whose rows buildEquations is adding
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
+  private closingFollowers = new Set<number>(); // resting bodies whose support moves in the step: they follow it as the loops close (see advance)
   private gripped = false; // whether the motion last chosen was one of those
   // The slides held at an end of their travel for the step under way, which the motion chosen
   // would otherwise push past it (see jointMotion; decision 192 of 2026-11-18). Each holds as a
@@ -2922,10 +2923,68 @@ export class Kinematics {
 
   private turnJointClassified(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     try {
-      return this.turnJointGuarded(joint, angle, allowed, maxStep);
+      return this.turnJointGivingWay(joint, angle, allowed, maxStep);
     } finally {
       if (FREE_COUNT()) this.countFree();
     }
+  }
+
+  // The free-parts rule's holds give way where they block (decision 319): a free part stays where it is
+  // until the motion comes to need it, and then moves, as friction lets it. So where a turn ends short
+  // with the rule's holds on, and not because `allowed` said no (a collision, an end of travel), the
+  // held joints that the motion without the rule's holds turns are let go for the rest of the drag, and
+  // the rest of the turn is taken again; and so on while any is let go. The choice made at the drag's
+  // first step is only ever loosened, never made afresh, so it can't jump back. (The 9397 Logging
+  // Truck, rolled by a rear wheel: its engine's pistons stand at their dead centres as built, still to
+  // first order, so the choice held them; after 0.25 rad the wheels drove them, and held, they stopped
+  // the truck at a dead point.)
+  private turnJointGivingWay(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
+    let refused = false;
+    const asked = allowed ? () => (allowed() ? true : ((refused = true), false)) : undefined;
+    let turned = this.turnJointGuarded(joint, angle, asked, maxStep);
+    while (!refused && this.drag.heldJoints.size && Math.abs(turned - angle) > 1e-12 && Math.sign(angle) * (angle - turned) > 0) {
+      const state = this.stepState();
+      const held = [...this.drag.heldJoints];
+      this.drag.heldJoints = new Set();
+      this.lastSearch = null;
+      const m = this.jointMotion(joint);
+      this.restoreStepState(state);
+      this.lastSearch = null;
+      if (!m) break;
+      const c = this.anyJointRate(m, joint);
+      let blocking = held.filter((j) => Math.abs(this.anyJointRate(m, j)) > 1e-6 * Math.abs(c));
+      if (!blocking.length) {
+        // None turns to first order: a part at a dead centre (a piston at the top of its stroke), which
+        // the step needs to move only to second order, as the loops close. A step without the rule's
+        // holds, from here, says which: those held joints that it moved (the turn between a joint's two
+        // bodies, or the slide).
+        const rel = () => this.mech.joints.map((j) => this.poses[j.bodyA].clone().invert().multiply(this.poses[j.bodyB]));
+        const was = rel();
+        const step = Math.sign(angle - turned) * Math.min(Math.abs(angle - turned), maxStep);
+        this.drag.heldJoints = new Set();
+        this.deadPoint = null;
+        const went = this.turnJointGuarded(joint, step, asked, maxStep);
+        const now = rel();
+        this.restoreStepState(state);
+        this.lastSearch = null;
+        if (Math.abs(went) < 1e-12) break;
+        const q = new Quaternion();
+        const moved = (j: number) => {
+          const d = was[j].clone().invert().multiply(now[j]);
+          return this.mech.joints[j].kind === 'slide' ? new Vector3().setFromMatrixPosition(d).length() : 2 * Math.acos(Math.min(1, Math.abs(q.setFromRotationMatrix(d).w)));
+        };
+        blocking = held.filter((j) => moved(j) > 1e-6 * Math.abs(went));
+        if (!blocking.length) break;
+      }
+      this.drag.heldJoints = new Set(held.filter((j) => !blocking.includes(j)));
+      this.deadPoint = null;
+      this.aheadKept = null;
+      if (setting('KINEBRICK_FREE_DEBUG')) console.error(`free parts: ${blocking.length} held joints give way at ${turned.toFixed(4)} of ${angle}: ${blocking.join(' ')}`);
+      const more = this.turnJointGuarded(joint, angle - turned, asked, maxStep);
+      turned += more;
+      if (Math.abs(more) < 1e-12) break;
+    }
+    return turned;
   }
 
   private turnJointGuarded(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
@@ -4119,7 +4178,7 @@ export class Kinematics {
     const springs = inBasis(this.springRows(), basis);
     const pins = (z: number[]) => [...stiff.map((j) => rateOf(z, j)), ...springs.map((row) => dot(row, z))];
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.body)));
-    const bodies = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && b !== grabbed && !pulleys.has(b));
+    const bodies = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && b !== grabbed && !pulleys.has(b) && !this.closingFollowers.has(b));
     // With SPARSE_FRICTION, each body counts by how many parts it has: heavier.
     const mass = new Array(this.bodyCount).fill(SPARSE_FRICTION ? 0 : 1);
     if (SPARSE_FRICTION) for (const b of this.mech.bodyOf) if (b >= 0) mass[b]++;
@@ -4207,7 +4266,22 @@ export class Kinematics {
     // the ground, swung it round the other rear wheel and tipped it forward.
     const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
     const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
-    const list: Tier[] = [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
+    // A resting body following its support as the loops close (see advance): its joints' turning costs
+    // nothing either.
+    const followed = this.closingFollowers;
+    const pulleyJoints = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.joint] : []))));
+    const sizeHere = followed.size
+      ? (z: number[]) =>
+          this.mech.joints.flatMap((j, i) => {
+            if (pulleyJoints.has(i) || followed.has(j.bodyA) || followed.has(j.bodyB)) return [];
+            if (j.kind === 'revolute' || (j.kind === 'slide' && j.turns)) return [rateOf(z, i)];
+            if (j.kind !== 'ball') return [];
+            const w = turning(z);
+            const [a, b] = [3 * j.bodyA, 3 * j.bodyB];
+            return [w[b] - w[a], w[b + 1] - w[a + 1], w[b + 2] - w[a + 2]];
+          })
+      : size;
+    const list: Tier[] = [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: sizeHere, joints: true }, { cost: moves }];
     return list;
   }
 
@@ -4287,7 +4361,16 @@ export class Kinematics {
         if (this.options.leastMotion && this.drag.turning !== null && this.options.closeStill > 0) {
           const most = Math.max(...m.map(Math.abs));
           const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
-          this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
+          // A resting body follows what it stands on (decisions 317 and 319): where the support it rests
+          // on now moves in the step (a camshaft's lobe turning under a push rod at its top, still to
+          // first order there), it isn't kept still, nor costs anything in closing's tiers (see
+          // leastTiers), so closing the loops sets it on its support rather than turning the support
+          // back (the 42112's camshaft, turned back through the open rear differentials until the step
+          // was refused). Kept still, still, where its support is still too (the 858's push rods on
+          // their plate, whose crank jams a turn short otherwise).
+          const moving = (b: number) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * b + k] - m[k]) > 1e-9 * most);
+          this.closingFollowers = new Set((this.mech.rests ?? []).flatMap((r) => { const on = restingOn(this, r); return on && moving(on.body) ? [r.body] : []; }));
+          this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && !this.closingFollowers.has(b) && !moving(b));
         }
         // Least motion: what slides or swivels on the car (see findMounts) and the step leaves
         // still on it is held there while the loops are closed, as tier 1 kept it, but for
@@ -4303,6 +4386,7 @@ export class Kinematics {
           gap = this.closeLoops(keep);
         } finally {
           this.closingStill = [];
+          this.closingFollowers = new Set();
           for (const b of mountsHeld) this.drag.held.delete(b);
         }
         this.settle();
