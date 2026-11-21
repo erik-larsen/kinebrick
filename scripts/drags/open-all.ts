@@ -13,6 +13,7 @@ import { spawn } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { partCounts } from '../check-pool.ts';
+import { LIBRARY } from './drag.ts';
 import { chromium } from 'playwright';
 
 const args = process.argv.slice(2);
@@ -33,7 +34,7 @@ if (oneAt >= 0) {
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
     const started = Date.now();
-    await page.goto(`${base}/?file=${encodeURIComponent(model)}&option=debug`);
+    await page.goto(`${base}/?file=${encodeURIComponent(model)}&option=debug${LIBRARY}`);
     // Loaded (the debug handle is set at the end of loading) or failed (the summary says Error).
     await page.waitForFunction(() => (window as any).kinebrick?.mech || /^Error/.test(document.getElementById('summary')?.textContent ?? ''), null, { timeout: LOAD_MS });
     const seconds = Math.round((Date.now() - started) / 1000);

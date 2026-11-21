@@ -41,11 +41,18 @@ export type Viewer = {
   close(): Promise<void>;
 };
 
+// Where the viewer under test takes its parts from: the LDraw library in the viewer's own folder
+// (ldraw/, which npm run dev serves), not the copy on the web. A browser with no window keeps
+// nothing between runs, so every model opened fetched each of its parts again, and on 2026-11-20
+// a day of sweeps brought the web copy to answer 429, too many requests, for everyone. Set
+// KINEBRICK_WEB_LIBRARY=1 to test with the web copy all the same.
+export const LIBRARY = process.env.KINEBRICK_WEB_LIBRARY ? '' : '&library=/ldraw/';
+
 export async function open(file: string, settings = ''): Promise<Viewer> {
   const base = process.argv[2] ?? 'http://localhost:5174';
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
-  await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug${settings ? '&' + settings : ''}`);
+  await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug${LIBRARY}${settings ? '&' + settings : ''}`);
   await page.waitForFunction(() => {
     const k = (window as any).kinebrick;
     return k && k.kin && k.kin.poses.length > 0;
