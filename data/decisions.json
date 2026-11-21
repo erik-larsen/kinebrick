@@ -69,6 +69,25 @@
       ],
       "reply": "Sign the 42080's control change",
       "since": "2026-11-21"
+    },
+    {
+      "id": "42129-fn8-wording",
+      "kind": "Sign-off",
+      "title": "42129 Zetros, function 8: the list's words on the steering wheel in the cab",
+      "what": "The list says: \"The steering wheel in the cab turns freely; it isn't connected to the steering.\" Its source was inferred from the parts. The worker read booklet step 352: the wheel is built onto a red axle 2 in a black connector as one piece, and that piece is fitted into the cab on a pin. So the wheel does not spin on its own axle. Proposed words: \"The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle.\" Proposed source: \"book step 352 (page 216): the wheel built onto its axle and connector in the inset, then fitted in the cab\". The step does not show whether the piece can rock on its pin, so the control and the part that must stay are left as they are.",
+      "effect": "Words and source only. What the check tests does not change, and the function stays as it is counted.",
+      "links": [
+        {
+          "label": "Booklet page 216, step 352",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=216"
+        },
+        {
+          "label": "42129 in the viewer, the steering wheel marked",
+          "url": "http://localhost:5174/?file=omr%2F42129-1%204x4%20Mercedes-Benz%20Zetros%20Trial%20Truck.mpd&show=1935"
+        }
+      ],
+      "reply": "Sign the 42129's wording",
+      "since": "2026-11-21"
     }
   ],
   "coming": [
