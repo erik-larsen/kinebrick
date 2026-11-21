@@ -77,20 +77,6 @@
     "date": "2026-11-21"
   },
   {
-    "set": "8063-1",
-    "function": 5,
-    "result": "partly",
-    "reason": "The real part turns without end, but in the viewer a collision stops it: the drive shaft p112 at 0.64 rad (parts 106/119). Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "8063-1",
-    "function": 6,
-    "result": "partly",
-    "reason": "The real part turns without end, but in the viewer a collision stops it: the power take-off p701 at 1.5 rad (parts 60/106). Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
     "set": "8844-1",
     "function": 4,
     "result": "partly",
