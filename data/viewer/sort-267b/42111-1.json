@@ -1,0 +1,224 @@
+{
+  "set": "42111-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:33:56.795Z",
+  "load": 36.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1055,
+  "seconds": 1132,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The boot lid opens on its hinges at the back of the car.",
+      "verdict": "not shown",
+      "why": "A: p964 26287, p978 32524, p979 32524 not moved",
+      "msOneCall": 5,
+      "msPerStep": null,
+      "time": {
+        "open": 16,
+        "collisions": 8,
+        "first": 0,
+        "reach": 6,
+        "A": 6,
+        "B": 457
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p959 64782",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p964 26287": [
+              0,
+              0
+            ],
+            "p978 32524": [
+              0,
+              0
+            ],
+            "p979 32524": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p959 64782",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p964 26287": [
+              0,
+              0
+            ],
+            "p978 32524": [
+              0,
+              0
+            ],
+            "p979 32524": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p959 64782",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p964 26287",
+            "p978 32524",
+            "p979 32524"
+          ],
+          "stops": [
+            "872/959",
+            "871/959",
+            "136/959",
+            "793/959"
+          ]
+        }
+      ],
+      "seconds": 493
+    },
+    {
+      "function": 10,
+      "does": "The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film.",
+      "verdict": "not shown",
+      "why": "A: p326 15462, p463 3749, p466 3749 not moved",
+      "msOneCall": 119,
+      "msPerStep": null,
+      "time": {
+        "open": 16,
+        "collisions": 9,
+        "first": 0,
+        "reach": 63,
+        "A": 93,
+        "B": 457
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p328 2825",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 40,
+          "msOneCall": 119,
+          "stops": [],
+          "moved": {
+            "p326 15462": [
+              0,
+              0
+            ],
+            "p463 3749": [
+              0,
+              0
+            ],
+            "p466 3749": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ],
+            "p475 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p328 2825",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.73,
+          "went": 0,
+          "ms": 38,
+          "msOneCall": 87,
+          "stops": [],
+          "moved": {
+            "p326 15462": [
+              0,
+              0
+            ],
+            "p463 3749": [
+              0,
+              0
+            ],
+            "p466 3749": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ],
+            "p475 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p328 2825",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "moved": [
+            "p326 15462",
+            "p463 3749",
+            "p466 3749"
+          ],
+          "stops": [
+            "170/180",
+            "169/169",
+            "167/167"
+          ]
+        }
+      ],
+      "seconds": 639
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "set": "8849-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T01:42:25.535Z",
+  "load": 28.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 329,
+  "seconds": 164,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.",
+      "verdict": "not shown",
+      "why": "A: p100 4261, p101 4261, p114 3743 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 3,
+        "first": 0,
+        "reach": 2,
+        "A": 2,
+        "B": 149
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p97 4442",
+          "way": 1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p97 4442",
+          "way": -1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p97 4442",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p100 4261",
+            "p101 4261",
+            "p114 3743"
+          ],
+          "stops": [
+            "117/154",
+            "116/155"
+          ]
+        }
+      ],
+      "seconds": 164
+    }
+  ]
+}

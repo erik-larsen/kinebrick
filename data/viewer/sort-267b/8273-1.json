@@ -1,0 +1,86 @@
+{
+  "set": "8273-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:11:16.052Z",
+  "load": 37.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 791,
+  "seconds": 416,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The tailgate at the back of the bed swings open.",
+      "verdict": "not shown",
+      "why": "A: p357 32316 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 16,
+        "collisions": 7,
+        "first": 0,
+        "reach": 5,
+        "A": 5,
+        "B": 383
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p345 32316",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p357 32316": [
+              0,
+              0
+            ],
+            "p370 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p345 32316",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p357 32316": [
+              0,
+              0
+            ],
+            "p370 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p345 32316",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p357 32316"
+          ],
+          "stops": [
+            "98/292",
+            "348/377"
+          ]
+        }
+      ],
+      "seconds": 416
+    }
+  ]
+}

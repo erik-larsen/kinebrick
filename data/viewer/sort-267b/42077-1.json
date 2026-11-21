@@ -1,0 +1,203 @@
+{
+  "set": "42077-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:19:02.933Z",
+  "load": 36.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 980,
+  "seconds": 1366,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints.",
+      "verdict": "not shown",
+      "why": "A: p59 62821, p139 2853, p142 2851, p143 2851 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 26,
+        "collisions": 15,
+        "first": 0,
+        "reach": 204,
+        "A": 14,
+        "B": 1107
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1076 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1076 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1080 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1080 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1076 15038",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "104/1086",
+            "93/1084"
+          ]
+        },
+        {
+          "control": "p1080 15038",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p59 62821",
+            "p139 2853",
+            "p142 2851",
+            "p143 2851"
+          ],
+          "stops": [
+            "93/1084",
+            "10/459"
+          ]
+        }
+      ],
+      "seconds": 1366
+    }
+  ]
+}
