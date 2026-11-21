@@ -86,7 +86,7 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
     "seconds": 4,
     "counts": {
@@ -195,120 +195,115 @@
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rims p567 and p574 at 0.07 rad each way (parts 118/327 and 118/338). Viewer sweep with a full turn asked, decision 288.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.07,
-              -0.07
-            ],
-            [
-              0.07,
-              -0.07
-            ]
+        "turned": [
+          [
+            0.07,
+            -0.07
           ],
-          "rates": [
-            {},
-            {}
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ],
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "movedBy": [
-            [],
-            []
-          ],
-          "collisionStops": [
+          [
+            0.07,
+            -0.07
+          ]
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [
             [
               0,
-              1,
-              118,
-              327,
-              0.07,
-              0.07
+              0
             ],
             [
               0,
-              -1,
-              118,
-              338,
-              0.07,
-              0.07
-            ],
-            [
-              1,
-              1,
-              118,
-              338,
-              0.07,
-              0.07
-            ],
-            [
-              1,
-              -1,
-              118,
-              327,
-              0.07,
-              0.07
+              0
             ]
           ],
-          "seconds": 0.3
-        }
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "movedBy": [
+          [],
+          []
+        ],
+        "cause": "stopped-endless",
+        "detail": "p567 56904: p118 41677 against p327 24316",
+        "collisionStops": [
+          [
+            0,
+            1,
+            118,
+            327,
+            0.07,
+            0.07
+          ],
+          [
+            0,
+            -1,
+            118,
+            338,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            1,
+            118,
+            338,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            -1,
+            118,
+            327,
+            0.07,
+            0.07
+          ]
+        ],
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -345,9 +340,9 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       }
     ],
-    "peak": 455
+    "peak": 483
   }
 }

@@ -1,0 +1,110 @@
+{
+  "set": "42110-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:02:42.159Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2565,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
+      "verdict": "not shown",
+      "msOneCall": 247,
+      "msPerStep": 66,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p385 3706",
+        "way": 1,
+        "went": 0.174,
+        "asked": 1.5,
+        "by": [
+          "641/642"
+        ]
+      },
+      "stops": [
+        "641/642",
+        "648/714"
+      ],
+      "A": [
+        {
+          "control": "p385 3706",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.174,
+          "ms": 252,
+          "msOneCall": 247,
+          "stops": [
+            "641/642"
+          ],
+          "moved": {
+            "p723 32072": [
+              0,
+              9.99
+            ],
+            "p715 32072": [
+              0,
+              9.99
+            ],
+            "p578 42110 - 35188": [
+              0,
+              9.99
+            ]
+          }
+        },
+        {
+          "control": "p385 3706",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 197,
+          "msOneCall": 116,
+          "stops": [
+            "648/714"
+          ],
+          "moved": {
+            "p723 32072": [
+              0,
+              6
+            ],
+            "p715 32072": [
+              0,
+              6
+            ],
+            "p578 42110 - 35188": [
+              0,
+              6
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p385 3706",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.174 rad (641/642); -0.105 rad (648/714)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the '+ -' inset on page 490 shows the round knob between the seats turned both ways with a curved arrow spanning roughly a half turn, to step the sequential gearbox, far more than the viewer's 0.10-0.17 rad.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p385 3706: a travel of 0.2 rad or less each way, stopped at +0.174 rad (641/642); -0.105 rad (648/714) (the '+ -' inset on page 490 shows the round knob between the seats turned both ways with a curved arrow spanning roughly a half turn, to step the sequential gearbox, far more than the viewer's 0.10-0.17 rad., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490)",
+      "seconds": 6
+    }
+  ]
+}

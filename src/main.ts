@@ -31,6 +31,7 @@ import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { collisionGeometry, Collisions, connectedPairs, keptTouching, pairNumber, PartMesh, touchingFrom } from './collisions.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
+import { pointDirections, pushStep } from './push.ts';
 import { keptPivots } from './keptPivots.ts';
 import { pivotsKey } from './pivotsKey.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
@@ -1279,7 +1280,7 @@ async function start() {
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
-  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), noChild: () => partObjects.flatMap((obj, i) => (obj.userData.noChild ? [{ part: i, name: obj.name, why: obj.userData.noChild }] : [])), setup, interaction, collisions: () => collisions };
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), noChild: () => partObjects.flatMap((obj, i) => (obj.userData.noChild ? [{ part: i, name: obj.name, why: obj.userData.noChild }] : [])), setup, interaction, collisions: () => collisions, catchOf: (ring: number) => catches.find((c) => c.ring.part === ring || (c.ring.riders ?? []).includes(ring))?.part ?? null, catchShiftsNow: () => [...catchShifts(partsNow(), table, catches)], pushStep, pointDirections };
   // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
   // on the title card: a box to type it in, and a button either side that changes it by 10,
   // never below 1 or above MAX_RPM.

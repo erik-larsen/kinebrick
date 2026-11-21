@@ -1,0 +1,103 @@
+{
+  "set": "42036-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:19.317Z",
+  "load": 13.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 362,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear wheel rides on a swing arm pivoted under the seat, with a yellow shock absorber from the frame to the swing arm, so the rear wheel moves up and down; the chain runs round the sprocket on the pivot axle, so the drive to the engine keeps working.",
+      "verdict": "shown",
+      "msOneCall": 23,
+      "msPerStep": 6,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p79 64290",
+        "way": 1,
+        "went": 0.279,
+        "asked": 1.5,
+        "by": [
+          "455/454"
+        ]
+      },
+      "stops": [
+        "455/454"
+      ],
+      "A": [
+        {
+          "control": "p79 64290",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.279,
+          "ms": 47,
+          "msOneCall": 23,
+          "stops": [
+            "455/454"
+          ],
+          "moved": {
+            "p118 88517": [
+              55.81,
+              27.03
+            ],
+            "p455 4254": [
+              20.12,
+              2.21
+            ],
+            "p146 3705": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p79 64290",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 5,
+          "msOneCall": 7,
+          "stops": [
+            "455/454"
+          ],
+          "moved": {
+            "p118 88517": [
+              0,
+              0
+            ],
+            "p455 4254": [
+              0,
+              0
+            ],
+            "p146 3705": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p79 64290",
+          "judged": "stands",
+          "why": "stopped at +0.279 rad (455/454); -0 rad (455/454); kinds swing-arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    }
+  ]
+}

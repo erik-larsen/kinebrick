@@ -1,0 +1,70 @@
+{
+  "set": "42078-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:35:33.759Z",
+  "load": 15.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2651,
+  "seconds": 37,
+  "functions": [
+    {
+      "function": 7,
+      "does": "The trailer swings on its king pin behind the tractor.",
+      "verdict": "shown",
+      "msOneCall": 299,
+      "msPerStep": 135,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1634 32278",
+          "way": 1,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 2315,
+          "msOneCall": 299,
+          "stops": [],
+          "moved": {
+            "p1890 56145": [
+              521.84,
+              79.95
+            ],
+            "p199 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1634 32278",
+          "way": -1,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 2232,
+          "msOneCall": 189,
+          "stops": [],
+          "moved": {
+            "p1890 56145": [
+              521.84,
+              79.95
+            ],
+            "p199 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 37
+    }
+  ]
+}

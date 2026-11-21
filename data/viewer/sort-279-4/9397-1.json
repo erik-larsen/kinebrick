@@ -1,0 +1,108 @@
+{
+  "set": "9397-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:46:22.086Z",
+  "load": 8.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1143,
+  "seconds": 42,
+  "functions": [
+    {
+      "function": 2,
+      "does": "With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 46,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 10,
+        "reach": 0,
+        "A": 12,
+        "B": 12
+      },
+      "stop": {
+        "control": "p240 58120",
+        "way": 1,
+        "went": 4.712,
+        "asked": 4.1,
+        "by": [
+          "211/216"
+        ]
+      },
+      "stops": [
+        "211/216"
+      ],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 4.1,
+          "went": 4.712,
+          "ms": 6208,
+          "msOneCall": null,
+          "stops": [
+            "211/216"
+          ],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              1.73,
+              0
+            ],
+            "p894 64178": [
+              1.2,
+              0.86
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 4.2,
+          "went": -5.184,
+          "ms": 5591,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              1.9,
+              0
+            ],
+            "p894 64178": [
+              1.28,
+              0.92
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p240 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p624 62274c01 against p623 62271c01",
+            "p894 64178"
+          ],
+          "stops": [
+            "211/216"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p240 58120",
+          "judged": "stands",
+          "why": "stopped at +4.712 rad (211/216); kinds electric-motor, function-selector, linear-actuator: container tipper"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 42
+    }
+  ]
+}

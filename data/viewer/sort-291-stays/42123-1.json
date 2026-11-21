@@ -1,0 +1,111 @@
+{
+  "set": "42123-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:37.701Z",
+  "load": 17.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 819,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12 tooth gear on top of the roof steers the front wheels: its upright shaft drives a pair of 12 tooth bevel gears under the cockpit, and a long shaft forward to a 12 tooth gear at the front slides the steering rack across, turning both front hubs.",
+      "verdict": "shown",
+      "msOneCall": 43,
+      "msPerStep": 12,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p49 87083",
+        "way": 1,
+        "went": 0.698,
+        "asked": 1.5,
+        "by": [
+          "110/117"
+        ]
+      },
+      "stops": [
+        "110/117"
+      ],
+      "A": [
+        {
+          "control": "p49 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 233,
+          "msOneCall": 43,
+          "stops": [
+            "110/117"
+          ],
+          "moved": {
+            "p110 87761": [
+              10.58,
+              0
+            ],
+            "p94 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p97 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p162 55013": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p49 87083",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.698,
+          "ms": 104,
+          "msOneCall": 8,
+          "stops": [
+            "110/117"
+          ],
+          "moved": {
+            "p110 87761": [
+              10.58,
+              0
+            ],
+            "p94 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p97 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p162 55013": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p49 87083",
+          "judged": "stands",
+          "why": "stopped at +0.698 rad (110/117); -0.698 rad (110/117); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 10
+    }
+  ]
+}

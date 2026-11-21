@@ -1,0 +1,86 @@
+{
+  "set": "42088-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:06.847Z",
+  "load": 12.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 148,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The boom's mount turns round on a single upright pin on the chassis, swinging the boom and bucket round.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p111 32138",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p124 11478": [
+              31.44,
+              85.94
+            ],
+            "p139 32270": [
+              135.03,
+              85.94
+            ],
+            "p140 32249": [
+              251.82,
+              0
+            ],
+            "p94 55981": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p111 32138",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p124 11478": [
+              31.44,
+              85.94
+            ],
+            "p139 32270": [
+              135.03,
+              85.94
+            ],
+            "p140 32249": [
+              251.82,
+              0
+            ],
+            "p94 55981": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

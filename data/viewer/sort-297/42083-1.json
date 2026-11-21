@@ -1,0 +1,205 @@
+{
+  "set": "42083-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:03:11.698Z",
+  "load": 13.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3512,
+  "seconds": 36,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat.",
+      "verdict": "not shown",
+      "msOneCall": 337,
+      "msPerStep": 80,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1938 59443",
+        "way": -1,
+        "went": -0.14,
+        "asked": 1.5,
+        "by": [
+          "1929/1944"
+        ]
+      },
+      "stops": [
+        "1928/2024",
+        "1929/1944"
+      ],
+      "A": [
+        {
+          "control": "p1938 59443",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 113,
+          "msOneCall": 299,
+          "stops": [
+            "1928/2024"
+          ],
+          "moved": {
+            "p1939 15458": [
+              0,
+              0
+            ],
+            "p1910 32073": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1938 59443",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": -0.14,
+          "ms": 320,
+          "msOneCall": 337,
+          "stops": [
+            "1929/1944"
+          ],
+          "moved": {
+            "p1939 15458": [
+              21.53,
+              7.99
+            ],
+            "p1910 32073": [
+              5.58,
+              7.99
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1938 59443",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024); -0.14 rad (1929/1944)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "page 310 shows two-way curved arrows on the key and a two-way up-down arrow on the wing, so the key must turn both ways far enough to lift the wing visibly; the viewer allows no turn at all one way (stop at +0 rad, 1928/2024). The exact number of key turns is not drawn.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p1938 59443: a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024); -0.14 rad (1929/1944) (page 310 shows two-way curved arrows on the key and a two-way up-down arrow on the wing, so the key must turn both ways far enough to lift the wing visibly; the viewer allows no turn at all one way (stop at +0 rad, 1928/2024). The exact number of key turns is not drawn., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310)",
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 16
+    },
+    {
+      "function": 7,
+      "does": "The two doors swing open on hinges at their front edges.",
+      "verdict": "shown",
+      "msOneCall": 355,
+      "msPerStep": 108,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 15,
+        "B": 0
+      },
+      "stop": {
+        "control": "p2924 62531",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "2786/2943"
+        ]
+      },
+      "stops": [
+        "2786/2943",
+        "2837/2883"
+      ],
+      "A": [
+        {
+          "control": "p2924 62531",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 216,
+          "msOneCall": 355,
+          "stops": [
+            "2786/2943"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p2924 62531",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2122,
+          "msOneCall": 335,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2876 62531",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2095,
+          "msOneCall": 290,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2876 62531",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 201,
+          "msOneCall": 152,
+          "stops": [
+            "2837/2883"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p2924 62531",
+          "judged": "stands",
+          "why": "stopped at +0.07 rad (2786/2943); kinds hinge: doors"
+        },
+        {
+          "control": "p2876 62531",
+          "judged": "stands",
+          "why": "stopped at -0.07 rad (2837/2883); kinds hinge: doors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "each door hangs on hinge pins at its front edge (book 2 steps 931-943) and swings outward to open; the booklet draws no open door, but a door held to 0.07 rad (about 4 degrees) cannot open at all.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=297"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 21
+    }
+  ]
+}

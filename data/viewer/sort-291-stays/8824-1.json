@@ -1,0 +1,156 @@
+{
+  "set": "8824-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:14.184Z",
+  "load": 12.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 185,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Rolling the hovercraft on its front wheels spins the propeller: a bevel gear on the front wheels' axle turns a lengthwise shaft, whose crown gear turns an upright shaft with two 16 tooth gears; those drive a chain of 16 tooth clutch gears riding free on the steering knob's shaft and on the steering column, and the last one turns the crown gear on the propeller's shaft.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p62 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p62 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p63 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p63 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p48 3707": [
+              0,
+              85.94
+            ],
+            "p117 3706": [
+              0,
+              128.92
+            ],
+            "p183 3705": [
+              0,
+              85.94
+            ],
+            "p142 3648a": [
+              0,
+              0
+            ],
+            "p151 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

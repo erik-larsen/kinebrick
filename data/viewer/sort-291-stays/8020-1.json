@@ -1,0 +1,118 @@
+{
+  "set": "8020-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:19.111Z",
+  "load": 9.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 95,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The wheel on the cab roof steers the front wheels: an 8-tooth gear at the foot of its axle turns a crown gear behind the windscreen, which turns an 8-tooth gear on a cross axle, which slides the toothed rack that joins the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p99 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 27,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p98 10928": [
+              0,
+              85.94
+            ],
+            "p46 3650a": [
+              0,
+              28.65
+            ],
+            "p32 10928": [
+              1.6,
+              91.78
+            ],
+            "p22 3743": [
+              17.58,
+              0
+            ],
+            "p11 4261": [
+              0,
+              25.18
+            ],
+            "p13 4261": [
+              0,
+              25.18
+            ],
+            "p103 3482": [
+              0,
+              0
+            ],
+            "p105 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p99 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p98 10928": [
+              0,
+              85.94
+            ],
+            "p46 3650a": [
+              0,
+              28.65
+            ],
+            "p32 10928": [
+              1.6,
+              91.78
+            ],
+            "p22 3743": [
+              17.58,
+              0
+            ],
+            "p11 4261": [
+              0,
+              25.18
+            ],
+            "p13 4261": [
+              0,
+              25.18
+            ],
+            "p103 3482": [
+              0,
+              0
+            ],
+            "p105 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "set": "42078-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:50:34.040Z",
+  "load": 10.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2651,
+  "seconds": 429,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The bonnet, with the grille, headlights and front wings, tips forward to show the engine.",
+      "verdict": "not shown",
+      "why": "A: p1358 44294, p1423 40490 not moved; B: the control could not be seen",
+      "msOneCall": 24,
+      "msPerStep": null,
+      "time": {
+        "open": 10,
+        "collisions": 7,
+        "first": 0,
+        "reach": 211,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1326 60485",
+          "way": 1,
+          "asked": 0.02,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p1358 44294": [
+              0,
+              0
+            ],
+            "p1423 40490": [
+              0,
+              0
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1326 60485",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1358 44294": [
+              0,
+              0
+            ],
+            "p1423 40490": [
+              0,
+              0
+            ],
+            "p324 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1326 60485",
+          "seen": false
+        }
+      ],
+      "seconds": 228
+    },
+    {
+      "function": 12,
+      "does": "The container's two end doors swing open, each once its lock bar is lifted.",
+      "verdict": "not shown",
+      "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step not done by the sweep: p2641 99008 slid -25 (it can't slide on its axle in the viewer); first step not done by the sweep: p2675 99008 slid -25 (it can't slide on its axle in the viewer)",
+      "msOneCall": 268,
+      "msPerStep": 131,
+      "time": {
+        "open": 13,
+        "collisions": 8,
+        "first": 88,
+        "reach": 0,
+        "A": 24,
+        "B": 68
+      },
+      "stop": {
+        "control": "p2665 64782",
+        "way": -1,
+        "went": -0.628,
+        "asked": 1.5,
+        "by": [
+          "185/1685"
+        ]
+      },
+      "stops": [
+        "186/1680",
+        "185/1685"
+      ],
+      "A": [
+        {
+          "control": "p2631 64782",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "This part is held by more than friction pins"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0.593,
+          "ms": 1926,
+          "msOneCall": 268,
+          "stops": [
+            "186/1680"
+          ],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2631 64782",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "This part is held by more than friction pins"
+            ],
+            "freed": []
+          },
+          "asked": 0.2,
+          "went": -0.2,
+          "ms": 746,
+          "msOneCall": 191,
+          "stops": [],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2665 64782",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "This part is held by more than friction pins"
+            ],
+            "freed": []
+          },
+          "asked": 0.2,
+          "went": 0.2,
+          "ms": 690,
+          "msOneCall": 217,
+          "stops": [],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2665 64782",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "This part is held by more than friction pins"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": -0.628,
+          "ms": 1980,
+          "msOneCall": 185,
+          "stops": [
+            "185/1685"
+          ],
+          "moved": {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2631 64782",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "This part is held by more than friction pins"
+          ],
+          "moved": [],
+          "stops": [
+            "185/1685"
+          ]
+        },
+        {
+          "control": "p2665 64782",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "This part is held by more than friction pins"
+          ],
+          "moved": [],
+          "stops": [
+            "186/1680"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p2631 64782",
+          "judged": "stands",
+          "why": "stopped at +0.593 rad (186/1680); kinds hinge: container doors"
+        },
+        {
+          "control": "p2665 64782",
+          "judged": "stands",
+          "why": "stopped at -0.628 rad (185/1685); kinds hinge: container doors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the end doors swing open, far past 0.2 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=412"
+      },
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step not done by the sweep: p2641 99008 slid -25 (it can't slide on its axle in the viewer); first step not done by the sweep: p2675 99008 slid -25 (it can't slide on its axle in the viewer)"
+      },
+      "seconds": 202
+    }
+  ]
+}
