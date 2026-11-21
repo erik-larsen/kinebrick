@@ -1,0 +1,376 @@
+{
+  "set": "42108-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:02:36.719Z",
+  "load": 14.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1305,
+  "seconds": 8,
+  "functions": [
+    {
+      "function": 3,
+      "does": "Each of the four outriggers swings out and down onto its foot: turning its black 12 tooth gear (at the back) or its liftarm handle (at the front) swings the leg out from the chassis side and down.",
+      "verdict": "shown",
+      "msOneCall": 97,
+      "msPerStep": 34,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": {
+        "control": "p354 32270",
+        "way": -1,
+        "went": -1.116,
+        "asked": 1.5,
+        "by": [
+          "343/343"
+        ]
+      },
+      "stops": [
+        "345/349",
+        "343/343",
+        "356/356",
+        "358/362",
+        "234/254",
+        "249/249",
+        "257/257",
+        "233/262"
+      ],
+      "A": [
+        {
+          "control": "p354 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.174,
+          "ms": 170,
+          "msOneCall": 97,
+          "stops": [
+            "345/349"
+          ],
+          "moved": {
+            "p342 32062": [
+              10.51,
+              0
+            ],
+            "p355 32062": [
+              0,
+              0
+            ],
+            "p248 32062": [
+              0,
+              0
+            ],
+            "p256 32062": [
+              0,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p354 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.116,
+          "ms": 661,
+          "msOneCall": 35,
+          "stops": [
+            "343/343"
+          ],
+          "moved": {
+            "p342 32062": [
+              47.05,
+              0
+            ],
+            "p355 32062": [
+              0,
+              0
+            ],
+            "p248 32062": [
+              0,
+              0
+            ],
+            "p256 32062": [
+              0,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p367 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.116,
+          "ms": 635,
+          "msOneCall": 34,
+          "stops": [
+            "356/356"
+          ],
+          "moved": {
+            "p342 32062": [
+              0,
+              0
+            ],
+            "p355 32062": [
+              47.05,
+              0
+            ],
+            "p248 32062": [
+              0,
+              0
+            ],
+            "p256 32062": [
+              0,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p367 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.174,
+          "ms": 159,
+          "msOneCall": 33,
+          "stops": [
+            "358/362"
+          ],
+          "moved": {
+            "p342 32062": [
+              0,
+              0
+            ],
+            "p355 32062": [
+              10.51,
+              0
+            ],
+            "p248 32062": [
+              0,
+              0
+            ],
+            "p256 32062": [
+              0,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p244 42108 - 33299b",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.174,
+          "ms": 163,
+          "msOneCall": 37,
+          "stops": [
+            "234/254"
+          ],
+          "moved": {
+            "p342 32062": [
+              0,
+              0
+            ],
+            "p355 32062": [
+              0,
+              0
+            ],
+            "p248 32062": [
+              10.51,
+              0
+            ],
+            "p256 32062": [
+              0,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p244 42108 - 33299b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.116,
+          "ms": 739,
+          "msOneCall": 34,
+          "stops": [
+            "249/249"
+          ],
+          "moved": {
+            "p342 32062": [
+              0,
+              0
+            ],
+            "p355 32062": [
+              0,
+              0
+            ],
+            "p248 32062": [
+              47.05,
+              0
+            ],
+            "p256 32062": [
+              0,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p242 42108 - 33299b",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.116,
+          "ms": 628,
+          "msOneCall": 36,
+          "stops": [
+            "257/257"
+          ],
+          "moved": {
+            "p342 32062": [
+              0,
+              0
+            ],
+            "p355 32062": [
+              0,
+              0
+            ],
+            "p248 32062": [
+              0,
+              0
+            ],
+            "p256 32062": [
+              47.05,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p242 42108 - 33299b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.174,
+          "ms": 140,
+          "msOneCall": 35,
+          "stops": [
+            "233/262"
+          ],
+          "moved": {
+            "p342 32062": [
+              0,
+              0
+            ],
+            "p355 32062": [
+              0,
+              0
+            ],
+            "p248 32062": [
+              0,
+              0
+            ],
+            "p256 32062": [
+              10.51,
+              0
+            ],
+            "p1265 56145": [
+              0,
+              0
+            ],
+            "p483 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p354 32270",
+          "judged": "stands",
+          "why": "stopped at +0.174 rad (345/349); -1.116 rad (343/343); kinds hinge: outriggers"
+        },
+        {
+          "control": "p367 32270",
+          "judged": "stands",
+          "why": "stopped at +1.116 rad (356/356); -0.174 rad (358/362); kinds hinge: outriggers"
+        },
+        {
+          "control": "p244 42108 - 33299b",
+          "judged": "stands",
+          "why": "stopped at +0.174 rad (234/254); -1.116 rad (249/249); kinds hinge: outriggers"
+        },
+        {
+          "control": "p242 42108 - 33299b",
+          "judged": "stands",
+          "why": "stopped at +1.116 rad (257/257); -0.174 rad (233/262); kinds hinge: outriggers"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the top-middle inset on page 266 has arrows on the rear gears and on the legs: each outrigger leg swings out from the chassis side and down onto its foot, very roughly a right angle, far past the viewer's 0.17 rad stop.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6310950.pdf#page=266"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 7
+    }
+  ]
+}

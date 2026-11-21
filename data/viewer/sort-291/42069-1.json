@@ -1,0 +1,186 @@
+{
+  "set": "42069-1",
+  "commit": "3d7ec1d4",
+  "date": "2026-11-21T11:15:36.836Z",
+  "load": 6.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2357,
+  "seconds": 65,
+  "functions": [
+    {
+      "function": 5,
+      "does": "Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft.",
+      "held": {
+        "result": "partly",
+        "reason": "In the viewer the control turns and these listed parts stay: p1333, p146, p162; a push by hand does not move them either. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "why": "A: p1333 62821, p146 2853, p162 2851 not moved; B: no listed part moved by hand",
+      "msOneCall": 224,
+      "msPerStep": 36,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 11,
+        "A": 5,
+        "B": 32
+      },
+      "stop": {
+        "control": "p1490 57519",
+        "way": 1,
+        "went": 0.977,
+        "asked": 1.5,
+        "by": [
+          "1365/1426"
+        ]
+      },
+      "stops": [
+        "1365/1426",
+        "1366/1406"
+      ],
+      "A": [
+        {
+          "control": "p1490 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.977,
+          "ms": 1013,
+          "msOneCall": 224,
+          "stops": [
+            "1365/1426"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1490 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.977,
+          "ms": 977,
+          "msOneCall": 85,
+          "stops": [
+            "1366/1406"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1492 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.977,
+          "ms": 981,
+          "msOneCall": 86,
+          "stops": [
+            "1366/1406"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1492 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.977,
+          "ms": 968,
+          "msOneCall": 82,
+          "stops": [
+            "1365/1426"
+          ],
+          "moved": {
+            "p1333 62821": [
+              0,
+              0
+            ],
+            "p146 2853": [
+              0,
+              0
+            ],
+            "p162 2851": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1490 57519",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "1365/1426"
+          ]
+        },
+        {
+          "control": "p1492 57519",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p1490 57519",
+          "judged": "not shown",
+          "why": "turns without end (kinds piston-engine, differential; the text says: engine, pistons), but a collision stops it at +0.977 rad (1365/1426); -0.977 rad (1366/1406)"
+        },
+        {
+          "control": "p1492 57519",
+          "judged": "not shown",
+          "why": "turns without end (kinds piston-engine, differential; the text says: engine, pistons), but a collision stops it at +0.977 rad (1366/1406); -0.977 rad (1365/1426)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p1333 62821, p146 2853, p162 2851 not moved; B: no listed part moved by hand"
+      },
+      "seconds": 65
+    }
+  ]
+}

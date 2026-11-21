@@ -1,0 +1,120 @@
+{
+  "set": "42004-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:20.536Z",
+  "load": 13,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 244,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The knob on the cab roof steers: its vertical shaft drives a 20-tooth gear that turns the turntable between the front and rear halves, so the machine bends in the middle (articulated steering).",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p108 32270",
+        "way": 1,
+        "went": 1.116,
+        "asked": 1.5,
+        "by": [
+          "56/81"
+        ]
+      },
+      "stops": [
+        "56/81",
+        "59/85"
+      ],
+      "A": [
+        {
+          "control": "p108 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.116,
+          "ms": 75,
+          "msOneCall": 16,
+          "stops": [
+            "56/81"
+          ],
+          "moved": {
+            "p5 99010": [
+              0,
+              27.41
+            ],
+            "p25 40490": [
+              30.26,
+              27.41
+            ],
+            "p20 32269": [
+              0,
+              38.37
+            ],
+            "p236 56145": [
+              0,
+              0
+            ],
+            "p238 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p108 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.116,
+          "ms": 65,
+          "msOneCall": 5,
+          "stops": [
+            "59/85"
+          ],
+          "moved": {
+            "p5 99010": [
+              0,
+              27.41
+            ],
+            "p25 40490": [
+              30.26,
+              27.41
+            ],
+            "p20 32269": [
+              0,
+              38.37
+            ],
+            "p236 56145": [
+              0,
+              0
+            ],
+            "p238 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p108 32270",
+          "judged": "stands",
+          "why": "stopped at +1.116 rad (56/81); -1.116 rad (59/85); kinds articulated-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

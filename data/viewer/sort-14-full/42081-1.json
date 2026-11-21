@@ -1,0 +1,108 @@
+{
+  "set": "42081-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:05:09.262Z",
+  "load": 12.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1155,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 8,
+      "does": "The two seven-bladed fans set into the top of the rear body spin.",
+      "verdict": "not shown",
+      "msOneCall": 104,
+      "msPerStep": 32,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p694 87751",
+        "way": -1,
+        "went": -0.733,
+        "asked": 1.5,
+        "by": [
+          "694/720"
+        ]
+      },
+      "stops": [
+        "694/720",
+        "694/695"
+      ],
+      "A": [
+        {
+          "control": "p694 87751",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 63,
+          "msOneCall": 104,
+          "stops": [
+            "694/720"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p694 87751",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.733,
+          "ms": 269,
+          "msOneCall": 38,
+          "stops": [
+            "694/720"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p695 87751",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.314,
+          "ms": 120,
+          "msOneCall": 32,
+          "stops": [
+            "694/695"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p695 87751",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.14,
+          "ms": 65,
+          "msOneCall": 32,
+          "stops": [
+            "694/695"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p694 87751",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.07 rad (694/720); -0.733 rad (694/720)"
+        },
+        {
+          "control": "p695 87751",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.314 rad (694/695); -0.14 rad (694/695)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p694 87751: turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.07 rad (694/720); -0.733 rad (694/720); p695 87751: turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.314 rad (694/695); -0.14 rad (694/695)",
+      "seconds": 4
+    }
+  ]
+}

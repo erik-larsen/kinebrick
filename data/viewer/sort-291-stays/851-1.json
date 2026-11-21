@@ -1,0 +1,102 @@
+{
+  "set": "851-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:36.610Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 276,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 24-tooth gear on top of the steering column, used as the steering wheel, steers the front wheels: the column runs down through a universal joint to a lengthwise axle whose 8-tooth gears under the front slide the rack on the tie rod between the two wheel turntables.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p67 3648a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 68,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p165 3743": [
+              15.16,
+              0
+            ],
+            "p152 3706": [
+              2.53,
+              20.33
+            ],
+            "p151 3706": [
+              2.53,
+              20.33
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p67 3648a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 54,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p165 3743": [
+              15.16,
+              0
+            ],
+            "p152 3706": [
+              2.53,
+              20.33
+            ],
+            "p151 3706": [
+              2.53,
+              20.33
+            ],
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

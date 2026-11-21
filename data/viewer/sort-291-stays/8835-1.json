@@ -1,0 +1,209 @@
+{
+  "set": "8835-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:16.659Z",
+  "load": 12.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 235,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The crank handle on the big grey wheel on the cab's right side raises and lowers the forks: its worm turns a 24-tooth gear on a shaft under the cab, which through two 16-tooth gears and the crown gear on the front axle turns an 8-tooth gear on the mast's bottom axle, and that axle's sprocket drives the chain that carries the forks up the mast.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p212 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p63 2823 against p29 3703": [
+              2.87,
+              0
+            ],
+            "p75 3707": [
+              0,
+              7.16
+            ],
+            "p71 3706": [
+              0,
+              7.16
+            ],
+            "p29 3703": [
+              0,
+              0
+            ],
+            "p231 2695c01": [
+              0,
+              0
+            ],
+            "p232 2695c01": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p212 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p63 2823 against p29 3703": [
+              2.87,
+              0
+            ],
+            "p75 3707": [
+              0,
+              7.16
+            ],
+            "p71 3706": [
+              0,
+              7.16
+            ],
+            "p29 3703": [
+              0,
+              0
+            ],
+            "p231 2695c01": [
+              0,
+              0
+            ],
+            "p232 2695c01": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The yellow round knob on the cab roof steers the rear wheels: its vertical axle runs down through the cab to a bevel gear, which turns an 8-tooth gear on the rack under the rear, pushing the steering arms.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p216 3941",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p13 3743": [
+              15.36,
+              0
+            ],
+            "p9 4261": [
+              0,
+              22
+            ],
+            "p15 4261": [
+              0,
+              22
+            ],
+            "p14 2695c01": [
+              7.68,
+              24.79
+            ],
+            "p18 2695c01": [
+              7.68,
+              24.79
+            ],
+            "p231 2695c01": [
+              0,
+              0
+            ],
+            "p232 2695c01": [
+              0,
+              0
+            ],
+            "p29 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p216 3941",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p13 3743": [
+              15.36,
+              0
+            ],
+            "p9 4261": [
+              0,
+              22
+            ],
+            "p15 4261": [
+              0,
+              22
+            ],
+            "p14 2695c01": [
+              7.68,
+              24.79
+            ],
+            "p18 2695c01": [
+              7.68,
+              24.79
+            ],
+            "p231 2695c01": [
+              0,
+              0
+            ],
+            "p232 2695c01": [
+              0,
+              0
+            ],
+            "p29 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

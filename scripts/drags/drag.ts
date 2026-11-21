@@ -37,7 +37,7 @@ export type Viewer = {
   reach(part: number): Promise<number>;
   // Turns the camera round the model by dragging the pointer `dx` pixels across where no part is,
   // as a user orbits it. False if there was a part under every place tried.
-  orbit(dx: number): Promise<boolean>;
+  orbit(dx: number, dy?: number): Promise<boolean>;
   close(): Promise<void>;
 };
 
@@ -76,7 +76,9 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
     const blockedBy = k.setup.blockedBy;
     k.setup.blockedBy = () => {
       const hit = blockedBy();
-      if (hit && Array.isArray(hit)) w.stopsSeen.push(hit.join('/'));
+      // A part against itself is the viewer's ground test (belowGround in collisions.ts: the part
+      // would go below the ground), not a collision: named so (decision 299).
+      if (hit && Array.isArray(hit)) w.stopsSeen.push(hit[0] === hit[1] ? `ground: p${hit[0]}` : hit.join('/'));
       return hit;
     };
   });
@@ -221,18 +223,35 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
       });
     },
     async reach(part) {
-      for (let turns = 0; turns <= 12; turns++) {
-        if (await viewer.aim(part)) return turns;
-        if (turns < 12 && !(await viewer.orbit(120))) return -1;
+      // Round the model at the height the camera starts at, then from above and from below
+      // (decision 279, item 4: the 8285's, 42078's and 42080's controls were seen from no point of
+      // the first circle), each a turn of 12 steps; and from each, closer in (the mouse wheel).
+      let turns = 0;
+      for (const tilt of [0, -150, 300]) {
+        if (tilt && !(await viewer.orbit(0, tilt))) return -1;
+        for (let i = 0; i < 12; i++, turns++) {
+          if (await viewer.aim(part)) return turns;
+          if (!(await viewer.orbit(120))) return -1;
+        }
+      }
+      for (let zoom = 0; zoom < 3; zoom++) {
+        const [x, y] = await middle(part);
+        await page.mouse.move(x, y);
+        await page.mouse.wheel(0, -400);
+        await page.waitForTimeout(300);
+        for (let i = 0; i < 12; i++, turns++) {
+          if (await viewer.aim(part)) return turns;
+          if (!(await viewer.orbit(120))) return -1;
+        }
       }
       return -1;
     },
-    async orbit(dx) {
+    async orbit(dx, dy = 0) {
       for (const [x, y] of [[985, 685], [15, 685], [985, 15], [15, 120]]) {
         await page.mouse.move(x, y);
         if ((await page.evaluate(() => (window as any).kinebrick.setup.appearance.hoveredPart)) >= 0) continue;
         await page.mouse.down();
-        for (let i = 1; i <= 10; i++) await page.mouse.move(x - (dx * i) / 10, y);
+        for (let i = 1; i <= 10; i++) await page.mouse.move(x - (dx * i) / 10, y - (dy * i) / 10);
         await page.mouse.up();
         await page.waitForTimeout(300);
         return true;

@@ -1,0 +1,78 @@
+{
+  "set": "42079-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:09.224Z",
+  "load": 16.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 577,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The grey exhaust stack on top at the back steers the rear wheels.",
+      "verdict": "shown",
+      "msOneCall": 51,
+      "msPerStep": 10,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p578 15535",
+          "way": 1,
+          "asked": 0.43,
+          "went": 0.43,
+          "ms": 127,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {
+            "p454 86652": [
+              12.9,
+              27.59
+            ],
+            "p456 86652": [
+              12.9,
+              27.59
+            ],
+            "p458 86652": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p578 15535",
+          "way": -1,
+          "asked": 0.43,
+          "went": -0.43,
+          "ms": 106,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {
+            "p454 86652": [
+              12.9,
+              27.59
+            ],
+            "p456 86652": [
+              12.9,
+              27.59
+            ],
+            "p458 86652": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}
