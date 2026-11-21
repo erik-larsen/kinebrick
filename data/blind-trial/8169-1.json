@@ -1,0 +1,551 @@
+{
+  "set": "8169-1",
+  "curated": {
+    "model": "omr/blind-trial/8169-1 Lamborghini Gallardo LP 560-4.mpd",
+    "functions": [
+      {
+        "does": "opening doors",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-8169-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p1371 3009",
+          "p1395 3009"
+        ],
+        "moves": [
+          "p1371 3009",
+          "p1385 4162",
+          "p1395 3009",
+          "p1409 4162"
+        ],
+        "stays": [
+          "p794 2429",
+          "p780 2430"
+        ],
+        "note": "The file holds three cars (x = -430, 0, +430); the middle one (submodel 8169-1a_open, p712 to p1423) is used. Door submodels 8169-2r and 8169-2l each carry 1x4 hinge plates (p1369/p1389 2430, p1392/p1393 2429) at x=±140 z=-100 that mate with body hinge plates (p794 2429, p780 2430, p1067, p1068); in the third car 8169-2l is placed turned 45 degrees about y, which confirms the vertical door hinge."
+      },
+      {
+        "does": "opening hood",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-8169-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p1421 4515",
+        "moves": [
+          "p1421 4515",
+          "p1420 3034",
+          "p1418 63868"
+        ],
+        "stays": [
+          "p1086 48336"
+        ],
+        "note": "Submodel 8169-8 (front lid) holds clip plates p1418/p1419 63868 that grip the body handle plates p1086/p1089 48336, a hinge across the car; in the third car it is tilted 38 instead of 7 degrees. If 'hood' means the rear engine cover, swap this with the trunk entry."
+      },
+      {
+        "does": "opening trunk",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-8169-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p1284 3036",
+        "moves": [
+          "p1284 3036",
+          "p1278 3020",
+          "p1276 32140"
+        ],
+        "stays": [
+          "p1166 3700"
+        ],
+        "note": "The rear deck submodel 8169-5 sits on pins p1281/p1282 in the ends of the bent liftarms p1276/p1277 (submodel 8169-4), which turn on axle pins p1274/p1275 in the Technic bricks p1166/p1167 at the rear: a hinge across the car at the tail."
+      },
+      {
+        "does": "retractable roof",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-8169-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p1348 3032",
+        "moves": [
+          "p1348 3032",
+          "p1336 32140",
+          "p1334 32526 against p1348 3032",
+          "p1359 2429 against p1348 3032"
+        ],
+        "stays": [
+          "p1172 6541"
+        ],
+        "note": "The roof submodel 8169-7 (with side flaps on 1x4 hinge plates) hangs on the bent beams of 8169-6, which turn on pins p1332/p1333 in the body's Technic bricks p1172/p1173; the closed-roof and open-roof cars of the file differ only in the angle of 8169-6 and the place of 8169-7."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 54,
+    "counts": {
+      "works": 3,
+      "partly": 1
+    },
+    "loose": [
+      "p29 43723",
+      "p33 43722",
+      "p514 54086",
+      "p519 54086",
+      "p524 54086",
+      "p529 54086",
+      "p741 43723",
+      "p745 43722",
+      "p1226 54086",
+      "p1231 54086",
+      "p1236 54086",
+      "p1241 54086",
+      "p1453 43723",
+      "p1457 43722",
+      "p2028 54086",
+      "p2033 54086",
+      "p2038 54086",
+      "p2043 54086"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.1,
+            -0.93
+          ],
+          [
+            0.93,
+            -0.1
+          ]
+        ],
+        "rates": [
+          {
+            "p1371 3009": [
+              1,
+              60.8
+            ],
+            "p1385 4162": [
+              1,
+              80.6
+            ],
+            "p1395 3009": [
+              0,
+              0
+            ],
+            "p1409 4162": [
+              0,
+              0
+            ],
+            "p794 2429": [
+              0,
+              0
+            ],
+            "p780 2430": [
+              0,
+              0
+            ]
+          },
+          {
+            "p1371 3009": [
+              0,
+              0
+            ],
+            "p1385 4162": [
+              0,
+              0
+            ],
+            "p1395 3009": [
+              1,
+              60.8
+            ],
+            "p1409 4162": [
+              1,
+              80.6
+            ],
+            "p794 2429": [
+              0,
+              0
+            ],
+            "p780 2430": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 4,
+        "movedBy": [
+          [
+            "p1371 3009",
+            "p1385 4162"
+          ],
+          [
+            "p1395 3009",
+            "p1409 4162"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1255,
+            1384,
+            0.1,
+            0.1
+          ],
+          [
+            0,
+            -1,
+            528,
+            1384,
+            0.93,
+            0.93
+          ],
+          [
+            1,
+            1,
+            1408,
+            2032,
+            0.93,
+            0.93
+          ],
+          [
+            1,
+            -1,
+            1272,
+            1408,
+            0.1,
+            0.1
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p780 2430",
+            "for": "p1395 3009"
+          },
+          {
+            "pin": "p1068 2430",
+            "for": "p1395 3009"
+          },
+          {
+            "pin": "p1369 2430",
+            "for": "p1371 3009"
+          },
+          {
+            "pin": "p1389 2430",
+            "for": "p1371 3009"
+          }
+        ],
+        "seconds": 28.9
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p1421 4515": [
+              1,
+              111
+            ],
+            "p1420 3034": [
+              1,
+              31.6
+            ],
+            "p1418 63868": [
+              1,
+              30.1
+            ],
+            "p1086 48336": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            -1,
+            1042,
+            1421,
+            0,
+            0
+          ]
+        ],
+        "seconds": 3.5
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.03,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p1284 3036": [
+              1,
+              47.3
+            ],
+            "p1278 3020": [
+              1,
+              46.5
+            ],
+            "p1276 32140": [
+              1,
+              0
+            ],
+            "p1166 3700": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            944,
+            1278,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            1154,
+            1284,
+            0,
+            0
+          ]
+        ],
+        "seconds": 2.7
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.02,
+            -0.01
+          ]
+        ],
+        "still": [
+          "p1359 2429 against p1348 3032"
+        ],
+        "rates": [
+          {
+            "p1348 3032": [
+              0.878,
+              70.6
+            ],
+            "p1336 32140": [
+              0.878,
+              65.2
+            ],
+            "p1334 32526 against p1348 3032": [
+              1,
+              0.0333
+            ],
+            "p1359 2429 against p1348 3032": [
+              0,
+              0
+            ],
+            "p1172 6541": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.01,
+              0.01
+            ],
+            [
+              0.01,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.01,
+              0.01
+            ],
+            [
+              0.01,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "freed": 5,
+        "judged": [
+          0
+        ],
+        "cause": "not-driven",
+        "detail": "p1359 2429 against p1348 3032",
+        "collisionStops": [
+          [
+            0,
+            1,
+            956,
+            1338,
+            0.02,
+            0.02
+          ],
+          [
+            0,
+            -1,
+            1185,
+            1367,
+            0.01,
+            0.01
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p1332 2780",
+            "for": "p1334 32526 against p1348 3032"
+          },
+          {
+            "pin": "p1333 2780",
+            "for": "p1334 32526 against p1348 3032"
+          },
+          {
+            "pin": "p1344 2780",
+            "for": "p1348 3032"
+          },
+          {
+            "pin": "p1345 2780",
+            "for": "p1348 3032"
+          },
+          {
+            "pin": "p1357 2430",
+            "for": "p1359 2429 against p1348 3032"
+          }
+        ],
+        "seconds": 13.4
+      }
+    ],
+    "peak": 462
+  }
+}
