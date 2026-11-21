@@ -2204,11 +2204,15 @@ export class Kinematics {
     return this.pointVelocity(motion, joint.bodyB, p).sub(this.pointVelocity(motion, joint.bodyA, p)).dot(d);
   }
 
-  // Whether a joint turns a wheel on the ground: one of its bodies carries a tread in contact (a
-  // tyre, or a track's wheel).
+  // Whether a joint turns a wheel on the ground (a drag of it is a wheel drag for the free-parts rule):
+  // one of its bodies carries a tread that touches the ground (a tyre, or a track's wheel), or is a wheel
+  // of a track that does (a sprocket above the ground, driving a track whose run is on it).
   private wheelTurned(joint: number): boolean {
     const { bodyA, bodyB } = this.mech.joints[joint];
-    return this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body));
+    const bodies = [bodyA, bodyB];
+    if (this.contactTreads.some((i) => bodies.includes(this.mech.treads[i].body))) return true;
+    const onGround = new Set(this.contactTreads.flatMap((i) => (this.mech.treads[i].track === undefined ? [] : [this.mech.treads[i].track])));
+    return this.mech.treads.some((t) => t.track !== undefined && onGround.has(t.track) && bodies.includes(t.body));
   }
 
   // KINEBRICK_FREE_COUNT=1: how far each joint has moved since the count last looked (the turn
@@ -2250,7 +2254,7 @@ export class Kinematics {
     const moving = this.mech.joints.map((_, j) => [j, d.counted!.moved[j]] as [number, number]).filter(([, m]) => m > 1e-6 * d.counted!.travel).sort((x, y) => y[1] - x[1]);
     const cands = new Set(d.candidates);
     const topMoving = moving.slice(0, 8).map(([j, m]) => `${j}${cands.has(j) ? 'c' : d.driven!.has(j) ? 'd' : ''}:${m.toFixed(3)}`).join(' ');
-    Kinematics.freeCounts.push({ kind: d.kind, free: d.free.size, driven: d.driven!.size, travel: d.counted.travel, most, mostJoint, over, topMoving } as never);
+    Kinematics.freeCounts.push({ kind: d.kind, free: d.free.size, driven: d.driven!.size, candidates: d.candidates.length, held: d.heldJoints.size, travel: d.counted.travel, most, mostJoint, over, topMoving } as never);
   }
 
   // ---------------------------------------------------------------------------
