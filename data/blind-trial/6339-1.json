@@ -1,0 +1,575 @@
+{
+  "set": "6339-1",
+  "curated": {
+    "model": "omr/blind-trial/6339-1 Shuttle Launch Pad.mpd",
+    "functions": [
+      {
+        "does": "crane lifts shuttle",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6339-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p36 73037",
+        "moves": [
+          "p36 73037",
+          "p350 6339 - ls60",
+          "p211 3464",
+          "p212 2655",
+          "p219 2375",
+          "p220 2375"
+        ],
+        "stays": [
+          "p199 4596",
+          "p196 4282"
+        ],
+        "note": "An LSynth string (6339 - rope.ldr, p350 to p1562) runs from the 73037 winch at the tower foot up the tower and along the top boom. It drops from the boom tip (4596) through a hook block at z=-240 (3464 hub, 2655, 2452/4276b hinges, two 2375 hinge-bar grabs) and back to the tip. Winding the winch raises the hook block. The shuttle is not hung from it in this file; one rope segment, p350, stands for the string."
+      },
+      {
+        "does": "clamp tilts rocket upright",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6339-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "note": "No parts given: The stack (shuttle plus tank) already stands upright on the wheeled transporter, and the file has no pivot that tilts it. The likely clamp is the tower-front column (3700s p86/p129 with axle pins p87/p130 at the same 120 LDU spacing as the tank's 6222 side holes, 4476 stanchions p88/p89), but it stands on 2653 grooved bricks p26/p27 beside 4510 door rails p18/p19, which looks like a slide, not a hinge."
+      },
+      {
+        "does": "cargo bay doors",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6339-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p1645 2582",
+          "p1648 2582"
+        ],
+        "moves": [
+          "p1644 2582 against p1638 4625",
+          "p1645 2582 against p1639 4625",
+          "p1646 2582 against p1640 4625",
+          "p1653 4162",
+          "p1647 2582 against p1641 4625",
+          "p1648 2582 against p1642 4625",
+          "p1649 2582 against p1643 4625",
+          "p1654 4162"
+        ],
+        "stays": [
+          "p1683 6239",
+          "p1566 6219"
+        ],
+        "note": "Six 2582 hinge panels (three per side, x=±10) on the shuttle's upper face are each hinged to a 4625 hinge tile at x=±30. Each side's panels are tied together by a 4162 1x8 tile, giving two doors."
+      },
+      {
+        "does": "arm in shuttle",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6339-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p1658 6048",
+        "moves": [
+          "p1664 3613 against p1666 3614",
+          "p1663 6048",
+          "p1657 6048",
+          "p1658 6048",
+          "p1655 6217"
+        ],
+        "stays": [
+          "p1666 3614",
+          "p1644 2582"
+        ],
+        "note": "Inside the cargo bay is a jointed arm: a 3613 towball socket on a 3614 towball plate base, then 6048 'arm piece with pin and 2 fingers' links joined by 75535 pin joiners, a 2780 pin and 6217 pieces. That is a hinge chain."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 21,
+    "counts": {
+      "no": 1,
+      "not checked": 1,
+      "works": 1,
+      "partly": 1
+    },
+    "loose": [
+      "p26 2653",
+      "p27 2653",
+      "p28 3032",
+      "p48 3010",
+      "p49 3700",
+      "p50 2714a",
+      "p65 2823",
+      "p66 2823",
+      "p71 3747a",
+      "p72 3747a",
+      "p75 3795",
+      "p76 3023",
+      "p85 3001",
+      "p86 3700",
+      "p87 3749",
+      "p88 4476",
+      "p89 4476",
+      "p118 4448",
+      "p119 4448",
+      "p128 3710",
+      "p129 3700",
+      "p130 3749",
+      "p131 3063b",
+      "p132 3063b",
+      "p133 2431",
+      "p142 2555",
+      "p143 2555",
+      "p144 3024",
+      "p145 3024",
+      "p169 2637",
+      "p170 2637",
+      "p267 3069b",
+      "p268 3069b",
+      "p269 4282",
+      "p270 4282",
+      "p271 3035",
+      "p272 4282",
+      "p273 3795",
+      "p274 2465",
+      "p275 3795",
+      "p276 3035",
+      "p277 2465",
+      "p278 6111",
+      "p279 6111",
+      "p280 3062b",
+      "p281 3062b",
+      "p282 3062b",
+      "p283 3062b",
+      "p284 3747a",
+      "p285 3747a",
+      "p286 3747a",
+      "p287 3747a",
+      "p288 3004",
+      "p289 3004",
+      "p290 3004",
+      "p291 3004",
+      "p292 6157",
+      "p293 6157",
+      "p294 6157",
+      "p295 6157",
+      "p296 3176",
+      "p297 3176",
+      "p298 3176",
+      "p299 3176",
+      "p300 3062b",
+      "p301 3062b",
+      "p302 3062b",
+      "p303 3062b",
+      "p304 3023",
+      "p305 3023",
+      "p306 4032a",
+      "p307 4032a",
+      "p308 3069bp12",
+      "p309 3069bp12",
+      "p310 4150",
+      "p311 4150",
+      "p312 2422",
+      "p313 2422",
+      "p314 2432",
+      "p315 2432",
+      "p316 2431",
+      "p317 2431",
+      "p318 4286",
+      "p319 4286",
+      "p320 4083",
+      "p321 4083",
+      "p322 6141",
+      "p323 6141",
+      "p324 3298",
+      "p325 3298",
+      "p326 2422",
+      "p327 2422",
+      "p328 3623",
+      "p329 3623",
+      "p330 6091",
+      "p331 6091",
+      "p332 2431",
+      "p333 2431",
+      "p334 4624",
+      "p335 59895",
+      "p336 4624",
+      "p337 59895",
+      "p338 4624",
+      "p339 59895",
+      "p340 4624",
+      "p341 59895",
+      "p342 4624",
+      "p343 59895",
+      "p344 4624",
+      "p345 59895",
+      "p346 4624",
+      "p347 59895",
+      "p348 4624",
+      "p349 59895",
+      "p1630 4740",
+      "p1631 4596",
+      "p1632 2452",
+      "p1633 2452",
+      "p1634 2923",
+      "p1635 2923",
+      "p1636 4531",
+      "p1637 4531",
+      "p1656 75535",
+      "p1657 6048",
+      "p1658 6048",
+      "p1659 6217",
+      "p1660 75535",
+      "p1661 2780",
+      "p1662 75535",
+      "p1663 6048",
+      "p1664 3613",
+      "p1665 4531",
+      "p1666 3614"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p36 73037",
+          "p350 6339 - ls60",
+          "p211 3464",
+          "p212 2655",
+          "p219 2375",
+          "p220 2375"
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          []
+        ],
+        "torn": [
+          []
+        ],
+        "why": [
+          "p36 73037 is part of the frame"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 2.9
+      },
+      {
+        "result": "not checked",
+        "seconds": 0
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0,
+            -1.5
+          ],
+          [
+            0,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p1644 2582 against p1638 4625": [
+              1,
+              72.8
+            ],
+            "p1645 2582 against p1639 4625": [
+              1,
+              72.8
+            ],
+            "p1646 2582 against p1640 4625": [
+              1,
+              72.8
+            ],
+            "p1653 4162": [
+              1,
+              80.3
+            ],
+            "p1647 2582 against p1641 4625": [
+              0,
+              0
+            ],
+            "p1648 2582 against p1642 4625": [
+              0,
+              0
+            ],
+            "p1649 2582 against p1643 4625": [
+              0,
+              0
+            ],
+            "p1654 4162": [
+              0,
+              0
+            ],
+            "p1683 6239": [
+              0,
+              0
+            ],
+            "p1566 6219": [
+              0,
+              0
+            ]
+          },
+          {
+            "p1644 2582 against p1638 4625": [
+              0,
+              0
+            ],
+            "p1645 2582 against p1639 4625": [
+              0,
+              0
+            ],
+            "p1646 2582 against p1640 4625": [
+              0,
+              0
+            ],
+            "p1653 4162": [
+              0,
+              0
+            ],
+            "p1647 2582 against p1641 4625": [
+              1,
+              72.8
+            ],
+            "p1648 2582 against p1642 4625": [
+              1,
+              72.8
+            ],
+            "p1649 2582 against p1643 4625": [
+              1,
+              72.8
+            ],
+            "p1654 4162": [
+              1,
+              80.3
+            ],
+            "p1683 6239": [
+              0,
+              0
+            ],
+            "p1566 6219": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ],
+          [
+            "limit",
+            null
+          ]
+        ],
+        "freed": 12,
+        "movedBy": [
+          [
+            "p1644 2582 against p1638 4625",
+            "p1645 2582 against p1639 4625",
+            "p1646 2582 against p1640 4625",
+            "p1653 4162"
+          ],
+          [
+            "p1647 2582 against p1641 4625",
+            "p1648 2582 against p1642 4625",
+            "p1649 2582 against p1643 4625",
+            "p1654 4162"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1647,
+            1653,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1644,
+            1654,
+            0,
+            0
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p1638 4625",
+            "for": "p1645 2582"
+          },
+          {
+            "pin": "p1639 4625",
+            "for": "p1645 2582"
+          },
+          {
+            "pin": "p1640 4625",
+            "for": "p1645 2582"
+          },
+          {
+            "pin": "p1641 4625",
+            "for": "p1647 2582 against p1641 4625"
+          },
+          {
+            "pin": "p1642 4625",
+            "for": "p1647 2582 against p1641 4625"
+          },
+          {
+            "pin": "p1643 4625",
+            "for": "p1647 2582 against p1641 4625"
+          },
+          {
+            "pin": "p1644 2582",
+            "for": "p1645 2582"
+          },
+          {
+            "pin": "p1645 2582",
+            "for": "p1645 2582"
+          },
+          {
+            "pin": "p1646 2582",
+            "for": "p1645 2582"
+          },
+          {
+            "pin": "p1647 2582",
+            "for": "p1647 2582 against p1641 4625"
+          },
+          {
+            "pin": "p1648 2582",
+            "for": "p1647 2582 against p1641 4625"
+          },
+          {
+            "pin": "p1649 2582",
+            "for": "p1647 2582 against p1641 4625"
+          }
+        ],
+        "seconds": 7.3
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p1664 3613 against p1666 3614",
+          "p1663 6048",
+          "p1657 6048",
+          "p1655 6217"
+        ],
+        "rates": [
+          {
+            "p1664 3613 against p1666 3614": [
+              0,
+              0
+            ],
+            "p1663 6048": [
+              0,
+              0
+            ],
+            "p1657 6048": [
+              0,
+              0
+            ],
+            "p1658 6048": [
+              1,
+              0.00386
+            ],
+            "p1655 6217": [
+              0,
+              0
+            ],
+            "p1666 3614": [
+              0,
+              0
+            ],
+            "p1644 2582": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p1657 6048 is held by friction pins the control doesn't reach"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "loose-part",
+        "detail": "p1658 6048",
+        "seconds": 0.8
+      }
+    ],
+    "peak": 698
+  }
+}

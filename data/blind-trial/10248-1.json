@@ -1,0 +1,723 @@
+{
+  "set": "10248-1",
+  "curated": {
+    "model": "omr/blind-trial/10248-1 Ferrari F40.mpd",
+    "functions": [
+      {
+        "does": "opening doors",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-10248-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p673 3009",
+          "p715 3009"
+        ],
+        "moves": [
+          "p673 3009",
+          "p691 6636",
+          "p715 3009",
+          "p733 6636"
+        ],
+        "stays": [
+          "p68 60897",
+          "p73 60897"
+        ],
+        "note": "Named submodels 'door left' and 'door right' each carry a vertical bar p707/p749 63965 that snaps into the body's vertical clips p68/p160/p162 and p73/p165/p167: a vertical hinge at each door's front edge."
+      },
+      {
+        "does": "opening front cover",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-10248-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p1032 6636",
+        "moves": [
+          "p1032 6636",
+          "p1011 3034",
+          "p1124 93606"
+        ],
+        "stays": [
+          "p491 32316"
+        ],
+        "note": "The 'front' submodel (with 'front middle' clipped in) is held to the body only by long pins p956/p963, one per side, in body beams p491/p492, so the whole front tilts forward about a cross axis at the bumper; its rear rests on the body without pins."
+      },
+      {
+        "does": "lifting engine cover",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-10248-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p868 6179",
+        "moves": [
+          "p868 6179",
+          "p757 4162",
+          "p913 3707"
+        ],
+        "stays": [
+          "p379 32524"
+        ],
+        "note": "The 'engine hood' submodel is placed at its axle 8 p913, which passes through the hood's cross blocks p911/p912 and the top holes of the body's upright beams 7 p379/p388/p389/p398: a cross hinge at the cover's front; the separate 'hood support' bar p753 is the prop rod."
+      },
+      {
+        "does": "pop-up headlights",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-10248-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p1152 85984",
+          "p1156 85984"
+        ],
+        "moves": [
+          "p1151 3022",
+          "p1152 85984",
+          "p1155 3022",
+          "p1156 85984"
+        ],
+        "stays": [
+          "p1100 3623",
+          "p1106 3623"
+        ],
+        "note": "Two 'headlight' submodels, placed tilted, sit on plates with offset peg holes p1149/p1150 and p1153/p1154 around the long pins p1076/p1077 of the front submodel: each lamp turns about that pin."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 19,
+    "counts": {
+      "works": 3,
+      "no": 1
+    },
+    "loose": [
+      "p49 32531",
+      "p493 3034",
+      "p494 3023",
+      "p495 3023",
+      "p496 15573",
+      "p497 15573",
+      "p498 15573",
+      "p499 15573",
+      "p500 3021",
+      "p501 10247",
+      "p502 6558",
+      "p503 32523",
+      "p504 2780",
+      "p505 2780",
+      "p506 62462",
+      "p507 62462",
+      "p508 62462",
+      "p509 3020",
+      "p510 3023",
+      "p511 3023",
+      "p512 10247",
+      "p513 10247",
+      "p514 98138",
+      "p515 98138",
+      "p516 98138",
+      "p517 98138",
+      "p518 3023",
+      "p519 3023",
+      "p520 3021",
+      "p521 3022",
+      "p522 3701",
+      "p523 15462",
+      "p524 41678",
+      "p525 32291",
+      "p526 41678",
+      "p527 32291",
+      "p528 4274",
+      "p529 4274",
+      "p530 4274",
+      "p531 4274",
+      "p532 4274",
+      "p533 4274",
+      "p534 4274",
+      "p535 4274",
+      "p536 30414",
+      "p537 30414",
+      "p538 32028",
+      "p539 32028",
+      "p540 32028",
+      "p541 32028",
+      "p542 30132",
+      "p543 30132",
+      "p544 30132",
+      "p545 30132",
+      "p546 30132",
+      "p547 30132",
+      "p548 30132",
+      "p549 30132",
+      "p550 3022",
+      "p551 3023",
+      "p552 3023",
+      "p553 99780",
+      "p554 15573",
+      "p555 6141",
+      "p556 6141",
+      "p557 4070",
+      "p558 4070",
+      "p559 6141",
+      "p560 6141",
+      "p561 6141",
+      "p562 6141",
+      "p563 15573",
+      "p564 92280",
+      "p565 92280",
+      "p566 3020",
+      "p567 14719",
+      "p568 14719",
+      "p569 15535",
+      "p570 6141",
+      "p571 6141",
+      "p572 4070",
+      "p573 6141",
+      "p574 3710",
+      "p575 3062b",
+      "p576 3062b",
+      "p577 98138",
+      "p578 98138",
+      "p579 3023",
+      "p580 99207",
+      "p581 99207",
+      "p582 32064b",
+      "p583 2420",
+      "p584 2420",
+      "p585 18674",
+      "p586 18674",
+      "p587 4740",
+      "p588 4740",
+      "p589 3069b",
+      "p590 6192",
+      "p591 88072",
+      "p592 2877",
+      "p593 3069b",
+      "p594 88072",
+      "p595 2877",
+      "p596 3069b",
+      "p597 30137",
+      "p598 2436b",
+      "p599 4070",
+      "p600 3024",
+      "p601 3024",
+      "p602 61678",
+      "p603 2436b",
+      "p604 3024",
+      "p605 61678",
+      "p606 3024",
+      "p607 4070",
+      "p608 87580",
+      "p609 3069b",
+      "p610 3069b",
+      "p611 6141",
+      "p612 6141",
+      "p613 54200",
+      "p614 54200",
+      "p620 19215",
+      "p626 19215",
+      "p632 19215",
+      "p638 19215",
+      "p753 87618",
+      "p754 577b",
+      "p755 87994",
+      "p1109 43723",
+      "p1110 43722"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            0,
+            -1.5
+          ],
+          [
+            1.5,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p673 3009": [
+              1,
+              90
+            ],
+            "p691 6636": [
+              1,
+              70
+            ],
+            "p715 3009": [
+              0,
+              0
+            ],
+            "p733 6636": [
+              0,
+              0
+            ],
+            "p68 60897": [
+              0,
+              0
+            ],
+            "p73 60897": [
+              0,
+              0
+            ]
+          },
+          {
+            "p673 3009": [
+              0,
+              0
+            ],
+            "p691 6636": [
+              0,
+              0
+            ],
+            "p715 3009": [
+              1,
+              90
+            ],
+            "p733 6636": [
+              1,
+              70
+            ],
+            "p68 60897": [
+              0,
+              0
+            ],
+            "p73 60897": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ],
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "movedBy": [
+          [
+            "p673 3009",
+            "p691 6636"
+          ],
+          [
+            "p715 3009",
+            "p733 6636"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            64,
+            673,
+            0,
+            0
+          ],
+          [
+            1,
+            -1,
+            64,
+            715,
+            0,
+            0
+          ]
+        ],
+        "seconds": 5.2
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.07,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p1032 6636": [
+              1,
+              39.4
+            ],
+            "p1011 3034": [
+              1,
+              20.6
+            ],
+            "p1124 93606": [
+              0,
+              93.3
+            ],
+            "p491 32316": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 2,
+        "collisionStops": [
+          [
+            0,
+            1,
+            1056,
+            1156,
+            0.07,
+            0.07
+          ],
+          [
+            0,
+            -1,
+            110,
+            1035,
+            0,
+            0
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p956 6558",
+            "for": "p1032 6636"
+          },
+          {
+            "pin": "p963 6558",
+            "for": "p1032 6636"
+          }
+        ],
+        "seconds": 3
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p868 6179",
+          "p757 4162",
+          "p913 3707"
+        ],
+        "rates": [
+          {
+            "p868 6179": [
+              0,
+              0
+            ],
+            "p757 4162": [
+              0,
+              0
+            ],
+            "p913 3707": [
+              0,
+              0
+            ],
+            "p379 32524": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "stopped-early",
+        "collisionStops": [
+          [
+            0,
+            1,
+            322,
+            804,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            866,
+            920,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.2
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.23,
+            -0.73
+          ],
+          [
+            0.73,
+            -0.23
+          ]
+        ],
+        "rates": [
+          {
+            "p1151 3022": [
+              1,
+              20.6
+            ],
+            "p1152 85984": [
+              1,
+              18
+            ],
+            "p1155 3022": [
+              0,
+              0
+            ],
+            "p1156 85984": [
+              0,
+              0
+            ],
+            "p1100 3623": [
+              0,
+              0
+            ],
+            "p1106 3623": [
+              0,
+              0
+            ]
+          },
+          {
+            "p1151 3022": [
+              0,
+              0
+            ],
+            "p1152 85984": [
+              0,
+              0
+            ],
+            "p1155 3022": [
+              1,
+              20.6
+            ],
+            "p1156 85984": [
+              1,
+              18
+            ],
+            "p1100 3623": [
+              0,
+              0
+            ],
+            "p1106 3623": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 2,
+        "movedBy": [
+          [
+            "p1151 3022",
+            "p1152 85984"
+          ],
+          [
+            "p1155 3022",
+            "p1156 85984"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1059,
+            1152,
+            0.23,
+            0.23
+          ],
+          [
+            0,
+            -1,
+            1059,
+            1151,
+            0.73,
+            0.73
+          ],
+          [
+            1,
+            1,
+            1056,
+            1155,
+            0.73,
+            0.73
+          ],
+          [
+            1,
+            -1,
+            1056,
+            1156,
+            0.23,
+            0.23
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p1076 6558",
+            "for": "p1152 85984"
+          },
+          {
+            "pin": "p1077 6558",
+            "for": "p1155 3022"
+          }
+        ],
+        "seconds": 6.9
+      }
+    ],
+    "peak": 682
+  }
+}
