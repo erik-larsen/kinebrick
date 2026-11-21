@@ -1,0 +1,116 @@
+{
+  "set": "42100-1",
+  "commit": "de85a882",
+  "date": "2026-11-21T12:45:39.205Z",
+  "load": 4.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 4079,
+  "seconds": 49,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The access ladder at the back left of the superstructure swings up out of the way and down to the ground.",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "msOneCall": 72,
+      "msPerStep": 81,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 32
+      },
+      "stop": {
+        "control": "p4660 40490",
+        "way": 1,
+        "went": 0.035,
+        "asked": 1.5,
+        "by": [
+          "4244/4678"
+        ]
+      },
+      "stops": [
+        "4244/4678",
+        "4678/4743"
+      ],
+      "A": [
+        {
+          "control": "p4660 40490",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 81,
+          "msOneCall": 72,
+          "stops": [
+            "4244/4678"
+          ],
+          "moved": {
+            "p4686 40490": [
+              11.35,
+              2
+            ]
+          }
+        },
+        {
+          "control": "p4660 40490",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 35,
+          "msOneCall": 38,
+          "stops": [
+            "4678/4743"
+          ],
+          "moved": {
+            "p4686 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p4660 40490",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
+          "moved": [
+            "p4686 40490"
+          ],
+          "stops": [
+            "4678/4743",
+            "4242/4684",
+            "4244/4678"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p4660 40490",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "step 941 has a yellow curved arrow from 1 to 2: the ladder swings from up beside the superstructure's back corner down to the ground, about a quarter turn, so the 0.07 rad / 0 rad stops are a fault.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p4660 40490: a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743) (step 941 has a yellow curved arrow from 1 to 2: the ladder swings from up beside the superstructure's back corner down to the ground, about a quarter turn, so the 0.07 rad / 0 rad stops are a fault., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307)",
+      "seconds": 49
+    }
+  ]
+}
