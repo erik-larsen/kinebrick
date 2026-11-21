@@ -1,159 +1,284 @@
 {
- "42031-1 2": {
-  "stop": "not shown",
-  "why": "the boom turns round on a single pin, far past 0.03 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36"
- },
- "42040-1 3": {
-  "stop": "not shown",
-  "why": "the hatch flips forward to fill the tank, far past 0.17 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
- },
- "42054-1 14": {
-  "stop": "not shown",
-  "why": "the bonnet tips up to show the battery box, far past 0.03 rad"
- },
- "42060-1 6": {
-  "stop": "not shown",
-  "why": "the arm and bucket swing in and out, as the picture shows, far past 0.2 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182000.pdf#page=83"
- },
- "42063-1 5": {
-  "stop": "shown",
-  "why": "a swing arm on a shock absorber: a short travel is true",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6196567.pdf#page=107"
- },
- "42069-1 7": {
-  "stop": "not shown",
-  "why": "the door swings up and the step lowers (the picture), far past 0.07 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388"
- },
- "42070-1 10": {
-  "stop": "shown",
-  "why": "a pendular axle rocks a few degrees: 0.17 rad each way is true"
- },
- "42072-1 3": {
-  "stop": "not decided",
-  "why": "the lever knocked back must flip the bonnet off; whether 0.2 rad does it is not seen in the picture",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6220553.pdf#page=49"
- },
- "42073-1 3": {
-  "stop": "not decided",
-  "why": "the lever knocked back must flip the bonnet off; whether 0.2 rad does it is not seen in the picture",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6227047.pdf#page=52"
- },
- "42075-1 6": {
-  "stop": "not shown",
-  "why": "the mast swings up from lying along the roof to stand upright, far past 0.17 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6279792.pdf#page=112"
- },
- "42077-1 6": {
-  "stop": "not shown",
-  "why": "the doors swing open, far past 0.07 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=180"
- },
- "42078-1 4": {
-  "stop": "not shown",
-  "why": "the bonnet tips forward to show the engine, far past 0.03 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420"
- },
- "42078-1 12": {
-  "stop": "not shown",
-  "why": "the end doors swing open, far past 0.2 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=412"
- },
- "42083-1 6": {
-  "stop": "not decided",
-  "why": "the key turns to raise the wing; how far the key turns is not given by the picture",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310"
- },
- "42096-1 4": {
-  "stop": "not decided",
-  "why": "independent suspension: 0.1 rad one way and none the other; the booklet shows no travel",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=290"
- },
- "42100-1 9": {
-  "stop": "not shown",
-  "why": "the ladder swings up out of the way and down to the ground, far past 0.07 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307"
- },
- "42110-1 5": {
-  "stop": "not decided",
-  "why": "the knob rocks to shift; whether 0.13 to 0.17 rad indexes the gearbox is not seen in the picture",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490"
- },
- "42110-1 12": {
-  "stop": "not decided",
-  "why": "the spare wheel turns the latch, then the tailgate swings open sideways; the picture does not give the latch's turn",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=491"
- },
- "42114-1 5": {
-  "stop": "shown",
-  "why": "the rear half rolls a few degrees against the front: 0.2 rad each way is true",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=218"
- },
- "42122-1 2": {
-  "stop": "shown",
-  "why": "a pendular axle rocks a few degrees: 0.13 rad each way is true",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
- },
- "42122-1 6": {
-  "stop": "not shown",
-  "why": "the bonnet lifts open (the picture), far past 0.17 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
- },
- "42129-1 6": {
-  "stop": "not decided",
-  "why": "sprung axles: 0.03 to 0.13 rad; the picture shows the truck over rough ground, not how far",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=372"
- },
- "42000-1 4": {
-  "stop": "not decided",
-  "why": "pushrod suspension: 0.07 rad each way; the booklet has no motion arrows"
- },
- "8002-1 1": {
-  "stop": "not shown",
-  "why": "the shell swings forward and down round the body to make the wheel, far past 0.08 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=98"
- },
- "8002-1 6": {
-  "stop": "not shown",
-  "why": "the back leg swings up over the back, far past 0.06 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=94"
- },
- "8110-1 13": {
-  "stop": "not shown",
-  "why": "the valve lever is thrown to work the grab's jaws; 0.03 rad does not throw it",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6013912.pdf#page=44"
- },
- "8273-1 10": {
-  "stop": "shown",
-  "why": "a bogie rocks a little: 0.07 and 0.2 rad are true"
- },
- "8285-1 5": {
-  "stop": "not shown",
-  "why": "the bonnet tilts forward over the engine, far past 0.15 rad",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4499315.pdf#page=2"
- },
- "8448-1 5": {
-  "stop": "not decided",
-  "why": "independent suspension: 0.03 rad one way and none the other; the booklet shows no travel"
- },
- "8844-1 1": {
-  "stop": "not shown",
-  "why": "the crank retracts and lowers the landing gear through a chain, far past 0.17 rad"
- },
- "8862-1 8": {
-  "stop": "not shown",
-  "why": "the cylinder swings the dipper arm in and out, far past 0.17 rad"
- },
- "8880-1 12": {
-  "stop": "not decided",
-  "why": "the seat backs on finger hinges: whether they are meant to tilt is unsure (the list says so)"
- },
- "9392-1 1": {
-  "stop": "not decided",
-  "why": "the handlebars steer: 0.2 rad each way; the booklet does not show the lock",
-  "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6002926.pdf#page=56"
- }
+  "42031-1 2": {
+    "stop": "not shown",
+    "why": "step 21 fits an upright pin/axle in the chassis behind the cab, and step 39 drops the boom's mount onto it; nothing keys or locks it, so it slews round on that pin, far past 0.03 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36"
+  },
+  "42040-1 3": {
+    "stop": "not shown",
+    "why": "picture 1 shows a big curved arrow flipping the hatch forward, and picture 2 shows it about upright, roughly 90 degrees from closed, far past the viewer's 0.068 rad; step 50 (page 114) also shows it upright.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
+  },
+  "42054-1 14": {
+    "stop": "not shown",
+    "why": "the bonnet tips up to show the battery box, far past 0.03 rad"
+  },
+  "42060-1 6": {
+    "stop": "not shown",
+    "why": "the arm and bucket swing in and out, as the picture shows, far past 0.2 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182000.pdf#page=83"
+  },
+  "42063-1 5": {
+    "stop": "shown",
+    "why": "a swing arm on a shock absorber: a short travel is true",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6196567.pdf#page=107"
+  },
+  "42069-1 7": {
+    "stop": "not shown",
+    "why": "the door swings up and the step lowers (the picture), far past 0.07 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388"
+  },
+  "42070-1 10": {
+    "stop": "shown",
+    "why": "a pendular axle rocks a few degrees: 0.17 rad each way is true"
+  },
+  "42072-1 3": {
+    "stop": "not decided",
+    "why": "the lever knocked back must flip the bonnet off; whether 0.2 rad does it is not seen in the picture",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6220553.pdf#page=49"
+  },
+  "42073-1 3": {
+    "stop": "not decided",
+    "why": "the lever knocked back must flip the bonnet off; whether 0.2 rad does it is not seen in the picture",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6227047.pdf#page=52"
+  },
+  "42075-1 6": {
+    "stop": "not shown",
+    "why": "the mast swings up from lying along the roof to stand upright, far past 0.17 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6279792.pdf#page=112"
+  },
+  "42077-1 6": {
+    "stop": "not shown",
+    "why": "the doors swing open, far past 0.07 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=180"
+  },
+  "42078-1 4": {
+    "stop": "not shown",
+    "why": "step 492 (page 249) fits the bonnet already tipped fully forward, about a quarter turn, and step 504 shows it shut; the page 420 photo shows the same forward tip with an arrow, so 0.02-0.03 rad is a fault.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=249"
+  },
+  "42078-1 12": {
+    "stop": "not shown",
+    "why": "the end doors swing open, far past 0.2 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=412"
+  },
+  "42083-1 6": {
+    "stop": "not shown",
+    "why": "page 310 shows two-way curved arrows on the key and a two-way up-down arrow on the wing, so the key must turn both ways far enough to lift the wing visibly; the viewer allows no turn at all one way (stop at +0 rad, 1928/2024). The exact number of key turns is not drawn.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310"
+  },
+  "42096-1 4": {
+    "stop": "not decided",
+    "why": "independent suspension: 0.1 rad one way and none the other; the booklet shows no travel",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=290"
+  },
+  "42100-1 9": {
+    "stop": "not shown",
+    "why": "step 941 has a yellow curved arrow from 1 to 2: the ladder swings from up beside the superstructure's back corner down to the ground, about a quarter turn, so the 0.07 rad / 0 rad stops are a fault.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307"
+  },
+  "42110-1 5": {
+    "stop": "not shown",
+    "why": "the '+ -' inset on page 490 shows the round knob between the seats turned both ways with a curved arrow spanning roughly a half turn, to step the sequential gearbox, far more than the viewer's 0.10-0.17 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490"
+  },
+  "42110-1 12": {
+    "stop": "not decided",
+    "why": "the spare wheel turns the latch, then the tailgate swings open sideways; the picture does not give the latch's turn",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=491"
+  },
+  "42114-1 5": {
+    "stop": "shown",
+    "why": "the rear half rolls a few degrees against the front: 0.2 rad each way is true",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=218"
+  },
+  "42122-1 2": {
+    "stop": "shown",
+    "why": "a pendular axle rocks a few degrees: 0.13 rad each way is true",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
+  },
+  "42122-1 6": {
+    "stop": "not shown",
+    "why": "the middle inset on page 118 shows the bonnet swung up at its back edge to about 45 degrees, far past the 0.17 rad the solver reached.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
+  },
+  "42129-1 6": {
+    "stop": "not decided",
+    "why": "sprung axles: 0.03 to 0.13 rad; the picture shows the truck over rough ground, not how far",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=372"
+  },
+  "42000-1 4": {
+    "stop": "not decided",
+    "why": "pushrod suspension: 0.07 rad each way; the booklet has no motion arrows"
+  },
+  "8002-1 1": {
+    "stop": "not shown",
+    "why": "the shell swings forward and down round the body to make the wheel, far past 0.08 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=98"
+  },
+  "8002-1 6": {
+    "stop": "not shown",
+    "why": "the back leg swings up over the back, far past 0.06 rad",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=94"
+  },
+  "8110-1 13": {
+    "stop": "not shown",
+    "why": "the valve lever is thrown to work the grab's jaws; 0.03 rad does not throw it",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6013912.pdf#page=44"
+  },
+  "8273-1 10": {
+    "stop": "shown",
+    "why": "a bogie rocks a little: 0.07 and 0.2 rad are true"
+  },
+  "8285-1 5": {
+    "stop": "not shown",
+    "why": "function 1's photo shows the bonnet, grille and front wings tipped right forward over the front wheel, about 90 degrees or a little more, far past the 0.15 rad the check reached.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4499315.pdf#page=2"
+  },
+  "8448-1 5": {
+    "stop": "not decided",
+    "why": "independent suspension: 0.03 rad one way and none the other; the booklet shows no travel"
+  },
+  "8844-1 1": {
+    "stop": "not shown",
+    "why": "the crank retracts and lowers the landing gear through a chain, far past 0.17 rad"
+  },
+  "8862-1 8": {
+    "stop": "not shown",
+    "why": "the cylinder swings the dipper arm in and out, far past 0.17 rad"
+  },
+  "8880-1 12": {
+    "stop": "not decided",
+    "why": "the seat backs on finger hinges: whether they are meant to tilt is unsure (the list says so)"
+  },
+  "9392-1 1": {
+    "stop": "not shown",
+    "why": "steps 15-16 and 33 build the steering column and handlebars driving both front hubs, so the handlebars must turn both ways from straight ahead; the viewer's stop at +0 rad (80/111) allows no steering one way. The booklet does not draw how far the lock goes.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6048795.pdf#page=39"
+  },
+  "42131-1 10": {
+    "stop": "shown",
+    "why": "step 175's inset shows the red L-lever pressed straight down (white arrow) so the pin under it clicks onto the hub's button; this is a short button press, about the size of the viewer's small travel.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=155"
+  },
+  "42129-1 8": {
+    "stop": "shown",
+    "why": "step 352 puts the steering wheel on a red axle 2 in the axle hole of a black axle-and-pin connector, and hangs that column on a pin through its centre hole; so the wheel cannot spin about its own axle, and at most the column rocks on the pin. No arrow or motion is drawn, and 'turns freely' is not supported by the booklet.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=216"
+  },
+  "42037-1 4": {
+    "stop": "not shown",
+    "why": "steps 6-27 build each front hub between two black suspension arms, and step 26 swings a yellow sprung shock absorber into place between arm and frame, so the arm swings up by the shock's stroke, clearly more than 0.035 rad. No page draws the suspension moving, so the exact travel isn't shown.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112296.pdf#page=16"
+  },
+  "42037-1 5": {
+    "stop": "not shown",
+    "why": "rear module steps 11-14 fit yellow sprung shock absorbers to the pivoting arms (with CV joints in the drive shafts), so each rear hub rises by the shock's stroke, well beyond the viewer's 0.066 rad. As with the front, no page draws the motion.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112296.pdf#page=38"
+  },
+  "42124-1 4": {
+    "stop": "not shown",
+    "why": "steps 18-33 build bent-liftarm suspension arms, and step 33 fits a yellow shock absorber to each arm, so each front wheel swings up against its spring. The viewer stops it at 0 rad, which is a fault, though no page draws the travel.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6351188.pdf#page=21"
+  },
+  "8001-1 1": {
+    "stop": "not shown",
+    "why": "the photos on pages 47-48 and 50 (green arrows, click mark) show the legs folding round the hip axle from standing straight to folded flat against the body, about half a turn, far past the viewer's 0.035 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4132555.pdf#page=48"
+  },
+  "42094-1 5": {
+    "stop": "shown",
+    "why": "page 136 shows the grab's upper clamp swinging about a quarter turn between wide open and closed on the log; closing ends where the clamp meets the tines or the log, a real end; the viewer sets no stop and the solver turned it 1.52 rad the other way.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6268336.pdf#page=136"
+  },
+  "42078-1 1": {
+    "stop": "not shown",
+    "why": "the bottom-left photo shows a circular arrow on the roof gear and a steering arrow on the front wheel: turning the gear steers the wheels from lock to lock, so the gear turns far more than the viewer's 0.069 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420"
+  },
+  "42096-1 5": {
+    "stop": "not shown",
+    "why": "the photo shows a large up-and-down double arrow on the rear wheel, so the suspension arms swing visibly, far more than 0.035 rad (the booklet gives no number for the travel).",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=291"
+  },
+  "42099-1 5": {
+    "stop": "not shown",
+    "why": "the front axle is driven through a differential (steps 24-25), so a front wheel and its half-shaft turn without limit; a stop at 0 rad is a fault. (The reader did not confirm the differential's step.)",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=24"
+  },
+  "8257-1 4": {
+    "stop": "not shown",
+    "why": "step 26 shows the hand pulling the purple target lever forward with a long red arrow while the seat catch swings up; the lever moves roughly 0.5 rad, past the viewer's 0.103 rad (which sign is the pull is not said).",
+    "page": "https://lego.brickinstructions.com/en/lego_instructions/set/8257#page=22"
+  },
+  "8002-1 5": {
+    "stop": "not shown",
+    "why": "pages 85-88 show the droid going from standing to curled up with the legs folded under, a swing of roughly 90 degrees, far past 0.034 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87"
+  },
+  "8001-1 6": {
+    "stop": "not shown",
+    "why": "the photos show the arms in clearly different poses (page 52 an arm out about 40 degrees; page 53 an arm bent about 90 degrees), far more than the viewer's 0.174 rad; poses only, no motion arrow.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4132555.pdf#page=52"
+  },
+  "42033-1 4": {
+    "stop": "not shown",
+    "why": "step 31 shows a red arrow swinging the clear canopy up and forward through roughly 90 degrees, far past 0.035 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6106802.pdf#page=43"
+  },
+  "42109-1 6": {
+    "stop": "shown",
+    "why": "the bottom-left photo shows the bonnet lifted to near upright on its hinge at the windscreen; the viewer does not stop it, and the solver's only stop is 0.03 rad in the closing direction, where the closed bonnet really rests.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6310649.pdf#page=115"
+  },
+  "42083-1 7": {
+    "stop": "not shown",
+    "why": "each door hangs on hinge pins at its front edge (book 2 steps 931-943) and swings outward to open; the booklet draws no open door, but a door held to 0.07 rad (about 4 degrees) cannot open at all.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=297"
+  },
+  "42099-1 2": {
+    "stop": "not shown",
+    "why": "steps 173-180 fit the rear XL motor and its 20 tooth gear into the gear train to the rear differential; the motor shaft turns without end while it drives the wheels, so a stop at 0 rad is a fault.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=101"
+  },
+  "42108-1 3": {
+    "stop": "not shown",
+    "why": "the top-middle inset on page 266 has arrows on the rear gears and on the legs: each outrigger leg swings out from the chassis side and down onto its foot, very roughly a right angle, far past the viewer's 0.17 rad stop.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6310950.pdf#page=266"
+  },
+  "8002-1 2": {
+    "stop": "not shown",
+    "why": "the photo on page 85 has a hand and a curved arrow folding the head down through roughly a right angle or more; page 86 shows it fully folded, so the 0.105 rad stop is a fault.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=85"
+  },
+  "8261-1 1": {
+    "stop": "not shown",
+    "why": "the roof shaft and 12 tooth gear steer the front wheels to full lock (the solver turned it 1.47 rad each way); the booklet shows nothing that would stop it at 0.105 rad, and the viewer's stop is a part against itself (193/193).",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=32"
+  },
+  "42080-1 1": {
+    "stop": "not shown",
+    "why": "the pump crank is turned all the way round, without end, by the Power Functions L motor (page 92 shows the motor with round connectors on its shaft as the crank; page 203 the battery box switched on), so a travel of only 0.3/0.39 rad does not show the function.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=92"
+  },
+  "42099-1 6": {
+    "stop": "not shown",
+    "why": "step 140 builds an open differential into the rear axle housing, so the rear wheel turns freely through full turns (geared to the other wheel), and the viewer's stop at +0 rad is a fault.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86"
+  },
+  "42111-1 8": {
+    "stop": "not shown",
+    "why": "the page 229 top inset shows the bonnet lifted on its windscreen-end hinges to near vertical (about 80-90 degrees), with a curved arrow, far beyond the viewer's stop at 0.035 rad.",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=229"
+  },
+  "8851-1 5": {
+    "stop": "not shown",
+    "why": "steps 8 and 13 mount the whole upper body on a turntable held by a central threaded axle and nut, so the cab and arm slew freely, far past the viewer's stop at 0.035 rad (no slewing arrow is drawn, but nothing built blocks the turntable).",
+    "page": "https://lego.brickinstructions.com/en/lego_instructions/set/8851#page=9"
+  },
+  "42004-1 5": {
+    "stop": "shown",
+    "why": "the step 12 arrow and the page 71 inset (two-way arrows) show the stick swinging a wide arc both ways about its pivot; the viewer puts no stop on it, so it has no viewer fault to judge (the solver's 0.07 rad collision stop one way is far short of the booklet's swing).",
+    "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6033738.pdf#page=48"
+  }
 }
