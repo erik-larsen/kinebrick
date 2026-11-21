@@ -1,5 +1,5 @@
 // A push: a part moved so that a point on it goes a given way, by whatever the mechanism allows
-// (see "Interaction" in the README). The viewer pushes a part that doesn't spin on an axle (the
+// (see "Viewer" in the README). The viewer pushes a part that doesn't spin on an axle (the
 // frame, a door, an arm of a linkage), and the function check pushes such a control as the
 // viewer would (scripts/check-functions.ts), so both use the steps here.
 

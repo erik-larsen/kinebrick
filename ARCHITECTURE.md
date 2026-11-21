@@ -1,6 +1,8 @@
-# Kinebrick Play architecture
+# Kinebrick Architecture
 
-How Kinebrick works inside, for anyone changing the code. What it does, and how to use it, is in the [README](README.md).
+Kinebrick looks up each part's connection points (where its holes, axles, pins and studs are), finds the ones that line up, and groups parts that move together into bodies. Bodies are joined by joints: an axle turning in a hole, a beam turning on a pin, a piston sliding in its cylinder. Each joint, each pair of meshing gears and each tyre on the ground gives equations between the bodies' speeds, and whatever motion the equations leave free is what you can drive. When you drag a part, Kinebrick moves the mechanism along that motion in small steps, and stops where two parts would run into each other.
+
+This is how it does that, for anyone changing the code. What Kinebrick does, and how to use it, is in the [README](README.md); how to build and run it, and where the project stands, is in [DEVELOPER.md](DEVELOPER.md).
 
 Everything here is kinematics: how a mechanism can move, worked out from its geometry, with no masses or forces. That's version 1.0.
 
@@ -8,7 +10,7 @@ Forces (momentum, springs that spring, clutches that slip) are for version 2.0. 
 
 ## Overview in three drawings
 
-Kinebrick does two things: it reads a model into a mechanism that can move, and it moves that mechanism when the user drags a part. The first drawing is the reading, the second the motion, and the third lists Kinebrick's pieces as a tree. The sections after these explain each box.
+The first drawing is the reading of a model into a mechanism that can move, the second its motion when the user drags a part, and the third lists Kinebrick's pieces as a tree. The sections after these explain each box.
 
 ### Reading: from files to a movable set in memory
 
@@ -795,7 +797,7 @@ They connect as plain parts. The viewer lists any in a model, so a part that sil
 
 ## Drags
 
-What a drag does for the user is in the README's [Interaction](README.md#interaction) section. In the solver, a drag's state (what it holds, what it turns, what it has found out on the way) is one object, a `Drag`, made when the drag starts (`holdWhatTheDragDoesntNeed`) and dropped when it ends (`letGoAfterDrag`); between drags the solver has an empty one, which holds nothing. Underneath:
+What a drag does for the user is in the README's [Viewer](README.md#viewer) section. In the solver, a drag's state (what it holds, what it turns, what it has found out on the way) is one object, a `Drag`, made when the drag starts (`holdWhatTheDragDoesntNeed`) and dropped when it ends (`letGoAfterDrag`); between drags the solver has an empty one, which holds nothing. Underneath:
 
 ### Push or turn
 
