@@ -87,6 +87,12 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
   // The axes a body turns about (in a round hole, on an axle).
   const axesOf = (body: number) => connections.filter((c) => c.kind === 'revolute' && bodyOf[c.male] !== bodyOf[c.female] && (bodyOf[c.male] === body || bodyOf[c.female] === body)).map((c) => new Vector3().subVectors(c.to, c.from).normalize());
   const turnsAbout = (body: number, d: Vector3) => axesOf(body).some((a) => a.clone().cross(d).length() < ANGLE_TOLERANCE);
+  // A point on the line a body turns about along a direction (where one of its round holes or
+  // axles is), or null.
+  const axisPointOf = (body: number, d: Vector3): Vector3 | null => {
+    const c = connections.find((c) => c.kind === 'revolute' && bodyOf[c.male] !== bodyOf[c.female] && (bodyOf[c.male] === body || bodyOf[c.female] === body) && new Vector3().subVectors(c.to, c.from).normalize().cross(d).length() < ANGLE_TOLERANCE);
+    return c ? c.from.clone() : null;
+  };
   // Each part's underside, facing down: where its anti-studs open, as a face reaching half a stud
   // beyond their middles. And the studs pointing up, which an underside may rest on.
   const mouths = new Map<number, WorldCylinder[]>();
@@ -167,7 +173,18 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
         at += sec.length;
         const t = new Vector3().subVectors(footAt, start).dot(c.dir);
         if (t < -BUSH_RADIUS || t > sec.length + BUSH_RADIUS) continue; // not across under it
-        const off = new Vector3().subVectors(start.clone().addScaledVector(c.dir, t), footAt);
+        // Where the cylinder comes nearest the foot as its body turns, not where it is built: a lobe
+        // pointing away as built (one of the 42112's four points down) comes round under the foot.
+        const at0 = start.clone().addScaledVector(c.dir, t);
+        const axis = axisPointOf(body, c.dir);
+        let nearest = at0;
+        if (axis) {
+          const centre = axis.addScaledVector(c.dir, new Vector3().subVectors(at0, axis).dot(c.dir));
+          const toFoot = new Vector3().subVectors(footAt, centre);
+          toFoot.addScaledVector(c.dir, -toFoot.dot(c.dir));
+          if (toFoot.lengthSq() > 1e-12) nearest = centre.addScaledVector(toFoot.normalize(), at0.distanceTo(centre));
+        }
+        const off = new Vector3().subVectors(nearest, footAt);
         if (Math.abs(off.dot(up)) > REACH || off.addScaledVector(up, -off.dot(up)).length() > BUSH_RADIUS + REACH) continue;
         on.push({ face: foot(bottom[0]), body, shape: { kind: 'cylinder', point: start, axis: c.dir.clone(), length: sec.length, radius: half ?? sec.radius } });
       }
