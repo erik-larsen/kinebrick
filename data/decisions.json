@@ -46,6 +46,15 @@
       ],
       "reply": "Rewrite the 42129's and skip the 42131's",
       "since": "2026-11-21"
+    },
+    {
+      "id": "42070-fn2-fn7",
+      "kind": "Sign-off",
+      "title": "42070: the same motor control for functions 2 and 7",
+      "what": "You signed the XL motor as the control of the 42070's functions 1 and 6, which is applied and checked: both work from the motor. Functions 2 (the V8's pistons pump as the truck drives) and 7 (the motor raises and lowers the outriggers) name the same buried axle, part 402, as their control. They were not in what you signed, because the sweep had only flagged working functions and these two are partly. The change is the same: the motor, part 593, in place of the axle.",
+      "effect": "All four of the motor's functions are then worked the same way. Both are partly today and may stay so; the check will say.",
+      "reply": "Sign the 42070's functions 2 and 7 too",
+      "since": "2026-11-21"
     }
   ],
   "coming": [
@@ -482,6 +491,10 @@
     {
       "date": "2026-11-21",
       "what": "At the pause (338): the rule for parts that nothing drives has five gains and five losses for rolling a model, one loss serious (the 8880), so it stays off. Against a model tipping as it rolls, the gentler of two mends is taken; it brings the track sets back exactly. Three branches wait, each right in itself, for a further mend. Work starts again there after the reset on 23 November."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The worker's last work before the pause is merged (339): the viewer now offers to free friction pins also when a drag stops short on slack (the 42004's knob then turns); the 42070's XL motor is on its axle by your signed erratum and is the control of functions 1 and 6, which both work from it. The sweep's mended pointer shows 28 of the 29 functions it had failed on. 698 functions work."
     }
   ]
 }
