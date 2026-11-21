@@ -57,7 +57,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { loadavg } from 'node:os';
 import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
-import { LIBRARY, open, type Viewer } from './drag.ts';
+import { LAUNCH, LIBRARY, open, type Viewer } from './drag.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
@@ -604,7 +604,7 @@ function round(x: number) {
 // Whether the viewer opens the model: null if it does, else what the page said (an error thrown
 // while loading, or that it never got ready).
 async function opens(file: string): Promise<string | null> {
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch(LAUNCH);
   try {
     const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
     let error: string | null = null;

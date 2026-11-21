@@ -1,0 +1,112 @@
+{
+  "set": "9397-1",
+  "commit": "bff67fc6",
+  "date": "2026-11-21T09:00:07.319Z",
+  "load": 19.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1143,
+  "seconds": 489,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 316,
+      "msPerStep": 113,
+      "time": {
+        "open": 18,
+        "collisions": 11,
+        "first": 0,
+        "reach": 89,
+        "A": 21,
+        "B": 350
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1000 3706",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 4852,
+          "msOneCall": 316,
+          "stops": [],
+          "moved": {
+            "p813 32072": [
+              0,
+              85.94
+            ],
+            "p510 32072": [
+              0,
+              85.94
+            ],
+            "p142 87761": [
+              23.49,
+              0
+            ],
+            "p121 87083": [
+              17.61,
+              37.05
+            ],
+            "p125 87083": [
+              17.61,
+              37.22
+            ]
+          }
+        },
+        {
+          "control": "p1000 3706",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4833,
+          "msOneCall": 250,
+          "stops": [],
+          "moved": {
+            "p813 32072": [
+              0,
+              85.94
+            ],
+            "p510 32072": [
+              0,
+              85.94
+            ],
+            "p142 87761": [
+              23.49,
+              0
+            ],
+            "p121 87083": [
+              17.61,
+              37.05
+            ],
+            "p125 87083": [
+              17.61,
+              37.22
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1000 3706",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p813 32072",
+            "p510 32072",
+            "p142 87761",
+            "p121 87083",
+            "p125 87083"
+          ],
+          "stops": [
+            "112/120"
+          ]
+        }
+      ],
+      "seconds": 489
+    }
+  ]
+}

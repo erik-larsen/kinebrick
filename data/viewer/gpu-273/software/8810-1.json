@@ -1,0 +1,145 @@
+{
+  "set": "8810-1",
+  "commit": "bff67fc6",
+  "date": "2026-11-21T08:57:46.523Z",
+  "load": 19.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 74,
+  "seconds": 62,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p33 4262, p21 3706, p26 2695, p16 4254, p18 4254 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 1,
+        "first": 0,
+        "reach": 1,
+        "A": 0,
+        "B": 53
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p32 4262",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p33 4262": [
+              0,
+              0
+            ],
+            "p21 3706": [
+              0,
+              0
+            ],
+            "p26 2695": [
+              0,
+              0
+            ],
+            "p16 4254": [
+              0,
+              0
+            ],
+            "p18 4254": [
+              0,
+              0
+            ],
+            "p5 2904": [
+              0,
+              0
+            ],
+            "p24 3894": [
+              0,
+              0
+            ],
+            "p25 3894": [
+              0,
+              0
+            ],
+            "p53 2695": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p32 4262",
+          "way": -1,
+          "asked": 0.23,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p33 4262": [
+              0,
+              0
+            ],
+            "p21 3706": [
+              0,
+              0
+            ],
+            "p26 2695": [
+              0,
+              0
+            ],
+            "p16 4254": [
+              0,
+              0
+            ],
+            "p18 4254": [
+              0,
+              0
+            ],
+            "p5 2904": [
+              0,
+              0
+            ],
+            "p24 3894": [
+              0,
+              0
+            ],
+            "p25 3894": [
+              0,
+              0
+            ],
+            "p53 2695": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p32 4262",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p33 4262",
+            "p21 3706",
+            "p26 2695",
+            "p16 4254",
+            "p18 4254"
+          ],
+          "stops": [
+            "16/15"
+          ]
+        }
+      ],
+      "seconds": 62
+    }
+  ]
+}
