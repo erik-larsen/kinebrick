@@ -1448,6 +1448,10 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
     // or shaft (endlessPart; decisions 279 and 282 of 2026-11-21), however far its parts moved
     // first: a wheel that rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
     // A lever stopped (the 8063's) is at the end of its travel, whatever the function's kinds.
+    // What tells such a part from a lever is the part itself (endlessPart: its role, else its LDraw
+    // title), not its joint: a wheel and a lever both turn on a revolute joint, and the 8063's lever
+    // is a connector turning on its own axle. A function with several controls or ways of which only
+    // some are stopped so is at most partly too: one stopped wheel is one the user sees stop.
     const endless = endlessKinds(fn.mechanisms).endless;
     const controlRefs = [fn.control!].flat();
     const withCollisions = <T extends { result?: Result; cause?: Cause; detail?: string }>(r: T): T => {
