@@ -125,6 +125,7 @@ export interface InteractionSetup {
   pinsToShift: (part: number) => Promise<{ pins: number[]; why: 'more' | 'joints' | null }>; // the friction pins a press with Shift frees (see pinsForShift), and if none, why
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
   slideOnAxle?: (part: number) => boolean; // asks for a part to slide on its axle (decision 206 of 2026-11-18, see slidesAsked): whether it can
+  unslideOnAxle?: (part: number) => boolean; // takes back a slide asked for, so the part turns again (decision 305): whether it was asked
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -980,7 +981,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // a pin to pull): asks for that, and says so if it can.
   function slidesOnAxle(part: number, x: number, y: number) {
     if (!s.slideOnAxle?.(part)) return false;
-    showMessage('It can slide along its axle: drag it', x, y);
+    showMessage('It can slide along its axle: drag it. Shift again lets it turn as before', x, y);
     return true;
   }
 
@@ -1006,6 +1007,12 @@ export function setUpInteraction(s: InteractionSetup) {
         e.stopImmediatePropagation();
         ctrlClickHandled = true;
         cycleMotor(hit.part, e.clientX, e.clientY);
+        return;
+      }
+      if (e.shiftKey && s.mech.slid?.includes(hit.part) && s.unslideOnAxle?.(hit.part)) {
+        // Shift on a part asked to slide on its axle takes that back: it turns again as before.
+        e.stopImmediatePropagation();
+        showMessage('It turns on its axle again', e.clientX, e.clientY);
         return;
       }
       if (e.shiftKey && s.mech.bodyOf[hit.part] === 0) {
