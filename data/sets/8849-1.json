@@ -125,12 +125,12 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "2555e395",
     "date": "2026-11-21",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
-      "works": 6,
-      "wrong amount": 1,
+      "works": 4,
+      "partly": 2,
       "not checked": 1
     },
     "loose": [],
@@ -200,7 +200,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -336,83 +336,90 @@
         "seconds": 0.2
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.77,
-            -0.77
-          ]
-        ],
-        "rates": [
-          {
-            "p52 3707": [
-              3,
-              2.3e-13
-            ],
-            "p44 3705": [
-              3.14,
-              1.85e-14
+        "result": "partly",
+        "hold": {
+          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the wheels p259 and p261 at 0.77 rad each way (parts 28/58). Viewer sweep with a full turn asked, decision 288.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.77,
+              -0.77
             ]
-          }
-        ],
-        "expected": [
-          {
-            "p52 3707": 3,
-            "p44 3705": 3
-          }
-        ],
-        "wrong": [
-          "p44 3705"
-        ],
-        "back": [
-          [
-            [
-              0,
-              0.3
-            ],
-            [
-              0,
-              0.28
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0.3
-            ],
-            [
-              0,
-              0.28
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            28,
-            58,
-            0.77,
-            0.77
           ],
-          [
-            0,
-            -1,
-            28,
-            58,
-            0.77,
-            0.77
-          ]
-        ],
-        "seconds": 0.2
+          "rates": [
+            {
+              "p52 3707": [
+                3,
+                1.81e-13
+              ],
+              "p44 3705": [
+                3.14,
+                1.09e-13
+              ]
+            }
+          ],
+          "expected": [
+            {
+              "p52 3707": 3,
+              "p44 3705": 3
+            }
+          ],
+          "wrong": [
+            "p44 3705"
+          ],
+          "back": [
+            [
+              [
+                0,
+                0.3
+              ],
+              [
+                0,
+                0.28
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0.3
+              ],
+              [
+                0,
+                0.28
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              28,
+              58,
+              0.77,
+              0.77
+            ],
+            [
+              0,
+              -1,
+              28,
+              58,
+              0.77,
+              0.77
+            ]
+          ],
+          "seconds": 0.2
+        }
       },
       {
         "result": "works",
@@ -491,183 +498,190 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "not checked",
         "seconds": 0
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.77,
-            -0.77
+        "result": "partly",
+        "hold": {
+          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the wheels p259 and p261 at 0.77 rad each way (parts 28/58); p263 and p265 turn freely. Viewer sweep with a full turn asked, decision 288.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.77,
+              -0.77
+            ],
+            [
+              0.77,
+              -0.77
+            ],
+            [
+              1.5,
+              -1.5
+            ],
+            [
+              1.5,
+              -1.5
+            ]
           ],
-          [
-            0.77,
-            -0.77
+          "rates": [
+            {},
+            {},
+            {},
+            {}
           ],
-          [
-            1.5,
-            -1.5
+          "back": [
+            [
+              [
+                0,
+                0.3
+              ],
+              [
+                0,
+                0.28
+              ]
+            ],
+            [
+              [
+                0,
+                0.3
+              ],
+              [
+                0,
+                0.28
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
           ],
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {},
-          {},
-          {},
-          {}
-        ],
-        "back": [
-          [
+          "torn": [
+            [
+              [
+                0,
+                0.3
+              ],
+              [
+                0,
+                0.28
+              ]
+            ],
+            [
+              [
+                0,
+                0.3
+              ],
+              [
+                0,
+                0.28
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ],
+            [
+              "limit",
+              "limit"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              null,
+              null
+            ]
+          ],
+          "movedBy": [
+            [],
+            [],
+            [],
+            []
+          ],
+          "collisionStops": [
             [
               0,
-              0.3
+              1,
+              28,
+              58,
+              0.77,
+              0.77
             ],
             [
               0,
-              0.28
-            ]
-          ],
-          [
-            [
-              0,
-              0.3
+              -1,
+              28,
+              58,
+              0.77,
+              0.77
             ],
             [
-              0,
-              0.28
-            ]
-          ],
-          [
-            [
-              0,
-              0
+              1,
+              1,
+              28,
+              58,
+              0.77,
+              0.77
             ],
             [
-              0,
-              0
+              1,
+              -1,
+              28,
+              58,
+              0.77,
+              0.77
             ]
           ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0.3
-            ],
-            [
-              0,
-              0.28
-            ]
-          ],
-          [
-            [
-              0,
-              0.3
-            ],
-            [
-              0,
-              0.28
-            ]
-          ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ],
-          [
-            "limit",
-            "limit"
-          ],
-          [
-            null,
-            null
-          ],
-          [
-            null,
-            null
-          ]
-        ],
-        "movedBy": [
-          [],
-          [],
-          [],
-          []
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            28,
-            58,
-            0.77,
-            0.77
-          ],
-          [
-            0,
-            -1,
-            28,
-            58,
-            0.77,
-            0.77
-          ],
-          [
-            1,
-            1,
-            28,
-            58,
-            0.77,
-            0.77
-          ],
-          [
-            1,
-            -1,
-            28,
-            58,
-            0.77,
-            0.77
-          ]
-        ],
-        "seconds": 0.8
+          "seconds": 0.7
+        }
       }
     ],
-    "peak": 319
+    "peak": 322
   }
 }

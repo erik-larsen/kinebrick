@@ -180,5 +180,110 @@
     "result": "partly",
     "reason": "In the viewer two parts listed to stay move 3 to 6 LDU: p14 and p65 against p0. Viewer sweep, decision 279.",
     "date": "2026-11-21"
+  },
+  {
+    "set": "8285-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "In the viewer neither a turn of the control nor a push by hand moves the listed part p1074, with the control in view; the check tilts the bonnet 0.15 rad one way only. Viewer sweep, decision 286.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42043-1",
+    "function": 10,
+    "result": "partly",
+    "reason": "In one long drag of a wheel in the viewer the drive slips: p105 turns 120 degrees and the gear p102 and the six pistons hardly move, where the check has rate 4.2; four short drags by pointer do move them. Viewer sweep, decision 286.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42075-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "In one long drag of a wheel in the viewer the drive slips: the crankshaft p349 turns 25.8 degrees for 86 degrees in, where the check has rate 3.89, and the piston p352 moves 0.76 LDU; short drags by pointer do move it. Viewer sweep, decision 286.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42024-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the tyres p237 to p242 at 0.21 rad each way (parts 2/279). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42081-1",
+    "function": 8,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the fan p694 at 0.07 and 0.73 rad (parts 694/720) and the fan p695 at 0.14 and 0.31 rad (parts 694/695). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42093-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rims p567 and p574 at 0.07 rad each way (parts 118/327 and 118/338). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42106-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rims p2136 and p2138 at 0.80 rad one way (parts 2064/2197). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42112-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: its rims at 0.52 rad one way (parts 135/175). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42123-1",
+    "function": 4,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p1075 at 0.105 rad each way (parts 165/257 and 165/268); the other two wheels turn freely. Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8844-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the pulley p128 at 0.38 rad each way (parts 202/207 and 202/206). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8848-1",
+    "function": 7,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rims p386 and p393 at 0.84 and 0.49 rad (parts 0/47 and 1/47). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8849-1",
+    "function": 4,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the wheels p259 and p261 at 0.77 rad each way (parts 28/58). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8849-1",
+    "function": 7,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the wheels p259 and p261 at 0.77 rad each way (parts 28/58); p263 and p265 turn freely. Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8851-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the four 40 tooth sprockets p908 to p911 at 0.105 rad each way (parts 891/893 and 892/894). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "9393-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p280 at 0.70 rad each way (parts 339/343 and 342/343). Viewer sweep with a full turn asked, decision 288.",
+    "date": "2026-11-21"
   }
 ]

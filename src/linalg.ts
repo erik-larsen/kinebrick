@@ -976,6 +976,11 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
   return result;
 }
 
+// Thrown where the rows of a null space hold a value that is not finite (NaN or ±∞), or come to one:
+// no sum makes sense of it, and on a NaN the rook pivoting never settled (a NaN is never as large as
+// itself). The step that met it is refused (see Kinematics.refuseNotFinite; decision 280).
+export class NotFinite extends Error {}
+
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
 // Plain loops on typed arrays: this runs many times a step. Each row's places that may not be 0, and
 // each column's rows that may not be 0 there, are kept, so that the searches and the elimination go
@@ -1003,6 +1008,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
         const v = r[k];
         x[k] = v;
         if (v === 0) continue;
+        if (!Number.isFinite(v)) throw new NotFinite(`a null space's row holds ${v}`);
         list.push(k);
         mark[k] = 1;
       }
@@ -1011,6 +1017,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
         const v = r[k];
         x[k] = v;
         if (v === 0) continue;
+        if (!Number.isFinite(v)) throw new NotFinite(`a null space's row holds ${v}`);
         list.push(k);
         mark[k] = 1;
       }
@@ -1070,6 +1077,8 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       const i = largestInColumn(c);
       const k = largestInRow(i);
       const done = Math.abs(lines[i].x[k]) <= Math.abs(lines[i].x[c]);
+      // Neither larger nor not: a NaN, come of sums too large for a number (finite rows can overflow).
+      if (!done && !(Math.abs(lines[i].x[k]) > Math.abs(lines[i].x[c]))) throw new NotFinite('a null space came to NaN');
       best = i;
       if (done) break;
       c = k;
