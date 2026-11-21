@@ -4320,8 +4320,7 @@ export class Kinematics {
             return [w[b] - w[a], w[b + 1] - w[a + 1], w[b + 2] - w[a + 2]];
           })
       : size;
-    const list: Tier[] = [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: sizeHere, joints: true }, { cost: moves }];
-    return list;
+    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: sizeHere, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
