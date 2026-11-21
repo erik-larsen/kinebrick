@@ -353,7 +353,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         // As far as the check turned it, but a part that turns without end (endlessPart) the full
         // turn each way, whatever the check's record turned (ordered after decision 284): where the check stopped
         // at a collision, asking only that far never shows whether the viewer stops there too.
-        const asked = endlessPart(ref.split(' ').slice(1).join(' ')) ? 1.5 : Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
+        // (At least the full turn: never less than the check turned it, as a slow gearing needs
+        // more, the 856's handwheel 8.3 rad.)
+        const checkTurned = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
+        const asked = endlessPart(ref.split(' ').slice(1).join(' ')) ? Math.max(1.5, checkTurned) : checkTurned;
         const r = (await v.page.evaluate(
           ({ control, asked, way, step, parts, dragEnd }) => {
             const k = (window as any).kinebrick;
