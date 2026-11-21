@@ -395,6 +395,12 @@ export class Kinematics {
   mounts = new Map<number, number>();
   private basisOrders = new WeakMap<number[][], number[]>(); // each basis's columns, deepest bodies' first (see leastSquares)
   private basisSmall: number[][] | null = null; // the basis on a working set's columns (see Options.workingSet)
+  // The columns of the tree joints the free-parts rule holds (see Drag.heldJoints), left out of the basis:
+  // such a joint is held by having no coordinate, as the working set leaves columns out, rather than by a
+  // row each (decision 324: 380 rows made a piece of 0.1 rad take 1.4 s on the 9397). Set from the held
+  // joints at a step's start (see syncHeldColumns), so a step's basis doesn't change under it.
+  private droppedColumns = new Set<number>();
+  private droppedKey = '';
   // The tree's coordinates, in which the solver works (see treeBasis): six for each root body
   // (how it turns and moves), then one for each joint in the tree (how fast it turns).
   private rootColumn = new Map<number, number>(); // a root body's first coordinate
@@ -922,7 +928,7 @@ export class Kinematics {
     // beyond it, and stays among those bodies: far less work than taking every column against
     // every other, for a basis with the same span. Plain loops: this runs every step.
     const n = 6 * this.bodyCount;
-    const kept = (c: number) => !only || only.has(c);
+    const kept = (c: number) => (!only || only.has(c)) && !this.droppedColumns.has(c);
     const columns: (Float64Array | undefined)[] = Array.from({ length: this.columns }, (_, c) => (kept(c) ? new Float64Array(n) : undefined));
     chains.forEach((chain, body) => {
       for (const { column, twist } of chain) {
@@ -1973,6 +1979,27 @@ export class Kinematics {
   letGoAfterDrag() {
     if (FREE_COUNT()) this.countFreeDrag();
     this.drag = new Drag();
+    this.syncHeldColumns();
+  }
+
+  // The basis's columns left out for the free-parts rule's held tree joints (see droppedColumns), set
+  // afresh from the drag's held joints; the basis is made again where they changed. Called where a
+  // step's motion is sought (jointMotion, freeMotions) and where a drag ends: the step that chose the
+  // joints keeps its basis, and holds them by rows (see holds.ts).
+  private syncHeldColumns() {
+    const tree = [...this.drag.heldJoints].filter((j) => this.inTree(j)).sort((a, b) => a - b);
+    const key = tree.join(',');
+    if (key === this.droppedKey) return;
+    this.droppedKey = key;
+    this.droppedColumns = new Set(tree.map((j) => this.jointColumn[j]));
+    this.basis = null;
+    this.basisSmall = null;
+    this.lastSearch = null;
+  }
+
+  // Whether a held joint is held by its column left out (see droppedColumns), so needs no row.
+  heldByColumn(j: number): boolean {
+    return this.jointColumn[j] >= 0 && this.droppedColumns.has(this.jointColumn[j]);
   }
 
   // The free-parts rule's classification (decision 295, step one: it changes no motion). At a drag's
@@ -2668,6 +2695,7 @@ export class Kinematics {
   }
 
   freeMotions(): number[][] {
+    this.syncHeldColumns();
     return this.nearOrigin((toModel) => {
       const basis = this.treeBasis();
       return this.freeMotionsInBasis().map((z) => toModel(fromBasis(z, basis)));
@@ -3663,6 +3691,7 @@ export class Kinematics {
   // can move at all, before friction pins are freed for it (see playMotion).
   // Null too where its sums meet a value that is not finite (see refuseNotFinite).
   jointMotion(joint: number, play = true): number[] | null {
+    this.syncHeldColumns();
     try {
       return this.jointMotionWhole(joint, play);
     } catch (err) {
