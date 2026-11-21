@@ -62,8 +62,8 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
     "seconds": 6,
     "counts": {
       "partly": 1,
@@ -164,7 +164,7 @@
         ],
         "cause": "too-little",
         "detail": "p39 3647 against p0 32523",
-        "seconds": 5.4
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -230,13 +230,13 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
         "seconds": 0
       }
     ],
-    "peak": 297
+    "peak": 312
   }
 }

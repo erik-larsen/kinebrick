@@ -106,8 +106,8 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
     "seconds": 2,
     "counts": {
       "no": 1,
@@ -454,7 +454,7 @@
             0.47
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -572,13 +572,13 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 0.7
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 326
+    "peak": 329
   }
 }
