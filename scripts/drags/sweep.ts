@@ -372,9 +372,41 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
               oneCall = performance.now() - t1;
               k.kin.restore(snap);
             }
+            // Each part's motion added up over the turn, piece by piece (decision 291): sampled at
+            // each of the solver's steps, which ask the collision test (blockedBy) whether they may
+            // stand, as the check's turnMeasuring adds them up. Measured from start to end alone, a
+            // part that turns nearly a whole turn read as hardly moved (the 42075's crankshaft at
+            // rate 3.89 turns 5.83 rad for 1.5 in, and read 25.8 degrees).
+            const relOf = (now: any[], [a, b]: number[]) => now[b >= 0 ? b : frame].clone().invert().multiply(now[a]);
+            const summed = parts.map(() => [0, 0]);
+            let was = parts.map((p: number[]) => relOf(before, p));
+            const sample = () => {
+              const now = k.matrices();
+              parts.forEach((p: number[], i: number) => {
+                const is = relOf(now, p);
+                const e = was[i].clone().invert().multiply(is).elements;
+                summed[i][0] += Math.hypot(is.elements[12] - was[i].elements[12], is.elements[13] - was[i].elements[13], is.elements[14] - was[i].elements[14]);
+                summed[i][1] += (Math.acos(Math.max(-1, Math.min(1, (e[0] + e[5] + e[10] - 1) / 2))) * 180) / Math.PI;
+                was[i] = is;
+              });
+            };
+            const blockedBy = k.setup.blockedBy;
+            k.setup.blockedBy = () => {
+              const hit = blockedBy();
+              if (!hit) sample();
+              return hit;
+            };
             const t0 = performance.now();
             if (k.mech.roles[control] === 'motor') how = 'motor';
-            else went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
+            else {
+              try {
+                went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
+              } finally {
+                k.setup.blockedBy = blockedBy;
+              }
+            }
+            k.setup.blockedBy = blockedBy;
+            sample();
             const ms = performance.now() - t0;
             // The drag let go: a catch past its shift angle shifts its ring (see shiftDue).
             let shiftedRing = false;
@@ -392,7 +424,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
               const deg = (Math.acos(Math.max(-1, Math.min(1, (e[0] + e[5] + e[10] - 1) / 2))) * 180) / Math.PI;
               return [Math.round(ldu * 100) / 100, Math.round(deg * 100) / 100];
             };
-            const moved = parts.map(moveOf);
+            // The summed motion where the turn was sampled; else (a motor, measured apart) from start
+            // to end. A ring shifted at the drag's end moved after the turn: its shift is added.
+            const shiftMoves = parts.map(moveOf);
+            const moved = parts.map((p: number[], i: number) => (summed[i][0] || summed[i][1] ? [Math.round(Math.max(summed[i][0], shiftMoves[i][0]) * 100) / 100, Math.round(Math.max(summed[i][1], shiftMoves[i][1]) * 100) / 100] : shiftMoves[i]));
             const rebuilt = k.mech !== mechBefore;
             if (!rebuilt) k.kin.restore(snap);
             return { went, ms, how, moved, oneCall, shiftedRing, rebuilt };
