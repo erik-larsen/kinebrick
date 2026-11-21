@@ -123,9 +123,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "1ed861da",
     "date": "2026-11-21",
-    "seconds": 4,
+    "seconds": 5,
     "counts": {
       "partly": 3,
       "pivoted": 1,
@@ -161,15 +161,15 @@
             ],
             "p83 32069 against p65 32524": [
               0,
-              1.62e-29
+              1.72e-29
             ],
             "p88 32069 against p65 32524": [
               0,
-              3.56e-29
+              3.78e-29
             ],
             "p311 6595 against p65 32524": [
               0,
-              0
+              9.47e-29
             ],
             "p105 32525 against p65 32524": [
               0,
@@ -621,7 +621,7 @@
           [],
           []
         ],
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "works",
@@ -658,9 +658,9 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       }
     ],
-    "peak": 372
+    "peak": 364
   }
 }
