@@ -1,0 +1,342 @@
+{
+  "set": "8448-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:37:01.326Z",
+  "load": 18.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1268,
+  "seconds": 120,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins.",
+      "verdict": "shown",
+      "msOneCall": 112,
+      "msPerStep": 47,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 4,
+        "reach": 0,
+        "A": 21,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p478 32196",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2005,
+          "msOneCall": 112,
+          "stops": [],
+          "moved": {
+            "p236 6573": [
+              0,
+              85.94
+            ],
+            "p31 3706": [
+              0,
+              128.92
+            ],
+            "p100 3737": [
+              0,
+              128.92
+            ],
+            "p577 32073": [
+              0,
+              37.71
+            ],
+            "p692 32125": [
+              0,
+              37.71
+            ],
+            "p594 2851": [
+              0.76,
+              0
+            ],
+            "p598 2851": [
+              3.53,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p478 32196",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1925,
+          "msOneCall": 67,
+          "stops": [],
+          "moved": {
+            "p236 6573": [
+              0,
+              85.94
+            ],
+            "p31 3706": [
+              0,
+              128.92
+            ],
+            "p100 3737": [
+              0,
+              128.92
+            ],
+            "p577 32073": [
+              0,
+              37.71
+            ],
+            "p692 32125": [
+              0,
+              37.71
+            ],
+            "p594 2851": [
+              5.12,
+              0
+            ],
+            "p598 2851": [
+              0.2,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p481 32196",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1931,
+          "msOneCall": 69,
+          "stops": [],
+          "moved": {
+            "p236 6573": [
+              0,
+              85.94
+            ],
+            "p31 3706": [
+              0,
+              128.92
+            ],
+            "p100 3737": [
+              0,
+              128.92
+            ],
+            "p577 32073": [
+              0,
+              37.71
+            ],
+            "p692 32125": [
+              0,
+              37.71
+            ],
+            "p594 2851": [
+              0.76,
+              0
+            ],
+            "p598 2851": [
+              3.53,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p481 32196",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1888,
+          "msOneCall": 74,
+          "stops": [],
+          "moved": {
+            "p236 6573": [
+              0,
+              85.94
+            ],
+            "p31 3706": [
+              0,
+              128.92
+            ],
+            "p100 3737": [
+              0,
+              128.92
+            ],
+            "p577 32073": [
+              0,
+              37.71
+            ],
+            "p692 32125": [
+              0,
+              37.71
+            ],
+            "p594 2851": [
+              5.12,
+              0
+            ],
+            "p598 2851": [
+              0.2,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 45
+    },
+    {
+      "function": 3,
+      "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",
+      "verdict": "shown",
+      "msOneCall": 103,
+      "msPerStep": 16,
+      "time": {
+        "open": 37,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 27,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p576 6587",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.47,
+          "went": 0.47,
+          "ms": 218,
+          "msOneCall": 103,
+          "stops": [],
+          "moved": {
+            "p575 6641": [
+              9.31,
+              26.93
+            ],
+            "p486 3707": [
+              0,
+              26.93
+            ],
+            "p497 6539": [
+              5,
+              0
+            ],
+            "p577 32073": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p576 6587",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.47,
+          "went": -0.47,
+          "ms": 197,
+          "msOneCall": 102,
+          "stops": [],
+          "moved": {
+            "p575 6641": [
+              9.31,
+              26.93
+            ],
+            "p486 3707": [
+              0,
+              26.93
+            ],
+            "p497 6539": [
+              5,
+              0
+            ],
+            "p577 32073": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 47
+    },
+    {
+      "function": 4,
+      "does": "The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 81,
+      "msPerStep": 13,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p478 32196",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 570,
+          "msOneCall": 81,
+          "stops": [],
+          "moved": {
+            "p481 32196": [
+              0,
+              85.94
+            ],
+            "p237 6589": [
+              0,
+              85.94
+            ],
+            "p31 3706": [
+              0,
+              0
+            ],
+            "p100 3737": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p478 32196",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 532,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p481 32196": [
+              0,
+              85.94
+            ],
+            "p237 6589": [
+              0,
+              85.94
+            ],
+            "p31 3706": [
+              0,
+              0
+            ],
+            "p100 3737": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 28
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "set": "42109-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:28:51.680Z",
+  "load": 28.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 461,
+  "seconds": 46,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The bonnet lifts by hand.",
+      "verdict": "not decided",
+      "msOneCall": 22,
+      "msPerStep": 7,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 30,
+        "B": 0
+      },
+      "stop": {
+        "control": "p894 64391",
+        "way": 1,
+        "went": 0.035,
+        "asked": 1.5,
+        "by": [
+          "387/893"
+        ]
+      },
+      "stops": [
+        "387/893"
+      ],
+      "A": [
+        {
+          "control": "p894 64391",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              749,
+              761
+            ]
+          },
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 7,
+          "msOneCall": 22,
+          "stops": [
+            "387/893"
+          ],
+          "moved": {
+            "p893 64683": [
+              0.99,
+              2
+            ],
+            "p890 32524": [
+              2.88,
+              2
+            ]
+          }
+        },
+        {
+          "control": "p894 64391",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              749,
+              761
+            ]
+          },
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 6,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p893 64683": [
+              0.85,
+              1.72
+            ],
+            "p890 32524": [
+              2.47,
+              1.72
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p894 64391",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (387/893)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p894 64391: a travel of 0.2 rad or less each way, stopped at +0.035 rad (387/893)",
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 46
+    }
+  ]
+}

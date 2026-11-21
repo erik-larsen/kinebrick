@@ -1,0 +1,79 @@
+{
+  "set": "42062-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:42:52.012Z",
+  "load": 19.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 627,
+  "seconds": 17,
+  "functions": [
+    {
+      "function": 7,
+      "does": "The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure).",
+      "verdict": "not shown",
+      "why": "A: p511 18942 against p510 18940, p547 32524 against p510 18940 not moved",
+      "msOneCall": 11,
+      "msPerStep": null,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p530 6553",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p511 18942 against p510 18940": [
+              0,
+              0
+            ],
+            "p547 32524 against p510 18940": [
+              0,
+              0
+            ],
+            "p510 18940": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p530 6553",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p511 18942 against p510 18940": [
+              0,
+              0
+            ],
+            "p547 32524 against p510 18940": [
+              0,
+              0
+            ],
+            "p510 18940": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    }
+  ]
+}

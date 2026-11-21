@@ -1,0 +1,242 @@
+{
+  "set": "42122-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:45:56.600Z",
+  "load": 17.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 657,
+  "seconds": 154,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The front axle swings side to side on a turntable under the chassis, so the front wheels follow rough ground (pendular suspension).",
+      "verdict": "shown",
+      "msOneCall": 40,
+      "msPerStep": 8,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p122 32524",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 30,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {
+            "p122 32524": [
+              2.6,
+              7.45
+            ],
+            "p157 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p122 32524",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 24,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p122 32524": [
+              2.6,
+              7.45
+            ],
+            "p157 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 23
+    },
+    {
+      "function": 6,
+      "does": "The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine.",
+      "verdict": "not shown",
+      "msOneCall": 26,
+      "msPerStep": 8,
+      "time": {
+        "open": 21,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 69,
+        "B": 0
+      },
+      "stop": {
+        "control": "p457 32524",
+        "way": -1,
+        "went": -0.14,
+        "asked": 1.5,
+        "by": [
+          "323/458"
+        ]
+      },
+      "stops": [
+        "269/472",
+        "323/458"
+      ],
+      "A": [
+        {
+          "control": "p457 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              446,
+              447
+            ]
+          },
+          "asked": 0.17,
+          "went": 0,
+          "ms": 17,
+          "msOneCall": 25,
+          "stops": [
+            "269/472"
+          ],
+          "moved": {
+            "p448 42122 - 71709": [
+              0,
+              0
+            ],
+            "p459 32524": [
+              0,
+              0
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p457 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              446,
+              447
+            ]
+          },
+          "asked": 1.5,
+          "went": -0.14,
+          "ms": 34,
+          "msOneCall": 26,
+          "stops": [
+            "323/458"
+          ],
+          "moved": {
+            "p448 42122 - 71709": [
+              11.15,
+              7.99
+            ],
+            "p459 32524": [
+              16.73,
+              7.99
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p457 32524",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the bonnet lifts open (the picture), far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p457 32524: a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458) (the bonnet lifts open (the picture), far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118)",
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 93
+    },
+    {
+      "function": 8,
+      "does": "The rear seat's backrest folds forward.",
+      "verdict": "not shown",
+      "why": "A: p398 32524 not moved",
+      "msOneCall": 6,
+      "msPerStep": null,
+      "time": {
+        "open": 26,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p398 32524",
+          "way": 1,
+          "asked": 0.12,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p398 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p398 32524",
+          "way": -1,
+          "asked": 1.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p398 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 38
+    }
+  ]
+}

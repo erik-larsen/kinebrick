@@ -1,0 +1,257 @@
+{
+  "set": "8272-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:24:36.776Z",
+  "load": 26.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 313,
+  "seconds": 72,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The left ski has independent suspension: it rides on two wishbones of thin grey beams, upper and lower, and moves up and down, the yellow shock absorber squeezing.",
+      "verdict": "not shown",
+      "why": "A: p43 32063, p17 32063, p36 32063, p13 6587, p53 2736, p615 32271 not moved",
+      "msOneCall": 21,
+      "msPerStep": null,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 22,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p12 32063",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.3,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p43 32063": [
+              0,
+              0
+            ],
+            "p17 32063": [
+              0,
+              0
+            ],
+            "p36 32063": [
+              0,
+              0
+            ],
+            "p13 6587": [
+              0,
+              0
+            ],
+            "p53 2736": [
+              0,
+              0
+            ],
+            "p615 32271": [
+              0,
+              0
+            ],
+            "p9 32063": [
+              0,
+              0
+            ],
+            "p626 32271": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p12 32063",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p43 32063": [
+              0,
+              0
+            ],
+            "p17 32063": [
+              0,
+              0
+            ],
+            "p36 32063": [
+              0,
+              0
+            ],
+            "p13 6587": [
+              0,
+              0
+            ],
+            "p53 2736": [
+              0,
+              0
+            ],
+            "p615 32271": [
+              0,
+              0
+            ],
+            "p9 32063": [
+              0,
+              0
+            ],
+            "p626 32271": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 35
+    },
+    {
+      "function": 3,
+      "does": "The right ski has independent suspension, as the left.",
+      "verdict": "not shown",
+      "why": "A: p42 32063, p21 32063, p35 32063, p10 6587, p51 2736, p626 32271 not moved",
+      "msOneCall": 20,
+      "msPerStep": null,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 24,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p9 32063",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p42 32063": [
+              0,
+              0
+            ],
+            "p21 32063": [
+              0,
+              0
+            ],
+            "p35 32063": [
+              0,
+              0
+            ],
+            "p10 6587": [
+              0,
+              0
+            ],
+            "p51 2736": [
+              0,
+              0
+            ],
+            "p626 32271": [
+              0,
+              0
+            ],
+            "p12 32063": [
+              0,
+              0
+            ],
+            "p615 32271": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p9 32063",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.3,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p42 32063": [
+              0,
+              0
+            ],
+            "p21 32063": [
+              0,
+              0
+            ],
+            "p35 32063": [
+              0,
+              0
+            ],
+            "p10 6587": [
+              0,
+              0
+            ],
+            "p51 2736": [
+              0,
+              0
+            ],
+            "p626 32271": [
+              0,
+              0
+            ],
+            "p12 32063": [
+              0,
+              0
+            ],
+            "p615 32271": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 37
+    }
+  ]
+}

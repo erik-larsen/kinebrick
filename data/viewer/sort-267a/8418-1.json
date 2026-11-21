@@ -1,0 +1,108 @@
+{
+  "set": "8418-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:04:45.156Z",
+  "load": 23.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 64,
+  "seconds": 13,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The bucket tilts by hand on its click hinge under the arms' crossbar, holding at each click.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": {
+        "control": "p57 30394",
+        "way": 1,
+        "went": 0.035,
+        "asked": 0.77,
+        "by": [
+          "57/57"
+        ]
+      },
+      "stops": [
+        "57/57"
+      ],
+      "A": [
+        {
+          "control": "p57 30394",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              56
+            ]
+          },
+          "asked": 0.77,
+          "went": 0.035,
+          "ms": 1,
+          "msOneCall": 6,
+          "stops": [
+            "57/57"
+          ],
+          "moved": {
+            "p57 30394 against p47 3706": [
+              0,
+              2.01
+            ],
+            "p47 3706 against p0 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p57 30394",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              56
+            ]
+          },
+          "asked": 1.03,
+          "went": -1.03,
+          "ms": 10,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p57 30394 against p47 3706": [
+              0.01,
+              59.01
+            ],
+            "p47 3706 against p0 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p57 30394",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (57/57); kinds posable-joint: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 13
+    }
+  ]
+}

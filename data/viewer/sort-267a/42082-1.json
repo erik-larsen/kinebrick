@@ -1,0 +1,145 @@
+{
+  "set": "42082-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T01:23:20.643Z",
+  "load": 25,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 4113,
+  "seconds": 297,
+  "functions": [
+    {
+      "function": 3,
+      "does": "Each axle has a differential: with the engine held, turning one wheel turns the other wheel on that axle the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 953,
+      "msPerStep": 238,
+      "time": {
+        "open": 43,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 39,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2290 92912",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 10190,
+          "msOneCall": 953,
+          "stops": [],
+          "moved": {
+            "p2284 92912": [
+              0,
+              85.94
+            ],
+            "p1223 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2290 92912",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 10029,
+          "msOneCall": 785,
+          "stops": [],
+          "moved": {
+            "p2284 92912": [
+              0,
+              85.94
+            ],
+            "p1223 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 88
+    },
+    {
+      "function": 9,
+      "does": "The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning.",
+      "verdict": "not shown",
+      "why": "A: p3789 32524 against p2649 64179 not moved",
+      "msOneCall": 60,
+      "msPerStep": null,
+      "time": {
+        "open": 52,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 151,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p3789 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              3792,
+              3793
+            ]
+          },
+          "asked": 0.42,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 60,
+          "stops": [],
+          "moved": {
+            "p3789 32524 against p2649 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3789 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              3792,
+              3793
+            ]
+          },
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p3789 32524 against p2649 64179": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 209
+    }
+  ]
+}

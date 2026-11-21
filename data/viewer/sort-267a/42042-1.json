@@ -1,0 +1,375 @@
+{
+  "set": "42042-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:46:07.037Z",
+  "load": 10.7,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1369,
+  "seconds": 142,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets.",
+      "verdict": "shown",
+      "msOneCall": 131,
+      "msPerStep": 51,
+      "time": {
+        "open": 25,
+        "collisions": 0,
+        "first": 6,
+        "reach": 0,
+        "A": 14,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p539 15462",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2194,
+          "msOneCall": 131,
+          "stops": [],
+          "moved": {
+            "p576 18947": [
+              0,
+              51.57
+            ],
+            "p710 62520": [
+              0,
+              51.57
+            ],
+            "p45 6589": [
+              0,
+              30.94
+            ],
+            "p97 6589": [
+              0.05,
+              18.56
+            ],
+            "p154 10928": [
+              0.07,
+              11.13
+            ],
+            "p147 3648b": [
+              0.08,
+              3.71
+            ],
+            "p205 3648b": [
+              0.08,
+              3.71
+            ],
+            "p141 57519": [
+              0.08,
+              3.71
+            ],
+            "p199 57519": [
+              0.08,
+              3.71
+            ],
+            "p720 10928": [
+              0,
+              0
+            ],
+            "p747 10928": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p539 15462",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2053,
+          "msOneCall": 81,
+          "stops": [],
+          "moved": {
+            "p576 18947": [
+              0,
+              51.57
+            ],
+            "p710 62520": [
+              0,
+              51.57
+            ],
+            "p45 6589": [
+              0,
+              30.94
+            ],
+            "p97 6589": [
+              0.05,
+              18.55
+            ],
+            "p154 10928": [
+              0.07,
+              11.13
+            ],
+            "p147 3648b": [
+              0.08,
+              3.71
+            ],
+            "p205 3648b": [
+              0.08,
+              3.71
+            ],
+            "p141 57519": [
+              0.08,
+              3.71
+            ],
+            "p199 57519": [
+              0.08,
+              3.71
+            ],
+            "p720 10928": [
+              0,
+              0
+            ],
+            "p747 10928": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 48
+    },
+    {
+      "function": 3,
+      "does": "Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth.",
+      "verdict": "shown",
+      "msOneCall": 132,
+      "msPerStep": 49,
+      "time": {
+        "open": 24,
+        "collisions": 0,
+        "first": 6,
+        "reach": 0,
+        "A": 13,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p539 15462",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2083,
+          "msOneCall": 132,
+          "stops": [],
+          "moved": {
+            "p577 18947": [
+              0,
+              51.57
+            ],
+            "p581 10928": [
+              0,
+              51.57
+            ],
+            "p588 76019": [
+              0,
+              17.19
+            ],
+            "p639 10928": [
+              0,
+              17.19
+            ],
+            "p499 3648b": [
+              0,
+              5.73
+            ],
+            "p636 32269": [
+              0,
+              4.58
+            ],
+            "p648 32270": [
+              0,
+              4.58
+            ],
+            "p132 60484": [
+              4.35,
+              0.92
+            ],
+            "p141 57519 against p132 60484": [
+              0,
+              0.08
+            ]
+          }
+        },
+        {
+          "control": "p539 15462",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2057,
+          "msOneCall": 82,
+          "stops": [],
+          "moved": {
+            "p577 18947": [
+              0,
+              51.57
+            ],
+            "p581 10928": [
+              0,
+              51.57
+            ],
+            "p588 76019": [
+              0,
+              17.19
+            ],
+            "p639 10928": [
+              0,
+              17.19
+            ],
+            "p499 3648b": [
+              0,
+              5.73
+            ],
+            "p636 32269": [
+              0,
+              4.58
+            ],
+            "p648 32270": [
+              0,
+              4.58
+            ],
+            "p132 60484": [
+              4.35,
+              0.92
+            ],
+            "p141 57519 against p132 60484": [
+              0,
+              0.08
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 46
+    },
+    {
+      "function": 5,
+      "does": "Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab.",
+      "verdict": "shown",
+      "msOneCall": 202,
+      "msPerStep": 118,
+      "time": {
+        "open": 23,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 18,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p539 15462",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 5058,
+          "msOneCall": 202,
+          "stops": [],
+          "moved": {
+            "p578 18947": [
+              0,
+              51.57
+            ],
+            "p530 32269": [
+              0,
+              51.57
+            ],
+            "p797 32270": [
+              0,
+              85.94
+            ],
+            "p724 4716": [
+              0,
+              85.94
+            ],
+            "p720 10928": [
+              0,
+              10.74
+            ],
+            "p719 3737": [
+              0,
+              10.74
+            ],
+            "p1206 61510": [
+              0,
+              13.83
+            ],
+            "p747 10928": [
+              0,
+              0
+            ],
+            "p906 44294": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p539 15462",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4959,
+          "msOneCall": 151,
+          "stops": [],
+          "moved": {
+            "p578 18947": [
+              0,
+              51.57
+            ],
+            "p530 32269": [
+              0,
+              51.57
+            ],
+            "p797 32270": [
+              0,
+              85.94
+            ],
+            "p724 4716": [
+              0,
+              85.94
+            ],
+            "p720 10928": [
+              0,
+              10.74
+            ],
+            "p719 3737": [
+              0,
+              10.74
+            ],
+            "p1206 61510": [
+              0,
+              13.93
+            ],
+            "p747 10928": [
+              0,
+              0
+            ],
+            "p906 44294": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 48
+    }
+  ]
+}

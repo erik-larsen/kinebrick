@@ -1,0 +1,91 @@
+{
+  "set": "8815-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:06:21.471Z",
+  "load": 17.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 73,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The number board at the front tilts on its hinge.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 3938",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              42,
+              43
+            ]
+          },
+          "asked": 0.93,
+          "went": 0.93,
+          "ms": 18,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p61 3068bp81": [
+              18.47,
+              53.29
+            ],
+            "p42 3937": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p43 3938",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              42,
+              43
+            ]
+          },
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 2,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p61 3068bp81": [
+              1.44,
+              4.01
+            ],
+            "p42 3937": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 10
+    }
+  ]
+}

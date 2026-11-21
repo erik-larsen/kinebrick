@@ -1,0 +1,174 @@
+{
+  "set": "42112-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:35:50.020Z",
+  "load": 12,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1156,
+  "seconds": 70,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank.",
+      "verdict": "shown",
+      "msOneCall": 154,
+      "msPerStep": 13,
+      "time": {
+        "open": 32,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 25,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p384 32013",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 181,
+          "msOneCall": 152,
+          "stops": [],
+          "moved": {
+            "p354 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p384 32013",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 179,
+          "msOneCall": 154,
+          "stops": [],
+          "moved": {
+            "p354 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 42
+    },
+    {
+      "function": 6,
+      "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
+      "verdict": "not shown",
+      "why": "A: p361 32270, p1118 42112 - 65421p01 not moved",
+      "msOneCall": 136,
+      "msPerStep": 12,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 4,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1039 42112 - 33299b",
+          "way": 1,
+          "asked": 0.93,
+          "went": 0.93,
+          "ms": 312,
+          "msOneCall": 136,
+          "stops": [],
+          "moved": {
+            "p347 32270": [
+              0,
+              53.29
+            ],
+            "p344 6589": [
+              0,
+              53.29
+            ],
+            "p342 94925": [
+              0,
+              53.29
+            ],
+            "p352 18946": [
+              0,
+              53.29
+            ],
+            "p361 32270": [
+              0,
+              0
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              0
+            ],
+            "p696 56145": [
+              0,
+              0
+            ],
+            "p17 60485": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1039 42112 - 33299b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 424,
+          "msOneCall": 32,
+          "stops": [],
+          "moved": {
+            "p347 32270": [
+              0,
+              85.94
+            ],
+            "p344 6589": [
+              0,
+              85.94
+            ],
+            "p342 94925": [
+              0,
+              85.94
+            ],
+            "p352 18946": [
+              0,
+              85.94
+            ],
+            "p361 32270": [
+              0,
+              0
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              0
+            ],
+            "p696 56145": [
+              0,
+              0
+            ],
+            "p17 60485": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 28
+    }
+  ]
+}
