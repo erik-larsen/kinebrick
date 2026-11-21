@@ -1,52 +1,64 @@
 {
   "set": "42114-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T18:29:24.910Z",
-  "load": 18.2,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T16:09:24.225Z",
+  "load": 7.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 2135,
-  "seconds": 408,
+  "seconds": 129,
   "functions": [
     {
       "function": 2,
       "does": "The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 2791,
+      "msPerStep": 232,
       "time": {
-        "open": 72,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 193,
-        "B": 0
+        "reach": 14,
+        "A": 23,
+        "B": 11
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p602 22169",
+        "way": 1,
+        "went": -2.255,
+        "asked": 1.5,
+        "by": [
+          "41/125"
+        ]
+      },
+      "stops": [
+        "41/125"
+      ],
       "A": [
         {
           "control": "p602 22169",
           "way": 1,
           "asked": 1.5,
-          "went": 0.785,
-          "ms": 62623,
+          "went": -2.255,
+          "ms": 14953,
           "msOneCall": null,
-          "stops": [],
+          "stops": [
+            "41/125"
+          ],
           "moved": {
             "p129 35188": [
               0,
-              54
+              138.21
             ],
             "p120 18947": [
-              2.36,
+              20,
               0
             ],
             "p121 18947": [
-              2.36,
+              20,
               0
             ],
             "p122 18947": [
-              2.36,
+              10,
               0
             ]
           }
@@ -54,48 +66,76 @@
         {
           "control": "p602 22169",
           "way": -1,
+          "ringShifted": true,
           "asked": 1.5,
-          "went": -0.942,
-          "ms": 70561,
+          "went": -2.236,
+          "ms": 6368,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p129 35188": [
               0,
-              63
+              137.14
             ],
             "p120 18947": [
-              0,
+              20,
               0
             ],
             "p121 18947": [
-              0,
+              20,
               0
             ],
             "p122 18947": [
-              4.71,
+              10,
               0
             ]
           }
         }
       ],
-      "B": [],
-      "reopened": "the mechanism was rebuilt (a ring shifted)",
-      "seconds": 274
+      "B": [
+        {
+          "control": "p602 22169",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p129 35188",
+            "p120 18947",
+            "p121 18947",
+            "p122 18947"
+          ],
+          "stops": [
+            "41/125"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p602 22169",
+          "judged": "stands",
+          "why": "stopped at +2.255 rad (41/125); kinds electric-motor: L, sequential-gearbox: 3 speeds and reverse, function-selector: dump body"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 60
     },
     {
       "function": 5,
       "does": "The rear half can roll against the front half on a turntable lying on its side in the hitch, so all six wheels stay on uneven ground.",
       "verdict": "shown",
-      "msOneCall": 359,
-      "msPerStep": 155,
+      "msOneCall": 263,
+      "msPerStep": 89,
       "time": {
-        "open": 54,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 27,
-        "B": 0
+        "reach": 5,
+        "A": 1,
+        "B": 22
       },
       "stop": {
         "control": "p995 99009",
@@ -103,11 +143,11 @@
         "went": -0.1,
         "asked": 0.2,
         "by": [
-          "4621/4621"
+          "ground: p4621"
         ]
       },
       "stops": [
-        "4621/4621"
+        "ground: p4621"
       ],
       "A": [
         {
@@ -115,12 +155,12 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 636,
-          "msOneCall": 359,
+          "ms": 433,
+          "msOneCall": 263,
           "stops": [],
           "moved": {
             "p0 64179": [
-              3.99,
+              4,
               11.46
             ]
           }
@@ -130,10 +170,10 @@
           "way": -1,
           "asked": 0.2,
           "went": -0.1,
-          "ms": 444,
-          "msOneCall": 238,
+          "ms": 253,
+          "msOneCall": 94,
           "stops": [
-            "4621/4621"
+            "ground: p4621"
           ],
           "moved": {
             "p0 64179": [
@@ -143,12 +183,27 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p995 99009",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p0 64179"
+          ],
+          "stops": [
+            "411/2085",
+            "ground: p4621"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p995 99009",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.1 rad (4621/4621)"
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.1 rad (ground: p4621)"
         }
       ],
       "stopVerdict": "shown",
@@ -160,21 +215,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 87
+      "seconds": 38
     },
     {
       "function": 6,
       "does": "The orange beacon on the cab roof switches the hub on and off: turning it turns an upright axle down through the roof to a lever that presses the hub's button.",
       "verdict": "shown",
-      "msOneCall": 210,
-      "msPerStep": 75,
+      "msOneCall": 221,
+      "msPerStep": 45,
       "time": {
-        "open": 13,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 27,
-        "B": 0
+        "A": 1,
+        "B": 19
       },
       "stop": {
         "control": "p2535 3941",
@@ -194,12 +249,12 @@
           "way": 1,
           "asked": 0.13,
           "went": 0.13,
-          "ms": 280,
-          "msOneCall": 210,
+          "ms": 169,
+          "msOneCall": 221,
           "stops": [],
           "moved": {
             "p2471 41677": [
-              2.59,
+              2.6,
               7.45
             ]
           }
@@ -209,20 +264,35 @@
           "way": -1,
           "asked": 0.37,
           "went": -0.336,
-          "ms": 570,
-          "msOneCall": 171,
+          "ms": 331,
+          "msOneCall": 51,
           "stops": [
             "2405/2466"
           ],
           "moved": {
             "p2471 41677": [
-              6.61,
+              6.73,
               19.27
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p2535 3941",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p2471 41677"
+          ],
+          "stops": [
+            "2405/2470",
+            "2405/2466"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p2535 3941",
@@ -234,7 +304,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 47
+      "seconds": 31
     }
   ]
 }

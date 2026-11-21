@@ -1,67 +1,53 @@
 {
   "set": "9392-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:00:39.353Z",
-  "load": 21.7,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:05:02.964Z",
+  "load": 10.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 183,
-  "seconds": 34,
+  "seconds": 110,
   "functions": [
     {
       "function": 1,
       "does": "Turning the handlebars steers the front wheels: the steering column turns an arm at its foot, which pushes the two steering links to the front hubs.",
-      "verdict": "not shown",
-      "why": "A: p121 32209, p114 2739a, p107 6571, p109 6571 not moved; not decided: p194 32016: a travel of 0.2 rad or less each way, stopped at +0 rad (80/111); -0 rad (79/111)",
-      "msOneCall": 63,
-      "msPerStep": null,
+      "verdict": "shown",
+      "msOneCall": 47,
+      "msPerStep": 21,
       "time": {
-        "open": 8,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 13
       },
-      "stop": {
-        "control": "p194 32016",
-        "way": 1,
-        "went": 0,
-        "asked": 0.2,
-        "by": [
-          "80/111"
-        ]
-      },
-      "stops": [
-        "80/111",
-        "79/111"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p194 32016",
           "way": 1,
           "asked": 0.2,
-          "went": 0,
-          "ms": 39,
-          "msOneCall": 63,
-          "stops": [
-            "80/111"
-          ],
+          "went": 0.2,
+          "ms": 118,
+          "msOneCall": 47,
+          "stops": [],
           "moved": {
             "p121 32209": [
               0,
-              0
+              11.46
             ],
             "p114 2739a": [
-              0,
-              0
+              12.56,
+              8.13
             ],
             "p107 6571": [
               0,
-              0
+              36.4
             ],
             "p109 6571": [
               0,
-              0
+              29.43
             ],
             "p182 56145": [
               0,
@@ -77,28 +63,26 @@
           "control": "p194 32016",
           "way": -1,
           "asked": 0.2,
-          "went": 0,
-          "ms": 32,
-          "msOneCall": 32,
-          "stops": [
-            "79/111"
-          ],
+          "went": -0.2,
+          "ms": 101,
+          "msOneCall": 22,
+          "stops": [],
           "moved": {
             "p121 32209": [
               0,
-              0
+              11.46
             ],
             "p114 2739a": [
-              0,
-              0
+              12.66,
+              5.81
             ],
             "p107 6571": [
               0,
-              0
+              29.43
             ],
             "p109 6571": [
               0,
-              0
+              36.4
             ],
             "p182 56145": [
               0,
@@ -111,39 +95,41 @@
           }
         }
       ],
-      "B": [],
-      "stopsJudged": [
+      "B": [
         {
           "control": "p194 32016",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (80/111); -0 rad (79/111)"
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p121 32209",
+            "p114 2739a",
+            "p107 6571",
+            "p109 6571"
+          ],
+          "stops": [
+            "95/114",
+            "96/185",
+            "99/115"
+          ]
         }
       ],
-      "stopVerdict": "not decided",
-      "byHand": {
-        "stop": "not decided",
-        "why": "the handlebars steer: 0.2 rad each way; the booklet does not show the lock",
-        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6002926.pdf#page=56"
-      },
-      "moved": {
-        "verdict": "not shown",
-        "why": "A: p121 32209, p114 2739a, p107 6571, p109 6571 not moved"
-      },
-      "seconds": 11
+      "seconds": 17
     },
     {
       "function": 2,
       "does": "Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder.",
       "verdict": "shown",
-      "msOneCall": 47,
-      "msPerStep": 25,
+      "msOneCall": 63,
+      "msPerStep": 21,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 8,
-        "B": 0
+        "reach": 1,
+        "A": 4,
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -153,8 +139,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1058,
-          "msOneCall": 47,
+          "ms": 911,
+          "msOneCall": 63,
           "stops": [],
           "moved": {
             "p17 94925": [
@@ -184,8 +170,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1012,
-          "msOneCall": 37,
+          "ms": 902,
+          "msOneCall": 27,
           "stops": [],
           "moved": {
             "p17 94925": [
@@ -215,8 +201,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1009,
-          "msOneCall": 42,
+          "ms": 878,
+          "msOneCall": 26,
           "stops": [],
           "moved": {
             "p17 94925": [
@@ -246,8 +232,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1028,
-          "msOneCall": 35,
+          "ms": 859,
+          "msOneCall": 27,
           "stops": [],
           "moved": {
             "p17 94925": [
@@ -273,22 +259,51 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p182 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p17 94925",
+            "p146 94925",
+            "p137 2853",
+            "p140 2851"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p183 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p17 94925",
+            "p146 94925",
+            "p137 2853",
+            "p140 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 39
     },
     {
       "function": 3,
       "does": "The engine can also be turned from its crankshaft, turning the rear wheels through the gears and chain.",
       "verdict": "shown",
-      "msOneCall": 37,
-      "msPerStep": 23,
+      "msOneCall": 60,
+      "msPerStep": 20,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 4,
-        "B": 0
+        "reach": 1,
+        "A": 2,
+        "B": 16
       },
       "stop": null,
       "stops": [],
@@ -298,8 +313,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 817,
-          "msOneCall": 37,
+          "ms": 736,
+          "msOneCall": 60,
           "stops": [],
           "moved": {
             "p140 2851": [
@@ -329,8 +344,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 976,
-          "msOneCall": 36,
+          "ms": 856,
+          "msOneCall": 28,
           "stops": [],
           "moved": {
             "p140 2851": [
@@ -356,33 +371,49 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 6
+      "B": [
+        {
+          "control": "p137 2853",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p140 2851",
+            "p146 94925",
+            "p17 94925",
+            "p182 56145"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 23
     },
     {
       "function": 5,
       "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes.",
-      "verdict": "not decided",
-      "msOneCall": 209,
-      "msPerStep": 171,
+      "verdict": "shown",
+      "msOneCall": 43,
+      "msPerStep": 16,
       "time": {
-        "open": 1,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 5,
-        "B": 0
+        "A": 1,
+        "B": 25
       },
       "stop": {
-        "control": "p95 6572",
+        "control": "p99 6572",
         "way": 1,
-        "went": 0,
+        "went": 0.523,
         "asked": 1.5,
         "by": [
           "101/200"
         ]
       },
       "stops": [
+        "102/202",
         "101/200"
       ],
       "A": [
@@ -391,10 +422,10 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 56,
-          "msOneCall": 47,
+          "ms": 23,
+          "msOneCall": 43,
           "stops": [
-            "101/200"
+            "102/202"
           ],
           "moved": {
             "p106 6572": [
@@ -419,26 +450,26 @@
           "control": "p95 6572",
           "way": -1,
           "asked": 0.53,
-          "went": -0.029,
-          "ms": 171,
-          "msOneCall": 209,
+          "went": -0.53,
+          "ms": 243,
+          "msOneCall": 21,
           "stops": [],
           "moved": {
             "p106 6572": [
-              1.16,
-              1.66
+              21.2,
+              30.37
             ],
             "p104 6572": [
-              1.16,
-              1.66
+              0,
+              0
             ],
             "p107 6571": [
-              2.32,
-              0.36
+              42.4,
+              2.81
             ],
             "p109 6571": [
-              2.32,
-              0.36
+              0,
+              0
             ]
           }
         },
@@ -446,26 +477,28 @@
           "control": "p99 6572",
           "way": 1,
           "asked": 1.5,
-          "went": 0.174,
-          "ms": 100,
-          "msOneCall": 45,
-          "stops": [],
+          "went": 0.523,
+          "ms": 240,
+          "msOneCall": 19,
+          "stops": [
+            "101/200"
+          ],
           "moved": {
             "p106 6572": [
-              6.96,
-              9.99
+              0,
+              0
             ],
             "p104 6572": [
-              6.97,
-              9.99
+              20.93,
+              29.98
             ],
             "p107 6571": [
-              13.93,
-              1.79
+              0,
+              0
             ],
             "p109 6571": [
-              13.94,
-              1.8
+              41.86,
+              2.77
             ]
           }
         },
@@ -474,8 +507,8 @@
           "way": -1,
           "asked": 0.53,
           "went": 0,
-          "ms": 42,
-          "msOneCall": 43,
+          "ms": 17,
+          "msOneCall": 18,
           "stops": [
             "101/200"
           ],
@@ -499,25 +532,53 @@
           }
         }
       ],
-      "B": [],
-      "stopsJudged": [
+      "B": [
         {
           "control": "p95 6572",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (101/200)"
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p106 6572",
+            "p107 6571"
+          ],
+          "stops": [
+            "102/202"
+          ]
         },
         {
           "control": "p99 6572",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (101/200)"
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p104 6572",
+            "p109 6571"
+          ],
+          "stops": [
+            "101/200"
+          ]
         }
       ],
-      "stopVerdict": "not decided",
+      "stopsJudged": [
+        {
+          "control": "p95 6572",
+          "judged": "stands",
+          "why": "stopped at +0 rad (102/202); kinds double-wishbone"
+        },
+        {
+          "control": "p99 6572",
+          "judged": "stands",
+          "why": "stopped at +0.523 rad (101/200); -0 rad (101/200); kinds double-wishbone"
+        }
+      ],
+      "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p95 6572: a travel of 0.2 rad or less each way, stopped at +0 rad (101/200); p99 6572: a travel of 0.2 rad or less each way, stopped at -0 rad (101/200)",
-      "seconds": 7
+      "seconds": 31
     }
   ]
 }

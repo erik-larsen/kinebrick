@@ -1,25 +1,25 @@
 {
   "set": "8859-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:20:48.071Z",
-  "load": 20.3,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:44:12.662Z",
+  "load": 18.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 553,
-  "seconds": 50,
+  "seconds": 101,
   "functions": [
     {
       "function": 2,
       "does": "Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down.",
       "verdict": "shown",
-      "msOneCall": 57,
-      "msPerStep": 29,
+      "msOneCall": 34,
+      "msPerStep": 19,
       "time": {
-        "open": 10,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 7,
-        "B": 0
+        "A": 2,
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1249,
-          "msOneCall": 57,
+          "ms": 795,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p0 73071": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1225,
-          "msOneCall": 23,
+          "ms": 809,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p0 73071": [
@@ -95,22 +95,39 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 18
+      "B": [
+        {
+          "control": "p595 3740",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p0 73071",
+            "p7 4143",
+            "p411 3648a",
+            "p416 3648a",
+            "p430 3652",
+            "p431 3652"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 21
     },
     {
       "function": 3,
       "does": "The differential lets the two rear wheels turn at different speeds in a corner.",
       "verdict": "shown",
-      "msOneCall": 24,
-      "msPerStep": 28,
+      "msOneCall": 31,
+      "msPerStep": 19,
       "time": {
-        "open": 2,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 13,
-        "B": 0
+        "reach": 3,
+        "A": 3,
+        "B": 27
       },
       "stop": null,
       "stops": [],
@@ -120,8 +137,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1195,
-          "msOneCall": 22,
+          "ms": 775,
+          "msOneCall": 31,
           "stops": [],
           "moved": {}
         },
@@ -130,8 +147,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1213,
-          "msOneCall": 23,
+          "ms": 750,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         },
@@ -140,8 +157,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1175,
-          "msOneCall": 23,
+          "ms": 745,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -150,28 +167,47 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1171,
-          "msOneCall": 24,
+          "ms": 809,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 17
+      "B": [
+        {
+          "control": "p594 3740",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p595 3740",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 40
     },
     {
       "function": 5,
       "does": "The front wheels turn freely on short axles in the steering arms.",
       "verdict": "shown",
-      "msOneCall": 24,
-      "msPerStep": 28,
+      "msOneCall": 33,
+      "msPerStep": 18,
       "time": {
-        "open": 1,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 12,
-        "B": 0
+        "reach": 1,
+        "A": 3,
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -181,8 +217,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1178,
-          "msOneCall": 24,
+          "ms": 787,
+          "msOneCall": 33,
           "stops": [],
           "moved": {}
         },
@@ -191,8 +227,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1177,
-          "msOneCall": 23,
+          "ms": 760,
+          "msOneCall": 12,
           "stops": [],
           "moved": {}
         },
@@ -201,8 +237,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1187,
-          "msOneCall": 23,
+          "ms": 734,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -211,14 +247,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1191,
-          "msOneCall": 23,
+          "ms": 755,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 15
+      "B": [
+        {
+          "control": "p596 3740",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p597 3740",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 40
     }
   ]
 }

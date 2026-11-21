@@ -1,25 +1,25 @@
 {
   "set": "8204-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:47:48.734Z",
-  "load": 24.3,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:44:38.325Z",
+  "load": 13.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 36,
-  "seconds": 5,
+  "seconds": 15,
   "functions": [
     {
       "function": 2,
       "does": "The propeller spins by hand, turning the two bevel gears and, through the band, the wheels.",
       "verdict": "shown",
-      "msOneCall": 4,
+      "msOneCall": 7,
       "msPerStep": 0,
       "time": {
-        "open": 5,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 0
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 12,
-          "msOneCall": 4,
+          "ms": 13,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p25 6589": [
@@ -71,8 +71,21 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p35 32125",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p25 6589",
+            "p10 6589"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     }
   ]
 }

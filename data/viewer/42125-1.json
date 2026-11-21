@@ -1,25 +1,26 @@
 {
   "set": "42125-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T21:11:56.741Z",
-  "load": 19.7,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:49:44.170Z",
+  "load": 8.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1644,
-  "seconds": 222,
+  "seconds": 534,
   "functions": [
     {
       "function": 1,
       "does": "The steering wheel steers the front wheels: its column runs forward through two universal joints to a pair of 16 tooth gears, then a pair of 8 tooth gears to a 12 tooth gear that slides the steering rack across, turning both front hubs.",
-      "verdict": "shown",
-      "msOneCall": 307,
-      "msPerStep": 81,
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 197,
+      "msPerStep": 42,
       "time": {
-        "open": 43,
+        "open": 31,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 17,
-        "B": 0
+        "reach": 1,
+        "A": 3,
+        "B": 20
       },
       "stop": null,
       "stops": [],
@@ -29,8 +30,8 @@
           "way": 1,
           "asked": 1.27,
           "went": 1.27,
-          "ms": 2953,
-          "msOneCall": 307,
+          "ms": 1515,
+          "msOneCall": 197,
           "stops": [],
           "moved": {
             "p441 87761": [
@@ -56,8 +57,8 @@
           "way": -1,
           "asked": 1.27,
           "went": -1.27,
-          "ms": 2793,
-          "msOneCall": 280,
+          "ms": 1425,
+          "msOneCall": 77,
           "stops": [],
           "moved": {
             "p441 87761": [
@@ -79,22 +80,34 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 63
+      "B": [
+        {
+          "control": "p675 2741",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "339/431"
+          ]
+        }
+      ],
+      "seconds": 55
     },
     {
       "function": 2,
       "does": "Rolling the car turns the V8 engine: the rear wheels drive the differential, which turns a shaft forward to a 20 tooth gear, which turns the crankshaft's 12 tooth gear, and the crankshaft pumps the eight pistons up and down in their two tilted banks.",
       "verdict": "shown",
-      "msOneCall": 239,
-      "msPerStep": 86,
+      "msOneCall": 217,
+      "msPerStep": 58,
       "time": {
-        "open": 5,
+        "open": 47,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 34,
-        "B": 0
+        "reach": 6,
+        "A": 10,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -104,8 +117,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3586,
-          "msOneCall": 239,
+          "ms": 2385,
+          "msOneCall": 217,
           "stops": [],
           "moved": {
             "p15 62821": [
@@ -113,11 +126,11 @@
               85.93
             ],
             "p165 2853": [
-              19.68,
-              159.49
+              34.98,
+              200.51
             ],
             "p181 2851 against p150 2850b": [
-              17.24,
+              22.14,
               0
             ],
             "p441 87761": [
@@ -131,8 +144,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3668,
-          "msOneCall": 215,
+          "ms": 2482,
+          "msOneCall": 99,
           "stops": [],
           "moved": {
             "p15 62821": [
@@ -140,11 +153,11 @@
               85.91
             ],
             "p165 2853": [
-              19.68,
-              159.55
+              34.97,
+              200.45
             ],
             "p181 2851 against p150 2850b": [
-              13.84,
+              21.24,
               0
             ],
             "p441 87761": [
@@ -158,8 +171,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3276,
-          "msOneCall": 206,
+          "ms": 2265,
+          "msOneCall": 101,
           "stops": [],
           "moved": {
             "p15 62821": [
@@ -167,11 +180,11 @@
               85.96
             ],
             "p165 2853": [
-              19.68,
-              159.44
+              34.99,
+              200.56
             ],
             "p181 2851 against p150 2850b": [
-              17.24,
+              22.15,
               0
             ],
             "p441 87761": [
@@ -185,8 +198,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3421,
-          "msOneCall": 203,
+          "ms": 2367,
+          "msOneCall": 103,
           "stops": [],
           "moved": {
             "p15 62821": [
@@ -194,11 +207,11 @@
               85.93
             ],
             "p165 2853": [
-              19.68,
-              159.5
+              34.98,
+              200.5
             ],
             "p181 2851 against p150 2850b": [
-              13.83,
+              21.25,
               0
             ],
             "p441 87761": [
@@ -208,22 +221,49 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 41
+      "B": [
+        {
+          "control": "p3020 44771",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p15 62821",
+            "p165 2853",
+            "p181 2851 against p150 2850b"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p3025 44771",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p15 62821",
+            "p165 2853",
+            "p181 2851 against p150 2850b"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 110
     },
     {
       "function": 3,
       "does": "The rear differential lets the rear wheels turn at different speeds in a corner: holding the engine, one rear wheel turns the other the opposite way.",
       "verdict": "shown",
-      "msOneCall": 201,
-      "msPerStep": 76,
+      "msOneCall": 135,
+      "msPerStep": 16,
       "time": {
-        "open": 4,
+        "open": 31,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 16,
-        "B": 0
+        "A": 2,
+        "B": 17
       },
       "stop": null,
       "stops": [],
@@ -233,13 +273,13 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3096,
-          "msOneCall": 201,
+          "ms": 678,
+          "msOneCall": 135,
           "stops": [],
           "moved": {
             "p3025 44771 against p15 62821": [
-              48.69,
-              0.01
+              0,
+              85.94
             ]
           }
         },
@@ -248,33 +288,45 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3257,
-          "msOneCall": 197,
+          "ms": 659,
+          "msOneCall": 33,
           "stops": [],
           "moved": {
             "p3025 44771 against p15 62821": [
-              48.68,
-              0.04
+              0,
+              85.94
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 22
+      "B": [
+        {
+          "control": "p3020 44771",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3025 44771 against p15 62821"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 50
     },
     {
       "function": 6,
       "does": "The rear wheels ride on their own suspension arms with shock absorbers.",
       "verdict": "shown",
-      "msOneCall": 203,
-      "msPerStep": 78,
+      "msOneCall": 216,
+      "msPerStep": 56,
       "time": {
-        "open": 4,
+        "open": 46,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 31,
-        "B": 0
+        "reach": 10,
+        "A": 10,
+        "B": 56
       },
       "stop": null,
       "stops": [],
@@ -284,8 +336,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3117,
-          "msOneCall": 203,
+          "ms": 2388,
+          "msOneCall": 216,
           "stops": [],
           "moved": {}
         },
@@ -294,8 +346,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3325,
-          "msOneCall": 200,
+          "ms": 2416,
+          "msOneCall": 102,
           "stops": [],
           "moved": {}
         },
@@ -304,8 +356,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3151,
-          "msOneCall": 191,
+          "ms": 2373,
+          "msOneCall": 98,
           "stops": [],
           "moved": {}
         },
@@ -314,28 +366,48 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3285,
-          "msOneCall": 202,
+          "ms": 2383,
+          "msOneCall": 110,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 37
+      "B": [
+        {
+          "control": "p44 42125 - 92909",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p50 42125 - 92909",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 123
     },
     {
       "function": 7,
       "does": "The two doors swing up and forward on hinges at their front edges (butterfly doors).",
-      "verdict": "shown",
-      "msOneCall": 0,
+      "verdict": "not shown",
+      "why": "A: none not moved",
+      "msOneCall": 11,
       "msPerStep": null,
       "time": {
-        "open": 4,
+        "open": 47,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 15,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 44
       },
       "stop": null,
       "stops": [],
@@ -345,8 +417,8 @@
           "way": 1,
           "asked": 0.02,
           "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "ms": 1,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -381,22 +453,47 @@
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 21
+      "B": [
+        {
+          "control": "p2862 64682",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "576/2862",
+            "1359/2862"
+          ]
+        },
+        {
+          "control": "p2912 64392",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "596/2912",
+            "1503/2912"
+          ]
+        }
+      ],
+      "seconds": 92
     },
     {
       "function": 8,
       "does": "The front wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 238,
-      "msPerStep": 102,
+      "msOneCall": 241,
+      "msPerStep": 70,
       "time": {
-        "open": 4,
+        "open": 47,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 32,
-        "B": 0
+        "A": 12,
+        "B": 45
       },
       "stop": null,
       "stops": [],
@@ -406,8 +503,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3249,
-          "msOneCall": 226,
+          "ms": 2584,
+          "msOneCall": 241,
           "stops": [],
           "moved": {}
         },
@@ -416,8 +513,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3515,
-          "msOneCall": 220,
+          "ms": 2671,
+          "msOneCall": 121,
           "stops": [],
           "moved": {}
         },
@@ -426,8 +523,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3304,
-          "msOneCall": 228,
+          "ms": 2527,
+          "msOneCall": 114,
           "stops": [],
           "moved": {}
         },
@@ -436,14 +533,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 4362,
-          "msOneCall": 238,
+          "ms": 3009,
+          "msOneCall": 125,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 38
+      "B": [
+        {
+          "control": "p3022 44771",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p3024 44771",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 104
     }
   ]
 }

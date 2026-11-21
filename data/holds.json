@@ -159,5 +159,19 @@
     "result": "partly",
     "reason": "The booklet folds the legs about 90 degrees (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87), but in the viewer a collision stops p11 at 0.035 rad one way (parts 16/45) and 0.66 rad the other (parts 24/118). Viewer sweep on today's code, decision 298.",
     "date": "2026-11-21"
+  },
+  {
+    "set": "42078-1",
+    "function": 4,
+    "result": "partly",
+    "reason": "The booklet tips the bonnet forward about a quarter turn (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=249), but the check itself turns it only 0.02 and 0.03 rad before a collision (parts 362/1383 and 1423/1467), and in the viewer neither a turn nor the pointer moves it. Second viewer sweep, decision 327.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42080-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The booklet's motor drives the pump crank round without end (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=92), but the check runs the motor only 0.1 rad each way before a collision (parts 56/71), and in the viewer the listed parts do not move. Second viewer sweep, decision 327.",
+    "date": "2026-11-21"
   }
 ]
