@@ -131,15 +131,16 @@
         "skip": "only matters under gravity or force"
       },
       {
-        "does": "The steering wheel in the cab turns freely; it isn't connected to the steering.",
+        "does": "The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle.",
         "mechanisms": [
           "for-show: steering wheel"
         ],
-        "source": "inferred: the wheel sits on a short axle in the cab with nothing below it",
+        "source": "book step 352 (page 216): the wheel built onto its axle and connector in the inset, then fitted in the cab",
         "control": "p1935 2819",
         "stays": [
           "p1402 87761"
-        ]
+        ],
+        "note": "Signed by Erik, 2026-11-21: the words and the source, from the booklet. The step does not show whether the piece can rock on its pin, so the control and the part that stays are as before."
       }
     ],
     "questions": [
@@ -149,9 +150,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
+    "commit": "12570d92",
     "date": "2026-11-21",
-    "seconds": 116,
+    "seconds": 120,
     "counts": {
       "partly": 1,
       "works": 6,
@@ -231,11 +232,11 @@
           {
             "p468 6573": [
               1,
-              7.58e-14
+              3.79e-14
             ],
             "p1309 65414c01": [
               0,
-              1.53e-16
+              1.54e-16
             ],
             "p1032 65414c01": [
               0,
@@ -253,11 +254,11 @@
           {
             "p468 6573": [
               1,
-              5.68e-14
+              9.47e-14
             ],
             "p1309 65414c01": [
               0,
-              1.38e-16
+              1.6e-16
             ],
             "p1032 65414c01": [
               0,
@@ -339,7 +340,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 32.4
+        "seconds": 33.2
       },
       {
         "result": "works",
@@ -381,7 +382,7 @@
             ]
           ]
         ],
-        "seconds": 15
+        "seconds": 15.4
       },
       {
         "result": "works",
@@ -469,7 +470,7 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 15.1
+        "seconds": 16.1
       },
       {
         "result": "works",
@@ -491,7 +492,7 @@
             ],
             "p513 18947 against p468 6573": [
               0,
-              9.24e-36
+              1.07e-35
             ],
             "p1030 18947 against p1032 65414c01": [
               0,
@@ -555,7 +556,7 @@
             0.2
           ]
         ],
-        "seconds": 28.8
+        "seconds": 29.7
       },
       {
         "result": "works",
@@ -629,7 +630,7 @@
             0.4
           ]
         ],
-        "seconds": 5.1
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -651,7 +652,7 @@
             ],
             "p1032 65414c01": [
               0,
-              7.33e-8
+              7.34e-8
             ],
             "p1379 4254 against p1380 4255": [
               0.141,
@@ -659,7 +660,7 @@
             ],
             "p1215 4254 against p1216 4255": [
               0,
-              6.27e-8
+              6.28e-8
             ]
           },
           {
@@ -767,7 +768,7 @@
           ]
         ],
         "onPlay": 0.27,
-        "seconds": 10.2
+        "seconds": 10.6
       },
       {
         "result": "skipped",
@@ -837,9 +838,9 @@
             0.13
           ]
         ],
-        "seconds": 3.9
+        "seconds": 4
       }
     ],
-    "peak": 1085
+    "peak": 1190
   }
 }

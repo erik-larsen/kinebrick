@@ -121,7 +121,7 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
+    "commit": "12570d92",
     "date": "2026-11-21",
     "seconds": 5,
     "counts": {
@@ -321,8 +321,14 @@
           ]
         ],
         "freed": 1,
+        "freedFor": [
+          {
+            "pin": "p20 6558",
+            "for": "p17 32063"
+          }
+        ],
         "onPlay": 0.6,
-        "seconds": 1.2
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -399,8 +405,14 @@
           ]
         ],
         "freed": 1,
+        "freedFor": [
+          {
+            "pin": "p24 6558",
+            "for": "p21 32063"
+          }
+        ],
         "onPlay": 0.6,
-        "seconds": 1
+        "seconds": 1.3
       },
       {
         "result": "skipped",

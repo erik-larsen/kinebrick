@@ -5,9 +5,12 @@
 import type { Touching } from '../src/collisions.ts';
 import { touchingFrom } from '../src/collisions.ts';
 import { partShapes } from '../scripts/part-shapes.ts';
+import { readParts } from '../scripts/load-model.ts';
 
 // `text` and `parts`: the model's text and parts as read, if the test has them (a set's file with
 // its errata, see readParts), so that the shapes come one for each part.
 export async function touchingOf(file: string, text?: string, parts?: { name: string; removed?: boolean; path?: unknown }[]): Promise<Touching> {
-  return touchingFrom((await partShapes(file, text, parts)).map((s) => s.shape));
+  // A path's parts (a chain's links) have no shape, as in the viewer (main.ts) and the collision pass.
+  const paths = (parts ?? readParts(file, file.startsWith('omr/')).parts).map((p) => !!p.path);
+  return touchingFrom((await partShapes(file, text, parts)).map((s, i) => (paths[i] ? [] : s.shape)));
 }

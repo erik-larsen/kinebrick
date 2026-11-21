@@ -72,7 +72,7 @@ for (const file of files) {
     const { parts: read, paths } = parseModel(text, (name) => primitives.has(name), piecesOf);
     // Parts the file brings with it under its own names, read as the library's (see libraryName).
     const parts = read.map((p) => ({ ...p, name: libraryName(p.name, table) }));
-    const mech = inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), touchingFrom((await partShapes(join(OMR_DIR, file), text, parts)).map((s) => s.shape)));
+    const mech = inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), touchingFrom((await partShapes(join(OMR_DIR, file), text, parts)).map((s, i) => (parts[i]?.path ? [] : s.shape))));
     const loose = new Set(mech.loose);
     parts.forEach((p, i) => {
       const s = statsOf(p.name);

@@ -150,9 +150,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
+    "commit": "12570d92",
     "date": "2026-11-21",
-    "seconds": 8,
+    "seconds": 9,
     "counts": {
       "works": 8,
       "not back": 1,
@@ -318,7 +318,7 @@
             1.1
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -438,7 +438,13 @@
           ]
         ],
         "freed": 1,
-        "seconds": 1.1
+        "freedFor": [
+          {
+            "pin": "p153 6558",
+            "for": "p147 55013"
+          }
+        ],
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -509,6 +515,16 @@
             1.47
           ]
         ],
+        "freedFor": [
+          {
+            "pin": "p173 2780",
+            "for": "p171 32270"
+          },
+          {
+            "pin": "p175 2780",
+            "for": "p171 32270"
+          }
+        ],
         "seconds": 0.5
       },
       {
@@ -567,6 +583,12 @@
             0.33,
             0.33
           ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p178 30552",
+            "for": "p177 30394"
+          }
         ],
         "seconds": 0.3
       },
@@ -690,7 +712,7 @@
           [],
           []
         ],
-        "seconds": 2.7
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -796,9 +818,19 @@
         ],
         "cause": "not-driven",
         "detail": "p150 42003",
+        "freedFor": [
+          {
+            "pin": "p153 6558",
+            "for": "p159 32525"
+          },
+          {
+            "pin": "p180 2780",
+            "for": "p148 42003"
+          }
+        ],
         "seconds": 0.1
       }
     ],
-    "peak": 410
+    "peak": 370
   }
 }

@@ -38,7 +38,7 @@ if (process.argv[1]?.endsWith('kept-pivots.ts')) {
     const file = `${PIVOTS_DIR}/${keptFileName(model)}.json`;
     const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
     if (!force && !check && kept?.key === key) continue;
-    const pins = actuatorPivots(parts, table, roles, paths, touchingFrom((await partShapes(model, text, parts)).map((s) => s.shape)));
+    const pins = actuatorPivots(parts, table, roles, paths, touchingFrom((await partShapes(model, text, parts)).map((s, i) => (parts[i]?.path ? [] : s.shape))));
     const seconds = ((Date.now() - start) / 1000).toFixed(1);
     if (check) {
       const same = kept?.key === key && JSON.stringify(kept.pins) === JSON.stringify(pins);
