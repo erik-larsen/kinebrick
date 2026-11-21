@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 39 works, 41 partly, 2 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 38 works, 42 partly, 2 no, 5 not checked.
 
 ## By decade
 
@@ -144,7 +144,7 @@ Each detail by the set it first appears in.
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- *PF L:* The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air. (works)
+- *PF L:* The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air. (partly)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
