@@ -1,0 +1,150 @@
+{
+  "set": "8419-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:22:13.818Z",
+  "load": 25,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 280,
+  "seconds": 23,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip.",
+      "verdict": "not shown",
+      "why": "A: p284 2950 against p115 32140 not moved",
+      "msOneCall": 25,
+      "msPerStep": 10,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 15,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p204 32269",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0.244,
+          "ms": 70,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p188 32269 against p212 32009": [
+              0,
+              13.99
+            ],
+            "p176 4019 against p212 32009": [
+              0,
+              17.49
+            ],
+            "p98 32198 against p212 32009": [
+              0,
+              17.49
+            ],
+            "p102 3326b against p212 32009": [
+              0,
+              17.49
+            ],
+            "p129 4716 against p115 32140": [
+              0,
+              17.49
+            ],
+            "p135 3647 against p115 32140": [
+              0,
+              2.19
+            ],
+            "p279 32525 against p115 32140": [
+              1.02,
+              0.08
+            ],
+            "p284 2950 against p115 32140": [
+              0.89,
+              0.99
+            ],
+            "p115 32140 against p212 32009": [
+              0,
+              0
+            ],
+            "p205 32269 against p212 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p204 32269",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": -0.244,
+          "ms": 59,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p188 32269 against p212 32009": [
+              0,
+              13.99
+            ],
+            "p176 4019 against p212 32009": [
+              0,
+              17.49
+            ],
+            "p98 32198 against p212 32009": [
+              0,
+              17.49
+            ],
+            "p102 3326b against p212 32009": [
+              0,
+              17.49
+            ],
+            "p129 4716 against p115 32140": [
+              0,
+              17.49
+            ],
+            "p135 3647 against p115 32140": [
+              0,
+              2.19
+            ],
+            "p279 32525 against p115 32140": [
+              1.02,
+              0.07
+            ],
+            "p284 2950 against p115 32140": [
+              0.89,
+              0.99
+            ],
+            "p115 32140 against p212 32009": [
+              0,
+              0
+            ],
+            "p205 32269 against p212 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 23
+    }
+  ]
+}

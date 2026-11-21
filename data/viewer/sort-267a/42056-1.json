@@ -1,0 +1,115 @@
+{
+  "set": "42056-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T01:09:23.743Z",
+  "load": 33.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2641,
+  "seconds": 130,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment.",
+      "verdict": "not shown",
+      "why": "A: p2135 41239 not moved",
+      "msOneCall": 25,
+      "msPerStep": null,
+      "time": {
+        "open": 44,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 27,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2132 32278",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p2135 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2132 32278",
+          "way": -1,
+          "asked": 1.33,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2135 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 79
+    },
+    {
+      "function": 11,
+      "does": "The rear wing's angle can be adjusted: the wing tilts on its two supports.",
+      "verdict": "not shown",
+      "why": "A: p2553 32523 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 20,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 26,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2530 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2553 32523": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2530 87083",
+          "way": -1,
+          "asked": 1.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2553 32523": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 52
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "set": "9392-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:17:27.792Z",
+  "load": 25.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 183,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the handlebars steers the front wheels: the steering column turns an arm at its foot, which pushes the two steering links to the front hubs.",
+      "verdict": "shown",
+      "msOneCall": 55,
+      "msPerStep": 27,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p194 32016",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0.2,
+          "ms": 153,
+          "msOneCall": 55,
+          "stops": [],
+          "moved": {
+            "p121 32209": [
+              0,
+              11.46
+            ],
+            "p114 2739a": [
+              12.54,
+              8.08
+            ],
+            "p107 6571": [
+              0,
+              36.4
+            ],
+            "p109 6571": [
+              0,
+              29.43
+            ],
+            "p182 56145": [
+              0,
+              0
+            ],
+            "p183 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p194 32016",
+          "way": -1,
+          "asked": 0.2,
+          "went": -0.2,
+          "ms": 130,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {
+            "p121 32209": [
+              0,
+              11.46
+            ],
+            "p114 2739a": [
+              12.64,
+              5.78
+            ],
+            "p107 6571": [
+              0,
+              29.43
+            ],
+            "p109 6571": [
+              0,
+              36.4
+            ],
+            "p182 56145": [
+              0,
+              0
+            ],
+            "p183 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "set": "42036-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:27:36.193Z",
+  "load": 31.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 362,
+  "seconds": 42,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The kickstand under the right side swings down to hold the bike up, and folds back up.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 2,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p290 32192",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              22
+            ]
+          },
+          "asked": 1.2,
+          "went": 1.2,
+          "ms": 70,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p291 4519": [
+              99.7,
+              68.75
+            ]
+          }
+        },
+        {
+          "control": "p290 32192",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              22
+            ]
+          },
+          "asked": 0.2,
+          "went": -0.2,
+          "ms": 12,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p291 4519": [
+              17.63,
+              11.46
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 42
+    }
+  ]
+}

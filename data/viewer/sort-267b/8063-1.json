@@ -1,0 +1,521 @@
+{
+  "set": "8063-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:41:50.482Z",
+  "load": 38.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1124,
+  "seconds": 3037,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The red lever on the tractor's left side slides a driving ring along the drive shaft, locking the 16 tooth clutch gear to it or freeing it.",
+      "verdict": "not shown",
+      "msOneCall": 76,
+      "msPerStep": 38,
+      "time": {
+        "open": 17,
+        "collisions": 10,
+        "first": 0,
+        "reach": 6,
+        "A": 7,
+        "B": 497
+      },
+      "stop": {
+        "control": "p112 32039",
+        "way": -1,
+        "went": -0.636,
+        "asked": 0.67,
+        "by": [
+          "106/119"
+        ]
+      },
+      "stops": [
+        "106/119"
+      ],
+      "A": [
+        {
+          "control": "p112 32039",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 38,
+          "msOneCall": 76,
+          "stops": [],
+          "moved": {
+            "p106 6641": [
+              0.6,
+              1.72
+            ],
+            "p33 6539": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p112 32039",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.67,
+          "went": -0.636,
+          "ms": 200,
+          "msOneCall": 31,
+          "stops": [
+            "106/119"
+          ],
+          "moved": {
+            "p106 6641": [
+              12.52,
+              36.47
+            ],
+            "p33 6539": [
+              15,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p112 32039",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p33 6539"
+          ],
+          "stops": [
+            "106/119",
+            "60/106",
+            "61/106"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p112 32039",
+          "judged": "not shown",
+          "why": "turns without end (kinds power-take-off; the text says: drive shaft), but a collision stops it at -0.636 rad (106/119)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p112 32039: turns without end (kinds power-take-off; the text says: drive shaft), but a collision stops it at -0.636 rad (106/119)",
+      "seconds": 536
+    },
+    {
+      "function": 6,
+      "does": "With the lever engaged, the rear power take-off turns as the tractor rolls: the clutch gear drives a 16 tooth gear above it, whose shaft runs back to the PTO at the rear.",
+      "verdict": "not shown",
+      "msOneCall": 94,
+      "msPerStep": 66,
+      "time": {
+        "open": 23,
+        "collisions": 14,
+        "first": 11,
+        "reach": 64,
+        "A": 24,
+        "B": 1164
+      },
+      "stop": {
+        "control": "p701 44772",
+        "way": 1,
+        "went": 1.5,
+        "asked": 1.5,
+        "by": [
+          "60/106"
+        ]
+      },
+      "stops": [
+        "60/106"
+      ],
+      "A": [
+        {
+          "control": "p701 44772",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2803,
+          "msOneCall": 94,
+          "stops": [
+            "60/106"
+          ],
+          "moved": {
+            "p31 6542a": [
+              0,
+              147.63
+            ],
+            "p61 4019": [
+              0,
+              147.63
+            ],
+            "p65 3706": [
+              0,
+              147.63
+            ]
+          }
+        },
+        {
+          "control": "p701 44772",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2734,
+          "msOneCall": 77,
+          "stops": [],
+          "moved": {
+            "p31 6542a": [
+              0,
+              147.63
+            ],
+            "p61 4019": [
+              0,
+              147.63
+            ],
+            "p65 3706": [
+              0,
+              147.63
+            ]
+          }
+        },
+        {
+          "control": "p706 44772",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2738,
+          "msOneCall": 88,
+          "stops": [],
+          "moved": {
+            "p31 6542a": [
+              0,
+              144.37
+            ],
+            "p61 4019": [
+              0,
+              144.37
+            ],
+            "p65 3706": [
+              0,
+              144.37
+            ]
+          }
+        },
+        {
+          "control": "p706 44772",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2834,
+          "msOneCall": 50,
+          "stops": [],
+          "moved": {
+            "p31 6542a": [
+              0,
+              144.37
+            ],
+            "p61 4019": [
+              0,
+              144.37
+            ],
+            "p65 3706": [
+              0,
+              144.37
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p701 44772",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p31 6542a",
+            "p61 4019",
+            "p65 3706"
+          ],
+          "stops": [
+            "60/106"
+          ]
+        },
+        {
+          "control": "p706 44772",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p31 6542a",
+            "p61 4019",
+            "p65 3706"
+          ],
+          "stops": [
+            "60/106"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p701 44772",
+          "judged": "not shown",
+          "why": "turns without end (kinds power-take-off; the text says: power take-off, rolls), but a collision stops it at +1.5 rad (60/106)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p701 44772: turns without end (kinds power-take-off; the text says: power take-off, rolls), but a collision stops it at +1.5 rad (60/106)",
+      "seconds": 1299
+    },
+    {
+      "function": 8,
+      "does": "Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.",
+      "verdict": "not shown",
+      "why": "A: p764 62274c01 not moved",
+      "msOneCall": 86,
+      "msPerStep": 22,
+      "time": {
+        "open": 22,
+        "collisions": 13,
+        "first": 0,
+        "reach": 157,
+        "A": 11,
+        "B": 997
+      },
+      "stop": {
+        "control": "p777 32269",
+        "way": -1,
+        "went": -0.244,
+        "asked": 1.5,
+        "by": [
+          "796/1009"
+        ]
+      },
+      "stops": [
+        "796/1009"
+      ],
+      "A": [
+        {
+          "control": "p777 32269",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 145,
+          "msOneCall": 86,
+          "stops": [],
+          "moved": {
+            "p768 32198": [
+              0,
+              13.18
+            ],
+            "p767 6589": [
+              0.07,
+              21.7
+            ],
+            "p764 62274c01": [
+              0.67,
+              0.16
+            ],
+            "p959 40490": [
+              1.58,
+              0.21
+            ],
+            "p1004 64782": [
+              1.88,
+              0.21
+            ],
+            "p789 40490": [
+              0,
+              0
+            ],
+            "p763 62271c01 against p789 40490": [
+              0.14,
+              0.16
+            ]
+          }
+        },
+        {
+          "control": "p777 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.244,
+          "ms": 139,
+          "msOneCall": 33,
+          "stops": [
+            "796/1009"
+          ],
+          "moved": {
+            "p768 32198": [
+              0,
+              13.99
+            ],
+            "p767 6589": [
+              0.08,
+              23.03
+            ],
+            "p764 62274c01": [
+              0.72,
+              0.17
+            ],
+            "p959 40490": [
+              1.7,
+              0.22
+            ],
+            "p1004 64782": [
+              2.03,
+              0.22
+            ],
+            "p789 40490": [
+              0,
+              0
+            ],
+            "p763 62271c01 against p789 40490": [
+              0.15,
+              0.17
+            ]
+          }
+        },
+        {
+          "control": "p778 32269",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 127,
+          "msOneCall": 36,
+          "stops": [],
+          "moved": {
+            "p768 32198": [
+              0,
+              13.18
+            ],
+            "p767 6589": [
+              0.07,
+              21.7
+            ],
+            "p764 62274c01": [
+              0.67,
+              0.16
+            ],
+            "p959 40490": [
+              1.58,
+              0.21
+            ],
+            "p1004 64782": [
+              1.88,
+              0.21
+            ],
+            "p789 40490": [
+              0,
+              0
+            ],
+            "p763 62271c01 against p789 40490": [
+              0.14,
+              0.16
+            ]
+          }
+        },
+        {
+          "control": "p778 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.244,
+          "ms": 134,
+          "msOneCall": 29,
+          "stops": [
+            "796/1009"
+          ],
+          "moved": {
+            "p768 32198": [
+              0,
+              13.99
+            ],
+            "p767 6589": [
+              0.08,
+              23.03
+            ],
+            "p764 62274c01": [
+              0.72,
+              0.17
+            ],
+            "p959 40490": [
+              1.7,
+              0.22
+            ],
+            "p1004 64782": [
+              2.03,
+              0.22
+            ],
+            "p789 40490": [
+              0,
+              0
+            ],
+            "p763 62271c01 against p789 40490": [
+              0.15,
+              0.17
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p777 32269",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p768 32198",
+            "p767 6589",
+            "p764 62274c01",
+            "p959 40490",
+            "p1004 64782"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p778 32269",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p768 32198",
+            "p767 6589",
+            "p764 62274c01",
+            "p959 40490",
+            "p1004 64782"
+          ],
+          "stops": [
+            "796/1009"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p777 32269",
+          "judged": "stands",
+          "why": "stopped at -0.244 rad (796/1009); kinds linear-actuator: bed"
+        },
+        {
+          "control": "p778 32269",
+          "judged": "stands",
+          "why": "stopped at -0.244 rad (796/1009); kinds linear-actuator: bed"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p764 62274c01 not moved"
+      },
+      "seconds": 1201
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "set": "8081-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:40:33.346Z",
+  "load": 21.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 580,
+  "seconds": 69,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The bonnet tilts up on a hinge at the windscreen, showing the engine.",
+      "verdict": "shown",
+      "msOneCall": 33,
+      "msPerStep": 5,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 30,
+        "B": 0
+      },
+      "stop": {
+        "control": "p520 64682",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "274/520"
+        ]
+      },
+      "stops": [
+        "274/520"
+      ],
+      "A": [
+        {
+          "control": "p520 64682",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              303,
+              304
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 14,
+          "msOneCall": 33,
+          "stops": [
+            "274/520"
+          ],
+          "moved": {
+            "p530 64392": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p520 64682",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              303,
+              304
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 228,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p530 64392": [
+              0.05,
+              85.94
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p520 64682",
+          "judged": "stands",
+          "why": "stopped at +0 rad (274/520); kinds hinge: bonnet"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 44
+    },
+    {
+      "function": 7,
+      "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm, and moves up and down, steering as it goes; the rear axle sits on two shock absorbers.",
+      "verdict": "shown",
+      "msOneCall": 50,
+      "msPerStep": 18,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": {
+        "control": "p199 6572",
+        "way": 1,
+        "went": 0.236,
+        "asked": 0.27,
+        "by": [
+          "202/214"
+        ]
+      },
+      "stops": [
+        "202/214",
+        "199/211"
+      ],
+      "A": [
+        {
+          "control": "p199 6572",
+          "way": 1,
+          "asked": 0.27,
+          "went": 0.236,
+          "ms": 119,
+          "msOneCall": 50,
+          "stops": [
+            "202/214"
+          ],
+          "moved": {
+            "p210 6571": [
+              18.85,
+              1.29
+            ],
+            "p213 6571": [
+              20.06,
+              4.15
+            ]
+          }
+        },
+        {
+          "control": "p199 6572",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 96,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p210 6571": [
+              18.36,
+              3.66
+            ],
+            "p213 6571": [
+              17.34,
+              1.26
+            ]
+          }
+        },
+        {
+          "control": "p202 6572",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 95,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p210 6571": [
+              17.34,
+              1.26
+            ],
+            "p213 6571": [
+              18.36,
+              3.65
+            ]
+          }
+        },
+        {
+          "control": "p202 6572",
+          "way": -1,
+          "asked": 0.27,
+          "went": -0.236,
+          "ms": 102,
+          "msOneCall": 19,
+          "stops": [
+            "199/211"
+          ],
+          "moved": {
+            "p210 6571": [
+              20.06,
+              4.15
+            ],
+            "p213 6571": [
+              18.85,
+              1.29
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p199 6572",
+          "judged": "stands",
+          "why": "stopped at +0.236 rad (202/214); kinds double-wishbone, sprung-axle"
+        },
+        {
+          "control": "p202 6572",
+          "judged": "stands",
+          "why": "stopped at -0.236 rad (199/211); kinds double-wishbone, sprung-axle"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 24
+    }
+  ]
+}

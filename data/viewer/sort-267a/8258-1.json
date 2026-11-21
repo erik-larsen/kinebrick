@@ -1,0 +1,258 @@
+{
+  "set": "8258-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:48:42.723Z",
+  "load": 29.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1629,
+  "seconds": 288,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set.",
+      "verdict": "not shown",
+      "why": "A: p2167 62274c01 against p2166 62271c01, p2180 32524 against p2123 32526 not moved",
+      "msOneCall": null,
+      "msPerStep": 1412,
+      "time": {
+        "open": 42,
+        "collisions": 0,
+        "first": 8,
+        "reach": 0,
+        "A": 154,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p767 58121",
+          "way": 1,
+          "asked": 5.1,
+          "went": 1.571,
+          "ms": 63382,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p2167 62274c01 against p2166 62271c01": [
+              0.34,
+              0
+            ],
+            "p2180 32524 against p2123 32526": [
+              0.44,
+              0.42
+            ],
+            "p2123 32526 against p2046 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p767 58121",
+          "way": -1,
+          "asked": 5.1,
+          "went": -1.571,
+          "ms": 61772,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p2167 62274c01 against p2166 62271c01": [
+              0.34,
+              0
+            ],
+            "p2180 32524 against p2123 32526": [
+              0.43,
+              0.41
+            ],
+            "p2123 32526 against p2046 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 208
+    },
+    {
+      "function": 7,
+      "does": "The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down.",
+      "verdict": "not shown",
+      "why": "A: p682 62821, p6 3708, p1351 2853, p1366 2851 against p1375 2850a, p1367 2851 against p1376 2850a not moved",
+      "msOneCall": 191,
+      "msPerStep": 32,
+      "time": {
+        "open": 30,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 43,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p686 4519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1381,
+          "msOneCall": 191,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p686 4519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1329,
+          "msOneCall": 95,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p687 4519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1337,
+          "msOneCall": 92,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p687 4519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1370,
+          "msOneCall": 108,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 80
+    }
+  ]
+}

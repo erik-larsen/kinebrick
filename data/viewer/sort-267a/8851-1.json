@@ -1,0 +1,86 @@
+{
+  "set": "8851-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:24:43.362Z",
+  "load": 26,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 325,
+  "seconds": 16,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The cab and arm slew round on the turntable above the tracks.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 3,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p852 3738",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 109,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p906 3403": [
+              0,
+              85.94
+            ],
+            "p908 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p909 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p1038 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p852 3738",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 101,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p906 3403": [
+              0,
+              85.94
+            ],
+            "p908 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p909 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p1038 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 16
+    }
+  ]
+}

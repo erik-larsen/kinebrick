@@ -35,6 +35,22 @@
 //      function after which a restore can't be trusted (the mechanism rebuilt by a shift, a new
 //      Kinematics, the tyres' scrub raised) has the model opened afresh for the next, and its
 //      record says why ("reopened"). Its records say part "A".
+//   … --quiet  the quiet pass (decision 261): every function whose msOneCall is QUIET_OVER ms or more
+//      timed again alone, one set at a time, each set's browser holding the whole pool (16,000 MB),
+//      part A's way. It adds msOneCallQuiet, msPerStepQuiet, loadQuiet (the load average as the
+//      set's timing starts) and commitQuiet to the function's line in the set's record, and changes
+//      nothing else there.
+//   … --shift  where the check freed friction pins for a function (its record's `freed`), part A
+//      presses Shift on the control first, as a user does (the viewer's pinsToShift and freePins),
+//      then turns it; what it freed is in the record (decision 267's sorting).
+//   … --listed  the list's settings as a user makes them (decision 267's sorting): the model opened
+//      lifted where the list says `lifted` (the viewer's "Lift off the ground", ?lifted=1), the parts
+//      it says are `held` frozen after the first steps (as Alt-click freezes them), and each of A's
+//      turns ended as a drag ends (setup.onDragEnded), so that a catch the turn took past its shift
+//      angle shifts its ring, as the check counts it; where that works the mechanism out afresh, the
+//      model is opened afresh for the next way.
+//   KB_SWEEP_ONLY=<file.json>  only these functions: a list of "<set> <function>"; KB_SWEEP_OUT=<dir>
+//      writes the records there, not in data/viewer (a sorting run beside part A's records).
 // Each set's browser claims 1,000 MB and 0.85 MB a part from the pool (decision 255), as open-all.ts.
 import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -70,17 +86,25 @@ const args = process.argv.slice(2);
 const base = args[0];
 const force = args.includes('--force');
 const aOnly = args.includes('--a');
-const part = aOnly ? 'A' : 'A and B';
+const shiftFirst = args.includes('--shift');
+const listed = args.includes('--listed');
+const part = (aOnly ? 'A' : 'A and B') + (shiftFirst ? ', Shift where the check freed pins' : '') + (listed ? ', the list\'s lifted and held, each turn ended as a drag' : '');
+const only: Set<string> | null = process.env.KB_SWEEP_ONLY ? new Set(JSON.parse(readFileSync(process.env.KB_SWEEP_ONLY, 'utf-8'))) : null;
+const outDir = process.env.KB_SWEEP_OUT || 'data/viewer';
 const browserMb = (parts: number | undefined) => (parts ? Math.round(1000 + 0.85 * parts) : 3000);
 // The commit a run records, set once by the run that starts the sets (so the records can be
 // committed while it goes on).
 const commit = process.env.KB_SWEEP_COMMIT || execSync('git rev-parse --short HEAD').toString().trim();
 process.env.KB_SWEEP_COMMIT = commit;
 const setFile = (set: string) => `data/sets/${set}.json`;
-const outFile = (set: string) => `data/viewer/${set}.json`;
+const outFile = (set: string) => `${outDir}/${set}.json`;
 const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
 
 const oneAt = args.indexOf('--one');
+const quiet = args.includes('--quiet');
+const QUIET_OVER = 250;
+// The functions a set's quiet pass times: those whose msOneCall is QUIET_OVER or more.
+const quietFunctions = (set: string): number[] => (existsSync(outFile(set)) ? (JSON.parse(readFileSync(outFile(set), 'utf-8')).functions as any[]).filter((f) => f.msOneCall != null && f.msOneCall >= QUIET_OVER).map((f) => f.function) : []);
 if (args[0] === '--judge') {
   // The records judged again (after a change to judge() or to judged.json), with no browser.
   for (const f of readdirSync('data/viewer').filter((f) => /^\d.*\.json$/.test(f))) {
@@ -105,16 +129,32 @@ if (args[0] === '--judge') {
     for (const line of rec.functions) {
       const slowest = (line.A ?? []).filter((a: any) => a.msOneCall != null).sort((a: any, b: any) => b.msOneCall - a.msOneCall)[0];
       const stop = line.stop ? `${line.stop.control} way ${line.stop.way > 0 ? '+' : '-'}: went ${line.stop.went} of ${line.stop.asked}, ${line.stop.by.join(' ')}` : '';
-      rows.push([rec.set, line.function, slowest?.control ?? [...new Set((line.A ?? []).map((a: any) => a.control))].join(' / '), rec.parts ?? counts.get(rec.set) ?? null, line.msOneCall ?? null, line.msPerStep ?? null, line.verdict, line.why ?? '', stop, rec.part ?? 'A and B', rec.commit]);
+      rows.push([rec.set, line.function, slowest?.control ?? [...new Set((line.A ?? []).map((a: any) => a.control))].join(' / '), rec.parts ?? counts.get(rec.set) ?? null, line.msOneCall ?? null, line.msPerStep ?? null, line.verdict, line.why ?? '', stop, rec.part ?? 'A and B', rec.commit, rec.load ?? null, line.msOneCallQuiet ?? null, line.msPerStepQuiet ?? null, line.loadQuiet ?? null, line.commitQuiet ?? null]);
     }
   }
   rows.sort((a, b) => Number(b[4] ?? -1) - Number(a[4] ?? -1) || Number(b[5] ?? -1) - Number(a[5] ?? -1));
   const cell = (x: string | number | null) => (x === null ? '' : /[",\n]/.test(String(x)) ? `"${String(x).replace(/"/g, '""')}"` : String(x));
-  const head = ['set', 'function', 'control', 'parts', 'msOneCall', 'msPerStep', 'verdict', 'why', 'collision stop', 'part', 'commit'];
+  const head = ['set', 'function', 'control', 'parts', 'msOneCall', 'msPerStep', 'verdict', 'why', 'collision stop', 'part', 'commit', 'load', 'msOneCallQuiet', 'msPerStepQuiet', 'loadQuiet', 'commitQuiet'];
   writeFileSync('data/viewer/table.csv', [head, ...rows].map((r) => r.map(cell).join(',')).join('\n') + '\n');
   console.log(`${rows.length} functions in data/viewer/table.csv`);
 } else if (oneAt >= 0) {
   await sweepSet(args[oneAt + 1]);
+} else if (quiet) {
+  // One set at a time, slowest first, each holding the whole pool.
+  const named = args.slice(1).filter((a) => !a.startsWith('--'));
+  const sets = (named.length ? named : readdirSync('data/viewer').filter((f) => /^\d.*\.json$/.test(f)).map((f) => f.replace(/\.json$/, '')))
+    .filter((s) => quietFunctions(s).length && (force || (JSON.parse(readFileSync(outFile(s), 'utf-8')).functions as any[]).some((f) => quietFunctions(s).includes(f.function) && f.commitQuiet !== commit)));
+  const slowest = (s: string) => Math.max(...(JSON.parse(readFileSync(outFile(s), 'utf-8')).functions as any[]).map((f) => f.msOneCall ?? 0));
+  sets.sort((a, b) => slowest(b) - slowest(a));
+  console.log(`${sets.length} sets, ${sets.reduce((n, s) => n + quietFunctions(s).length, 0)} functions, for the quiet pass`);
+  for (const set of sets) {
+    const started = Date.now();
+    const code = await new Promise<number>((done) => {
+      const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', '16000', '--what', `quiet pass ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, '--a', '--quiet'], { stdio: ['ignore', 'inherit', 'inherit'] });
+      child.on('close', (c) => done(c ?? 1));
+    });
+    console.log(`${set}: ${code === 0 ? 'done' : `failed (${code})`} in ${Math.round((Date.now() - started) / 1000)} s`);
+  }
 } else {
   const named = args.slice(1).filter((a, i, all) => !a.startsWith('--') && all[i - 1] !== '--jobs');
   const jobsAt = args.indexOf('--jobs');
@@ -132,6 +172,7 @@ if (args[0] === '--judge') {
   const thenAll = args.includes('--then-all');
   const sets = (named.length ? [...named.filter((s) => all.includes(s)), ...(thenAll ? all.filter((s) => !named.includes(s)).sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)) : [])] : all.sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)))
     .filter((s) => worksIn(s) > 0)
+    .filter((s) => !only || [...only].some((o) => o.startsWith(`${s} `)))
     .filter((s) => {
       if (force || !existsSync(outFile(s))) return true;
       const rec = JSON.parse(readFileSync(outFile(s), 'utf-8'));
@@ -143,7 +184,7 @@ if (args[0] === '--judge') {
     for (let set = queue.shift(); set; set = queue.shift()) {
       const started = Date.now();
       const code = await new Promise<number>((done) => {
-        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', String(browserMb(counts.get(set))), '--what', `sweep ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, ...(aOnly ? ['--a'] : [])], { stdio: ['ignore', 'inherit', 'inherit'] });
+        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', String(browserMb(counts.get(set))), '--what', `sweep ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, ...(aOnly ? ['--a'] : []), ...(shiftFirst ? ['--shift'] : []), ...(listed ? ['--listed'] : [])], { stdio: ['ignore', 'inherit', 'inherit'] });
         child.on('close', (c) => done(c ?? 1));
       });
       console.log(`${set}: ${code === 0 ? 'done' : `failed (${code})`} in ${Math.round((Date.now() - started) / 1000)} s`);
@@ -159,28 +200,39 @@ async function sweepSet(set: string) {
   const out: { set: string; commit: string; date: string; load: number; part: string; parts: number | null; seconds: number; functions: unknown[] } = { set, commit, date: new Date().toISOString(), load: Math.round(loadavg()[0] * 10) / 10, part, parts: partCounts().get(set) ?? null, seconds: 0, functions: [] };
   // Part A alone: one viewer per model file, kept open between functions (see --a).
   const viewers = new Map<string, Viewer>();
-  const viewerFor = async (file: string) => {
-    let v = viewers.get(file);
+  // Keyed by the file and its settings (a lifted model is opened lifted).
+  const viewerFor = async (file: string, settings = '') => {
+    const key = `${file}?${settings}`;
+    let v = viewers.get(key);
+    // A viewer whose mechanism was worked out afresh (a ring shifted at a drag's end) can't be set
+    // back: it is opened afresh.
+    if (v && (await v.page.evaluate(() => { const k = (window as any).kinebrick; const home = (window as any).sweepHome; return k.mech !== home.mech || k.kin !== home.kin; }).catch(() => true))) {
+      await v.close().catch(() => {});
+      viewers.delete(key);
+      v = undefined;
+    }
     if (!v) {
-      v = await open(file);
+      v = await open(file, settings);
       await collisionsReady(v);
       await v.page.evaluate(() => {
         const k = (window as any).kinebrick;
         (window as any).sweepHome = { snap: k.kin.snapshot(), mech: k.mech, kin: k.kin, scrub: k.kin.scrub };
       });
-      viewers.set(file, v);
+      viewers.set(key, v);
     } else {
       await v.page.evaluate(() => {
         const k = (window as any).kinebrick;
         k.kin.restore((window as any).sweepHome.snap);
+        k.kin.frozen = new Set(); // what a function before froze (see hold)
       });
       await v.stops();
     }
     return v;
   };
   // Why the viewer's state can't be set back after a function, or null.
-  const untrusted = async (file: string): Promise<string | null> => {
-    const v = viewers.get(file);
+  const untrusted = async (file: string, settings = ''): Promise<string | null> => {
+    const key = `${file}?${settings}`;
+    const v = viewers.get(key);
     if (!v) return null;
     const why = await v.page.evaluate(() => {
       const k = (window as any).kinebrick;
@@ -192,7 +244,7 @@ async function sweepSet(set: string) {
     }).catch((e) => `the page failed: ${String(e).slice(0, 100)}`);
     if (why) {
       await v.close();
-      viewers.delete(file);
+      viewers.delete(key);
     }
     return why;
   };
@@ -200,23 +252,26 @@ async function sweepSet(set: string) {
   // A model that the viewer can't open: every working function recorded so, and the sweep goes on.
   // (Asked only once a function's sweep fails, since a load costs as much as a function.)
   const fails = new Map<string, string | null>();
+  const onlyQuiet = quiet ? new Set(quietFunctions(set)) : null;
   for (const [i, fn] of (data.curated.functions as any[]).entries()) {
     const g = data.generated.functions[i];
     if (g?.result !== 'works') continue;
+    if (onlyQuiet && !onlyQuiet.has(i + 1)) continue;
+    if (only && !only.has(`${set} ${i + 1}`)) continue;
     const fnStarted = Date.now();
     let line: Record<string, any>;
     const file: string = fn.model ?? model;
     try {
       if (fails.get(file)) throw new Error('known');
-      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? viewerFor : null));
+      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null));
       if (aOnly) {
-        const why = await untrusted(file);
+        const why = await untrusted(file, listed && fn.lifted ? 'lifted=1' : '');
         if (why) line.reopened = why;
       }
     } catch (e) {
-      if (viewers.has(file)) {
-        await viewers.get(file)!.close().catch(() => {});
-        viewers.delete(file);
+      for (const [key, viewer] of [...viewers].filter(([key]) => key.startsWith(`${file}?`))) {
+        await viewer.close().catch(() => {});
+        viewers.delete(key);
       }
       if (!fails.has(file)) fails.set(file, await opens(file));
       const fail = fails.get(file);
@@ -227,8 +282,18 @@ async function sweepSet(set: string) {
     console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msOneCall as number | undefined) ?? '-'} ms one call, ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
   }
   for (const v of viewers.values()) await v.close();
+  if (quiet) {
+    // The quiet times beside part A's, in the record as it is.
+    const rec = JSON.parse(readFileSync(outFile(set), 'utf-8'));
+    for (const q of out.functions as any[]) {
+      const f = rec.functions.find((x: any) => x.function === q.function);
+      if (f) Object.assign(f, { msOneCallQuiet: q.msOneCall ?? null, msPerStepQuiet: q.msPerStep ?? null, loadQuiet: out.load, commitQuiet: commit, ...(q.verdict !== f.verdict ? { verdictQuiet: q.verdict } : {}) });
+    }
+    writeFileSync(outFile(set), JSON.stringify(rec, null, 2) + '\n');
+    return;
+  }
   out.seconds = Math.round((Date.now() - started) / 1000);
-  mkdirSync('data/viewer', { recursive: true });
+  mkdirSync(outDir, { recursive: true });
   writeFileSync(outFile(set), JSON.stringify(out, null, 2) + '\n');
 }
 
@@ -254,19 +319,40 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   const stopsA = new Set<string>();
   const msA: number[] = [];
   const oneCalls: number[] = [];
-  {
-    const v = viewerFor ? await timed('open', viewerFor(file)) : await timed('open', open(file));
+  const settings = listed && fn.lifted ? 'lifted=1' : '';
+  // The model opened, the list's first steps done, and (--listed) what it says is held frozen.
+  const prepare = async (ref: string, noteLimits: boolean) => {
+    const v = viewerFor ? await timed('open', viewerFor(file)) : await timed('open', open(file, settings));
     if (!viewerFor) await timed('collisions', collisionsReady(v));
-    limits.push(...(await timed('first', firstSteps(v, fn.first ?? []))));
+    const notDone = await timed('first', firstSteps(v, fn.first ?? []));
+    if (noteLimits) limits.push(...notDone);
+    if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
+    return v;
+  };
+  {
+    let v = await prepare(controls[0], true);
     const tA = Date.now();
     for (const [ci, ref] of controls.entries()) {
       const control = refOf(ref).part;
+      if (ci > 0 && listed && fn.held && !Array.isArray(fn.held)) {
+        if (!viewerFor) await v.close();
+        v = await prepare(ref, false);
+      }
+      // As a user does where the check freed pins: Shift pressed on the control.
+      // The camera turned till the control is in view, the pointer on it, and Shift pressed and let
+      // go (no drag): what the viewer said, and the pins freed.
+      let shifted: { seen: boolean; said?: string[]; freed?: number[] } | null = null;
+      if (shiftFirst && g.freed) {
+        const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
+        shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
+      }
       for (const [wi, way] of [1, -1].entries()) {
         const asked = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
         const r = (await v.page.evaluate(
-          ({ control, asked, way, step, parts }) => {
+          ({ control, asked, way, step, parts, dragEnd }) => {
             const k = (window as any).kinebrick;
             const snap = k.kin.snapshot();
+            const mechBefore = k.mech;
             const frame = k.mech.bodyOf.indexOf(0);
             const before = k.matrices().map((m: any) => m.clone());
             let went = 0;
@@ -284,6 +370,12 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
             if (k.mech.roles[control] === 'motor') how = 'motor';
             else went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
             const ms = performance.now() - t0;
+            // The drag let go: a catch past its shift angle shifts its ring (see shiftDue).
+            let shiftedRing = false;
+            if (dragEnd && k.setup.shiftDue?.()) {
+              k.setup.onDragEnded();
+              shiftedRing = true;
+            }
             const now = k.matrices();
             const moveOf = ([a, b]: number[]) => {
               const ref = b >= 0 ? b : frame;
@@ -295,11 +387,12 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
               return [Math.round(ldu * 100) / 100, Math.round(deg * 100) / 100];
             };
             const moved = parts.map(moveOf);
-            k.kin.restore(snap);
-            return { went, ms, how, moved, oneCall };
+            const rebuilt = k.mech !== mechBefore;
+            if (!rebuilt) k.kin.restore(snap);
+            return { went, ms, how, moved, oneCall, shiftedRing, rebuilt };
           },
-          { control, asked, way, step: MAX_STEP, parts: [...moves, ...stays].map((m: Ref) => [m.part, m.against]) },
-        )) as { went: number; ms: number; how: string; moved: [number, number][]; oneCall: number | null };
+          { control, asked, way, step: MAX_STEP, parts: [...moves, ...stays].map((m: Ref) => [m.part, m.against]), dragEnd: listed },
+        )) as { went: number; ms: number; how: string; moved: [number, number][]; oneCall: number | null; shiftedRing: boolean; rebuilt: boolean };
         if (r.oneCall !== null) oneCalls.push(r.oneCall);
         let { went, ms } = r;
         let moved = r.moved;
@@ -310,7 +403,13 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         stops.forEach((s) => stopsA.add(s));
         moves.forEach((m: Ref, k: number) => { if (moved[k][0] >= MOVED || moved[k][1] >= MOVED) movedByA.add(m.ref); });
         stays.forEach((m: Ref, k: number) => { const x = moved[moves.length + k]; if (x[0] >= MOVED || x[1] >= MOVED) staysMovedByA.add(m.ref); });
-        A.push({ control: ref, way, asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
+        if (r.rebuilt && wi === 0) {
+          // Worked out afresh (a ring shifted): opened afresh for the other way, Shift pressed again.
+          if (!viewerFor) await v.close();
+          v = await prepare(ref, false);
+          if (shiftFirst && g.freed && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
+        }
+        A.push({ control: ref, way, ...(shifted ? { shift: shifted } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
     }
     time.A += (Date.now() - tA) / 1000;
@@ -322,9 +421,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   const movedByB = new Set<string>();
   for (const ref of viewerFor ? [] : controls) {
     const control = refOf(ref).part;
-    const v = await timed('open', open(file));
+    const v = await timed('open', open(file, settings));
     await timed('collisions', collisionsReady(v));
     await timed('first', firstSteps(v, fn.first ?? []));
+    if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
     const turns = await timed('reach', v.reach(control));
     const tB = Date.now();
     if (turns < 0) {
@@ -379,6 +479,18 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
 // The list's first steps, as a user does them: a catch or lever turned by its joint's angle (turned
 // back the other way if the screen's sense is the opposite), then a drag end, which shifts the ring
 // it moves. A slid part or a driving ring slid by hand is not done here: said, for the record.
+// The parts the list says are held, frozen, as Alt-click freezes their bodies.
+async function hold(v: Viewer, refs: string[]) {
+  if (!refs.length) return;
+  await v.page.evaluate((parts) => {
+    const k = (window as any).kinebrick;
+    for (const p of parts) {
+      const body = k.mech.bodyOf[p];
+      if (!k.kin.isFrozen(body)) k.kin.toggleFreeze(body);
+    }
+  }, refs.map((r) => refOf(r).part));
+}
+
 async function firstSteps(v: Viewer, first: { control: string; by: number; slide?: boolean }[]): Promise<string[]> {
   const notDone: string[] = [];
   for (const step of first) {
@@ -390,13 +502,36 @@ async function firstSteps(v: Viewer, first: { control: string; by: number; slide
     const done = await v.page.evaluate(
       ({ part, by }) => {
         const k = (window as any).kinebrick;
-        const link = k.kin.parentLink(k.mech.bodyOf[part]);
+        // A driving ring is slid by hand, `by` LDU, to the click-in place nearest that, as a drag
+        // on it does (the viewer's shiftTowards), and as the check does it.
+        const slide = k.setup.slideOf?.(part);
+        if (slide) {
+          const wanted = slide.position + by;
+          const nearest = slide.positions.reduce((best: number, p: number) => (Math.abs(p - wanted) < Math.abs(best - wanted) ? p : best));
+          if (Math.abs(nearest - slide.position) < 1e-6) return false;
+          k.setup.shift(part, nearest);
+          k.setup.onDragEnded();
+          return true;
+        }
+        const body = k.mech.bodyOf[part];
+        const link = k.kin.parentLink(body);
         if (!link) return false;
         const a0 = k.kin.jointAngles[link.joint];
-        k.interaction.turnPart(part, by, k.setup.camera.position);
-        if (Math.sign(k.kin.jointAngles[link.joint] - a0) !== Math.sign(by)) k.interaction.turnPart(part, -2 * by, k.setup.camera.position);
+        if (k.kin.turnsLikeAKnob(body)) {
+          k.interaction.turnPart(part, by, k.setup.camera.position);
+          if (Math.sign(k.kin.jointAngles[link.joint] - a0) !== Math.sign(by)) k.interaction.turnPart(part, -2 * by, k.setup.camera.position);
+        } else {
+          // A part that doesn't turn like a knob (a changeover catch's lever) is dragged round its
+          // joint in the viewer, not turned as a knob: its joint turned by `by`, as the drag ends
+          // up doing, with the viewer's own collision stop (decision 267's look at the 8110's catches).
+          k.kin.holdWhatTheDragDoesntNeed(body, () => k.kin.jointMotion(link.joint) !== null, link.joint);
+          k.kin.turnJoint(link.joint, by, () => k.setup.blockedBy() === null);
+          k.kin.letGoAfterDrag();
+        }
+        // Measured before the drag's end, which may work the mechanism out afresh (a ring shifted).
+        const done = Math.abs(k.kin.jointAngles[link.joint] - a0) > 1e-6;
         k.setup.onDragEnded();
-        return Math.abs(k.kin.jointAngles[link.joint] - a0) > 1e-6;
+        return done;
       },
       { part, by: step.by },
     );

@@ -1,0 +1,94 @@
+{
+  "set": "42062-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T03:03:55.186Z",
+  "load": 35.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 627,
+  "seconds": 305,
+  "functions": [
+    {
+      "function": 7,
+      "does": "The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure).",
+      "verdict": "not shown",
+      "why": "A: p511 18942 against p510 18940, p547 32524 against p510 18940 not moved",
+      "msOneCall": 6,
+      "msPerStep": null,
+      "time": {
+        "open": 12,
+        "collisions": 4,
+        "first": 0,
+        "reach": 4,
+        "A": 4,
+        "B": 281
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p530 6553",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p511 18942 against p510 18940": [
+              0,
+              0
+            ],
+            "p547 32524 against p510 18940": [
+              0,
+              0
+            ],
+            "p510 18940": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p530 6553",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p511 18942 against p510 18940": [
+              0,
+              0
+            ],
+            "p547 32524 against p510 18940": [
+              0,
+              0
+            ],
+            "p510 18940": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p530 6553",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p511 18942 against p510 18940",
+            "p547 32524 against p510 18940"
+          ],
+          "stops": [
+            "510/533"
+          ]
+        }
+      ],
+      "seconds": 305
+    }
+  ]
+}

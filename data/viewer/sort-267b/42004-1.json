@@ -1,0 +1,216 @@
+{
+  "set": "42004-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T02:13:55.883Z",
+  "load": 37,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 244,
+  "seconds": 310,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
+      "verdict": "not shown",
+      "why": "A: p229 2951 against p50 44294, p207 6632 against p50 44294 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 3,
+        "first": 0,
+        "reach": 2,
+        "A": 2,
+        "B": 135
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p227 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p229 2951 against p50 44294": [
+              0,
+              0
+            ],
+            "p207 6632 against p50 44294": [
+              0,
+              0
+            ],
+            "p50 44294": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p227 32270",
+          "way": -1,
+          "asked": 1.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p229 2951 against p50 44294": [
+              0,
+              0
+            ],
+            "p207 6632 against p50 44294": [
+              0,
+              0
+            ],
+            "p50 44294": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p227 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p229 2951 against p50 44294",
+            "p207 6632 against p50 44294"
+          ],
+          "stops": [
+            "56/81",
+            "229/229",
+            "59/85"
+          ]
+        }
+      ],
+      "seconds": 149
+    },
+    {
+      "function": 5,
+      "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
+      "verdict": "not decided",
+      "msOneCall": 18,
+      "msPerStep": 4,
+      "time": {
+        "open": 8,
+        "collisions": 2,
+        "first": 0,
+        "reach": 2,
+        "A": 9,
+        "B": 139
+      },
+      "stop": {
+        "control": "p171 32270",
+        "way": -1,
+        "went": -0.07,
+        "asked": 1.47,
+        "by": [
+          "159/177"
+        ]
+      },
+      "stops": [
+        "159/177"
+      ],
+      "A": [
+        {
+          "control": "p171 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              173,
+              175
+            ]
+          },
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 9,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p169 40490 against p159 32525": [
+              5.6,
+              4.01
+            ],
+            "p159 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p171 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              173,
+              175
+            ]
+          },
+          "asked": 1.47,
+          "went": -0.07,
+          "ms": 9,
+          "msOneCall": 6,
+          "stops": [
+            "159/177"
+          ],
+          "moved": {
+            "p169 40490 against p159 32525": [
+              5.6,
+              4.01
+            ],
+            "p159 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p171 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "moved": [
+            "p169 40490 against p159 32525"
+          ],
+          "stops": [
+            "159/177",
+            "169/172"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p171 32270",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.07 rad (159/177)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p171 32270: a travel of 0.2 rad or less each way, stopped at -0.07 rad (159/177)",
+      "seconds": 161
+    }
+  ]
+}

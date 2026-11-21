@@ -1,0 +1,391 @@
+{
+  "set": "8810-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:06:34.563Z",
+  "load": 18.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 74,
+  "seconds": 19,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handlebars steer the front wheel: the whole front fork, with its two long fork legs, headlight and handlebars, turns on a 4-long axle pushed down through the frame's motorcycle steering head.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p51 3176",
+        "way": 1,
+        "went": 0.636,
+        "asked": 0.67,
+        "by": [
+          "51/68"
+        ]
+      },
+      "stops": [
+        "51/68"
+      ],
+      "A": [
+        {
+          "control": "p51 3176",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0.636,
+          "ms": 12,
+          "msOneCall": 6,
+          "stops": [
+            "51/68"
+          ],
+          "moved": {
+            "p41 3176": [
+              18.78,
+              36.47
+            ],
+            "p57 3707": [
+              22.56,
+              36.47
+            ],
+            "p60 3707": [
+              22.56,
+              36.47
+            ],
+            "p55 3705": [
+              12.52,
+              36.47
+            ],
+            "p53 2695": [
+              14,
+              36.47
+            ],
+            "p48 4150p01": [
+              38.8,
+              36.47
+            ],
+            "p69 4273a": [
+              27.8,
+              36.47
+            ],
+            "p70 4273a": [
+              27.86,
+              36.47
+            ],
+            "p5 2904": [
+              0,
+              0
+            ],
+            "p32 4262": [
+              0,
+              0
+            ],
+            "p26 2695": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p51 3176",
+          "way": -1,
+          "asked": 0.67,
+          "went": -0.636,
+          "ms": 9,
+          "msOneCall": 1,
+          "stops": [
+            "51/68"
+          ],
+          "moved": {
+            "p41 3176": [
+              18.78,
+              36.47
+            ],
+            "p57 3707": [
+              22.56,
+              36.47
+            ],
+            "p60 3707": [
+              22.56,
+              36.47
+            ],
+            "p55 3705": [
+              12.52,
+              36.47
+            ],
+            "p53 2695": [
+              14,
+              36.47
+            ],
+            "p48 4150p01": [
+              38.8,
+              36.47
+            ],
+            "p69 4273a": [
+              27.81,
+              36.47
+            ],
+            "p70 4273a": [
+              27.86,
+              36.47
+            ],
+            "p5 2904": [
+              0,
+              0
+            ],
+            "p32 4262": [
+              0,
+              0
+            ],
+            "p26 2695": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p51 3176",
+          "judged": "stands",
+          "why": "stopped at +0.636 rad (51/68); -0.636 rad (51/68); kinds fork-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 6
+    },
+    {
+      "function": 2,
+      "does": "The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p33 4262, p21 3706, p26 2695, p16 4254, p18 4254 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p32 4262",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p33 4262": [
+              0,
+              0
+            ],
+            "p21 3706": [
+              0,
+              0
+            ],
+            "p26 2695": [
+              0,
+              0
+            ],
+            "p16 4254": [
+              0,
+              0
+            ],
+            "p18 4254": [
+              0,
+              0
+            ],
+            "p5 2904": [
+              0,
+              0
+            ],
+            "p24 3894": [
+              0,
+              0
+            ],
+            "p25 3894": [
+              0,
+              0
+            ],
+            "p53 2695": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p32 4262",
+          "way": -1,
+          "asked": 0.23,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p33 4262": [
+              0,
+              0
+            ],
+            "p21 3706": [
+              0,
+              0
+            ],
+            "p26 2695": [
+              0,
+              0
+            ],
+            "p16 4254": [
+              0,
+              0
+            ],
+            "p18 4254": [
+              0,
+              0
+            ],
+            "p5 2904": [
+              0,
+              0
+            ],
+            "p24 3894": [
+              0,
+              0
+            ],
+            "p25 3894": [
+              0,
+              0
+            ],
+            "p53 2695": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 5,
+      "does": "The parking stand under the middle of the bike folds: its two legs are hinge plates joined at the foot by a 1x4 plate, so the stand swings down to hold the bike up and up out of the way to ride.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p28 4276b",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "4 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              28,
+              29,
+              30,
+              31
+            ]
+          },
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 22,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p30 4276b": [
+              41.27,
+              85.94
+            ],
+            "p34 3710": [
+              27.82,
+              85.94
+            ],
+            "p29 4275b": [
+              0,
+              0
+            ],
+            "p31 4275b": [
+              0,
+              0
+            ],
+            "p32 4262": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p28 4276b",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "4 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              28,
+              29,
+              30,
+              31
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 19,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p30 4276b": [
+              41.27,
+              85.94
+            ],
+            "p34 3710": [
+              27.82,
+              85.94
+            ],
+            "p29 4275b": [
+              0,
+              0
+            ],
+            "p31 4275b": [
+              0,
+              0
+            ],
+            "p32 4262": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 11
+    }
+  ]
+}
