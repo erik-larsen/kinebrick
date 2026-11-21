@@ -215,6 +215,11 @@ export interface Options {
   // radians of the dragged joint on the set, a turn is worked in full and the set made afresh (0:
   // never; KINEBRICK_WORKING_SET_AUDIT). The compare mode works each turn on the set and in full,
   // and keeps the full one (KINEBRICK_WORKING_SET_COMPARE=1; see wsStats).
+  // A model standing on three or more contacts on the ground (decision 333, under test): 'lift', the
+  // contacts' lift first, before every other tier, so the motion is chosen among those that keep what stands
+  // on the ground on it; 'tip', the frame's own turning about level axes counted with frameTurning's tier, as
+  // for a car on fewer than three tyres; 'off', neither (KINEBRICK_LEVEL).
+  level: 'off' | 'lift' | 'tip';
   workingSet: boolean;
   workingSetAudit: number;
   workingSetCompare: boolean;
@@ -248,6 +253,7 @@ export const experiments: Options = {
   pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
   keepAhead: setting('KINEBRICK_KEEP_AHEAD') !== '0',
+  level: (['lift', 'tip'].includes(setting('KINEBRICK_LEVEL') ?? '') ? setting('KINEBRICK_LEVEL') : 'off') as 'off' | 'lift' | 'tip',
   workingSet: setting('KINEBRICK_WORKING_SET') !== '0',
   workingSetAudit: Number(setting('KINEBRICK_WORKING_SET_AUDIT') ?? 0),
   workingSetCompare: setting('KINEBRICK_WORKING_SET_COMPARE') === '1',
@@ -3854,7 +3860,24 @@ export class Kinematics {
     // against it, and turning a rear wheel of the 8865 Test Car, its front tyres built clear of
     // the ground, swung it round the other rear wheel and tipped it forward.
     const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
-    const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
+    // Decision 333's (b): on three or more contacts, the frame's turning about level axes (LDraw's x and z).
+    const level = this.options.level === 'tip' && this.contactTreads.length >= 3;
+    const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : level ? [0, 2].map((k) => dot(basis[k], z)) : []);
+    // Decision 333's (a): on three or more contacts, each contact's rising or sinking, first.
+    const liftRows =
+      this.options.level === 'lift' && this.contactTreads.length >= 3
+        ? inBasis(
+            this.contactTreads.flatMap((i) => {
+              const p = this.contactPoint(i);
+              if (!p) return [];
+              const row = new BodyRow(6 * this.bodyCount);
+              for (let k = 0; k < 3; k++) addPointVelocity(row, this.mech.treads[i].body, p, k, DOWN.getComponent(k));
+              return [row];
+            }),
+            basis,
+          )
+        : [];
+    const lifts = (z: number[]) => liftRows.map((row) => dot(row, z));
     // A resting body following its support as the loops close (see advance): its joints' turning costs
     // nothing either.
     const followed = this.closingFollowers;
@@ -3870,7 +3893,7 @@ export class Kinematics {
             return [w[b] - w[a], w[b + 1] - w[a + 1], w[b + 2] - w[a + 2]];
           })
       : size;
-    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: sizeHere, joints: true }, { cost: moves }];
+    return [...(liftRows.length ? [{ cost: lifts }] : []), { cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: sizeHere, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
