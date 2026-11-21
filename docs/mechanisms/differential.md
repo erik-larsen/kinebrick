@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 53 works, 23 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 51 works, 25 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -138,7 +138,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (works)
+- Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (partly)
 - The two rear axles each have a differential, so their wheels can turn at different speeds in a bend; the front two axles' wheels roll freely. (works)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
@@ -159,7 +159,7 @@ Each detail by the set it first appears in.
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
-- Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders. (works)
+- Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders. (partly)
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
