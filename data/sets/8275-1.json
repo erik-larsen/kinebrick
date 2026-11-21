@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
-    "seconds": 98,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 77,
     "counts": {
       "partly": 3,
       "works": 3,
@@ -229,7 +229,7 @@
             ],
             "p2613 57519": [
               0,
-              1.1e-37
+              1.36e-38
             ]
           }
         ],
@@ -269,7 +269,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2625 57518",
-        "seconds": 8.8
+        "seconds": 7
       },
       {
         "result": "partly",
@@ -342,7 +342,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2669 57518",
-        "seconds": 3.1
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -364,7 +364,7 @@
             ],
             "p2613 57519": [
               0,
-              1.1e-37
+              1.36e-38
             ]
           },
           {
@@ -438,7 +438,7 @@
             "p2613 57519"
           ]
         ],
-        "seconds": 9.7
+        "seconds": 6.6
       },
       {
         "result": "works",
@@ -503,7 +503,7 @@
             ]
           ]
         ],
-        "seconds": 6.8
+        "seconds": 4.5
       },
       {
         "result": "works",
@@ -521,7 +521,7 @@
             ],
             "p1465 3648b": [
               0.0139,
-              5.85e-43
+              3e-49
             ],
             "p2780 32140": [
               0.0139,
@@ -545,11 +545,11 @@
             ],
             "p2983 32278": [
               0,
-              3.55e-57
+              9.75e-70
             ],
             "p2611 57519": [
               0,
-              6.16e-41
+              1.39e-41
             ]
           }
         ],
@@ -586,7 +586,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 51.1
+        "seconds": 39.7
       },
       {
         "result": "partly",
@@ -667,13 +667,13 @@
         ],
         "cause": "control-jammed",
         "onPlay": 6,
-        "seconds": 12.3
+        "seconds": 10.2
       },
       {
         "result": "skipped",
         "seconds": 0
       }
     ],
-    "peak": 960
+    "peak": 980
   }
 }

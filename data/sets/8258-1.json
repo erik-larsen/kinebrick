@@ -203,9 +203,9 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
-    "seconds": 205,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 116,
     "counts": {
       "not checked": 3,
       "works": 5,
@@ -292,7 +292,8 @@
     },
     "functions": [
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -370,8 +371,7 @@
             ]
           ]
         ],
-        "seconds": 19.4,
-        "peak": 965
+        "seconds": 15.5
       },
       {
         "result": "works",
@@ -396,12 +396,12 @@
               4.02
             ],
             "p2046 40490": [
-              0,
-              9.01e-12
+              2.48e-8,
+              1.77e-12
             ],
             "p524 32524": [
               0,
-              0
+              8.91e-11
             ]
           }
         ],
@@ -435,8 +435,7 @@
             null
           ]
         ],
-        "seconds": 71.1,
-        "peak": 897
+        "seconds": 45.3
       },
       {
         "result": "partly",
@@ -459,7 +458,7 @@
             ],
             "p2046 40490": [
               0,
-              5.06e-64
+              6.75e-65
             ],
             "p2123 32526": [
               0,
@@ -508,8 +507,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2027 48168",
-        "seconds": 7.9,
-        "peak": 984
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -522,16 +520,16 @@
         "rates": [
           {
             "p2167 62274c01 against p2166 62271c01": [
-              1.24e-7,
+              1.16e-7,
               0.198
             ],
             "p2180 32524 against p2123 32526": [
-              0.00408,
-              0.245
+              0.0043,
+              0.258
             ],
             "p2123 32526 against p2046 40490": [
               0,
-              4.46e-14
+              0
             ]
           }
         ],
@@ -559,8 +557,7 @@
             ]
           ]
         ],
-        "seconds": 56,
-        "peak": 938
+        "seconds": 31.9
       },
       {
         "result": "works",
@@ -639,8 +636,7 @@
             ]
           ]
         ],
-        "seconds": 7.3,
-        "peak": 1011
+        "seconds": 4.3
       },
       {
         "result": "works",
@@ -654,7 +650,7 @@
           {
             "p682 62821": [
               1,
-              5.68e-14
+              3.79e-14
             ],
             "p6 3708": [
               1.4,
@@ -712,15 +708,17 @@
             ]
           ]
         ],
-        "seconds": 17.1,
-        "peak": 900
+        "seconds": 10
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
-    ]
+    ],
+    "peak": 998
   }
 }
