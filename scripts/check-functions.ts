@@ -91,6 +91,7 @@ import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { endlessKinds } from './endless.ts';
 import { normalizePartName } from '../src/connections.ts';
 import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
@@ -1442,7 +1443,15 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
       combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still))!;
     }
     // The collisions that stopped a way (collisionStops), beside the result.
-    const withCollisions = <T extends object>(r: T) => ({ ...r, ...(collisionStops.length ? { collisionStops } : {}) });
+    // A function whose kinds all turn without end (see endless.ts) that a collision stopped works
+    // at most partly (decision 279 of 2026-11-21), however far its parts moved first: a wheel that
+    // rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
+    const endless = endlessKinds(fn.mechanisms).endless;
+    const withCollisions = <T extends { result?: Result; cause?: Cause; detail?: string }>(r: T): T => {
+      if (!collisionStops.length) return r;
+      const stopped = endless && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${name(collisionStops[0][2])} against ${name(collisionStops[0][3])}` } : {};
+      return { ...r, ...stopped, collisionStops };
+    };
     // A function that doesn't work as read, whose control moves only together with a bigger body
     // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
     // the cab): worked again with those pins freed, as a user who sees that would press it with
