@@ -181,9 +181,9 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 39 works, 41 partly, 2 no, 5 not checked |
+| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 38 works, 42 partly, 2 no, 5 not checked |
 | [Remote control](remote-control.md) | 11 | 2007 |  |  |  | 1 | 6 | 4 | 7 works, 12 partly, 2 not checked |
-| [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 3 works, 3 partly, 7 skipped |
+| [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 2 works, 4 partly, 7 skipped |
 | [Pull-back motor](pull-back-motor.md) | 11 | 1998 |  |  | 1 |  | 9 | 1 | 11 works, 11 skipped |
 | [Stored-energy launcher](launcher.md) | 2 | 1998 |  |  | 2 |  |  |  | 1 partly, 2 skipped |
 
@@ -201,7 +201,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 136 works, 14 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 75 | 1978 | 2 | 1 | 10 | 11 | 39 | 12 | 72 works, 18 partly, 33 no, 2 skipped, 4 not checked |
+| [Hinge](hinge.md) | 75 | 1978 | 2 | 1 | 10 | 11 | 39 | 12 | 71 works, 19 partly, 33 no, 2 skipped, 4 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 3 partly, 2 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 10 works, 1 skipped |
 | [Hangs free](hangs-free.md) | 17 | 1978 | 1 | 1 | 2 | 4 | 9 |  | 5 works, 1 partly, 6 skipped, 5 not checked |

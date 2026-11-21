@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 72 works, 18 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 71 works, 19 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -354,7 +354,7 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
+- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (partly)
 - *doors:* The cab doors swing open. (works)
 - *king pin:* The trailer swings on its king pin behind the tractor. (works)
 - *container doors:* The container's two end doors swing open, each once its lock bar is lifted. (partly)
