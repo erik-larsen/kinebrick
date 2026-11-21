@@ -507,7 +507,7 @@ async function start() {
   // which bend out of the way.
   model.updateMatrixWorld(true);
   const shapes: PartMesh[][] = partObjects.map((obj, i) => {
-    if (startParts[i].path || mech.roles[i] === 'cable') return [];
+    if (startParts[i].path || roles[startParts[i].name] === 'cable') return [];
     const toPart = obj.matrixWorld.clone().invert();
     const list: PartMesh[] = [];
     obj.traverse((child) => {

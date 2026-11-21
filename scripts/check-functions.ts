@@ -1657,8 +1657,10 @@ function firstToShow(model: string): boolean {
 }
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
+  // A train set reads its model and shapes itself (see checkTrainSet).
+  const trainSet = args[one + 1].startsWith(join('data', 'trains'));
   // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
-  if (locks || stopsReport || collide) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
+  if (!trainSet && (locks || stopsReport || collide)) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
     const read = readParts(m, m.startsWith('omr/'));
     const shapes = await partShapes(m, read.text, read.parts);
     shapesOf.set(m, shapes);
@@ -1674,7 +1676,7 @@ if (one >= 0) {
     }
   }
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
-  const found = args[one + 1].startsWith(join('data', 'trains')) ? await checkTrainSet(set) : await check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
+  const found = trainSet ? await checkTrainSet(set) : await check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // With the most memory it took (see check-pool.ts), for the next run to expect. Let the output
   // drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify({ ...found, peak: peakMb() }), () => process.exit(0));

@@ -7,7 +7,8 @@
 // Run through the machine's pool (decision 229):
 //   npx tsx scripts/check-pool.ts run --mb 2000 --what "part shapes scan" -- npx tsx scripts/scan-part-shapes.ts
 // It prints one line for each model that doesn't match, and a count at the end; it exits with 1 if
-// any doesn't. With --model <file> it reads that one model only (what each child does).
+// any doesn't. With --model <file> it reads that one model only (what each child does). With
+// --trains, the train sets' models (data/trains), read as the train check reads them.
 import { spawnSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -20,7 +21,7 @@ const at = args.indexOf('--model');
 if (at >= 0) {
   // One model: its parts as the check reads them, and the shapes given their names.
   const model = args[at + 1];
-  const read = readParts(model, model.startsWith('omr/'));
+  const read = readParts(model, model.startsWith('omr/') || model.startsWith('models/trains/'));
   const shapes = await partShapes(model, read.text, read.parts);
   const wrong = read.parts.findIndex((p, i) => !shapes[i] || shapes[i].name !== normalizePartName(p.name));
   if (wrong >= 0) {
@@ -38,8 +39,9 @@ if (at >= 0) {
 } else {
   // Every model the sets use, each in a child of its own.
   const models = new Set<string>();
-  for (const file of readdirSync(join('data', 'sets')).filter((f) => f.endsWith('.json'))) {
-    const set = JSON.parse(readFileSync(join('data', 'sets', file), 'utf-8'));
+  const dir = args.includes('--trains') ? join('data', 'trains') : join('data', 'sets');
+  for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+    const set = JSON.parse(readFileSync(join(dir, file), 'utf-8'));
     if (set.curated?.model) models.add(set.curated.model);
     for (const fn of set.curated?.functions ?? []) if (fn.model) models.add(fn.model);
   }

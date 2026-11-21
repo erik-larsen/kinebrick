@@ -593,6 +593,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   }
   // What the loose parts touch as built (decision 259): asked here, where they are known.
   const touches = touching && loose.length ? touching(parts.map((p) => p.matrix), loose) : null;
+  // On a train layout neither a train wheel nor a rail carries what touches it: a wheel turns
+  // under its car (the 7722's buffers touch their wagon's wheels as built, and turned with them
+  // into the wagon), and a train stands on the rails (the 10277's drive belts touch them).
+  if (touches && track) for (const [i, list] of touches) touches.set(i, list.filter((p) => roles[p] !== 'train wheel' && roles[p] !== 'rail'));
   // The bodies so far, to tell whether what a loose group touches is all of one body.
   const bodiesSoFar = touches ? groupIntoBodies(parts.length, frameRoles, connections) : null;
   // (On a train layout, without the magnet couplings: see uncoupled.)

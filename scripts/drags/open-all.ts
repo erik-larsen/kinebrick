@@ -62,8 +62,10 @@ if (oneAt >= 0) {
   const models = new Set<string>();
   // Each model's set, for its part count.
   const setOf = new Map<string, string>();
-  for (const file of readdirSync(join('data', 'sets')).filter((f) => f.endsWith('.json'))) {
-    const set = JSON.parse(readFileSync(join('data', 'sets', file), 'utf-8'));
+  // With --trains, the train sets' models (data/trains).
+  const dir = args.includes('--trains') ? join('data', 'trains') : join('data', 'sets');
+  for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+    const set = JSON.parse(readFileSync(join(dir, file), 'utf-8'));
     for (const m of [set.curated?.model, ...(set.curated?.functions ?? []).map((fn: { model?: string }) => fn.model)]) {
       if (!m) continue;
       models.add(m);
