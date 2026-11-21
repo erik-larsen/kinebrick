@@ -1,0 +1,153 @@
+{
+  "set": "9391-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:32.485Z",
+  "load": 9.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 204,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear at the back end of the undercarriage slews the crane: its long axle runs under the turntable, where a bevel gear drives the turntable's teeth, turning the whole upper works with the boom.",
+      "verdict": "shown",
+      "msOneCall": 41,
+      "msPerStep": 6,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p31 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 271,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {
+            "p4 99010": [
+              0,
+              36.83
+            ],
+            "p78 32140": [
+              53.01,
+              36.83
+            ],
+            "p116 32062": [
+              191.4,
+              36.83
+            ],
+            "p826 94925": [
+              0,
+              0
+            ],
+            "p827 94925": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p31 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 246,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p4 99010": [
+              0,
+              36.83
+            ],
+            "p78 32140": [
+              53.01,
+              36.83
+            ],
+            "p116 32062": [
+              191.4,
+              36.83
+            ],
+            "p826 94925": [
+              0,
+              0
+            ],
+            "p827 94925": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The black gear on the left side at the back of the upper works winds the winch, raising or lowering the hook on its string over the boom tip.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 4,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p120 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 186,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p121 30395 against p116 32062": [
+              13.65,
+              0
+            ],
+            "p116 32062 against p78 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 182,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p121 30395 against p116 32062": [
+              13.67,
+              0
+            ],
+            "p116 32062 against p78 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

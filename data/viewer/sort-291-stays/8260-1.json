@@ -1,0 +1,177 @@
+{
+  "set": "8260-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:19.376Z",
+  "load": 9.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 104,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the red knob at the back turns the worm under the tractor, which turns the 8 tooth gear on the loader arms' axle: the arms and the bucket on them rise and lower.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p10 3713",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 53,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p19 4716": [
+              0,
+              85.94
+            ],
+            "p52 3647": [
+              0,
+              10.74
+            ],
+            "p86 32348": [
+              20.12,
+              10.74
+            ],
+            "p93 32348": [
+              20.12,
+              10.74
+            ],
+            "p92 47508": [
+              28.51,
+              10.74
+            ],
+            "p0 32524": [
+              0,
+              0
+            ],
+            "p98 56904": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p10 3713",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 35,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p19 4716": [
+              0,
+              85.94
+            ],
+            "p52 3647": [
+              0,
+              10.74
+            ],
+            "p86 32348": [
+              20.12,
+              10.74
+            ],
+            "p93 32348": [
+              20.12,
+              10.74
+            ],
+            "p92 47508": [
+              28.51,
+              10.74
+            ],
+            "p0 32524": [
+              0,
+              0
+            ],
+            "p98 56904": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 4,
+      "does": "The steering wheel turns on its axle in the cab, but steers nothing: the front wheels sit on fixed pins.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p63 30663",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 10,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p63 30663": [
+              0.01,
+              85.94
+            ],
+            "p96 56902": [
+              0,
+              0
+            ],
+            "p97 56902": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p63 30663",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p63 30663": [
+              0.01,
+              85.94
+            ],
+            "p96 56902": [
+              0,
+              0
+            ],
+            "p97 56902": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "set": "42099-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:49.985Z",
+  "load": 14,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 931,
+  "seconds": 11,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs.",
+      "verdict": "shown",
+      "msOneCall": 121,
+      "msPerStep": 35,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p363 42099 - 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1515,
+          "msOneCall": 121,
+          "stops": [],
+          "moved": {
+            "p83 32270": [
+              0,
+              143.24
+            ],
+            "p59 42099 - 18575": [
+              0,
+              143.24
+            ],
+            "p20 32270": [
+              0,
+              238.73
+            ],
+            "p43 62821": [
+              0,
+              170.52
+            ],
+            "p1864 23798": [
+              0.02,
+              31.58
+            ],
+            "p1868 23798": [
+              0.02,
+              31.58
+            ],
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p1866 23798": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p363 42099 - 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1327,
+          "msOneCall": 49,
+          "stops": [],
+          "moved": {
+            "p83 32270": [
+              0,
+              143.24
+            ],
+            "p59 42099 - 18575": [
+              0,
+              143.24
+            ],
+            "p20 32270": [
+              0,
+              238.73
+            ],
+            "p43 62821": [
+              0,
+              170.52
+            ],
+            "p1864 23798": [
+              0.03,
+              31.58
+            ],
+            "p1868 23798": [
+              0.03,
+              31.58
+            ],
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p1866 23798": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 5,
+      "does": "The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 42,
+      "msPerStep": 20,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1866 23798",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 853,
+          "msOneCall": 42,
+          "stops": [],
+          "moved": {
+            "p1862 23798": [
+              0.09,
+              85.94
+            ],
+            "p878 42099 - 18575": [
+              0,
+              0
+            ],
+            "p490 62821": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1866 23798",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 872,
+          "msOneCall": 38,
+          "stops": [],
+          "moved": {
+            "p1862 23798": [
+              0.06,
+              85.94
+            ],
+            "p878 42099 - 18575": [
+              0,
+              0
+            ],
+            "p490 62821": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 6,
+      "does": "The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 53,
+      "msPerStep": 30,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1868 23798",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1226,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {
+            "p1864 23798": [
+              0.07,
+              85.94
+            ],
+            "p363 42099 - 18575": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1868 23798",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1280,
+          "msOneCall": 47,
+          "stops": [],
+          "moved": {
+            "p1864 23798": [
+              0.04,
+              85.94
+            ],
+            "p363 42099 - 18575": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

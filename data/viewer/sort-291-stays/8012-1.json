@@ -1,0 +1,242 @@
+{
+  "set": "8012-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:42.578Z",
+  "load": 9.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 364,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle.",
+      "verdict": "shown",
+      "msOneCall": 80,
+      "msPerStep": 15,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p96 32449",
+        "way": -1,
+        "went": -1.012,
+        "asked": 1.5,
+        "by": [
+          "55/99"
+        ]
+      },
+      "stops": [
+        "3854/3865",
+        "55/99"
+      ],
+      "A": [
+        {
+          "control": "p96 32449",
+          "way": 1,
+          "asked": 1.03,
+          "went": 0,
+          "ms": 24,
+          "msOneCall": 80,
+          "stops": [
+            "3854/3865"
+          ],
+          "moved": {
+            "p95 32269": [
+              0,
+              0
+            ],
+            "p90 4019": [
+              0,
+              0
+            ],
+            "p83 6538b": [
+              0,
+              0
+            ],
+            "p3847 41680": [
+              0,
+              0
+            ],
+            "p3851 32291": [
+              0,
+              0
+            ],
+            "p3456 41680": [
+              0,
+              0
+            ],
+            "p3474 6538b": [
+              0,
+              0
+            ],
+            "p2387 41680": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p96 32449",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.012,
+          "ms": 431,
+          "msOneCall": 20,
+          "stops": [
+            "55/99"
+          ],
+          "moved": {
+            "p95 32269": [
+              0,
+              57.96
+            ],
+            "p90 4019": [
+              0,
+              72.45
+            ],
+            "p83 6538b": [
+              0,
+              72.45
+            ],
+            "p3847 41680": [
+              227.7,
+              72.45
+            ],
+            "p3851 32291": [
+              263.5,
+              0
+            ],
+            "p3456 41680": [
+              0,
+              0
+            ],
+            "p3474 6538b": [
+              0,
+              0
+            ],
+            "p2387 41680": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p96 32449",
+          "judged": "stands",
+          "why": "stopped at +0 rad (3854/3865); -1.012 rad (55/99); kinds hinge: right arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    },
+    {
+      "function": 2,
+      "does": "The left arm swings at the shoulder on a long pin.",
+      "verdict": "shown",
+      "msOneCall": 26,
+      "msPerStep": 10,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p3474 6538b",
+        "way": 1,
+        "went": 1.395,
+        "asked": 1.5,
+        "by": [
+          "158/3471"
+        ]
+      },
+      "stops": [
+        "158/3471"
+      ],
+      "A": [
+        {
+          "control": "p3474 6538b",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.395,
+          "ms": 385,
+          "msOneCall": 26,
+          "stops": [
+            "158/3471"
+          ],
+          "moved": {
+            "p3456 41680": [
+              251.15,
+              79.95
+            ],
+            "p3441 3705": [
+              413.72,
+              79.95
+            ],
+            "p90 4019": [
+              0,
+              0
+            ],
+            "p3847 41680": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3474 6538b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 416,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p3456 41680": [
+              269.99,
+              85.94
+            ],
+            "p3441 3705": [
+              444.74,
+              85.94
+            ],
+            "p90 4019": [
+              0,
+              0
+            ],
+            "p3847 41680": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p3474 6538b",
+          "judged": "stands",
+          "why": "stopped at +1.395 rad (158/3471); kinds hinge: left arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 1
+    }
+  ]
+}

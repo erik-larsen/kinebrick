@@ -1,0 +1,298 @@
+{
+  "set": "8261-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:00:20.295Z",
+  "load": 13.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 191,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12 tooth gear on the roof steers the front wheels: it turns a vertical shaft down through the cab, whose 12 tooth bevel gear at the foot turns the 20 tooth gear on a shaft running forward under the truck; a knob gear at that shaft's front end turns the knob gear on the front axle's steering post, swinging its steering arm, which pushes the tie rod that turns both front wheels.",
+      "verdict": "not shown",
+      "msOneCall": 13,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p131 32270",
+        "way": 1,
+        "went": 0.105,
+        "asked": 1.5,
+        "by": [
+          "193/193"
+        ]
+      },
+      "stops": [
+        "193/193",
+        "191/191"
+      ],
+      "A": [
+        {
+          "control": "p131 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.105,
+          "ms": 10,
+          "msOneCall": 13,
+          "stops": [
+            "193/193"
+          ],
+          "moved": {
+            "p33 6589": [
+              0,
+              6
+            ],
+            "p18 32269": [
+              0,
+              3.6
+            ],
+            "p93 32072": [
+              0,
+              3.6
+            ],
+            "p82 32072": [
+              0.56,
+              2.56
+            ],
+            "p75 33299": [
+              1.67,
+              2.56
+            ],
+            "p76 32524": [
+              0.28,
+              1.6
+            ],
+            "p66 48989": [
+              1.93,
+              2.56
+            ],
+            "p67 48989": [
+              1.95,
+              2.56
+            ],
+            "p0 32526": [
+              0,
+              0
+            ],
+            "p194 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p131 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 7,
+          "msOneCall": 3,
+          "stops": [
+            "191/191"
+          ],
+          "moved": {
+            "p33 6589": [
+              0,
+              6
+            ],
+            "p18 32269": [
+              0,
+              3.6
+            ],
+            "p93 32072": [
+              0,
+              3.6
+            ],
+            "p82 32072": [
+              0.56,
+              2.56
+            ],
+            "p75 33299": [
+              1.67,
+              2.56
+            ],
+            "p76 32524": [
+              0.28,
+              1.6
+            ],
+            "p66 48989": [
+              1.95,
+              2.56
+            ],
+            "p67 48989": [
+              1.93,
+              2.56
+            ],
+            "p0 32526": [
+              0,
+              0
+            ],
+            "p194 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p131 32270",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.105 rad (193/193); -0.105 rad (191/191)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the roof shaft and 12 tooth gear steer the front wheels to full lock (the solver turned it 1.47 rad each way); the booklet shows nothing that would stop it at 0.105 rad, and the viewer's stop is a part against itself (193/193).",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=32"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p131 32270: a travel of 0.2 rad or less each way, stopped at +0.105 rad (193/193); -0.105 rad (191/191) (the roof shaft and 12 tooth gear steer the front wheels to full lock (the solver turned it 1.47 rad each way); the booklet shows nothing that would stop it at 0.105 rad, and the viewer's stop is a part against itself (193/193)., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=32)",
+      "seconds": 2
+    },
+    {
+      "function": 2,
+      "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p45 32271",
+        "way": 1,
+        "went": 0.244,
+        "asked": 1.5,
+        "by": [
+          "3/198"
+        ]
+      },
+      "stops": [
+        "3/198"
+      ],
+      "A": [
+        {
+          "control": "p45 32271",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.244,
+          "ms": 19,
+          "msOneCall": 16,
+          "stops": [
+            "3/198"
+          ],
+          "moved": {
+            "p45 32271": [
+              0,
+              13.99
+            ],
+            "p51 32271": [
+              0,
+              13.99
+            ],
+            "p43 59426": [
+              32.47,
+              13.99
+            ],
+            "p52 59426": [
+              32.47,
+              13.99
+            ],
+            "p194 56145": [
+              32.47,
+              13.99
+            ],
+            "p196 56145": [
+              32.47,
+              13.99
+            ],
+            "p55 44294": [
+              0,
+              13.99
+            ],
+            "p0 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p45 32271",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 3,
+          "msOneCall": 3,
+          "stops": [
+            "3/198"
+          ],
+          "moved": {
+            "p45 32271": [
+              0,
+              0
+            ],
+            "p51 32271": [
+              0,
+              0
+            ],
+            "p43 59426": [
+              0,
+              0
+            ],
+            "p52 59426": [
+              0,
+              0
+            ],
+            "p194 56145": [
+              0,
+              0
+            ],
+            "p196 56145": [
+              0,
+              0
+            ],
+            "p55 44294": [
+              0,
+              0
+            ],
+            "p0 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p45 32271",
+          "judged": "stands",
+          "why": "stopped at +0.244 rad (3/198); -0 rad (3/198); kinds swing-arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

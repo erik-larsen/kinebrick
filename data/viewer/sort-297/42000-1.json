@@ -1,0 +1,313 @@
+{
+  "set": "42000-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:02:14.851Z",
+  "load": 14,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1109,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Each front wheel rides on double wishbones with a pushrod to a rocker inside the nose, which works a shock absorber lying across the car (pushrod suspension).",
+      "verdict": "not decided",
+      "msOneCall": 213,
+      "msPerStep": 197,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p591 32294",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "499/566"
+        ]
+      },
+      "stops": [
+        "499/566",
+        "1012/1012"
+      ],
+      "A": [
+        {
+          "control": "p591 32294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 249,
+          "msOneCall": 213,
+          "stops": [
+            "499/566"
+          ],
+          "moved": {
+            "p559 32056": [
+              0,
+              7.09
+            ],
+            "p566 4255": [
+              4.95,
+              0.28
+            ]
+          }
+        },
+        {
+          "control": "p591 32294",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 197,
+          "msOneCall": 155,
+          "stops": [
+            "1012/1012"
+          ],
+          "moved": {
+            "p559 32056": [
+              0,
+              3.5
+            ],
+            "p566 4255": [
+              2.44,
+              0.29
+            ]
+          }
+        },
+        {
+          "control": "p600 32294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 188,
+          "msOneCall": 146,
+          "stops": [
+            "1012/1012"
+          ],
+          "moved": {
+            "p559 32056": [
+              0,
+              3.51
+            ],
+            "p566 4255": [
+              2.45,
+              0.29
+            ]
+          }
+        },
+        {
+          "control": "p600 32294",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 254,
+          "msOneCall": 139,
+          "stops": [
+            "499/566"
+          ],
+          "moved": {
+            "p559 32056": [
+              0,
+              7.05
+            ],
+            "p566 4255": [
+              4.92,
+              0.28
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p591 32294",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (499/566); -0.035 rad (1012/1012)"
+        },
+        {
+          "control": "p600 32294",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (1012/1012); -0.07 rad (499/566)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "byHand": {
+        "stop": "not decided",
+        "why": "pushrod suspension: 0.07 rad each way; the booklet has no motion arrows"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p591 32294: a travel of 0.2 rad or less each way, stopped at +0.07 rad (499/566); -0.035 rad (1012/1012); p600 32294: a travel of 0.2 rad or less each way, stopped at +0.035 rad (1012/1012); -0.07 rad (499/566)",
+      "seconds": 5
+    },
+    {
+      "function": 5,
+      "does": "Each rear wheel rides on double wishbones with a pushrod to a rocker above the gearbox, which works a shock absorber (pushrod suspension).",
+      "verdict": "not decided",
+      "msOneCall": 98,
+      "msPerStep": 117,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p278 32294",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "464/466"
+        ]
+      },
+      "stops": [
+        "464/466",
+        "459/460"
+      ],
+      "A": [
+        {
+          "control": "p278 32294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 185,
+          "msOneCall": 98,
+          "stops": [
+            "464/466"
+          ],
+          "moved": {
+            "p298 87083": [
+              0,
+              11.57
+            ],
+            "p464 4254": [
+              8.08,
+              0.43
+            ],
+            "p304 87083": [
+              0,
+              0.96
+            ],
+            "p459 4254": [
+              0.67,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p278 32294",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 234,
+          "msOneCall": 94,
+          "stops": [
+            "464/466"
+          ],
+          "moved": {
+            "p298 87083": [
+              0,
+              10.86
+            ],
+            "p464 4254": [
+              7.58,
+              0.44
+            ],
+            "p304 87083": [
+              0,
+              1.35
+            ],
+            "p459 4254": [
+              0.94,
+              0.01
+            ]
+          }
+        },
+        {
+          "control": "p291 32294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 162,
+          "msOneCall": 73,
+          "stops": [
+            "459/460"
+          ],
+          "moved": {
+            "p298 87083": [
+              0,
+              1.81
+            ],
+            "p464 4254": [
+              1.26,
+              0.01
+            ],
+            "p304 87083": [
+              0,
+              10.86
+            ],
+            "p459 4254": [
+              7.58,
+              0.44
+            ]
+          }
+        },
+        {
+          "control": "p291 32294",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 198,
+          "msOneCall": 77,
+          "stops": [
+            "459/460"
+          ],
+          "moved": {
+            "p298 87083": [
+              0,
+              1.8
+            ],
+            "p464 4254": [
+              1.26,
+              0.01
+            ],
+            "p304 87083": [
+              0,
+              11.57
+            ],
+            "p459 4254": [
+              8.08,
+              0.43
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p278 32294",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (464/466); -0.07 rad (464/466)"
+        },
+        {
+          "control": "p291 32294",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (459/460); -0.07 rad (459/460)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p278 32294: a travel of 0.2 rad or less each way, stopped at +0.07 rad (464/466); -0.07 rad (464/466); p291 32294: a travel of 0.2 rad or less each way, stopped at +0.07 rad (459/460); -0.07 rad (459/460)",
+      "seconds": 1
+    }
+  ]
+}

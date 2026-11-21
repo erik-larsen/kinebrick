@@ -1,0 +1,121 @@
+{
+  "set": "8844-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:26.550Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 300,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast.",
+      "verdict": "not shown",
+      "msOneCall": 17,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p128 3736",
+        "way": 1,
+        "went": 0.384,
+        "asked": 1.5,
+        "by": [
+          "202/207"
+        ]
+      },
+      "stops": [
+        "202/207",
+        "202/206"
+      ],
+      "A": [
+        {
+          "control": "p128 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.384,
+          "ms": 33,
+          "msOneCall": 17,
+          "stops": [
+            "202/207"
+          ],
+          "moved": {
+            "p172 3648a against p65 3673": [
+              0,
+              21.99
+            ],
+            "p206 4262 against p65 3673": [
+              7.67,
+              0
+            ],
+            "p207 4262 against p65 3673": [
+              7.67,
+              0
+            ],
+            "p270 3482": [
+              0,
+              0
+            ],
+            "p69 3705": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p128 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.384,
+          "ms": 28,
+          "msOneCall": 5,
+          "stops": [
+            "202/206"
+          ],
+          "moved": {
+            "p172 3648a against p65 3673": [
+              0,
+              21.99
+            ],
+            "p206 4262 against p65 3673": [
+              7.67,
+              0
+            ],
+            "p207 4262 against p65 3673": [
+              7.67,
+              0
+            ],
+            "p270 3482": [
+              0,
+              0
+            ],
+            "p69 3705": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p128 3736",
+          "judged": "not shown",
+          "why": "turns without end (kinds driven-rotor; the text says: rotor), but a collision stops it at +0.384 rad (202/207); -0.384 rad (202/206)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p128 3736: turns without end (kinds driven-rotor; the text says: rotor), but a collision stops it at +0.384 rad (202/207); -0.384 rad (202/206)",
+      "seconds": 2
+    }
+  ]
+}

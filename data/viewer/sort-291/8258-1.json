@@ -1,0 +1,212 @@
+{
+  "set": "8258-1",
+  "commit": "3d7ec1d4",
+  "date": "2026-11-21T11:15:20.931Z",
+  "load": 6.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1629,
+  "seconds": 271,
+  "functions": [
+    {
+      "function": 7,
+      "does": "The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down.",
+      "held": {
+        "result": "partly",
+        "reason": "In the viewer the control turns and these listed parts stay: p682, p6, p1351, p1366, p1367. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "why": "A: p682 62821, p6 3708, p1351 2853, p1366 2851 against p1375 2850a, p1367 2851 against p1376 2850a not moved; B: no listed part moved by hand",
+      "msOneCall": 121,
+      "msPerStep": 15,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 223,
+        "A": 3,
+        "B": 35
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p686 4519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 649,
+          "msOneCall": 121,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p686 4519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 631,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p687 4519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 610,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p687 4519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 606,
+          "msOneCall": 39,
+          "stops": [],
+          "moved": {
+            "p682 62821": [
+              0,
+              0
+            ],
+            "p6 3708": [
+              0,
+              0
+            ],
+            "p1351 2853": [
+              0,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              0
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              0
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p686 4519",
+          "seen": true,
+          "cameraTurns": 49,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p687 4519",
+          "seen": true,
+          "cameraTurns": 49,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 271
+    }
+  ]
+}

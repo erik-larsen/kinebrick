@@ -1,0 +1,203 @@
+{
+  "set": "8001-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:11.040Z",
+  "load": 13.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 300,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The droid folds up for transport: the legs swing up against the body at the hips, turning round the axle of the 24-tooth gear in the hips, and a catch clicks into the gear to hold them folded.",
+      "verdict": "shown",
+      "msOneCall": 28,
+      "msPerStep": 8,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p62 32177",
+        "way": 1,
+        "went": 0.035,
+        "asked": 1.5,
+        "by": [
+          "23/27"
+        ]
+      },
+      "stops": [
+        "23/27"
+      ],
+      "A": [
+        {
+          "control": "p62 32177",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 8,
+          "msOneCall": 28,
+          "stops": [
+            "23/27"
+          ],
+          "moved": {
+            "p42 32165 against p95 32184": [
+              7.11,
+              0
+            ],
+            "p71 32165 against p95 32184": [
+              7.11,
+              0
+            ],
+            "p0 32140 against p95 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p62 32177",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 77,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p42 32165 against p95 32184": [
+              305.93,
+              0
+            ],
+            "p71 32165 against p95 32184": [
+              305.93,
+              0
+            ],
+            "p0 32140 against p95 32184": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p62 32177",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (23/27); kinds hinge: legs, catch: legs"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the photos on pages 47-48 and 50 (green arrows, click mark) show the legs folding round the hip axle from standing straight to folded flat against the body, about half a turn, far past the viewer's 0.035 rad.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4132555.pdf#page=48"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    },
+    {
+      "function": 6,
+      "does": "The left arm swings at the shoulder and bends at the elbow, so it can be posed.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 3,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p830 32177",
+        "way": 1,
+        "went": 0.802,
+        "asked": 1.5,
+        "by": [
+          "825/830"
+        ]
+      },
+      "stops": [
+        "825/830"
+      ],
+      "A": [
+        {
+          "control": "p830 32177",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.802,
+          "ms": 44,
+          "msOneCall": 9,
+          "stops": [
+            "825/830"
+          ],
+          "moved": {
+            "p825 32177 against p95 32184": [
+              80.17,
+              0
+            ],
+            "p815 6536 against p95 32184": [
+              80.17,
+              0
+            ],
+            "p848 32177 against p95 32184": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p830 32177",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.14,
+          "ms": 12,
+          "msOneCall": 5,
+          "stops": [
+            "825/830"
+          ],
+          "moved": {
+            "p825 32177 against p95 32184": [
+              13.94,
+              0
+            ],
+            "p815 6536 against p95 32184": [
+              13.94,
+              0
+            ],
+            "p848 32177 against p95 32184": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p830 32177",
+          "judged": "stands",
+          "why": "stopped at +0.802 rad (825/830); -0.14 rad (825/830); kinds posable-joint: left arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the photos show the arms in clearly different poses (page 52 an arm out about 40 degrees; page 53 an arm bent about 90 degrees), far more than the viewer's 0.174 rad; poses only, no motion arrow.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4132555.pdf#page=52"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 0
+    }
+  ]
+}

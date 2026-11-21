@@ -1,0 +1,86 @@
+{
+  "set": "8808-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:16.365Z",
+  "load": 9.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 92,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: an 8 tooth gear on its column runs in a rack on the tie plate between the two steering arms, so both front wheels swing the same way.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p79 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 31,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p49 4261": [
+              0,
+              22
+            ],
+            "p53 4261": [
+              0,
+              22
+            ],
+            "p71 3743": [
+              15.36,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p79 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 27,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p49 4261": [
+              0,
+              22
+            ],
+            "p53 4261": [
+              0,
+              22
+            ],
+            "p71 3743": [
+              15.36,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

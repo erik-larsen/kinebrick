@@ -1,0 +1,98 @@
+{
+  "set": "42033-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:02.072Z",
+  "load": 14.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 122,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The clear canopy over the cockpit swings up to open.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p110 92279",
+        "way": -1,
+        "went": -0.035,
+        "asked": 1.5,
+        "by": [
+          "89/110"
+        ]
+      },
+      "stops": [
+        "89/110"
+      ],
+      "A": [
+        {
+          "control": "p110 92279",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p110 92279 against p0 32278": [
+              60.46,
+              85.94
+            ],
+            "p93 40001 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p110 92279",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 2,
+          "msOneCall": 3,
+          "stops": [
+            "89/110"
+          ],
+          "moved": {
+            "p110 92279 against p0 32278": [
+              1.41,
+              2
+            ],
+            "p93 40001 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p110 92279",
+          "judged": "stands",
+          "why": "stopped at -0.035 rad (89/110); kinds hinge: canopy"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "step 31 shows a red arrow swinging the clear canopy up and forward through roughly 90 degrees, far past 0.035 rad.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6106802.pdf#page=43"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}
