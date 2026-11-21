@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 75 works, 15 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 73 works, 17 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -192,7 +192,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (works)
+- *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (partly)
 - *wheel-lift arm:* The wheel-lift arm hinges at the back of the deck, so it swings up and down as the cylinder works it, carrying the grey wheel forks. (no)
 - *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (no)
 - *locker doors:* The two side lockers behind the cab open: each door, with a handle, hinges up at its top edge. (no)
@@ -357,7 +357,7 @@ Each detail by the set it first appears in.
 - *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
 - *doors:* The cab doors swing open. (works)
 - *king pin:* The trailer swings on its king pin behind the tractor. (works)
-- *container doors:* The container's two end doors swing open, each once its lock bar is lifted. (works)
+- *container doors:* The container's two end doors swing open, each once its lock bar is lifted. (partly)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
