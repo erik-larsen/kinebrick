@@ -456,6 +456,10 @@
     {
       "date": "2026-11-21",
       "what": "The Shift trap is closed (307): Shift again on a part that was asked to slide lets it turn as before, and the viewer's message says so."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The rule for parts that nothing drives (309): counted on 180 functions, such parts move today in 52, in every kind of drag. Some functions work only because a part is carried along by chance, where the model misses the drive to it (the 8261's steering). The rule is built behind a setting, off by default, and is turned on for rolling a model first, once its lists of gains and losses are in."
     }
   ]
 }
