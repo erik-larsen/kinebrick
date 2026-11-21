@@ -13,7 +13,7 @@ import { spawn } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { partCounts } from '../check-pool.ts';
-import { LIBRARY } from './drag.ts';
+import { LAUNCH, LIBRARY } from './drag.ts';
 import { chromium } from 'playwright';
 
 const args = process.argv.slice(2);
@@ -28,7 +28,7 @@ const browserMb = (parts: number | undefined) => (parts ? Math.round(1000 + 0.85
 const oneAt = args.indexOf('--one');
 if (oneAt >= 0) {
   const model = args[oneAt + 1];
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch(LAUNCH);
   try {
     const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
     const errors: string[] = [];

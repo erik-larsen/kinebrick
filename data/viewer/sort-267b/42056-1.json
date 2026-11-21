@@ -1,0 +1,142 @@
+{
+  "set": "42056-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T06:11:19.679Z",
+  "load": 41.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2641,
+  "seconds": 2589,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment.",
+      "verdict": "not shown",
+      "why": "A: p2135 41239 not moved",
+      "msOneCall": 11,
+      "msPerStep": null,
+      "time": {
+        "open": 44,
+        "collisions": 31,
+        "first": 0,
+        "reach": 24,
+        "A": 19,
+        "B": 1348
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2132 32278",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p2135 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2132 32278",
+          "way": -1,
+          "asked": 1.33,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2135 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2132 32278",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p2135 41239"
+          ],
+          "stops": [
+            "1102/2132",
+            "482/2141"
+          ]
+        }
+      ],
+      "seconds": 1466
+    },
+    {
+      "function": 11,
+      "does": "The rear wing's angle can be adjusted: the wing tilts on its two supports.",
+      "verdict": "not shown",
+      "why": "A: p2553 32523 not moved",
+      "msOneCall": 15,
+      "msPerStep": null,
+      "time": {
+        "open": 56,
+        "collisions": 42,
+        "first": 0,
+        "reach": 475,
+        "A": 28,
+        "B": 522
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2530 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p2553 32523": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2530 87083",
+          "way": -1,
+          "asked": 1.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2553 32523": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2530 87083",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p2553 32523"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 1123
+    }
+  ]
+}

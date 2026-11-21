@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 40 works, 40 partly, 2 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 38 works, 42 partly, 2 no, 5 not checked.
 
 ## By decade
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 - *PF XL:* The left XL motor drives the left track: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the left front sprocket. (partly)
 - *PF XL:* The right XL motor drives the right track the same way, from the back: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the right rear sprocket. (partly)
-- *PF M:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
+- *PF M:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
 - *PF M:* The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
@@ -203,7 +203,7 @@ Each detail by the set it first appears in.
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
 - *L:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
-- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (works)
+- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (partly)
 - *L:* The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

@@ -231,9 +231,9 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
-    "seconds": 528,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 391,
     "counts": {
       "works": 12,
       "partly": 2
@@ -313,8 +313,8 @@
             ]
           ]
         ],
-        "seconds": 10.2,
-        "peak": 941
+        "seconds": 6.4,
+        "peak": 942
       },
       {
         "result": "partly",
@@ -362,8 +362,8 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 4.1,
-        "peak": 895
+        "seconds": 3,
+        "peak": 912
       },
       {
         "result": "works",
@@ -434,8 +434,8 @@
             1.43
           ]
         ],
-        "seconds": 17.9,
-        "peak": 888
+        "seconds": 12.2,
+        "peak": 1006
       },
       {
         "result": "works",
@@ -485,8 +485,8 @@
             ]
           ]
         ],
-        "seconds": 128.8,
-        "peak": 998
+        "seconds": 94.1,
+        "peak": 944
       },
       {
         "result": "works",
@@ -532,8 +532,8 @@
             ]
           ]
         ],
-        "seconds": 31.6,
-        "peak": 1033
+        "seconds": 23.8,
+        "peak": 1018
       },
       {
         "result": "works",
@@ -575,8 +575,8 @@
             ]
           ]
         ],
-        "seconds": 9,
-        "peak": 929
+        "seconds": 5,
+        "peak": 937
       },
       {
         "result": "works",
@@ -630,8 +630,8 @@
             ]
           ]
         ],
-        "seconds": 9.5,
-        "peak": 964
+        "seconds": 7.4,
+        "peak": 946
       },
       {
         "result": "works",
@@ -697,8 +697,8 @@
             0.4
           ]
         ],
-        "seconds": 3.7,
-        "peak": 946
+        "seconds": 2.9,
+        "peak": 1002
       },
       {
         "result": "works",
@@ -716,13 +716,13 @@
           {
             "p1660 18939": [
               0,
-              0.684
+              0.678
             ]
           },
           {
             "p1660 18939": [
               0,
-              0.684
+              0.678
             ]
           }
         ],
@@ -778,8 +778,8 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 33.7,
-        "peak": 935
+        "seconds": 19.4,
+        "peak": 951
       },
       {
         "result": "works",
@@ -900,8 +900,8 @@
             1.42
           ]
         ],
-        "seconds": 143.9,
-        "peak": 993
+        "seconds": 110,
+        "peak": 1034
       },
       {
         "result": "partly",
@@ -998,8 +998,8 @@
             0.07
           ]
         ],
-        "seconds": 2.3,
-        "peak": 951
+        "seconds": 2,
+        "peak": 992
       },
       {
         "result": "works",
@@ -1036,8 +1036,8 @@
             ]
           ]
         ],
-        "seconds": 10.1,
-        "peak": 965
+        "seconds": 7.7,
+        "peak": 870
       },
       {
         "result": "works",
@@ -1155,8 +1155,8 @@
           [],
           []
         ],
-        "seconds": 50.6,
-        "peak": 914
+        "seconds": 37.1,
+        "peak": 932
       },
       {
         "result": "works",
@@ -1217,8 +1217,8 @@
             0.03
           ]
         ],
-        "seconds": 2,
-        "peak": 955
+        "seconds": 1.7,
+        "peak": 988
       }
     ]
   }

@@ -1,0 +1,242 @@
+{
+  "set": "42106-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:12:27.902Z",
+  "load": 16.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 620,
+  "seconds": 129,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The truck's four wheels roll freely; there's no drive. The two rear wheels turn together on one axle; each front wheel turns on its own short axle in its steering knuckle.",
+      "verdict": "not shown",
+      "msOneCall": 53,
+      "msPerStep": 12,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 45,
+        "B": 0
+      },
+      "stop": {
+        "control": "p322 56904",
+        "way": -1,
+        "went": -0.558,
+        "asked": 1.5,
+        "by": [
+          "2064/2197"
+        ]
+      },
+      "stops": [
+        "2064/2197"
+      ],
+      "A": [
+        {
+          "control": "p322 56904",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 184,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p322 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.558,
+          "ms": 184,
+          "msOneCall": 19,
+          "stops": [
+            "2064/2197"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p328 56904",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 167,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p328 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.558,
+          "ms": 165,
+          "msOneCall": 17,
+          "stops": [
+            "2064/2197"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p324 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 420,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p324 56904",
+          "way": -1,
+          "asked": 0.57,
+          "went": -0.57,
+          "ms": 170,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p326 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 411,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p326 56904",
+          "way": -1,
+          "asked": 0.53,
+          "went": -0.53,
+          "ms": 158,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p322 56904",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)"
+        },
+        {
+          "control": "p328 56904",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p322 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197); p328 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)",
+      "seconds": 64
+    },
+    {
+      "function": 4,
+      "does": "The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end.",
+      "verdict": "not shown",
+      "why": "A: p2084 40490, p2089 32524, p2095 32524 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 53,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2085 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p2084 40490": [
+              0,
+              0
+            ],
+            "p2089 32524": [
+              0,
+              0
+            ],
+            "p2095 32524": [
+              0,
+              0
+            ],
+            "p2060 64782": [
+              0,
+              0
+            ],
+            "p2136 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2085 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2084 40490": [
+              0,
+              0
+            ],
+            "p2089 32524": [
+              0,
+              0
+            ],
+            "p2095 32524": [
+              0,
+              0
+            ],
+            "p2060 64782": [
+              0,
+              0
+            ],
+            "p2136 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 65
+    }
+  ]
+}

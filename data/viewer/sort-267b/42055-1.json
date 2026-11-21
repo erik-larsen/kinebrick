@@ -1,0 +1,189 @@
+{
+  "set": "42055-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T06:59:09.949Z",
+  "load": 28.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3896,
+  "seconds": 4569,
+  "functions": [
+    {
+      "function": 7,
+      "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
+      "verdict": "not shown",
+      "why": "A: p2535 42055 - 55615 not moved; B: no listed part moved by hand",
+      "msOneCall": 385,
+      "msPerStep": 192,
+      "time": {
+        "open": 67,
+        "collisions": 36,
+        "first": 0,
+        "reach": 25,
+        "A": 38,
+        "B": 2012
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1809 32269",
+          "way": 1,
+          "asked": 2.6,
+          "went": 0,
+          "ms": 155,
+          "msOneCall": 195,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              0,
+              0
+            ],
+            "p1513 62274c01": [
+              0,
+              0
+            ],
+            "p2535 42055 - 55615": [
+              0,
+              0
+            ],
+            "p3153 58121": [
+              0,
+              0
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1809 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8224,
+          "msOneCall": 385,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              1,
+              0.08
+            ],
+            "p1513 62274c01": [
+              1,
+              0.08
+            ],
+            "p2535 42055 - 55615": [
+              0.58,
+              0.15
+            ],
+            "p3153 58121": [
+              1.59,
+              0.15
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1809 32269",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "1510/1509"
+          ]
+        }
+      ],
+      "seconds": 2178
+    },
+    {
+      "function": 9,
+      "does": "The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it.",
+      "verdict": "not shown",
+      "why": "A: p263 18945, p264 18945 not moved; B: no listed part moved by hand",
+      "msOneCall": 29,
+      "msPerStep": null,
+      "time": {
+        "open": 69,
+        "collisions": 35,
+        "first": 0,
+        "reach": 243,
+        "A": 26,
+        "B": 2017
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p276 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p263 18945": [
+              0,
+              0
+            ],
+            "p264 18945": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p276 32270",
+          "way": -1,
+          "asked": 1.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p263 18945": [
+              0,
+              0
+            ],
+            "p264 18945": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p276 32270",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "237/237",
+            "56/222",
+            "22/249"
+          ]
+        }
+      ],
+      "seconds": 2391
+    }
+  ]
+}

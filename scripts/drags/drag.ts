@@ -48,9 +48,19 @@ export type Viewer = {
 // KINEBRICK_WEB_LIBRARY=1 to test with the web copy all the same.
 export const LIBRARY = process.env.KINEBRICK_WEB_LIBRARY ? '' : '&library=/ldraw/';
 
+// How the browser under test is launched. Without a window, Chromium draws WebGL in software
+// (SwiftShader), and the viewer draws every frame: one browser took 3 to 4 of the Mac's cores to
+// draw, idle or not, and a drag of the 9397's steering did 15 steps in 20 s against 59 with the
+// graphics card (decision 273, 2026-11-21). On a Mac it draws with Metal: 0.2 of a core.
+// KINEBRICK_SOFTWARE_GL=1 keeps the software drawing.
+export const LAUNCH = {
+  headless: true,
+  args: process.platform === 'darwin' && !process.env.KINEBRICK_SOFTWARE_GL ? ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist'] : [],
+};
+
 export async function open(file: string, settings = ''): Promise<Viewer> {
   const base = process.argv[2] ?? 'http://localhost:5174';
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch(LAUNCH);
   const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
   await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug${LIBRARY}${settings ? '&' + settings : ''}`);
   await page.waitForFunction(() => {

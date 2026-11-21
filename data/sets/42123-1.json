@@ -77,9 +77,9 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
-    "seconds": 23,
+    "commit": "aa3523c8",
+    "date": "2026-11-21",
+    "seconds": 21,
     "counts": {
       "works": 3,
       "partly": 1
@@ -102,7 +102,7 @@
         "rates": [
           {
             "p110 87761": [
-              1.2e-7,
+              6.02e-8,
               15.2
             ],
             "p94 42123 - 65489": [
@@ -167,7 +167,7 @@
             0.7
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -358,7 +358,7 @@
             0.03
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -482,9 +482,9 @@
             0.1
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.6
       }
     ],
-    "peak": 445
+    "peak": 443
   }
 }

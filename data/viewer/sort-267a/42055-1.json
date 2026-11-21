@@ -1,0 +1,217 @@
+{
+  "set": "42055-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T01:19:42.702Z",
+  "load": 34.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3896,
+  "seconds": 235,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The red lever at the back, pushed down (lock), slides a driving ring that ties the discharge belt's turntable to the crawler base, so when the upper works slews the discharge belt stays aimed where it was, over the truck.",
+      "verdict": "shown",
+      "msOneCall": 677,
+      "msPerStep": 189,
+      "time": {
+        "open": 88,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 70,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1678 6641",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 2707,
+          "msOneCall": 677,
+          "stops": [],
+          "moved": {
+            "p1710 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1678 6641",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 2698,
+          "msOneCall": 666,
+          "stops": [],
+          "moved": {
+            "p1710 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 119
+    },
+    {
+      "function": 7,
+      "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
+      "verdict": "not shown",
+      "why": "A: p2535 42055 - 55615 not moved",
+      "msOneCall": 679,
+      "msPerStep": 314,
+      "time": {
+        "open": 44,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 32,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1809 32269",
+          "way": 1,
+          "asked": 2.6,
+          "went": 0,
+          "ms": 293,
+          "msOneCall": 370,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              0,
+              0
+            ],
+            "p1513 62274c01": [
+              0,
+              0
+            ],
+            "p2535 42055 - 55615": [
+              0,
+              0
+            ],
+            "p3153 58121": [
+              0,
+              0
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1809 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13460,
+          "msOneCall": 679,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              1,
+              0.08
+            ],
+            "p1513 62274c01": [
+              1,
+              0.08
+            ],
+            "p2535 42055 - 55615": [
+              0.58,
+              0.15
+            ],
+            "p3153 58121": [
+              1.59,
+              0.15
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 81
+    },
+    {
+      "function": 9,
+      "does": "The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it.",
+      "verdict": "not shown",
+      "why": "A: p263 18945, p264 18945 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 16,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p276 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p263 18945": [
+              0,
+              0
+            ],
+            "p264 18945": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p276 32270",
+          "way": -1,
+          "asked": 1.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p263 18945": [
+              0,
+              0
+            ],
+            "p264 18945": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 35
+    }
+  ]
+}

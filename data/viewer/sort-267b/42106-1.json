@@ -1,0 +1,309 @@
+{
+  "set": "42106-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T01:45:10.702Z",
+  "load": 39.1,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 620,
+  "seconds": 2146,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The truck's four wheels roll freely; there's no drive. The two rear wheels turn together on one axle; each front wheel turns on its own short axle in its steering knuckle.",
+      "verdict": "not shown",
+      "msOneCall": 48,
+      "msPerStep": 10,
+      "time": {
+        "open": 33,
+        "collisions": 18,
+        "first": 0,
+        "reach": 195,
+        "A": 23,
+        "B": 1448
+      },
+      "stop": {
+        "control": "p322 56904",
+        "way": -1,
+        "went": -0.558,
+        "asked": 1.5,
+        "by": [
+          "2064/2197"
+        ]
+      },
+      "stops": [
+        "2064/2197"
+      ],
+      "A": [
+        {
+          "control": "p322 56904",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 166,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p322 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.558,
+          "ms": 158,
+          "msOneCall": 17,
+          "stops": [
+            "2064/2197"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p328 56904",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 160,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p328 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.558,
+          "ms": 157,
+          "msOneCall": 16,
+          "stops": [
+            "2064/2197"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p324 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 393,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p324 56904",
+          "way": -1,
+          "asked": 0.57,
+          "went": -0.57,
+          "ms": 162,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p326 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 386,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p326 56904",
+          "way": -1,
+          "asked": 0.53,
+          "went": -0.53,
+          "ms": 151,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p322 56904",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2064/2197"
+          ]
+        },
+        {
+          "control": "p328 56904",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2064/2197"
+          ]
+        },
+        {
+          "control": "p324 56904",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2064/2197",
+            "248/248"
+          ]
+        },
+        {
+          "control": "p326 56904",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "242/242",
+            "248/248"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p322 56904",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)"
+        },
+        {
+          "control": "p328 56904",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p322 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197); p328 56904: turns without end (kinds free-wheels; the text says: wheels, roll, wheel), but a collision stops it at -0.558 rad (2064/2197)",
+      "seconds": 1717
+    },
+    {
+      "function": 4,
+      "does": "The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end.",
+      "verdict": "not shown",
+      "why": "A: p2084 40490, p2089 32524, p2095 32524 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 13,
+        "collisions": 7,
+        "first": 0,
+        "reach": 5,
+        "A": 28,
+        "B": 376
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2085 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p2084 40490": [
+              0,
+              0
+            ],
+            "p2089 32524": [
+              0,
+              0
+            ],
+            "p2095 32524": [
+              0,
+              0
+            ],
+            "p2060 64782": [
+              0,
+              0
+            ],
+            "p2136 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2085 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p2084 40490": [
+              0,
+              0
+            ],
+            "p2089 32524": [
+              0,
+              0
+            ],
+            "p2095 32524": [
+              0,
+              0
+            ],
+            "p2060 64782": [
+              0,
+              0
+            ],
+            "p2136 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2085 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "moved": [
+            "p2084 40490",
+            "p2089 32524",
+            "p2095 32524"
+          ],
+          "stops": [
+            "2074/2089",
+            "2066/2101",
+            "2055/2221",
+            "2074/2103"
+          ]
+        }
+      ],
+      "seconds": 429
+    }
+  ]
+}

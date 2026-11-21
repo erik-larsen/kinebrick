@@ -1,0 +1,168 @@
+{
+  "set": "42115-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T01:16:24.975Z",
+  "load": 24,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3629,
+  "seconds": 264,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The lever on the centre console between the seats switches the gearbox between drive and neutral (or reverse): its towball top turns a changeover catch that slides a driving ring on the shaft to the gearbox.",
+      "verdict": "shown",
+      "msOneCall": 800,
+      "msPerStep": 188,
+      "time": {
+        "open": 62,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 50,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1082 2736",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 2683,
+          "msOneCall": 796,
+          "stops": [],
+          "moved": {
+            "p1081 6641": [
+              9.9,
+              28.65
+            ],
+            "p549 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1082 2736",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 2645,
+          "msOneCall": 800,
+          "stops": [],
+          "moved": {
+            "p1081 6641": [
+              9.9,
+              28.65
+            ],
+            "p549 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 88
+    },
+    {
+      "function": 9,
+      "does": "The front hood lifts, showing the luggage space and the set's bag.",
+      "verdict": "shown",
+      "msOneCall": 891,
+      "msPerStep": 393,
+      "time": {
+        "open": 45,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 129,
+        "B": 0
+      },
+      "stop": {
+        "control": "p3360 6632",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "3196/3371"
+        ]
+      },
+      "stops": [
+        "3196/3371"
+      ],
+      "A": [
+        {
+          "control": "p3360 6632",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              3383,
+              3384
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 640,
+          "msOneCall": 752,
+          "stops": [
+            "3196/3371"
+          ],
+          "moved": {
+            "p3361 6632": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3360 6632",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              3383,
+              3384
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 16855,
+          "msOneCall": 891,
+          "stops": [],
+          "moved": {
+            "p3361 6632": [
+              327.19,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p3360 6632",
+          "judged": "stands",
+          "why": "stopped at +0 rad (3196/3371); kinds hinge: hood"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 177
+    }
+  ]
+}

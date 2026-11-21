@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 80 works, 10 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 75 works, 15 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -274,7 +274,7 @@ Each detail by the set it first appears in.
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 
-- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (works)
+- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (partly)
 - *rudder:* The rudder on the fin swings side to side. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
@@ -336,13 +336,13 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *doors:* Each front door swings open, and a steering link from the door lowers the side step under it. (works)
+- *doors:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
 - *rear door:* The rear door, with the spare wheel on it, swings open, and the white tray inside slides out. (partly)
 - *side panels:* The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it. (works)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
-- *light mast:* The light mast, lying along the roof, swings up at the back of the truck to stand upright with its lamp on top. (works)
+- *light mast:* The light mast, lying along the roof, swings up at the back of the truck to stand upright with its lamp on top. (partly)
 - *bonnet:* The bonnet, with the grille and headlights, tips up and forward to show the engine. (no)
 - *seats:* The two seats tip forward. (works)
 
@@ -391,7 +391,7 @@ Each detail by the set it first appears in.
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
 
-- *ladder:* The access ladder at the back left of the superstructure swings up out of the way and down to the ground. (works)
+- *ladder:* The access ladder at the back left of the superstructure swings up out of the way and down to the ground. (partly)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
@@ -446,7 +446,7 @@ Each detail by the set it first appears in.
 
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 
-- *bonnet:* The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine. (works)
+- *bonnet:* The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine. (partly)
 - *doors:* The two doors swing open. (works)
 - *backrest:* The rear seat's backrest folds forward. (works)
 

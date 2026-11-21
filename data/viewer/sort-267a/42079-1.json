@@ -1,0 +1,92 @@
+{
+  "set": "42079-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:40:08.399Z",
+  "load": 21.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 577,
+  "seconds": 24,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The rear wheels roll freely; they aren't driven.",
+      "verdict": "shown",
+      "msOneCall": 55,
+      "msPerStep": 8,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p454 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 348,
+          "msOneCall": 55,
+          "stops": [],
+          "moved": {
+            "p245 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p454 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 316,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p245 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p456 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 317,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p245 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p456 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 323,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p245 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 24
+    }
+  ]
+}

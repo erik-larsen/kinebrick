@@ -1,0 +1,664 @@
+{
+  "set": "42038-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:50:58.667Z",
+  "load": 22,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 905,
+  "seconds": 273,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on top of the frame behind the cab steers (hand of god steering): its vertical shaft turns, through 12 tooth bevel gears and two universal joints, a 12 tooth gear on the front axle's rack, which turns both front track units.",
+      "verdict": "not shown",
+      "why": "A: p290 32270, p288 64781, p284 92909, p285 92909 not moved",
+      "msOneCall": 48,
+      "msPerStep": null,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 42,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p170 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 27,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {
+            "p290 32270": [
+              0,
+              0
+            ],
+            "p288 64781": [
+              0,
+              0
+            ],
+            "p284 92909": [
+              0,
+              0
+            ],
+            "p285 92909": [
+              0,
+              0
+            ],
+            "p237 92909": [
+              0,
+              0
+            ],
+            "p238 92909": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p170 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 29,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p290 32270": [
+              0,
+              0
+            ],
+            "p288 64781": [
+              0,
+              0
+            ],
+            "p284 92909": [
+              0,
+              0
+            ],
+            "p285 92909": [
+              0,
+              0
+            ],
+            "p237 92909": [
+              0,
+              0
+            ],
+            "p238 92909": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 62
+    },
+    {
+      "function": 2,
+      "does": "With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed.",
+      "verdict": "not shown",
+      "why": "A: p67 18946, p6 94925, p111 62520, p113 92695, p112 92696, p323 64782 not moved",
+      "msOneCall": 45,
+      "msPerStep": 8,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 4,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p190 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 329,
+          "msOneCall": 45,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              143.24
+            ],
+            "p67 18946": [
+              0,
+              0
+            ],
+            "p6 94925": [
+              0,
+              0
+            ],
+            "p111 62520": [
+              0,
+              0
+            ],
+            "p113 92695": [
+              0,
+              0
+            ],
+            "p112 92696": [
+              0,
+              0
+            ],
+            "p323 64782": [
+              0,
+              0
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p190 59443",
+          "way": -1,
+          "asked": 0.8,
+          "went": -0.8,
+          "ms": 173,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              76.39
+            ],
+            "p67 18946": [
+              0,
+              0
+            ],
+            "p6 94925": [
+              0,
+              0
+            ],
+            "p111 62520": [
+              0,
+              0
+            ],
+            "p113 92695": [
+              0,
+              0
+            ],
+            "p112 92696": [
+              0,
+              0
+            ],
+            "p323 64782": [
+              0,
+              0
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 31
+    },
+    {
+      "function": 3,
+      "does": "With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom.",
+      "verdict": "not shown",
+      "why": "A: p71 18946, p33 94925, p46 6589, p107 32269, p862 62520, p866 92696, p888 41239 not moved",
+      "msOneCall": 45,
+      "msPerStep": 8,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 4,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p190 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 334,
+          "msOneCall": 45,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              143.24
+            ],
+            "p71 18946": [
+              0,
+              0
+            ],
+            "p33 94925": [
+              0,
+              0
+            ],
+            "p46 6589": [
+              0,
+              0
+            ],
+            "p107 32269": [
+              0,
+              0
+            ],
+            "p862 62520": [
+              0,
+              0
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ],
+            "p323 64782": [
+              0,
+              0
+            ],
+            "p112 92696": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p190 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 317,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              0,
+              143.24
+            ],
+            "p71 18946": [
+              0,
+              0
+            ],
+            "p33 94925": [
+              0,
+              0
+            ],
+            "p46 6589": [
+              0,
+              0
+            ],
+            "p107 32269": [
+              0,
+              0
+            ],
+            "p862 62520": [
+              0,
+              0
+            ],
+            "p866 92696": [
+              0,
+              0
+            ],
+            "p888 41239": [
+              0,
+              0
+            ],
+            "p323 64782": [
+              0,
+              0
+            ],
+            "p112 92696": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 31
+    },
+    {
+      "function": 4,
+      "does": "The red selector lever beside the knob slides the driving ring between the two clutch gears: position 1 for the bed, position 2 for the crane.",
+      "verdict": "shown",
+      "msOneCall": 52,
+      "msPerStep": 9,
+      "time": {
+        "open": 39,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 31,
+        "B": 0
+      },
+      "stop": {
+        "control": "p84 2736",
+        "way": 1,
+        "went": 0.485,
+        "asked": 0.97,
+        "by": [
+          "62/82"
+        ]
+      },
+      "stops": [
+        "62/82"
+      ],
+      "A": [
+        {
+          "control": "p84 2736",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.97,
+          "went": 0.485,
+          "ms": 121,
+          "msOneCall": 52,
+          "stops": [
+            "62/82"
+          ],
+          "moved": {
+            "p69 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 2736",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 123,
+          "msOneCall": 47,
+          "stops": [],
+          "moved": {
+            "p69 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p84 2736",
+          "judged": "stands",
+          "why": "stopped at +0.485 rad (62/82); kinds function-selector: 2 functions"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 51
+    },
+    {
+      "function": 9,
+      "does": "Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks.",
+      "verdict": "not shown",
+      "msOneCall": 49,
+      "msPerStep": 17,
+      "time": {
+        "open": 20,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 75,
+        "B": 0
+      },
+      "stop": {
+        "control": "p696 41239",
+        "way": 1,
+        "went": 0.034,
+        "asked": 0.17,
+        "by": [
+          "238/716"
+        ]
+      },
+      "stops": [
+        "238/716",
+        "284/741"
+      ],
+      "A": [
+        {
+          "control": "p646 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 326,
+          "msOneCall": 49,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p646 41239",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 322,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p671 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 311,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p671 41239",
+          "way": -1,
+          "asked": 1.23,
+          "went": -1.23,
+          "ms": 246,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p696 41239",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.034,
+          "ms": 16,
+          "msOneCall": 15,
+          "stops": [
+            "238/716"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p696 41239",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 14,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p721 41239",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.034,
+          "ms": 17,
+          "msOneCall": 15,
+          "stops": [
+            "284/741"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p721 41239",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 14,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p745 57519",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 13,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p745 57519",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.034,
+          "ms": 16,
+          "msOneCall": 10,
+          "stops": [
+            "284/741"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p695 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 285,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p695 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 290,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p670 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 291,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p670 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 282,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p720 57519",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 12,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p720 57519",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.034,
+          "ms": 15,
+          "msOneCall": 11,
+          "stops": [
+            "238/716"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p696 41239",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at +0.034 rad (238/716)"
+        },
+        {
+          "control": "p721 41239",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at +0.034 rad (284/741)"
+        },
+        {
+          "control": "p745 57519",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at -0.034 rad (284/741)"
+        },
+        {
+          "control": "p720 57519",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at -0.034 rad (238/716)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p696 41239: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at +0.034 rad (238/716); p721 41239: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at +0.034 rad (284/741); p745 57519: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at -0.034 rad (284/741); p720 57519: turns without end (kinds crawler-tracks; the text says: track, runs freely, wheels, tracks), but a collision stops it at -0.034 rad (238/716)",
+      "seconds": 98
+    }
+  ]
+}

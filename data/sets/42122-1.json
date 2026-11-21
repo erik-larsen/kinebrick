@@ -140,13 +140,14 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
-    "seconds": 16,
+    "commit": "fe0dd791",
+    "date": "2026-11-21",
+    "seconds": 15,
     "counts": {
       "no": 2,
-      "works": 6,
-      "skipped": 1
+      "works": 5,
+      "skipped": 1,
+      "partly": 1
     },
     "loose": [
       "p195 22977",
@@ -222,7 +223,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -429,79 +430,86 @@
         "seconds": 1.1
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.17,
-            0
-          ]
-        ],
-        "rates": [
-          {
-            "p448 42122 - 71709": [
-              1,
-              80
-            ],
-            "p459 32524": [
-              1,
-              120
-            ],
-            "p207 14720": [
-              0,
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p457 at once and at 0.14 rad (parts 269/472 and 323/458); the bonnet should lift open. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.17,
               0
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "freed": 2,
-        "collisionStops": [
-          [
-            0,
-            1,
-            323,
-            458,
-            0.17,
-            0.17
           ],
-          [
-            0,
-            -1,
-            269,
-            472,
-            0,
-            0
-          ]
-        ],
-        "seconds": 0.5
+          "rates": [
+            {
+              "p448 42122 - 71709": [
+                1,
+                80
+              ],
+              "p459 32524": [
+                1,
+                120
+              ],
+              "p207 14720": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "freed": 2,
+          "collisionStops": [
+            [
+              0,
+              1,
+              323,
+              458,
+              0.17,
+              0.17
+            ],
+            [
+              0,
+              -1,
+              269,
+              472,
+              0,
+              0
+            ]
+          ],
+          "seconds": 0.5
+        }
       },
       {
         "result": "works",
@@ -657,7 +665,7 @@
             0.12
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -775,9 +783,9 @@
           [],
           []
         ],
-        "seconds": 7.4
+        "seconds": 7.1
       }
     ],
-    "peak": 638
+    "peak": 529
   }
 }

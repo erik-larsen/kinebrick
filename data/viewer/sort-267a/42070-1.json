@@ -1,0 +1,190 @@
+{
+  "set": "42070-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:51:40.872Z",
+  "load": 34.7,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1834,
+  "seconds": 218,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane.",
+      "verdict": "shown",
+      "msOneCall": 545,
+      "msPerStep": 258,
+      "time": {
+        "open": 84,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 81,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1770 41669",
+        "way": 1,
+        "went": 0.464,
+        "asked": 0.53,
+        "by": [
+          "969/1055"
+        ]
+      },
+      "stops": [
+        "969/1055"
+      ],
+      "A": [
+        {
+          "control": "p1770 41669",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.53,
+          "went": 0.464,
+          "ms": 3414,
+          "msOneCall": 541,
+          "stops": [
+            "969/1055"
+          ],
+          "moved": {
+            "p1055 6641": [
+              9.75,
+              28.22
+            ],
+            "p1056 6641": [
+              9.75,
+              28.22
+            ],
+            "p403 18947": [
+              10,
+              0
+            ],
+            "p404 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1770 41669",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.47,
+          "went": -0.47,
+          "ms": 3325,
+          "msOneCall": 545,
+          "stops": [],
+          "moved": {
+            "p1055 6641": [
+              8.85,
+              25.56
+            ],
+            "p1056 6641": [
+              8.85,
+              25.56
+            ],
+            "p403 18947": [
+              10,
+              0
+            ],
+            "p404 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1770 41669",
+          "judged": "stands",
+          "why": "stopped at +0.464 rad (969/1055); kinds function-selector: drive or crane"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 122
+    },
+    {
+      "function": 5,
+      "does": "The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom.",
+      "verdict": "shown",
+      "msOneCall": 569,
+      "msPerStep": 232,
+      "time": {
+        "open": 71,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 54,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1785 41669",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 3310,
+          "msOneCall": 569,
+          "stops": [],
+          "moved": {
+            "p1067 6641": [
+              9.68,
+              28.02
+            ],
+            "p1068 6641": [
+              9.68,
+              28.02
+            ],
+            "p135 18947": [
+              10,
+              0
+            ],
+            "p136 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1785 41669",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.47,
+          "went": -0.47,
+          "ms": 3021,
+          "msOneCall": 491,
+          "stops": [],
+          "moved": {
+            "p1067 6641": [
+              9.49,
+              27.45
+            ],
+            "p1068 6641": [
+              9.49,
+              27.45
+            ],
+            "p135 18947": [
+              10,
+              0
+            ],
+            "p136 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 96
+    }
+  ]
+}

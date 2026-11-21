@@ -1,0 +1,272 @@
+{
+  "set": "42004-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:18:36.096Z",
+  "load": 26,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 244,
+  "seconds": 60,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
+      "verdict": "not shown",
+      "why": "A: p229 2951 against p50 44294, p207 6632 against p50 44294 not moved",
+      "msOneCall": 3,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p227 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p229 2951 against p50 44294": [
+              0,
+              0
+            ],
+            "p207 6632 against p50 44294": [
+              0,
+              0
+            ],
+            "p50 44294": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p227 32270",
+          "way": -1,
+          "asked": 1.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p229 2951 against p50 44294": [
+              0,
+              0
+            ],
+            "p207 6632 against p50 44294": [
+              0,
+              0
+            ],
+            "p50 44294": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 5,
+      "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
+      "verdict": "not decided",
+      "msOneCall": 21,
+      "msPerStep": 5,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": {
+        "control": "p171 32270",
+        "way": -1,
+        "went": -0.07,
+        "asked": 1.47,
+        "by": [
+          "159/177"
+        ]
+      },
+      "stops": [
+        "159/177"
+      ],
+      "A": [
+        {
+          "control": "p171 32270",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              173,
+              175
+            ]
+          },
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 10,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p169 40490 against p159 32525": [
+              5.6,
+              4.01
+            ],
+            "p159 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p171 32270",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              173,
+              175
+            ]
+          },
+          "asked": 1.47,
+          "went": -0.07,
+          "ms": 10,
+          "msOneCall": 6,
+          "stops": [
+            "159/177"
+          ],
+          "moved": {
+            "p169 40490 against p159 32525": [
+              5.6,
+              4.01
+            ],
+            "p159 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p171 32270",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.07 rad (159/177)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p171 32270: a travel of 0.2 rad or less each way, stopped at -0.07 rad (159/177)",
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 19
+    },
+    {
+      "function": 6,
+      "does": "The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 2,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 18,
+        "B": 0
+      },
+      "stop": {
+        "control": "p177 30394",
+        "way": 1,
+        "went": 1.256,
+        "asked": 1.5,
+        "by": [
+          "177/177"
+        ]
+      },
+      "stops": [
+        "177/177"
+      ],
+      "A": [
+        {
+          "control": "p177 30394",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              178
+            ]
+          },
+          "asked": 1.5,
+          "went": 1.256,
+          "ms": 49,
+          "msOneCall": 16,
+          "stops": [
+            "177/177"
+          ],
+          "moved": {
+            "p177 30394 against p169 40490": [
+              0,
+              71.95
+            ]
+          }
+        },
+        {
+          "control": "p177 30394",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              178
+            ]
+          },
+          "asked": 0.33,
+          "went": -0.33,
+          "ms": 19,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p177 30394 against p169 40490": [
+              0,
+              18.91
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p177 30394",
+          "judged": "stands",
+          "why": "stopped at +1.256 rad (177/177); kinds posable-joint: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 28
+    }
+  ]
+}

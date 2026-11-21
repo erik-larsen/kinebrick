@@ -1,0 +1,186 @@
+{
+  "set": "42111-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:01:59.216Z",
+  "load": 19.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1055,
+  "seconds": 171,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The boot lid opens on its hinges at the back of the car.",
+      "verdict": "not shown",
+      "why": "A: p964 26287, p978 32524, p979 32524 not moved",
+      "msOneCall": 8,
+      "msPerStep": null,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p959 64782",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p964 26287": [
+              0,
+              0
+            ],
+            "p978 32524": [
+              0,
+              0
+            ],
+            "p979 32524": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p959 64782",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p964 26287": [
+              0,
+              0
+            ],
+            "p978 32524": [
+              0,
+              0
+            ],
+            "p979 32524": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 29
+    },
+    {
+      "function": 10,
+      "does": "The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film.",
+      "verdict": "not shown",
+      "why": "A: p326 15462, p463 3749, p466 3749 not moved",
+      "msOneCall": 229,
+      "msPerStep": null,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 134,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p328 2825",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 49,
+          "msOneCall": 229,
+          "stops": [],
+          "moved": {
+            "p326 15462": [
+              0,
+              0
+            ],
+            "p463 3749": [
+              0,
+              0
+            ],
+            "p466 3749": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ],
+            "p475 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p328 2825",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.73,
+          "went": 0,
+          "ms": 45,
+          "msOneCall": 181,
+          "stops": [],
+          "moved": {
+            "p326 15462": [
+              0,
+              0
+            ],
+            "p463 3749": [
+              0,
+              0
+            ],
+            "p466 3749": [
+              0,
+              0
+            ],
+            "p471 56908": [
+              0,
+              0
+            ],
+            "p475 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 142
+    }
+  ]
+}

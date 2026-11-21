@@ -1,0 +1,196 @@
+{
+  "set": "8110-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:53:32.489Z",
+  "load": 40.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1867,
+  "seconds": 542,
+  "functions": [
+    {
+      "function": 7,
+      "does": "With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 9518,
+      "time": {
+        "open": 46,
+        "collisions": 0,
+        "first": 61,
+        "reach": 0,
+        "A": 170,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p60 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": -0.314,
+          "ms": 85433,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p4019 94925": [
+              0,
+              27
+            ],
+            "p4001 4716": [
+              0,
+              27
+            ],
+            "p4029 76019": [
+              0,
+              1.13
+            ],
+            "p4030 32012": [
+              0,
+              1.13
+            ],
+            "p2216 48168": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p60 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": 1.571,
+          "ms": 64480,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p4019 94925": [
+              0,
+              99
+            ],
+            "p4001 4716": [
+              0,
+              99
+            ],
+            "p4029 76019": [
+              0,
+              4.13
+            ],
+            "p4030 32012": [
+              0,
+              4.13
+            ],
+            "p2216 48168": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 280
+    },
+    {
+      "function": 8,
+      "does": "With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round.",
+      "verdict": "not shown",
+      "why": "A: p2216 48168, p2319 47224 not moved",
+      "msOneCall": null,
+      "msPerStep": 1967,
+      "time": {
+        "open": 35,
+        "collisions": 0,
+        "first": 60,
+        "reach": 0,
+        "A": 162,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p60 58120",
+          "way": 1,
+          "asked": 3,
+          "went": -1.257,
+          "ms": 68195,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p767 94925": [
+              0,
+              81
+            ],
+            "p2199 94925": [
+              0,
+              81
+            ],
+            "p2172 4716": [
+              0,
+              81
+            ],
+            "p2216 48168": [
+              0,
+              0.48
+            ],
+            "p2319 47224": [
+              0.07,
+              0.48
+            ],
+            "p2215 48452": [
+              0,
+              0
+            ],
+            "p4030 32012": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p60 58120",
+          "way": -1,
+          "asked": 3,
+          "went": 1.1,
+          "ms": 61786,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p767 94925": [
+              0,
+              72
+            ],
+            "p2199 94925": [
+              0,
+              72
+            ],
+            "p2172 4716": [
+              0,
+              72
+            ],
+            "p2216 48168": [
+              0,
+              0.43
+            ],
+            "p2319 47224": [
+              0.07,
+              0.43
+            ],
+            "p2215 48452": [
+              0,
+              0
+            ],
+            "p4030 32012": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 261
+    }
+  ]
+}

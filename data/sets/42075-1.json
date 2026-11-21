@@ -138,12 +138,13 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
-    "date": "2026-11-20",
-    "seconds": 11,
+    "commit": "fe0dd791",
+    "date": "2026-11-21",
+    "seconds": 10,
     "counts": {
-      "works": 6,
-      "no": 2
+      "works": 5,
+      "no": 2,
+      "partly": 1
     },
     "loose": [
       "p331 30395"
@@ -239,11 +240,11 @@
           {
             "p116 62821": [
               1,
-              3.9e-13
+              3.25e-13
             ],
             "p349 2853": [
               3.89,
-              5.24e-13
+              6.42e-13
             ],
             "p352 2851": [
               0,
@@ -255,11 +256,11 @@
             ],
             "p50 32270": [
               0,
-              2.37e-23
+              8.21e-24
             ],
             "p95 87761": [
               0,
-              1.53e-13
+              9.31e-14
             ]
           }
         ],
@@ -292,7 +293,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -310,13 +311,13 @@
           {
             "p349 2853": [
               0,
-              3.94e-31
+              3.29e-32
             ]
           },
           {
             "p349 2853": [
               0,
-              1.31e-31
+              1.64e-32
             ]
           }
         ],
@@ -368,7 +369,7 @@
           [],
           []
         ],
-        "seconds": 1.6
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -482,70 +483,77 @@
         "seconds": 0.5
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.17,
-            -0.17
-          ]
-        ],
-        "rates": [
-          {
-            "p190 2654": [
-              1,
-              26
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p186 at 0.136 rad each way (parts 175/187); the mast should swing upright. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.17,
+              -0.17
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            175,
-            187,
-            0.17,
-            0.17
           ],
-          [
-            0,
-            -1,
-            175,
-            187,
-            0.17,
-            0.17
-          ]
-        ],
-        "seconds": 0.2
+          "rates": [
+            {
+              "p190 2654": [
+                1,
+                26
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              175,
+              187,
+              0.17,
+              0.17
+            ],
+            [
+              0,
+              -1,
+              175,
+              187,
+              0.17,
+              0.17
+            ]
+          ],
+          "seconds": 0.2
+        }
       },
       {
         "result": "no",
@@ -612,7 +620,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -722,9 +730,9 @@
             1.47
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       }
     ],
-    "peak": 606
+    "peak": 705
   }
 }

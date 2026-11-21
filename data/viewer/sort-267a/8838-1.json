@@ -1,0 +1,103 @@
+{
+  "set": "8838-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:18:33.064Z",
+  "load": 26.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 233,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p227 2910, p219 3706, p220 8838 - 2903 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p225 2910",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p227 2910": [
+              0,
+              0
+            ],
+            "p219 3706": [
+              0,
+              0
+            ],
+            "p220 8838 - 2903": [
+              0,
+              0
+            ],
+            "p224 2909": [
+              0,
+              0
+            ],
+            "p226 2909": [
+              0,
+              0
+            ],
+            "p77 2905": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p225 2910",
+          "way": -1,
+          "asked": 1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p227 2910": [
+              0,
+              0
+            ],
+            "p219 3706": [
+              0,
+              0
+            ],
+            "p220 8838 - 2903": [
+              0,
+              0
+            ],
+            "p224 2909": [
+              0,
+              0
+            ],
+            "p226 2909": [
+              0,
+              0
+            ],
+            "p77 2905": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    }
+  ]
+}

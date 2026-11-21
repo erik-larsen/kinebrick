@@ -1,0 +1,138 @@
+{
+  "set": "8273-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:46:31.394Z",
+  "load": 24.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 791,
+  "seconds": 106,
+  "functions": [
+    {
+      "function": 9,
+      "does": "The tailgate at the back of the bed swings open.",
+      "verdict": "not shown",
+      "why": "A: p357 32316 not moved",
+      "msOneCall": 8,
+      "msPerStep": null,
+      "time": {
+        "open": 30,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 13,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p345 32316",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p357 32316": [
+              0,
+              0
+            ],
+            "p370 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p345 32316",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p357 32316": [
+              0,
+              0
+            ],
+            "p370 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 46
+    },
+    {
+      "function": 10,
+      "does": "The four rear wheels are on a bogie that rocks on one cross axle through the frame, so both rear axles stay on the ground over bumps.",
+      "verdict": "shown",
+      "msOneCall": 151,
+      "msPerStep": 13,
+      "time": {
+        "open": 37,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 18,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p219 2905",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 26,
+          "msOneCall": 151,
+          "stops": [],
+          "moved": {
+            "p4004 56145": [
+              6.26,
+              4.01
+            ],
+            "p4008 56145": [
+              6.26,
+              4.01
+            ],
+            "p4000 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p219 2905",
+          "way": -1,
+          "asked": 0.2,
+          "went": -0.2,
+          "ms": 56,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p4004 56145": [
+              17.86,
+              11.46
+            ],
+            "p4008 56145": [
+              17.86,
+              11.46
+            ],
+            "p4000 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 60
+    }
+  ]
+}
