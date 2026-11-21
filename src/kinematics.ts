@@ -416,6 +416,11 @@ export class Kinematics {
   spinners: number[] = [];
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private played = false;
+  // Whether the last turn's last step went on play (see loopPlay): a drag that stops short so is
+  // stopped by a jam that play only put off (decision 331), and is offered the pin search.
+  get lastTurnPlayed(): boolean {
+    return this.played;
+  }
   private closingFirmOnly = false; // whether only the rows that take no play are being closed (see closeLoops)
   private turningJointsOf: number[][] | null = null; // each body's turning joints (see onAxis), found when first needed
   traceNames: string[] | null = null; // with TRACE, each row's kind of connection, as buildEquations adds it (see traceJam in trace.ts)
