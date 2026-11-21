@@ -29,7 +29,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, connectedPairs, pairNumber, PartMesh, touchingFrom } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, keptTouching, pairNumber, PartMesh, touchingFrom } from './collisions.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
 import { pointDirections, pushStep } from './push.ts';
 import { keptPivots } from './keptPivots.ts';
@@ -514,7 +514,12 @@ async function start() {
   // The mechanism, worked out from the parts as placed and what its loose parts touch as built.
   summary.textContent = 'Working out how it moves…';
   await shown();
-  const touching = touchingFrom(shapes, startParts.map((p) => p.matrix));
+  // From the model's kept first collision pass where its key matches (see keptPairs.ts): its near
+  // pairs are the touches, by the same test, and nothing need be tested (decision 274's open point).
+  const keptKey = await keyFor(startParts);
+  const keptName = FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL;
+  const keptPass = await keptPairs(keptName, keptKey);
+  const touching = keptPass?.all ? keptTouching(keptPass.near) : touchingFrom(shapes, startParts.map((p) => p.matrix));
   let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins, new Set(), touching);
   // The strings the loader was told of are the mechanism's (see stringPaths): else a rope's shape
   // would be drawn in part, or built whole for nothing.

@@ -110,12 +110,12 @@
     ]
   },
   "generated": {
-    "commit": "fe0dd791",
+    "commit": "2555e395",
     "date": "2026-11-21",
     "seconds": 5,
     "counts": {
-      "partly": 3,
-      "works": 2,
+      "partly": 4,
+      "works": 1,
       "not checked": 1
     },
     "loose": [
@@ -222,90 +222,97 @@
               0.17
             ]
           ],
-          "seconds": 0.4
+          "seconds": 0.3
         }
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.37,
-            -0.37
-          ]
-        ],
-        "rates": [
-          {
-            "p172 3648a against p65 3673": [
-              1,
-              2.33e-13
-            ],
-            "p206 4262 against p65 3673": [
-              0,
-              20
-            ],
-            "p207 4262 against p65 3673": [
-              0,
-              20
-            ],
-            "p270 3482": [
-              0,
-              0
-            ],
-            "p69 3705": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the pulley p128 at 0.38 rad each way (parts 202/207 and 202/206). Viewer sweep with a full turn asked, decision 288.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.37,
+              -0.37
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0.48,
-              0.23
-            ],
-            [
-              0.32,
-              0.15
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0.48,
-              0.23
-            ],
-            [
-              0.32,
-              0.15
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            202,
-            207,
-            0.37,
-            0.37
           ],
-          [
-            0,
-            -1,
-            202,
-            206,
-            0.37,
-            0.37
-          ]
-        ],
-        "seconds": 0.2
+          "rates": [
+            {
+              "p172 3648a against p65 3673": [
+                1,
+                2.33e-13
+              ],
+              "p206 4262 against p65 3673": [
+                0,
+                20
+              ],
+              "p207 4262 against p65 3673": [
+                0,
+                20
+              ],
+              "p270 3482": [
+                0,
+                0
+              ],
+              "p69 3705": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0.48,
+                0.23
+              ],
+              [
+                0.32,
+                0.15
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0.48,
+                0.23
+              ],
+              [
+                0.32,
+                0.15
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              202,
+              207,
+              0.37,
+              0.37
+            ],
+            [
+              0,
+              -1,
+              202,
+              206,
+              0.37,
+              0.37
+            ]
+          ],
+          "seconds": 0.2
+        }
       },
       {
         "result": "partly",
@@ -523,7 +530,7 @@
               0.2
             ]
           ],
-          "seconds": 2
+          "seconds": 1.9
         }
       },
       {
@@ -590,13 +597,13 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 333
+    "peak": 348
   }
 }

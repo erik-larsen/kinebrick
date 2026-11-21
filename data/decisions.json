@@ -5,8 +5,8 @@
       "moved": "2026-11-18"
     },
     "preview": {
-      "works": 715,
-      "partly": 239,
+      "works": 697,
+      "partly": 257,
       "no": 91,
       "functions": 1223
     },
@@ -26,17 +26,55 @@
     {
       "id": "worker-check-permission",
       "kind": "Permission",
-      "title": "The worker's session was refused a run of the function check",
-      "what": "The worker (the session named \"Inference worker\") wrote the rule by which the check itself marks a wheel, track or engine that a collision stops (279, 282). To prove it, the worker must run the function check on 19 named sets on its own branch, claude/stop-judge. Its session's permission check refused that command. Claude does not run for a session what that session was refused, so the proof waits for you. The rule has since been changed as Claude asked (it goes by the stopped part, not by the function's kind), so the run is now the only thing missing. The command it needs is: npm run functions with the names of the sets.",
-      "effect": "With your yes in the worker's own chat, the worker proves the rule and Claude merges it. Claude has now seen the rule and its list and accepts both (284): 14 more working functions would go to partly, each a wheel, sprocket, fan or rotor that a collision stops after a small turn (examples: all four track sprockets of the 8851 stop at 0.1 radian, and so does a wheel of the 42123 McLaren Senna), and 8 of today's holds would be replaced by the rule. The count would be 701.",
+      "title": "The worker's session was refused a run of the function check; two results now wait on it",
+      "what": "The worker (the session named \"Inference worker\") wrote the rule by which the check itself marks a wheel, track or engine that a collision stops (279, 282). To prove it, the worker must run the function check on 19 named sets on its own branch, claude/stop-judge. Its session's permission check refused that command. Claude does not run for a session what that session was refused, so the proof waits for you. The rule has since been changed as Claude asked (it goes by the stopped part, not by the function's kind), so the run is now the only thing missing. The command it needs is: npm run functions with the names of the sets. Since then a second result waits on the same permission: the worker found that the check's reading of 16 models has differed from the viewer's since 20 November (the check let a loose part rest on a chain link or hose segment, the viewer does not), and the mend needs the same check run.",
+      "effect": "With your yes in the worker's own chat, the worker proves the rule and Claude merges it. Claude has now seen the rule and its list and accepts both (284): the rule would mark 22 functions by itself. Claude has meanwhile held 20 of those by hand, on the viewer's own evidence (288), so the count would hardly move; the rule replaces those 20 holds and catches the next such function without a hold.",
       "reply": "You may run the function check by name on your own branches",
+      "since": "2026-11-21"
+    },
+    {
+      "id": "8849-gear-erratum",
+      "kind": "Sign-off",
+      "title": "8849 Tractor: a gear sits 2 LDU off its axle in our model file",
+      "what": "In models/8849-Tractor.mpd, line 80 places the 24 tooth gear (part 58, 3648a) at height -56. Its axle (line 74) and the 16 tooth gear beside it on the same axle (line 79) are at -54. So the gear turns 2 LDU off its middle, its teeth swing into a bush on the rear wheel's axle, and a collision stops the wheels after 0.77 radian. The worker found it; Claude read the three lines and they are as said. The mend is one number: line 80, -56 becomes -54. It is our own model file, not the OMR's.",
+      "effect": "Functions 4 and 7 of the 8849 (rolling the tractor turns the power take-off; the four wheels roll) are held at partly because of this stop. With the gear on its axle they should turn freely; the check and the sweep will say.",
+      "links": [
+        {
+          "label": "8849 in the viewer, the gear marked",
+          "url": "http://localhost:5174/?file=models%2F8849-Tractor.mpd&show=58"
+        }
+      ],
+      "reply": "Sign the 8849's gear erratum",
+      "since": "2026-11-21"
+    },
+    {
+      "id": "42080-fn1-control",
+      "kind": "Sign-off",
+      "title": "42080 Forest Machine, function 1: the control should be the motor, not an axle at the pump",
+      "what": "Function 1 is the Power Functions L motor working the pneumatic pump through a crank. The list names the axle p820 (44294) as the control, with a note that the motor is the true control and the axle its output. The worker read the booklet and the file: p820 is a crosswise axle at the pump's head, probably a pivot that only rocks, not the motor's output. So the check turns a rocking pivot 0.3 to 0.39 radian and calls the function working, where the real crank goes round without end. The change: the control becomes the motor itself, part 654 (99499), which the check and the viewer both run as a motor.",
+      "effect": "The function is then tested as the booklet shows it, the motor running the crank all the way round. It may come out partly or not working; today's works rests on the wrong part.",
+      "links": [
+        {
+          "label": "Booklet page 92, the motor and its crank",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=92"
+        },
+        {
+          "label": "Booklet page 203, the function",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=203"
+        },
+        {
+          "label": "42080 in the viewer, the motor marked",
+          "url": "http://localhost:5174/?file=omr%2F42080-1%20Forest%20Machine.mpd&show=654"
+        }
+      ],
+      "reply": "Sign the 42080's control change",
       "since": "2026-11-21"
     }
   ],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. All times so far, yours and Claude's, were taken while every core was busy with checks, so they are too high by a factor not known (261). The slowest functions are timed again on a quiet computer when the run is through, and you test on another machine. No function is held for speed until you have judged there where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all. On 20 November the sweep's first pass went through all 740 working functions (267): the turn shows 566, does not show 144, and 30 wait for a look at the booklet. Of the 57 sets with every function working, 32 have every function shown. The 144 are not all real: in 28 the sweep did not free pins that the check frees, and in about 45 more it could not turn the control at all, which the pointer pass will try. Claude expects 30 to 70 real ones; the worker sorts them before anything is marked down. On the evening of 20 November the solver's working set was merged into preview and turned on (272): a drag that turns a part now works only on the pieces the drag moves. In the viewer on this machine the 9397's steering takes 15 ms for each step of a drag against 120 ms before, both measured one after the other under the same load; the first move of a drag still takes about 240 ms. The proof is a sample of 19 sets in which no function changed its result. In the night to 21 November three more things went in: big models open quickly again (274: the 42078 Mack Anthem in 5 s against 33 s, a fault Claude's own merge of 20 November had made), the first move of a drag no longer searches twice (275: the 9397's steering starts in 384 ms against 644 ms), and the day's full check of preview ran (278): the counts are the same, 740 work, and the check took 18% less time. The check found three functions in which the working set leaves one freely turning part out of place after the drag, with the result unchanged: the 42020 Twin-rotor Helicopter's rolling wheels (two thin beams, parts 125 and 126) and the 8274 Combine Harvester when pushed (a toothed half bush, part 1081). This was mended the same morning (285): the working set had thrown away a motion kept for the next step; with the mend all three come back whole. On 21 November the worker finished sorting the 144 (279). 100 are shown after all, once the sweep did what a user does: lift the model, press Shift, do the first steps, drag by pointer. 27 were held at partly; two of those holds, both on the 8063 Tractor with Log Loader, proved wrong the same day and were lifted (282), so 25 are held and the count of working functions is now 715: in 14 a collision stops the control after a small turn (the check stopped at the same angle and still said works, which is the check's fault), and in 11 the control turns or is pushed and the listed parts do not all move. 17 more are doubtful and stay at works until tried properly: in 14 the sweep did not truly try (the control hidden from the pointer, a first step undone, a slide it cannot do), and 3 wait for the booklet. The sets with every checked function working are 54, were 57. The worker now sorts each of the 16 contacts into false or true and makes the check judge such a stop itself. Pull preview at the newest commit before you test on the quiet machines on 21 November."
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. All times so far, yours and Claude's, were taken while every core was busy with checks, so they are too high by a factor not known (261). The slowest functions are timed again on a quiet computer when the run is through, and you test on another machine. No function is held for speed until you have judged there where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all. On 20 November the sweep's first pass went through all 740 working functions (267): the turn shows 566, does not show 144, and 30 wait for a look at the booklet. Of the 57 sets with every function working, 32 have every function shown. The 144 are not all real: in 28 the sweep did not free pins that the check frees, and in about 45 more it could not turn the control at all, which the pointer pass will try. Claude expects 30 to 70 real ones; the worker sorts them before anything is marked down. On the evening of 20 November the solver's working set was merged into preview and turned on (272): a drag that turns a part now works only on the pieces the drag moves. In the viewer on this machine the 9397's steering takes 15 ms for each step of a drag against 120 ms before, both measured one after the other under the same load; the first move of a drag still takes about 240 ms. The proof is a sample of 19 sets in which no function changed its result. In the night to 21 November three more things went in: big models open quickly again (274: the 42078 Mack Anthem in 5 s against 33 s, a fault Claude's own merge of 20 November had made), the first move of a drag no longer searches twice (275: the 9397's steering starts in 384 ms against 644 ms), and the day's full check of preview ran (278): the counts are the same, 740 work, and the check took 18% less time. The check found three functions in which the working set leaves one freely turning part out of place after the drag, with the result unchanged: the 42020 Twin-rotor Helicopter's rolling wheels (two thin beams, parts 125 and 126) and the 8274 Combine Harvester when pushed (a toothed half bush, part 1081). This was mended the same morning (285): the working set had thrown away a motion kept for the next step; with the mend all three come back whole. On 21 November the worker finished sorting the 144 (279). 100 are shown after all, once the sweep did what a user does: lift the model, press Shift, do the first steps, drag by pointer. By the end of 21 November 44 functions are held at partly, so the count of working functions is 697: in 29 a collision stops a wheel, track, fan or other part that should turn without end, or a bonnet or mast that the booklet shows moving far (the check stopped at the same place and still said works, which is the check's fault; 279, 288); in 12 the control turns or is pushed and the listed parts do not all move (279, 286); in 2 the drive seemed to slip in one long drag (286), which proved to be a fault of the sweep's own measure, so these two holds were wrong and are lifted, with a third of the same kind, the 42129's function 4 (293); and one is from 19 November. Two holds on the 8063 proved wrong and were lifted (282). About 8 more are doubtful and stay at works until tried properly. The sets with every checked function working are 52, were 57. The worker now sorts each of the 16 contacts into false or true and makes the check judge such a stop itself. Pull preview at the newest commit before you test on the quiet machines on 21 November."
     },
     {
       "title": "A blind trial on ten models the check has never seen",
@@ -44,7 +82,7 @@
     },
     {
       "title": "The next offer of main",
-      "what": "preview has 715 working functions after the sweep's holds of 21 November (740 before them) and main 701, counted before any hold. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
+      "what": "preview has 697 working functions after the sweep's holds of 21 November (740 before them) and main 701, counted before any hold. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
     },
     {
       "title": "A second worker, looked at again after 23 November",
@@ -331,6 +369,34 @@
     {
       "date": "2026-11-21",
       "what": "The working set's fault is mended (285): the 42020's wheels and the 8274 when pushed no longer leave a part out of place, and the 9397's steering keeps its gain (19 ms a step against 216 ms with the set off). All 1,074 tests pass."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The viewer stops 12 more wheels, fans and sprockets where the check stops too (288): held, 700 functions work. Three more held from the sweep's second pass (286). The guard against a page that hangs is merged, at no cost in speed. Stage B of the cheaper search: the half that keeps every result is built now, the half that changes results waits (287)."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Three more held (289): one wheel of the 8840 that a collision stops, and the 42078's container doors, whose lock bars the viewer does not let slide. 697 functions work. The worker found that the check read 30 models differently from the viewer, and that the check's stored collision data was three days stale; both are being mended."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The cheaper search for a motion is merged, stages A and B1 (290): every result the same to the last bit, and a full solver step a fifth to a quarter quicker in the solver owner's measurements (the 42083's steering 500 to 400 ms). In the viewer the 9397's first move gains only 5%; the solver owner is asked why."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Two of the day's holds are wrong (291): the engines of the 42043 and the 42075 do run when the model is pushed; the sweep measured a crankshaft that had turned almost a whole turn as hardly moved. The sweep's measure is mended and six more holds of the same kind are swept again. The 8844's wheel is a real solver fault: to keep the frame still the solver runs the gear train backwards where the model should roll. That fault, rolling a model on the ground, is now the solver owner's first task."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Three holds lifted with the sweep's measure mended (293): the engines of the 42043 and the 42075 and the 42129's differential locks are shown. Five holds of the same kind stand. The check's stored collision data was stale or missing in 61 models and is made afresh (292); the check of those sets runs."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Why wheels stop when a model is rolled (294): in 12 of the 20 held cases a part that nothing drives, such as a liftarm on one pin or an idle drive train, swings or runs when the model rolls and hits its neighbour; on the real model it stays put. The solver owner now writes a rule for that as a proposal. A small follow-up makes the cheaper search gain in the viewer too: the 42083's first move 370 to 290 ms."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The booklet read for 46 functions with a short travel (297): in 29 the booklet shows the part moving far, in 5 the short travel is real, 12 it does not settle. None is held on that alone; the viewer is swept again on today's code first, since the first sweep's stops are from before today's mends. The sweep's 566 shown functions hold no misread part (296)."
     }
   ]
 }
