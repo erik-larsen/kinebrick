@@ -169,7 +169,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 51 works, 17 partly, 2 no, 1 skipped |
+| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 50 works, 18 partly, 2 no, 1 skipped |
 | [Valve train](valve-train.md) | 1 | 1980 |  | 1 |  |  |  |  | 3 works |
 | [Driven rotor](driven-rotor.md) | 20 | 1977 | 1 | 1 | 6 |  | 10 | 2 | 14 works, 11 partly |
 | [Rotor blade pitch](rotor-pitch.md) | 2 | 1977 | 1 |  | 1 |  |  |  | 2 partly, 1 no |
@@ -200,8 +200,8 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 136 works, 14 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 75 | 1978 | 2 | 1 | 10 | 11 | 39 | 12 | 74 works, 16 partly, 33 no, 2 skipped, 4 not checked |
+| [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 135 works, 15 partly, 2 skipped, 2 not checked |
+| [Hinge](hinge.md) | 75 | 1978 | 2 | 1 | 10 | 11 | 39 | 12 | 73 works, 17 partly, 33 no, 2 skipped, 4 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 3 partly, 2 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 10 works, 1 skipped |
 | [Hangs free](hangs-free.md) | 17 | 1978 | 1 | 1 | 2 | 4 | 9 |  | 5 works, 1 partly, 6 skipped, 5 not checked |

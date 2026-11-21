@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 136 works, 14 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 135 works, 15 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -136,7 +136,7 @@ Each detail by the set it first appears in.
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 
-- Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine. (works)
+- Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine. (partly)
 
 **1990, [8850 Rally Support Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8850-1)**
 

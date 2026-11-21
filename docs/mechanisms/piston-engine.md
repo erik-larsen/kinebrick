@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 51 works, 17 partly, 2 no, 1 skipped.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 50 works, 18 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -79,7 +79,7 @@ Each detail by the set it first appears in.
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 
-- *V2:* The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls. (works)
+- *V2:* The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls. (partly)
 
 **1990, [8850 Rally Support Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8850-1)**
 
