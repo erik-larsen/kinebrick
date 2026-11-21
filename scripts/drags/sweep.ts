@@ -345,7 +345,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       // The camera turned till the control is in view, the pointer on it, and Shift pressed and let
       // go (no drag): what the viewer said, and the pins freed.
       let shifted: { seen: boolean; said?: string[]; freed?: number[] } | null = null;
-      if (shiftFirst && g.freed) {
+      if (shiftFirst && g.freed && !(await turnsPlain(v, control))) {
         const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
         shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
       }
@@ -413,7 +413,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
           // Worked out afresh (a ring shifted): opened afresh for the other way, Shift pressed again.
           if (!viewerFor) await v.close();
           v = await prepare(ref, false);
-          if (shiftFirst && g.freed && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
+          if (shifted?.seen && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
         }
         A.push({ control: ref, way, ...(shifted ? { shift: shifted } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
@@ -451,7 +451,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       await v.page.waitForTimeout(10_000);
       await v.page.evaluate(() => (window as any).kinebrick.interaction.pauseMotor(true));
     } else {
-      if (g.freed) shift = (await v.press({ shift: true, release: true })).said;
+      if (g.freed && !(await turnsPlain(v, control))) shift = (await v.press({ shift: true, release: true })).said;
       for (const [dx, dy] of PUSHES) {
         if (!(await v.aim(control))) continue;
         await v.press();
@@ -469,7 +469,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     await v.close();
   }
 
-  const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0;
+  // Every control turned (or ran, a motor) in some way: a turn of 0 never shows a function, even one
+  // that lists no part to move (the 8840's function 5, whose wheels all turned 0, was shown).
+  const turnedEach = controls.every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01));
+  const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0 && turnedEach;
   const bShows = !!viewerFor || movedByB.size > 0 || moves.length === 0;
   const why = [
     ...(aShows ? [] : [`A: ${moves.filter((m: Ref) => !movedByA.has(m.ref)).map((m: Ref) => m.ref).join(', ') || 'none'} not moved${staysMovedByA.size ? `; ${[...staysMovedByA].join(', ')} listed to stay moved` : ''}`]),
@@ -497,6 +500,21 @@ async function hold(v: Viewer, refs: string[]) {
   }, refs.map((r) => refOf(r).part));
 }
 
+// Whether a control moves by a plain drag (a turn of 0.01 rad, put back): where it does, a user
+// presses no Shift on it. Shift on a part no friction pins hold asks for it to slide on its axle
+// (slidesOnAxle in interaction.ts), and a wheel asked so turns no more: the 8840's p210, which the
+// sweep pressed because the check's record had freed pins elsewhere, then turned 0 both ways.
+async function turnsPlain(v: Viewer, control: number): Promise<boolean> {
+  return v.page.evaluate((control) => {
+    const k = (window as any).kinebrick;
+    if (k.mech.roles[control] === 'motor') return true;
+    const snap = k.kin.snapshot();
+    const went = k.interaction.turnPart(control, 0.01, k.setup.camera.position);
+    k.kin.restore(snap);
+    return Math.abs(went) > 1e-4;
+  }, control);
+}
+
 async function firstSteps(v: Viewer, first: { control: string; by: number; slide?: boolean }[]): Promise<string[]> {
   const notDone: string[] = [];
   for (const step of first) {
@@ -511,35 +529,32 @@ async function firstSteps(v: Viewer, first: { control: string; by: number; slide
         ({ part, by }) => {
           const k = (window as any).kinebrick;
           if (!k.setup.slideOnAxle?.(part)) return null;
+          // The slide joint asked for, found by its bodies: it need not hang the part's body in
+          // the tree (the 42078's lock bar's closes a loop, and the body has no parent link). A
+          // user's drag of such a part pushes it (the viewer's push: pushStep), as here.
           const body = k.mech.bodyOf[part];
-          const link = k.kin.parentLink(body);
-          if (!link || k.mech.joints[link.joint].kind !== 'slide') return null;
-          const at = () => { const e = k.matrices()[part].elements; return [e[12], e[13], e[14]]; };
-          const own = (() => { const e = k.matrices()[part].elements; return [0, 1, 2].map((c) => { const v = [e[4 * c], e[4 * c + 1], e[4 * c + 2]]; const n = Math.hypot(...v); return v.map((x) => x / n); }); })();
-          const start = at();
-          const along = () => { const p = at(); const d = [p[0] - start[0], p[1] - start[1], p[2] - start[2]]; const dir = own.reduce((best, v) => (Math.abs(v[0] * d[0] + v[1] * d[1] + v[2] * d[2]) > Math.abs(best[0] * d[0] + best[1] * d[1] + best[2] * d[2]) ? v : best)); return dir[0] * d[0] + dir[1] * d[1] + dir[2] * d[2]; };
-          const push = (sign: number) => {
-            let total = 0;
-            for (let i = 0; i < Math.ceil(Math.abs(by)); i++) {
-              k.kin.holdWhatTheDragDoesntNeed(body, () => k.kin.jointMotion(link.joint) !== null, link.joint);
-              const w = k.kin.turnJoint(link.joint, sign, () => k.setup.blockedBy() === null);
-              k.kin.letGoAfterDrag();
-              total += w;
-              if (Math.abs(w) < 1e-3) break;
-            }
-            return total;
-          };
-          // Which way along the joint is `by`'s way along the part's own axis: a first step tells.
-          const snap = k.kin.snapshot();
-          push(1);
-          const dirOwn = (() => { const e = k.matrices()[part].elements; const d = [e[12] - start[0], e[13] - start[1], e[14] - start[2]]; return own.map((v) => v[0] * d[0] + v[1] * d[1] + v[2] * d[2]); })();
-          k.kin.restore(snap);
-          const axisK = dirOwn.reduce((best, x, i) => (Math.abs(x) > Math.abs(dirOwn[best]) ? i : best), 0);
-          const sign = Math.sign(dirOwn[axisK]) === Math.sign(by) ? 1 : -1;
-          push(sign);
-          const moved = along();
+          const joint = k.mech.joints.find((j: any) => j.kind === 'slide' && j.asked && (j.bodyA === body || j.bodyB === body));
+          if (!joint) return null;
+          const other = joint.bodyA === body ? joint.bodyB : joint.bodyA;
+          const V = k.setup.camera.position.constructor;
+          const axis = joint.to.clone().sub(joint.from).normalize().transformDirection(k.kin.poses[other]);
+          const m = k.matrices()[part];
+          const own = [0, 1, 2].map((c: number) => new V().setFromMatrixColumn(m, c).normalize());
+          const kAxis = own.reduce((best: number, v: any, i: number) => (Math.abs(v.dot(axis)) > Math.abs(own[best].dot(axis)) ? i : best), 0);
+          const dir = axis.clone().multiplyScalar(Math.sign(own[kAxis].dot(axis)) * Math.sign(by));
+          const start = new V().setFromMatrixPosition(m);
+          const grab = start.clone().applyMatrix4(k.kin.poses[body].clone().invert());
+          const directions = k.pointDirections(k.kin, body, start);
+          if (directions > 0) k.kin.holdWhatTheDragDoesntNeed(body, () => k.pointDirections(k.kin, body, grab.clone().applyMatrix4(k.kin.poses[body])) === directions);
+          let moved = 0;
+          while (moved < Math.abs(by) - 1e-9) {
+            const step = Math.min(1, Math.abs(by) - moved);
+            if (k.pushStep(k.kin, body, grab, dir, step, () => k.setup.blockedBy() === null) !== 'moved') break;
+            moved += step;
+          }
+          k.kin.letGoAfterDrag();
           k.setup.onDragEnded();
-          return Math.abs(moved);
+          return moved;
         },
         { part, by: step.by },
       );
