@@ -474,6 +474,8 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const v = await timed('open', open(file, settings));
     await timed('collisions', collisionsReady(v));
     await timed('first', firstSteps(v, fn.first ?? []));
+    const freeAskedB = process.env.KB_FREE_PINS ? (JSON.parse(process.env.KB_FREE_PINS) as Record<string, number[]>)[fnKey] : undefined;
+    if (freeAskedB?.length) await v.page.evaluate((pins) => (window as any).kinebrick.setup.freePins(pins), freeAskedB);
     if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
     const turns = await timed('reach', v.reach(control));
     const tB = Date.now();

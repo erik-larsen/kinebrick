@@ -4,7 +4,7 @@
 import { open } from './drag.ts';
 (globalThis as any).__name = (f: unknown) => f;
 const control = 1146;
-const turn = (v: any, a: number) => v.page.evaluate(({ c, a }) => { const k = (window as any).kinebrick; return k.interaction.turnPart(c, a, k.setup.camera.position); }, { c: control, a });
+const turn = (v: any, a: number) => v.page.evaluate(({ c, a }: { c: number; a: number }) => { const k = (window as any).kinebrick; return k.interaction.turnPart(c, a, k.setup.camera.position); }, { c: control, a });
 const freed = (v: any) => v.page.evaluate(() => { const k = (window as any).kinebrick; return k.mech.joints.length; });
 const ready = (v: any) => v.page.waitForFunction(`(document.getElementById('collision-note')?.textContent ?? '') === '' && !!window.kinebrick.collisions() && !window.kinebrick.collisions().waiting`, null, { timeout: 600_000 });
 const out: any = {};
