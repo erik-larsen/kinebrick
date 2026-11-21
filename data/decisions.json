@@ -478,6 +478,10 @@
     {
       "date": "2026-11-21",
       "what": "Your signed changes checked: the 42112's function 3 now works with the piston p176 named, and the five functions with a motor as their control (42100, 42131) work as before, turning the full way. 698 functions work. The mend for the 42078's drive is right but waits (337): with the engine driven, its pistons stop the truck rolling."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "At the pause (338): the rule for parts that nothing drives has five gains and five losses for rolling a model, one loss serious (the 8880), so it stays off. Against a model tipping as it rolls, the gentler of two mends is taken; it brings the track sets back exactly. Three branches wait, each right in itself, for a further mend. Work starts again there after the reset on 23 November."
     }
   ]
 }
