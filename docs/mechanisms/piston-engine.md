@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 52 works, 16 partly, 2 no, 1 skipped.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 53 works, 15 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -290,7 +290,7 @@ Each detail by the set it first appears in.
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
-- *4 pistons:* Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down. (partly)
+- *4 pistons:* Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down. (works)
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 

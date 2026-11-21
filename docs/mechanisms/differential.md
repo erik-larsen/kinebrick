@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 53 works, 23 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 54 works, 22 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -216,7 +216,7 @@ Each detail by the set it first appears in.
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
 - The eight wheels roll. The four rear wheels drive through a differential on each rear axle; the front wheels roll freely on their steering knuckles. (works)
-- Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down. (partly)
+- Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down. (works)
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
