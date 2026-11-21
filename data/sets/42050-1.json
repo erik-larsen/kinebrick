@@ -112,9 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 127,
+    "seconds": 94,
     "counts": {
       "works": 4,
       "pivoted": 1,
@@ -354,7 +354,7 @@
             "p111 2851"
           ]
         ],
-        "seconds": 53.4
+        "seconds": 34.8
       },
       {
         "result": "works",
@@ -465,7 +465,7 @@
           "rise": 1.04,
           "tyre": "p865 15413"
         },
-        "seconds": 2.6
+        "seconds": 2
       },
       {
         "result": "partly",
@@ -556,7 +556,7 @@
             0.63
           ]
         ],
-        "seconds": 10.6
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -602,7 +602,7 @@
             ]
           ]
         ],
-        "seconds": 5.8
+        "seconds": 5.7
       },
       {
         "result": "works",
@@ -720,9 +720,9 @@
           [],
           []
         ],
-        "seconds": 49.5
+        "seconds": 39.6
       }
     ],
-    "peak": 856
+    "peak": 884
   }
 }

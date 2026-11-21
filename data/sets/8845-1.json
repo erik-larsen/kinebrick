@@ -93,9 +93,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 5,
+    "seconds": 4,
     "counts": {
       "no": 1,
       "works": 2,
@@ -271,7 +271,7 @@
             "p103 4255 against p104 4254"
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -393,13 +393,13 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.4
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 254
+    "peak": 250
   }
 }

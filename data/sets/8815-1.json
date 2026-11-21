@@ -83,7 +83,7 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
     "seconds": 4,
     "counts": {
@@ -343,7 +343,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -414,9 +414,9 @@
             0.07
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       }
     ],
-    "peak": 269
+    "peak": 279
   }
 }

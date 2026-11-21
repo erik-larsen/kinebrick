@@ -145,9 +145,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "no": 2,
       "partly": 3,
@@ -352,7 +352,7 @@
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -693,6 +693,6 @@
         "seconds": 0
       }
     ],
-    "peak": 302
+    "peak": 311
   }
 }

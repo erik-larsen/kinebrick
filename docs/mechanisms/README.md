@@ -160,7 +160,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Turntable](turntable.md) | 35 | 1978 | 1 | 3 | 4 | 5 | 19 | 3 | 21 works, 12 partly, 5 no, 1 not checked |
 | [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 5 works, 2 partly, 1 not checked |
 | [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 2 partly |
-| [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 no |
+| [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 works |
 | [Rotary tool](rotary-tool.md) | 2 | 2016 |  |  |  |  | 1 | 1 | 1 works, 2 partly |
 | [Conveyor](conveyor.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 partly |
 | [Pop-up headlights](pop-up-headlights.md) | 2 | 1994 |  |  | 2 |  |  |  | 1 works, 1 partly |

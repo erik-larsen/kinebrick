@@ -78,9 +78,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 9,
+    "seconds": 6,
     "counts": {
       "works": 2,
       "no": 1,
@@ -186,7 +186,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -356,7 +356,7 @@
           [],
           []
         ],
-        "seconds": 3.2
+        "seconds": 1.9
       },
       {
         "result": "no",
@@ -382,13 +382,13 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 3
+        "seconds": 2.2
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 330
+    "peak": 334
   }
 }

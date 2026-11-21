@@ -106,9 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -216,7 +216,7 @@
             0
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -340,7 +340,7 @@
         ],
         "cause": "not-driven",
         "detail": "p11 15459 against p8 15459",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -572,13 +572,13 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 1.6
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 322
+    "peak": 323
   }
 }

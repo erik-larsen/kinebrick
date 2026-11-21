@@ -108,9 +108,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 6,
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -194,7 +194,7 @@
         ],
         "cause": "not-driven",
         "detail": "p51 4261 against p0 3703",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -277,7 +277,7 @@
             0.03
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -348,7 +348,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0.8
+        "seconds": 0.4
       },
       {
         "result": "skipped",
@@ -507,13 +507,13 @@
             0.03
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 320
+    "peak": 349
   }
 }

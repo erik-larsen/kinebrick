@@ -221,9 +221,9 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 404,
+    "seconds": 352,
     "counts": {
       "works": 8,
       "not back": 2,
@@ -330,8 +330,8 @@
             1.47
           ]
         ],
-        "seconds": 6,
-        "peak": 888
+        "seconds": 4.9,
+        "peak": 985
       },
       {
         "result": "works",
@@ -374,7 +374,7 @@
           ]
         ],
         "seconds": 5,
-        "peak": 891
+        "peak": 951
       },
       {
         "result": "works",
@@ -520,8 +520,8 @@
             "p259 2852"
           ]
         ],
-        "seconds": 31.6,
-        "peak": 917
+        "seconds": 29.1,
+        "peak": 969
       },
       {
         "result": "works",
@@ -587,8 +587,8 @@
           [],
           []
         ],
-        "seconds": 10.6,
-        "peak": 961
+        "seconds": 9.6,
+        "peak": 995
       },
       {
         "result": "works",
@@ -658,8 +658,8 @@
             0.67
           ]
         ],
-        "seconds": 2.4,
-        "peak": 881
+        "seconds": 1.6,
+        "peak": 927
       },
       {
         "result": "works",
@@ -763,8 +763,8 @@
             "p65 3706"
           ]
         ],
-        "seconds": 95.3,
-        "peak": 975
+        "seconds": 80.7,
+        "peak": 894
       },
       {
         "result": "partly",
@@ -850,8 +850,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 13.8,
-        "peak": 938
+        "seconds": 13,
+        "peak": 845
       },
       {
         "result": "works",
@@ -1015,8 +1015,8 @@
             0.23
           ]
         ],
-        "seconds": 13,
-        "peak": 917
+        "seconds": 11.8,
+        "peak": 875
       },
       {
         "result": "not checked"
@@ -1141,8 +1141,8 @@
           [],
           []
         ],
-        "seconds": 185.7,
-        "peak": 963
+        "seconds": 160.9,
+        "peak": 991
       },
       {
         "result": "skipped"

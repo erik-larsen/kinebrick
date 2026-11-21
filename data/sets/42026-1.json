@@ -74,7 +74,7 @@
     ]
   },
   "generated": {
-    "commit": "47824343",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
     "seconds": 3,
     "counts": {
@@ -179,7 +179,7 @@
             "p121 56145 against p6 12799"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -263,7 +263,7 @@
             "p102 3708"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -308,6 +308,6 @@
         "seconds": 0.2
       }
     ],
-    "peak": 353
+    "peak": 352
   }
 }
