@@ -65,6 +65,12 @@ export function restTouch(contact: RestContact, facePose: Matrix4, shapePose: Ma
   return { point: top, dir: n, clearance: off.dot(n) - up };
 }
 
+// The half bush in both its forms, as a bush on a push rod: data/roles.json names only the older
+// form, 32123a, as a bush. The newer form, 32123b, the 42112's pistons' half bushes, is not given
+// the role there, because the role would move the 8203's frame: its chassis is mostly half
+// bushes, and the frame is the body with the most structure parts (decision 313).
+const HALF_BUSHES = new Set(['32123a.dat', '32123b.dat']);
+
 // Parts resting on others under gravity, which Kinebrick has no forces for, so keeps touching
 // what they rest on (see Rest). Two kinds, both in the 858 inline engine's valve train:
 //
@@ -131,11 +137,12 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     }
     return null;
   };
+  const isBush = (i: number) => roles[i] === 'bush' || HALF_BUSHES.has(parts[i].name.replace(/^.* - /, '').toLowerCase());
   const rests: Rest[] = [];
   for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle' && Math.abs(c.dir.y) > 1 - ANGLE_TOLERANCE)) {
     const rod = bodyOf[axle.part];
     const own = parts.flatMap((_, i) => (bodyOf[i] === rod ? [i] : []));
-    if (rod === 0 || own.some((i) => i !== axle.part && roles[i] !== 'bush')) continue;
+    if (rod === 0 || own.some((i) => i !== axle.part && !isBush(i))) continue;
     const holes = connections.filter((c) => c.kind === 'revolute' && c.male === axle.part && bodyOf[c.female] !== rod);
     if (!holes.length || new Set(holes.map((c) => bodyOf[c.female])).size > 1) continue;
     if (connections.some((c) => !holes.includes(c) && bodyOf[c.male] !== bodyOf[c.female] && (bodyOf[c.male] === rod || bodyOf[c.female] === rod))) continue;
@@ -149,7 +156,7 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     // a stop's flange).
     const heightAt = (t: number) => height(axle.start.clone().addScaledVector(axle.dir, t));
     const bushes = [
-      ...connections.filter((c) => c.kind === 'rigid' && c.male === axle.part && roles[c.female] === 'bush').map(span),
+      ...connections.filter((c) => c.kind === 'rigid' && c.male === axle.part && isBush(c.female)).map(span),
       ...axleStops(axle).map(([a, b]): [number, number] => [Math.min(heightAt(a), heightAt(b)), Math.max(heightAt(a), heightAt(b))]),
     ];
     if (!bushes.length) continue;
