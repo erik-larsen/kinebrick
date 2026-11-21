@@ -2656,7 +2656,12 @@ export class Kinematics {
     let compared: { turned: number; state: KinematicsState } | null = null;
     if (usable && !audit) {
       const saved = this.stepState();
-      if (this.aheadKept && !(this.aheadKept as { small?: boolean }).small) this.aheadKept = null;
+      // The motion the last turn kept for its next step (see turnJointPlain) is taken as the plain
+      // path takes it, whether that turn was on the set or in full, and its own checks decide (decision
+      // 278 of 2026-11-21). Worked out afresh instead, it could differ from the kept one at the same
+      // state, and where a drag's motion turns on a near choice (the 42020 Twin-rotor Helicopter's
+      // wheels, rolling and scrubbing, up to 3.4 apart in the motion vector), the drag went
+      // elsewhere and came back out of place: 0.97 LDU against 0.26 in full.
       this.wsActive = true;
       this.basisSmall = null;
       let turned = 0;
@@ -2666,7 +2671,6 @@ export class Kinematics {
         this.wsActive = false;
         this.basisSmall = null;
       }
-      if (this.aheadKept) (this.aheadKept as { small?: boolean }).small = true;
       const why = Math.abs(turned - angle) > 1e-12 ? 'short' : this.onPlay > saved.onPlay ? 'played' : !this.sameHolds(saved.drag) ? 'holds' : this.ringTurned(ws!, saved.state, turned) ? 'ring' : null;
       if (!why && !this.options.workingSetCompare) {
         ws!.turned += Math.abs(angle);
@@ -2677,7 +2681,6 @@ export class Kinematics {
       else compared = { turned, state: this.snapshot() };
       this.restoreStepState(saved);
     }
-    if (this.aheadKept && (this.aheadKept as { small?: boolean }).small) this.aheadKept = null;
     const before = this.snapshot();
     const turned = this.turnJointPlain(joint, angle, allowed, maxStep);
     if (compared) {
