@@ -808,41 +808,64 @@ export class BodyRow {
 export function inBasis(rows: (Row | BodyRow)[], basis: number[][]): Row[] {
   const q = basis[0]?.length ?? 0;
   const support = supportOf(basis);
+  if (written.length < q) written = new Int32Array(q);
   return rows.map((row) => {
     const out = new Array(q).fill(0);
-    // The places written (see placesOf): every other one holds the +0 it started with.
-    const mark = new Uint8Array(q);
+    // The places written (see placesOf): every other one holds the +0 it started with. A place is
+    // noted the first time this row writes it: `written` holds, for each place, the last row that did.
     const places: number[] = [];
-    const add = (x: number, b: number[], at: Int32Array) => {
-      for (const c of at) {
-        out[c] += x * b[c];
-        if (mark[c]) continue;
-        mark[c] = 1;
-        places.push(c);
-      }
-    };
+    if (++rowCount === 2 ** 31 - 1) {
+      written.fill(0);
+      rowCount = 1;
+    }
+    const me = rowCount;
+    // Its places in order, as the list's were gone over: the same sums. (Written out twice, for a row
+    // kept as its places and one as a list, rather than in a function made for each row.)
     if (row instanceof BodyRow) {
-      // Its places in order, as the list's were gone over: the same sums.
       for (const [i, x] of row.entries()) {
         if (x === 0) continue;
-        add(x, basis[i], support[i]);
+        const b = basis[i];
+        const at = support[i];
+        for (let a = 0; a < at.length; a++) {
+          const c = at[a];
+          out[c] += x * b[c];
+          if (written[c] === me) continue;
+          written[c] = me;
+          places.push(c);
+        }
       }
     } else {
       for (let i = 0; i < row.length; i++) {
         const x = row[i];
         if (x === 0) continue;
-        add(x, basis[i], support[i]);
+        const b = basis[i];
+        const at = support[i];
+        for (let a = 0; a < at.length; a++) {
+          const c = at[a];
+          out[c] += x * b[c];
+          if (written[c] === me) continue;
+          written[c] = me;
+          places.push(c);
+        }
       }
     }
     placesOf.set(out, places);
     return out;
   });
 }
+// For each place, the last row inBasis wrote it in (see inBasis): one list for every call, where each
+// row had a list of marks of its own, made and dropped (the 42083's steps on the working set took 8%
+// longer for those, decision 290).
+let written = new Int32Array(0);
+let rowCount = 0;
 
 // The places of a row inBasis made that may not be 0, for nullSpace to go over those only: every other
 // place holds +0. Kept beside the row, for as long as the row is; a row changed after inBasis made it
-// must not be given to nullSpace (none is: the rows are made for it, or read).
+// must not be given to nullSpace (none is: the rows are made for it, or read). KINEBRICK_CHECK_PLACES=1
+// checks that it holds: nullSpace goes over every place of such a row as well, and throws on one that
+// isn't +0 and isn't among its places (see checkPlaces).
 const placesOf = new WeakMap<Row, number[]>();
+const checkingPlaces = () => typeof process !== 'undefined' && process.env?.KINEBRICK_CHECK_PLACES === '1';
 
 // The motion vector with these coordinates in a basis (see treeBasis).
 export function fromBasis(z: number[], basis: number[][]): number[] {
@@ -981,6 +1004,16 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
 // itself). The step that met it is refused (see Kinematics.refuseNotFinite; decision 280).
 export class NotFinite extends Error {}
 
+// With KINEBRICK_CHECK_PLACES=1: that every place of a row inBasis made holds +0 but its places (see
+// placesOf), else an error naming the first that doesn't. Off, nullSpace trusts them.
+function checkPlaces(r: Row, known: number[], n: number) {
+  const listed = new Set(known);
+  for (let k = 0; k < n; k++) {
+    if (listed.has(k) || Object.is(r[k], 0)) continue;
+    throw new Error(`a row's places, noted as inBasis made it, leave out place ${k}, which holds ${r[k]}: the row was written into after inBasis`);
+  }
+}
+
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
 // Plain loops on typed arrays: this runs many times a step. Each row's places that may not be 0, and
 // each column's rows that may not be 0 there, are kept, so that the searches and the elimination go
@@ -997,11 +1030,13 @@ export function nullSpace(rows: Row[], n: number): number[][] {
   // so it stays tiny until taking a pivot row from it changes it. Without this, a big model's search
   // went over its dependent rows again for every pivot, and took most of a step. Taking a pivot row
   // from a row changes only the pivot row's places, which are added.
+  const checking = checkingPlaces();
   const lines = rows.map((r, i) => {
     const x = new Float64Array(n);
     const list: number[] = [];
     const mark = new Uint8Array(n);
     const known = placesOf.get(r);
+    if (known && checking) checkPlaces(r, known, n);
     if (known) {
       // Every other place holds +0 (see inBasis), as the copy would.
       for (const k of known) {

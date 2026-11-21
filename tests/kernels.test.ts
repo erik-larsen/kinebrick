@@ -349,6 +349,25 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
     }
   });
 
+  // KINEBRICK_CHECK_PLACES=1 (decision 290): a row written into after inBasis made it, at a place it
+  // didn't write, is caught, where nullSpace would trust its places and leave that out.
+  it('the places check catches a row written into after inBasis', () => {
+    const basis = [[1, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    const row = new BodyRow(6);
+    row.add(0, 2);
+    const [made] = inBasis([row], basis);
+    const was = process.env.KINEBRICK_CHECK_PLACES;
+    process.env.KINEBRICK_CHECK_PLACES = '1';
+    try {
+      expect(() => nullSpace([made], 3)).not.toThrow();
+      made[2] = 5;
+      expect(() => nullSpace([made], 3)).toThrow(/leave out place 2/);
+    } finally {
+      if (was === undefined) delete process.env.KINEBRICK_CHECK_PLACES;
+      else process.env.KINEBRICK_CHECK_PLACES = was;
+    }
+  });
+
   const models: [string, string, number][] = [
     ['the 9397 Logging Truck, its steering', 'omr/9397-1 Logging Truck.mpd', 1000],
     ['the 8110 Unimog, its steering', 'omr/8110-1 Mercedes-Benz Unimog U 400.mpd', 1504],
