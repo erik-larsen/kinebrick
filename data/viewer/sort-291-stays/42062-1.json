@@ -1,0 +1,86 @@
+{
+  "set": "42062-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:22.510Z",
+  "load": 16.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 627,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot.",
+      "verdict": "shown",
+      "msOneCall": 100,
+      "msPerStep": 15,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p507 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 660,
+          "msOneCall": 100,
+          "stops": [],
+          "moved": {
+            "p443 42062 - 18575": [
+              0,
+              4.3
+            ],
+            "p510 18940": [
+              9.74,
+              3.03
+            ],
+            "p547 32524": [
+              31.51,
+              0
+            ],
+            "p508 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p507 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 562,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p443 42062 - 18575": [
+              0,
+              4.3
+            ],
+            "p510 18940": [
+              9.47,
+              2.94
+            ],
+            "p547 32524": [
+              30.66,
+              0
+            ],
+            "p508 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

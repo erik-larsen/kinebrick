@@ -1,0 +1,108 @@
+{
+  "set": "42034-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:25.589Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 146,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The two front wheels roll freely on their axle; there's no steering, the handlebars are fixed.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p135 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p85 3708": [
+              0,
+              85.94
+            ],
+            "p128 4519 against p0 6629": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p135 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p85 3708": [
+              0,
+              85.94
+            ],
+            "p128 4519 against p0 6629": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p141 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 30,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p85 3708": [
+              0,
+              85.94
+            ],
+            "p128 4519 against p0 6629": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p141 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 22,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p85 3708": [
+              0,
+              85.94
+            ],
+            "p128 4519 against p0 6629": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "set": "855-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:47.688Z",
+  "load": 10.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 512,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The crank at the front of the cab's left side raises and lowers the boom: two racks slide under the cab and push the boom up on two struts.",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 6,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p272 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 256,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p315 3029 against p162 3404": [
+              6.73,
+              0.77
+            ],
+            "p245 3743 against p162 3404": [
+              1.67,
+              0
+            ],
+            "p402 3703 against p315 3029": [
+              0.02,
+              0
+            ],
+            "p483 3736 against p162 3404": [
+              0,
+              0.44
+            ]
+          }
+        },
+        {
+          "control": "p272 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 220,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p315 3029 against p162 3404": [
+              6.8,
+              0.78
+            ],
+            "p245 3743 against p162 3404": [
+              1.67,
+              0
+            ],
+            "p402 3703 against p315 3029": [
+              0.02,
+              0
+            ],
+            "p483 3736 against p162 3404": [
+              0,
+              0.45
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 4,
+      "does": "The crank high on the cab's right side, on the boom's pivot axle, extends the boom's blue inner section: a crown gear and a shaft with two universal joints inside the boom drive a gear at the boom tip, which drives the rack under the blue section.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 4,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p483 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 173,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p402 3703 against p315 3029": [
+              5,
+              0
+            ],
+            "p315 3029 against p162 3404": [
+              0,
+              0
+            ],
+            "p272 3736 against p162 3404": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p483 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 166,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p402 3703 against p315 3029": [
+              5,
+              0
+            ],
+            "p315 3029 against p162 3404": [
+              0,
+              0
+            ],
+            "p272 3736 against p162 3404": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

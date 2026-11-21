@@ -1,0 +1,128 @@
+{
+  "set": "42029-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:05.833Z",
+  "load": 18.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1053,
+  "seconds": 13,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on top of the upright axle behind the cab steers the front wheels: a bevel gear at the axle's foot turns a long shaft running forward under the cab, whose 12-tooth gear drives the steering rack and its two links to the front hubs.",
+      "verdict": "shown",
+      "msOneCall": 229,
+      "msPerStep": 124,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": {
+        "control": "p656 32270",
+        "way": 1,
+        "went": 1.186,
+        "asked": 1.5,
+        "by": [
+          "804/821"
+        ]
+      },
+      "stops": [
+        "804/821",
+        "800/822"
+      ],
+      "A": [
+        {
+          "control": "p656 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.186,
+          "ms": 4037,
+          "msOneCall": 229,
+          "stops": [
+            "804/821"
+          ],
+          "moved": {
+            "p437 6589 against p674 2850a": [
+              0,
+              67.96
+            ],
+            "p415 32270 against p674 2850a": [
+              0,
+              67.96
+            ],
+            "p405 87761 against p674 2850a": [
+              17.79,
+              0
+            ],
+            "p800 11949 against p674 2850a": [
+              0,
+              26.27
+            ],
+            "p804 11949 against p674 2850a": [
+              0,
+              26.56
+            ],
+            "p1143 45982 against p674 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p656 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.186,
+          "ms": 4199,
+          "msOneCall": 170,
+          "stops": [
+            "800/822"
+          ],
+          "moved": {
+            "p437 6589 against p674 2850a": [
+              0,
+              67.96
+            ],
+            "p415 32270 against p674 2850a": [
+              0,
+              67.96
+            ],
+            "p405 87761 against p674 2850a": [
+              17.79,
+              0
+            ],
+            "p800 11949 against p674 2850a": [
+              0,
+              26.56
+            ],
+            "p804 11949 against p674 2850a": [
+              0,
+              26.27
+            ],
+            "p1143 45982 against p674 2850a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p656 32270",
+          "judged": "stands",
+          "why": "stopped at +1.186 rad (804/821); -1.186 rad (800/822); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 13
+    }
+  ]
+}

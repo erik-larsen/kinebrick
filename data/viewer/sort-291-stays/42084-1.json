@@ -1,0 +1,125 @@
+{
+  "set": "42084-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:10.846Z",
+  "load": 12.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 174,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The gear low on the side of the bed, behind the cab, swings the hook arm back over the rear through a row of three 8 tooth gears: the hook at the arm's top lifts the container's front, tips it up and sets it down behind the truck, and swinging the arm forward pulls it back up onto the bed.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p102 32270",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "19/158"
+        ]
+      },
+      "stops": [
+        "19/158"
+      ],
+      "A": [
+        {
+          "control": "p102 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 4,
+          "msOneCall": 9,
+          "stops": [
+            "19/158"
+          ],
+          "moved": {
+            "p81 32014": [
+              0,
+              0
+            ],
+            "p96 10928": [
+              0,
+              0
+            ],
+            "p99 10928": [
+              0,
+              0
+            ],
+            "p169 62531": [
+              0,
+              0
+            ],
+            "p108 32270": [
+              0,
+              0
+            ],
+            "p146 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p102 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 51,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p81 32014": [
+              149.99,
+              85.94
+            ],
+            "p96 10928": [
+              0,
+              85.94
+            ],
+            "p99 10928": [
+              0,
+              85.94
+            ],
+            "p169 62531": [
+              201.24,
+              0
+            ],
+            "p108 32270": [
+              0,
+              0
+            ],
+            "p146 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p102 32270",
+          "judged": "stands",
+          "why": "stopped at +0 rad (19/158); kinds hook-lift"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "set": "8850-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:34.331Z",
+  "load": 14.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 332,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The yellow beacon on the roof steers the front wheels: its tall upright shaft carries a 24 tooth gear at the bottom that drives a crown gear on a shaft running forward under the floor, whose 8 tooth gear slides the steering rack on the tie-rod plate between the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p338 4150",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 85,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p33 4261 against p0 3702": [
+              0,
+              22
+            ],
+            "p29 4261 against p0 3702": [
+              0,
+              22
+            ],
+            "p54 3743 against p0 3702": [
+              15.36,
+              0
+            ],
+            "p346 4266 against p0 3702": [
+              0,
+              0
+            ],
+            "p344 4266 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p338 4150",
+          "way": -1,
+          "asked": 1.47,
+          "went": -1.47,
+          "ms": 73,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p33 4261 against p0 3702": [
+              0,
+              21.54
+            ],
+            "p29 4261 against p0 3702": [
+              0,
+              21.54
+            ],
+            "p54 3743 against p0 3702": [
+              15.04,
+              0
+            ],
+            "p346 4266 against p0 3702": [
+              0,
+              0
+            ],
+            "p344 4266 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

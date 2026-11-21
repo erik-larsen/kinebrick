@@ -1,0 +1,266 @@
+{
+  "set": "9393-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:40.579Z",
+  "load": 9.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 350,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the cab roof steers the front wheels: its upright axle comes down through the cab to a knob gear, which turns a long axle running forward under the bonnet to a gear that slides the steering rack across the front axle.",
+      "verdict": "shown",
+      "msOneCall": 22,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p72 32270",
+        "way": 1,
+        "went": 1.186,
+        "asked": 1.5,
+        "by": [
+          "4/25"
+        ]
+      },
+      "stops": [
+        "4/25",
+        "4/26"
+      ],
+      "A": [
+        {
+          "control": "p72 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.186,
+          "ms": 98,
+          "msOneCall": 22,
+          "stops": [
+            "4/25"
+          ],
+          "moved": {
+            "p8 3705": [
+              0,
+              67.96
+            ],
+            "p31 87761": [
+              18.4,
+              0
+            ],
+            "p25 48989": [
+              9.2,
+              26.36
+            ],
+            "p26 48989": [
+              9.2,
+              26.36
+            ],
+            "p284 56145": [
+              23,
+              32.24
+            ],
+            "p286 56145": [
+              23,
+              32.24
+            ],
+            "p280 56908": [
+              0,
+              0
+            ],
+            "p282 56908": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p72 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.186,
+          "ms": 80,
+          "msOneCall": 6,
+          "stops": [
+            "4/26"
+          ],
+          "moved": {
+            "p8 3705": [
+              0,
+              67.96
+            ],
+            "p31 87761": [
+              18.4,
+              0
+            ],
+            "p25 48989": [
+              9.2,
+              26.36
+            ],
+            "p26 48989": [
+              9.2,
+              26.36
+            ],
+            "p284 56145": [
+              23,
+              32.24
+            ],
+            "p286 56145": [
+              23,
+              32.24
+            ],
+            "p280 56908": [
+              0,
+              0
+            ],
+            "p282 56908": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p72 32270",
+          "judged": "stands",
+          "why": "stopped at +1.186 rad (4/25); -1.186 rad (4/26); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    },
+    {
+      "function": 2,
+      "does": "The grey smooth axle joiner standing up behind the cab lifts the three-point linkage: it turns a worm, which turns a small gear on the lift arms' cross axle, and the arms raise or lower the hay tedder on their two links.",
+      "verdict": "shown",
+      "msOneCall": 23,
+      "msPerStep": 11,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p132 59443",
+        "way": -1,
+        "went": -0.314,
+        "asked": 1.5,
+        "by": [
+          "339/339"
+        ]
+      },
+      "stops": [
+        "339/339"
+      ],
+      "A": [
+        {
+          "control": "p132 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 452,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {
+            "p130 4716": [
+              0,
+              85.94
+            ],
+            "p149 3647": [
+              0,
+              10.74
+            ],
+            "p145 2736": [
+              7.5,
+              10.74
+            ],
+            "p93 32140": [
+              12.02,
+              10.89
+            ],
+            "p291 32316": [
+              41.96,
+              10.89
+            ],
+            "p280 56908": [
+              0,
+              0.21
+            ],
+            "p282 56908": [
+              0,
+              0.2
+            ]
+          }
+        },
+        {
+          "control": "p132 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.314,
+          "ms": 97,
+          "msOneCall": 15,
+          "stops": [
+            "339/339"
+          ],
+          "moved": {
+            "p130 4716": [
+              0,
+              17.99
+            ],
+            "p149 3647": [
+              0,
+              2.25
+            ],
+            "p145 2736": [
+              1.57,
+              2.25
+            ],
+            "p93 32140": [
+              2.62,
+              2.38
+            ],
+            "p291 32316": [
+              9.16,
+              2.38
+            ],
+            "p280 56908": [
+              0,
+              0.05
+            ],
+            "p282 56908": [
+              0,
+              0.05
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p132 59443",
+          "judged": "stands",
+          "why": "stopped at -0.314 rad (339/339); kinds worm-drive, three-point-hitch: hay tedder"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 1
+    }
+  ]
+}

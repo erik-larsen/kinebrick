@@ -1,0 +1,193 @@
+{
+  "set": "42077-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:51.462Z",
+  "load": 17.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 980,
+  "seconds": 12,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the roof steers the front wheels: its upright shaft and a pair of bevel gears turn a long shaft forward under the cabin to the pinion on the front steering rack.",
+      "verdict": "shown",
+      "msOneCall": 107,
+      "msPerStep": 28,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": {
+        "control": "p838 18575",
+        "way": 1,
+        "went": 1.465,
+        "asked": 1.5,
+        "by": [
+          "528/570"
+        ]
+      },
+      "stops": [
+        "528/570",
+        "528/571"
+      ],
+      "A": [
+        {
+          "control": "p838 18575",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.465,
+          "ms": 1139,
+          "msOneCall": 107,
+          "stops": [
+            "528/570"
+          ],
+          "moved": {
+            "p561 87761": [
+              13.18,
+              0
+            ],
+            "p1077 15038": [
+              17.76,
+              19.2
+            ],
+            "p1081 15038": [
+              17.83,
+              19.28
+            ],
+            "p59 62821": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p838 18575",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.465,
+          "ms": 1175,
+          "msOneCall": 49,
+          "stops": [
+            "528/571"
+          ],
+          "moved": {
+            "p561 87761": [
+              13.18,
+              0
+            ],
+            "p1077 15038": [
+              17.83,
+              19.28
+            ],
+            "p1081 15038": [
+              17.76,
+              19.2
+            ],
+            "p59 62821": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p838 18575",
+          "judged": "stands",
+          "why": "stopped at +1.465 rad (528/570); -1.465 rad (528/571); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 7
+    },
+    {
+      "function": 3,
+      "does": "The front wheels roll freely; only the rear ones are driven.",
+      "verdict": "shown",
+      "msOneCall": 78,
+      "msPerStep": 8,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1077 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 329,
+          "msOneCall": 78,
+          "stops": [],
+          "moved": {
+            "p139 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1077 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 318,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p139 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1081 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 322,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p139 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1081 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 352,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p139 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    }
+  ]
+}

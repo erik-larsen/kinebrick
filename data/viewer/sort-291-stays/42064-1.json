@@ -1,0 +1,169 @@
+{
+  "set": "42064-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:29.268Z",
+  "load": 18.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1314,
+  "seconds": 8,
+  "functions": [
+    {
+      "function": 6,
+      "does": "The submarine's rear knob on top turns its two propellers: a bevel gear pair takes the knob's turn down to a 20 tooth gear, which turns a 12 tooth gear on each propeller shaft.",
+      "verdict": "shown",
+      "msOneCall": 58,
+      "msPerStep": 10,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1171 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 415,
+          "msOneCall": 58,
+          "stops": [],
+          "moved": {
+            "p1148 32269": [
+              0,
+              85.94
+            ],
+            "p1172 6041": [
+              0,
+              143.24
+            ],
+            "p1173 6041": [
+              0,
+              143.24
+            ],
+            "p1186 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1171 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 389,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p1148 32269": [
+              0,
+              85.94
+            ],
+            "p1172 6041": [
+              0,
+              143.24
+            ],
+            "p1173 6041": [
+              0,
+              143.24
+            ],
+            "p1186 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 7,
+      "does": "The submarine's front knob on top swings its two arms with their grabbers out and in: the knob turns a worm, which turns a 24 tooth gear between two knob gears, each of which turns an arm's knob gear.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 10,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1186 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 432,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p1182 4716": [
+              0,
+              85.94
+            ],
+            "p1189 3648b": [
+              0,
+              3.58
+            ],
+            "p1215 32072": [
+              0,
+              3.58
+            ],
+            "p1216 32072": [
+              0,
+              3.58
+            ],
+            "p1171 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1186 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 423,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p1182 4716": [
+              0,
+              85.94
+            ],
+            "p1189 3648b": [
+              0,
+              3.58
+            ],
+            "p1215 32072": [
+              0,
+              3.58
+            ],
+            "p1216 32072": [
+              0,
+              3.58
+            ],
+            "p1171 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 1
+    }
+  ]
+}
