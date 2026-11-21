@@ -439,6 +439,10 @@
     {
       "date": "2026-11-21",
       "what": "Twelve sets with tracks did not stand on their tracks, for want of one figure for two track-link parts (325, 328). Claude checked it first this time. The figure is right, but with it 13 functions are worse: a model rolled on its tracks does not come back to where it began, and the 42038 cannot be steered where it stands. So it is not merged alone; the solver owner mends rolling on tracks with it."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "A part that rests on another now follows it when it moves (330): merged, with the 858 and the 8063 the same in every figure. It is what the parked cam reading needed; that is being checked on top of it."
     }
   ]
 }
