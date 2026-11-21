@@ -336,7 +336,8 @@ class Drag {
   springs = false; // whether the slides that springs hold at rest are held still for it (see chooseDragHolds)
   // The free-parts rule's classification (see Kinematics.classifyDrag), made at the drag's first step.
   free: Set<number> | null = null; // the joints free and not driven
-  candidates: number[] = []; // the joints the rule keeps as still as it can: all but the driven, the wheels on the ground and those that can't turn
+  candidates: number[] = []; // the joints the rule may hold: all but the driven, the wheels on the ground and the control's
+  heldJoints = new Set<number>(); // the joints the rule chose, at the drag's first step, to hold still for the drag (see chooseHeldJoints)
   driven: Set<number> | null = null; // the joints whose turning the drag fixes
   kind: 'wheel' | 'turn' | 'push' = 'turn';
   // KINEBRICK_FREE_COUNT=1: each joint's two bodies against each other where the count last looked,
@@ -2124,6 +2125,55 @@ export class Kinematics {
     return rows.map((r) => r.reduce((sum, x, i) => sum + x * mix[i], 0));
   }
 
+  // The free-parts rule's choice (decisions 291, 295 and 309), made once, at a drag's first step, and kept
+  // for the drag as its holds are: of the candidates (every joint the drag doesn't drive, but the wheels on
+  // the ground and the control's), those that the motion turning the control with as few of them turning as
+  // can (the least sum of their sizes, as static friction holds as many joints as it can) leaves still. Each
+  // weighs by the parts on its two bodies: of two equal answers, the joint that carries fewer parts turns
+  // (an idle gear slips on its shaft rather than run a train of gears and axles). Kept, the choice can't
+  // jump between equal answers from one step to the next.
+  private chooseHeldJoints(joint: number, basis: number[][], motions: number[][]): number[] {
+    const cands = this.drag.candidates;
+    if (!cands.length || !motions.length) return [];
+    const zs = orthonormalize(motions);
+    const { rateOf, rate, size } = this.measures(joint, basis);
+    const partsOn = (this.bodyParts ??= this.mech.bodyOf.reduce((n, b) => ((n[b] = (n[b] ?? 0) + 1), n), new Array(this.bodyCount).fill(0)));
+    const weight = cands.map((j) => partsOn[this.mech.joints[j].bodyA] + partsOn[this.mech.joints[j].bodyB]);
+    const tier: Tier = { cost: (z) => cands.map((j, k) => weight[k] * this.basisJointRate(z, j, basis, rateOf)), sparse: true };
+    const z = leastTurning(zs, rate, [tier, { cost: size, joints: true }]);
+    if (!z) return [];
+    const c = Math.abs(rate(z));
+    if (!(c > 0)) return [];
+    return cands.filter((j) => Math.abs(this.basisJointRate(z, j, basis, rateOf)) <= 1e-6 * c);
+  }
+  private bodyParts: number[] | null = null;
+
+  // A joint's rate in a motion in the tree basis's coordinates: a turning joint's turning (rateOf), a
+  // slide's sliding along its axis.
+  private basisJointRate(z: number[], j: number, basis: number[][], rateOf: (z: number[], i: number) => number): number {
+    const joint = this.mech.joints[j];
+    if (joint.kind !== 'slide') return rateOf(z, j);
+    const p = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
+    const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+    const twist = (b: number) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z));
+    const at = (t: number[]) => new Vector3(t[3], t[4], t[5]).add(new Vector3(t[0], t[1], t[2]).cross(p));
+    return at(twist(joint.bodyB)).sub(at(twist(joint.bodyA))).dot(d);
+  }
+
+  // The row that holds a joint still (see Drag.heldJoints and holds.ts): a turning joint's turning about
+  // its axis, a slide's sliding.
+  heldJointRow(j: number): BodyRow {
+    const joint = this.mech.joints[j];
+    if (joint.kind === 'slide') return this.slideRow(joint);
+    const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+    const row = new BodyRow(6 * this.bodyCount);
+    for (let k = 0; k < 3; k++) {
+      row.add(6 * joint.bodyB + k, d.getComponent(k));
+      row.sub(6 * joint.bodyA + k, d.getComponent(k));
+    }
+    return row;
+  }
+
   // Whether the free-parts rule holds for this drag (see Options.freeParts): 'all', or 'wheels' and a
   // wheel on the ground.
   freeRuleOn(): boolean {
@@ -2133,11 +2183,15 @@ export class Kinematics {
 
   // The free-parts rule for a push that doesn't go by the tiers (see push.ts): of `motions` (motion
   // vectors), the mixes that leave every candidate joint still, if any; else `motions` as they are.
+  // The push's first step chooses (all the candidates, if some motion leaves them all still, else none),
+  // and the choice is kept for the push as holds (Drag.heldJoints): its later steps' motions have the rows.
   freeStill(motions: number[][]): number[][] {
     if (!this.freeRuleOn() || !this.drag.candidates.length || !motions.length) return motions;
+    if (this.drag.heldJoints.size) return motions;
     const rows = this.drag.candidates.map((j) => motions.map((m) => this.anyJointRate(m, j)));
     const mix = nullSpace(rows, motions.length);
     if (!mix.length) return motions;
+    this.drag.heldJoints = new Set(this.drag.candidates);
     return orthonormalize(mix.map((a) => combine(motions, a)));
   }
 
@@ -3712,7 +3766,7 @@ export class Kinematics {
     return {
       angles: Float64Array.from([...this.jointAngles, ...this.treadTravel, ...this.treadScrub]),
       poses,
-      rest: [joint, play, this.scrub, list(d.held), list(d.heldToFrame), list(d.outOfReach), d.together.join(','), d.turning ? `${d.turning.grabbed},${d.turning.joint}` : '', d.springs, d.grip, list(this.frozen), list(this.endHeld), list(this.turnHeld), this.contactTreads.join(','), this.springsHeld, this.wsActive, JSON.stringify(this.options)].join('|'),
+      rest: [joint, play, this.scrub, list(d.held), list(d.heldToFrame), list(d.outOfReach), list(d.heldJoints), d.together.join(','), d.turning ? `${d.turning.grabbed},${d.turning.joint}` : '', d.springs, d.grip, list(this.frozen), list(this.endHeld), list(this.turnHeld), this.contactTreads.join(','), this.springsHeld, this.wsActive, JSON.stringify(this.options)].join('|'),
       drag: d,
       ws: this.ws,
     };
@@ -3740,12 +3794,27 @@ export class Kinematics {
       if (last.gripped) this.gripped = true;
     }
     const basis = reuse ? last.basis : this.treeBasis();
-    const [usual, suspension] = reuse ? [last.usual, last.suspension] : this.freeMotionsApart();
+    let [usual, suspension] = reuse ? [last.usual, last.suspension] : this.freeMotionsApart();
     // A drag's first step classifies its joints from these (see classifyDrag), where the model is now
     // (moved to the origin, as these were worked out).
     if (this.classifyPending === joint && !this.drag.choosingHolds) {
       this.classifyPending = -1;
       this.classifyDrag((m) => this.jointRate(m, joint), this.wheelTurned(joint) ? 'wheel' : 'turn', { basis, motions: orthonormalize([...usual, ...suspension]), slipRows: this.slipRows });
+      // The free-parts rule: which of the candidates to hold for the drag, chosen here, once; and this
+      // step's motions those that hold them (the later steps' have their rows).
+      if (this.freeRuleOn()) {
+        const held = this.chooseHeldJoints(joint, basis, [...usual, ...suspension]);
+        if (held.length) {
+          this.drag.heldJoints = new Set(held);
+          const { rateOf } = this.measures(joint, basis);
+          const keep = (motions: number[][]) => {
+            if (!motions.length) return motions;
+            const rows = held.map((j) => motions.map((z) => this.basisJointRate(z, j, basis, rateOf)));
+            return orthonormalize(mixes(motions, nullSpace(rows, motions.length)));
+          };
+          [usual, suspension] = [keep(usual), keep(suspension)];
+        }
+      }
     }
     const { turning, rateOf, rate, size } = this.measures(joint, basis);
     // The car moves on its suspension only if nothing else turns the joint without turning the
@@ -4135,26 +4204,6 @@ export class Kinematics {
     const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
     const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
     const list: Tier[] = [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
-    // The free-parts rule (see Options.freeParts): before all of these, every joint the drag doesn't
-    // drive kept as still as it can, as few of them turning as can (a sparse tier, as friction holds:
-    // an idle gear on a turning shaft slips on it, one joint, rather than run the train it meshes with).
-    // A slide's sliding, a turning joint's turning.
-    if (this.freeRuleOn() && this.drag.turning?.joint === joint && this.drag.candidates.length) {
-      const cands = this.drag.candidates;
-      const points = cands.map((j) => (this.mech.joints[j].kind === 'slide' ? this.mech.joints[j].from.clone().applyMatrix4(this.poses[this.mech.joints[j].bodyA]) : null));
-      const slideAxes = cands.map((j) => (this.mech.joints[j].kind === 'slide' ? axisOf(this.mech.joints[j].from, this.mech.joints[j].to).transformDirection(this.poses[this.mech.joints[j].bodyA]) : null));
-      const twist = (b: number, z: number[]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z));
-      const freeRates = (z: number[]) =>
-        cands.map((j, k) => {
-          const p = points[k];
-          if (!p) return rateOf(z, j);
-          const { bodyA, bodyB } = this.mech.joints[j];
-          const [ta, tb] = [twist(bodyA, z), twist(bodyB, z)];
-          const at = (t: number[]) => new Vector3(t[3], t[4], t[5]).add(new Vector3(t[0], t[1], t[2]).cross(p));
-          return at(tb).sub(at(ta)).dot(slideAxes[k]!);
-        });
-      list.unshift({ cost: freeRates, sparse: true });
-    }
     return list;
   }
 

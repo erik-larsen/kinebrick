@@ -88,6 +88,8 @@ export function holds(solver: Kinematics, eq: Equations) {
       add(row, 0, DRIVE_WEIGHT);
     }
   }
+  // The joints the free-parts rule holds for the drag (see Kinematics.chooseHeldJoints).
+  for (const j of solver.drag.heldJoints) add(solver.heldJointRow(j), 0, DRIVE_WEIGHT);
   // Bodies turned together (see turnTogether): each turns against its housing, about the
   // grabbed body's axis, as fast as the grabbed body does against its own.
   if (solver.drag.together.length > 1) {
