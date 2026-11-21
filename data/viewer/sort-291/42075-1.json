@@ -1,0 +1,201 @@
+{
+  "set": "42075-1",
+  "commit": "3d7ec1d4",
+  "date": "2026-11-21T11:13:43.609Z",
+  "load": 4.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 507,
+  "seconds": 35,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders.",
+      "verdict": "shown",
+      "msOneCall": 53,
+      "msPerStep": 11,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 2,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p506 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 491,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              334.23
+            ],
+            "p352 2851": [
+              39.24,
+              0
+            ],
+            "p353 2851": [
+              38.76,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p506 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 435,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              334.23
+            ],
+            "p352 2851": [
+              39.24,
+              0
+            ],
+            "p353 2851": [
+              38.76,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p510 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 401,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              334.23
+            ],
+            "p352 2851": [
+              39.24,
+              0
+            ],
+            "p353 2851": [
+              38.76,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p510 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 420,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              334.23
+            ],
+            "p352 2851": [
+              39.24,
+              0
+            ],
+            "p353 2851": [
+              38.76,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p506 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p116 62821",
+            "p349 2853",
+            "p352 2851",
+            "p353 2851"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p510 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p116 62821",
+            "p349 2853",
+            "p352 2851",
+            "p353 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 35
+    }
+  ]
+}
