@@ -39,6 +39,7 @@ import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
 import { Mechanism, motorRunPart } from './mechanism.ts';
 import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
+import { letGoOwnSlides } from './slide.ts';
 import { knobTurn } from './turn.ts';
 
 const HANDLE_COLOUR = 0x1d6fe0;
@@ -124,6 +125,7 @@ export interface InteractionSetup {
   pinsToShift: (part: number) => Promise<{ pins: number[]; why: 'more' | 'joints' | null }>; // the friction pins a press with Shift frees (see pinsForShift), and if none, why
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
   slideOnAxle?: (part: number) => boolean; // asks for a part to slide on its axle (decision 206 of 2026-11-18, see slidesAsked): whether it can
+  unslideOnAxle?: (part: number) => boolean; // takes back a slide asked for, so the part turns again (decision 305): whether it was asked
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -156,6 +158,7 @@ interface Drag {
   lastY: number;
   owed: number; // how far the joint has still to turn to catch up with the pointer (turn only)
   sideOn: boolean; // its plane of turning is seen edge-on, so it's turned by pushing its near side (turn only)
+  putSlidesBack: () => void; // puts back the friction on the slides the drag let go (see letGoOwnSlides)
   target: Vector2 | null; // where the pointer is, if the grabbed point hasn't got there (push only)
   pushSteps: number; // steps taken towards the target so far (push only)
 }
@@ -940,6 +943,7 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     if (!drag) return;
     s.kin.letGoAfterDrag();
+    drag.putSlidesBack();
     const turned = drag.joint >= 0 ? s.kin.jointAngles[drag.joint] - drag.startAngle : 0;
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
     if (drag.arc) {
@@ -977,7 +981,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // a pin to pull): asks for that, and says so if it can.
   function slidesOnAxle(part: number, x: number, y: number) {
     if (!s.slideOnAxle?.(part)) return false;
-    showMessage('It can slide along its axle: drag it', x, y);
+    showMessage('It can slide along its axle: drag it. Shift again lets it turn as before', x, y);
     return true;
   }
 
@@ -1003,6 +1007,12 @@ export function setUpInteraction(s: InteractionSetup) {
         e.stopImmediatePropagation();
         ctrlClickHandled = true;
         cycleMotor(hit.part, e.clientX, e.clientY);
+        return;
+      }
+      if (e.shiftKey && s.mech.slid?.includes(hit.part) && s.unslideOnAxle?.(hit.part)) {
+        // Shift on a part asked to slide on its axle takes that back: it turns again as before.
+        e.stopImmediatePropagation();
+        showMessage('It turns on its axle again', e.clientX, e.clientY);
         return;
       }
       if (e.shiftKey && s.mech.bodyOf[hit.part] === 0) {
@@ -1056,7 +1066,10 @@ export function setUpInteraction(s: InteractionSetup) {
       // rod) is pushed.
       const link = s.kin.parentLink(body);
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
-      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
+      // A part asked to slide on its axle (Shift, see slidesOnAxle) is pushed with its own slides
+      // let go, for the length of the drag, as a hand overcomes the friction on its axle (see
+      // letGoOwnSlides): held, the 42078's lock bar could not be lifted, where the check lifts it.
+      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false, putSlidesBack: letGoOwnSlides(s.mech, body) };
       hideLabel();
       s.onMotionStarted();
 

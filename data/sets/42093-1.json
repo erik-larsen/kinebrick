@@ -86,7 +86,7 @@
     ]
   },
   "generated": {
-    "commit": "2555e395",
+    "commit": "1ed861da",
     "date": "2026-11-21",
     "seconds": 4,
     "counts": {
@@ -191,7 +191,7 @@
         ],
         "cause": "not-driven",
         "detail": "p194 22961",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -345,9 +345,9 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       }
     ],
-    "peak": 486
+    "peak": 455
   }
 }

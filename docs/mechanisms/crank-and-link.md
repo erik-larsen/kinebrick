@@ -85,7 +85,7 @@ Each detail by the set it first appears in.
 
 **1989, [8835 Forklift](https://erik-larsen.github.io/kinebrick/?model=8835-Forklift)**
 
-- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (partly)
+- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (works)
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
@@ -282,7 +282,7 @@ Each detail by the set it first appears in.
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
-- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (works)
+- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (partly)
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 
