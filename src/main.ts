@@ -633,7 +633,19 @@ async function start() {
   const unslideOnAxle = (part: number) => {
     if (!slid.has(part)) return false;
     slid.delete(part);
-    readAsBuilt(new Map());
+    // Its body's parts back where they were built, if the slide moved them (the 42078's roof gear,
+    // slid out of its mesh, turned freely after): each the move that takes it from where it is read
+    // now to its place as built, as the frame sees it (see readAsBuilt's asBuilt).
+    const moves = new Map<number, Matrix4>();
+    const back = kin.poses[0].clone().invert();
+    const body = mech.bodyOf[part];
+    for (const i of mech.bodies[body].parts) {
+      const toBuilt = startParts[i].matrix.clone().multiply(parts[i].matrix.clone().invert());
+      if (toBuilt.equals(new Matrix4())) continue;
+      const onFrame = back.clone().multiply(kin.poses[mech.bodyOf[i]]);
+      moves.set(i, onFrame.clone().multiply(toBuilt).multiply(onFrame.clone().invert()));
+    }
+    readAsBuilt(moves);
     showSlid();
     return true;
   };
