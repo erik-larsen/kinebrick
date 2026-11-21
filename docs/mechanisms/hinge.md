@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 73 works, 17 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 72 works, 18 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -174,7 +174,7 @@ Each detail by the set it first appears in.
 - *head:* The head on the front end of the shell, with its red-tipped sensors, folds down against the body. (works)
 - *arms:* Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim. (works)
 - *elbows:* Each twin blaster bends at the elbow of its arm. (partly)
-- *front legs:* The two front legs fold back under the body for rolling and swing down to stand on. (works)
+- *front legs:* The two front legs fold back under the body for rolling and swing down to stand on. (partly)
 - *back leg:* The single back leg swings up over the back to close the wheel, and down again to stand on. (works)
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
