@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { Quaternion } from 'three';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
@@ -93,5 +94,47 @@ describe('every gear in the LDraw library', () => {
       cylinders.flatMap((i) => library.cylinders[i].secs.filter((s: { shape: string; teeth?: number; rack?: unknown; worm?: number; radius: number }) => s.shape === 'G' && s.teeth && !s.rack && !s.worm && Math.abs(s.radius / s.teeth - 1.25) > 0.01).map(() => part)),
     );
     expect(wrong).toEqual([]);
+  });
+});
+
+// The free-parts rule (decision 309; Options.freeParts): a gear free on a turning shaft (2471, a round
+// hole), meshing with a train of two in neutral, slips on its shaft, one joint, rather than run the
+// train, two. Without the rule the solver mixes the two (the gear slips two thirds, the train runs a
+// third). The same whichever way the tree of joints grows: the model as written, and with the gear
+// listed first.
+describe('an idle gear on a turning shaft, beside a train in neutral', () => {
+  const turnOf = (text: string, freeParts: 'off' | 'all') => {
+    const parts = parseLdr(text);
+    const mech = inferMechanism(parts, table, roles);
+    const kin = new Kinematics(mech, { freeParts });
+    const shaft = mech.bodyOf[parts.findIndex((p) => p.name === '3704.dat')];
+    const gear = mech.bodyOf[parts.findIndex((p) => p.name === '2471.dat')];
+    const train = parts.flatMap((p, i) => (p.name === '3648.dat' ? [mech.bodyOf[i]] : []));
+    const link = kin.parentLink(shaft)!;
+    const before = kin.poses.map((m) => m.clone());
+    kin.holdWhatTheDragDoesntNeed(shaft, () => kin.jointMotion(link.joint) !== null, link.joint);
+    expect(kin.turnJoint(link.joint, 0.5)).toBeCloseTo(0.5, 9);
+    kin.letGoAfterDrag();
+    // How far a body turned against the frame.
+    const turned = (b: number) => {
+      const q = new Quaternion().setFromRotationMatrix(before[b].clone().invert().multiply(kin.poses[b]));
+      return 2 * Math.acos(Math.min(1, Math.abs(q.w)));
+    };
+    return { gear: turned(gear), train: train.map(turned) };
+  };
+  const written = readFileSync('models/idle-gear.ldr', 'utf-8');
+  const lines = written.split('\n');
+  const gearLine = lines.findIndex((l) => l.includes('2471.dat'));
+  const gearFirst = [lines[gearLine], ...lines.filter((_, i) => i !== gearLine)].join('\n');
+  for (const [what, text] of [['as written', written], ['with the gear listed first', gearFirst]] as const) {
+    it(`slips the gear and leaves the train still with the rule on (${what})`, () => {
+      const { gear, train } = turnOf(text, 'all');
+      expect(gear).toBeLessThan(1e-6);
+      for (const t of train) expect(t).toBeLessThan(1e-6);
+    });
+  }
+  it('mixes the two without it', () => {
+    const { train } = turnOf(written, 'off');
+    expect(Math.max(...train)).toBeGreaterThan(0.1);
   });
 });

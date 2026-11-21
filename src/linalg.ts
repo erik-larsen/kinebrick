@@ -32,7 +32,7 @@ const TIER_TOLERANCE = 2 ** -34;
 // tyres, to undo a turn of a ten-thousandth of a radian.
 const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
-const SPARSE_ROUNDS = Number((typeof process !== "undefined" && process.env?.KINEBRICK_SPARSE_ROUNDS) || 30);
+const SPARSE_ROUNDS = 30;
 // A sparse tier's least sum of sizes is often not one point but many (two friction joints that
 // could each slip as much), and reweighting picked one by its path, so by rounding. Each round's
 // least squares gets a least-norm term of RIDGE of its scale (decision 191 of 2026-11-18), which
@@ -225,7 +225,13 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
     // each component by 1 over its size in the round before, so the ones that can come to
     // nothing do, as static friction holds as many joints as it can rather than letting each
     // slip a little.
-    if (tier.sparse) {
+    // Not where the least squares already leaves the tier costing nothing (to TIER_TOLERANCE of its
+    // scale): there every size is rounding, each round weighs by 1 over rounding, and the least-norm
+    // term pulled the answer back towards the mix it started from (the free-parts rule's tier on the
+    // 8856 Whirlwind Rescue, whose plate's joints the least squares kept still and the rounds turned
+    // 0.33 for each radian of the wheel).
+    const left0 = tier.sparse ? b.map((x, j) => x + columns.reduce((sum, col, f) => sum + col[j] * y[f], 0)) : [];
+    if (tier.sparse && left0.reduce((sum, x) => sum + x * x, 0) > tiny) {
       for (let round = 0; round < SPARSE_ROUNDS; round++) {
         const r = b.map((x, j) => x + columns.reduce((sum, col, f) => sum + col[j] * y[f], 0));
         const biggest = Math.max(...r.map(Math.abs));

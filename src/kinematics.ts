@@ -4153,7 +4153,7 @@ export class Kinematics {
           const at = (t: number[]) => new Vector3(t[3], t[4], t[5]).add(new Vector3(t[0], t[1], t[2]).cross(p));
           return at(tb).sub(at(ta)).dot(slideAxes[k]!);
         });
-      list.unshift({ cost: freeRates, sparse: process.env.KINEBRICK_FREE_L2 !== "1" });
+      list.unshift({ cost: freeRates, sparse: true });
     }
     return list;
   }
