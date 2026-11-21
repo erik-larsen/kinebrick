@@ -1348,7 +1348,7 @@ async function main() {
   console.log(`Checking ${files.length} sets, ${jobs} at a time`);
   if (leftOut.length) console.log(`Left for the slow check, before a merge to main (npm run functions -- --slow): ${leftOut.map((s) => s.data.set).join(', ')}`);
   // Once a minute, how far it's got, with its functions' results so far as shares of all their
-  // functions, as the README has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
+  // functions, as the Status in DEVELOPER.md has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
   // (11%), 21 skipped or not checked (26%); checking 42082-1 (14 min), 9397-1 (3 min)".
   const progress = setInterval(() => {
     const now = Date.now();

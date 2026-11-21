@@ -1,4 +1,4 @@
-// Pointer interaction in the 3D view (see "Interaction" in the README):
+// Pointer interaction in the 3D view (see "Viewer" in the README):
 //   hover    highlight the part under the pointer, tint its body, label it
 //   press    show how the grabbed point can move: an arrow (push) or an arc (turn)
 //   drag     move the mechanism so the grabbed point follows the pointer
