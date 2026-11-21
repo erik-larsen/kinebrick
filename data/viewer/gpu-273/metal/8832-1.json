@@ -1,0 +1,120 @@
+{
+  "set": "8832-1",
+  "commit": "bff67fc6",
+  "date": "2026-11-21T09:19:32.194Z",
+  "load": 13.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 83,
+  "seconds": 15,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.",
+      "verdict": "not shown",
+      "why": "A: p59 3894, p42 3707, p61 3749, p60 3749 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p58 3894",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p59 3894": [
+              0,
+              0
+            ],
+            "p42 3707": [
+              0,
+              0
+            ],
+            "p61 3749": [
+              0,
+              0
+            ],
+            "p60 3749": [
+              0,
+              0
+            ],
+            "p9 2738": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p58 3894",
+          "way": -1,
+          "asked": 0.27,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 3894": [
+              0,
+              0
+            ],
+            "p42 3707": [
+              0,
+              0
+            ],
+            "p61 3749": [
+              0,
+              0
+            ],
+            "p60 3749": [
+              0,
+              0
+            ],
+            "p9 2738": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p58 3894",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p59 3894",
+            "p42 3707",
+            "p61 3749",
+            "p60 3749"
+          ],
+          "stops": [
+            "31/145"
+          ]
+        }
+      ],
+      "seconds": 15
+    }
+  ]
+}

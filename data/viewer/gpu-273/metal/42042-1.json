@@ -1,0 +1,148 @@
+{
+  "set": "42042-1",
+  "commit": "bff67fc6",
+  "date": "2026-11-21T09:20:49.215Z",
+  "load": 7.6,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1369,
+  "seconds": 46,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets.",
+      "verdict": "not shown",
+      "why": "B: the control could not be seen",
+      "msOneCall": 95,
+      "msPerStep": 29,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 5,
+        "reach": 30,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p539 15462",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1262,
+          "msOneCall": 95,
+          "stops": [],
+          "moved": {
+            "p576 18947": [
+              0,
+              51.57
+            ],
+            "p710 62520": [
+              0,
+              51.57
+            ],
+            "p45 6589": [
+              0,
+              30.94
+            ],
+            "p97 6589": [
+              0.05,
+              18.56
+            ],
+            "p154 10928": [
+              0.07,
+              11.13
+            ],
+            "p147 3648b": [
+              0.08,
+              3.71
+            ],
+            "p205 3648b": [
+              0.08,
+              3.71
+            ],
+            "p141 57519": [
+              0.08,
+              3.71
+            ],
+            "p199 57519": [
+              0.08,
+              3.71
+            ],
+            "p720 10928": [
+              0,
+              0
+            ],
+            "p747 10928": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p539 15462",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1220,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {
+            "p576 18947": [
+              0,
+              51.57
+            ],
+            "p710 62520": [
+              0,
+              51.57
+            ],
+            "p45 6589": [
+              0,
+              30.94
+            ],
+            "p97 6589": [
+              0.05,
+              18.55
+            ],
+            "p154 10928": [
+              0.07,
+              11.13
+            ],
+            "p147 3648b": [
+              0.08,
+              3.71
+            ],
+            "p205 3648b": [
+              0.08,
+              3.71
+            ],
+            "p141 57519": [
+              0.08,
+              3.71
+            ],
+            "p199 57519": [
+              0.08,
+              3.71
+            ],
+            "p720 10928": [
+              0,
+              0
+            ],
+            "p747 10928": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p539 15462",
+          "seen": false
+        }
+      ],
+      "seconds": 46
+    }
+  ]
+}
