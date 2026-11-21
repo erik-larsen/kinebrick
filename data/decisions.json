@@ -339,6 +339,10 @@
     {
       "date": "2026-11-21",
       "what": "Three more held (289): one wheel of the 8840 that a collision stops, and the 42078's container doors, whose lock bars the viewer does not let slide. 697 functions work. The worker found that the check read 30 models differently from the viewer, and that the check's stored collision data was three days stale; both are being mended."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The cheaper search for a motion is merged, stages A and B1 (290): every result the same to the last bit, and a full solver step a fifth to a quarter quicker in the solver owner's measurements (the 42083's steering 500 to 400 ms). In the viewer the 9397's first move gains only 5%; the solver owner is asked why."
     }
   ]
 }
