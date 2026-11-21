@@ -138,13 +138,13 @@
     ]
   },
   "generated": {
-    "commit": "bd56d8cf",
+    "commit": "1ed861da",
     "date": "2026-11-21",
-    "seconds": 8,
+    "seconds": 9,
     "counts": {
-      "works": 4,
-      "partly": 2,
-      "no": 2
+      "works": 5,
+      "no": 2,
+      "partly": 1
     },
     "loose": [
       "p331 30395"
@@ -226,81 +226,74 @@
             0.7
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "In one long drag of a wheel in the viewer the drive slips: the crankshaft p349 turns 25.8 degrees for 86 degrees in, where the check has rate 3.89, and the piston p352 moves 0.76 LDU; short drags by pointer do move it. Viewer sweep, decision 286.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              1.5,
-              -1.5
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p116 62821": [
+              1,
+              3.3e-13
+            ],
+            "p349 2853": [
+              3.89,
+              5.31e-13
+            ],
+            "p352 2851": [
+              0,
+              26.2
+            ],
+            "p353 2851": [
+              0,
+              25.8
+            ],
+            "p50 32270": [
+              0,
+              3.88e-24
+            ],
+            "p95 87761": [
+              0,
+              2.59e-13
             ]
-          ],
-          "rates": [
-            {
-              "p116 62821": [
-                1,
-                3.3e-13
-              ],
-              "p349 2853": [
-                3.89,
-                5.31e-13
-              ],
-              "p352 2851": [
-                0,
-                26.2
-              ],
-              "p353 2851": [
-                0,
-                25.8
-              ],
-              "p50 32270": [
-                0,
-                3.88e-24
-              ],
-              "p95 87761": [
-                0,
-                2.59e-13
-              ]
-            }
-          ],
-          "expected": [
-            {
-              "p349 2853": 3.89
-            }
-          ],
-          "back": [
+          }
+        ],
+        "expected": [
+          {
+            "p349 2853": 3.89
+          }
+        ],
+        "back": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
+              0,
+              0
+            ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
-          ],
-          "seconds": 2.5
-        }
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -376,7 +369,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -487,7 +480,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p163 4254",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -740,6 +733,6 @@
         "seconds": 0.5
       }
     ],
-    "peak": 680
+    "peak": 755
   }
 }

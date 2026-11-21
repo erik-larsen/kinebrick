@@ -158,9 +158,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
+    "commit": "1ed861da",
     "date": "2026-11-21",
-    "seconds": 29,
+    "seconds": 34,
     "counts": {
       "works": 4,
       "not back": 1,
@@ -347,21 +347,21 @@
           {
             "p615 15790": [
               2.78,
-              7.93e-13
+              1.23e-12
             ],
             "p647 15790": [
               2.78,
-              9.42e-13
+              1.06e-12
             ]
           },
           {
             "p615 15790": [
               2.78,
-              7.93e-13
+              1.23e-12
             ],
             "p647 15790": [
               2.78,
-              9.42e-13
+              1.06e-12
             ]
           }
         ],
@@ -419,7 +419,7 @@
             "p647 15790"
           ]
         ],
-        "seconds": 3.9
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -504,7 +504,7 @@
             0.33
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -545,7 +545,7 @@
           {
             "p544 64782": [
               0,
-              1.51e-111
+              3.03e-111
             ],
             "p568 92696": [
               0,
@@ -615,7 +615,7 @@
         ],
         "cause": "not-driven",
         "detail": "p544 64782",
-        "seconds": 4.1
+        "seconds": 4.6
       },
       {
         "result": "no",
@@ -681,7 +681,7 @@
         ],
         "cause": "loose-part",
         "detail": "p700 32270",
-        "seconds": 2.6
+        "seconds": 3.3
       },
       {
         "result": "no",
@@ -747,7 +747,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 14720",
-        "seconds": 2.3
+        "seconds": 2.9
       },
       {
         "result": "no",
@@ -814,7 +814,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -899,7 +899,7 @@
         ],
         "cause": "not-driven",
         "detail": "p883 4254",
-        "seconds": 1.9
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -1017,7 +1017,7 @@
           [],
           []
         ],
-        "seconds": 7
+        "seconds": 8.3
       },
       {
         "result": "works",
@@ -1083,9 +1083,9 @@
           [],
           []
         ],
-        "seconds": 3.3
+        "seconds": 3.7
       }
     ],
-    "peak": 941
+    "peak": 915
   }
 }
