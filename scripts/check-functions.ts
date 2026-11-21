@@ -1330,7 +1330,14 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt, slow, controlMoved, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
-      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      // Two ways that went the same distance are a tie, and the tie goes to the first way (the sort
+      // keeps the order of equals). "The same" is within TIE (radians, or LDU for a slide or a push):
+      // a tolerance at rounding level, not a tuned threshold. Both ways of a free control turn the
+      // full reach, and the last bits of rounding (which the working set changes, decision 272)
+      // must not choose which way's rates are stored.
+      const TIE = 1e-9;
+      const further = (x: { turned: number }, y: { turned: number }) => (Math.abs(Math.abs(y.turned) - Math.abs(x.turned)) > TIE ? Math.abs(y.turned) - Math.abs(x.turned) : 0);
+      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || further(x, y))[0];
       let each = bothWays();
       kin.restore(start);
       let best = bestOf(each);
