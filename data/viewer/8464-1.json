@@ -1,26 +1,25 @@
 {
   "set": "8464-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:20:18.165Z",
-  "load": 19.3,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:41:59.126Z",
+  "load": 9.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 544,
-  "seconds": 28,
+  "seconds": 38,
   "functions": [
     {
       "function": 4,
       "does": "The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
-      "verdict": "not shown",
-      "why": "A: none not moved; p31 3650a listed to stay moved",
-      "msOneCall": 40,
-      "msPerStep": 6,
+      "verdict": "shown",
+      "msOneCall": 26,
+      "msPerStep": 2,
       "time": {
-        "open": 15,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 5,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -30,21 +29,21 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 249,
-          "msOneCall": 40,
+          "ms": 104,
+          "msOneCall": 26,
           "stops": [],
           "moved": {
             "p567 2995": [
               0,
-              85.94
+              12.28
             ],
             "p17 6589": [
               0,
-              85.94
+              12.28
             ],
             "p31 3650a": [
               0,
-              57.3
+              0
             ],
             "p427 2854": [
               0,
@@ -57,21 +56,21 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 226,
-          "msOneCall": 12,
+          "ms": 91,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p567 2995": [
               0,
-              85.94
+              12.28
             ],
             "p17 6589": [
               0,
-              85.94
+              12.28
             ],
             "p31 3650a": [
               0,
-              57.3
+              0
             ],
             "p427 2854": [
               0,
@@ -80,23 +79,36 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p565 2995",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p567 2995",
+            "p17 6589"
+          ],
+          "stops": []
+        }
+      ],
       "seconds": 20
     },
     {
       "function": 5,
       "does": "The front differential does the same for the front wheels.",
       "verdict": "not shown",
-      "why": "A: none not moved; p132 3650a listed to stay moved",
-      "msOneCall": 12,
-      "msPerStep": 5,
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 25,
+      "msPerStep": 2,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 5,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -106,8 +118,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 228,
-          "msOneCall": 12,
+          "ms": 104,
+          "msOneCall": 25,
           "stops": [],
           "moved": {
             "p571 2995": [
@@ -120,7 +132,7 @@
             ],
             "p132 3650a": [
               0,
-              57.3
+              0
             ],
             "p427 2854": [
               0,
@@ -133,8 +145,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 228,
-          "msOneCall": 12,
+          "ms": 92,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p571 2995": [
@@ -147,7 +159,7 @@
             ],
             "p132 3650a": [
               0,
-              57.3
+              0
             ],
             "p427 2854": [
               0,
@@ -156,8 +168,18 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p569 2995",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 17
     }
   ]
 }

@@ -1,213 +1,302 @@
 {
   "set": "8851-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:35:55.311Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:21:32.504Z",
+  "load": 19.1,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 325,
-  "seconds": 21,
+  "seconds": 75,
   "functions": [
     {
       "function": 5,
       "does": "The cab and arm slew round on the turntable above the tracks.",
-      "verdict": "not shown",
-      "why": "A: none not moved; p908 3649 against p852 3738, p909 3649 against p852 3738 listed to stay moved; not decided: p852 3738: a travel of 0.2 rad or less each way, stopped at +0.035 rad (891/893); -0.035 rad (891/893)",
+      "verdict": "shown",
       "msOneCall": 24,
-      "msPerStep": 14,
+      "msPerStep": 2,
       "time": {
-        "open": 8,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 7
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p852 3738",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 99,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p906 3403": [
+              0,
+              85.94
+            ],
+            "p908 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p909 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p1038 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p852 3738",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 92,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p906 3403": [
+              0,
+              85.94
+            ],
+            "p908 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p909 3649 against p852 3738": [
+              0,
+              0
+            ],
+            "p1038 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p852 3738",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p906 3403"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 12
+    },
+    {
+      "function": 6,
+      "does": "The tracks roll freely round the 40-tooth sprockets and the 16-tooth idlers; nothing drives them.",
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the four 40 tooth sprockets p908 to p911 at 0.105 rad each way (parts 891/893 and 892/894). Viewer sweep with a full turn asked, decision 288."
+      },
+      "verdict": "not shown",
+      "msOneCall": 30,
+      "msPerStep": 5,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 4,
+        "A": 0,
+        "B": 47
       },
       "stop": {
-        "control": "p852 3738",
+        "control": "p908 3649",
         "way": 1,
-        "went": 0.035,
+        "went": 0.105,
         "asked": 1.5,
         "by": [
           "891/893"
         ]
       },
       "stops": [
-        "891/893"
+        "891/893",
+        "892/894"
       ],
       "A": [
         {
-          "control": "p852 3738",
+          "control": "p908 3649",
           "way": 1,
           "asked": 1.5,
-          "went": 0.035,
+          "went": 0.105,
           "ms": 14,
-          "msOneCall": 24,
+          "msOneCall": 30,
           "stops": [
             "891/893"
           ],
-          "moved": {
-            "p906 3403": [
-              0,
-              2
-            ],
-            "p908 3649 against p852 3738": [
-              0,
-              4.29
-            ],
-            "p909 3649 against p852 3738": [
-              0,
-              4.29
-            ],
-            "p1038 3703": [
-              0,
-              0
-            ]
-          }
+          "moved": {}
         },
         {
-          "control": "p852 3738",
+          "control": "p908 3649",
           "way": -1,
           "asked": 1.5,
-          "went": -0.035,
-          "ms": 11,
-          "msOneCall": 9,
+          "went": -0.105,
+          "ms": 9,
+          "msOneCall": 6,
           "stops": [
             "891/893"
           ],
-          "moved": {
-            "p906 3403": [
-              0,
-              2
-            ],
-            "p908 3649 against p852 3738": [
-              0,
-              4.29
-            ],
-            "p909 3649 against p852 3738": [
-              0,
-              4.29
-            ],
-            "p1038 3703": [
-              0,
-              0
-            ]
-          }
+          "moved": {}
+        },
+        {
+          "control": "p909 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.105,
+          "ms": 9,
+          "msOneCall": 4,
+          "stops": [
+            "891/893"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p909 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 9,
+          "msOneCall": 4,
+          "stops": [
+            "891/893"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p910 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.105,
+          "ms": 9,
+          "msOneCall": 4,
+          "stops": [
+            "892/894"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p910 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 7,
+          "msOneCall": 4,
+          "stops": [
+            "892/894"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p911 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.105,
+          "ms": 8,
+          "msOneCall": 4,
+          "stops": [
+            "892/894"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p911 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 9,
+          "msOneCall": 5,
+          "stops": [
+            "892/894"
+          ],
+          "moved": {}
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p908 3649",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "891/893"
+          ]
+        },
+        {
+          "control": "p909 3649",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "891/893"
+          ]
+        },
+        {
+          "control": "p910 3649",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "892/894"
+          ]
+        },
+        {
+          "control": "p911 3649",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "892/894"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
-          "control": "p852 3738",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (891/893); -0.035 rad (891/893)"
+          "control": "p908 3649",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (891/893); -0.105 rad (891/893)"
+        },
+        {
+          "control": "p909 3649",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (891/893); -0.105 rad (891/893)"
+        },
+        {
+          "control": "p910 3649",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (892/894); -0.105 rad (892/894)"
+        },
+        {
+          "control": "p911 3649",
+          "judged": "not shown",
+          "why": "turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (892/894); -0.105 rad (892/894)"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "not shown",
       "moved": {
-        "verdict": "not shown",
-        "why": "A: none not moved; p908 3649 against p852 3738, p909 3649 against p852 3738 listed to stay moved"
+        "verdict": "shown"
       },
-      "seconds": 10
-    },
-    {
-      "function": 6,
-      "does": "The tracks roll freely round the 40-tooth sprockets and the 16-tooth idlers; nothing drives them.",
-      "verdict": "shown",
-      "msOneCall": 11,
-      "msPerStep": 5,
-      "time": {
-        "open": 1,
-        "collisions": 0,
-        "first": 0,
-        "reach": 0,
-        "A": 9,
-        "B": 0
-      },
-      "stop": null,
-      "stops": [],
-      "A": [
-        {
-          "control": "p908 3649",
-          "way": 1,
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 11,
-          "msOneCall": 11,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p908 3649",
-          "way": -1,
-          "asked": 0.1,
-          "went": -0.1,
-          "ms": 10,
-          "msOneCall": 8,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p909 3649",
-          "way": 1,
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 15,
-          "msOneCall": 11,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p909 3649",
-          "way": -1,
-          "asked": 0.1,
-          "went": -0.1,
-          "ms": 10,
-          "msOneCall": 8,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p910 3649",
-          "way": 1,
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 10,
-          "msOneCall": 9,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p910 3649",
-          "way": -1,
-          "asked": 0.1,
-          "went": -0.1,
-          "ms": 10,
-          "msOneCall": 8,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p911 3649",
-          "way": 1,
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 10,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p911 3649",
-          "way": -1,
-          "asked": 0.1,
-          "went": -0.1,
-          "ms": 10,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        }
-      ],
-      "B": [],
-      "seconds": 11
+      "why": "a collision stops a control: p908 3649: turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (891/893); -0.105 rad (891/893); p909 3649: turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (891/893); -0.105 rad (891/893); p910 3649: turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (892/894); -0.105 rad (892/894); p911 3649: turns without end (kinds crawler-tracks; the text says: tracks, roll), but a collision stops it at +0.105 rad (892/894); -0.105 rad (892/894)",
+      "seconds": 63
     }
   ]
 }

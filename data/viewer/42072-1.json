@@ -1,24 +1,25 @@
 {
   "set": "42072-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:46:00.181Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:22:26.172Z",
+  "load": 3.1,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 134,
-  "seconds": 23,
+  "seconds": 79,
   "functions": [
     {
       "function": 1,
       "does": "The rear wheels turn together on the axle through the pull-back motor: pulled back along the ground they wind it up, and let go the motor drives the car forward.",
       "verdict": "shown",
-      "msOneCall": 6,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
-        "open": 9,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 4,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -29,7 +30,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 30,
-          "msOneCall": 6,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p70 3708": [
@@ -55,7 +56,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 23,
+          "ms": 24,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -82,7 +83,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 24,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -109,7 +110,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 23,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -132,22 +133,49 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 13
+      "B": [
+        {
+          "control": "p113 54087",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p70 3708",
+            "p113 54087",
+            "p114 54087"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p114 54087",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p70 3708",
+            "p113 54087",
+            "p114 54087"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 31
     },
     {
       "function": 2,
       "does": "The front wheels roll freely on their axle.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 7,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -157,8 +185,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 21,
-          "msOneCall": 1,
+          "ms": 29,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p71 3708": [
@@ -172,7 +200,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21,
+          "ms": 27,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -187,7 +215,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 20,
+          "ms": 24,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -202,7 +230,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 24,
+          "ms": 25,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -213,22 +241,45 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 6
+      "B": [
+        {
+          "control": "p115 54087",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p71 3708"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p116 54087",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p71 3708"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 29
     },
     {
       "function": 3,
       "does": "When the car runs into a wall, the lever sticking out low at the front is knocked back, and its upright arm flicks the loose bonnet block up off the car.",
       "verdict": "shown",
-      "msOneCall": 2,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -238,12 +289,12 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 3,
-          "msOneCall": 1,
+          "ms": 6,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p52 18654": [
-              3.99,
+              4,
               11.46
             ]
           }
@@ -254,7 +305,7 @@
           "asked": 0.07,
           "went": -0.07,
           "ms": 1,
-          "msOneCall": 2,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p52 18654": [
@@ -264,8 +315,23 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p49 32140",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p52 18654"
+          ],
+          "stops": [
+            "48/49",
+            "49/125"
+          ]
+        }
+      ],
+      "seconds": 19
     }
   ]
 }
