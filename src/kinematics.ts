@@ -2129,19 +2129,24 @@ export class Kinematics {
   // The free-parts rule's choice (decisions 291, 295 and 309), made once, at a drag's first step, and kept
   // for the drag as its holds are: of the candidates (every joint the drag doesn't drive, but the wheels on
   // the ground and the control's), those that the motion turning the control with as few of them turning as
-  // can (the least sum of their sizes, as static friction holds as many joints as it can) leaves still. Each
-  // weighs by the parts on its two bodies: of two equal answers, the joint that carries fewer parts turns
-  // (an idle gear slips on its shaft rather than run a train of gears and axles). Kept, the choice can't
-  // jump between equal answers from one step to the next.
+  // can (the least sum of their sizes, as static friction holds as many joints as it can), after the tiers
+  // that come before turning, leaves still. Each weighs by the parts on its two bodies: of two equal answers,
+  // the joint that carries fewer parts turns (an idle gear slips on its shaft rather than run a train of gears
+  // and axles). Kept, the choice can't jump between equal answers from one step to the next.
   private chooseHeldJoints(joint: number, basis: number[][], motions: number[][]): number[] {
     const cands = this.drag.candidates;
     if (!cands.length || !motions.length) return [];
     const zs = orthonormalize(motions);
-    const { rateOf, rate, size } = this.measures(joint, basis);
+    const { turning, rateOf, rate, size } = this.measures(joint, basis);
     const partsOn = (this.bodyParts ??= this.mech.bodyOf.reduce((n, b) => ((n[b] = (n[b] ?? 0) + 1), n), new Array(this.bodyCount).fill(0)));
     const weight = cands.map((j) => partsOn[this.mech.joints[j].bodyA] + partsOn[this.mech.joints[j].bodyB]);
     const tier: Tier = { cost: (z) => cands.map((j, k) => weight[k] * this.basisJointRate(z, j, basis, rateOf)), sparse: true };
-    const z = leastTurning(zs, rate, [tier, { cost: size, joints: true }]);
+    // Before that, the tiers that come before turning in the drag's own choice (see leastTiers): what's mounted
+    // on the car, its steering, friction pins, the housing, and a car on two tyres kept from turning. The rule
+    // takes the place of the turning tiers only: else the 42123 McLaren Senna GTR, on two of its tyres, slid
+    // and swung round on them, its drive train held, where rolling straight would turn it.
+    const first = this.leastTiers(joint, turning, rateOf, size, basis).slice(0, 5);
+    const z = leastTurning(zs, rate, [...first, tier, { cost: size, joints: true }]);
     if (!z) return [];
     const c = Math.abs(rate(z));
     if (!(c > 0)) return [];
@@ -4152,7 +4157,12 @@ export class Kinematics {
       for (let c = 0; c < z.length; c++) sum += row[c] * z[c];
       return sum;
     };
-    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b) && !this.closingFollowers.has(b));
+    // A resting body on something other than what it's mounted on (a push rod on its cam) goes as
+    // that moves it, not as a mount: kept still on its mount, it would keep the cam still too, and
+    // the drag would go another way (the 42112 Concrete Mixer Truck's front wheel, rolled, turned its
+    // steering instead once a lobe began to lift a rod).
+    const riding = new Set((this.mech.rests ?? []).flatMap((r) => { const on = restingOn(this, r); return on && on.body !== this.mounts.get(r.body) ? [r.body] : []; }));
+    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b) && !this.closingFollowers.has(b) && !riding.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
     // The steering is kept still on a car on its tyres, and lifted too: in the hand, nothing turns a
     // knuckle against its chassis but friction in the steering, which holds it there (the 42053
