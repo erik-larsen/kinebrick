@@ -91,6 +91,7 @@ import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { endlessKinds, endlessPart } from './endless.ts';
 import { normalizePartName } from '../src/connections.ts';
 import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
@@ -1442,7 +1443,23 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
       combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still))!;
     }
     // The collisions that stopped a way (collisionStops), beside the result.
-    const withCollisions = <T extends object>(r: T) => ({ ...r, ...(collisionStops.length ? { collisionStops } : {}) });
+    // A function whose kinds all turn without end (see endless.ts) works at most partly where a
+    // collision stopped a control that is itself a part that turns without end, a wheel, sprocket
+    // or shaft (endlessPart; decisions 279 and 282 of 2026-11-21), however far its parts moved
+    // first: a wheel that rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
+    // A lever stopped (the 8063's) is at the end of its travel, whatever the function's kinds.
+    // What tells such a part from a lever is the part itself (endlessPart: its role, else its LDraw
+    // title), not its joint: a wheel and a lever both turn on a revolute joint, and the 8063's lever
+    // is a connector turning on its own axle. A function with several controls or ways of which only
+    // some are stopped so is at most partly too: one stopped wheel is one the user sees stop.
+    const endless = endlessKinds(fn.mechanisms).endless;
+    const controlRefs = [fn.control!].flat();
+    const withCollisions = <T extends { result?: Result; cause?: Cause; detail?: string }>(r: T): T => {
+      if (!collisionStops.length) return r;
+      const judged = endless ? collisionStops.find(([wi]) => controlRefs[wi] !== undefined && endlessPart(parts[part(controlRefs[wi])].name)) : undefined;
+      const stopped = judged && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${controlRefs[judged[0]]}: ${name(judged[2])} against ${name(judged[3])}` } : {};
+      return { ...r, ...stopped, collisionStops };
+    };
     // A function that doesn't work as read, whose control moves only together with a bigger body
     // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
     // the cab): worked again with those pins freed, as a user who sees that would press it with

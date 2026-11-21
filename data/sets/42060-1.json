@@ -131,9 +131,9 @@
     ]
   },
   "generated": {
-    "commit": "fe0dd791",
+    "commit": "6797e6f7",
     "date": "2026-11-21",
-    "seconds": 5,
+    "seconds": 6,
     "counts": {
       "partly": 2,
       "not back": 1,
@@ -221,7 +221,7 @@
         ],
         "cause": "one-link-too-many",
         "onPlay": 0.33,
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -292,7 +292,7 @@
             0
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -410,7 +410,7 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -620,138 +620,133 @@
             0.2
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
-        "hold": {
-          "reason": "The real part turns without end, but in the viewer a collision stops it: the track wheel p308 at once (parts 202/304). Viewer sweep, decision 279.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
+        "turned": [
+          [
+            0.93,
+            0
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {},
+          {},
+          {}
+        ],
+        "back": [
+          [
             [
-              0.93,
+              0,
               0
             ],
             [
-              1.5,
-              -1.5
-            ],
-            [
-              1.5,
-              -1.5
-            ]
-          ],
-          "rates": [
-            {},
-            {},
-            {}
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ],
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ],
-            [
-              null,
-              null
-            ],
-            [
-              null,
-              null
-            ]
-          ],
-          "movedBy": [
-            [],
-            [],
-            []
-          ],
-          "collisionStops": [
-            [
-              0,
-              1,
-              202,
-              233,
-              0.93,
-              0.93
-            ],
-            [
-              0,
-              -1,
-              202,
-              304,
               0,
               0
             ]
           ],
-          "seconds": 0.7
-        }
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "cause": "stopped-endless",
+        "detail": "p308 94925: p202 41239 against p233 42003",
+        "collisionStops": [
+          [
+            0,
+            1,
+            202,
+            233,
+            0.93,
+            0.93
+          ],
+          [
+            0,
+            -1,
+            202,
+            304,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -819,6 +814,6 @@
         "seconds": 0.2
       }
     ],
-    "peak": 362
+    "peak": 365
   }
 }
