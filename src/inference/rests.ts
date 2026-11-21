@@ -107,6 +107,24 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     undersides.set(part, { point: middle, normal, across: sideways, along: lengthways, half: [halfOf(sideways), halfOf(lengthways)] });
   }
   const studs = cyls.filter((c) => c.gender === 'M' && c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 6) < AXIS_TOLERANCE && -c.dir.y > 0.5);
+  // A beam's (a liftarm's) rounded end round one of its holes, as a cylinder to stand on: half the
+  // beam's width round the hole's line. The width is a fact of the part, read from its own holes:
+  // a beam's holes stand in a row a stud apart, and the beam is as wide as that pitch, so another
+  // hole of the same part parallel to this one, one pitch (PITCH, 20 LDU) off its line, makes it a
+  // beam's hole, its rounded end reaching half the pitch round it. A hole with no such neighbour
+  // (a single hole in a brick, a connector's) is not stood on.
+  const PITCH = 20;
+  const femaleOf = new Map<number, WorldCylinder[]>();
+  for (const c of cyls) if (c.gender === 'F') femaleOf.set(c.part, [...(femaleOf.get(c.part) ?? []), c]);
+  const beamHalfWidth = (c: WorldCylinder): number | null => {
+    for (const d of femaleOf.get(c.part) ?? []) {
+      if (d === c || Math.abs(d.dir.dot(c.dir)) < 1 - ANGLE_TOLERANCE) continue;
+      const off = new Vector3().subVectors(d.start, c.start);
+      const across = off.addScaledVector(c.dir, -off.dot(c.dir)).length();
+      if (Math.abs(across - PITCH) < AXIS_TOLERANCE) return PITCH / 2;
+    }
+    return null;
+  };
   const rests: Rest[] = [];
   for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle' && Math.abs(c.dir.y) > 1 - ANGLE_TOLERANCE)) {
     const rod = bodyOf[axle.part];
@@ -138,7 +156,11 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     const on: RestContact[] = [];
     for (const c of cyls) {
       const body = bodyOf[c.part];
-      if (c.gender !== 'M' || body === rod || body === mount || Math.abs(c.dir.dot(up)) > ANGLE_TOLERANCE || !turnsAbout(body, c.dir)) continue;
+      // A pin or axle (male) is stood on round its own radius; a beam's hole (female), round the
+      // beam's rounded end (see beamHalfWidth): the 42112's camshaft lifts its pistons by liftarm
+      // ends, where the 858's lifts its push rods by pins.
+      const half = c.gender === 'F' ? beamHalfWidth(c) : null;
+      if ((c.gender !== 'M' && half === null) || body === rod || body === mount || Math.abs(c.dir.dot(up)) > ANGLE_TOLERANCE || !turnsAbout(body, c.dir)) continue;
       let at = 0;
       for (const sec of c.secs) {
         const start = c.start.clone().addScaledVector(c.dir, at);
@@ -147,7 +169,7 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
         if (t < -BUSH_RADIUS || t > sec.length + BUSH_RADIUS) continue; // not across under it
         const off = new Vector3().subVectors(start.clone().addScaledVector(c.dir, t), footAt);
         if (Math.abs(off.dot(up)) > REACH || off.addScaledVector(up, -off.dot(up)).length() > BUSH_RADIUS + REACH) continue;
-        on.push({ face: foot(bottom[0]), body, shape: { kind: 'cylinder', point: start, axis: c.dir.clone(), length: sec.length, radius: sec.radius } });
+        on.push({ face: foot(bottom[0]), body, shape: { kind: 'cylinder', point: start, axis: c.dir.clone(), length: sec.length, radius: half ?? sec.radius } });
       }
     }
     if (!on.length) continue;
