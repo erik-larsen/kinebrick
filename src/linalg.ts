@@ -810,24 +810,39 @@ export function inBasis(rows: (Row | BodyRow)[], basis: number[][]): Row[] {
   const support = supportOf(basis);
   return rows.map((row) => {
     const out = new Array(q).fill(0);
+    // The places written (see placesOf): every other one holds the +0 it started with.
+    const mark = new Uint8Array(q);
+    const places: number[] = [];
+    const add = (x: number, b: number[], at: Int32Array) => {
+      for (const c of at) {
+        out[c] += x * b[c];
+        if (mark[c]) continue;
+        mark[c] = 1;
+        places.push(c);
+      }
+    };
     if (row instanceof BodyRow) {
       // Its places in order, as the list's were gone over: the same sums.
       for (const [i, x] of row.entries()) {
         if (x === 0) continue;
-        const b = basis[i];
-        for (const c of support[i]) out[c] += x * b[c];
+        add(x, basis[i], support[i]);
       }
-      return out;
+    } else {
+      for (let i = 0; i < row.length; i++) {
+        const x = row[i];
+        if (x === 0) continue;
+        add(x, basis[i], support[i]);
+      }
     }
-    for (let i = 0; i < row.length; i++) {
-      const x = row[i];
-      if (x === 0) continue;
-      const b = basis[i];
-      for (const c of support[i]) out[c] += x * b[c];
-    }
+    placesOf.set(out, places);
     return out;
   });
 }
+
+// The places of a row inBasis made that may not be 0, for nullSpace to go over those only: every other
+// place holds +0. Kept beside the row, for as long as the row is; a row changed after inBasis made it
+// must not be given to nullSpace (none is: the rows are made for it, or read).
+const placesOf = new WeakMap<Row, number[]>();
 
 // The motion vector with these coordinates in a basis (see treeBasis).
 export function fromBasis(z: number[], basis: number[][]): number[] {
@@ -961,38 +976,65 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
   return result;
 }
 
+// Thrown where the rows of a null space hold a value that is not finite (NaN or ±∞), or come to one:
+// no sum makes sense of it, and on a NaN the rook pivoting never settled (a NaN is never as large as
+// itself). The step that met it is refused (see Kinematics.refuseNotFinite; decision 280).
+export class NotFinite extends Error {}
+
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
-// Plain loops on typed arrays: this runs many times a step.
+// Plain loops on typed arrays: this runs many times a step. Each row's places that may not be 0, and
+// each column's rows that may not be 0 there, are kept, so that the searches and the elimination go
+// over those only: a step's rows have a few places each out of hundreds (decision 277). A row inBasis
+// made comes with its places (see placesOf), and isn't gone over whole. The pivots, and every sum,
+// are those of the plain elimination (the test keeps it, oldNullSpace).
 export function nullSpace(rows: Row[], n: number): number[][] {
   kernelSpy.on?.('nullSpace', [rows, n]);
-  const a = rows.map((r) => Float64Array.from(r));
-  const pivotColumns: number[] = [];
-  const used = new Array(n).fill(false);
-  // The columns not used yet, in order: a row's largest is looked for among them only, in the order
-  // and with the comparisons it always was (going over every column and passing the used ones).
-  let unused = Int32Array.from({ length: n }, (_, k) => k);
-  // Rows found to have nothing left above RANK_TOLERANCE (rows that depend on others), until
-  // they next change: the search everywhere left (below) skips them, as they can't be chosen. A
-  // row's entries left only get fewer, as columns are used, so it stays tiny until taking a
-  // pivot row from it changes it. Without this, a big model's search went over its dependent rows
-  // again for every pivot, and took most of a step.
-  const tiny = new Set<Float64Array>();
-  // Each row's places that may not be 0 (all those that aren't, and some that came to 0), with a
-  // mark for each place: the search for a row's largest goes over these only. Taking a pivot row
-  // from a row changes only the pivot row's places, which are added. Kept with the row itself, as
-  // rows change places.
-  const places = new Map<Float64Array, { list: number[]; mark: Uint8Array }>();
-  for (const x of a) {
+  // Each row as a line: its numbers; its places that may not be 0 (all those that aren't, and some
+  // that came to 0), with a mark for each, so that the search for a row's largest goes over these only;
+  // where it stands among the rows; and whether it was found to have nothing left above
+  // RANK_TOLERANCE (a row that depends on others), until it next changes: the search everywhere left
+  // (below) skips it, as it can't be chosen. A row's entries left only get fewer, as columns are used,
+  // so it stays tiny until taking a pivot row from it changes it. Without this, a big model's search
+  // went over its dependent rows again for every pivot, and took most of a step. Taking a pivot row
+  // from a row changes only the pivot row's places, which are added.
+  const lines = rows.map((r, i) => {
+    const x = new Float64Array(n);
     const list: number[] = [];
     const mark = new Uint8Array(n);
-    for (let k = 0; k < n; k++) {
-      if (x[k] === 0) continue;
-      list.push(k);
-      mark[k] = 1;
+    const known = placesOf.get(r);
+    if (known) {
+      // Every other place holds +0 (see inBasis), as the copy would.
+      for (const k of known) {
+        const v = r[k];
+        x[k] = v;
+        if (v === 0) continue;
+        if (!Number.isFinite(v)) throw new NotFinite(`a null space's row holds ${v}`);
+        list.push(k);
+        mark[k] = 1;
+      }
+    } else {
+      for (let k = 0; k < n; k++) {
+        const v = r[k];
+        x[k] = v;
+        if (v === 0) continue;
+        if (!Number.isFinite(v)) throw new NotFinite(`a null space's row holds ${v}`);
+        list.push(k);
+        mark[k] = 1;
+      }
     }
-    places.set(x, { list, mark });
-  }
-  for (let r = 0; r < a.length; r++) {
+    return { x, list, mark, at: i, tiny: false };
+  });
+  type Line = (typeof lines)[number];
+  const pivotColumns: number[] = [];
+  const used = new Uint8Array(n);
+  // The first column not used yet: a row's largest is looked for from it, in the order and with the
+  // comparisons it always was (going over every column and passing the used ones).
+  let first = 0;
+  // Each column's lines that may not be 0 there: those whose places list it, each once (its mark),
+  // listed still when its entry there comes to 0.
+  const inColumn: Line[][] = Array.from({ length: n }, () => []);
+  for (const line of lines) for (const k of line.list) inColumn[k].push(line);
+  for (let r = 0; r < lines.length; r++) {
     // Pivot on an entry that's the largest in both its row and its column ("rook pivoting"),
     // for accuracy: picking only down a column lets rounding errors grow until an equation
     // implied by the others looks independent. If that finds nothing, look everywhere left.
@@ -1000,11 +1042,12 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     // same as going over every column left in order: a 0 is never larger than anything, and NaN
     // neither, so only the row's places that may not be 0 can take over from the first column left,
     // and of two as large the earlier wins whichever order they come in.
+    while (first < n && used[first]) first++;
     const largestInRow = (i: number) => {
-      if (unused.length === 0) return -1;
-      const x = a[i];
-      let best = unused[0];
-      for (const k of places.get(x)!.list) {
+      if (first >= n) return -1;
+      const { x, list } = lines[i];
+      let best = first;
+      for (const k of list) {
         if (used[k] || k === best) continue;
         const v = Math.abs(x[k]);
         const w = Math.abs(x[best]);
@@ -1012,9 +1055,19 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       }
       return best;
     };
+    // Of the rows from r on, the first with the largest entry in column k: r, unless a later row's
+    // is larger (strictly). The same as going down every row in order: a 0 is never larger than
+    // anything, nor NaN, so only the rows listed in the column can take over from r, and of two as
+    // large the earlier wins whichever order they come in.
     const largestInColumn = (k: number) => {
       let best = r;
-      for (let i = r + 1; i < a.length; i++) if (Math.abs(a[i][k]) > Math.abs(a[best][k])) best = i;
+      let most = Math.abs(lines[r].x[k]);
+      for (const line of inColumn[k]) {
+        const i = line.at;
+        if (i <= r) continue;
+        const v = Math.abs(line.x[k]);
+        if (v > most || (v === most && best !== r && i < best)) [best, most] = [i, v];
+      }
       return best;
     };
     let best = r;
@@ -1023,45 +1076,53 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     for (;;) {
       const i = largestInColumn(c);
       const k = largestInRow(i);
-      const done = Math.abs(a[i][k]) <= Math.abs(a[i][c]);
+      const done = Math.abs(lines[i].x[k]) <= Math.abs(lines[i].x[c]);
+      // Neither larger nor not: a NaN, come of sums too large for a number (finite rows can overflow).
+      if (!done && !(Math.abs(lines[i].x[k]) > Math.abs(lines[i].x[c]))) throw new NotFinite('a null space came to NaN');
       best = i;
       if (done) break;
       c = k;
     }
-    if (Math.abs(a[best][c]) < RANK_TOLERANCE) {
-      for (let i = r; i < a.length; i++) {
-        if (tiny.has(a[i])) continue;
+    if (Math.abs(lines[best].x[c]) < RANK_TOLERANCE) {
+      for (let i = r; i < lines.length; i++) {
+        if (lines[i].tiny) continue;
         const k = largestInRow(i);
-        if (Math.abs(a[i][k]) < RANK_TOLERANCE) tiny.add(a[i]);
-        if (Math.abs(a[i][k]) > Math.abs(a[best][c])) [best, c] = [i, k];
+        if (Math.abs(lines[i].x[k]) < RANK_TOLERANCE) lines[i].tiny = true;
+        if (Math.abs(lines[i].x[k]) > Math.abs(lines[best].x[c])) [best, c] = [i, k];
       }
-      if (Math.abs(a[best][c]) < RANK_TOLERANCE) break;
+      if (Math.abs(lines[best].x[c]) < RANK_TOLERANCE) break;
     }
-    used[c] = true;
-    unused = unused.filter((k) => k !== c);
-    [a[r], a[best]] = [a[best], a[r]];
-    const row = a[r];
+    used[c] = 1;
+    [lines[r], lines[best]] = [lines[best], lines[r]];
+    lines[r].at = r;
+    lines[best].at = best;
+    const pivotLine = lines[r];
+    const row = pivotLine.x;
     const pivot = row[c];
     // The pivot row's nonzero entries: the only columns taking it from another row changes.
     // (Found among its places that may not be 0, the order of no matter: each is worked on its own.)
     const nonzero: number[] = [];
-    for (const k of places.get(row)!.list) {
+    for (const k of pivotLine.list) {
       if (row[k] === 0) continue;
       row[k] /= pivot;
       nonzero.push(k);
     }
-    for (let i = 0; i < a.length; i++) {
-      const other = a[i];
-      if (i === r || other[c] === 0) continue;
+    // The other rows with an entry in the pivot column: those listed in it (each row is worked on
+    // its own, so in whatever order). A place a row gains lists it in that column too; never in
+    // column c itself, where every row taken is listed already.
+    for (const line of inColumn[c]) {
+      const other = line.x;
+      if (line === pivotLine || other[c] === 0) continue;
       const factor = other[c];
-      for (const k of nonzero) other[k] -= factor * row[k];
-      const own = places.get(other)!;
+      const { mark, list } = line;
       for (const k of nonzero) {
-        if (own.mark[k]) continue;
-        own.mark[k] = 1;
-        own.list.push(k);
+        other[k] -= factor * row[k];
+        if (mark[k]) continue;
+        mark[k] = 1;
+        list.push(k);
+        inColumn[k].push(line);
       }
-      tiny.delete(other);
+      line.tiny = false;
     }
     pivotColumns.push(c);
   }
@@ -1071,7 +1132,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     const x = new Array(n).fill(0);
     x[free] = 1;
     pivotColumns.forEach((pc, row) => {
-      x[pc] = -a[row][free];
+      x[pc] = -lines[row].x[free];
     });
     basis.push(x);
   }
