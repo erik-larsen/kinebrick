@@ -1,54 +1,73 @@
 {
   "set": "8208-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:02:18.524Z",
-  "load": 23.9,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:16:02.109Z",
+  "load": 3.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 49,
-  "seconds": 8,
+  "seconds": 43,
   "functions": [
     {
       "function": 1,
       "does": "The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin).",
-      "verdict": "not shown",
-      "why": "A: p42 3706, p43 3706, p47 3705, p49 2994 not moved",
-      "msOneCall": 0,
-      "msPerStep": null,
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 0,
       "time": {
-        "open": 5,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 0
+        "B": 12
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p36 32073",
+        "way": 1,
+        "went": 0.767,
+        "asked": 1.5,
+        "by": [
+          "32/34"
+        ]
+      },
+      "stops": [
+        "32/34",
+        "3/41"
+      ],
       "A": [
         {
           "control": "p36 32073",
           "way": 1,
-          "asked": 0.77,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
-          "stops": [],
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              40
+            ]
+          },
+          "asked": 1.5,
+          "went": 0.767,
+          "ms": 8,
+          "msOneCall": 4,
+          "stops": [
+            "32/34"
+          ],
           "moved": {
             "p42 3706": [
-              0,
-              0
+              27.67,
+              43.97
             ],
             "p43 3706": [
-              0,
-              0
+              27.67,
+              43.97
             ],
             "p47 3705": [
-              0,
-              0
+              15.35,
+              43.97
             ],
             "p49 2994": [
-              0,
-              0
+              16.12,
+              43.97
             ],
             "p26 2994": [
               0,
@@ -63,27 +82,36 @@
         {
           "control": "p36 32073",
           "way": -1,
-          "asked": 0.77,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
-          "stops": [],
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              40
+            ]
+          },
+          "asked": 1.5,
+          "went": -0.767,
+          "ms": 5,
+          "msOneCall": 1,
+          "stops": [
+            "3/41"
+          ],
           "moved": {
             "p42 3706": [
-              0,
-              0
+              27.67,
+              43.97
             ],
             "p43 3706": [
-              0,
-              0
+              27.67,
+              43.97
             ],
             "p47 3705": [
-              0,
-              0
+              15.35,
+              43.97
             ],
             "p49 2994": [
-              0,
-              0
+              16.12,
+              43.97
             ],
             "p26 2994": [
               0,
@@ -96,8 +124,36 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 6
+      "B": [
+        {
+          "control": "p36 32073",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p42 3706",
+            "p43 3706",
+            "p47 3705",
+            "p49 2994"
+          ],
+          "stops": [
+            "3/41"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p36 32073",
+          "judged": "stands",
+          "why": "stopped at +0.767 rad (32/34); -0.767 rad (3/41); kinds fork-steering, friction-brake"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 16
     },
     {
       "function": 2,
@@ -106,12 +162,12 @@
       "msOneCall": 4,
       "msPerStep": 0,
       "time": {
-        "open": 0,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -121,7 +177,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 6,
+          "ms": 7,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -131,7 +187,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 6,
+          "ms": 5,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -142,7 +198,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 8,
-          "msOneCall": 2,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -151,14 +207,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 13,
+          "ms": 9,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 2
+      "B": [
+        {
+          "control": "p49 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p26 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 27
     }
   ]
 }

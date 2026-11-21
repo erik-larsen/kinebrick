@@ -1,25 +1,25 @@
 {
   "set": "8825-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:50:09.970Z",
-  "load": 24,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:51:31.795Z",
+  "load": 12.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 105,
-  "seconds": 13,
+  "seconds": 31,
   "functions": [
     {
       "function": 1,
       "does": "The handwheel on the right side turns the main rotor: the crown gear on its cross axle drives the 8 tooth gear at the foot of the rotor mast.",
       "verdict": "shown",
-      "msOneCall": 5,
+      "msOneCall": 8,
       "msPerStep": 1,
       "time": {
-        "open": 8,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,21 +29,21 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 23,
-          "msOneCall": 5,
+          "ms": 27,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p57 3706 against p0 2825": [
               0,
-              102.17
+              257.83
             ],
             "p82 4477 against p0 2825": [
-              171.18,
-              102.17
+              494.77,
+              257.83
             ],
             "p83 4477 against p0 2825": [
-              171.18,
-              102.17
+              494.77,
+              257.83
             ],
             "p96 3895 against p0 2825": [
               0,
@@ -56,21 +56,21 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 20,
+          "ms": 25,
           "msOneCall": 1,
           "stops": [],
           "moved": {
             "p57 3706 against p0 2825": [
               0,
-              102.17
+              257.83
             ],
             "p82 4477 against p0 2825": [
-              171.18,
-              102.17
+              494.77,
+              257.83
             ],
             "p83 4477 against p0 2825": [
-              171.18,
-              102.17
+              494.77,
+              257.83
             ],
             "p96 3895 against p0 2825": [
               0,
@@ -79,22 +79,36 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p84 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p57 3706 against p0 2825",
+            "p82 4477 against p0 2825",
+            "p83 4477 against p0 2825"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 3,
       "does": "The round white light on the nose turns freely on its pin.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 9,
       "msPerStep": 0,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -104,8 +118,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 16,
-          "msOneCall": 1,
+          "ms": 18,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -114,14 +128,24 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 12,
+          "ms": 11,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p17 4032a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     }
   ]
 }

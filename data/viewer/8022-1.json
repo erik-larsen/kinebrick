@@ -1,25 +1,25 @@
 {
   "set": "8022-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:09:23.569Z",
-  "load": 17.7,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:18:41.440Z",
+  "load": 4.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 78,
-  "seconds": 8,
+  "seconds": 30,
   "functions": [
     {
       "function": 1,
       "does": "Rolling the plane on its wheels spins the propeller: an 8 tooth gear on the wheels' axle turns a 24 tooth crown gear, which turns an 8 tooth gear on a lengthwise shaft; a second crown gear on that shaft turns the 8 tooth gear on the propeller's shaft, so the propeller turns three times as fast as the wheels.",
       "verdict": "shown",
-      "msOneCall": 5,
+      "msOneCall": 4,
       "msPerStep": 0,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 2,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 18,
-          "msOneCall": 5,
+          "ms": 19,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p8 3650a": [
@@ -43,7 +43,7 @@
             ],
             "p46 2825": [
               0,
-              102.17
+              257.83
             ],
             "p76 3706": [
               0,
@@ -56,7 +56,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 15,
+          "ms": 12,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -70,7 +70,7 @@
             ],
             "p46 2825": [
               0,
-              102.17
+              257.83
             ],
             "p76 3706": [
               0,
@@ -83,33 +83,6 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 10,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {
-            "p8 3650a": [
-              0,
-              28.65
-            ],
-            "p14 3650a": [
-              0,
-              85.94
-            ],
-            "p46 2825": [
-              0,
-              102.17
-            ],
-            "p76 3706": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p84 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
           "ms": 11,
           "msOneCall": 1,
           "stops": [],
@@ -124,7 +97,34 @@
             ],
             "p46 2825": [
               0,
-              102.17
+              257.83
+            ],
+            "p76 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 10,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p8 3650a": [
+              0,
+              28.65
+            ],
+            "p14 3650a": [
+              0,
+              85.94
+            ],
+            "p46 2825": [
+              0,
+              257.83
             ],
             "p76 3706": [
               0,
@@ -133,8 +133,35 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p82 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p8 3650a",
+            "p14 3650a",
+            "p46 2825"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p84 3482",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p8 3650a",
+            "p14 3650a",
+            "p46 2825"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 30
     }
   ]
 }

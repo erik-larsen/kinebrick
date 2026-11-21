@@ -1,25 +1,25 @@
 {
   "set": "42023-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:08:21.243Z",
-  "load": 22.9,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:17:12.683Z",
+  "load": 13.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 314,
-  "seconds": 23,
+  "seconds": 126,
   "functions": [
     {
       "function": 2,
       "does": "Turning the cross axle under the front of the dump body (by either end) tips the body: a 20-tooth bevel gear on it turns the 12-tooth bevel on a linear actuator, which pushes up under the body so it tips back on its hinge at the rear.",
       "verdict": "shown",
-      "msOneCall": 20,
+      "msOneCall": 21,
       "msPerStep": 4,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 4,
-        "B": 0
+        "reach": 4,
+        "A": 0,
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 180,
-          "msOneCall": 20,
+          "ms": 168,
+          "msOneCall": 21,
           "stops": [],
           "moved": {
             "p317 32198 against p0 32140": [
@@ -60,8 +60,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 36,
-          "msOneCall": 8,
+          "ms": 35,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p317 32198 against p0 32140": [
@@ -91,8 +91,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 158,
-          "msOneCall": 8,
+          "ms": 137,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p317 32198 against p0 32140": [
@@ -122,8 +122,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 37,
-          "msOneCall": 7,
+          "ms": 31,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p317 32198 against p0 32140": [
@@ -149,22 +149,55 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 11
+      "B": [
+        {
+          "control": "p313 59443",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p317 32198 against p0 32140",
+            "p247 6589 against p0 32140",
+            "p244 92695 against p245 92693c01",
+            "p213 64782 against p300 32278"
+          ],
+          "stops": [
+            "234/300"
+          ]
+        },
+        {
+          "control": "p314 59443",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p317 32198 against p0 32140",
+            "p247 6589 against p0 32140",
+            "p244 92695 against p245 92693c01",
+            "p213 64782 against p300 32278"
+          ],
+          "stops": [
+            "234/300"
+          ]
+        }
+      ],
+      "seconds": 35
     },
     {
       "function": 3,
       "does": "The dump body's tailgate hangs from pins at its top and swings open as the body tips, letting the load out.",
       "verdict": "shown",
-      "msOneCall": 7,
-      "msPerStep": 1,
+      "msOneCall": 17,
+      "msPerStep": 2,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
+        "reach": 3,
+        "A": 0,
+        "B": 13
       },
       "stop": {
         "control": "p256 6558",
@@ -184,12 +217,12 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 59,
-          "msOneCall": 7,
+          "ms": 71,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p256 6558 against p213 64782": [
-              109.11,
+              120.04,
               85.94
             ]
           }
@@ -199,8 +232,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 4,
-          "msOneCall": 4,
+          "ms": 3,
+          "msOneCall": 3,
           "stops": [
             "206/249"
           ],
@@ -212,7 +245,21 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p256 6558",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p256 6558 against p213 64782"
+          ],
+          "stops": [
+            "206/249"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p256 6558",
@@ -224,21 +271,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 3
+      "seconds": 20
     },
     {
       "function": 4,
       "does": "The two front wheels and the four wheels on the two rear axles roll freely.",
       "verdict": "shown",
-      "msOneCall": 7,
+      "msOneCall": 17,
       "msPerStep": 2,
       "time": {
-        "open": 1,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 8,
-        "B": 0
+        "reach": 13,
+        "A": 1,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -248,8 +295,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 78,
-          "msOneCall": 6,
+          "ms": 96,
+          "msOneCall": 17,
           "stops": [],
           "moved": {}
         },
@@ -258,8 +305,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 79,
-          "msOneCall": 6,
+          "ms": 80,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -268,48 +315,48 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 79,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p113 55982",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 77,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p120 55982",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 78,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p120 55982",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
           "ms": 75,
           "msOneCall": 6,
           "stops": [],
           "moved": {}
         },
         {
+          "control": "p113 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 75,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p120 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 72,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p120 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 70,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
           "control": "p131 55982",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 77,
-          "msOneCall": 6,
+          "ms": 70,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -318,14 +365,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 76,
-          "msOneCall": 7,
+          "ms": 68,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 9
+      "B": [
+        {
+          "control": "p112 55982",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p113 55982",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p120 55982",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p131 55982",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 71
     }
   ]
 }

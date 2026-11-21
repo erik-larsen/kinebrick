@@ -1,26 +1,26 @@
 {
   "set": "8002-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T18:38:24.863Z",
-  "load": 31,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:40:56.858Z",
+  "load": 10.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 535,
-  "seconds": 53,
+  "seconds": 98,
   "functions": [
     {
       "function": 1,
       "does": "The droid changes from its standing attack shape into a wheel: the curved brown shell, hinged to the top of the back, swings forward and down round the body, while the arms, head and legs fold in, until it is a ball that can be rolled along the floor.",
       "verdict": "not shown",
       "why": "A: p0 32009 against p305 32016 not moved",
-      "msOneCall": 0,
+      "msOneCall": 4,
       "msPerStep": null,
       "time": {
-        "open": 12,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -31,7 +31,7 @@
           "asked": 0.02,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p0 32009 against p305 32016": [
@@ -56,22 +56,37 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 17
+      "B": [
+        {
+          "control": "p0 32009",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p0 32009 against p305 32016"
+          ],
+          "stops": [
+            "65/98",
+            "204/249"
+          ]
+        }
+      ],
+      "seconds": 18
     },
     {
       "function": 2,
       "does": "The head on the front end of the shell, with its red-tipped sensors, folds down against the body.",
-      "verdict": "not decided",
-      "msOneCall": 46,
-      "msPerStep": 7,
+      "verdict": "shown",
+      "msOneCall": 39,
+      "msPerStep": 4,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 5,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p551 32073",
@@ -89,15 +104,15 @@
         {
           "control": "p551 32073",
           "way": 1,
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 19,
-          "msOneCall": 46,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 126,
+          "msOneCall": 39,
           "stops": [],
           "moved": {
             "p564 6536 against p305 32016": [
-              6.32,
-              5.73
+              94.87,
+              85.94
             ],
             "p0 32009 against p305 32016": [
               0,
@@ -110,8 +125,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.105,
-          "ms": 21,
-          "msOneCall": 13,
+          "ms": 12,
+          "msOneCall": 7,
           "stops": [
             "558/560"
           ],
@@ -127,35 +142,51 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p551 32073",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p564 6536 against p305 32016"
+          ],
+          "stops": [
+            "244/569",
+            "241/569",
+            "557/577",
+            "558/560"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p551 32073",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.105 rad (558/560)"
+          "judged": "stands",
+          "why": "stopped at -0.105 rad (558/560); kinds hinge: head"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p551 32073: a travel of 0.2 rad or less each way, stopped at -0.105 rad (558/560)",
-      "seconds": 8
+      "seconds": 18
     },
     {
       "function": 3,
       "does": "Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim.",
       "verdict": "not shown",
       "why": "A: p619 6536 against p0 32009, p856 6536 against p0 32009 not moved",
-      "msOneCall": 0,
+      "msOneCall": 3,
       "msPerStep": null,
       "time": {
-        "open": 2,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 9,
-        "B": 0
+        "A": 0,
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -166,7 +197,7 @@
           "asked": 0.6,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p619 6536 against p0 32009": [
@@ -253,106 +284,160 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 12
+      "B": [
+        {
+          "control": "p238 6632",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p619 6536 against p0 32009",
+            "p856 6536 against p0 32009"
+          ],
+          "stops": [
+            "204/249",
+            "65/98",
+            "16/45"
+          ]
+        },
+        {
+          "control": "p250 6632",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p619 6536 against p0 32009",
+            "p856 6536 against p0 32009"
+          ],
+          "stops": [
+            "539/854",
+            "65/98",
+            "204/249"
+          ]
+        }
+      ],
+      "seconds": 33
     },
     {
       "function": 5,
       "does": "The two front legs fold back under the body for rolling and swing down to stand on.",
-      "verdict": "not decided",
-      "msOneCall": 14,
+      "held": {
+        "result": "partly",
+        "reason": "The booklet folds the legs about 90 degrees (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87), but in the viewer a collision stops p11 at 0.035 rad one way (parts 16/45) and 0.66 rad the other (parts 24/118). Viewer sweep on today's code, decision 298."
+      },
+      "verdict": "shown",
+      "msOneCall": 37,
       "msPerStep": 10,
       "time": {
-        "open": 2,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 4
       },
       "stop": {
         "control": "p11 3707",
-        "way": 1,
-        "went": 0.034,
-        "asked": 0.67,
+        "way": -1,
+        "went": -0.663,
+        "asked": 1.5,
         "by": [
-          "16/45"
+          "24/118"
         ]
       },
       "stops": [
-        "16/45"
+        "16/45",
+        "24/118"
       ],
       "A": [
         {
           "control": "p11 3707",
           "way": 1,
-          "asked": 0.67,
-          "went": 0.034,
+          "asked": 1.5,
+          "went": 0.035,
           "ms": 10,
-          "msOneCall": 14,
+          "msOneCall": 37,
           "stops": [
             "16/45"
           ],
           "moved": {
             "p164 32310 against p0 32009": [
-              5.68,
-              1.92
+              5.92,
+              2
             ],
             "p182 32310 against p0 32009": [
-              5.68,
-              1.92
+              5.92,
+              2
             ]
           }
         },
         {
           "control": "p11 3707",
           "way": -1,
-          "asked": 0.07,
-          "went": -0.07,
-          "ms": 12,
-          "msOneCall": 9,
-          "stops": [],
+          "asked": 1.5,
+          "went": -0.663,
+          "ms": 65,
+          "msOneCall": 8,
+          "stops": [
+            "24/118"
+          ],
           "moved": {
             "p164 32310 against p0 32009": [
-              11.87,
-              4.01
+              112.42,
+              37.98
             ],
             "p182 32310 against p0 32009": [
-              11.87,
-              4.01
+              112.42,
+              37.98
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p11 3707",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p164 32310 against p0 32009",
+            "p182 32310 against p0 32009"
+          ],
+          "stops": [
+            "16/45"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p11 3707",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.034 rad (16/45)"
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (16/45); -0.663 rad (24/118); kinds hinge: front legs"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p11 3707: a travel of 0.2 rad or less each way, stopped at +0.034 rad (16/45)",
-      "seconds": 7
+      "seconds": 10
     },
     {
       "function": 6,
       "does": "The single back leg swings up over the back to close the wheel, and down again to stand on.",
       "verdict": "not shown",
       "why": "A: p197 32310 against p0 32009 not moved",
-      "msOneCall": 0,
+      "msOneCall": 4,
       "msPerStep": null,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 5,
-        "B": 0
+        "A": 0,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -363,7 +448,7 @@
           "asked": 0.01,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p197 32310 against p0 32009": [
@@ -388,8 +473,23 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p197 32310",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p197 32310 against p0 32009"
+          ],
+          "stops": [
+            "65/98",
+            "204/249"
+          ]
+        }
+      ],
+      "seconds": 18
     }
   ]
 }

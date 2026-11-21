@@ -1,55 +1,72 @@
 {
   "set": "8840-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:34:54.931Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:08:24.161Z",
+  "load": 14.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 206,
-  "seconds": 14,
+  "seconds": 87,
   "functions": [
     {
       "function": 2,
       "does": "The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls.",
-      "verdict": "shown",
-      "msOneCall": 26,
-      "msPerStep": 13,
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it: the rim p210 at 0.70 and 1.05 rad in one long turn (parts 201/200), and by pointer where the check stops (parts 104/113 and 105/112). Viewer sweep, decision 289."
+      },
+      "verdict": "not shown",
+      "msOneCall": 12,
+      "msPerStep": 7,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 12
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p210 4266",
+        "way": -1,
+        "went": -1.047,
+        "asked": 1.5,
+        "by": [
+          "201/200"
+        ]
+      },
+      "stops": [
+        "201/200"
+      ],
       "A": [
         {
           "control": "p210 4266",
           "way": 1,
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 25,
-          "msOneCall": 26,
-          "stops": [],
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 132,
+          "msOneCall": 12,
+          "stops": [
+            "201/200"
+          ],
           "moved": {
             "p101 3648a against p86 3701": [
               0,
-              4.01
+              39.97
             ],
             "p116 2853 against p86 3701": [
               0,
-              12.04
+              119.91
             ],
             "p117 2852 against p86 3701": [
-              2.1,
-              1.68
+              20.92,
+              15.5
             ],
             "p120 2851 against p86 3701": [
-              1.79,
+              11.93,
               0
             ],
             "p121 2851 against p86 3701": [
-              2.02,
+              15.33,
               0
             ]
           }
@@ -57,52 +74,85 @@
         {
           "control": "p210 4266",
           "way": -1,
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 13,
-          "msOneCall": 12,
-          "stops": [],
+          "asked": 1.5,
+          "went": -1.047,
+          "ms": 139,
+          "msOneCall": 6,
+          "stops": [
+            "201/200"
+          ],
           "moved": {
             "p101 3648a against p86 3701": [
               0,
-              1.72
+              59.96
             ],
             "p116 2853 against p86 3701": [
               0,
-              5.16
+              179.92
             ],
             "p117 2852 against p86 3701": [
-              0.9,
-              0.87
+              31.39,
+              28.89
             ],
             "p120 2851 against p86 3701": [
-              0.85,
+              18.48,
               0
             ],
             "p121 2851 against p86 3701": [
-              0.8,
+              21.51,
               0
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p210 4266",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p101 3648a against p86 3701",
+            "p116 2853 against p86 3701",
+            "p117 2852 against p86 3701",
+            "p120 2851 against p86 3701",
+            "p121 2851 against p86 3701"
+          ],
+          "stops": [
+            "104/113",
+            "105/112"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p210 4266",
+          "judged": "not shown",
+          "why": "turns without end (kinds piston-engine; the text says: wheel, engine, pistons, rolls), but a collision stops it at +0.698 rad (201/200); -1.047 rad (201/200)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p210 4266: turns without end (kinds piston-engine; the text says: wheel, engine, pistons, rolls), but a collision stops it at +0.698 rad (201/200); -1.047 rad (201/200)",
+      "seconds": 18
     },
     {
       "function": 3,
       "does": "The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts.",
       "verdict": "not shown",
       "why": "A: p210 4266 against p0 3703, p213 4266 against p0 3703, p200 4255 against p0 3703, p202 4255 against p0 3703 not moved",
-      "msOneCall": 0,
+      "msOneCall": 1,
       "msPerStep": null,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 5
       },
       "stop": null,
       "stops": [],
@@ -113,7 +163,7 @@
           "asked": 0.24,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p210 4266 against p0 3703": [
@@ -178,33 +228,62 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 2
+      "B": [
+        {
+          "control": "p86 3701",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p210 4266 against p0 3703",
+            "p213 4266 against p0 3703",
+            "p200 4255 against p0 3703",
+            "p202 4255 against p0 3703"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 10
     },
     {
       "function": 5,
       "does": "Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine.",
-      "verdict": "shown",
-      "msOneCall": 11,
-      "msPerStep": 9,
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it: the rim p210 as in function 2; the other three wheels turn freely. Viewer sweep, decision 289."
+      },
+      "verdict": "not shown",
+      "msOneCall": 10,
+      "msPerStep": 5,
       "time": {
-        "open": 0,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 5,
-        "B": 0
+        "reach": 2,
+        "A": 1,
+        "B": 47
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p210 4266",
+        "way": -1,
+        "went": -1.047,
+        "asked": 1.5,
+        "by": [
+          "201/200"
+        ]
+      },
+      "stops": [
+        "201/200"
+      ],
       "A": [
         {
           "control": "p206 4266",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 40,
-          "msOneCall": 6,
+          "ms": 52,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -213,74 +292,130 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 40,
+          "ms": 33,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p208 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p208 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 28,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p210 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 100,
+          "msOneCall": 10,
+          "stops": [
+            "201/200"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p210 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.047,
+          "ms": 140,
+          "msOneCall": 6,
+          "stops": [
+            "201/200"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p213 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
         {
-          "control": "p208 4266",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 35,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p208 4266",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 40,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p210 4266",
-          "way": 1,
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 15,
-          "msOneCall": 11,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p210 4266",
-          "way": -1,
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 9,
-          "msOneCall": 10,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p213 4266",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 43,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
           "control": "p213 4266",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 47,
-          "msOneCall": 4,
+          "ms": 36,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p206 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p208 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p210 4266",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "104/113",
+            "105/112"
+          ]
+        },
+        {
+          "control": "p213 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p210 4266",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, wheel, engine), but a collision stops it at +0.698 rad (201/200); -1.047 rad (201/200)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p210 4266: turns without end (kinds free-wheels; the text says: wheels, roll, wheel, engine), but a collision stops it at +0.698 rad (201/200); -1.047 rad (201/200)",
+      "seconds": 59
     }
   ]
 }

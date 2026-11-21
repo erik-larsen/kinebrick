@@ -1,48 +1,61 @@
 {
   "set": "42031-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:36:52.276Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:55:57.157Z",
+  "load": 13.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 148,
-  "seconds": 13,
+  "seconds": 112,
   "functions": [
     {
       "function": 1,
       "does": "The black knob at the back of the boom's yellow mount turns a worm, which turns the 24-tooth gear on the boom's pivot and raises or lowers the boom; the worm holds the boom wherever it's left.",
       "verdict": "shown",
-      "msOneCall": 12,
+      "msOneCall": 14,
       "msPerStep": 2,
       "time": {
-        "open": 6,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p139 32270",
+        "way": 1,
+        "went": 0.244,
+        "asked": 1.5,
+        "by": [
+          "83/124"
+        ]
+      },
+      "stops": [
+        "83/124"
+      ],
       "A": [
         {
           "control": "p139 32270",
           "way": 1,
-          "asked": 0.23,
-          "went": 0.23,
-          "ms": 13,
-          "msOneCall": 12,
-          "stops": [],
+          "asked": 1.5,
+          "went": 0.244,
+          "ms": 11,
+          "msOneCall": 14,
+          "stops": [
+            "83/124"
+          ],
           "moved": {
             "p120 4716 against p101 6632": [
               0,
-              13.18
+              13.99
             ],
             "p133 3648b against p101 6632": [
               0,
-              0.55
+              0.58
             ],
             "p122 11478 against p101 6632": [
-              0.38,
-              0.55
+              0.41,
+              0.58
             ],
             "p101 6632 against p1 64289": [
               0,
@@ -55,8 +68,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 44,
-          "msOneCall": 4,
+          "ms": 38,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p120 4716 against p101 6632": [
@@ -78,22 +91,53 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p139 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p120 4716 against p101 6632",
+            "p133 3648b against p101 6632",
+            "p122 11478 against p101 6632"
+          ],
+          "stops": [
+            "83/124"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p139 32270",
+          "judged": "stands",
+          "why": "stopped at +0.244 rad (83/124); kinds worm-drive: boom"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "The whole boom, with its yellow mount, turns round on a single upright pin on top of the chassis behind the cab.",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p101 at 0.03 rad each way (parts 92/130 and 91/124); the check stops at the same angle and judges by rates. Viewer sweep, decision 279."
+      },
       "verdict": "not shown",
-      "msOneCall": 4,
+      "msOneCall": 11,
       "msPerStep": 4,
       "time": {
-        "open": 0,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p101 6632",
@@ -115,7 +159,7 @@
           "asked": 0.03,
           "went": 0.03,
           "ms": 4,
-          "msOneCall": 4,
+          "msOneCall": 11,
           "stops": [
             "92/130"
           ],
@@ -139,8 +183,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 3,
-          "msOneCall": 4,
+          "ms": 2,
+          "msOneCall": 2,
           "stops": [
             "91/124"
           ],
@@ -160,7 +204,25 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p101 6632",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p101 6632 against p1 64289",
+            "p122 11478 against p1 64289"
+          ],
+          "stops": [
+            "89/124",
+            "91/124",
+            "92/130",
+            "90/130"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p101 6632",
@@ -178,21 +240,21 @@
         "verdict": "shown"
       },
       "why": "a collision stops a control: p101 6632: a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124) (the boom turns round on a single pin, far past 0.03 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36)",
-      "seconds": 1
+      "seconds": 17
     },
     {
       "function": 3,
       "does": "The work basket hangs from the boom tip on pins and a pin joiner, so it swings and swivels and can be kept upright as the boom rises.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 13,
       "msPerStep": 1,
       "time": {
-        "open": 0,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -202,12 +264,12 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 28,
-          "msOneCall": 3,
+          "ms": 30,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p140 32249 against p122 11478": [
-              34.08,
+              37.5,
               85.94
             ]
           }
@@ -222,28 +284,42 @@
           "stops": [],
           "moved": {
             "p140 32249 against p122 11478": [
-              34.08,
+              37.5,
               85.94
             ]
           }
         }
       ],
-      "B": [],
-      "seconds": 1
+      "B": [
+        {
+          "control": "p140 32249",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p140 32249 against p122 11478"
+          ],
+          "stops": [
+            "45/151"
+          ]
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 4,
       "does": "The four wheels roll freely, each on its own pin; there's no steering.",
       "verdict": "shown",
-      "msOneCall": 5,
+      "msOneCall": 12,
       "msPerStep": 1,
       "time": {
-        "open": 0,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 4,
-        "B": 0
+        "reach": 7,
+        "A": 0,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -253,8 +329,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 52,
-          "msOneCall": 5,
+          "ms": 62,
+          "msOneCall": 12,
           "stops": [],
           "moved": {}
         },
@@ -263,8 +339,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 47,
-          "msOneCall": 3,
+          "ms": 50,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -273,64 +349,101 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 49,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p95 55981",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 50,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p97 55981",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 47,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p97 55981",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 50,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p99 55981",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 49,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p99 55981",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
           "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p95 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 46,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p99 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 45,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p99 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 4
+      "B": [
+        {
+          "control": "p93 55981",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p95 55981",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p97 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p99 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 63
     }
   ]
 }

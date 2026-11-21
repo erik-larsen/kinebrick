@@ -1,10 +1,11 @@
 {
   "set": "9393-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:36:23.393Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:24:43.772Z",
+  "load": 10.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 350,
-  "seconds": 28,
+  "seconds": 112,
   "functions": [
     {
       "function": 1,
@@ -13,48 +14,61 @@
       "msOneCall": 21,
       "msPerStep": 3,
       "time": {
-        "open": 8,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p72 32270",
+        "way": 1,
+        "went": 1.186,
+        "asked": 1.5,
+        "by": [
+          "4/25"
+        ]
+      },
+      "stops": [
+        "4/25",
+        "4/26"
+      ],
       "A": [
         {
           "control": "p72 32270",
           "way": 1,
-          "asked": 1.17,
-          "went": 1.17,
-          "ms": 110,
+          "asked": 1.5,
+          "went": 1.186,
+          "ms": 85,
           "msOneCall": 21,
-          "stops": [],
+          "stops": [
+            "4/25"
+          ],
           "moved": {
             "p8 3705": [
               0,
-              67.04
+              67.96
             ],
             "p31 87761": [
-              17.98,
+              18.4,
               0
             ],
             "p25 48989": [
-              8.99,
-              25.98
+              9.2,
+              26.36
             ],
             "p26 48989": [
-              8.99,
-              25.98
+              9.2,
+              26.36
             ],
             "p284 56145": [
-              22.47,
-              31.68
+              23,
+              32.24
             ],
             "p286 56145": [
-              22.47,
-              31.68
+              23,
+              32.24
             ],
             "p280 56908": [
               0,
@@ -69,35 +83,37 @@
         {
           "control": "p72 32270",
           "way": -1,
-          "asked": 1.17,
-          "went": -1.17,
-          "ms": 90,
-          "msOneCall": 9,
-          "stops": [],
+          "asked": 1.5,
+          "went": -1.186,
+          "ms": 69,
+          "msOneCall": 4,
+          "stops": [
+            "4/26"
+          ],
           "moved": {
             "p8 3705": [
               0,
-              67.04
+              67.96
             ],
             "p31 87761": [
-              17.98,
+              18.4,
               0
             ],
             "p25 48989": [
-              8.99,
-              25.98
+              9.2,
+              26.36
             ],
             "p26 48989": [
-              8.99,
-              25.98
+              9.2,
+              26.36
             ],
             "p284 56145": [
-              22.47,
-              31.68
+              23,
+              32.24
             ],
             "p286 56145": [
-              22.47,
-              31.68
+              23,
+              32.24
             ],
             "p280 56908": [
               0,
@@ -110,22 +126,52 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 11
+      "B": [
+        {
+          "control": "p72 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p8 3705",
+            "p31 87761",
+            "p25 48989",
+            "p26 48989",
+            "p284 56145",
+            "p286 56145"
+          ],
+          "stops": [
+            "4/25"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p72 32270",
+          "judged": "stands",
+          "why": "stopped at +1.186 rad (4/25); -1.186 rad (4/26); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "The grey smooth axle joiner standing up behind the cab lifts the three-point linkage: it turns a worm, which turns a small gear on the lift arms' cross axle, and the arms raise or lower the hay tedder on their two links.",
       "verdict": "shown",
-      "msOneCall": 31,
-      "msPerStep": 17,
+      "msOneCall": 37,
+      "msPerStep": 12,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 2,
-        "B": 0
+        "reach": 1,
+        "A": 1,
+        "B": 13
       },
       "stop": {
         "control": "p132 59443",
@@ -133,11 +179,11 @@
         "went": -0.314,
         "asked": 1.5,
         "by": [
-          "339/339"
+          "ground: p339"
         ]
       },
       "stops": [
-        "339/339"
+        "ground: p339"
       ],
       "A": [
         {
@@ -145,8 +191,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 676,
-          "msOneCall": 31,
+          "ms": 471,
+          "msOneCall": 37,
           "stops": [],
           "moved": {
             "p130 4716": [
@@ -158,15 +204,15 @@
               10.74
             ],
             "p145 2736": [
-              7.49,
+              7.5,
               10.74
             ],
             "p93 32140": [
-              12,
+              12.02,
               10.89
             ],
             "p291 32316": [
-              41.9,
+              41.96,
               10.89
             ],
             "p280 56908": [
@@ -184,10 +230,10 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.314,
-          "ms": 152,
-          "msOneCall": 23,
+          "ms": 104,
+          "msOneCall": 15,
           "stops": [
-            "339/339"
+            "ground: p339"
           ],
           "moved": {
             "p130 4716": [
@@ -221,160 +267,59 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p132 59443",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p130 4716",
+            "p149 3647",
+            "p145 2736",
+            "p93 32140",
+            "p291 32316"
+          ],
+          "stops": [
+            "ground: p338",
+            "ground: p339"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p132 59443",
           "judged": "stands",
-          "why": "stopped at -0.314 rad (339/339); kinds worm-drive, three-point-hitch: hay tedder"
+          "why": "stopped at -0.314 rad (ground: p339); kinds worm-drive, three-point-hitch: hay tedder"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 4
+      "seconds": 19
     },
     {
       "function": 3,
       "does": "Rolling the tractor spins the hay tedder's two rotors: the right rear wheel's axle turns a bevel gear on the power take-off shaft, whose universal joints carry the drive back to the tedder, where bevel gears and a 24-tooth gear turn a 24-tooth gear on each arm, and its small gear turns the rotor.",
-      "verdict": "shown",
-      "msOneCall": 12,
-      "msPerStep": 7,
-      "time": {
-        "open": 1,
-        "collisions": 0,
-        "first": 0,
-        "reach": 0,
-        "A": 2,
-        "B": 0
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p280 at 0.70 rad each way (parts 339/343 and 342/343). Viewer sweep with a full turn asked, decision 288."
       },
-      "stop": null,
-      "stops": [],
-      "A": [
-        {
-          "control": "p280 56908",
-          "way": 1,
-          "asked": 0.7,
-          "went": 0.7,
-          "ms": 133,
-          "msOneCall": 12,
-          "stops": [],
-          "moved": {
-            "p103 6589": [
-              0,
-              40.11
-            ],
-            "p100 6589": [
-              0,
-              40.11
-            ],
-            "p328 6589": [
-              0.14,
-              40.11
-            ],
-            "p337 3648b": [
-              0,
-              39.49
-            ],
-            "p305 3648b": [
-              0,
-              39.49
-            ],
-            "p315 3648b": [
-              0,
-              39.49
-            ],
-            "p301 6587": [
-              0,
-              118.46
-            ],
-            "p311 6587": [
-              0,
-              118.46
-            ],
-            "p299 48989 against p93 32140": [
-              0,
-              0
-            ],
-            "p309 48989 against p93 32140": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p280 56908",
-          "way": -1,
-          "asked": 0.7,
-          "went": -0.7,
-          "ms": 124,
-          "msOneCall": 11,
-          "stops": [],
-          "moved": {
-            "p103 6589": [
-              0,
-              40.11
-            ],
-            "p100 6589": [
-              0,
-              40.11
-            ],
-            "p328 6589": [
-              0.14,
-              40.11
-            ],
-            "p337 3648b": [
-              0,
-              39.49
-            ],
-            "p305 3648b": [
-              0,
-              39.49
-            ],
-            "p315 3648b": [
-              0,
-              39.49
-            ],
-            "p301 6587": [
-              0,
-              118.46
-            ],
-            "p311 6587": [
-              0,
-              118.46
-            ],
-            "p299 48989 against p93 32140": [
-              0,
-              0
-            ],
-            "p309 48989 against p93 32140": [
-              0,
-              0
-            ]
-          }
-        }
-      ],
-      "B": [],
-      "seconds": 3
-    },
-    {
-      "function": 4,
-      "does": "The left rear wheel turns on its own short axle, so only the right one drives the tedder.",
       "verdict": "not shown",
-      "why": "A: none not moved; p301 6587 against p299 48989 listed to stay moved",
-      "msOneCall": 11,
+      "msOneCall": 23,
       "msPerStep": 7,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
+        "reach": 2,
+        "A": 0,
+        "B": 12
       },
       "stop": {
-        "control": "p282 56908",
+        "control": "p280 56908",
         "way": 1,
         "went": 0.698,
         "asked": 1.5,
@@ -388,19 +333,178 @@
       ],
       "A": [
         {
-          "control": "p282 56908",
+          "control": "p280 56908",
           "way": 1,
           "asked": 1.5,
           "went": 0.698,
-          "ms": 135,
-          "msOneCall": 10,
+          "ms": 132,
+          "msOneCall": 23,
           "stops": [
             "339/343"
           ],
           "moved": {
-            "p301 6587 against p299 48989": [
+            "p103 6589": [
+              0,
+              39.97
+            ],
+            "p100 6589": [
+              0,
+              39.97
+            ],
+            "p328 6589": [
+              0.14,
+              39.97
+            ],
+            "p337 3648b": [
+              0,
+              39.36
+            ],
+            "p305 3648b": [
+              0,
+              39.36
+            ],
+            "p315 3648b": [
+              0,
+              39.36
+            ],
+            "p301 6587": [
               0,
               118.07
+            ],
+            "p311 6587": [
+              0,
+              118.07
+            ],
+            "p299 48989 against p93 32140": [
+              0,
+              0
+            ],
+            "p309 48989 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p280 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.698,
+          "ms": 117,
+          "msOneCall": 8,
+          "stops": [
+            "342/343"
+          ],
+          "moved": {
+            "p103 6589": [
+              0,
+              39.97
+            ],
+            "p100 6589": [
+              0,
+              39.97
+            ],
+            "p328 6589": [
+              0.14,
+              39.97
+            ],
+            "p337 3648b": [
+              0,
+              39.36
+            ],
+            "p305 3648b": [
+              0,
+              39.36
+            ],
+            "p315 3648b": [
+              0,
+              39.36
+            ],
+            "p301 6587": [
+              0,
+              118.07
+            ],
+            "p311 6587": [
+              0,
+              118.07
+            ],
+            "p299 48989 against p93 32140": [
+              0,
+              0
+            ],
+            "p309 48989 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p280 56908",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p103 6589",
+            "p100 6589",
+            "p328 6589",
+            "p337 3648b",
+            "p305 3648b",
+            "p315 3648b",
+            "p301 6587",
+            "p311 6587"
+          ],
+          "stops": [
+            "342/343",
+            "339/343"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p280 56908",
+          "judged": "not shown",
+          "why": "turns without end (kinds power-take-off; the text says: rolling, spins, rotors, wheel, power take-off, rotor), but a collision stops it at +0.698 rad (339/343); -0.698 rad (342/343)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p280 56908: turns without end (kinds power-take-off; the text says: rolling, spins, rotors, wheel, power take-off, rotor), but a collision stops it at +0.698 rad (339/343); -0.698 rad (342/343)",
+      "seconds": 19
+    },
+    {
+      "function": 4,
+      "does": "The left rear wheel turns on its own short axle, so only the right one drives the tedder.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 3,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p282 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 123,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p301 6587 against p299 48989": [
+              0,
+              0
             ]
           }
         },
@@ -408,48 +512,44 @@
           "control": "p282 56908",
           "way": -1,
           "asked": 1.5,
-          "went": -0.698,
-          "ms": 135,
-          "msOneCall": 11,
-          "stops": [
-            "342/343"
-          ],
+          "went": -1.5,
+          "ms": 106,
+          "msOneCall": 5,
+          "stops": [],
           "moved": {
             "p301 6587 against p299 48989": [
               0,
-              118.07
+              0
             ]
           }
         }
       ],
-      "B": [],
-      "stopsJudged": [
+      "B": [
         {
           "control": "p282 56908",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheel), but a collision stops it at +0.698 rad (339/343); -0.698 rad (342/343)"
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
         }
       ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "not shown",
-        "why": "A: none not moved; p301 6587 against p299 48989 listed to stay moved"
-      },
-      "seconds": 3
+      "seconds": 16
     },
     {
       "function": 5,
       "does": "The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox.",
       "verdict": "shown",
-      "msOneCall": 9,
-      "msPerStep": 5,
+      "msOneCall": 20,
+      "msPerStep": 4,
       "time": {
-        "open": 1,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 0,
+        "B": 18
       },
       "stop": {
         "control": "p309 48989",
@@ -457,12 +557,12 @@
         "went": -0.105,
         "asked": 0.63,
         "by": [
-          "338/338"
+          "ground: p338"
         ]
       },
       "stops": [
-        "351/351",
-        "338/338"
+        "ground: p351",
+        "ground: p338"
       ],
       "A": [
         {
@@ -470,10 +570,10 @@
           "way": 1,
           "asked": 0.6,
           "went": 0.1,
-          "ms": 13,
-          "msOneCall": 9,
+          "ms": 11,
+          "msOneCall": 20,
           "stops": [
-            "351/351"
+            "ground: p351"
           ],
           "moved": {
             "p301 6587": [
@@ -495,12 +595,12 @@
           "way": -1,
           "asked": 0.63,
           "went": -0.63,
-          "ms": 46,
-          "msOneCall": 6,
+          "ms": 36,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p301 6587": [
-              39.18,
+              39.84,
               36.1
             ],
             "p311 6587": [
@@ -518,8 +618,8 @@
           "way": 1,
           "asked": 0.6,
           "went": 0.6,
-          "ms": 42,
-          "msOneCall": 7,
+          "ms": 37,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p301 6587": [
@@ -527,7 +627,7 @@
               0
             ],
             "p311 6587": [
-              37.38,
+              37.94,
               34.38
             ],
             "p93 32140": [
@@ -541,10 +641,10 @@
           "way": -1,
           "asked": 0.63,
           "went": -0.105,
-          "ms": 13,
-          "msOneCall": 7,
+          "ms": 8,
+          "msOneCall": 4,
           "stops": [
-            "338/338"
+            "ground: p338"
           ],
           "moved": {
             "p301 6587": [
@@ -562,38 +662,67 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p299 48989",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p301 6587"
+          ],
+          "stops": [
+            "293/299",
+            "ground: p351"
+          ]
+        },
+        {
+          "control": "p309 48989",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p311 6587"
+          ],
+          "stops": [
+            "ground: p338",
+            "296/309"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p299 48989",
           "judged": "stands",
-          "why": "stopped at +0.1 rad (351/351); kinds hinge: tedder arms"
+          "why": "stopped at +0.1 rad (ground: p351); kinds hinge: tedder arms"
         },
         {
           "control": "p309 48989",
           "judged": "stands",
-          "why": "stopped at -0.105 rad (338/338); kinds hinge: tedder arms"
+          "why": "stopped at -0.105 rad (ground: p338); kinds hinge: tedder arms"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 4
+      "seconds": 25
     },
     {
       "function": 6,
       "does": "The small steering wheel in the cab turns freely on its pin; it doesn't steer.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 24,
       "msPerStep": 2,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -603,8 +732,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 100,
-          "msOneCall": 13,
+          "ms": 104,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p25 48989": [
@@ -622,8 +751,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 102,
-          "msOneCall": 8,
+          "ms": 84,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p25 48989": [
@@ -637,8 +766,18 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 3
+      "B": [
+        {
+          "control": "p220 2819",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 17
     }
   ]
 }

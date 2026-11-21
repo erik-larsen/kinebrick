@@ -1,11 +1,11 @@
 {
   "set": "8259-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:53:09.109Z",
-  "load": 14.6,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:01:36.110Z",
+  "load": 6.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 165,
-  "seconds": 8,
+  "seconds": 30,
   "functions": [
     {
       "function": 2,
@@ -17,9 +17,9 @@
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 3,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -39,8 +39,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 28,
-          "msOneCall": 3,
+          "ms": 24,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -49,7 +49,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 26,
+          "ms": 20,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -59,14 +59,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 19,
+          "ms": 23,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p75 4019",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p74 4019",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 30
     }
   ]
 }

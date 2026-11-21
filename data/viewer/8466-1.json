@@ -1,25 +1,25 @@
 {
   "set": "8466-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:51:33.699Z",
-  "load": 28,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:18:37.226Z",
+  "load": 19.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1044,
-  "seconds": 74,
+  "seconds": 50,
   "functions": [
     {
       "function": 10,
       "does": "The two doors swing up and out like gull wings: each is a black frame running from the roof edge down to the front fender, with green panels, hinged at the roof.",
       "verdict": "shown",
-      "msOneCall": 216,
-      "msPerStep": 74,
+      "msOneCall": 120,
+      "msPerStep": 37,
       "time": {
-        "open": 31,
+        "open": 18,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 39,
-        "B": 0
+        "A": 3,
+        "B": 28
       },
       "stop": {
         "control": "p134 32009",
@@ -40,12 +40,12 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3169,
-          "msOneCall": 216,
+          "ms": 1574,
+          "msOneCall": 120,
           "stops": [],
           "moved": {
             "p257 32188": [
-              299.05,
+              329,
               85.94
             ],
             "p274 32189": [
@@ -59,8 +59,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 111,
-          "msOneCall": 171,
+          "ms": 39,
+          "msOneCall": 43,
           "stops": [
             "251/605"
           ],
@@ -80,8 +80,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 125,
-          "msOneCall": 115,
+          "ms": 38,
+          "msOneCall": 39,
           "stops": [
             "268/569"
           ],
@@ -101,8 +101,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2996,
-          "msOneCall": 131,
+          "ms": 1457,
+          "msOneCall": 56,
           "stops": [],
           "moved": {
             "p257 32188": [
@@ -110,13 +110,42 @@
               0
             ],
             "p274 32189": [
-              299.05,
+              329,
               85.94
             ]
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p134 32009",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p257 32188",
+            "p274 32189"
+          ],
+          "stops": [
+            "251/605"
+          ]
+        },
+        {
+          "control": "p138 32009",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p257 32188",
+            "p274 32189"
+          ],
+          "stops": [
+            "268/569"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p134 32009",
@@ -133,7 +162,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 74
+      "seconds": 50
     }
   ]
 }
