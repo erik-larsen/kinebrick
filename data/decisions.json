@@ -452,6 +452,10 @@
     {
       "date": "2026-11-21",
       "what": "Two holds lifted (305): the 42038's steering and the 8835's mast tilt are shown once Shift is pressed on the part a friction pin holds. 696 functions work. Shift on a wheel or gear that no pin holds makes it slide and stop turning, with no undo but Reset; the worker builds an undo."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The Shift trap is closed (307): Shift again on a part that was asked to slide lets it turn as before, and the viewer's message says so."
     }
   ]
 }
