@@ -1,0 +1,185 @@
+{
+  "set": "6649-1",
+  "curated": {
+    "model": "omr/blind-trial/6649-1 Street Sweeper.mpd",
+    "functions": [
+      {
+        "does": "opening cockpit",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6649-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p47 2349a",
+        "moves": [
+          "p47 2349a against p46 4214",
+          "p48 2348a",
+          "p32 4872",
+          "p38 3020"
+        ],
+        "stays": [
+          "p46 4214",
+          "p40 3010"
+        ],
+        "note": "A 2349a hinged roof with 2348a glass is hinged on a 4214 roof holder at the back of the cab. The 4872 inverted windscreen is studded under the roof's front, capped by the 3020 plate, and its lower edge rests free, so the whole canopy tips up."
+      },
+      {
+        "does": "swivelling hopper unit",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6649-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "note": "No parts given: The rear body (6081 curved bricks, 3020, 3004, 4599a taps) is studded to the chassis plates. The file has no turntable, hinge or clip joint for it: the 4085c clips hold the shovel p60 and the pushbroom p61. No swivel found."
+      },
+      {
+        "does": "front sweeping brush",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6649-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p16 2498",
+        "moves": [
+          "p16 2498 against p18 2578a",
+          "p17 2498",
+          "p19 3706",
+          "p18 2578a against p9 3184"
+        ],
+        "stays": [
+          "p9 3184",
+          "p31 3829c01"
+        ],
+        "note": "Two 2498 car-wash brushes sit on a Technic axle 6 through the 2578a 'brush holder for towball fitting'. The holder hangs from the 3184 towball plate at the front, ahead of the steering wheel, so the brushes spin and the holder can swing on the ball."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 3,
+    "counts": {
+      "no": 1,
+      "not checked": 1,
+      "partly": 1
+    },
+    "loose": [
+      "p16 2498",
+      "p17 2498",
+      "p18 2578a",
+      "p19 3706",
+      "p51 4624",
+      "p52 3641",
+      "p53 4624",
+      "p54 3641",
+      "p55 4624",
+      "p56 3641",
+      "p57 4624",
+      "p58 3641"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p47 2349a against p46 4214",
+          "p48 2348a",
+          "p32 4872",
+          "p38 3020"
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          []
+        ],
+        "torn": [
+          []
+        ],
+        "why": [
+          "p47 2349a is part of the frame"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0.3
+      },
+      {
+        "result": "not checked",
+        "seconds": 0
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p17 2498",
+          "p19 3706",
+          "p18 2578a against p9 3184"
+        ],
+        "rates": [
+          {
+            "p16 2498 against p18 2578a": [
+              1,
+              1
+            ],
+            "p17 2498": [
+              0,
+              0
+            ],
+            "p19 3706": [
+              0,
+              0
+            ],
+            "p18 2578a against p9 3184": [
+              0,
+              0
+            ],
+            "p9 3184": [
+              0,
+              0
+            ],
+            "p31 3829c01": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p17 2498 is held by friction pins the control doesn't reach",
+          "p19 3706 is held by friction pins the control doesn't reach",
+          "p18 2578a against p9 3184 is held by friction pins the control doesn't reach"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "loose-part",
+        "detail": "p16 2498",
+        "seconds": 0.3
+      }
+    ],
+    "peak": 269
+  }
+}

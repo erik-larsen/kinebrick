@@ -1,0 +1,235 @@
+{
+  "set": "10226-1",
+  "curated": {
+    "model": "omr/blind-trial/10226-1 Sopwith Camel.mpd",
+    "functions": [
+      {
+        "does": "propeller turns with pistons",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-10226-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p837 32124",
+        "moves": [
+          "p837 32124",
+          "p876 41770",
+          "p835 3706",
+          "p843 6019",
+          "p859 6019"
+        ],
+        "stays": [
+          "p823 48092"
+        ],
+        "note": "Submodel step69 puts the propeller hub p837 and the blades on axle 6 p835, which runs through the nose reel p119 and bracket p131; the rotary-engine cylinders (submodel step69-4, clip plates p843..p871 with round plates, in a ring) clip onto the rod-frame plate p842 on the same axle, so they turn with the propeller inside the fixed cowling bricks p823..p828."
+      },
+      {
+        "does": "control stick works ailerons and elevators",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-10226-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p167 87994",
+        "moves": [
+          "p162 32013",
+          "p168 32293",
+          "p256 40490",
+          "p427 3184 against p417 63082",
+          "p436 3184 against p419 63082",
+          "p745 3184 against p640 63082"
+        ],
+        "stays": [
+          "p157 3004"
+        ],
+        "note": "In submodel step21 the stick bar p167 sits on a cross block over the angle connector p162, which pivots on axle towballs p163/p164; a ball pin p166 under the stick drives steering link p168 back to towball p257 on beam 9 p256 (step32), and a string runs from that beam to the elevators (step41/42). The ailerons take strings that start in the fixed nose plates of step12, not at the stick: the file shows no aileron link to the stick."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 16,
+    "counts": {
+      "works": 1,
+      "partly": 1
+    },
+    "loose": [
+      "p75 572a",
+      "p77 572a",
+      "p90 3023",
+      "p91 2420",
+      "p92 572a",
+      "p94 572a",
+      "p96 3623",
+      "p97 3023",
+      "p98 2420",
+      "p99 63864",
+      "p100 54200",
+      "p101 54200",
+      "p167 87994",
+      "p172 10226 - 60607",
+      "p497 10226 - 60607",
+      "p615 572a",
+      "p617 572a"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p837 32124": [
+              1,
+              0
+            ],
+            "p876 41770": [
+              1,
+              51
+            ],
+            "p835 3706": [
+              1,
+              0
+            ],
+            "p843 6019": [
+              1,
+              32
+            ],
+            "p859 6019": [
+              1,
+              32
+            ],
+            "p823 48092": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 3.4
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.17,
+            -0.13
+          ]
+        ],
+        "still": [
+          "p162 32013",
+          "p427 3184 against p417 63082",
+          "p436 3184 against p419 63082",
+          "p745 3184 against p640 63082"
+        ],
+        "rates": [
+          {
+            "p162 32013": [
+              0,
+              0
+            ],
+            "p168 32293": [
+              0,
+              44.7
+            ],
+            "p256 40490": [
+              0,
+              44.7
+            ],
+            "p427 3184 against p417 63082": [
+              0,
+              0
+            ],
+            "p436 3184 against p419 63082": [
+              0,
+              0
+            ],
+            "p745 3184 against p640 63082": [
+              0,
+              0
+            ],
+            "p157 3004": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "loose-part",
+        "detail": "p167 87994",
+        "collisionStops": [
+          [
+            0,
+            1,
+            168,
+            243,
+            0.17,
+            0.17
+          ],
+          [
+            0,
+            -1,
+            258,
+            469,
+            0.13,
+            0.13
+          ]
+        ],
+        "seconds": 2.1
+      }
+    ],
+    "peak": 412
+  }
+}

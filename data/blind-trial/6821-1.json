@@ -1,0 +1,157 @@
+{
+  "set": "6821-1",
+  "curated": {
+    "model": "omr/blind-trial/6821-1 Shovel Buggy.mpd",
+    "functions": [
+      {
+        "does": "front shovel curls up",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6821-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": "p2 4089",
+        "moves": [
+          "p2 4089 against p1 3613",
+          "p1 3613 against p4 3612",
+          "p4 3612 against p5 3612",
+          "p5 3612 against p6 795",
+          "p6 795 against p9 794"
+        ],
+        "stays": [
+          "p10 792"
+        ],
+        "note": "The shovel is a chain of nested submodels ('bucket with 4/3/2/1 arm pieces'). Each one is turned against the next: 795 disc arm in the 794/792 arm holder at the front, then two 3612 finger arms and a 3613 towball socket arm. The 4089 bucket sits on the 3613's towball."
+      },
+      {
+        "does": "rear claw arm",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-6821-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "note": "No parts given: The rear of the buggy (+z, behind the astronaut) has only a 3004, 3747a, 3039p34, a 4085a clip and a 3957a antenna. No claw, arm piece or hinge is in the file, and the only other loose part is p35 3024."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 1,
+    "counts": {
+      "partly": 1,
+      "not back": 1,
+      "torn": 1,
+      "not checked": 1
+    },
+    "loose": [
+      "p1 3613",
+      "p2 4089",
+      "p3 3024",
+      "p4 3612",
+      "p5 3612",
+      "p6 795",
+      "p10 792",
+      "p12 122c01",
+      "p13 3641",
+      "p14 3641",
+      "p15 3641",
+      "p16 3641",
+      "p35 3024"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.96,
+            -1.96
+          ]
+        ],
+        "still": [
+          "p1 3613 against p4 3612",
+          "p4 3612 against p5 3612",
+          "p5 3612 against p6 795",
+          "p6 795 against p9 794"
+        ],
+        "rates": [
+          {
+            "p2 4089 against p1 3613": [
+              1,
+              2.01
+            ],
+            "p1 3613 against p4 3612": [
+              0,
+              9.74e-42
+            ],
+            "p4 3612 against p5 3612": [
+              0.0000792,
+              0.00095
+            ],
+            "p5 3612 against p6 795": [
+              0,
+              4.72e-50
+            ],
+            "p6 795 against p9 794": [
+              0,
+              1.31e-49
+            ],
+            "p10 792": [
+              0,
+              5.82e-50
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.96,
+              27.15
+            ],
+            [
+              0.96,
+              27.15
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.96,
+              27.15
+            ],
+            [
+              0.96,
+              27.15
+            ]
+          ]
+        ],
+        "strayed": [
+          "p2 4089"
+        ],
+        "freed": 4,
+        "judged": [
+          0
+        ],
+        "cause": "loose-part",
+        "detail": "p2 4089",
+        "freedFor": [
+          {
+            "pin": "p1 3613",
+            "for": "p1 3613 against p4 3612"
+          },
+          {
+            "pin": "p4 3612",
+            "for": "p1 3613 against p4 3612"
+          },
+          {
+            "pin": "p5 3612",
+            "for": "p4 3612 against p5 3612"
+          },
+          {
+            "pin": "p6 795",
+            "for": "p5 3612 against p6 795"
+          }
+        ],
+        "seconds": 0.2
+      },
+      {
+        "result": "not checked",
+        "seconds": 0
+      }
+    ],
+    "peak": 238
+  }
+}
