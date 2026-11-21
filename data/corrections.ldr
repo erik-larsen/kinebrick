@@ -578,6 +578,17 @@
 0 // beyond the line through its pins (its -y), measured from its shape.
 0 !KINEBRICK TRACK [depth=22]
 
+0 FILE 57518.dat
+0 // Technic Chain Tread 5 Wide: its tread reaches 14 LDU out beyond the line through its pins (its
+0 // -y), measured from its shape: the lowest y of its faces, through all its subfiles, is -14, as
+0 // 3873's is -8 and 69910's -22 (decision 325).
+0 !KINEBRICK TRACK [depth=14]
+
+0 FILE 88323.dat
+0 // Technic Chain Tread 5 Wide Reinforced: the same reach as 57518, 14 LDU beyond the line
+0 // through its pins (its -y), measured from its shape the same way.
+0 !KINEBRICK TRACK [depth=14]
+
 0 // Grooves.
 
 0 FILE 3145.dat
