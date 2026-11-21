@@ -10,8 +10,8 @@ describe.skipIf(!existsSync(file))('8826 ATX Sport Cycle', () => {
   // fast (a wild rate, the same both ways): the drag stopped there, in a pose it couldn't leave,
   // and the handlebars couldn't be turned back. A step into such a pose is undone, so whatever
   // the drag turns, it can turn back (decision 84 of 2026-11-15).
-  it('whatever the handlebars turn, they turn back', () => {
-    const { parts, mech, kin } = loadModel(file, true);
+  it('whatever the handlebars turn, they turn back', async () => {
+    const { parts, mech, kin } = await loadModel(file, true);
     expect(parts[76].name).toBe('2905.dat');
     const body = mech.bodyOf[76];
     const joint = kin.parentLink(body)!.joint;

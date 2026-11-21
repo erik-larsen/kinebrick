@@ -1,6 +1,8 @@
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/8859-Tractor.mpd');
 
 describe('8859 Tractor', () => {
   const { parts, mech, kin, bodyOf, turn, angleOf, frameMoved } = load('models/8859-Tractor.mpd');

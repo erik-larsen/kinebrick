@@ -29,6 +29,7 @@ import { restingParts } from './inference/rests.ts';
 import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
 import { slidesAsked } from './inference/slideOnDemand.ts';
 import { findLooseParts, worldCylinders } from './inference/shared.ts';
+import type { Touching } from './collisions.ts';
 import { findStrings, hangingParts } from './inference/strings.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
 import { onTiles } from './inference/tiles.ts';
@@ -314,17 +315,21 @@ const SHOCK_PIVOTS = typeof process !== 'undefined' && process.env?.KINEBRICK_SH
 // Used only with no pins `freed`, as the kept result was found; else the rule is worked out.
 // `slid`: parts asked to slide on their axles (see slidesAsked): a function's first step, or the
 // viewer's user, names them; none, and the reading is as it was.
-export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false, kept: number[] | null = null, slid = new Set<number>()): Mechanism {
-  return infer(parts, table, roleList, paths, freed, allFree, kept, slid).mech;
+// `touching` says what the loose parts touch as built (see touchingFrom in collisions.ts, and
+// rideAlong): every caller that gives results passes it, made from the parts' shapes; without it
+// (hand-built models in tests) a loose part rides on the nearest connection point, as before
+// decision 259 of 2026-11-20.
+export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false, kept: number[] | null = null, slid = new Set<number>(), touching: Touching | null = null): Mechanism {
+  return infer(parts, table, roleList, paths, freed, allFree, kept, slid, touching).mech;
 }
 
 // The pins the rule for stuck actuators frees in a model as read, an empty list if none: what
 // npm run pivots keeps.
-export function actuatorPivots(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = []): number[] {
-  return infer(parts, table, roleList, paths, new Set(), false, null).pivots;
+export function actuatorPivots(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], touching: Touching | null = null): number[] {
+  return infer(parts, table, roleList, paths, new Set(), false, null, new Set(), touching).pivots;
 }
 
-function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[], freed: Set<number>, allFree: boolean, kept: number[] | null, slid = new Set<number>()): { mech: Mechanism; pivots: number[] } {
+function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[], freed: Set<number>, allFree: boolean, kept: number[] | null, slid = new Set<number>(), touching: Touching | null = null): { mech: Mechanism; pivots: number[] } {
   parts = parts.map((p) => ({ ...p, name: libraryName(p.name, table) }));
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
@@ -334,10 +339,10 @@ function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<str
     // KINEBRICK_FRICTION_RIGID=0 skips that first try: friction pins are always stiff joints.
     // For measuring what the rule does; unset, nothing changes.
     if (FRICTION_RIGID && !allFree) {
-      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, free, slid);
+      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, free, slid, touching);
       if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
     }
-    return buildMechanism(parts, table, roleList, false, guide, allPaths, free, slid);
+    return buildMechanism(parts, table, roleList, false, guide, allPaths, free, slid, touching);
   };
   const useKept = kept !== null && !freed.size && FRICTION_RIGID && !allFree;
   let pivots: number[] = useKept ? kept : [];
@@ -349,7 +354,7 @@ function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<str
   // model couldn't move otherwise. Once per reading, with only the friction pins near the
   // actuator freed to find them (see pivotsOfStuckSlides).
   if (!useKept && FRICTION_RIGID && !allFree && mech.connections.some((c) => c.held)) {
-    const found = pivotsOfStuckSlides(mech, parts, table, (pins) => buildMechanism(parts, table, roleList, true, new Set(), allPaths, new Set([...freed, ...pins]), slid));
+    const found = pivotsOfStuckSlides(mech, parts, table, (pins) => buildMechanism(parts, table, roleList, true, new Set(), allPaths, new Set([...freed, ...pins]), slid, touching));
     if (found) {
       pivots = found.pins;
       freed = new Set([...freed, ...found.pins]);
@@ -477,7 +482,7 @@ export function libraryName(name: string, table: ConnectionTable): string {
 // were structure (see frameRoles in buildMechanism).
 const AXLES_COUNTED_AS_STRUCTURE = new Set(['3737.dat', '23948.dat', '50450.dat', '50451.dat', '60485.dat', '44294.dat', '24316.dat', '87083.dat', '15462.dat', '55013.dat', '59426.dat', '6587.dat']);
 
-function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[], freed: Set<number>, slid = new Set<number>()): Mechanism {
+function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[], freed: Set<number>, slid = new Set<number>(), touching: Touching | null = null): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
   // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
@@ -556,7 +561,11 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // Nor is what a figure holds or stands with (see figureSubmodels).
   const loose = (rails.length ? smallGroups(parts.length, connections, riding) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
-  const welds = rideAlong(parts, cyls, connections, loose, undefined, carriedGroups);
+  // What the loose parts touch as built (decision 259): asked here, where they are known.
+  const touches = touching && loose.length ? touching(parts.map((p) => p.matrix), loose) : null;
+  // The bodies so far, to tell whether what a loose group touches is all of one body.
+  const bodiesSoFar = touches ? groupIntoBodies(parts.length, frameRoles, connections) : null;
+  const welds = rideAlong(parts, cyls, connections, loose, undefined, carriedGroups, touches, bodiesSoFar);
   connections.push(...welds);
   // A carried model rides along as loose parts do, but isn't loose: where it is welded.
   const carried = carriedGroups.map((group) => {
@@ -583,7 +592,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   let framePart = -1;
   if (parts.some((p) => p.path?.byHand && p.path.halfWidth)) {
     const asParts = parts.map((p) => (p.path?.byHand && p.path.halfWidth ? { ...p, path: undefined } : p));
-    const before = buildMechanism(asParts, table, roleList, frictionRigid, guide, paths.filter((p) => !(p.byHand && p.halfWidth)), freed, slid);
+    const before = buildMechanism(asParts, table, roleList, frictionRigid, guide, paths.filter((p) => !(p.byHand && p.halfWidth)), freed, slid, touching);
     framePart = before.bodyOf.findIndex((b, i) => b === 0 && roles[i] !== 'path' && !parts[i].removed);
   }
   const bodyOf = groupIntoBodies(parts.length, frameRoles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]), framePart);

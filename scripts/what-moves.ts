@@ -54,8 +54,8 @@ export interface WhatMoves {
   loose: number; // how many parts are loose
 }
 
-export function whatMoves(set: string, model: string, functions: { control?: string | string[] }[] = []): WhatMoves {
-  const { parts, mech, kin, table } = loadModel(model, model.startsWith('omr/'));
+export async function whatMoves(set: string, model: string, functions: { control?: string | string[] }[] = []): Promise<WhatMoves> {
+  const { parts, mech, kin, table } = await loadModel(model, model.startsWith('omr/'));
   const name = (p: number) => `p${p} ${parts[p].name.replace(/\.dat$/i, '').replace(/^.* - /, '')}`;
   const roles = mech.roles;
   // A wheel's part, by its data: a rim's or a tyre's half of a tyre's seat (not every tyre has the
@@ -195,7 +195,7 @@ if (process.argv[1]?.endsWith('what-moves.ts')) {
       console.log(`${n}: no model`);
       continue;
     }
-    const w = whatMoves(set?.set ?? n.replace(/^.*[\\/]/, ''), model, set?.curated.functions ?? []);
+    const w = await whatMoves(set?.set ?? n.replace(/^.*[\\/]/, ''), model, set?.curated.functions ?? []);
     console.log(table(w));
     if (write && set) {
       mkdirSync(OUT_DIR, { recursive: true });

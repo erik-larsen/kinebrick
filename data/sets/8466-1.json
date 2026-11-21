@@ -210,9 +210,9 @@
     ]
   },
   "generated": {
-    "commit": "d7409032",
+    "commit": "cec9e1bf",
     "date": "2026-11-20",
-    "seconds": 70,
+    "seconds": 108,
     "counts": {
       "partly": 7,
       "not checked": 1,
@@ -324,7 +324,7 @@
         ],
         "cause": "not-driven",
         "detail": "p718 3647",
-        "seconds": 7.5
+        "seconds": 9.9
       },
       {
         "result": "partly",
@@ -402,7 +402,7 @@
         ],
         "cause": "not-driven",
         "detail": "p705 6592",
-        "seconds": 7.4
+        "seconds": 8.9
       },
       {
         "result": "partly",
@@ -413,6 +413,7 @@
           ]
         ],
         "still": [
+          "p676 22969",
           "p1017 6573",
           "p634 6573",
           "p802 6573",
@@ -431,8 +432,8 @@
               4.54e-13
             ],
             "p676 22969": [
-              1,
-              4.59e-13
+              0,
+              1.09e-13
             ],
             "p1017 6573": [
               0,
@@ -494,7 +495,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 7.9
+        "seconds": 9.1
       },
       {
         "result": "not checked",
@@ -509,14 +510,15 @@
           ]
         ],
         "still": [
+          "p676 22969",
           "p637 6589",
           "p638 6589"
         ],
         "rates": [
           {
             "p676 22969": [
-              1,
-              2.19e-13
+              0,
+              0
             ],
             "p637 6589": [
               0,
@@ -565,7 +567,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 3.4
+        "seconds": 6.6
       },
       {
         "result": "partly",
@@ -633,7 +635,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1067 22969",
-        "seconds": 3.7
+        "seconds": 7.2
       },
       {
         "result": "partly",
@@ -696,7 +698,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 3.7
+        "seconds": 7
       },
       {
         "result": "partly",
@@ -900,7 +902,7 @@
             0
           ]
         ],
-        "seconds": 4.8
+        "seconds": 6.7
       },
       {
         "result": "skipped",
@@ -932,7 +934,7 @@
           {
             "p257 32188": [
               0,
-              1.57e-10
+              7.94e-11
             ],
             "p274 32189": [
               1,
@@ -1020,7 +1022,7 @@
             0
           ]
         ],
-        "seconds": 16.7
+        "seconds": 25.2
       },
       {
         "result": "skipped",
@@ -1105,9 +1107,9 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 7.2
+        "seconds": 19.5
       }
     ],
-    "peak": 985
+    "peak": 980
   }
 }

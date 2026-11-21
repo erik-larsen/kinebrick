@@ -7,14 +7,14 @@ import { catchShifts, findCatches, findSliders, nearestPosition, sliderMovedTo, 
 // The model is read from the OMR files, which a checkout on GitHub does not have (omr/ is not in
 // the repository): there the tests are skipped.
 const FILE = 'omr/42054-1 CLAAS XERION 5000 TRAC VC.mpd';
-if (existsSync(FILE)) withTheModel();
+if (existsSync(FILE)) await withTheModel();
 else describe.skip('a changeover catch keeps its ring after a shift (the 42054)', () => it('needs the OMR files', () => {}));
 
-function withTheModel() {
+async function withTheModel() {
   // The 42054 CLAAS Xerion's lever A: its changeover catch p305 (6641) shifts the driving ring
   // p303, its fork drawn 2 LDU off the ring's middle, so that slid one way the ring stands 61.2 LDU
   // from the catch, more than the 1 LDU findCatches allows about CATCH_REACH (60).
-  const { parts, mech, table, slides } = loadModel(FILE, true);
+  const { parts, mech, table, slides } = await loadModel(FILE, true);
   const CATCH = 305;
   const RING = 303;
   const sliders = findSliders(parts, mech, table, slides);
