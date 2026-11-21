@@ -76,7 +76,9 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
     const blockedBy = k.setup.blockedBy;
     k.setup.blockedBy = () => {
       const hit = blockedBy();
-      if (hit && Array.isArray(hit)) w.stopsSeen.push(hit.join('/'));
+      // A part against itself is the viewer's ground test (belowGround in collisions.ts: the part
+      // would go below the ground), not a collision: named so (decision 299).
+      if (hit && Array.isArray(hit)) w.stopsSeen.push(hit[0] === hit[1] ? `ground: p${hit[0]}` : hit.join('/'));
       return hit;
     };
   });

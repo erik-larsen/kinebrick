@@ -769,7 +769,9 @@ function judge(key: string, fn: any, line: Record<string, any>): Record<string, 
     const short = ways.every((a) => Math.abs(a.went) <= SHORT);
     // Judged so only where the stopped control is itself a part that turns without end
     // (endlessPart, decision 282): a lever at the end of its travel stands.
-    if (endless && endlessPart(control.split(' ').slice(1).join(' '))) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessOnes.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
+    // A ground stop (a part would go below the ground) is named as one, not as two parts that met.
+    const ground = ways.some((a) => a.stops.some((x: string) => x.startsWith('ground')));
+    if (endless && endlessPart(control.split(' ').slice(1).join(' '))) return { control, judged: 'not shown', ...(ground ? { ground: true } : {}), why: `turns without end (kinds ${endlessOnes.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but ${ground ? 'the ground' : 'a collision'} stops it at ${at}` };
     if (short) return { control, judged: 'to compare with the booklet', why: `a travel of ${SHORT} rad or less each way, stopped at ${at}` };
     return { control, judged: 'stands', why: `stopped at ${at}; kinds ${kinds.join(', ') || 'none'}` };
   });
