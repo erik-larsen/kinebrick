@@ -513,7 +513,7 @@ async function start() {
   // The mechanism, worked out from the parts as placed and what its loose parts touch as built.
   summary.textContent = 'Working out how it moves…';
   await shown();
-  const touching = touchingFrom(shapes);
+  const touching = touchingFrom(shapes, startParts.map((p) => p.matrix));
   let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins, new Set(), touching);
   // The strings the loader was told of are the mechanism's (see stringPaths): else a rope's shape
   // would be drawn in part, or built whole for nothing.
@@ -554,7 +554,7 @@ async function start() {
     pinWorker.onmessage = (e: MessageEvent) => {
       // The helper asks what loose parts touch as built (see pinWorker.ts): from the shapes here.
       if (e.data.need) {
-        const said = touching(startParts.map((p) => p.matrix), e.data.need);
+        const said = touching(startParts.map((p) => p.matrix), e.data.need, true);
         pinWorker?.postMessage({ touches: [...said], retry: e.data.retry });
         return;
       }

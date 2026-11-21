@@ -20,7 +20,7 @@ export async function loadModel(file: string, omr: boolean, status: (now: string
   status('reading it');
   const { text, table, parts, paths, errata } = readParts(file, omr);
   status('reading its parts\' shapes');
-  const touching = touchingFrom((shapes ?? (await partShapes(file, text, parts))).map((s) => s.shape));
+  const touching = touchingFrom((shapes ?? (await partShapes(file, text, parts))).map((s) => s.shape), parts.map((p) => p.matrix));
   const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   status('working out its mechanism');

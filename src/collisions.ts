@@ -279,21 +279,43 @@ function boxOf(list: PartMesh[]): Box3 {
   return box;
 }
 
-// What each of some parts touches, placed as `partMatrices` says, by the first pass's own test
-// (see nearPairsOf): their boxes within NEAR of each other, then their shrunk shapes within NEAR
-// (shapesNear). For the inference, which asks it for its loose parts (decision 259 of
-// 2026-11-20: a loose part rides with a part it touches as built; see rideAlong). Only the parts
-// whose boxes meet one of those asked about have their trees built. `meshes` are each part's, as
-// the collision pass is given them (the viewer's from its loader, the scripts' from partShapes).
-export type Touching = (partMatrices: Matrix4[], which: number[]) => Map<number, number[]>;
-export function touchingFrom(meshes: PartMesh[][]): Touching {
-  return (partMatrices, which) => {
+// What each of some parts touches as built, by the first pass's own test (see nearPairsOf): their
+// boxes within NEAR of each other, then their shrunk shapes within NEAR (shapesNear). For the
+// inference, which asks it for its loose parts (decision 259 of 2026-11-20: a loose part rides
+// with a part it touches as built; see rideAlong). `meshes` are each part's, as the collision pass
+// is given them (the viewer's from its loader, the scripts' from partShapes).
+//
+// As built: the parts placed as `built` says, or else as the first question places them (every
+// caller's first reading is of the model as built). A later question's placement is not looked
+// at: the mechanism is read again after a shift and for each trial of pins, and what a loose part
+// rides with must not change with where the mechanism stands (decision 274 of 2026-11-21).
+//
+// It is asked at every build of the mechanism, three or more for one reading, and it is the
+// slow part of a reading (28 s a time for the 42078 Mack Anthem, whose trailer is 1,100 loose
+// parts until it is read as a second model). So what it works out is kept: the pairs whose boxes
+// meet, found once, and each pair's answer once tested. And a pair of two parts both asked about
+// is left out unless `all`: both are loose, and the rule looks only at the parts a loose part
+// touches that aren't loose. The page gives `all` to its helper (pinWorker.ts), which keeps each
+// part's answer for builds whose loose parts differ.
+export type Touching = (partMatrices: Matrix4[], which: number[], all?: boolean) => Map<number, number[]>;
+export function touchingFrom(meshes: PartMesh[][], built?: Matrix4[]): Touching {
+  let placed: Matrix4[] | null = built ? built.map((m) => m.clone()) : null;
+  let meeting: [number, number][] | null = null;
+  const near = new Map<number, boolean>();
+  return (partMatrices, which, all = false) => {
+    placed ??= partMatrices.map((m) => m.clone());
+    const at = placed;
+    // The parts only: a script's list of meshes goes on with the shapes submodels draw.
+    meeting ??= meetingPairs(at.map((_, i) => boxOf(meshes[i] ?? [])), at, () => true);
     const wanted = new Set(which);
     const out = new Map(which.map((i) => [i, [] as number[]]));
-    // The parts only: a script's list of meshes goes on with the shapes submodels draw.
-    const pairs = meetingPairs(partMatrices.map((_, i) => boxOf(meshes[i] ?? [])), partMatrices, (a, b) => wanted.has(a) || wanted.has(b));
-    for (const [a, b] of pairs) {
-      if (!shapesNear(shapeOf(meshes[a]), shapeOf(meshes[b]), partMatrices[a].clone().invert().multiply(partMatrices[b]))) continue;
+    for (const [a, b] of meeting) {
+      if (!wanted.has(a) && !wanted.has(b)) continue;
+      if (!all && wanted.has(a) && wanted.has(b)) continue;
+      const pair = a * at.length + b;
+      let is = near.get(pair);
+      if (is === undefined) near.set(pair, (is = shapesNear(shapeOf(meshes[a]), shapeOf(meshes[b]), at[a].clone().invert().multiply(at[b]))));
+      if (!is) continue;
       if (wanted.has(a)) out.get(a)!.push(b);
       if (wanted.has(b)) out.get(b)!.push(a);
     }

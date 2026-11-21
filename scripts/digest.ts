@@ -43,7 +43,7 @@ function text(value: unknown): string {
 async function lineFor(set: string, model: string): Promise<string> {
   const { text: modelText, table, parts, paths } = readParts(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-  const touching = touchingFrom((await partShapes(model, modelText, parts)).map((s) => s.shape));
+  const touching = touchingFrom((await partShapes(model, modelText, parts)).map((s) => s.shape), parts.map((p) => p.matrix));
   const mech = inferMechanism(parts, table, roles, paths, new Set(), false, keptPivots(model, parts, table, roles), new Set(), touching) as unknown as Record<string, unknown>;
   const fields = Object.keys(mech)
     .sort()
