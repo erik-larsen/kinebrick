@@ -122,7 +122,7 @@ describe('an idle gear on a turning shaft, beside a train in neutral', () => {
     };
     return { gear: turned(gear), train: train.map(turned) };
   };
-  const written = readFileSync('models/idle-gear.ldr', 'utf-8');
+  const written = readFileSync('tests/fixtures/idle-gear.ldr', 'utf-8');
   const lines = written.split('\n');
   const gearLine = lines.findIndex((l) => l.includes('2471.dat'));
   const gearFirst = [lines[gearLine], ...lines.filter((_, i) => i !== gearLine)].join('\n');
