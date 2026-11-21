@@ -29,7 +29,9 @@ export function endlessKinds(mechanisms: string[] | undefined): { kinds: string[
 // deciding wherever it has one.
 const ENDLESS_ROLES = new Set(['tyre', 'rim', 'gear', 'axle', 'differential', 'crankshaft', 'worm', 'train wheel']);
 const ENDLESS_TITLE = /\b(wheel|rim|tyre|tire|gear|sprocket|pulley|propeller|rotor|axle|worm|crankshaft|differential)\b/i;
-const NOT_ENDLESS_TITLE = /\b(steering|hub|spindle|joiner|connector|towball)\b/i;
+// Nor a block, beam, liftarm or other part that only has an axle hole, named "(Axle/Pin)" and the
+// like in its title: the 42003 Cross Block 1 x 3 (Axle/Pin/Pin) is no shaft.
+const NOT_ENDLESS_TITLE = /\b(steering|hub|spindle|joiner|connector|towball|block|beam|liftarm|brick|plate)\b|\(axle/i;
 let roles: Record<string, string> | null = null;
 let titles: Record<string, string> | null = null;
 export function endlessPart(name: string): boolean {
