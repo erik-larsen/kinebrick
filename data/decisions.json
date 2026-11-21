@@ -92,29 +92,6 @@
       ],
       "reply": "Sign the 42112's piston change",
       "since": "2026-11-21"
-    },
-    {
-      "id": "42070-motor",
-      "kind": "Sign-off",
-      "title": "42070 6x6 All Terrain Tow Truck: the XL motor sits one stud too low in the OMR file, and it should be the control of two functions",
-      "what": "Two things, one cause. First, an erratum. Booklet 1, step 116, slides the XL motor onto the gearbox's axle by its output. In the OMR file the motor is one stud too low: the axle (part 402) runs through one of the motor's round housing holes, 20 LDU above the output, and a long friction pin sits in the output. So the motor's output is joined to nothing. The erratum is one line: line 187 of the main model, which places the motor with its cable, from height -236 to -256 (20 LDU up). The axle then sits in the output and the pin in the housing hole below it, as the step shows. Claude read line 187; it places the motor at -236 as said. Second, a list change. Functions 1 (the XL motor drives all six wheels) and 6 (in crane mode it slews the crane) name that axle as the control. It is buried at the motor, where no hand reaches; with the erratum the motor drives it, and the control becomes the motor, part 593, as in the five functions of the other sign-off.",
-      "effect": "With both, the two functions are worked from the motor, as the real set is by its remote. Both are works today, by the check turning the buried axle; their results may change.",
-      "links": [
-        {
-          "label": "Booklet 1, page 73, step 116: the motor slid onto the axle",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=73"
-        },
-        {
-          "label": "Page 394: driving with the remote",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=394"
-        },
-        {
-          "label": "42070 in the viewer, the motor and the axle marked",
-          "url": "http://localhost:5174/?file=omr%2F42070-1%206x6%20All%20Terrain%20Tow%20Truck.mpd&show=593,402"
-        }
-      ],
-      "reply": "Sign the 42070's erratum and motor control",
-      "since": "2026-11-21"
     }
   ],
   "coming": [
@@ -531,6 +508,10 @@
     {
       "date": "2026-11-21",
       "what": "The cam reading is merged, with your signed erratum for the 42112's pistons (332): the 42112's eight wheels now turn the whole way, where a cam ran into a piston after 0.53 radian. 697 functions work. It took three proofs and a mend in the solver to get there."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42070 6x6 All Terrain Tow Truck, the XL motor one stud too low and the motor as the control of functions 1 and 6 (\"Sign it\", your answer to that question): the worker writes the erratum; Claude then names the motor as the control and checks the set."
     }
   ]
 }
