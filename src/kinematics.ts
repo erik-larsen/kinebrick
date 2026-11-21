@@ -20,7 +20,7 @@
 // joint) are pulled back together after each step (see closeLoops). A body reached only
 // through those, such as a piston, is a root of its own.
 
-import { Matrix4, Vector3 } from 'three';
+import { Matrix4, Quaternion, Vector3 } from 'three';
 import { Joint, Mechanism, StringLine } from './mechanism.ts';
 import { StringCircle, stringLayout } from './paths.ts';
 import { links, spinners } from './constraints/balls.ts';
@@ -209,6 +209,15 @@ export interface Options {
   // time, and would otherwise work out that motion again. On; KINEBRICK_KEEP_AHEAD=0 turns it off,
   // for comparing (decision 174 of 2026-11-17).
   keepAhead: boolean;
+  // A drag's steps after its first are worked on its working set, the tree's columns its first
+  // step turned and those rows tie to them, every other column fixed (decision 266 of 2026-11-20;
+  // see Kinematics.turnJoint). On by default (decision 272); KINEBRICK_WORKING_SET=0 turns it off. The audit: after this many
+  // radians of the dragged joint on the set, a turn is worked in full and the set made afresh (0:
+  // never; KINEBRICK_WORKING_SET_AUDIT). The compare mode works each turn on the set and in full,
+  // and keeps the full one (KINEBRICK_WORKING_SET_COMPARE=1; see wsStats).
+  workingSet: boolean;
+  workingSetAudit: number;
+  workingSetCompare: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
@@ -232,6 +241,9 @@ export const experiments: Options = {
   pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
   keepAhead: setting('KINEBRICK_KEEP_AHEAD') !== '0',
+  workingSet: setting('KINEBRICK_WORKING_SET') !== '0',
+  workingSetAudit: Number(setting('KINEBRICK_WORKING_SET_AUDIT') ?? 0),
+  workingSetCompare: setting('KINEBRICK_WORKING_SET_COMPARE') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -345,7 +357,8 @@ export class Kinematics {
   // gear moves, or holds) and no universal joint (a half shaft on a ball in its wheel's hub,
   // which the differential turns).
   mounts = new Map<number, number>();
-  private basisOrder: number[] = []; // its columns, deepest bodies' first (see leastSquares)
+  private basisOrders = new WeakMap<number[][], number[]>(); // each basis's columns, deepest bodies' first (see leastSquares)
+  private basisSmall: number[][] | null = null; // the basis on a working set's columns (see Options.workingSet)
   // The tree's coordinates, in which the solver works (see treeBasis): six for each root body
   // (how it turns and moves), then one for each joint in the tree (how fast it turns).
   private rootColumn = new Map<number, number>(); // a root body's first coordinate
@@ -834,7 +847,15 @@ export class Kinematics {
   // It depends only on where the bodies are, so it's kept until they move (see updatePoses):
   // a drag asks for the free motions many times over at one pose, holding different bodies.
   private treeBasis(): number[][] {
-    if (this.basis) return this.basis;
+    // A drag's working set (see Options.workingSet): only its columns, while a step is worked on it.
+    if (this.wsActive && this.ws) return (this.basisSmall ??= this.makeBasis(this.ws.columns));
+    return (this.basis ??= this.makeBasis(null));
+  }
+
+  // The basis of treeBasis, of every column, or (`only`) of those columns alone: the same
+  // arithmetic, each column made square to those of the bodies beyond it that are kept. Its
+  // columns are kept in order, and the order deepest first (see leastSquares) in basisOrders.
+  private makeBasis(only: Set<number> | null): number[][] {
     // Each body's motion, as a list of coordinates and what one unit of each does to it
     // (6 numbers: turning, then the velocity of the origin).
     const chains: { column: number; twist: number[] }[][] = [];
@@ -864,9 +885,13 @@ export class Kinematics {
     // beyond it, and stays among those bodies: far less work than taking every column against
     // every other, for a basis with the same span. Plain loops: this runs every step.
     const n = 6 * this.bodyCount;
-    const columns: Float64Array[] = Array.from({ length: this.columns }, () => new Float64Array(n));
+    const kept = (c: number) => !only || only.has(c);
+    const columns: (Float64Array | undefined)[] = Array.from({ length: this.columns }, (_, c) => (kept(c) ? new Float64Array(n) : undefined));
     chains.forEach((chain, body) => {
-      for (const { column, twist } of chain) for (let k = 0; k < 6; k++) columns[column][6 * body + k] = twist[k];
+      for (const { column, twist } of chain) {
+        const col = columns[column];
+        if (col) for (let k = 0; k < 6; k++) col[6 * body + k] = twist[k];
+      }
     });
     const children: number[][] = Array.from({ length: this.bodyCount }, () => []);
     for (const body of this.order) {
@@ -875,9 +900,9 @@ export class Kinematics {
     }
     const ownColumns = (body: number): number[] => {
       const j = this.parentJoint[body];
-      if (j >= 0) return [this.jointColumn[j]];
+      if (j >= 0) return kept(this.jointColumn[j]) ? [this.jointColumn[j]] : [];
       const first = this.rootColumn.get(body)!;
-      return [first, first + 1, first + 2, first + 3, first + 4, first + 5];
+      return [first, first + 1, first + 2, first + 3, first + 4, first + 5].filter(kept);
     };
     const beyond: number[][] = []; // the bodies beyond each body, itself included
     const done: number[][] = []; // their columns, made orthonormal
@@ -885,7 +910,7 @@ export class Kinematics {
     // the same order as among a body further in's places, so leaving the rest out of a sum
     // leaves out only zeros).
     const placesOf: number[][] = [];
-    this.basisOrder = [];
+    const order: number[] = [];
     for (const body of [...this.order].reverse()) {
       beyond[body] = [body, ...children[body].flatMap((c) => beyond[c])];
       const places: number[] = [];
@@ -893,11 +918,11 @@ export class Kinematics {
       const others = children[body].flatMap((c) => done[c]);
       const own: number[] = [];
       for (const c of ownColumns(body)) {
-        const u = columns[c];
+        const u = columns[c]!;
         placesOf[c] = places;
         for (let pass = 0; pass < 2; pass++) {
           for (const b of [...others, ...own]) {
-            const e = columns[b];
+            const e = columns[b]!;
             const along = placesOf[b];
             let d = 0;
             for (const i of along) d += u[i] * e[i];
@@ -909,20 +934,22 @@ export class Kinematics {
         length = Math.sqrt(length);
         for (const i of places) u[i] /= length;
         own.push(c);
-        this.basisOrder.push(c);
+        order.push(c);
       }
       done[body] = [...others, ...own];
     }
     // Turned round: a row for each coordinate of the motion vector. Plain loops: the same numbers,
     // without a function call for each (this is worked out afresh in many rounds of a step).
+    const list = columns.flatMap((col, c) => (col ? [c] : []));
+    const place = new Map(list.map((c, p) => [c, p]));
     const basis: number[][] = [];
     for (let i = 0; i < n; i++) {
-      const row = new Array<number>(columns.length);
-      for (let c = 0; c < columns.length; c++) row[c] = columns[c][i];
+      const row = new Array<number>(list.length);
+      for (let p = 0; p < list.length; p++) row[p] = columns[list[p]]![i];
       basis.push(row);
     }
-    this.basis = basis;
-    return this.basis;
+    this.basisOrders.set(basis, order.map((c) => place.get(c)!));
+    return basis;
   }
 
   // Works something out with the model moved across the ground (x and z) so that its frame is at
@@ -966,6 +993,7 @@ export class Kinematics {
   // Rebuilds every body's pose from the root poses and joint angles.
   private updatePoses() {
     this.basis = null;
+    this.basisSmall = null;
     for (const body of this.order) {
       const j = this.parentJoint[body];
       if (j < 0) {
@@ -1210,7 +1238,7 @@ export class Kinematics {
       const before = this.snapshot();
       const [deadPoint, lastStep, onPlay] = [this.deadPoint, this.lastStep, this.onPlay];
       for (const way of [1, -1]) {
-        const went = this.turnJoint(link.joint, way * MAX_TURN_STEP);
+        const went = this.turnJointPlain(link.joint, way * MAX_TURN_STEP);
         this.restore(before);
         if (Math.abs(went) > 1e-9) moves = true;
         if (moves) break;
@@ -2104,7 +2132,7 @@ export class Kinematics {
           weights.push(this.options.closeStill);
         }
       }
-      let solution = dampedSolution(inBasis(rows, basis), gaps, this.basisOrder, weights);
+      let solution = dampedSolution(inBasis(rows, basis), gaps, this.basisOrders.get(basis), weights);
       if (!solution) return last;
       mixedFresh = one && !plain && fresh;
       if (one && !plain) {
@@ -2495,7 +2523,256 @@ export class Kinematics {
   // short of the dead point, and won't turn further that way from there. (Creeping on in ever
   // smaller steps, it would slip across; and stopped right at the dead point, it couldn't turn
   // back.)
+  // A drag's working set (Options.workingSet, decision 266 of 2026-11-20): the tree's columns a
+  // full step of the drag turned (W) and those some row ties directly to them (the ring), for the
+  // steps after it to be worked on alone, every other column fixed. Made from a full turn; kept
+  // for the drag (the same Drag) and joint that made it.
+  // A set is made from the drag's first two full turns (`confirmed` after the second): a part a
+  // drag starts to move only to second order (a linkage at a dead point, whose rate is 0 where
+  // the drag starts and grows with its turn) is still under the bound in the first, but not in the
+  // second (the 42083 Bugatti Chiron's steering moves its body 159 so).
+  ws: { drag: Drag; joint: number; columns: Set<number>; ring: Set<number>; turned: number; confirmed: boolean; w: Set<number> } | null = null;
+  private wsActive = false;
+  // The shadow mode (KINEBRICK_WORKING_SET_SHADOW=1): the same drag worked in full, beside the drag on
+  // the set, from its own last state; and a number for each drag.
+  private wsShadow: { drag: Drag; state: ReturnType<Kinematics['stepState']>; turned: number; id: number } | null = null;
+  private static wsDrags = 0;
+  // What the working set did, for the compare mode and the reports: turns worked on the set, and
+  // those worked again in full, by why; and, in the compare mode, each turn both ways.
+  // Kept for every Kinematics alike (a function check makes it afresh as the mechanism is read
+  // again), and reset by whoever reads it (see check-functions.ts).
+  get wsStats() {
+    return Kinematics.wsShared;
+  }
+  static wsShared = {
+    small: 0,
+    made: 0,
+    fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 } as Record<string, number>,
+    excluded: 0,
+    compared: [] as { joint: number; angle: number; small: number; full: number; pose: number; angle2: number; small_ok: boolean }[],
+    // The shadow mode: after each turn of a drag, how far the drag on the set and the same drag in
+    // full have come apart (see turnJoint).
+    shadow: [] as { drag: number; at: number; ldu: number; rad: number; small: number; full: number; body?: number; radBody?: number }[],
+  };
+
+  // Turns a joint by `angle` (see turnJointPlain), on the drag's working set where it has one and
+  // may use it, else in full. A turn on the set that doesn't go its whole way, plays, chooses the
+  // holds afresh, or turns a column of the ring, is undone and worked again in full: the set must
+  // never end, or bend, a motion the whole mechanism would make. A turn worked in full makes the
+  // set afresh from what it turned.
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
+    if (!this.options.workingSet) return this.turnJointPlain(joint, angle, allowed, maxStep);
+    if (setting('KINEBRICK_WORKING_SET_SHADOW') !== '1') return this.turnJointSet(joint, angle, allowed, maxStep);
+    // The shadow: the same turn in full from the full drag's own state (or from here, at a drag's
+    // start), then the turn on the set from here, kept; and how far apart they now are. The collision
+    // test is asked in both: a stop it makes in one is a stop the other may not make.
+    const mine = this.stepState();
+    const fresh = !this.wsShadow || this.wsShadow.drag !== this.drag;
+    if (!fresh) this.restoreStepState(this.wsShadow!.state);
+    const full = this.turnJointPlain(joint, angle, allowed, maxStep);
+    const shadow = { drag: this.drag, state: this.stepState(), turned: (fresh ? 0 : this.wsShadow!.turned) + full, id: fresh ? ++Kinematics.wsDrags : this.wsShadow!.id };
+    this.restoreStepState(mine);
+    const turned = this.turnJointSet(joint, angle, allowed, maxStep);
+    this.wsShadow = shadow;
+    const [ldu, rad, body, radBody] = this.apartFrom(shadow.state.state);
+    this.wsStats.shadow.push({ drag: shadow.id, at: shadow.turned, ldu, rad, small: turned, full, body, radBody });
+    return turned;
+  }
+
+  // How far each body is from where another state has it: the most any joint's point on it is apart
+  // (LDU), and the most it is turned against it (rad).
+  private apartFrom(other: KinematicsState): [number, number, number, number] {
+    const here = this.poses.map((m) => m.clone());
+    const now = this.snapshot();
+    this.restore(other);
+    const there = this.poses.map((m) => m.clone());
+    this.restore(now);
+    let ldu = 0;
+    let rad = 0;
+    let body = -1;
+    let radBody = -1;
+    const points: Vector3[][] = this.mech.bodies.map(() => []);
+    for (const j of this.mech.joints) for (const b of [j.bodyA, j.bodyB]) points[b].push(j.from, j.to);
+    here.forEach((m, b) => {
+      for (const p of points[b]) { const d = p.clone().applyMatrix4(m).distanceTo(p.clone().applyMatrix4(there[b])); if (d > ldu) [ldu, body] = [d, b]; }
+      const q = new Quaternion().setFromRotationMatrix(new Matrix4().extractRotation(there[b]).invert().multiply(new Matrix4().extractRotation(m)));
+      const r = 2 * Math.acos(Math.min(1, Math.abs(q.w)));
+      if (r > rad) [rad, radBody] = [r, b];
+    });
+    return [ldu, rad, body, radBody];
+  }
+
+  private turnJointSet(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
+    const ws = this.ws;
+    const ours = ws !== null && ws.drag === this.drag && ws.joint === joint;
+    const usable = ours && ws!.confirmed && !this.wsExcluded(ws!);
+    if (ours && ws!.confirmed && !usable) this.wsStats.excluded++;
+    const audit = usable && this.options.workingSetAudit > 0 && ws!.turned + Math.abs(angle) > this.options.workingSetAudit;
+    if (usable && audit) this.wsStats.fallback.audit++;
+    let compared: { turned: number; state: KinematicsState } | null = null;
+    if (usable && !audit) {
+      const saved = this.stepState();
+      if (this.aheadKept && !(this.aheadKept as { small?: boolean }).small) this.aheadKept = null;
+      this.wsActive = true;
+      this.basisSmall = null;
+      let turned = 0;
+      try {
+        turned = this.turnJointPlain(joint, angle, allowed, maxStep);
+      } finally {
+        this.wsActive = false;
+        this.basisSmall = null;
+      }
+      if (this.aheadKept) (this.aheadKept as { small?: boolean }).small = true;
+      const why = Math.abs(turned - angle) > 1e-12 ? 'short' : this.onPlay > saved.onPlay ? 'played' : !this.sameHolds(saved.drag) ? 'holds' : this.ringTurned(ws!, saved.state, turned) ? 'ring' : null;
+      if (!why && !this.options.workingSetCompare) {
+        ws!.turned += Math.abs(angle);
+        this.wsStats.small++;
+        return turned;
+      }
+      if (why) this.wsStats.fallback[why]++;
+      else compared = { turned, state: this.snapshot() };
+      this.restoreStepState(saved);
+    }
+    if (this.aheadKept && (this.aheadKept as { small?: boolean }).small) this.aheadKept = null;
+    const before = this.snapshot();
+    const turned = this.turnJointPlain(joint, angle, allowed, maxStep);
+    if (compared) {
+      // Compare mode: the turn on the set against the turn in full, from the same state; the full
+      // one is kept, and the set too, as the set would have gone on.
+      const now = this.snapshot();
+      let pose = 0;
+      let where = '';
+      for (const [root, m] of now.roots) m.elements.forEach((x, i) => { const d = Math.abs(x - compared!.state.roots.get(root)!.elements[i]); if (d > pose) [pose, where] = [d, `root ${root} element ${i}: full moved it ${(x - before.roots.get(root)!.elements[i]).toExponential(2)}, the set ${(compared!.state.roots.get(root)!.elements[i] - before.roots.get(root)!.elements[i]).toExponential(2)}, in the set ${this.ws?.columns.has(this.rootColumn.get(root)!) ?? false}`]; });
+      let angle2 = 0;
+      let which = -1;
+      now.jointAngles.forEach((a, j) => { const d = Math.abs(a - compared!.state.jointAngles[j]); if (d > angle2) [angle2, which] = [d, j]; });
+      this.wsStats.compared.push({ joint, angle, small: compared.turned, full: turned, pose, angle2, small_ok: true, where, which } as never);
+      ws!.turned += Math.abs(angle);
+      this.wsStats.small++;
+      return turned;
+    }
+    this.ws = this.makeWorkingSet(joint, before, turned, ours && !ws!.confirmed ? ws!.w : null);
+    return turned;
+  }
+
+  // The state a turn changes, to undo a turn on the working set.
+  private stepState() {
+    const d = this.drag;
+    return {
+      state: this.snapshot(),
+      deadPoint: this.deadPoint,
+      lastStep: this.lastStep,
+      onPlay: this.onPlay,
+      aheadKept: this.aheadKept,
+      played: this.played,
+      gripped: this.gripped,
+      stepByTiers: this.stepByTiers,
+      endReached: this.endReached,
+      scrub: [this.scrubNeeded, this.leastScrub, this.slipRows] as const,
+      drag: { held: new Set(d.held), heldToFrame: new Set(d.heldToFrame), grip: d.grip, suspension: d.suspension, steering: d.steering, outOfReach: d.outOfReach, springs: d.springs, plainOnly: d.plainOnly, drivenLast: d.drivenLast, turning: d.turning },
+    };
+  }
+
+  private restoreStepState(s: ReturnType<Kinematics['stepState']>) {
+    this.restore(s.state);
+    [this.deadPoint, this.lastStep, this.onPlay, this.aheadKept, this.played, this.gripped, this.stepByTiers, this.endReached] = [s.deadPoint, s.lastStep, s.onPlay, s.aheadKept, s.played, s.gripped, s.stepByTiers, s.endReached];
+    [this.scrubNeeded, this.leastScrub, this.slipRows] = s.scrub;
+    Object.assign(this.drag, { ...s.drag, held: new Set(s.drag.held), heldToFrame: new Set(s.drag.heldToFrame) });
+  }
+
+  private sameHolds(d: { held: Set<number>; heldToFrame: Set<number> }): boolean {
+    const same = (a: Set<number>, b: Set<number>) => a.size === b.size && [...a].every((x) => b.has(x));
+    return same(d.held, this.drag.held) && same(d.heldToFrame, this.drag.heldToFrame);
+  }
+
+  // Each body's columns from its root down: a root's six and the column of every joint on the way.
+  private chainColumns(body: number): number[] {
+    const out: number[] = [];
+    for (let b = body; ; ) {
+      const j = this.parentJoint[b];
+      if (j < 0) {
+        const first = this.rootColumn.get(b)!;
+        out.push(first, first + 1, first + 2, first + 3, first + 4, first + 5);
+        return out;
+      }
+      out.push(this.jointColumn[j]);
+      const joint = this.mech.joints[j];
+      b = joint.bodyA === b ? joint.bodyB : joint.bodyA;
+    }
+  }
+
+  // The tree's columns a turn changed by more than EPSILON of its own turn: a joint's angle, a
+  // root's pose (all six, if it moved at all). EPSILON is the solver's "counts as zero": the full
+  // calculation's noise is about 1e-15 of a step, and the smallest real rate in the stored records
+  // about 1e-6 (the 9395's winch drives p431 at 9.5e-7 of the control).
+  private turnedColumns(before: KinematicsState, turned: number): Set<number> {
+    const bound = EPSILON * Math.abs(turned);
+    const out = new Set<number>();
+    this.mech.joints.forEach((_, j) => {
+      if (this.jointColumn[j] >= 0 && Math.abs(this.jointAngles[j] - before.jointAngles[j]) > bound) out.add(this.jointColumn[j]);
+    });
+    for (const [root, pose] of this.rootPoses) {
+      const was = before.roots.get(root)!;
+      if (pose.elements.some((x, i) => Math.abs(x - was.elements[i]) > bound)) {
+        const first = this.rootColumn.get(root)!;
+        for (let k = 0; k < 6; k++) out.add(first + k);
+      }
+    }
+    return out;
+  }
+
+  // The working set a full turn makes: W, the columns it turned, and the ring, every column some
+  // row ties to one of them (a row ties the columns of its bodies' chains: one of W's columns is on
+  // a chain, so it moves that body). Rows: the equations without the tree's joints, the tyres'
+  // rows and the springs. Null if the turn went nowhere.
+  private makeWorkingSet(joint: number, before: KinematicsState, turned: number, first: Set<number> | null): Kinematics['ws'] {
+    if (Math.abs(turned) < 1e-12) return null;
+    const w = this.turnedColumns(before, turned);
+    if (first) for (const c of first) w.add(c);
+    const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] };
+    const rows = [...this.buildEquations(null, slip, true), ...slip.sideways, ...slip.travel, ...slip.lift, ...slip.rise, ...this.springRows()];
+    const ring = new Set<number>();
+    const chains = new Map<number, number[]>();
+    const chainOf = (b: number) => {
+      let c = chains.get(b);
+      if (!c) chains.set(b, (c = this.chainColumns(b)));
+      return c;
+    };
+    // KINEBRICK_WORKING_SET_RINGS rings (1 unless set): each ring the columns tied to the last.
+    const tiedOf = rows.map((row) => [...new Set(row.entries().flatMap(([i, x]) => (x !== 0 ? [Math.floor(i / 6)] : [])))].flatMap(chainOf));
+    const inner = new Set(w);
+    const rings = Number(setting('KINEBRICK_WORKING_SET_RINGS') ?? 1);
+    for (let r = 0; r < rings; r++) {
+      const next: number[] = [];
+      for (const tied of tiedOf) if (tied.some((c) => inner.has(c))) for (const c of tied) if (!inner.has(c) && !ring.has(c)) next.push(c);
+      for (const c of next) ring.add(c);
+      if (r + 1 < rings) for (const c of next) inner.add(c);
+    }
+    this.wsStats.made++;
+    return { drag: this.drag, joint, columns: new Set([...w, ...ring]), ring, turned: 0, confirmed: first !== null, w };
+  }
+
+  // Whether a turn on the set turned a column of its ring (see turnedColumns): its neighbours may
+  // have had to move too, so it is worked again in full.
+  private ringTurned(ws: NonNullable<Kinematics['ws']>, before: KinematicsState, turned: number): boolean {
+    for (const c of this.turnedColumns(before, turned)) if (ws.ring.has(c)) return true;
+    return false;
+  }
+
+  // Not on the working set (decision 266, iii): tyres near what they may scrub (a car that might
+  // roll rather than scrub), or a car on the ground whose frame isn't in the set.
+  private wsExcluded(ws: NonNullable<Kinematics['ws']>): boolean {
+    if (this.scrubNeeded !== null || this.leastScrub > 0.9 * this.scrub) return true;
+    if (this.contactTreads.length > 0) {
+      for (const f of this.frames) {
+        const first = this.rootColumn.get(f);
+        if (first !== undefined && !ws.columns.has(first)) return true;
+      }
+    }
+    return false;
+  }
+
+  private turnJointPlain(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     // The motion the last turn found for its next step, if this turn takes that step: the same
     // joint the same way, with everything where that turn left it, and the same holds, frozen
     // bodies and scrub. Anything else (a hold changed, a pin freed, a shift, the model read again)
@@ -2673,7 +2950,7 @@ export class Kinematics {
           }
         }
         if (Math.abs(step) <= MAX_TURN_STEP + 1e-12) return stop(turned);
-        const done = this.turnJoint(joint, step, allowed, MAX_TURN_STEP);
+        const done = this.turnJointPlain(joint, step, allowed, MAX_TURN_STEP);
         turned += done;
         if (Math.abs(done - step) > 1e-12) return turned;
         continue;

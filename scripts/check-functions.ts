@@ -1499,6 +1499,27 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
     }
     const seconds = Math.round((Date.now() - started) / 100) / 10;
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
+    // The working set's counts for this function (decision 266), then reset: printed only when
+    // KINEBRICK_WORKING_SET=1 asks for them, though the set is on without it.
+    if (process.env.KINEBRICK_WORKING_SET === '1') {
+      const st = Kinematics.wsShared;
+      const beyond = st.compared.filter((c) => c.pose > 1e-6 || c.angle2 > 1e-6);
+      console.error(`ws-stats function ${i + 1}: ${JSON.stringify({ small: st.small, made: st.made, excluded: st.excluded, fallback: st.fallback, compared: st.compared.length, beyond: beyond.length, worstPose: Math.max(0, ...st.compared.map((c) => c.pose)), worstAngle: Math.max(0, ...st.compared.map((c) => c.angle2)), turnedApart: st.compared.filter((c) => Math.abs(c.small - c.full) > 1e-12).length, worst: beyond.sort((x, y) => y.pose - x.pose)[0] ?? null })}`);
+      if (st.shadow.length) {
+        // The shadow: the most the set and the full calculation came apart over the turn, where, and
+        // for each drag whether it was still growing at its end; and the calls that turned apart.
+        const most = st.shadow.reduce((m, s) => (s.ldu > m.ldu ? s : m), st.shadow[0]);
+        const mostRad = Math.max(...st.shadow.map((s) => s.rad));
+        const byDrag = new Map<number, typeof st.shadow>();
+        for (const s of st.shadow) byDrag.set(s.drag, [...(byDrag.get(s.drag) ?? []), s]);
+        const growing = [...byDrag.values()].filter((list) => list.length > 1 && list[list.length - 1].ldu >= Math.max(...list.map((s) => s.ldu)) && list[list.length - 1].ldu > list[list.length - 2].ldu).length;
+        const apart = st.shadow.filter((s) => Math.abs(s.small - s.full) > 1e-12);
+        // The parts of the body that came apart most (by a joint's point, and by turning): the first six.
+        const partsOf = (body: number | undefined) => mech.bodyOf.flatMap((bb: number, pp: number) => (bb === body ? [name(pp)] : [])).slice(0, 6);
+        console.error(`ws-shadow function ${i + 1}: ${JSON.stringify({ calls: st.shadow.length, drags: byDrag.size, ldu: most.ldu, rad: mostRad, at: most.at, growingAtEnd: growing, turnedApart: apart.length, firstApart: apart[0] ?? null, parts: partsOf(most.body), radParts: partsOf(st.shadow.reduce((m, s) => (s.rad > m.rad ? s : m), st.shadow[0]).radBody) })}`);
+      }
+      Object.assign(st, { small: 0, made: 0, excluded: 0, fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 }, compared: [], shadow: [] });
+    }
     return { ...found, seconds };
   });
   return { checked, loose: mech.loose.map(name), errata: loaded.errata };

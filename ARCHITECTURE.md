@@ -1317,6 +1317,7 @@ Browser-level tests for these paths can come later.
 | `data/corrections.ldr` | Kinebrick's own additions to the connection table |
 | `data/roles.json` | Each part's role; parts not listed are `structure` |
 | `data/not-moving-yet.json` | The moving parts Kinebrick can't move yet, each with what it doesn't do, which the viewer lists |
+| `data/check-sample.csv` | The standing sample for proving a change that may move results (decision 269): about twenty sets of different kinds, each with the functions to check (all if blank, numbered from 1) and the kind it stands for. A branch checks these sets, plus the sets its change is about, instead of a full check |
 | `data/connections.json` | The connection table (generated, don't edit) |
 | `data/library-connections.json` | The connection table for the whole LDraw library, for models opened from your own computer (generated, don't edit) |
 | `packed/` | The packed models and part titles the viewer loads; the LDraw library's primitives and colours; and `pieces.json`, the pieces of every part read as its pieces, for the scripts that read sets from the OMR (generated, don't edit) |
