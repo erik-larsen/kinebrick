@@ -27,7 +27,7 @@
       "id": "offer-main-2026-11-21",
       "kind": "Sign-off",
       "title": "Main: the offer is staged. Commit and push it?",
-      "what": "You said \"Yes, prepare it\". The gates are passed at preview's commit 4929054b (decision 341): every working function was swept in the viewer and each finding is mended or held (28 holds); the full check of preview differs from the stored records only in the three functions held today; the slow check of the 8110 is as stored (9 work, 4 partly, 3 do not); the type check and all 1,087 tests pass. The whole of preview is staged in the main checkout as one commit, not yet committed, with a commit message in the chat.",
+      "what": "You said \"Yes, prepare it\". The gates are passed at preview's commit 4929054b (decision 341): every working function was swept in the viewer and each finding is mended or held (28 holds); the full check of preview differs from the stored records only in the three functions held today; the slow check of the 8110 is as stored (9 work, 4 partly, 3 do not); the type check and all 1,087 tests pass. Since then your shorter README is merged, a test that it broke is mended, and the site is set to publish the three status pages (342); only the README, that test, the page scripts and the site's workflow changed. The whole of preview is staged in the main checkout as one commit, not yet committed, with a commit message in the chat.",
       "effect": "Main, and so the published site, gets 703 commits of work since 18 November: the faster viewer, the pin search, the working set, the cam reading, the stop rule, the viewer sweep and its table of times, and all signed list changes and errata. The count shown goes from 701 to 693 working functions. That is not a loss: main's 701 was counted before any hold; on that basis preview stood at 740. The lower figure counts only what the viewer shows a user.",
       "links": [
         {
@@ -490,6 +490,10 @@
     {
       "date": "2026-11-21",
       "what": "The offer of main is prepared (341): three last sweep findings held, the full check of preview and the slow check of the 8110 pass with no other change, the tests pass. 693 functions work on preview."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The status pages go to GitHub with the site (342): after main is pushed, the Technic status page is at erik-larsen.github.io/kinebrick/status.html (main) and /preview/status.html, this decisions page at /preview/decisions.html, and the train status page at /preview-train/trains.html once the train branch has merged preview. They are public, as docs/plan.md is. Your shorter README is merged into preview."
     }
   ]
 }
