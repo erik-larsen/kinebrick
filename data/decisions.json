@@ -1,8 +1,8 @@
 {
   "state": {
     "main": {
-      "works": 701,
-      "moved": "2026-11-18"
+      "works": 693,
+      "moved": "2026-11-21"
     },
     "preview": {
       "works": 693,
@@ -23,21 +23,6 @@
     ]
   },
   "waiting": [
-    {
-      "id": "offer-main-2026-11-21",
-      "kind": "Sign-off",
-      "title": "Main: the offer is staged. Commit and push it?",
-      "what": "You said \"Yes, prepare it\". The gates are passed at preview's commit 4929054b (decision 341): every working function was swept in the viewer and each finding is mended or held (28 holds); the full check of preview differs from the stored records only in the three functions held today; the slow check of the 8110 is as stored (9 work, 4 partly, 3 do not); the type check and all 1,087 tests pass. Since then your shorter README is merged, a test that it broke is mended, and the site is set to publish the three status pages (342); only the README, that test, the page scripts and the site's workflow changed. The whole of preview is staged in the main checkout as one commit, not yet committed, with a commit message in the chat.",
-      "effect": "Main, and so the published site, gets 703 commits of work since 18 November: the faster viewer, the pin search, the working set, the cam reading, the stop rule, the viewer sweep and its table of times, and all signed list changes and errata. The count shown goes from 701 to 693 working functions. That is not a loss: main's 701 was counted before any hold; on that basis preview stood at 740. The lower figure counts only what the viewer shows a user.",
-      "links": [
-        {
-          "label": "Technic status page",
-          "url": "https://claude.ai/artifact/8NVghVnAY8hsbqA81yw3XV"
-        }
-      ],
-      "reply": "Commit and push main",
-      "since": "2026-11-21"
-    },
     {
       "id": "system-hinges-build",
       "kind": "Decision",
@@ -60,6 +45,10 @@
     {
       "title": "A second worker, looked at again after 23 November",
       "what": "You said not yet on 16 November, and Claude was to ask again about 19 November. Claude does not ask: on 20 November the account's week stands at 63% used with 60% of the week gone, so the three sessions alone are on course to reach the weekly limit some hours before it resets on 23 November. A fourth session would bring that forward. Working functions went from 701 to 740 in five days. Claude looks again after the reset with a full week measured. If the week reaches 80% by 21 November, the worker pauses first."
+    },
+    {
+      "title": "The next offer of main",
+      "what": "After the sessions restart on 23 November: the free-parts rule, the track depth with the tipping mend, the locked balls (338) and the 42129's drive line (340), each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     }
   ],
   "done": [
@@ -494,6 +483,10 @@
     {
       "date": "2026-11-21",
       "what": "The status pages go to GitHub with the site (342): after main is pushed, the Technic status page is at erik-larsen.github.io/kinebrick/status.html (main) and /preview/status.html, this decisions page at /preview/decisions.html, and the train status page at /preview-train/trains.html once the train branch has merged preview. They are public, as docs/plan.md is. Your shorter README is merged into preview."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Main moved (343): on your word the whole of preview is committed and pushed as a31db83e. Main and preview now hold the same files: 693 functions work on both, counted as the viewer shows them."
     }
   ]
 }
