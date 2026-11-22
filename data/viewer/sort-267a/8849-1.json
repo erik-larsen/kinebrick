@@ -1,0 +1,87 @@
+{
+  "set": "8849-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:09:03.512Z",
+  "load": 19.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 329,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.",
+      "verdict": "not shown",
+      "why": "A: p100 4261, p101 4261, p114 3743 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p97 4442",
+          "way": 1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p97 4442",
+          "way": -1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    }
+  ]
+}

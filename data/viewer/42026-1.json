@@ -1,0 +1,314 @@
+{
+  "set": "42026-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:21:17.631Z",
+  "load": 4.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 128,
+  "seconds": 76,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The two big rear wheels turn together on their axle, which runs through the pull-back motor at the back.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p120 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p120 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p121 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p6 12799 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p120 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p121 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p6 12799 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p121 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p120 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p121 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p6 12799 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p121 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 27,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p120 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p121 56145 against p6 12799": [
+              0,
+              85.94
+            ],
+            "p6 12799 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p120 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p120 56145 against p6 12799",
+            "p121 56145 against p6 12799"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p121 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p120 56145 against p6 12799",
+            "p121 56145 against p6 12799"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 31
+    },
+    {
+      "function": 3,
+      "does": "The two front wheels roll freely on their axle; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p119 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 35,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p102 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p119 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 24,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p102 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p122 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p102 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p122 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p102 3708": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p119 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p102 3708"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p122 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p102 3708"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 29
+    },
+    {
+      "function": 4,
+      "does": "The steering wheel in the cockpit turns, but steers nothing.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p49 18352",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 27,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p102 3708 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p49 18352",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 23,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p102 3708 against p0 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p49 18352",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    }
+  ]
+}

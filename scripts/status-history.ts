@@ -34,8 +34,11 @@ const git = (args: string, input?: string) => execSync(`git ${args}`, { input: i
 // A set file's state, as the page works it out; null for a file with no results.
 export function setState(text: string): SetState {
   let results: { result?: string }[];
+  let unreadTracks = false;
   try {
-    results = JSON.parse(text).generated?.functions ?? [];
+    const generated = JSON.parse(text).generated;
+    results = generated?.functions ?? [];
+    unreadTracks = Boolean(generated?.unreadTracks);
   } catch {
     return null;
   }
@@ -44,7 +47,8 @@ export function setState(text: string): SetState {
   const functions = [count('works'), count('partly'), count('no')];
   const checked = functions[0] + functions[1] + functions[2];
   const share = checked ? functions[0] / checked : null;
-  const bucket = share === null ? 5 : share >= 1 ? 4 : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
+  // A set with a track that isn't read as a track is never in the "all work" bucket (see unread-tracks.ts).
+  const bucket = share === null ? 5 : share >= 1 ? (unreadTracks ? 3 : 4) : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
   return { bucket, functions };
 }
 
@@ -85,6 +89,17 @@ const same = (a: Point, b: Point) => a.buckets.join() === b.buckets.join() && a.
 export function history(): Point[] {
   const head = git('rev-parse HEAD').toString().trim();
   let kept: Kept | null = existsSync(FILE) ? JSON.parse(readFileSync(FILE, 'utf-8')) : null;
+  // A shallow checkout (GitHub's build of the site fetches only the last commit) has no history
+  // to walk: the kept points stand as they are, and HEAD's own state is added as the last point.
+  // Nothing is kept from such a run.
+  if (git('rev-parse --is-shallow-repository').toString().trim() === 'true') {
+    const now = new Map<string, SetState>();
+    for (const [path, text] of read(head, setFiles(head))) now.set(path, setState(text));
+    const last = point(Number(git(`show -s --format=%ct ${head}`).toString()), head, now);
+    const points = kept && kept.start === START ? kept.points : [];
+    if (points.length === 0 || !same(points[points.length - 1], last)) points.push(last);
+    return points;
+  }
   // Kept points are used only if they end on a commit that HEAD's first parents pass.
   if (kept && (kept.start !== START || !git(`rev-list --first-parent ${START}~1..HEAD`).toString().includes(kept.upto))) kept = null;
   const from = kept ? kept.upto : git(`rev-parse ${START}`).toString().trim();

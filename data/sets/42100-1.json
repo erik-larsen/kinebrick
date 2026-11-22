@@ -78,7 +78,7 @@
           "turntable: superstructure"
         ],
         "source": "book 1: turntable and slewing steps 91-131 (motor at step 104, the gear train inset at step 102); the gear train is inferred from the model",
-        "control": "p707 32270",
+        "control": "p536 42100 - 22169",
         "moves": [
           "p1927 42003 against p87 42003",
           "p516 18938 against p515 18939"
@@ -86,7 +86,7 @@
         "stays": [
           "p313 42100 - 42529 against p87 42003"
         ],
-        "note": "The motor (p536 42100 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its axle."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p536 42100 - 22169, a Control+ L motor) turns the 12 tooth gear p707 on its axle, the control named before."
       },
       {
         "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
@@ -176,13 +176,15 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 1828,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 1312,
     "counts": {
-      "partly": 4,
+      "partly": 6,
       "works": 3,
-      "no": 2
+      "not back": 2,
+      "torn": 1,
+      "moved whole": 1
     },
     "loose": [
       "p128 42100 - 23816c02",
@@ -372,7 +374,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 24.9
+        "seconds": 14.4,
+        "peak": 958
       },
       {
         "result": "partly",
@@ -435,7 +438,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 25
+        "seconds": 14.3,
+        "peak": 967
       },
       {
         "result": "partly",
@@ -529,33 +533,30 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 49.5
+        "seconds": 27.4,
+        "peak": 957
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p1927 42003 against p87 42003",
-          "p516 18938 against p515 18939"
-        ],
         "rates": [
           {
             "p1927 42003 against p87 42003": [
-              0,
-              0
+              0.0123,
+              2.88
             ],
             "p516 18938 against p515 18939": [
-              0,
-              0
+              0.0123,
+              1.8e-79
             ],
             "p313 42100 - 42529 against p87 42003": [
-              0,
-              0
+              5.62e-8,
+              2.14e-13
             ]
           }
         ],
@@ -583,12 +584,8 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p1927 42003 against p87 42003",
-        "seconds": 25.4
+        "seconds": 15.4,
+        "peak": 954
       },
       {
         "result": "works",
@@ -642,7 +639,8 @@
             ]
           ]
         ],
-        "seconds": 1034
+        "seconds": 457.5,
+        "peak": 990
       },
       {
         "result": "works",
@@ -660,37 +658,37 @@
           {
             "p3322 42003 against p2971 42003": [
               0.00302,
-              0.547
+              0.548
             ],
             "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              6.65e-8,
+              8.87e-8,
               0.582
             ],
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
-              6.65e-8,
+              8.87e-8,
               0.582
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              1.1e-12
+              8.08e-13
             ]
           },
           {
             "p3322 42003 against p2971 42003": [
               0.00302,
-              0.547
+              0.548
             ],
             "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              6.65e-8,
+              8.87e-8,
               0.582
             ],
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
-              6.65e-8,
+              8.87e-8,
               0.582
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              1.1e-12
+              4.93e-13
             ]
           }
         ],
@@ -750,84 +748,89 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 627.5
+        "seconds": 222.7,
+        "peak": 1219
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            4.39,
+            -7.26
           ]
         ],
         "still": [
-          "p3600 15458 against p3322 42003",
-          "p3784 42100 - 62274c02 against p3783 42100 - u9487c01",
-          "p3801 42100 - 62274c02 against p3800 42100 - u9487c01"
+          "p3600 15458 against p3322 42003"
         ],
         "rates": [
           {
             "p3600 15458 against p3322 42003": [
-              0,
-              0
+              0.00157,
+              0.0889
             ],
             "p3784 42100 - 62274c02 against p3783 42100 - u9487c01": [
-              0,
-              0
+              0.00813,
+              0.18
             ],
             "p3801 42100 - 62274c02 against p3800 42100 - u9487c01": [
-              0,
-              0
+              0.00928,
+              0.172
             ],
             "p3322 42003 against p2971 42003": [
-              0,
-              0
+              0.0000209,
+              0.00379
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              28.28,
+              175.55
             ],
             [
-              0,
-              0
+              52.08,
+              149.43
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              28.28,
+              175.55
             ],
             [
-              0,
-              0
+              52.08,
+              149.43
             ]
           ]
         ],
+        "strayed": [
+          "p2946 60485",
+          "p3812 87407"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "dead point"
           ]
         ],
         "judged": [
-          0
+          1
         ],
-        "cause": "not-driven",
+        "cause": "too-little",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 1.6
+        "onPlay": 20.66,
+        "seconds": 481.3,
+        "peak": 1459
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.11,
+            -0.03
           ]
         ],
         "still": [
@@ -836,89 +839,132 @@
         "rates": [
           {
             "p3322 42003 against p2971 42003": [
-              0,
-              0
+              0.00027,
+              0.049
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.39,
+              1.97
             ],
             [
-              0,
-              0
+              0.07,
+              0.17
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.39,
+              1.97
             ],
             [
-              0,
-              0
+              0.07,
+              0.17
             ]
           ]
         ],
+        "strayed": [
+          "p3695 92695"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "limit"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "stopped-early",
-        "seconds": 2.3
+        "onPlay": 0.33,
+        "seconds": 14.3,
+        "peak": 987
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p4686 40490": [
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.07,
+              0
+            ]
+          ],
+          "rates": [
+            {
+              "p4686 40490": [
+                1,
+                325
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "freed": 1,
+          "collisionStops": [
+            [
+              0,
               1,
-              325
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
+              4242,
+              4676,
+              0.07,
+              0.07
             ],
             [
               0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
+              -1,
+              4678,
+              4743,
               0,
               0
             ]
-          ]
-        ],
-        "freed": 1,
-        "seconds": 22.2
+          ],
+          "freedFor": [
+            {
+              "pin": "p4671 6558",
+              "for": "p4660 40490"
+            }
+          ],
+          "seconds": 14.7,
+          "peak": 914
+        }
       }
     ]
   }

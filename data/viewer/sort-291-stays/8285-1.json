@@ -1,0 +1,94 @@
+{
+  "set": "8285-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:38.518Z",
+  "load": 17,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1790,
+  "seconds": 7,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The knob on the cab roof steers the front wheels: its shaft runs down behind the seats, turns through a pair of bevel gears onto a shaft running forward to an 8-tooth pinion on the steering rack, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 155,
+      "msPerStep": 26,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p901 2654",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1086,
+          "msOneCall": 155,
+          "stops": [],
+          "moved": {
+            "p490 3743": [
+              15.36,
+              0
+            ],
+            "p472 59426": [
+              10.37,
+              24.77
+            ],
+            "p478 59426": [
+              10.37,
+              24.77
+            ],
+            "p720 3705": [
+              0,
+              0
+            ],
+            "p60 6573": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p901 2654",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1103,
+          "msOneCall": 67,
+          "stops": [],
+          "moved": {
+            "p490 3743": [
+              15.36,
+              0
+            ],
+            "p472 59426": [
+              10.37,
+              24.77
+            ],
+            "p478 59426": [
+              10.37,
+              24.77
+            ],
+            "p720 3705": [
+              0,
+              0
+            ],
+            "p60 6573": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    }
+  ]
+}

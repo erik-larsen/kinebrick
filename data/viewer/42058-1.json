@@ -1,0 +1,143 @@
+{
+  "set": "42058-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:24:03.903Z",
+  "load": 16.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 138,
+  "seconds": 31,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pull the bike back and let go: the pull-back motor drives the rear wheel through three 16 tooth gears, the middle one an idler, and the bike races forward.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p41 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 33,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p18 94925": [
+              0,
+              85.94
+            ],
+            "p21 18946": [
+              0,
+              85.94
+            ],
+            "p17 94925": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p41 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 27,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p18 94925": [
+              0,
+              85.94
+            ],
+            "p21 18946": [
+              0,
+              85.94
+            ],
+            "p17 94925": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p41 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p18 94925",
+            "p21 18946",
+            "p17 94925"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 3,
+      "does": "The front wheel rolls freely.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p56 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 27,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p56 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 21,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p56 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    }
+  ]
+}

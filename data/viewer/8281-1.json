@@ -1,0 +1,142 @@
+{
+  "set": "8281-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:52:36.720Z",
+  "load": 12,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 117,
+  "seconds": 45,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The front wheels roll freely on their axle; nothing steers them.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 24
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p90 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 90,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p90 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 82,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p91 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 80,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p91 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 74,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p90 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p91 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 30
+    },
+    {
+      "function": 4,
+      "does": "The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p61 30663",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p61 30663",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p61 30663",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    }
+  ]
+}

@@ -140,16 +140,14 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 16,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 10,
     "counts": {
-      "no": 1,
-      "works": 6,
-      "partly": 1,
-      "not back": 1,
-      "torn": 1,
-      "skipped": 1
+      "no": 2,
+      "works": 5,
+      "skipped": 1,
+      "partly": 1
     },
     "loose": [
       "p195 22977",
@@ -231,8 +229,8 @@
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.13,
+            -0.13
           ]
         ],
         "rates": [
@@ -271,66 +269,88 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            150,
+            254,
+            0.13,
+            0.13
+          ],
+          [
+            0,
+            -1,
+            151,
+            248,
+            0.13,
+            0.13
+          ]
+        ],
+        "seconds": 0.2
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            0.4,
-            -0.4
+            0,
+            0
           ]
         ],
         "still": [
+          "p157 32524",
+          "p193 4254 against p194 4255",
           "p200 4254 against p198 4255"
         ],
         "rates": [
           {
             "p157 32524": [
-              1,
-              20
+              0,
+              0
             ],
             "p193 4254 against p194 4255": [
-              2.11e-7,
-              44.6
+              0,
+              0
             ],
             "p200 4254 against p198 4255": [
-              1.05e-7,
-              2.36
+              0,
+              0
             ],
             "p122 32524": [
               0,
-              4.7e-36
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              56.19,
-              76.5
+              0,
+              0
             ],
             [
-              56.19,
-              76.5
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              56.19,
-              76.5
+              0,
+              0
             ],
             [
-              56.19,
-              76.5
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p186 41677",
-          "p190 41677"
         ],
         "stop": [
           [
@@ -342,8 +362,26 @@
           0
         ],
         "cause": "not-driven",
-        "detail": "p200 4254 against p198 4255",
-        "seconds": 0.7
+        "detail": "p193 4254 against p194 4255",
+        "collisionStops": [
+          [
+            0,
+            1,
+            5,
+            190,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            5,
+            186,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -389,68 +427,109 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 0.8
+      },
+      {
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p457 at once and at 0.14 rad (parts 269/472 and 323/458); the bonnet should lift open. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.17,
+              0
+            ]
+          ],
+          "rates": [
+            {
+              "p448 42122 - 71709": [
+                1,
+                80
+              ],
+              "p459 32524": [
+                1,
+                120
+              ],
+              "p207 14720": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "freed": 2,
+          "collisionStops": [
+            [
+              0,
+              1,
+              323,
+              458,
+              0.17,
+              0.17
+            ],
+            [
+              0,
+              -1,
+              269,
+              472,
+              0,
+              0
+            ]
+          ],
+          "freedFor": [
+            {
+              "pin": "p446 2780",
+              "for": "p457 32524"
+            },
+            {
+              "pin": "p447 2780",
+              "for": "p457 32524"
+            }
+          ],
+          "seconds": 0.4
+        }
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p448 42122 - 71709": [
-              1,
-              80
-            ],
-            "p459 32524": [
-              1,
-              120
-            ],
-            "p207 14720": [
-              0,
-              0
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "freed": 2,
-        "seconds": 1.5
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
+            0
           ],
           [
-            1.5,
+            0,
             -1.5
           ]
         ],
@@ -502,18 +581,64 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ],
+          [
+            "limit",
+            null
+          ]
+        ],
         "freed": 2,
         "movedBy": [
           [],
           []
         ],
-        "seconds": 2.7
+        "collisionStops": [
+          [
+            0,
+            -1,
+            121,
+            378,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            120,
+            421,
+            0,
+            0
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p387 2780",
+            "for": "p378 32524"
+          },
+          {
+            "pin": "p430 2780",
+            "for": "p421 32524"
+          },
+          {
+            "pin": "p592 6558",
+            "for": "p421 32524"
+          },
+          {
+            "pin": "p594 6558",
+            "for": "p378 32524"
+          }
+        ],
+        "seconds": 1.1
       },
       {
         "result": "works",
         "turned": [
           [
-            1.52,
+            0.12,
             -1.52
           ]
         ],
@@ -549,10 +674,26 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
         "pushed": [
           true
         ],
-        "seconds": 3.1
+        "collisionStops": [
+          [
+            0,
+            1,
+            361,
+            404,
+            0.12,
+            0.12
+          ]
+        ],
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -670,8 +811,9 @@
           [],
           []
         ],
-        "seconds": 5.4
+        "seconds": 4.6
       }
-    ]
+    ],
+    "peak": 830
   }
 }

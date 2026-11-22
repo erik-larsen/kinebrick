@@ -44,6 +44,22 @@ describe('errata', () => {
     expect(parts.map((p) => !!p.removed)).toEqual([true, false, false]);
   });
 
+  it('move a part in one placement of a submodel placed twice, the other placement and every number unchanged', () => {
+    const twice = MODEL.replace('1 16 0 0 0 1 0 0 0 1 0 0 0 1 sub.ldr', '1 16 0 0 0 1 0 0 0 1 0 0 0 1 sub.ldr\n1 16 0 0 100 1 0 0 0 1 0 0 0 1 sub.ldr');
+    const entry = { id: 'o', what: 'move' as const, file: 'sub.ldr', within: { file: '', line: '1 16 0 0 100 1 0 0 0 1 0 0 0 1 sub.ldr' }, line: '1 2 40 0 0 1 0 0 0 1 0 0 0 1 3004.dat', part: 'p3 3004', position: [40, 8, 0] as [number, number, number], evidence: '', signedOff: signed };
+    const { text, applied, refused } = applyErrata(twice, errata([entry]), false, (n) => parseModel(twice).parts[n]?.name);
+    expect(refused).toEqual([]);
+    expect(applied).toEqual(['o']);
+    expect(names(text)).toEqual(names(twice));
+    expect(at(text, 1)).toEqual([40, 0, 0]);
+    expect(at(text, 3)).toEqual([40, 8, 100]);
+    // A placement not found, or one placing another file, is refused.
+    const missing = applyErrata(twice, errata([{ ...entry, within: { file: '', line: '1 16 0 0 200 1 0 0 0 1 0 0 0 1 sub.ldr' } }]), false, null);
+    expect(missing.refused[0]).toMatch(/placement of sub.ldr is found 0 times/);
+    const other = applyErrata(twice, errata([{ ...entry, within: { file: '', line: '1 4 0 -24 0 1 0 0 0 1 0 0 0 1 3001.dat' } }]), false, null);
+    expect(other.refused[0]).toMatch(/placing something else/);
+  });
+
   it('refuse an entry whose line is not found once, or whose number names another part', () => {
     const wrongLine = applyErrata(MODEL, errata([{ id: 'w', what: 'move', file: 'sub.ldr', line: '1 2 44 0 0 1 0 0 0 1 0 0 0 1 3004.dat', position: [0, 0, 0], evidence: '', signedOff: signed }]), false, null);
     expect(wrongLine.applied).toEqual([]);
@@ -61,7 +77,7 @@ describe('errata', () => {
 
   // The OMR files are not in the repository: a checkout on GitHub has none, and skips this.
   it.skipIf(!existsSync('omr'))("apply each set's entries to its own OMR file: each line found once, each number naming its part", () => {
-    for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd'], ['8838-1', 'omr/8838-1 Shock Cycle.mpd'], ['42083-1', 'omr/42083-1 Bugatti Chiron.mpd'], ['42109-1', 'omr/42109-1 App-Controlled Top Gear Rally Car.mpd'], ['850-1', 'omr/850-1 Fork Lift.mpd']]) {
+    for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd'], ['8838-1', 'omr/8838-1 Shock Cycle.mpd'], ['42083-1', 'omr/42083-1 Bugatti Chiron.mpd'], ['42109-1', 'omr/42109-1 App-Controlled Top Gear Rally Car.mpd'], ['850-1', 'omr/850-1 Fork Lift.mpd'], ['42078-1', 'omr/42078-1 Mack Anthem.mpd']]) {
       const original = readFileSync(file, 'utf-8');
       const found = readErrata(file);
       expect(found?.set).toBe(set);

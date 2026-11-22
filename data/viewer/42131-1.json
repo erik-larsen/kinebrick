@@ -1,0 +1,484 @@
+{
+  "set": "42131-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T17:10:14.386Z",
+  "load": 9.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3842,
+  "seconds": 2901,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track.",
+      "verdict": "not shown",
+      "why": "B: the control could not be seen",
+      "msOneCall": 1183,
+      "msPerStep": 320,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 413,
+        "A": 30,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13699,
+          "msOneCall": 1183,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p6163 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13655,
+          "msOneCall": 815,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p6163 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2686 32062",
+          "seen": false
+        }
+      ],
+      "seconds": 456
+    },
+    {
+      "function": 2,
+      "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
+      "verdict": "not shown",
+      "why": "B: the control could not be seen",
+      "msOneCall": 1246,
+      "msPerStep": 321,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 351,
+        "A": 30,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13743,
+          "msOneCall": 1246,
+          "stops": [],
+          "moved": {
+            "p3613 42529": [
+              0,
+              15.92
+            ],
+            "p6105 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3610 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13587,
+          "msOneCall": 834,
+          "stops": [],
+          "moved": {
+            "p3613 42529": [
+              0,
+              15.92
+            ],
+            "p6105 42131 - 69910": [
+              37.67,
+              40.08
+            ],
+            "p3610 42529": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2688 32062",
+          "seen": false
+        }
+      ],
+      "seconds": 394
+    },
+    {
+      "function": 3,
+      "does": "With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot.",
+      "verdict": "not shown",
+      "why": "B: the control could not be seen",
+      "msOneCall": 1220,
+      "msPerStep": 317,
+      "time": {
+        "open": 19,
+        "collisions": 0,
+        "first": 0,
+        "reach": 722,
+        "A": 58,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13604,
+          "msOneCall": 1220,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13421,
+          "msOneCall": 819,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              15.92
+            ],
+            "p3613 42529": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13347,
+          "msOneCall": 786,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              0
+            ],
+            "p3613 42529": [
+              0,
+              15.92
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13334,
+          "msOneCall": 784,
+          "stops": [],
+          "moved": {
+            "p3610 42529": [
+              0,
+              0
+            ],
+            "p3613 42529": [
+              0,
+              15.92
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2686 32062",
+          "seen": false
+        },
+        {
+          "control": "p2688 32062",
+          "seen": false
+        }
+      ],
+      "seconds": 799
+    },
+    {
+      "function": 4,
+      "does": "The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft.",
+      "verdict": "not shown",
+      "why": "B: the control could not be seen",
+      "msOneCall": 1191,
+      "msPerStep": 310,
+      "time": {
+        "open": 18,
+        "collisions": 0,
+        "first": 0,
+        "reach": 726,
+        "A": 56,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2686 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13275,
+          "msOneCall": 1191,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              15.5,
+              0
+            ],
+            "p3670 2851": [
+              5.71,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2686 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12955,
+          "msOneCall": 803,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              5.71,
+              0
+            ],
+            "p3670 2851": [
+              15.5,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 12843,
+          "msOneCall": 782,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              15.5,
+              0
+            ],
+            "p3670 2851": [
+              5.71,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2688 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12786,
+          "msOneCall": 771,
+          "stops": [],
+          "moved": {
+            "p5 62821": [
+              0,
+              42.97
+            ],
+            "p3661 2853": [
+              0,
+              100.27
+            ],
+            "p3669 2851": [
+              5.71,
+              0
+            ],
+            "p3670 2851": [
+              15.5,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2686 32062",
+          "seen": false
+        },
+        {
+          "control": "p2688 32062",
+          "seen": false
+        }
+      ],
+      "seconds": 801
+    },
+    {
+      "function": 10,
+      "does": "The red lever in the engine compartment switches the Control+ hub on: pressing it pushes a pin onto the hub's button.",
+      "verdict": "not shown",
+      "why": "B: the control could not be seen; not decided: p3449 32056: a travel of 0.2 rad or less each way, stopped at -0.175 rad (3449/3650)",
+      "msOneCall": 1239,
+      "msPerStep": 353,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 433,
+        "A": 6,
+        "B": 0
+      },
+      "stop": {
+        "control": "p3449 32056",
+        "way": -1,
+        "went": -0.175,
+        "asked": 0.7,
+        "by": [
+          "3449/3650"
+        ]
+      },
+      "stops": [
+        "3449/3650"
+      ],
+      "A": [
+        {
+          "control": "p3449 32056",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.17,
+          "ms": 1714,
+          "msOneCall": 1239,
+          "stops": [],
+          "moved": {
+            "p3441 4274": [
+              9.15,
+              9.74
+            ]
+          }
+        },
+        {
+          "control": "p3449 32056",
+          "way": -1,
+          "asked": 0.7,
+          "went": -0.175,
+          "ms": 1709,
+          "msOneCall": 875,
+          "stops": [
+            "3449/3650"
+          ],
+          "moved": {
+            "p3441 4274": [
+              9.42,
+              10.03
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p3449 32056",
+          "seen": false
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p3449 32056",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.175 rad (3449/3650)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "not shown",
+        "why": "B: the control could not be seen"
+      },
+      "seconds": 452
+    }
+  ]
+}

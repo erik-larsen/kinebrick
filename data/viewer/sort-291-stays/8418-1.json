@@ -1,0 +1,141 @@
+{
+  "set": "8418-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:13.330Z",
+  "load": 9.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 64,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The grey knob at the back (a 12-tooth double bevel gear) raises and lowers the loader arms and bucket: it turns a worm, which turns an 8-tooth gear on a cross axle at the top of the back; the two arms, long axles along the sides, are fixed on that axle's ends and carry the crossbar the bucket clips onto.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p21 32270",
+        "way": 1,
+        "went": 0.14,
+        "asked": 1.5,
+        "by": [
+          "57/57"
+        ]
+      },
+      "stops": [
+        "57/57"
+      ],
+      "A": [
+        {
+          "control": "p21 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.14,
+          "ms": 5,
+          "msOneCall": 6,
+          "stops": [
+            "57/57"
+          ],
+          "moved": {
+            "p22 4716 against p0 32009": [
+              0,
+              7.99
+            ],
+            "p39 3647 against p0 32009": [
+              0,
+              1
+            ],
+            "p45 44294 against p0 32009": [
+              1.4,
+              1
+            ],
+            "p54 44294 against p0 32009": [
+              1.4,
+              1
+            ],
+            "p47 3706 against p0 32009": [
+              2.79,
+              1
+            ],
+            "p57 30394 against p0 32009": [
+              3.22,
+              1
+            ],
+            "p30 32063 against p0 32009": [
+              0,
+              0
+            ],
+            "p58 30285 against p0 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p21 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 21,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p22 4716 against p0 32009": [
+              0,
+              85.94
+            ],
+            "p39 3647 against p0 32009": [
+              0,
+              10.74
+            ],
+            "p45 44294 against p0 32009": [
+              15,
+              10.74
+            ],
+            "p54 44294 against p0 32009": [
+              15,
+              10.74
+            ],
+            "p47 3706 against p0 32009": [
+              30,
+              10.74
+            ],
+            "p57 30394 against p0 32009": [
+              34.57,
+              10.74
+            ],
+            "p30 32063 against p0 32009": [
+              0,
+              0
+            ],
+            "p58 30285 against p0 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p21 32270",
+          "judged": "stands",
+          "why": "stopped at +0.14 rad (57/57); kinds worm-drive"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

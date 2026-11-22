@@ -114,7 +114,7 @@
         "note": "inferred which parts are the axle housings; the springs only push back under force. lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
-        "does": "The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output.",
+        "does": "The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor.",
         "mechanisms": [
           "electric-motor: PF",
           "function-selector: 4 functions"
@@ -124,7 +124,7 @@
         "moves": [
           "p241 3648b"
         ],
-        "note": "the motor is a control like a crank; which ring and which clutch gear (p321, p325 on one ring, p332, p336 on the other) drives which output isn't read from the file yet; the levers are the catches p512 6641 and p516 6641"
+        "note": "the motor is a control like a crank; the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up. The yellow lever’s ring p330 locks p332 when up (the red lever’s line) and p336 when down (the compressor’s crank p422); the red lever’s ring p320 locks p325 when down (the winch) and p321 when up (the crane). Page 43 shows four pictures, but the two with the yellow lever down differ only by the red knob, which is a valve’s (function 16), not a gear’s"
       },
       {
         "does": "With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook.",
@@ -155,7 +155,7 @@
         "stays": [
           "p2216 48168"
         ],
-        "note": "which way each catch moves for each setting is inferred; the hook's rise and fall isn't expressed by the fields. Both levers stand straight up as built, so the model's pose doesn't say which way is up; of the four ways to set the two catches (each by +0.4 or -0.4), only the red lever's catch p512 by +0.4 with the yellow lever's catch p516 by +0.4 drives the winch (the drum turning 1/24 of the motor) and moves nothing listed to stay: with p516 by -0.4 the motor jams, and with p512 by -0.4 and p516 by +0.4 the winch isn't driven. So that is the first step, the check's finding rather than the book's"
+        "note": "the hook’s rise and fall isn’t expressed by the fields; the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up, so the first step is red down and yellow up, as page 43 shows"
       },
       {
         "does": "With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round.",
@@ -170,7 +170,7 @@
         "first": [
           {
             "control": "p512 6641",
-            "by": 0.4
+            "by": -0.4
           },
           {
             "control": "p516 6641",
@@ -188,7 +188,7 @@
           "p2215 48452",
           "p4030 32012"
         ],
-        "note": "which way each catch moves for each setting is inferred"
+        "note": "the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up, so the first step is red up and yellow up, as page 43 shows"
       },
       {
         "does": "With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system.",
@@ -201,7 +201,7 @@
         "control": "p60 58120",
         "first": [
           {
-            "control": "p512 6641",
+            "control": "p516 6641",
             "by": -0.4
           }
         ],
@@ -213,17 +213,27 @@
           "p2216 48168",
           "p4030 32012"
         ],
-        "note": "which part is the red knob that's pushed in and out isn't identified; the pump p378 99798-f1 is drawn retracted and its stroke isn't expressed"
+        "note": "the pump p378 99798-f1 is drawn retracted and its stroke isn’t expressed; the levers are read from the file: the catch p512 6641 carries the red lever (handle p561 59443) and p516 6641 the yellow one (handle p558 62462); as built both handles lie level, and p512 by +0.4 tips the red one down, p516 by +0.4 tips the yellow one up, so the first step is yellow down; with it, the red lever’s line is idle, so the red lever doesn’t matter. The red knob is p832 59443, on the lever of the valve p826 47223a-f1 (function 16): it switches the air, not the drive"
       },
       {
-        "does": "With the yellow lever down and the red knob pushed in, the motor works a fourth output.",
+        "does": "With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting.",
         "mechanisms": [
           "electric-motor",
           "function-selector"
         ],
         "source": "book: book 5 page 43 (bottom right: the crane's grab moving up and down)",
         "control": "p60 58120",
-        "note": "unsure what this output does: the picture shows the grab moving up and down with the crane reaching over the cab"
+        "note": "page 43 counts this as a fourth function, but the drive is the same as function 9’s: the red knob p832 is the valve p826’s (function 16), not a gear’s. The picture shows the grab moving up and down with the crane reaching over the cab, which is the air the valve sends",
+        "first": [
+          {
+            "control": "p516 6641",
+            "by": -0.4
+          }
+        ],
+        "moves": [
+          "p422 94925",
+          "p730 6587"
+        ]
       },
       {
         "does": "The first valve on the crane base works the cylinder that raises and lowers the crane's main boom.",
@@ -292,7 +302,7 @@
         ],
         "source": "inferred: a fourth valve p826 47223a-f1 sits on the truck by the gearbox",
         "control": "p826 47223a-f1",
-        "note": "unsure what this valve does"
+        "note": "the valve’s lever ends in the red knob p832 59443, which page 43 shows pushed out (bottom left) and in (bottom right); which cylinder each way feeds isn’t traced"
       }
     ],
     "questions": [
@@ -305,21 +315,18 @@
     ]
   },
   "generated": {
-    "commit": "a16baaa3",
-    "date": "2026-11-16",
-    "seconds": 25618,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 6899,
     "counts": {
-      "no": 4,
+      "works": 9,
+      "not back": 3,
+      "torn": 3,
       "pivoted": 1,
-      "works": 8,
       "partly": 4,
-      "not back": 1,
-      "free-turned": 1
+      "no": 3
     },
     "loose": [
-      "p706 62520",
-      "p707 3707",
-      "p756 32494",
       "p1726 3068b",
       "p2320 2795",
       "p2562 165",
@@ -373,104 +380,121 @@
       "p3928 165",
       "p4038 30395"
     ],
+    "errata": {
+      "applied": [
+        "crane-shaft-universal-joint-whole",
+        "crane-shaft-ball-in-its-cup"
+      ],
+      "refused": []
+    },
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.87,
+            -0.8
           ]
-        ],
-        "still": [
-          "p1498 32072",
-          "p1088 32270",
-          "p1080 87761",
-          "p1005 92909",
-          "p1028 92909",
-          "p1437 44772",
-          "p1440 44772"
         ],
         "rates": [
           {
             "p1498 32072": [
-              0,
-              0
+              1,
+              0.0252
             ],
             "p1088 32270": [
-              0,
-              0
+              0.998,
+              0.0168
             ],
             "p1080 87761": [
-              0,
-              0
+              0.0237,
+              15
             ],
             "p1005 92909": [
-              0,
-              0
+              0.494,
+              33.1
             ],
             "p1028 92909": [
-              0,
-              0
+              0.49,
+              33.1
             ],
             "p1437 44772": [
-              0,
-              0
+              0.494,
+              38.6
             ],
             "p1440 44772": [
-              0,
-              0
+              0.49,
+              38.6
             ],
             "p1438 44772": [
-              0,
-              0
+              0.00318,
+              0.474
             ],
             "p1439 44772": [
-              0,
-              0
+              0.00512,
+              0.445
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              41.74,
+              37.26
             ],
             [
-              0,
-              0
+              41.12,
+              28
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              13.39,
+              36.72
             ],
             [
-              0,
-              0
+              12.49,
+              35.23
             ]
           ]
         ],
+        "strayed": [
+          "p3635 166"
+        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "judged": [
-          0
+        "collisionStops": [
+          [
+            0,
+            1,
+            955,
+            1053,
+            0.87,
+            0.87
+          ],
+          [
+            0,
+            -1,
+            954,
+            1055,
+            0.8,
+            0.8
+          ]
         ],
-        "cause": "stopped-early",
+        "onPlay": 3.09,
         "pivoted": {
-          "slide": 3.86,
-          "rise": 3.43,
-          "tyre": "p1444 92912"
+          "slide": 4.07,
+          "rise": 3.48,
+          "tyre": "p1441 92912"
         },
-        "seconds": 85.6
+        "seconds": 322.8,
+        "peak": 1243
       },
       {
         "result": "works",
@@ -507,7 +531,8 @@
             ]
           ]
         ],
-        "seconds": 1239
+        "seconds": 172.3,
+        "peak": 1182
       },
       {
         "result": "works",
@@ -533,19 +558,19 @@
           {
             "p969 62821": [
               0.5,
-              8.8e-11
+              4.32e-11
             ],
             "p590 62821": [
               1,
-              3.84e-10
+              1.88e-10
             ],
             "p1145 94925": [
               0.437,
-              3.04e-11
+              1.82e-11
             ],
             "p1124 2854": [
               0.437,
-              3.1e-11
+              1.51e-11
             ],
             "p1133 2851": [
               0,
@@ -557,25 +582,25 @@
             ],
             "p1109 2850a": [
               0,
-              1.35e-11
+              8.96e-12
             ]
           },
           {
             "p969 62821": [
               0.5,
-              1.36e-10
+              7.64e-11
             ],
             "p590 62821": [
               1,
-              5.95e-10
+              3.4e-10
             ],
             "p1145 94925": [
               0.437,
-              5.72e-11
+              3.27e-11
             ],
             "p1124 2854": [
               0.437,
-              4.41e-11
+              2.46e-11
             ],
             "p1133 2851": [
               0,
@@ -587,25 +612,25 @@
             ],
             "p1109 2850a": [
               0,
-              2.38e-11
+              1.38e-11
             ]
           },
           {
             "p969 62821": [
               0.5,
-              5.24e-11
+              4.9e-11
             ],
             "p590 62821": [
               1,
-              2.3e-10
+              2.13e-10
             ],
             "p1145 94925": [
               0.437,
-              1.77e-11
+              1.38e-11
             ],
             "p1124 2854": [
               0.437,
-              1.89e-11
+              1.9e-11
             ],
             "p1133 2851": [
               0,
@@ -617,25 +642,25 @@
             ],
             "p1109 2850a": [
               0,
-              8.77e-12
+              9.15e-12
             ]
           },
           {
             "p969 62821": [
               0.5,
-              6.6e-11
+              4.89e-11
             ],
             "p590 62821": [
               1,
-              2.9e-10
+              2.18e-10
             ],
             "p1145 94925": [
               0.437,
-              2.79e-11
+              1.4e-11
             ],
             "p1124 2854": [
               0.437,
-              2.18e-11
+              1.81e-11
             ],
             "p1133 2851": [
               0,
@@ -647,7 +672,7 @@
             ],
             "p1109 2850a": [
               0,
-              1.2e-11
+              7.99e-12
             ]
           }
         ],
@@ -769,7 +794,8 @@
             "p1136 2851"
           ]
         ],
-        "seconds": 9490.8
+        "seconds": 3018.5,
+        "peak": 1272
       },
       {
         "result": "works",
@@ -787,21 +813,21 @@
           {
             "p971 6589": [
               1,
-              8.48e-11
+              4.18e-11
             ],
             "p593 6589": [
               1,
-              3.56e-10
+              1.75e-10
             ]
           },
           {
             "p971 6589": [
               1,
-              1.31e-10
+              7.31e-11
             ],
             "p593 6589": [
               1,
-              5.56e-10
+              3.17e-10
             ]
           }
         ],
@@ -859,7 +885,8 @@
             "p593 6589"
           ]
         ],
-        "seconds": 5256.6
+        "seconds": 1660.5,
+        "peak": 1209
       },
       {
         "result": "partly",
@@ -944,7 +971,8 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 166.8
+        "seconds": 57.5,
+        "peak": 1198
       },
       {
         "result": "works",
@@ -986,7 +1014,8 @@
             ]
           ]
         ],
-        "seconds": 762.6
+        "seconds": 81.1,
+        "peak": 1169
       },
       {
         "result": "works",
@@ -1000,11 +1029,11 @@
           {
             "p4019 94925": [
               1,
-              2.37e-15
+              7.11e-15
             ],
             "p4001 4716": [
               1,
-              2.37e-15
+              7.11e-15
             ],
             "p4029 76019": [
               0.0417,
@@ -1044,162 +1073,48 @@
             ]
           ]
         ],
-        "seconds": 920.9
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "still": [
-          "p767 94925",
-          "p2199 94925",
-          "p2172 4716",
-          "p2216 48168",
-          "p2319 47224"
-        ],
-        "moved": [
-          "p4030 32012"
-        ],
-        "rates": [
-          {
-            "p767 94925": [
-              0,
-              0
-            ],
-            "p2199 94925": [
-              0,
-              0
-            ],
-            "p2172 4716": [
-              0,
-              0
-            ],
-            "p2216 48168": [
-              0,
-              0
-            ],
-            "p2319 47224": [
-              0,
-              0
-            ],
-            "p2215 48452": [
-              0,
-              0
-            ],
-            "p4030 32012": [
-              0.0417,
-              0
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p767 94925",
-        "seconds": 1100.6
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "still": [
-          "p422 94925",
-          "p730 6587"
-        ],
-        "rates": [
-          {
-            "p422 94925": [
-              0,
-              0
-            ],
-            "p730 6587": [
-              0,
-              0
-            ],
-            "p2216 48168": [
-              0,
-              0
-            ],
-            "p4030 32012": [
-              0,
-              0
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "judged": [
-          1
-        ],
-        "cause": "not-driven",
-        "detail": "p422 94925",
-        "seconds": 779.2
+        "seconds": 132.7,
+        "peak": 1201
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            3,
+            -3
           ]
         ],
         "rates": [
-          {}
+          {
+            "p767 94925": [
+              1,
+              4.36e-14
+            ],
+            "p2199 94925": [
+              1,
+              3.23e-13
+            ],
+            "p2172 4716": [
+              1,
+              3.23e-13
+            ],
+            "p2216 48168": [
+              0.00595,
+              3.24e-13
+            ],
+            "p2319 47224": [
+              0.00595,
+              0.0528
+            ],
+            "p2215 48452": [
+              0,
+              3.23e-13
+            ],
+            "p4030 32012": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
           [
@@ -1225,14 +1140,145 @@
             ]
           ]
         ],
-        "seconds": 746.1
+        "seconds": 338.7,
+        "peak": 1255
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.43,
+            -0.43
+          ]
+        ],
+        "rates": [
+          {
+            "p422 94925": [
+              0.858,
+              0.0316
+            ],
+            "p730 6587": [
+              0.858,
+              0.145
+            ],
+            "p2216 48168": [
+              0.000236,
+              0.122
+            ],
+            "p4030 32012": [
+              0.0000655,
+              0.0123
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.56,
+              1.89
+            ],
+            [
+              0.05,
+              0.63
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.55,
+              1.9
+            ],
+            [
+              0.04,
+              0.63
+            ]
+          ]
+        ],
+        "strayed": [
+          "p241 3648b",
+          "p317 3705"
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 219,
+        "peak": 1344
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.43,
+            -0.43
+          ]
+        ],
+        "rates": [
+          {
+            "p422 94925": [
+              0.858,
+              0.0316
+            ],
+            "p730 6587": [
+              0.858,
+              0.145
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.56,
+              1.89
+            ],
+            [
+              0.05,
+              0.63
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.55,
+              1.9
+            ],
+            [
+              0.04,
+              0.63
+            ]
+          ]
+        ],
+        "strayed": [
+          "p241 3648b",
+          "p317 3705"
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 215.8,
+        "peak": 1298
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.07,
+            -0.07
           ]
         ],
         "still": [
@@ -1242,7 +1288,7 @@
           {
             "p2628 47224 against p2216 48168": [
               0,
-              4.86e-13
+              0
             ]
           }
         ],
@@ -1270,12 +1316,37 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "judged": [
-          1
+          0
         ],
         "cause": "loose-part",
         "detail": "p2320 2795",
-        "seconds": 1095.3
+        "collisionStops": [
+          [
+            0,
+            1,
+            2319,
+            2321,
+            0.07,
+            0.07
+          ],
+          [
+            0,
+            -1,
+            2319,
+            2321,
+            0.07,
+            0.07
+          ]
+        ],
+        "seconds": 20.1,
+        "peak": 1089
       },
       {
         "result": "no",
@@ -1334,14 +1405,15 @@
         ],
         "cause": "loose-part",
         "detail": "p2629 2795",
-        "seconds": 47.1
+        "seconds": 18.8,
+        "peak": 1031
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ],
         "rates": [
@@ -1371,18 +1443,43 @@
             ]
           ]
         ],
-        "seconds": 1062.9
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            3164,
+            3166,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            3164,
+            3166,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 10.8,
+        "peak": 996
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
+            0,
             -1.5
           ],
           [
             1.5,
-            -1.5
+            0
           ]
         ],
         "rates": [
@@ -1392,8 +1489,8 @@
         "back": [
           [
             [
-              0.69,
-              0.89
+              0,
+              0
             ],
             [
               0.16,
@@ -1406,7 +1503,7 @@
               0
             ],
             [
-              0.45,
+              0,
               0
             ]
           ]
@@ -1414,8 +1511,8 @@
         "torn": [
           [
             [
-              0.69,
-              0.89
+              0,
+              0
             ],
             [
               0.16,
@@ -1428,14 +1525,20 @@
               0
             ],
             [
-              0.45,
+              0,
               0
             ]
           ]
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p2108 32556"
+        "stop": [
+          [
+            "limit",
+            null
+          ],
+          [
+            null,
+            "limit"
+          ]
         ],
         "pushed": [
           true,
@@ -1445,7 +1548,26 @@
           [],
           []
         ],
-        "seconds": 2662.5
+        "collisionStops": [
+          [
+            0,
+            1,
+            2084,
+            2086,
+            0,
+            0
+          ],
+          [
+            1,
+            -1,
+            2079,
+            2091,
+            0,
+            0
+          ]
+        ],
+        "seconds": 493.2,
+        "peak": 1233
       },
       {
         "result": "no",
@@ -1513,7 +1635,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1761 32278",
-        "seconds": 39.8
+        "seconds": 19.6,
+        "peak": 1003
       },
       {
         "result": "no",
@@ -1563,7 +1686,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 48.6
+        "seconds": 19,
+        "peak": 910
       }
     ]
   }

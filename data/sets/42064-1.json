@@ -157,9 +157,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 46,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 38,
     "counts": {
       "partly": 4,
       "works": 4,
@@ -249,14 +249,14 @@
         ],
         "cause": "not-driven",
         "detail": "p214 4716",
-        "seconds": 3.6
+        "seconds": 2
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            5.27,
+            -18.85
           ]
         ],
         "still": [
@@ -266,15 +266,15 @@
           {
             "p350 94925": [
               0.6,
-              0
+              3.25e-14
             ],
             "p248 32270": [
               0.6,
-              0
+              8.65e-14
             ],
             "p224 99010": [
               0.0000194,
-              0
+              1.06e-14
             ],
             "p1114 59807": [
               0.025,
@@ -316,19 +316,35 @@
             ]
           ]
         ],
-        "judged": [
-          0
+        "stop": [
+          [
+            "limit",
+            null
+          ]
         ],
-        "cause": "not-driven",
+        "judged": [
+          1
+        ],
+        "cause": "too-little",
         "detail": "p224 99010",
-        "seconds": 3.8
+        "collisionStops": [
+          [
+            0,
+            1,
+            1114,
+            1186,
+            1.02,
+            5.27
+          ]
+        ],
+        "seconds": 17.7
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ],
         "still": [
@@ -393,12 +409,36 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p17 11946",
-        "seconds": 3.6
+        "collisionStops": [
+          [
+            0,
+            1,
+            12,
+            24,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            13,
+            24,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -542,7 +582,7 @@
           [],
           []
         ],
-        "seconds": 20.1
+        "seconds": 9.2
       },
       {
         "result": "partly",
@@ -604,7 +644,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1253 6536",
-        "seconds": 3.7
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -665,7 +705,7 @@
             ]
           ]
         ],
-        "seconds": 3.7
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -730,13 +770,13 @@
             ]
           ]
         ],
-        "seconds": 3.7
+        "seconds": 1.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
+            0.47,
             -1.5
           ]
         ],
@@ -767,12 +807,29 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1114,
+            1123,
+            0.47,
+            0.47
+          ]
+        ],
+        "seconds": 1.2
       },
       {
         "result": "skipped",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 927
   }
 }

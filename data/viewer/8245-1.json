@@ -1,0 +1,643 @@
+{
+  "set": "8245-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:10:30.912Z",
+  "load": 13.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 236,
+  "seconds": 180,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 31,
+      "msPerStep": 8,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 2,
+        "B": 38
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p28 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 335,
+          "msOneCall": 31,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p28 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 269,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p30 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 278,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p30 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 247,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p37 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 267,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p37 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 246,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p28 2994",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p30 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p37 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 51
+    },
+    {
+      "function": 3,
+      "does": "The robot's rubber-band motor: rolling the robot on its two big wheels turns the purple reel inside it, through an 8-tooth gear on the wheel axle and a 24-tooth gear on the reel's axle, so the reel makes a third of a turn for each turn of the wheels.",
+      "verdict": "shown",
+      "msOneCall": 22,
+      "msPerStep": 3,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 0,
+        "B": 24
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p278 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 119,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {
+            "p181 32012 against p177 32009": [
+              0,
+              28.65
+            ],
+            "p180 3648a against p177 32009": [
+              0,
+              28.65
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p278 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 93,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p181 32012 against p177 32009": [
+              0,
+              28.65
+            ],
+            "p180 3648a against p177 32009": [
+              0,
+              28.65
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p280 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 99,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p181 32012 against p177 32009": [
+              0,
+              28.65
+            ],
+            "p180 3648a against p177 32009": [
+              0,
+              28.65
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p280 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 91,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p181 32012 against p177 32009": [
+              0,
+              28.65
+            ],
+            "p180 3648a against p177 32009": [
+              0,
+              28.65
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p278 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p181 32012 against p177 32009",
+            "p180 3648a against p177 32009"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p280 2994",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p181 32012 against p177 32009",
+            "p180 3648a against p177 32009"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 33
+    },
+    {
+      "function": 5,
+      "does": "The two small black wheels at the end of the purple tail roll freely.",
+      "verdict": "shown",
+      "msOneCall": 27,
+      "msPerStep": 6,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 20
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p215 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 243,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p215 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 215,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p217 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 232,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p217 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 223,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p215 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p217 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 30
+    },
+    {
+      "function": 6,
+      "does": "The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 4,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p188 6629",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 134,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p285 2723 against p177 32009": [
+              212.64,
+              85.94
+            ],
+            "p189 99773 against p177 32009": [
+              60,
+              85.94
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ],
+            "p278 2994 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p188 6629",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 14,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p285 2723 against p177 32009": [
+              18.43,
+              7.45
+            ],
+            "p189 99773 against p177 32009": [
+              5.2,
+              7.45
+            ],
+            "p152 6629 against p177 32009": [
+              0,
+              0
+            ],
+            "p278 2994 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p188 6629",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p285 2723 against p177 32009",
+            "p189 99773 against p177 32009"
+          ],
+          "stops": [
+            "341/343",
+            "168/188"
+          ]
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 8,
+      "does": "The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 3,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 24
+      },
+      "stop": {
+        "control": "p242 32009",
+        "way": -1,
+        "went": -1.151,
+        "asked": 1.5,
+        "by": [
+          "234/242"
+        ]
+      },
+      "stops": [
+        "244/249",
+        "234/242",
+        "234/246"
+      ],
+      "A": [
+        {
+          "control": "p242 32009",
+          "way": 1,
+          "asked": 1.13,
+          "went": 0,
+          "ms": 6,
+          "msOneCall": 18,
+          "stops": [
+            "244/249"
+          ],
+          "moved": {
+            "p188 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p242 32009",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.151,
+          "ms": 101,
+          "msOneCall": 10,
+          "stops": [
+            "234/242"
+          ],
+          "moved": {
+            "p188 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p246 32009",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.116,
+          "ms": 80,
+          "msOneCall": 7,
+          "stops": [
+            "234/246"
+          ],
+          "moved": {
+            "p188 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p246 32009",
+          "way": -1,
+          "asked": 1.13,
+          "went": 0,
+          "ms": 3,
+          "msOneCall": 4,
+          "stops": [
+            "244/249"
+          ],
+          "moved": {
+            "p188 6629 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p242 32009",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "244/249",
+            "234/242"
+          ]
+        },
+        {
+          "control": "p246 32009",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "244/249",
+            "234/246"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p242 32009",
+          "judged": "stands",
+          "why": "stopped at +0 rad (244/249); -1.151 rad (234/242); kinds hinge: arms"
+        },
+        {
+          "control": "p246 32009",
+          "judged": "stands",
+          "why": "stopped at +1.116 rad (234/246); -0 rad (244/249); kinds hinge: arms"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 32
+    },
+    {
+      "function": 10,
+      "does": "A black T-shaped foot hangs on a cross axle under the front of the body and swings.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 5,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p237 6536",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.17,
+          "ms": 23,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p188 6629 against p177 32009": [
+              0,
+              0
+            ],
+            "p242 32009 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p237 6536",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 46,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p188 6629 against p177 32009": [
+              0,
+              0
+            ],
+            "p242 32009 against p177 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p237 6536",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "185/236",
+            "186/237"
+          ]
+        }
+      ],
+      "seconds": 17
+    }
+  ]
+}

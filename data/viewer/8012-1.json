@@ -1,0 +1,650 @@
+{
+  "set": "8012-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:36:32.819Z",
+  "load": 7.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 364,
+  "seconds": 156,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle.",
+      "verdict": "shown",
+      "msOneCall": 80,
+      "msPerStep": 16,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 1,
+        "B": 16
+      },
+      "stop": {
+        "control": "p96 32449",
+        "way": -1,
+        "went": -1.012,
+        "asked": 1.5,
+        "by": [
+          "55/99"
+        ]
+      },
+      "stops": [
+        "3854/3865",
+        "55/99"
+      ],
+      "A": [
+        {
+          "control": "p96 32449",
+          "way": 1,
+          "asked": 1.03,
+          "went": 0,
+          "ms": 23,
+          "msOneCall": 80,
+          "stops": [
+            "3854/3865"
+          ],
+          "moved": {
+            "p95 32269": [
+              0,
+              0
+            ],
+            "p90 4019": [
+              0,
+              0
+            ],
+            "p83 6538b": [
+              0,
+              0
+            ],
+            "p3847 41680": [
+              0,
+              0
+            ],
+            "p3851 32291": [
+              0,
+              0
+            ],
+            "p3456 41680": [
+              0,
+              0
+            ],
+            "p3474 6538b": [
+              0,
+              0
+            ],
+            "p2387 41680": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p96 32449",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.012,
+          "ms": 455,
+          "msOneCall": 23,
+          "stops": [
+            "55/99"
+          ],
+          "moved": {
+            "p95 32269": [
+              0,
+              57.96
+            ],
+            "p90 4019": [
+              0,
+              72.45
+            ],
+            "p83 6538b": [
+              0,
+              72.45
+            ],
+            "p3847 41680": [
+              227.7,
+              72.45
+            ],
+            "p3851 32291": [
+              263.5,
+              0
+            ],
+            "p3456 41680": [
+              0,
+              0
+            ],
+            "p3474 6538b": [
+              0,
+              0
+            ],
+            "p2387 41680": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p96 32449",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p95 32269",
+            "p83 6538b",
+            "p3847 41680",
+            "p3851 32291"
+          ],
+          "stops": [
+            "3854/3865",
+            "55/98",
+            "55/99"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p96 32449",
+          "judged": "stands",
+          "why": "stopped at +0 rad (3854/3865); -1.012 rad (55/99); kinds hinge: right arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 23
+    },
+    {
+      "function": 2,
+      "does": "The left arm swings at the shoulder on a long pin.",
+      "verdict": "shown",
+      "msOneCall": 85,
+      "msPerStep": 11,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 7
+      },
+      "stop": {
+        "control": "p3474 6538b",
+        "way": 1,
+        "went": 1.395,
+        "asked": 1.5,
+        "by": [
+          "158/3471"
+        ]
+      },
+      "stops": [
+        "158/3471"
+      ],
+      "A": [
+        {
+          "control": "p3474 6538b",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.395,
+          "ms": 425,
+          "msOneCall": 85,
+          "stops": [
+            "158/3471"
+          ],
+          "moved": {
+            "p3456 41680": [
+              251.15,
+              79.95
+            ],
+            "p3441 3705": [
+              413.72,
+              79.95
+            ],
+            "p90 4019": [
+              0,
+              0
+            ],
+            "p3847 41680": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3474 6538b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 415,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p3456 41680": [
+              269.99,
+              85.94
+            ],
+            "p3441 3705": [
+              444.74,
+              85.94
+            ],
+            "p90 4019": [
+              0,
+              0
+            ],
+            "p3847 41680": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p3474 6538b",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3456 41680",
+            "p3441 3705"
+          ],
+          "stops": [
+            "158/3471"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p3474 6538b",
+          "judged": "stands",
+          "why": "stopped at +1.395 rad (158/3471); kinds hinge: left arm"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 12
+    },
+    {
+      "function": 3,
+      "does": "Each arm bends at the elbow on a click hinge, which holds where it's set.",
+      "verdict": "shown",
+      "msOneCall": 92,
+      "msPerStep": 9,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 1,
+        "B": 14
+      },
+      "stop": {
+        "control": "p3441 3705",
+        "way": -1,
+        "went": -0.279,
+        "asked": 1.5,
+        "by": [
+          "2442/3458"
+        ]
+      },
+      "stops": [
+        "2442/3458"
+      ],
+      "A": [
+        {
+          "control": "p3833 3705",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 386,
+          "msOneCall": 92,
+          "stops": [],
+          "moved": {
+            "p3851 32291 against p3869 41681": [
+              115.9,
+              85.94
+            ],
+            "p3083 6538b against p3462 41681": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3833 3705",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 312,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p3851 32291 against p3869 41681": [
+              115.87,
+              85.94
+            ],
+            "p3083 6538b against p3462 41681": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p3441 3705",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 91,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p3851 32291 against p3869 41681": [
+              0,
+              0
+            ],
+            "p3083 6538b against p3462 41681": [
+              145.04,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p3441 3705",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.279,
+          "ms": 61,
+          "msOneCall": 3,
+          "stops": [
+            "2442/3458"
+          ],
+          "moved": {
+            "p3851 32291 against p3869 41681": [
+              0,
+              0
+            ],
+            "p3083 6538b against p3462 41681": [
+              26.99,
+              15.99
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p3833 3705",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3851 32291 against p3869 41681"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p3441 3705",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3083 6538b against p3462 41681"
+          ],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p3441 3705",
+          "judged": "stands",
+          "why": "stopped at -0.279 rad (2442/3458); kinds posable-joint: elbows"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 23
+    },
+    {
+      "function": 6,
+      "does": "Each leg poses at the hip, knee and ankle on click hinges, each holding where it's set.",
+      "verdict": "shown",
+      "msOneCall": 80,
+      "msPerStep": 14,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 81
+      },
+      "stop": {
+        "control": "p2378 41681",
+        "way": 1,
+        "went": 0.688,
+        "asked": 1.1,
+        "by": [
+          "38/2374"
+        ]
+      },
+      "stops": [
+        "38/2374"
+      ],
+      "A": [
+        {
+          "control": "p2378 41681",
+          "way": 1,
+          "asked": 1.1,
+          "went": 0.688,
+          "ms": 269,
+          "msOneCall": 80,
+          "stops": [
+            "38/2374"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p2378 41681",
+          "way": -1,
+          "asked": 0.7,
+          "went": -0.7,
+          "ms": 244,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2431 41681",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 44,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2431 41681",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 42,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2363 41681",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 130,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2363 41681",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 128,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2416 41681",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 7,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2416 41681",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 8,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2012 41681",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 56,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2012 41681",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2396 41681",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 6,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2396 41681",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 6,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p2378 41681",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "38/2374",
+            "2012/2016"
+          ]
+        },
+        {
+          "control": "p2431 41681",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2404/2413",
+            "2404/2419"
+          ]
+        },
+        {
+          "control": "p2363 41681",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p2416 41681",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2404/2419",
+            "2404/2413"
+          ]
+        },
+        {
+          "control": "p2012 41681",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p2396 41681",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "2404/2413",
+            "2404/2419"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p2378 41681",
+          "judged": "stands",
+          "why": "stopped at +0.688 rad (38/2374); kinds posable-joint: legs"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 98
+    }
+  ]
+}

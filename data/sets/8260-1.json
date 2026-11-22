@@ -90,9 +90,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 1,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 2,
     "counts": {
       "works": 4
     },
@@ -170,13 +170,13 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
+            1.4,
             -1.5
           ]
         ],
@@ -216,7 +216,29 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
         "freed": 1,
+        "collisionStops": [
+          [
+            0,
+            1,
+            86,
+            92,
+            1.4,
+            1.4
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p91 47973",
+            "for": "p92 47508 against p86 32348"
+          }
+        ],
         "seconds": 0.1
       },
       {
@@ -335,7 +357,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -387,6 +409,7 @@
         ],
         "seconds": 0.1
       }
-    ]
+    ],
+    "peak": 321
   }
 }

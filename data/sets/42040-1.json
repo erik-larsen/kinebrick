@@ -145,14 +145,14 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
+    "commit": "4929054b",
+    "date": "2026-11-22",
     "seconds": 10,
     "counts": {
-      "partly": 2,
+      "partly": 4,
       "works": 3,
       "skipped": 1,
-      "no": 3
+      "no": 1
     },
     "loose": [
       "p562 6143",
@@ -191,15 +191,15 @@
             ],
             "p157 32270": [
               1,
-              3.95e-13
+              3.47e-13
             ],
             "p144 6589": [
               1,
-              2.62e-13
+              2.65e-13
             ],
             "p148 6589": [
               1,
-              2.78e-13
+              2.89e-13
             ],
             "p557 99012": [
               0,
@@ -247,7 +247,7 @@
         ],
         "cause": "not-driven",
         "detail": "p557 99012",
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -310,44 +310,75 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 1.3
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p251 at 0.068 rad (parts 165/254); the hatch should flip forward. Viewer sweep, decision 279.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.07,
+              -0.17
+            ]
+          ],
+          "rates": [
+            {}
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
             [
               0,
-              0
+              1,
+              165,
+              254,
+              0.07,
+              0.07
             ],
             [
               0,
-              0
+              -1,
+              251,
+              424,
+              0.17,
+              0.17
             ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "seconds": 0.9
+          ],
+          "seconds": 0.1
+        }
       },
       {
         "result": "partly",
@@ -402,18 +433,18 @@
         ],
         "cause": "not-driven",
         "detail": "p226 60483",
-        "seconds": 1
+        "seconds": 0.6
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.4,
+            -0.3
           ]
         ],
         "still": [
@@ -428,11 +459,11 @@
           {
             "p381 32072": [
               0,
-              0
+              3.55e-13
             ],
             "p384 32072": [
               0,
-              0
+              7.11e-14
             ],
             "p405 32072": [
               0,
@@ -444,11 +475,11 @@
             ],
             "p520 32525": [
               0,
-              0
+              1.9e-12
             ],
             "p511 32525": [
               0,
-              0
+              1.9e-12
             ]
           }
         ],
@@ -478,45 +509,65 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
+        "freed": 1,
         "judged": [
           0
         ],
         "cause": "part-fixed",
         "detail": "p381 32072",
-        "seconds": 0.1
-      },
-      {
-        "result": "no",
-        "turned": [
+        "collisionStops": [
           [
             0,
-            0
+            1,
+            304,
+            328,
+            0.4,
+            0.4
+          ],
+          [
+            0,
+            -1,
+            304,
+            339,
+            0.3,
+            0.3
           ]
         ],
-        "still": [
-          "p371 2739a",
-          "p330 2736",
-          "p338 18945"
+        "freedFor": [
+          {
+            "pin": "p331 2780",
+            "for": "p358 6572"
+          }
+        ],
+        "seconds": 0.7
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.4,
+            -0.3
+          ]
         ],
         "rates": [
           {
             "p371 2739a": [
-              0,
-              0
+              0.0587,
+              60
             ],
             "p330 2736": [
-              0,
-              0
+              1.47,
+              44.2
             ],
             "p338 18945": [
-              0,
+              1.56,
               0
             ]
           }
@@ -547,19 +598,39 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "judged": [
-          0
+        "freed": 1,
+        "collisionStops": [
+          [
+            0,
+            1,
+            304,
+            328,
+            0.4,
+            0.4
+          ],
+          [
+            0,
+            -1,
+            304,
+            339,
+            0.3,
+            0.3
+          ]
         ],
-        "cause": "part-fixed",
-        "detail": "p371 2739a",
-        "seconds": 0.1
+        "freedFor": [
+          {
+            "pin": "p331 2780",
+            "for": "p358 6572"
+          }
+        ],
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -606,15 +677,15 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -732,8 +803,9 @@
           [],
           []
         ],
-        "seconds": 3.9
+        "seconds": 3.2
       }
-    ]
+    ],
+    "peak": 502
   }
 }

@@ -1,0 +1,452 @@
+{
+  "set": "42120-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:32:21.149Z",
+  "load": 12.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 441,
+  "seconds": 224,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushing the hovercraft along spins the two big fans at the back: two hidden rubber-tyred wheels under the hull turn a bevel gear, a shaft running back, two cross shafts and two upright shafts that come up inside the fans' mounts and drive each fan through bevel gears.",
+      "verdict": "shown",
+      "msOneCall": 33,
+      "msPerStep": 5,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 38,
+        "A": 1,
+        "B": 25
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p51 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 226,
+          "msOneCall": 33,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p51 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 203,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p52 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 189,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p52 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 191,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p580 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p581 42120 - 92842": [
+              0,
+              143.24
+            ],
+            "p554 87408": [
+              0,
+              0
+            ],
+            "p559 87408": [
+              0,
+              0
+            ],
+            "p461 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p51 4185a",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p580 42120 - 92842",
+            "p581 42120 - 92842"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p52 4185a",
+          "seen": true,
+          "cameraTurns": 24,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p580 42120 - 92842",
+            "p581 42120 - 92842"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 72
+    },
+    {
+      "function": 2,
+      "does": "Pushing it along also spins the beacon on the tall post in the middle of the deck, the two blue lights going round: a bevel gear on the post's shaft is driven by the hidden wheels' 20 tooth bevel gear.",
+      "verdict": "shown",
+      "msOneCall": 34,
+      "msPerStep": 5,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 39,
+        "A": 1,
+        "B": 25
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p51 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 224,
+          "msOneCall": 34,
+          "stops": [],
+          "moved": {
+            "p549 27940": [
+              0,
+              143.24
+            ],
+            "p550 59900": [
+              94.99,
+              143.24
+            ],
+            "p551 59900": [
+              94.99,
+              143.24
+            ]
+          }
+        },
+        {
+          "control": "p51 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 195,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p549 27940": [
+              0,
+              143.24
+            ],
+            "p550 59900": [
+              94.99,
+              143.24
+            ],
+            "p551 59900": [
+              94.99,
+              143.24
+            ]
+          }
+        },
+        {
+          "control": "p52 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 208,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p549 27940": [
+              0,
+              143.24
+            ],
+            "p550 59900": [
+              94.99,
+              143.24
+            ],
+            "p551 59900": [
+              94.99,
+              143.24
+            ]
+          }
+        },
+        {
+          "control": "p52 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 194,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p549 27940": [
+              0,
+              143.24
+            ],
+            "p550 59900": [
+              94.99,
+              143.24
+            ],
+            "p551 59900": [
+              94.99,
+              143.24
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p51 4185a",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p549 27940",
+            "p550 59900",
+            "p551 59900"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p52 4185a",
+          "seen": true,
+          "cameraTurns": 24,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p549 27940",
+            "p550 59900",
+            "p551 59900"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 74
+    },
+    {
+      "function": 4,
+      "does": "The two small front wheels under the bow roll freely.",
+      "verdict": "shown",
+      "msOneCall": 35,
+      "msPerStep": 4,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 24,
+        "A": 1,
+        "B": 27
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p113 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 159,
+          "msOneCall": 35,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p113 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 139,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p114 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 132,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p114 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 137,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p113 42610",
+          "seen": true,
+          "cameraTurns": 6,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p114 42610",
+          "seen": true,
+          "cameraTurns": 12,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 60
+    },
+    {
+      "function": 5,
+      "does": "The small fan on the front deck spins freely on its pin.",
+      "verdict": "shown",
+      "msOneCall": 35,
+      "msPerStep": 3,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p583 46667",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 119,
+          "msOneCall": 35,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p583 46667",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 108,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p583 46667",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 18
+    }
+  ]
+}

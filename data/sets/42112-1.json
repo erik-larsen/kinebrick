@@ -77,12 +77,12 @@
           "p17 60485",
           "p160 94925",
           "p139 94925",
-          "p170 4519"
+          "p176 4519"
         ],
         "stays": [
           "p1006 32270"
         ],
-        "note": "inferred: whether the four upright axles are an engine's pistons; turn both rear wheels the same way, or the differentials take up the drive"
+        "note": "Signed by Erik, 2026-11-21: the piston named is p176, which a turn of 1.5 rad moves both ways, in place of p170, whose cam points away as built (booklet 1, step 50). inferred: whether the four upright axles are an engine's pistons; turn both rear wheels the same way, or the differentials take up the drive"
       },
       {
         "does": "The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank.",
@@ -90,7 +90,7 @@
           "function-selector: drum"
         ],
         "source": "book: book 2 page 89 insets (the lever with its N label pushed right while the truck rolls, and left while the side crank turns)",
-        "control": "p374 32523",
+        "control": "p384 32013",
         "moves": [
           "p354 18947"
         ],
@@ -193,18 +193,16 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 48,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 84,
     "counts": {
-      "works": 4,
-      "partly": 3,
-      "no": 1
+      "works": 7,
+      "partly": 1,
+      "not back": 1,
+      "torn": 1
     },
     "loose": [
-      "p381 42112 - 51149",
-      "p383 4519",
-      "p384 32013",
       "p548 98138",
       "p549 98138",
       "p550 98138",
@@ -323,13 +321,28 @@
       "p1222 18654",
       "p1223 18654"
     ],
+    "errata": {
+      "applied": [
+        "drive-shaft-bevel-on-the-shaft",
+        "piston-first-axle-on-the-plate",
+        "piston-first-half-bush-on-the-plate",
+        "piston-first-bush-on-the-plate",
+        "piston-second-axle-on-the-plate",
+        "piston-second-half-bush-on-the-plate",
+        "piston-second-bush-on-the-plate",
+        "piston-fourth-axle-on-the-plate",
+        "piston-fourth-half-bush-on-the-plate",
+        "piston-fourth-bush-on-the-plate"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.7,
+            -0.7
           ]
         ],
         "rates": [
@@ -339,44 +352,44 @@
               0
             ],
             "p61 48989": [
-              0.397,
-              7.95
+              0.379,
+              7.58
             ],
             "p65 48989": [
-              0.397,
-              7.95
+              0.379,
+              7.58
             ],
             "p69 48989": [
-              0.256,
-              5.12
+              0.251,
+              5.02
             ],
             "p77 48989": [
-              0.256,
-              5.12
+              0.251,
+              5.02
             ],
             "p694 56145": [
-              0.511,
-              19.9
+              0.487,
+              19
             ],
             "p702 56145": [
-              0.553,
-              23.8
+              0.528,
+              22.7
             ],
             "p692 56145": [
-              0.329,
-              12.8
+              0.323,
+              12.6
             ],
             "p700 56145": [
-              0.357,
-              15.4
+              0.35,
+              15.1
             ],
             "p688 56145": [
               0,
-              1.58e-30
+              8.45e-31
             ],
             "p696 56145": [
               0,
-              6.57e-31
+              3.17e-31
             ],
             "p1118 42112 - 65421p01": [
               0,
@@ -387,28 +400,52 @@
         "back": [
           [
             [
-              0.15,
-              0.14
+              0.03,
+              0.03
             ],
             [
-              0.15,
-              0.14
+              0.03,
+              0.03
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.15,
-              0.14
+              0.03,
+              0.03
             ],
             [
-              0.15,
-              0.14
+              0.03,
+              0.03
             ]
           ]
         ],
-        "seconds": 3.3
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            95,
+            109,
+            0.7,
+            0.7
+          ],
+          [
+            0,
+            -1,
+            95,
+            109,
+            0.7,
+            0.7
+          ]
+        ],
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -630,47 +667,41 @@
           [],
           []
         ],
-        "seconds": 27
+        "seconds": 46.9
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p17 60485",
-          "p160 94925",
-          "p139 94925",
-          "p170 4519"
-        ],
         "rates": [
           {
             "p249 62821": [
               1,
-              6.47e-13
+              4.78e-13
             ],
             "p245 18575": [
               1.4,
-              1.66e-14
+              1.77e-14
             ],
             "p17 60485": [
-              0,
-              2.54e-27
+              1.4,
+              1.52e-14
             ],
             "p160 94925": [
-              0,
-              2.54e-27
+              1.4,
+              1.52e-14
             ],
             "p139 94925": [
-              0,
-              0
+              1.4,
+              7.48e-14
             ],
-            "p170 4519": [
+            "p176 4519": [
               0,
-              0
+              8
             ],
             "p1006 32270": [
               0,
@@ -681,7 +712,10 @@
         "expected": [
           {
             "p249 62821": 1,
-            "p245 18575": 1.4
+            "p245 18575": 1.4,
+            "p17 60485": 1.4,
+            "p160 94925": 1.4,
+            "p139 94925": 1.4
           }
         ],
         "back": [
@@ -708,23 +742,15 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p17 60485",
-        "seconds": 3.4
+        "seconds": 5.8
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.5,
+            -0.5
           ]
-        ],
-        "still": [
-          "p354 18947"
         ],
         "rates": [
           {
@@ -760,71 +786,82 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
-        "pushed": [
-          true
+        "collisionStops": [
+          [
+            0,
+            1,
+            376,
+            381,
+            0.5,
+            0.5
+          ],
+          [
+            0,
+            -1,
+            375,
+            381,
+            0.5,
+            0.5
+          ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p354 18947",
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
+            0.47,
             -1.5
           ]
         ],
-        "still": [
-          "p231 94925",
-          "p356 42112 - 35185",
-          "p361 32270",
-          "p390 3648b",
-          "p436 32498",
-          "p448 18938",
-          "p1118 42112 - 65421p01"
+        "moved": [
+          "p1039 42112 - 33299b"
         ],
         "rates": [
           {
             "p231 94925": [
-              0,
-              1.51e-27
+              1.4,
+              1.81e-14
             ],
             "p356 42112 - 35185": [
-              0,
-              5.31e-28
+              1.12,
+              1.42e-14
             ],
             "p361 32270": [
-              0,
-              5.31e-28
+              1.12,
+              1.42e-14
             ],
             "p390 3648b": [
-              0,
-              0
+              0.56,
+              2.84e-14
             ],
             "p436 32498": [
-              0,
-              0
+              0.56,
+              1.84e-13
             ],
             "p448 18938": [
-              0,
-              0
+              0.336,
+              1.92e-13
             ],
             "p1118 42112 - 65421p01": [
-              0,
-              2.37e-15
+              0.336,
+              0.00317
             ],
             "p1039 42112 - 33299b": [
-              0,
-              0
+              0.373,
+              2.37e-14
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p231 94925": 1.4,
+            "p356 42112 - 35185": 1.12,
+            "p361 32270": 1.12
           }
         ],
         "back": [
@@ -851,32 +888,42 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p231 94925",
-        "seconds": 3.6
-      },
-      {
-        "result": "partly",
-        "turned": [
+        "stop": [
           [
-            1.5,
-            -1.5
+            "limit",
+            null
           ]
         ],
-        "still": [
-          "p1118 42112 - 65421p01"
+        "judged": [
+          1
         ],
-        "moved": [
-          "p17 60485"
+        "cause": "stay-chosen",
+        "detail": "p1039 42112 - 33299b",
+        "collisionStops": [
+          [
+            0,
+            1,
+            592,
+            1123,
+            0.47,
+            0.47
+          ]
+        ],
+        "seconds": 12.3
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.93,
+            -1.5
+          ]
         ],
         "rates": [
           {
             "p347 32270": [
               1,
-              1.89e-14
+              0
             ],
             "p344 6589": [
               1,
@@ -895,16 +942,16 @@
               0
             ],
             "p1118 42112 - 65421p01": [
-              0,
-              0
+              0.3,
+              0.00283
             ],
             "p696 56145": [
               0,
-              1.22e-63
+              4.45e-51
             ],
             "p17 60485": [
-              0.22,
-              0
+              0,
+              5.26e-31
             ]
           }
         ],
@@ -919,8 +966,8 @@
         "back": [
           [
             [
-              0,
-              0
+              23.17,
+              33.67
             ],
             [
               0,
@@ -931,8 +978,8 @@
         "torn": [
           [
             [
-              0,
-              0
+              23.17,
+              33.67
             ],
             [
               0,
@@ -940,19 +987,33 @@
             ]
           ]
         ],
-        "judged": [
-          0
+        "strayed": [
+          "p341 55013"
         ],
-        "cause": "not-driven",
-        "detail": "p1118 42112 - 65421p01",
-        "seconds": 3.2
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            592,
+            1123,
+            0.93,
+            0.93
+          ]
+        ],
+        "seconds": 10.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.27
           ]
         ],
         "rates": [
@@ -991,14 +1052,38 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            410,
+            596,
+            0.23,
+            0.23
+          ],
+          [
+            0,
+            -1,
+            503,
+            594,
+            0.27,
+            0.27
+          ]
+        ],
+        "seconds": 0.9
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.77,
+            -0.83
           ]
         ],
         "rates": [
@@ -1013,7 +1098,7 @@
             ],
             "p696 56145": [
               0,
-              2.72e-67
+              1.45e-67
             ]
           }
         ],
@@ -1041,8 +1126,33 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            577,
+            610,
+            0.77,
+            0.77
+          ],
+          [
+            0,
+            -1,
+            572,
+            676,
+            0.83,
+            0.83
+          ]
+        ],
+        "seconds": 1.5
       }
-    ]
+    ],
+    "peak": 1026
   }
 }

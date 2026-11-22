@@ -1,0 +1,101 @@
+{
+  "set": "8257-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:45.040Z",
+  "load": 14.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 392,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.",
+      "verdict": "shown",
+      "msOneCall": 53,
+      "msPerStep": 11,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p594 6629",
+        "way": -1,
+        "went": -1.395,
+        "asked": 1.5,
+        "by": [
+          "465/594"
+        ]
+      },
+      "stops": [
+        "348/594",
+        "465/594"
+      ],
+      "A": [
+        {
+          "control": "p594 6629",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.105,
+          "ms": 34,
+          "msOneCall": 53,
+          "stops": [
+            "348/594"
+          ],
+          "moved": {
+            "p602 2723 against p550 32018": [
+              12.25,
+              6
+            ],
+            "p604 32065 against p550 32018": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p594 6629",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.395,
+          "ms": 223,
+          "msOneCall": 19,
+          "stops": [
+            "465/594"
+          ],
+          "moved": {
+            "p602 2723 against p550 32018": [
+              163.31,
+              79.95
+            ],
+            "p604 32065 against p550 32018": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p594 6629",
+          "judged": "stands",
+          "why": "stopped at +0.105 rad (348/594); -1.395 rad (465/594); kinds catch: target lever"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "step 26 shows the hand pulling the purple target lever forward with a long red arrow while the seat catch swings up; the lever moves roughly 0.5 rad, past the viewer's 0.103 rad (which sign is the pull is not said).",
+        "page": "https://lego.brickinstructions.com/en/lego_instructions/set/8257#page=22"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    }
+  ]
+}

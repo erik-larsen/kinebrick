@@ -1,0 +1,297 @@
+{
+  "set": "9392-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:10.253Z",
+  "load": 13.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 183,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the handlebars steers the front wheels: the steering column turns an arm at its foot, which pushes the two steering links to the front hubs.",
+      "verdict": "shown",
+      "msOneCall": 53,
+      "msPerStep": 23,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p194 32016",
+        "way": 1,
+        "went": 0.209,
+        "asked": 1.5,
+        "by": [
+          "96/185"
+        ]
+      },
+      "stops": [
+        "96/185",
+        "100/184"
+      ],
+      "A": [
+        {
+          "control": "p194 32016",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.209,
+          "ms": 136,
+          "msOneCall": 53,
+          "stops": [
+            "96/185"
+          ],
+          "moved": {
+            "p121 32209": [
+              0,
+              11.99
+            ],
+            "p114 2739a": [
+              13.14,
+              8.71
+            ],
+            "p107 6571": [
+              0,
+              38.81
+            ],
+            "p109 6571": [
+              0,
+              30.81
+            ],
+            "p182 56145": [
+              0,
+              0
+            ],
+            "p183 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p194 32016",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.209,
+          "ms": 119,
+          "msOneCall": 27,
+          "stops": [
+            "100/184"
+          ],
+          "moved": {
+            "p121 32209": [
+              0,
+              11.99
+            ],
+            "p114 2739a": [
+              13.25,
+              6.08
+            ],
+            "p107 6571": [
+              0,
+              30.81
+            ],
+            "p109 6571": [
+              0,
+              38.81
+            ],
+            "p182 56145": [
+              0,
+              0
+            ],
+            "p183 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p194 32016",
+          "judged": "stands",
+          "why": "stopped at +0.209 rad (96/185); -0.209 rad (100/184); kinds linkage-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "steps 15-16 and 33 build the steering column and handlebars driving both front hubs, so the handlebars must turn both ways from straight ahead; the viewer's stop at +0 rad (80/111) allows no steering one way. The booklet does not draw how far the lock goes.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6048795.pdf#page=39"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    },
+    {
+      "function": 5,
+      "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes.",
+      "verdict": "shown",
+      "msOneCall": 23,
+      "msPerStep": 17,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p95 6572",
+        "way": -1,
+        "went": -0.523,
+        "asked": 1.5,
+        "by": [
+          "102/202"
+        ]
+      },
+      "stops": [
+        "102/202",
+        "101/200"
+      ],
+      "A": [
+        {
+          "control": "p95 6572",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 17,
+          "msOneCall": 22,
+          "stops": [
+            "102/202"
+          ],
+          "moved": {
+            "p106 6572": [
+              0,
+              0
+            ],
+            "p104 6572": [
+              0,
+              0
+            ],
+            "p107 6571": [
+              0,
+              0
+            ],
+            "p109 6571": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p95 6572",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.523,
+          "ms": 249,
+          "msOneCall": 20,
+          "stops": [
+            "102/202"
+          ],
+          "moved": {
+            "p106 6572": [
+              20.93,
+              29.98
+            ],
+            "p104 6572": [
+              0,
+              0
+            ],
+            "p107 6571": [
+              41.86,
+              2.77
+            ],
+            "p109 6571": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p99 6572",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.523,
+          "ms": 247,
+          "msOneCall": 23,
+          "stops": [
+            "101/200"
+          ],
+          "moved": {
+            "p106 6572": [
+              0,
+              0
+            ],
+            "p104 6572": [
+              20.93,
+              29.98
+            ],
+            "p107 6571": [
+              0,
+              0
+            ],
+            "p109 6571": [
+              41.86,
+              2.77
+            ]
+          }
+        },
+        {
+          "control": "p99 6572",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 19,
+          "msOneCall": 20,
+          "stops": [
+            "101/200"
+          ],
+          "moved": {
+            "p106 6572": [
+              0,
+              0
+            ],
+            "p104 6572": [
+              0,
+              0
+            ],
+            "p107 6571": [
+              0,
+              0
+            ],
+            "p109 6571": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p95 6572",
+          "judged": "stands",
+          "why": "stopped at +0 rad (102/202); -0.523 rad (102/202); kinds double-wishbone"
+        },
+        {
+          "control": "p99 6572",
+          "judged": "stands",
+          "why": "stopped at +0.523 rad (101/200); -0 rad (101/200); kinds double-wishbone"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 1
+    }
+  ]
+}

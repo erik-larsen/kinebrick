@@ -2,7 +2,7 @@
 // ball at each end (see Kinematics.findLinks).
 
 import type { Kinematics } from '../kinematics.ts';
-import { axisOf, type Equations } from './equations.ts';
+import { BodyRow, axisOf, type Equations } from './equations.ts';
 
 export function spinners(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -10,10 +10,10 @@ export function spinners(solver: Kinematics, eq: Equations) {
   for (const j of solver.spinners) {
     const joint = solver.mech.joints[j];
     const d = axisOf(joint.from, joint.to).transformDirection(solver.poses[joint.bodyA]);
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
-      row[6 * joint.bodyB + k] += d.getComponent(k);
-      row[6 * joint.bodyA + k] -= d.getComponent(k);
+      row.add(6 * joint.bodyB + k, d.getComponent(k));
+      row.sub(6 * joint.bodyA + k, d.getComponent(k));
     }
     add(row);
   }
@@ -26,12 +26,12 @@ export function links(solver: Kinematics, eq: Equations) {
     const [a, b] = balls.map((i) => solver.mech.joints[i]);
     const ends = [a, b].map((j) => j.from.clone().applyMatrix4(solver.poses[j.bodyA]));
     const d = ends[1].sub(ends[0]).normalize();
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (const j of [a, b]) {
       const other = j.bodyA === body ? j.bodyB : j.bodyA;
-      for (let k = 0; k < 3; k++) row[6 * other + k] -= d.getComponent(k) / 2;
+      for (let k = 0; k < 3; k++) row.sub(6 * other + k, d.getComponent(k) / 2);
     }
-    for (let k = 0; k < 3; k++) row[6 * body + k] += d.getComponent(k);
+    for (let k = 0; k < 3; k++) row.add(6 * body + k, d.getComponent(k));
     add(row);
   }
 }

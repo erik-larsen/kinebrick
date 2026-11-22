@@ -1,0 +1,302 @@
+{
+  "set": "42032-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:12:14.967Z",
+  "load": 17,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 245,
+  "seconds": 61,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear-wheel knob at the back turns a worm, which turns a 24-tooth gear behind the cab; cranks on the gear's axle push links that raise and lower the two loader arms, carrying the bucket and the fork with them. The worm holds the arms wherever they're left.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 3,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p10 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 109,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p15 4716 against p0 32009": [
+              0,
+              85.94
+            ],
+            "p28 3648b against p0 32009": [
+              0,
+              3.58
+            ],
+            "p97 32278 against p0 32009": [
+              3.87,
+              1.58
+            ],
+            "p120 32278 against p0 32009": [
+              3.87,
+              1.58
+            ],
+            "p116 3706 against p0 32009": [
+              8.29,
+              1.58
+            ],
+            "p139 59443 against p0 32009": [
+              8.35,
+              1.58
+            ]
+          }
+        },
+        {
+          "control": "p10 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 80,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p15 4716 against p0 32009": [
+              0,
+              85.94
+            ],
+            "p28 3648b against p0 32009": [
+              0,
+              3.58
+            ],
+            "p97 32278 against p0 32009": [
+              3.81,
+              1.56
+            ],
+            "p120 32278 against p0 32009": [
+              3.81,
+              1.56
+            ],
+            "p116 3706 against p0 32009": [
+              8.16,
+              1.56
+            ],
+            "p139 59443 against p0 32009": [
+              8.21,
+              1.56
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p10 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p15 4716 against p0 32009",
+            "p116 3706 against p0 32009",
+            "p139 59443 against p0 32009"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 3,
+      "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
+      "verdict": "not shown",
+      "why": "A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p107 87083",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              105
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p107 87083 against p97 32278": [
+              0,
+              0
+            ],
+            "p139 59443 against p97 32278": [
+              0,
+              0
+            ],
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p107 87083",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              105
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p107 87083 against p97 32278": [
+              0,
+              0
+            ],
+            "p139 59443 against p97 32278": [
+              0,
+              0
+            ],
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p107 87083",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p107 87083 against p97 32278",
+            "p139 59443 against p97 32278"
+          ],
+          "stops": [
+            "97/149",
+            "117/144"
+          ]
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 4,
+      "does": "The two tracks run round their wheels, so the loader rolls along.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 2,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 4,
+        "A": 0,
+        "B": 16
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p156 32556",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 83,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p156 32556",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 50,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p205 32556",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 49,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p205 32556",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 46,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p156 32556",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p205 32556",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 27
+    }
+  ]
+}

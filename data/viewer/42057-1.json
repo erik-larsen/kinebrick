@@ -1,0 +1,264 @@
+{
+  "set": "42057-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:08:00.404Z",
+  "load": 16.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 194,
+  "seconds": 68,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the main rotor runs the three-cylinder engine behind the pilot: the rotor's mast turns the crankshaft through a pair of 12 tooth bevel gears, the three pistons pump up and down, and a 20 tooth gear on the crankshaft's back end turns the rear propeller's shaft through a 12 tooth gear, faster than the rotor.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 3,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 4
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p113 32209",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 130,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p73 2854": [
+              0,
+              85.94
+            ],
+            "p72 2851": [
+              10.56,
+              0
+            ],
+            "p76 2851": [
+              8.03,
+              0
+            ],
+            "p68 87083": [
+              0,
+              143.24
+            ]
+          }
+        },
+        {
+          "control": "p113 32209",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 110,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p73 2854": [
+              0,
+              85.94
+            ],
+            "p72 2851": [
+              10.56,
+              0
+            ],
+            "p76 2851": [
+              8.03,
+              0
+            ],
+            "p68 87083": [
+              0,
+              143.24
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p113 32209",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p73 2854",
+            "p72 2851",
+            "p76 2851",
+            "p68 87083"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 8
+    },
+    {
+      "function": 4,
+      "does": "The joystick in front of the pilot's seat tilts.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 3,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p142 40001",
+          "way": 1,
+          "asked": 1.3,
+          "went": 1.3,
+          "ms": 42,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p142 40001",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 3,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p142 40001",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "13/140",
+            "137/147"
+          ]
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 5,
+      "does": "The nose wheel and the two wheels on the red landing legs roll freely.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 2,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 0,
+        "B": 36
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p7 42057 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 75,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p7 42057 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 56,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p175 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 49,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p175 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p188 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 53,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p188 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 53,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p7 42057 - 13971",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p175 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p188 42610",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 44
+    }
+  ]
+}

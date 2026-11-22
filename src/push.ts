@@ -6,7 +6,7 @@
 import { Vector2, Vector3 } from 'three';
 import { Kinematics } from './kinematics.ts';
 import { heldCount, trace, TRACE, withoutHolds } from './trace.ts';
-import { combine, nullSpace, orthonormalize } from './linalg.ts';
+import { combine, NotFinite, nullSpace, orthonormalize } from './linalg.ts';
 
 // In how many independent directions a point on a body can move.
 export function pointDirections(kin: Kinematics, body: number, g: Vector3): number {
@@ -29,7 +29,9 @@ export function pointDirections(kin: Kinematics, body: number, g: Vector3): numb
 export function wayOnJoint(kin: Kinematics, body: number, g: Vector3): Vector3 | null {
   const link = kin.parentLink(body);
   if (!link) return null;
-  const motion = kin.jointMotion(link.joint);
+  // An exact motion only: a play motion (see Kinematics.loopPlay) is a drag's last resort, not a
+  // way to aim one, and on a big model each takes seconds to find.
+  const motion = kin.jointMotion(link.joint, false);
   if (!motion) return null;
   const v = kin.pointVelocity(motion, body, g).sub(kin.pointVelocity(motion, 0, g));
   return v.length() < 1e-6 ? null : v.normalize();
@@ -41,7 +43,20 @@ export function wayOnJoint(kin: Kinematics, body: number, g: Vector3): Vector3 |
 // rolling round, a door swinging on its hinge). Returns 'stuck', with nothing moved, if the point
 // has nowhere to go, or only well off `dir`; and 'blocked', with the step undone, if `allowed`
 // says no to where the step left the model (it ran into something, or past the end of a slide).
+// A step whose sums meet a value that is not finite is undone, and 'stuck' (see Kinematics.refuseNotFinite).
 export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
+  const before = kin.snapshot();
+  try {
+    return pushStepWhole(kin, body, grab, dir, step, allowed);
+  } catch (err) {
+    if (!(err instanceof NotFinite)) throw err;
+    kin.restore(before);
+    kin.refuseNotFinite(err);
+    return 'stuck';
+  }
+}
+
+function pushStepWhole(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean): 'moved' | 'stuck' | 'blocked' {
   // Least motion, for a part on a turning joint (see Options.leastPush).
   if (kin.pushesByTiers(body)) return kin.pushStepByTiers(body, grab, dir, step, allowed);
   const g = grab.clone().applyMatrix4(kin.poses[body]);

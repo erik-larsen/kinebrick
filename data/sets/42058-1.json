@@ -53,9 +53,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 1,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 2,
     "counts": {
       "works": 2,
       "skipped": 1,
@@ -92,11 +92,11 @@
             ],
             "p21 18946": [
               1,
-              1.51e-12
+              1.27e-12
             ],
             "p17 94925": [
               1,
-              4.07e-13
+              3.25e-13
             ]
           }
         ],
@@ -177,6 +177,7 @@
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 345
   }
 }

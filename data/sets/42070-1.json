@@ -22,7 +22,7 @@
           "portal-axle"
         ],
         "source": "book: page 394 (top left inset: driving forwards and back with the left lever; middle inset: the lever on the cab's side set to drive); the gears are read from the model",
-        "control": "p402 32073",
+        "control": "p593 58121",
         "first": [
           {
             "control": "p1770 41669",
@@ -48,12 +48,13 @@
           "piston-engine: V8"
         ],
         "source": "book: page 394 (top middle inset: the engine under the bonnet, arrow on the pistons); the gears are read from the model",
-        "control": "p402 32073",
+        "control": "p593 58121",
         "moves": [
           "p592 18946",
           "p1057 94925",
           "p1137 2853"
-        ]
+        ],
+        "note": "The control is the XL motor p593 58121, as in function 1 (Erik signed it, \"Sign the 42070's functions 2 and 7 too\", 2026-11-21); it was the axle p402 32073 in the motor's shaft."
       },
       {
         "does": "The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive.",
@@ -124,7 +125,7 @@
           "turntable: crane"
         ],
         "source": "book: page 397 (top left inset: the boom slewing, the left remote lever); the gears are read from the model",
-        "control": "p402 32073",
+        "control": "p593 58121",
         "first": [
           {
             "control": "p1770 41669",
@@ -159,7 +160,7 @@
           "linear-actuator: outriggers"
         ],
         "source": "book: page 397 (bottom left inset: all four legs going down, the left remote lever); the gears and actuators are read from the model",
-        "control": "p402 32073",
+        "control": "p593 58121",
         "first": [
           {
             "control": "p1770 41669",
@@ -184,7 +185,7 @@
         "stays": [
           "p1320 18938"
         ],
-        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped down (by +0.5) sets outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
+        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped down (by +0.5) sets outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15). The control is the XL motor p593 58121, as in function 6 (Erik signed it, \"Sign the 42070's functions 2 and 7 too\", 2026-11-21); it was the axle p402 32073 in the motor's shaft."
       },
       {
         "does": "In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook.",
@@ -283,17 +284,19 @@
     ]
   },
   "generated": {
-    "commit": "4cb8cd29",
-    "uncommitted": true,
-    "date": "2026-11-16",
-    "seconds": 572,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 275,
     "counts": {
-      "no": 2,
-      "partly": 2,
-      "works": 6,
+      "works": 7,
+      "partly": 3,
       "skipped": 1
     },
     "loose": [
+      "p594 58124c01",
+      "p634 u9190",
+      "p635 u9190",
+      "p636 u9190",
       "p637 u9190",
       "p638 u9190",
       "p639 u9190",
@@ -307,11 +310,19 @@
       "p647 u9190",
       "p648 u9190",
       "p649 u9190",
-      "p650 u9190",
-      "p654 u9190",
       "p655 u9190",
       "p656 u9190",
-      "p848 6589",
+      "p719 u9190",
+      "p720 u9190",
+      "p721 u9190",
+      "p722 u9190",
+      "p723 u9190",
+      "p724 u9190",
+      "p725 u9190",
+      "p726 u9190",
+      "p727 u9190",
+      "p728 u9190",
+      "p729 2412b",
       "p1595 58124c01",
       "p1701 u9190",
       "p1702 u9190",
@@ -338,67 +349,58 @@
     ],
     "errata": {
       "applied": [
-        "rear-differential-ring-faces-back"
+        "rear-differential-ring-faces-back",
+        "rear-differential-spider-gear-with-its-casing",
+        "xl-motor-on-its-axle"
       ],
       "refused": []
     },
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p405 18946",
-          "p448 94925",
-          "p381 6573",
-          "p471 62821",
-          "p755 62821",
-          "p845 62821",
-          "p2367 15038",
-          "p2369 15038",
-          "p2371 15038"
         ],
         "rates": [
           {
             "p405 18946": [
-              0,
-              0
+              1,
+              1.03e-13
             ],
             "p448 94925": [
-              0,
-              0
+              1,
+              1.37e-13
             ],
             "p381 6573": [
-              0,
-              0
+              1,
+              2.64e-13
             ],
             "p471 62821": [
-              0,
-              0
+              0.714,
+              1.54e-12
             ],
             "p755 62821": [
-              0,
-              0
+              0.714,
+              2.76e-13
             ],
             "p845 62821": [
-              0,
-              0
+              0.714,
+              6.28e-13
             ],
             "p2367 15038": [
-              0,
-              0
+              0.238,
+              9.86e-13
             ],
             "p2369 15038": [
-              0,
-              0
+              0.238,
+              1.15e-11
             ],
             "p2371 15038": [
-              0,
-              0
+              0.238,
+              1.17e-11
             ]
           }
         ],
@@ -412,11 +414,11 @@
           [
             [
               0,
-              0
+              0.48
             ],
             [
               0,
-              0
+              0.48
             ]
           ]
         ],
@@ -424,25 +426,15 @@
           [
             [
               0,
-              0
+              0.48
             ],
             [
               0,
-              0
+              0.48
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "control-jammed",
-        "seconds": 10.8
+        "seconds": 32.1
       },
       {
         "result": "partly",
@@ -461,7 +453,7 @@
           {
             "p592 18946": [
               0,
-              5.98e-30
+              7.36e-127
             ],
             "p1057 94925": [
               0,
@@ -469,7 +461,7 @@
             ],
             "p1137 2853": [
               0,
-              9.85e-30
+              3.34e-39
             ]
           }
         ],
@@ -498,11 +490,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
-        "cause": "part-fixed",
+        "cause": "not-driven",
         "detail": "p592 18946",
-        "seconds": 48.1
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -516,11 +508,11 @@
           {
             "p160 18575": [
               0.8,
-              0
+              6.63e-14
             ],
             "p406 18946": [
               0.8,
-              0
+              6.63e-14
             ],
             "p390 76244": [
               0.267,
@@ -572,25 +564,25 @@
             ]
           ]
         ],
-        "seconds": 61.7
+        "seconds": 14.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -0.6
+            0.53,
+            -0.47
           ]
         ],
         "rates": [
           {
             "p1055 6641": [
-              0.68,
-              13.6
+              0.927,
+              18.5
             ],
             "p1056 6641": [
-              0.68,
-              13.6
+              0.927,
+              18.5
             ],
             "p403 18947": [
               0,
@@ -598,7 +590,7 @@
             ],
             "p404 18947": [
               0,
-              0
+              9.35e-49
             ]
           }
         ],
@@ -628,29 +620,47 @@
         ],
         "stop": [
           [
-            null,
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "seconds": 64.5
+        "collisionStops": [
+          [
+            0,
+            1,
+            1013,
+            1056,
+            0.53,
+            0.53
+          ],
+          [
+            0,
+            -1,
+            969,
+            1055,
+            0.47,
+            0.47
+          ]
+        ],
+        "seconds": 8.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -0.83
+            0.5,
+            -0.47
           ]
         ],
         "rates": [
           {
             "p1067 6641": [
-              0.615,
-              12.3
+              0.978,
+              19.6
             ],
             "p1068 6641": [
-              0.615,
-              12.3
+              0.978,
+              19.6
             ],
             "p135 18947": [
               0,
@@ -688,11 +698,29 @@
         ],
         "stop": [
           [
-            null,
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "seconds": 65.9
+        "collisionStops": [
+          [
+            0,
+            1,
+            970,
+            1067,
+            0.5,
+            0.5
+          ],
+          [
+            0,
+            -1,
+            971,
+            1067,
+            0.47,
+            0.47
+          ]
+        ],
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -706,35 +734,35 @@
           {
             "p174 18946": [
               1,
-              2.1e-33
+              5.58e-33
             ],
             "p378 94925": [
               1,
-              1.42e-13
+              1.12e-13
             ],
             "p124 18946": [
               1,
-              1.54e-13
+              1.12e-13
             ],
             "p1108 18575": [
               0.667,
-              5.61e-14
+              6.07e-14
             ],
             "p1088 4716": [
               0.667,
-              5.98e-14
+              6.73e-14
             ],
             "p1096 3648b": [
               0.0278,
-              1.85e-33
+              3.19e-33
             ],
             "p1336 18575": [
               0.0278,
-              2.1e-33
+              4.87e-33
             ],
             "p1320 18938": [
               0.00926,
-              1.06e-33
+              5.44e-33
             ],
             "p2086 40490": [
               0.00926,
@@ -770,76 +798,68 @@
             ]
           ]
         ],
-        "seconds": 90.7
+        "seconds": 31.6
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            18.85,
+            -0.43
           ]
         ],
         "still": [
-          "p139 18946",
-          "p1005 18575",
-          "p1377 94925",
-          "p1378 92693c01",
-          "p1409 92693c01",
-          "p1880 92693c01",
-          "p1390 18942",
-          "p1420 18942",
-          "p1911 18942"
+          "p1880 92693c01"
         ],
         "rates": [
           {
             "p139 18946": [
-              0,
-              0
+              1,
+              1.52e-13
             ],
             "p1005 18575": [
-              0,
-              0
+              0.8,
+              1.59e-13
             ],
             "p1377 94925": [
-              0,
-              0
+              1,
+              1.73e-13
             ],
             "p1378 92693c01": [
-              0,
-              0
+              0.00235,
+              8.11e-13
             ],
             "p1409 92693c01": [
-              0,
-              0
+              0.00234,
+              8.48e-13
             ],
             "p1880 92693c01": [
-              0,
-              0
+              0.000616,
+              1.2e-12
             ],
             "p1390 18942": [
-              0,
-              0
+              0.0332,
+              6.17
             ],
             "p1420 18942": [
-              0,
-              0
+              0.0332,
+              6.15
             ],
             "p1911 18942": [
-              0,
-              0
+              0.0201,
+              3.8
             ],
             "p1320 18938": [
               0,
-              0
+              1.91e-38
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.12,
+              0.02
             ],
             [
               0,
@@ -850,8 +870,8 @@
         "torn": [
           [
             [
-              0,
-              0
+              0.12,
+              0.02
             ],
             [
               0,
@@ -861,15 +881,34 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "limit"
           ]
         ],
         "judged": [
           0
         ],
-        "cause": "control-jammed",
-        "seconds": 16.9
+        "cause": "too-little",
+        "detail": "p1880 92693c01",
+        "collisionStops": [
+          [
+            0,
+            -1,
+            1409,
+            1420,
+            0.43,
+            0.43
+          ],
+          [
+            0,
+            -1,
+            1409,
+            1420,
+            0.43,
+            0.43
+          ]
+        ],
+        "seconds": 122.3
       },
       {
         "result": "works",
@@ -883,11 +922,11 @@
           {
             "p161 18946": [
               0.8,
-              0
+              6.63e-14
             ],
             "p107 18946": [
               0.384,
-              0
+              1.89e-14
             ],
             "p1003 10928": [
               0.384,
@@ -895,19 +934,19 @@
             ],
             "p1304 6573": [
               0.128,
-              1.31e-33
+              6.7e-33
             ],
             "p2113 94925": [
               0.128,
-              8.72e-34
+              7.6e-33
             ],
             "p2134 32270": [
               0.128,
-              9.47e-15
+              0
             ],
             "p2152 32012": [
               0.064,
-              5.7e-49
+              0
             ],
             "p2086 40490": [
               0,
@@ -939,14 +978,14 @@
             ]
           ]
         ],
-        "seconds": 58.9
+        "seconds": 17.3
       },
       {
         "result": "partly",
         "turned": [
           [
-            0,
-            -0.53
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -957,43 +996,43 @@
           {
             "p161 18946": [
               0.8,
-              0
+              6.63e-14
             ],
             "p138 18946": [
               0.384,
-              0.000205
+              1.89e-14
             ],
             "p130 94925": [
               0.384,
-              0.000219
+              2.44e-33
             ],
             "p100 42070 - 32198": [
               0.23,
-              1.83e-33
+              2.7e-33
             ],
             "p2131 6589": [
               0.23,
-              3.59e-33
+              4.96e-33
             ],
             "p2139 87407": [
               0.138,
-              0.000409
+              5.49e-14
             ],
             "p2145 6589": [
-              0.233,
-              0.0494
+              0.228,
+              0.0341
             ],
             "p2143 62274c01": [
-              0.00152,
-              0.431
+              0.00125,
+              0.341
             ],
             "p2086 40490": [
-              0.00152,
-              0.219
+              0,
+              0
             ],
             "p1320 18938": [
               0,
-              8.62e-33
+              1.09e-40
             ]
           }
         ],
@@ -1005,7 +1044,7 @@
             ],
             [
               0,
-              0.06
+              0
             ]
           ]
         ],
@@ -1017,32 +1056,27 @@
             ],
             [
               0,
-              0.06
+              0
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            "dead point"
-          ]
-        ],
         "judged": [
-          1
+          0
         ],
-        "cause": "stopped-early",
-        "seconds": 48.5
+        "cause": "not-driven",
+        "detail": "p2086 40490",
+        "seconds": 21.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.17,
+            -0.17
           ],
           [
-            1.5,
-            -1.5
+            0.17,
+            -0.17
           ]
         ],
         "rates": [
@@ -1093,15 +1127,61 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 87.5
+        "collisionStops": [
+          [
+            0,
+            1,
+            786,
+            1351,
+            0.17,
+            0.17
+          ],
+          [
+            0,
+            -1,
+            776,
+            1348,
+            0.17,
+            0.17
+          ],
+          [
+            1,
+            1,
+            866,
+            1295,
+            0.17,
+            0.17
+          ],
+          [
+            1,
+            -1,
+            876,
+            1296,
+            0.17,
+            0.17
+          ]
+        ],
+        "seconds": 7.6
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
-    ]
+    ],
+    "peak": 1344
   }
 }

@@ -9,6 +9,7 @@
     "connections": "tsx scripts/build-connections.ts",
     "pack": "tsx scripts/pack-models.ts",
     "collisions": "node --max-old-space-size=12288 --import tsx scripts/collision-pairs.ts",
+    "pivots": "tsx scripts/kept-pivots.ts",
     "import": "tsx scripts/import-sets.ts",
     "omr": "tsx scripts/download-omr.ts",
     "instructions": "tsx scripts/download-instructions.ts",
@@ -23,6 +24,7 @@
     "errata": "tsx scripts/errata.ts",
     "status": "tsx scripts/status-page.ts",
     "decisions": "tsx scripts/decisions-page.ts",
+    "site-pages": "tsx scripts/site-pages.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
     "invariance": "tsx scripts/invariance.ts",
@@ -38,6 +40,7 @@
   "devDependencies": {
     "@types/node": "^26.6.5",
     "@types/three": "^0.186.0",
+    "playwright": "^1.65.1",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vite": "^7.3.7",

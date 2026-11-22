@@ -22,7 +22,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { Kinematics } from '../src/kinematics.ts';
 import type { PlacedPart } from '../src/ldr.ts';
 import { catchShifts, findCatches, findSliders, nearestPosition, sliderMovedTo, sliderPosition } from '../src/shift.ts';
-import type { Mechanism } from '../src/mechanism.ts';
+import { type Mechanism, motorOutput } from '../src/mechanism.ts';
 import { loadModel } from './load-model.ts';
 
 const AUDIT = 'docs/audits/for-erik.md';
@@ -66,8 +66,8 @@ function auditRows(text: string): { part: string; set: string; fns: number[]; te
 type Verdict = 'agrees' | 'disagrees' | 'cannot tell';
 
 // Each set's model, read once, and a function's verdict on it.
-const models = new Map<string, ReturnType<typeof loadModel>>();
-function judge(set: string, n: number): { verdict: Verdict; why: string } {
+const models = new Map<string, Awaited<ReturnType<typeof loadModel>>>();
+async function judge(set: string, n: number): Promise<{ verdict: Verdict; why: string }> {
   const data = JSON.parse(readFileSync(`data/sets/${set}.json`, 'utf-8'));
   const fn: Fn | undefined = data.curated.functions?.[n - 1];
   if (!fn) return { verdict: 'cannot tell', why: `no function ${n} in the list` };
@@ -76,7 +76,7 @@ function judge(set: string, n: number): { verdict: Verdict; why: string } {
   // Only the last model read is kept: the rows are judged set by set (see below).
   if (!models.has(file)) {
     models.clear();
-    models.set(file, loadModel(file, file.startsWith('omr/')));
+    models.set(file, await loadModel(file, file.startsWith('omr/')));
   }
   const loaded = models.get(file)!;
   if (fn.first?.length) {
@@ -107,10 +107,7 @@ function judgeOn(fn: Fn, parts: { name: string }[], mech: Mechanism, kin: Kinema
   // Each control's motion; a part moves if any control moves it.
   const motions = controls.flatMap((p) => {
     let body = mech.bodyOf[p];
-    if (mech.roles[p] === 'motor') {
-      const j = mech.joints.find((x) => x.motor && (x.bodyA === body || x.bodyB === body));
-      if (j) body = j.bodyA === body ? j.bodyB : j.bodyA;
-    }
+    if (mech.roles[p] === 'motor') body = motorOutput(mech, p);
     const link = kin.parentLink(body);
     let motion: number[] | null = null;
     try {
@@ -142,7 +139,7 @@ if (process.argv[1]?.endsWith('what-moves-audit.ts')) {
   const counts: Record<string, number> = {};
   // Judged set by set, so each model is read once; written in the audit's order.
   const judged = new Map<string, { verdict: Verdict; why: string }>();
-  for (const r of [...rows].sort((a, b) => a.set.localeCompare(b.set))) for (const n of r.fns) if (!judged.has(`${r.set} ${n}`)) judged.set(`${r.set} ${n}`, judge(r.set, n));
+  for (const r of [...rows].sort((a, b) => a.set.localeCompare(b.set))) for (const n of r.fns) if (!judged.has(`${r.set} ${n}`)) judged.set(`${r.set} ${n}`, await judge(r.set, n));
   for (const r of rows) {
     const verdicts = r.fns.length ? r.fns.map((n) => ({ n, ...judged.get(`${r.set} ${n}`)! })) : [{ n: 0, verdict: 'cannot tell' as Verdict, why: 'names no function' }];
     for (const v of verdicts) {
@@ -165,7 +162,7 @@ if (process.argv[1]?.endsWith('what-moves-audit.ts')) {
 // A function's first steps worked, as the check works them: a driving ring slid to the click-in
 // position nearest `by` LDU on, else the control's joint turned `by` and the rings its catch moves
 // shifted; the mechanism then read afresh from where everything is. Or why a step couldn't be.
-function setFirst(loaded: ReturnType<typeof loadModel>, steps: { control: string; by: number }[]): { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics } | { why: string } {
+function setFirst(loaded: Awaited<ReturnType<typeof loadModel>>, steps: { control: string; by: number }[]): { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics } | { why: string } {
   let { parts, mech, kin } = loaded.read(loaded.parts);
   const { table, slides } = loaded;
   const placedNow = () => parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
@@ -194,7 +191,7 @@ function setFirst(loaded: ReturnType<typeof loadModel>, steps: { control: string
     if (!link) return { why: `its first step's part (${step.control}) can't move` };
     const went = kin.turnJoint(link.joint, step.by);
     if (Math.abs(went) < 0.9 * Math.abs(step.by)) return { why: `its first step (${step.control}) went ${went.toFixed(2)} of ${step.by}` };
-    const shifts = catchShifts(placedNow(), table, findCatches(parts, sliders));
+    const shifts = catchShifts(placedNow(), table, findCatches(parts, sliders, mech.roles));
     if (shifts.size) shiftTo(shifts);
     else ({ parts, mech, kin } = loaded.read(placedNow()));
   }

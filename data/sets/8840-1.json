@@ -108,16 +108,25 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 2,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 3,
     "counts": {
-      "partly": 2,
-      "works": 2,
+      "partly": 3,
+      "works": 1,
       "skipped": 1,
       "not checked": 1
     },
     "loose": [],
+    "errata": {
+      "applied": [
+        "v2-rod-p118-to-its-piston",
+        "v2-piston-p120-on-its-rod",
+        "v2-rod-p117-to-its-piston",
+        "v2-piston-p121-on-its-rod"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "partly",
@@ -191,67 +200,107 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.07,
+            -0.03
           ]
-        ],
-        "still": [
-          "p120 2851 against p86 3701",
-          "p121 2851 against p86 3701"
         ],
         "rates": [
           {
             "p101 3648a against p86 3701": [
               1,
-              2.75e-13
+              8.59e-13
             ],
             "p116 2853 against p86 3701": [
               3,
-              3.07e-13
+              4.27e-13
             ],
             "p117 2852 against p86 3701": [
-              3,
-              29.9
+              0.751,
+              30
             ],
             "p120 2851 against p86 3701": [
-              0,
-              5.23e-14
+              1.51,
+              31.2
             ],
             "p121 2851 against p86 3701": [
-              0,
-              5.68e-14
+              1.4,
+              28.2
             ]
           }
         ],
         "back": [
           [
             [
-              0.02,
-              0
+              0.09,
+              0.12
             ],
             [
-              0.02,
-              0
+              0.09,
+              0.14
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.09,
+              0.12
             ],
             [
-              0,
-              0
+              0.09,
+              0.14
             ]
           ]
         ],
-        "judged": [
-          0
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
-        "cause": "not-driven",
-        "detail": "p120 2851 against p86 3701",
+        "freed": 5,
+        "cause": "stopped-endless",
+        "detail": "p210 4266: p104 3040b against p113 4274",
+        "collisionStops": [
+          [
+            0,
+            1,
+            104,
+            113,
+            0.07,
+            0.07
+          ],
+          [
+            0,
+            -1,
+            105,
+            112,
+            0.03,
+            0.03
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p100 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p114 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p115 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p124 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p129 2780",
+            "for": "p210 4266"
+          }
+        ],
         "seconds": 0.3
       },
       {
@@ -298,7 +347,7 @@
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
@@ -310,7 +359,7 @@
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
@@ -323,14 +372,14 @@
         "pushed": [
           true
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -341,8 +390,8 @@
             -1.5
           ],
           [
-            1.5,
-            -1.5
+            0.07,
+            -0.03
           ],
           [
             1.5,
@@ -378,17 +427,17 @@
           ],
           [
             [
-              0.02,
-              0
+              0.09,
+              0.12
             ],
             [
-              0.02,
-              0
+              0.09,
+              0.14
             ]
           ],
           [
             [
-              0.02,
+              0.03,
               0
             ],
             [
@@ -420,12 +469,12 @@
           ],
           [
             [
-              0,
-              0
+              0.09,
+              0.12
             ],
             [
-              0,
-              0
+              0.09,
+              0.14
             ]
           ],
           [
@@ -439,18 +488,80 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "freed": 5,
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 1
+        "cause": "stopped-endless",
+        "detail": "p210 4266: p104 3040b against p113 4274",
+        "collisionStops": [
+          [
+            2,
+            1,
+            104,
+            113,
+            0.07,
+            0.07
+          ],
+          [
+            2,
+            -1,
+            105,
+            112,
+            0.03,
+            0.03
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p100 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p114 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p115 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p124 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p129 2780",
+            "for": "p210 4266"
+          }
+        ],
+        "seconds": 0.8
       },
       {
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 311
   }
 }

@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 17 works, 12 partly.
 
 ## By decade
 
@@ -21,11 +21,11 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 par
 
 **1984, [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator)**
 
-- The tracks roll freely round the 40-tooth sprockets and the 16-tooth idlers; nothing drives them. (works)
+- The tracks roll freely round the 40-tooth sprockets and the 16-tooth idlers; nothing drives them. (partly)
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
-- The purple striker runs on two rubber tracks, each round three yellow sprocket wheels that turn freely on their axles. Nothing drives them: it's pushed along the floor by its handle. (works)
+- The purple striker runs on two rubber tracks, each round three yellow sprocket wheels that turn freely on their axles. Nothing drives them: it's pushed along the floor by its handle. (partly)
 
 **2005, [8419 Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8419-1)**
 
@@ -62,7 +62,7 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 par
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks. (works)
+- Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks. (partly)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
@@ -75,7 +75,7 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 par
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- The excavator rides on two tracks of chain links, each over two 16 tooth gears, and rolls along on them. (works)
+- The excavator rides on two tracks of chain links, each over two 16 tooth gears, and rolls along on them. (partly)
 
 **2017, [42065 RC Tracked Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42065-1)**
 

@@ -40,7 +40,7 @@ describe('the kept collision pass', () => {
 describe('the first collision pass on real models', () => {
   for (const model of ['models/854-Go Kart.mpd', 'models/8845-Dune Buggy.mpd', 'omr/8838-1 Shock Cycle.mpd']) {
     it.skipIf(!existsSync(model) || !existsSync('ldraw/parts'))(`watches the same pairs as trying every pair: ${model}`, async () => {
-      const { parts, mech } = loadModel(model, model.startsWith('omr/'));
+      const { parts, mech } = await loadModel(model, model.startsWith('omr/'));
       const shapes = (await partShapes(model, modelText(model))).slice(0, parts.length).map((s, i) => (parts[i].path ? [] : s.shape));
       const placed = parts.map((p) => p.matrix);
       const connected = connectedPairs(mech);

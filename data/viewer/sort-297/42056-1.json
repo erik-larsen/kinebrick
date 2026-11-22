@@ -1,0 +1,139 @@
+{
+  "set": "42056-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:02:53.759Z",
+  "load": 13.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2641,
+  "seconds": 7,
+  "functions": [
+    {
+      "function": 5,
+      "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
+      "verdict": "shown",
+      "msOneCall": 193,
+      "msPerStep": 107,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p535 57515",
+        "way": -1,
+        "went": -0.279,
+        "asked": 1.5,
+        "by": [
+          "2657/2732"
+        ]
+      },
+      "stops": [
+        "2657/2732",
+        "2383/2735"
+      ],
+      "A": [
+        {
+          "control": "p535 57515",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 214,
+          "msOneCall": 193,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              4.19,
+              0.39
+            ],
+            "p2734 23800": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p535 57515",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.279,
+          "ms": 394,
+          "msOneCall": 70,
+          "stops": [
+            "2657/2732"
+          ],
+          "moved": {
+            "p2731 23800": [
+              16.75,
+              0.67
+            ],
+            "p2734 23800": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p543 57515",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.279,
+          "ms": 383,
+          "msOneCall": 76,
+          "stops": [
+            "2383/2735"
+          ],
+          "moved": {
+            "p2731 23800": [
+              0,
+              0
+            ],
+            "p2734 23800": [
+              16.74,
+              0.67
+            ]
+          }
+        },
+        {
+          "control": "p543 57515",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 210,
+          "msOneCall": 60,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              0,
+              0
+            ],
+            "p2734 23800": [
+              4.19,
+              0.39
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p535 57515",
+          "judged": "stands",
+          "why": "stopped at -0.279 rad (2657/2732); kinds double-wishbone: front"
+        },
+        {
+          "control": "p543 57515",
+          "judged": "stands",
+          "why": "stopped at +0.279 rad (2383/2735); kinds double-wishbone: front"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 7
+    }
+  ]
+}

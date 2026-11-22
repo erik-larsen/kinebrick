@@ -4,7 +4,7 @@ A rigid axle hung on shock absorbers and links, free to tilt and rise. (Suspensi
 
 First appears in 2011, in [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1): The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm, and moves up and down, steering as it goes; the rear axle sits on two shock absorbers.
 
-Used in 6 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 3 no, 2 skipped.
+Used in 6 of the 186 surveyed sets, by 6 functions. Kinebrick: 2 works, 2 no, 2 skipped.
 
 ## By decade
 
@@ -45,7 +45,7 @@ Each detail by the set it first appears in.
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
-- Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers. (no)
+- Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers. (works)
 
 ---
 

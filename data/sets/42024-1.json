@@ -136,13 +136,12 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 37,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 17,
     "counts": {
-      "works": 2,
-      "no": 1,
-      "partly": 2,
+      "works": 1,
+      "partly": 4,
       "not checked": 1
     },
     "loose": [
@@ -166,8 +165,8 @@
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.23,
+            -1.23
           ]
         ],
         "rates": [
@@ -185,16 +184,16 @@
               0
             ],
             "p249 87761 against p0 4519": [
-              5.62e-8,
-              15.9
+              6.83e-8,
+              15.6
             ],
             "p223 48989 against p0 4519": [
-              0.397,
-              7.95
+              0.389,
+              7.78
             ],
             "p224 48989 against p0 4519": [
-              0.397,
-              7.95
+              0.389,
+              7.78
             ],
             "p610 62271c01 against p0 4519": [
               0,
@@ -211,70 +210,89 @@
         "back": [
           [
             [
-              0.13,
-              0.14
+              0.08,
+              0.09
             ],
             [
-              0.13,
-              0.14
+              0.08,
+              0.09
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.13,
-              0.14
+              0.08,
+              0.09
             ],
             [
-              0.13,
-              0.14
+              0.08,
+              0.09
             ]
           ]
         ],
-        "seconds": 3.8
-      },
-      {
-        "result": "no",
-        "turned": [
+        "stop": [
           [
-            0,
-            0
+            "limit",
+            "limit"
           ]
         ],
-        "still": [
-          "p50 32039 against p0 4519",
-          "p509 6641 against p0 4519",
-          "p561 6539 against p558 3706"
+        "collisionStops": [
+          [
+            0,
+            1,
+            13,
+            223,
+            1.23,
+            1.23
+          ],
+          [
+            0,
+            -1,
+            1,
+            224,
+            1.23,
+            1.23
+          ]
+        ],
+        "seconds": 1.7
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.27,
+            -0.3
+          ]
         ],
         "rates": [
           {
             "p50 32039 against p0 4519": [
-              0,
-              0
+              1,
+              20
             ],
             "p509 6641 against p0 4519": [
-              0,
-              0
+              0.902,
+              18
             ],
             "p561 6539 against p558 3706": [
               0,
-              0
+              4.73e-42
             ],
             "p558 3706 against p0 4519": [
               0,
-              0
+              1.32e-35
             ]
           }
         ],
         "back": [
           [
             [
-              0,
+              0.29,
               0
             ],
             [
-              0,
+              0.43,
               0
             ]
           ]
@@ -282,14 +300,17 @@
         "torn": [
           [
             [
-              0,
+              0.29,
               0
             ],
             [
-              0,
+              0.43,
               0
             ]
           ]
+        ],
+        "why": [
+          "p561 6539 against p558 3706 is held by friction pins the control doesn't reach"
         ],
         "stop": [
           [
@@ -298,11 +319,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
-        "cause": "part-fixed",
-        "detail": "p561 6539 against p558 3706",
-        "seconds": 1.2
+        "cause": "one-link-too-many",
+        "onPlay": 1.07,
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -323,19 +344,19 @@
           {
             "p579 32270 against p0 4519": [
               1,
-              2.84e-14
+              3.63e-14
             ],
             "p555 6589 against p0 4519": [
               1,
-              9.47e-15
+              1.42e-14
             ],
             "p562 32270 against p0 4519": [
               1.67,
-              9.47e-15
+              9.48e-15
             ],
             "p547 6542b against p0 4519": [
-              0,
-              4.87e-14
+              2.81e-8,
+              4.59e-14
             ],
             "p570 3648b against p0 4519": [
               0,
@@ -395,20 +416,21 @@
           ]
         ],
         "why": [
-          "p50 32039, worked first, went 0 of 0.5"
+          "p50 32039, worked first, went 0.27 of 0.5"
         ],
         "judged": [
           0
         ],
         "cause": "first-failed",
-        "seconds": 3.9
+        "onPlay": 0.23,
+        "seconds": 4.6
       },
       {
         "result": "partly",
         "turned": [
           [
             1.5,
-            -1.5
+            0
           ]
         ],
         "still": [
@@ -422,7 +444,7 @@
           {
             "p546 6542b against p0 4519": [
               0,
-              4.87e-14
+              5.93e-14
             ],
             "p584 94925 against p0 4519": [
               0,
@@ -473,40 +495,47 @@
         "why": [
           "p669 6629 against p0 4519 is held by friction pins the control doesn't reach",
           "p672 6629 against p0 4519 is held by friction pins the control doesn't reach",
-          "p50 32039, worked first, went 0 of -0.5"
+          "p50 32039, worked first, went -0.3 of -0.5"
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
         ],
         "judged": [
           0
         ],
         "cause": "first-failed",
-        "seconds": 3.8
+        "onPlay": 0.27,
+        "seconds": 2.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.23
           ],
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.23
           ],
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.23
           ],
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.23
           ],
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.23
           ],
           [
-            1.5,
-            -1.5
+            0.23,
+            -0.23
           ]
         ],
         "rates": [
@@ -641,6 +670,32 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           [],
@@ -649,12 +704,113 @@
           [],
           []
         ],
-        "seconds": 23.7
+        "cause": "stopped-endless",
+        "detail": "p241 15413: p2 32278 against p279 32525",
+        "collisionStops": [
+          [
+            0,
+            1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            0,
+            -1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            1,
+            1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            1,
+            -1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            2,
+            1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            2,
+            -1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            3,
+            1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            3,
+            -1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            4,
+            1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            4,
+            -1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            5,
+            1,
+            2,
+            279,
+            0.23,
+            0.23
+          ],
+          [
+            5,
+            -1,
+            2,
+            279,
+            0.23,
+            0.23
+          ]
+        ],
+        "seconds": 3.7
       },
       {
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 1059
   }
 }

@@ -1,0 +1,150 @@
+{
+  "set": "42124-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:39.279Z",
+  "load": 14.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 369,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",
+      "verdict": "shown",
+      "msOneCall": 34,
+      "msPerStep": 10,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p325 42124 - 31794",
+        "way": 1,
+        "went": 0.663,
+        "asked": 1.5,
+        "by": [
+          "303/321"
+        ]
+      },
+      "stops": [
+        "303/321",
+        "359/983",
+        "361/985",
+        "304/322"
+      ],
+      "A": [
+        {
+          "control": "p325 42124 - 31794",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.663,
+          "ms": 128,
+          "msOneCall": 34,
+          "stops": [
+            "303/321"
+          ],
+          "moved": {
+            "p343 15460": [
+              0,
+              0.32
+            ],
+            "p345 15460": [
+              53.01,
+              4.73
+            ]
+          }
+        },
+        {
+          "control": "p325 42124 - 31794",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 10,
+          "msOneCall": 10,
+          "stops": [
+            "359/983"
+          ],
+          "moved": {
+            "p343 15460": [
+              0,
+              0
+            ],
+            "p345 15460": [
+              2.79,
+              0.61
+            ]
+          }
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 10,
+          "msOneCall": 7,
+          "stops": [
+            "361/985"
+          ],
+          "moved": {
+            "p343 15460": [
+              2.79,
+              0.61
+            ],
+            "p345 15460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.663,
+          "ms": 110,
+          "msOneCall": 7,
+          "stops": [
+            "304/322"
+          ],
+          "moved": {
+            "p343 15460": [
+              53.01,
+              4.73
+            ],
+            "p345 15460": [
+              0,
+              0.32
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p325 42124 - 31794",
+          "judged": "stands",
+          "why": "stopped at +0.663 rad (303/321); -0.035 rad (359/983); kinds double-wishbone"
+        },
+        {
+          "control": "p326 42124 - 31794",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (361/985); -0.663 rad (304/322); kinds double-wishbone"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "steps 18-33 build bent-liftarm suspension arms, and step 33 fits a yellow shock absorber to each arm, so each front wheel swings up against its spring. The viewer stops it at 0 rad, which is a fault, though no page draws the travel.",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6351188.pdf#page=21"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "set": "42077-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:54:49.081Z",
+  "load": 29.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 980,
+  "seconds": 109,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints.",
+      "verdict": "not shown",
+      "why": "A: p59 62821, p139 2853, p142 2851, p143 2851 not moved",
+      "msOneCall": 9,
+      "msPerStep": null,
+      "time": {
+        "open": 23,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 23,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1076 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1076 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1080 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1080 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 62821": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p142 2851": [
+              0,
+              0
+            ],
+            "p143 2851": [
+              0,
+              0
+            ],
+            "p838 18575": [
+              0,
+              0
+            ],
+            "p561 87761": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 48
+    },
+    {
+      "function": 7,
+      "does": "The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis.",
+      "verdict": "shown",
+      "msOneCall": 142,
+      "msPerStep": 52,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 53,
+        "B": 0
+      },
+      "stop": {
+        "control": "p912 64782",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "231/971"
+        ]
+      },
+      "stops": [
+        "231/971"
+      ],
+      "A": [
+        {
+          "control": "p912 64782",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "6 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              178,
+              185,
+              415,
+              418,
+              910,
+              916
+            ]
+          },
+          "asked": 1.33,
+          "went": 1.33,
+          "ms": 1985,
+          "msOneCall": 142,
+          "stops": [],
+          "moved": {
+            "p922 62531": [
+              148.11,
+              76.2
+            ],
+            "p969 15458": [
+              342.94,
+              76.2
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p59 62821": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p912 64782",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "6 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              178,
+              185,
+              415,
+              418,
+              910,
+              916
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 67,
+          "msOneCall": 68,
+          "stops": [
+            "231/971"
+          ],
+          "moved": {
+            "p922 62531": [
+              0,
+              0
+            ],
+            "p969 15458": [
+              0,
+              0
+            ],
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p59 62821": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p912 64782",
+          "judged": "stands",
+          "why": "stopped at -0 rad (231/971); kinds hinge: rear body"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 61
+    }
+  ]
+}

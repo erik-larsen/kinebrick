@@ -1,0 +1,118 @@
+{
+  "set": "8865-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:43.854Z",
+  "load": 17.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 868,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel on the left steers the front wheels: its column, through two universal joints and a row of three 16-tooth gears, turns the 8-tooth pinion on the rack behind the front axle, and the rack's two links push the tall steering arms.",
+      "verdict": "shown",
+      "msOneCall": 99,
+      "msPerStep": 22,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p887 2741",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 963,
+          "msOneCall": 99,
+          "stops": [],
+          "moved": {
+            "p287 3743": [
+              15,
+              0
+            ],
+            "p423 2737": [
+              0,
+              13.72
+            ],
+            "p424 2737": [
+              0,
+              15.78
+            ],
+            "p898 3739": [
+              14.37,
+              13.72
+            ],
+            "p902 3739": [
+              16.53,
+              15.78
+            ],
+            "p900 3739": [
+              0,
+              0
+            ],
+            "p904 3739": [
+              0,
+              0
+            ],
+            "p833 3958": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p887 2741",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 807,
+          "msOneCall": 33,
+          "stops": [],
+          "moved": {
+            "p287 3743": [
+              15,
+              0
+            ],
+            "p423 2737": [
+              0,
+              15.78
+            ],
+            "p424 2737": [
+              0,
+              13.72
+            ],
+            "p898 3739": [
+              16.53,
+              15.78
+            ],
+            "p902 3739": [
+              14.37,
+              13.72
+            ],
+            "p900 3739": [
+              0,
+              0
+            ],
+            "p904 3739": [
+              0,
+              0
+            ],
+            "p833 3958": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

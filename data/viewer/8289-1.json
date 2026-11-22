@@ -1,0 +1,361 @@
+{
+  "set": "8289-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:08:55.703Z",
+  "load": 9.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 994,
+  "seconds": 141,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear at the back of the truck, under the rear bumper, steers the front wheels: a long shaft runs forward under the chassis to two 8-tooth pinions on the steering rack, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 54,
+      "msPerStep": 8,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 1,
+        "B": 14
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p675 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 357,
+          "msOneCall": 54,
+          "stops": [],
+          "moved": {
+            "p24 3743": [
+              15.36,
+              0
+            ],
+            "p26 59426": [
+              10.37,
+              26.91
+            ],
+            "p30 59426": [
+              10.37,
+              26.91
+            ],
+            "p531 56145": [
+              0,
+              0
+            ],
+            "p532 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p675 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 337,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p24 3743": [
+              15.36,
+              0
+            ],
+            "p26 59426": [
+              10.37,
+              26.91
+            ],
+            "p30 59426": [
+              10.37,
+              26.91
+            ],
+            "p531 56145": [
+              0,
+              0
+            ],
+            "p532 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p675 32269",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p24 3743",
+            "p26 59426",
+            "p30 59426"
+          ],
+          "stops": [
+            "7/29",
+            "7/25"
+          ]
+        }
+      ],
+      "seconds": 21
+    },
+    {
+      "function": 2,
+      "does": "The small steering wheel in the cab turns on its own; it isn't linked to the steering.",
+      "verdict": "shown",
+      "msOneCall": 51,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 15
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p366 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 257,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {
+            "p24 3743": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p366 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 223,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p24 3743": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p366 2819",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 21
+    },
+    {
+      "function": 3,
+      "does": "The four wheels roll freely; there's no drivetrain.",
+      "verdict": "shown",
+      "msOneCall": 69,
+      "msPerStep": 10,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 11,
+        "A": 3,
+        "B": 53
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p533 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 433,
+          "msOneCall": 69,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p533 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 389,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p530 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 388,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p530 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 368,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p531 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 318,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p531 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 324,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p532 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 302,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p532 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 321,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p533 56145",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p530 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p531 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p532 56145",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 81
+    },
+    {
+      "function": 7,
+      "does": "The hose reels at the back, three wheel hubs on a cross axle, turn.",
+      "verdict": "shown",
+      "msOneCall": 52,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p653 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 259,
+          "msOneCall": 52,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p653 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 240,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p653 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 19
+    }
+  ]
+}

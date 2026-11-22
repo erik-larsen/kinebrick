@@ -1,0 +1,748 @@
+{
+  "set": "9397-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:40:57.454Z",
+  "load": 11.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1143,
+  "seconds": 1621,
+  "functions": [
+    {
+      "function": 1,
+      "does": "A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 25,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 11
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": 3.084,
+          "ms": 2211,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p157 6538a": [
+              0,
+              179.6
+            ],
+            "p160 6538a": [
+              0,
+              179.6
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.591,
+          "ms": 1131,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p157 6538a": [
+              0,
+              93.79
+            ],
+            "p160 6538a": [
+              0,
+              93.79
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p240 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p157 6538a",
+            "p160 6538a"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 21
+    },
+    {
+      "function": 2,
+      "does": "With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 42,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 10,
+        "reach": 0,
+        "A": 10,
+        "B": 12
+      },
+      "stop": {
+        "control": "p240 58120",
+        "way": 1,
+        "went": 4.712,
+        "asked": 4.1,
+        "by": [
+          "211/216"
+        ]
+      },
+      "stops": [
+        "211/216"
+      ],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 4.1,
+          "went": 4.712,
+          "ms": 5639,
+          "msOneCall": null,
+          "stops": [
+            "211/216"
+          ],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              1.73,
+              0
+            ],
+            "p894 64178": [
+              1.2,
+              0.86
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 4.2,
+          "went": -4.241,
+          "ms": 4429,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p624 62274c01 against p623 62271c01": [
+              1.57,
+              0
+            ],
+            "p894 64178": [
+              1.06,
+              0.76
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p240 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p624 62274c01 against p623 62271c01",
+            "p894 64178"
+          ],
+          "stops": [
+            "211/216"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p240 58120",
+          "judged": "stands",
+          "why": "stopped at +4.712 rad (211/216); kinds electric-motor, function-selector, linear-actuator: container tipper"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 39
+    },
+    {
+      "function": 3,
+      "does": "With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 69,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 10,
+        "reach": 0,
+        "A": 9,
+        "B": 12
+      },
+      "stop": {
+        "control": "p240 58120",
+        "way": 1,
+        "went": 2.199,
+        "asked": 1.5,
+        "by": [
+          "209/220"
+        ]
+      },
+      "stops": [
+        "209/220"
+      ],
+      "A": [
+        {
+          "control": "p240 58120",
+          "way": 1,
+          "asked": 1.5,
+          "went": 2.199,
+          "ms": 4319,
+          "msOneCall": null,
+          "stops": [
+            "209/220"
+          ],
+          "moved": {
+            "p464 92695 against p463 92693c01": [
+              0,
+              135
+            ],
+            "p1340 32073": [
+              2.42,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p240 58120",
+          "way": -1,
+          "asked": 1.5,
+          "went": -2.199,
+          "ms": 4318,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p464 92695 against p463 92693c01": [
+              0,
+              135
+            ],
+            "p1340 32073": [
+              2.4,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p240 58120",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "moved": [
+            "p464 92695 against p463 92693c01",
+            "p1340 32073"
+          ],
+          "stops": [
+            "209/220"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p240 58120",
+          "judged": "stands",
+          "why": "stopped at +2.199 rad (209/220); kinds electric-motor, function-selector, linear-actuator: plough"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 38
+    },
+    {
+      "function": 4,
+      "does": "The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 329,
+      "msPerStep": 110,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 10,
+        "B": 18
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1000 3706",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 4701,
+          "msOneCall": 329,
+          "stops": [],
+          "moved": {
+            "p813 32072": [
+              0,
+              85.94
+            ],
+            "p510 32072": [
+              0,
+              85.94
+            ],
+            "p142 87761": [
+              23.84,
+              0
+            ],
+            "p121 87083": [
+              17.88,
+              37.14
+            ],
+            "p125 87083": [
+              17.88,
+              37.31
+            ]
+          }
+        },
+        {
+          "control": "p1000 3706",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4631,
+          "msOneCall": 208,
+          "stops": [],
+          "moved": {
+            "p813 32072": [
+              0,
+              85.94
+            ],
+            "p510 32072": [
+              0,
+              85.94
+            ],
+            "p142 87761": [
+              23.84,
+              0
+            ],
+            "p121 87083": [
+              17.88,
+              37.14
+            ],
+            "p125 87083": [
+              17.88,
+              37.31
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1000 3706",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p813 32072",
+            "p510 32072",
+            "p142 87761",
+            "p121 87083",
+            "p125 87083"
+          ],
+          "stops": [
+            "112/120"
+          ]
+        }
+      ],
+      "seconds": 37
+    },
+    {
+      "function": 5,
+      "does": "Rolling the truck turns the engine: the two rear axles' differential drives a shaft forward to the crankshaft under the bonnet, so the four pistons go up and down.",
+      "verdict": "shown",
+      "msOneCall": 1124,
+      "msPerStep": 921,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 159,
+        "B": 278
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1450 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39225,
+          "msOneCall": 1124,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              21,
+              16.49
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1450 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39488,
+          "msOneCall": 1012,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              21,
+              16.49
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1451 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 38858,
+          "msOneCall": 940,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              21,
+              16.49
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1451 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 37426,
+          "msOneCall": 979,
+          "stops": [],
+          "moved": {
+            "p22 62821": [
+              0,
+              85.94
+            ],
+            "p778 2853": [
+              0,
+              120.32
+            ],
+            "p779 2852": [
+              21,
+              16.49
+            ],
+            "p790 2851 against p775 2850a": [
+              15.99,
+              0
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1450 86652",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p22 62821",
+            "p778 2853",
+            "p779 2852",
+            "p790 2851 against p775 2850a"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p1451 86652",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p22 62821",
+            "p778 2853",
+            "p779 2852",
+            "p790 2851 against p775 2850a"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 450
+    },
+    {
+      "function": 6,
+      "does": "All six wheels roll; the front pair steer.",
+      "verdict": "shown",
+      "msOneCall": 1201,
+      "msPerStep": 988,
+      "time": {
+        "open": 22,
+        "collisions": 0,
+        "first": 0,
+        "reach": 12,
+        "A": 353,
+        "B": 650
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1448 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 5760,
+          "msOneCall": 350,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1448 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 5822,
+          "msOneCall": 262,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1449 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 6118,
+          "msOneCall": 287,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1449 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 6392,
+          "msOneCall": 273,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1450 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39156,
+          "msOneCall": 1020,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1450 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 37316,
+          "msOneCall": 909,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1451 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37890,
+          "msOneCall": 969,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1451 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39288,
+          "msOneCall": 931,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1452 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42272,
+          "msOneCall": 1201,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1452 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39734,
+          "msOneCall": 1190,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1453 86652",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42348,
+          "msOneCall": 1030,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1453 86652",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 41019,
+          "msOneCall": 1048,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p1448 86652",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1449 86652",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1450 86652",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1451 86652",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1452 86652",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1453 86652",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 1037
+    }
+  ]
+}

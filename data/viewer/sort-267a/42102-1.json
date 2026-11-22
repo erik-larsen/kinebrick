@@ -1,0 +1,118 @@
+{
+  "set": "42102-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:07:49.114Z",
+  "load": 19.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 128,
+  "seconds": 33,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
+      "verdict": "not shown",
+      "why": "A: p103 32524, p107 32498, p108 32498 not moved",
+      "msOneCall": 9,
+      "msPerStep": null,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 26,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p93 32140",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.16,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p103 32524": [
+              0,
+              0
+            ],
+            "p107 32498": [
+              0,
+              0
+            ],
+            "p108 32498": [
+              0,
+              0
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p120 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p93 32140",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.69,
+          "went": 0,
+          "ms": 2,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p103 32524": [
+              0,
+              0
+            ],
+            "p107 32498": [
+              0,
+              0
+            ],
+            "p108 32498": [
+              0,
+              0
+            ],
+            "p125 55982": [
+              0,
+              0
+            ],
+            "p127 55982": [
+              0,
+              0
+            ],
+            "p120 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 33
+    }
+  ]
+}

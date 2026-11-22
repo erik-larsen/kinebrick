@@ -62,9 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 4,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -83,7 +83,6 @@
           ]
         ],
         "still": [
-          "p56 4716 against p0 32523",
           "p39 3647 against p0 32523",
           "p57 2825 against p0 32523",
           "p58 2825 against p0 32523",
@@ -164,8 +163,8 @@
           1
         ],
         "cause": "too-little",
-        "detail": "p56 4716 against p0 32523",
-        "seconds": 3.9
+        "detail": "p39 3647 against p0 32523",
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -237,6 +236,7 @@
         "result": "skipped",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 386
   }
 }

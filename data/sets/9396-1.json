@@ -18,7 +18,7 @@
   },
   "curated": {
     "model": "omr/9396-1 Helicopter.mpd",
-    "instructions": "omr/instructions/9396-1-1.pdf, 9396-1-3.pdf, 9396-1-2.pdf (the books are numbered 1, 3, 2 on their covers: 9396-1-3.pdf is book 2 and 9396-1-2.pdf is book 3; function page: 9396-1-2.pdf page 45; pages 46-57 of that book are the optional Power Functions add-on, 8293, which the model file doesn't include)",
+    "instructions": "omr/instructions/9396-1-1.pdf, 9396-1-3.pdf, 9396-1-2.pdf (the books are numbered 1, 3, 2 on their covers: 9396-1-3.pdf is book 2 and 9396-1-2.pdf is book 3; function page: 9396-1-2.pdf page 45; pages 46-57 of that book are the optional Power Functions add-on, 8293, which the model file doesn't include) Functions 1 to 4 name the lever settings and parts as the functions page and a trial of every part showed them (Erik signed the lists, \"Sign 9396 lists\", 2026-11-17).",
     "functions": [
       {
         "does": "One knob on the fuselage's side works everything through a gearbox; two selector levers, one on each side, each slide a driving ring between two gears. With one lever toward the rotor symbol, turning the knob spins the main rotor and, through a long shaft down the tail boom, the tail rotor.",
@@ -39,7 +39,10 @@
           "p1088 32270",
           "p1337 55013"
         ],
-        "note": "selector levers: p1425 6553 (handle on one side, catch p1426 6641, ring p1051 6539) and p1428 6553 (other side, catch p1427 6641, ring p1050 6539); which lever, and which way, selects which function is inferred from the inset icons, not certain"
+        "note": "selector levers: p1425 6553 (handle on one side, catch p1426 6641, ring p1051 6539) and p1428 6553 (other side, catch p1427 6641, ring p1050 6539); which lever, and which way, selects which function is inferred from the inset icons, not certain",
+        "stays": [
+          "p570 32073"
+        ]
       },
       {
         "does": "With the same lever the other way (toward the landing-gear symbol), the knob retracts and lowers the landing gear: two small linear actuators fold the main wheels' struts up into the sponsons, and the nose wheels fold too.",
@@ -58,11 +61,15 @@
         ],
         "moves": [
           "p449 92695 against p448 92693c01",
-          "p437 92695 against p436 92693c01",
+          "p36 42610",
+          "p37 42610",
           "p1198 42610",
-          "p36 42610"
+          "p1200 42610"
         ],
-        "note": "inferred: which parts fold the nose gear"
+        "note": "the right actuator p449 alone folds all the landing gear: the nose wheels p36 and p37 and the main wheels (p1198, p1224 on the right, p1200, p1515 on the left); the left actuator p437 works the ramp (function 4)",
+        "stays": [
+          "p570 32073"
+        ]
       },
       {
         "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
@@ -75,13 +82,14 @@
         "first": [
           {
             "control": "p1428 6553",
-            "by": 0.3
+            "by": -0.3
           }
         ],
         "moves": [
           "p570 32073",
           "p575 30395"
-        ]
+        ],
+        "note": "the left ring reaches the front clutch gear p1067 through the driving-ring extension p1049 (book 2 step 7, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6053059.pdf#page=15)"
       },
       {
         "does": "With the other lever toward the helicopter symbol, the knob opens and closes the rear loading ramp under the tail.",
@@ -94,14 +102,17 @@
         "first": [
           {
             "control": "p1428 6553",
-            "by": -0.3
+            "by": 0.3
           }
         ],
         "moves": [
-          "p1278 41239",
-          "p1399 41239"
+          "p437 92695 against p436 92693c01",
+          "p1256 64782"
         ],
-        "note": "inferred: the ramp's own parts; the two long side beams p1278 and p1399 look like its hinge arms"
+        "note": "the left actuator p437 pushes the ramp: the grey 5x11 panel p1256 on its red L-arms p1261 and p1262 (32526), built at book 2 steps 103 to 105 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6053059.pdf#page=52 to #page=54); the side beams p1278 and p1399 are held fast",
+        "stays": [
+          "p570 32073"
+        ]
       },
       {
         "does": "The main rotor's four blades fold back on their hinges for parking, released by a blue lever in the cockpit.",
@@ -139,13 +150,12 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 1419,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 535,
     "counts": {
       "partly": 3,
-      "not back": 4,
-      "moved whole": 1,
+      "not back": 3,
       "free-turned": 3,
       "works": 2,
       "no": 1
@@ -162,8 +172,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.13,
+            -0.9
           ]
         ],
         "still": [
@@ -171,85 +181,121 @@
           "p1088 32270",
           "p1337 55013"
         ],
+        "moved": [
+          "p570 32073"
+        ],
         "rates": [
           {
             "p1510 99013p01": [
               0,
-              2.08e-12
+              2.82e-13
             ],
             "p1088 32270": [
               0,
-              2.63e-31
+              3.29e-31
             ],
             "p1337 55013": [
               0,
-              4.97e-13
+              0
+            ],
+            "p570 32073": [
+              1.11,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.31,
-              5.87
+              0,
+              0.1
             ],
             [
-              0.31,
-              0.8
+              0.13,
+              0.32
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.31,
-              5.87
+              0,
+              0.1
             ],
             [
-              0.31,
-              0.8
+              0.13,
+              0.32
             ]
           ]
         ],
-        "strayed": [
-          "p457 6542b",
-          "p1042 3749"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "part-fixed",
         "detail": "p1088 32270",
-        "seconds": 131.2
+        "collisionStops": [
+          [
+            0,
+            1,
+            1035,
+            1045,
+            0.13,
+            0.13
+          ],
+          [
+            0,
+            -1,
+            347,
+            1039,
+            0.9,
+            0.9
+          ]
+        ],
+        "seconds": 17.2,
+        "peak": 807
       },
       {
         "result": "partly",
         "turned": [
           [
             1.5,
-            -1.5
+            -0.9
           ]
         ],
-        "still": [
-          "p437 92695 against p436 92693c01"
+        "moved": [
+          "p570 32073"
         ],
         "rates": [
           {
             "p449 92695 against p448 92693c01": [
               1.67,
-              4.42e-13
+              2.81e-13
             ],
-            "p437 92695 against p436 92693c01": [
-              0,
-              0
+            "p36 42610": [
+              0.0321,
+              2.57
+            ],
+            "p37 42610": [
+              0.0321,
+              2.57
             ],
             "p1198 42610": [
               0.0342,
               2.74
             ],
-            "p36 42610": [
-              0.0321,
-              2.57
+            "p1200 42610": [
+              0.0342,
+              2.74
+            ],
+            "p570 32073": [
+              1.11,
+              3.79e-14
             ]
           }
         ],
@@ -260,8 +306,8 @@
               3.18
             ],
             [
-              0.31,
-              0.8
+              0.12,
+              0.32
             ]
           ]
         ],
@@ -272,40 +318,56 @@
               3.18
             ],
             [
-              0.31,
-              0.8
+              0.13,
+              0.32
             ]
           ]
         ],
         "freeTurned": true,
         "strayed": [
-          "p1040 6542b",
-          "p1042 3749"
+          "p1040 6542b"
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
         ],
         "judged": [
           0
         ],
-        "cause": "not-driven",
-        "detail": "p437 92695 against p436 92693c01",
-        "seconds": 313.1
+        "cause": "stay-chosen",
+        "detail": "p570 32073",
+        "collisionStops": [
+          [
+            0,
+            -1,
+            347,
+            1039,
+            0.9,
+            0.9
+          ]
+        ],
+        "seconds": 140,
+        "peak": 903
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -1.5
+            -0.93
           ]
         ],
         "rates": [
           {
             "p570 32073": [
-              1.11,
-              9.47e-15
+              1.67,
+              6.03e-14
             ],
             "p575 30395": [
               0,
-              12.7
+              19.1
             ]
           }
         ],
@@ -316,8 +378,8 @@
               3.18
             ],
             [
-              0.31,
-              0.8
+              0.1,
+              0.38
             ]
           ]
         ],
@@ -328,39 +390,58 @@
               3.18
             ],
             [
-              0.31,
-              0.8
+              0.1,
+              0.38
             ]
           ]
         ],
         "freeTurned": true,
         "strayed": [
-          "p1040 6542b",
-          "p1042 3749"
+          "p1040 6542b"
         ],
-        "seconds": 142.8
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            -1,
+            347,
+            1039,
+            0.93,
+            0.93
+          ]
+        ],
+        "seconds": 35.5,
+        "peak": 806
       },
       {
         "result": "partly",
         "turned": [
           [
             1.5,
-            -1.5
+            -0.93
           ]
         ],
-        "still": [
-          "p1278 41239",
-          "p1399 41239"
+        "moved": [
+          "p570 32073"
         ],
         "rates": [
           {
-            "p1278 41239": [
-              0,
-              0
+            "p437 92695 against p436 92693c01": [
+              1.67,
+              2.02e-13
             ],
-            "p1399 41239": [
-              0,
-              0
+            "p1256 64782": [
+              0.0274,
+              2.74
+            ],
+            "p570 32073": [
+              1.11,
+              8.53e-14
             ]
           }
         ],
@@ -371,8 +452,8 @@
               3.18
             ],
             [
-              0.31,
-              0.8
+              0.1,
+              0.38
             ]
           ]
         ],
@@ -383,22 +464,38 @@
               3.18
             ],
             [
-              0.31,
-              0.8
+              0.1,
+              0.38
             ]
           ]
         ],
         "freeTurned": true,
         "strayed": [
-          "p1040 6542b",
-          "p1042 3749"
+          "p1040 6542b"
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
         ],
         "judged": [
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p1278 41239",
-        "seconds": 191.3
+        "cause": "stay-chosen",
+        "detail": "p570 32073",
+        "collisionStops": [
+          [
+            0,
+            -1,
+            347,
+            1039,
+            0.93,
+            0.93
+          ]
+        ],
+        "seconds": 34.4,
+        "peak": 816
       },
       {
         "result": "no",
@@ -547,7 +644,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 22.2
+        "seconds": 11.2,
+        "peak": 754
       },
       {
         "result": "works",
@@ -665,7 +763,8 @@
           [],
           []
         ],
-        "seconds": 613.6
+        "seconds": 280.7,
+        "peak": 995
       }
     ]
   }

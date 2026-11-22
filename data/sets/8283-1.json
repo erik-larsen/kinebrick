@@ -123,13 +123,13 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 2,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 4,
     "counts": {
-      "partly": 2,
+      "partly": 3,
       "pivoted": 1,
-      "works": 4
+      "works": 3
     },
     "loose": [],
     "functions": [
@@ -137,8 +137,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -0.67
+            1.07,
+            -0.63
           ]
         ],
         "still": [
@@ -161,15 +161,15 @@
             ],
             "p83 32069 against p65 32524": [
               0,
-              1.96e-29
+              1.72e-29
             ],
             "p88 32069 against p65 32524": [
               0,
-              4.31e-29
+              3.78e-29
             ],
             "p311 6595 against p65 32524": [
               0,
-              0
+              9.47e-29
             ],
             "p105 32525 against p65 32524": [
               0,
@@ -212,8 +212,8 @@
         ],
         "stop": [
           [
-            null,
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
         "judged": [
@@ -221,45 +221,62 @@
         ],
         "cause": "part-fixed",
         "detail": "p83 32069 against p65 32524",
+        "collisionStops": [
+          [
+            0,
+            1,
+            56,
+            79,
+            1.07,
+            1.07
+          ],
+          [
+            0,
+            -1,
+            59,
+            84,
+            0.63,
+            0.63
+          ]
+        ],
         "pivoted": {
           "slide": 0.01,
           "rise": 0,
-          "tyre": "p318 32180"
+          "tyre": "p314 32180"
         },
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.1,
+            -0.1
           ]
         ],
         "still": [
+          "p105 32525 against p65 32524",
+          "p133 32525 against p65 32524",
           "p223 41239 against p65 32524",
           "p310 2951 against p65 32524"
-        ],
-        "moved": [
-          "p223 41239 against p105 32525"
         ],
         "rates": [
           {
             "p26 4716 against p65 32524": [
               1,
-              2.37e-14
+              0
             ],
             "p41 3648b against p65 32524": [
               0.0417,
               0
             ],
             "p105 32525 against p65 32524": [
-              0.0594,
-              5.94
+              0.0583,
+              5.83
             ],
             "p133 32525 against p65 32524": [
-              0.0594,
-              5.94
+              0.0583,
+              5.83
             ],
             "p223 41239 against p65 32524": [
               0,
@@ -270,8 +287,8 @@
               0
             ],
             "p223 41239 against p105 32525": [
-              0.0594,
-              9.58
+              0.0583,
+              9.4
             ],
             "p175 32270 against p65 32524": [
               0,
@@ -308,27 +325,65 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 2,
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p223 41239 against p65 32524",
-        "seconds": 0.3
+        "collisionStops": [
+          [
+            0,
+            1,
+            114,
+            223,
+            0.1,
+            0.1
+          ],
+          [
+            0,
+            -1,
+            109,
+            194,
+            0.1,
+            0.1
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p108 6558",
+            "for": "p174 32270"
+          },
+          {
+            "pin": "p129 2780",
+            "for": "p174 32270"
+          }
+        ],
+        "seconds": 0.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
+        ],
+        "still": [
+          "p137 3647 against p105 32525",
+          "p223 41239 against p105 32525"
         ],
         "rates": [
           {
             "p148 4716 against p65 32524": [
               1,
-              9.47e-15
+              0
             ],
             "p137 3647 against p105 32525": [
               0.125,
@@ -376,7 +431,35 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "stopped-early",
+        "collisionStops": [
+          [
+            0,
+            1,
+            109,
+            194,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            114,
+            223,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 0
       },
       {
         "result": "works",
@@ -430,7 +513,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -548,7 +631,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -587,6 +670,7 @@
         ],
         "seconds": 0.1
       }
-    ]
+    ],
+    "peak": 358
   }
 }

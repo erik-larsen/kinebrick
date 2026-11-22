@@ -1,0 +1,690 @@
+{
+  "set": "8849-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:21:56.280Z",
+  "load": 18,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 329,
+  "seconds": 143,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: the column drives a shaft under the bonnet through a universal joint, and two 8-tooth gears at the front of that shaft slide the rack on the tie rod, which swings both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 84,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p118 3707": [
+              0,
+              85.94
+            ],
+            "p114 3743": [
+              15.36,
+              0
+            ],
+            "p100 4261": [
+              0,
+              22
+            ],
+            "p101 4261": [
+              0,
+              22
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p261 3739": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p66 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 58,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p118 3707": [
+              0,
+              85.94
+            ],
+            "p114 3743": [
+              15.36,
+              0
+            ],
+            "p100 4261": [
+              0,
+              22
+            ],
+            "p101 4261": [
+              0,
+              22
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p261 3739": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p66 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p118 3707",
+            "p114 3743",
+            "p100 4261",
+            "p101 4261"
+          ],
+          "stops": [
+            "249/266",
+            "69/70"
+          ]
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 2,
+      "does": "The exhaust stack on the bonnet turns as the steering wheel turns: a bevel gear on the steering shaft drives a bevel gear at the foot of the stack's long upright axle.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 83,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p150 3708": [
+              0,
+              85.94
+            ],
+            "p152 6143": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p66 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 55,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p150 3708": [
+              0,
+              85.94
+            ],
+            "p152 6143": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p66 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p150 3708",
+            "p152 6143"
+          ],
+          "stops": [
+            "249/266",
+            "69/70"
+          ]
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 3,
+      "does": "The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.",
+      "verdict": "not shown",
+      "why": "A: p100 4261, p101 4261, p114 3743 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p97 4442",
+          "way": 1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p97 4442",
+          "way": -1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p97 4442",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p100 4261",
+            "p101 4261",
+            "p114 3743"
+          ],
+          "stops": [
+            "117/154",
+            "116/155"
+          ]
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 4,
+      "does": "Rolling the tractor turns the power take-off shaft sticking out at the back: a 24-tooth gear on the left rear half-axle drives an 8-tooth gear on a cross shaft, whose 24-tooth gear turns a crown gear on the short shaft out the back, three times as fast as the wheels.",
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the wheels p259 and p261 at 0.77 rad each way (parts 28/58). Viewer sweep with a full turn asked, decision 288."
+      },
+      "verdict": "not shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p261 3739",
+        "way": 1,
+        "went": 0.767,
+        "asked": 1.5,
+        "by": [
+          "28/58"
+        ]
+      },
+      "stops": [
+        "28/58"
+      ],
+      "A": [
+        {
+          "control": "p261 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.767,
+          "ms": 52,
+          "msOneCall": 11,
+          "stops": [
+            "28/58"
+          ],
+          "moved": {
+            "p52 3707": [
+              0,
+              131.91
+            ],
+            "p44 3705": [
+              0,
+              138.01
+            ]
+          }
+        },
+        {
+          "control": "p261 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.767,
+          "ms": 32,
+          "msOneCall": 3,
+          "stops": [
+            "28/58"
+          ],
+          "moved": {
+            "p52 3707": [
+              0,
+              131.91
+            ],
+            "p44 3705": [
+              0,
+              125.58
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p261 3739",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p52 3707",
+            "p44 3705"
+          ],
+          "stops": [
+            "28/58"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p261 3739",
+          "judged": "not shown",
+          "why": "turns without end (kinds power-take-off; the text says: rolling, power take-off, wheels), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p261 3739: turns without end (kinds power-take-off; the text says: rolling, power take-off, wheels), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58)",
+      "seconds": 18
+    },
+    {
+      "function": 5,
+      "does": "The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p200 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 70,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p55 4716": [
+              0,
+              28.64
+            ],
+            "p77 3708": [
+              0,
+              1.19
+            ],
+            "p81 3737": [
+              0,
+              1.19
+            ],
+            "p90 3705": [
+              1.04,
+              1.19
+            ],
+            "p93 3705": [
+              1.04,
+              1.19
+            ],
+            "p269 3894": [
+              2.08,
+              0
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p66 3736": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p200 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p55 4716": [
+              0,
+              28.64
+            ],
+            "p77 3708": [
+              0,
+              1.19
+            ],
+            "p81 3737": [
+              0,
+              1.19
+            ],
+            "p90 3705": [
+              1.04,
+              1.19
+            ],
+            "p93 3705": [
+              1.04,
+              1.19
+            ],
+            "p269 3894": [
+              2.08,
+              0
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p66 3736": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p200 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p55 4716"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 7,
+      "does": "The four wheels roll; the front wheels turn freely on their own axles.",
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the wheels p259 and p261 at 0.77 rad each way (parts 28/58); p263 and p265 turn freely. Viewer sweep with a full turn asked, decision 288."
+      },
+      "verdict": "not shown",
+      "msOneCall": 11,
+      "msPerStep": 2,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 47
+      },
+      "stop": {
+        "control": "p259 3739",
+        "way": 1,
+        "went": 0.767,
+        "asked": 1.5,
+        "by": [
+          "28/58"
+        ]
+      },
+      "stops": [
+        "28/58"
+      ],
+      "A": [
+        {
+          "control": "p259 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.767,
+          "ms": 52,
+          "msOneCall": 11,
+          "stops": [
+            "28/58"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p259 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.767,
+          "ms": 33,
+          "msOneCall": 3,
+          "stops": [
+            "28/58"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p261 3739",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.767,
+          "ms": 31,
+          "msOneCall": 3,
+          "stops": [
+            "28/58"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p261 3739",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.767,
+          "ms": 30,
+          "msOneCall": 2,
+          "stops": [
+            "28/58"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p263 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 36,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p263 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p265 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p265 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 33,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p259 3739",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p261 3739",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "28/58"
+          ]
+        },
+        {
+          "control": "p263 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p265 4266",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p259 3739",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, turn freely), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58)"
+        },
+        {
+          "control": "p261 3739",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll, turn freely), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p259 3739: turns without end (kinds free-wheels; the text says: wheels, roll, turn freely), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58); p261 3739: turns without end (kinds free-wheels; the text says: wheels, roll, turn freely), but a collision stops it at +0.767 rad (28/58); -0.767 rad (28/58)",
+      "seconds": 60
+    }
+  ]
+}

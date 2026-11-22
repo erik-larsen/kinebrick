@@ -176,12 +176,31 @@
         "note": "unsure whether the legs telescope by hand or are driven"
       },
       {
-        "does": "The container's two end doors swing open.",
+        "does": "The container's two end doors swing open, each once its lock bar is lifted.",
         "mechanisms": [
           "hinge: container doors"
         ],
         "source": "inferred: container steps 52-53 and 69 (pages 412-418) build the doors on their own hinge axles",
-        "control": "p2631 64782"
+        "first": [
+          {
+            "control": "p2641 99008",
+            "by": -25,
+            "slide": true
+          },
+          {
+            "control": "p2675 99008",
+            "by": -25,
+            "slide": true
+          }
+        ],
+        "control": [
+          "p2631 64782",
+          "p2665 64782"
+        ],
+        "moves": [
+          "p2631 64782 against p2619 32184",
+          "p2665 64782 against p2620 32184"
+        ]
       },
       {
         "does": "The trailer's four wheels roll freely.",
@@ -204,15 +223,14 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 1828,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 1144,
     "counts": {
-      "works": 8,
-      "partly": 3,
+      "partly": 7,
       "not back": 3,
       "moved whole": 3,
-      "no": 2
+      "works": 6
     },
     "loose": [
       "p1258 3710",
@@ -244,66 +262,106 @@
       "p2397 42078 - 208b",
       "p2398 42078 - 208b"
     ],
+    "errata": {
+      "applied": [
+        "rear-crane-actuator-axle-to-its-connectors",
+        "door-2-has-no-13L-beam",
+        "door-2-has-no-blue-pin-at-y-minus-280",
+        "door-2-has-no-blue-pin-at-y-minus-400",
+        "door-2-black-pins-for-its-11L-beam"
+      ],
+      "refused": []
+    },
     "functions": [
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p537 3648b": [
-              0.333,
-              0
-            ],
-            "p502 56145": [
-              0.419,
-              14.1
-            ],
-            "p512 56145": [
-              0.419,
-              14.1
-            ],
-            "p324 3708": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              1.27,
+              -1.5
             ]
-          }
-        ],
-        "expected": [
-          {
-            "p537 3648b": 0.333
-          }
-        ],
-        "back": [
-          [
+          ],
+          "rates": [
+            {
+              "p537 3648b": [
+                0.333,
+                0
+              ],
+              "p502 56145": [
+                0.419,
+                14.1
+              ],
+              "p512 56145": [
+                0.419,
+                14.1
+              ],
+              "p324 3708": [
+                0,
+                0
+              ]
+            }
+          ],
+          "expected": [
+            {
+              "p537 3648b": 0.333
+            }
+          ],
+          "back": [
             [
-              0,
-              0
-            ],
-            [
-              0,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ]
-          ]
-        ],
-        "torn": [
-          [
+          ],
+          "torn": [
             [
-              0,
-              0
-            ],
-            [
-              0,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ]
-          ]
-        ],
-        "freed": 1,
-        "seconds": 66.3
+          ],
+          "stop": [
+            [
+              "limit",
+              null
+            ]
+          ],
+          "freed": 1,
+          "collisionStops": [
+            [
+              0,
+              1,
+              455,
+              483,
+              1.27,
+              1.27
+            ]
+          ],
+          "freedFor": [
+            {
+              "pin": "p307 2780",
+              "for": "p1146 18575"
+            }
+          ],
+          "seconds": 34.7,
+          "peak": 1124
+        }
       },
       {
         "result": "partly",
@@ -322,27 +380,27 @@
           {
             "p36 62821": [
               1,
-              8.28e-13
+              8.01e-13
             ],
             "p42 62821": [
               1,
-              6.25e-13
+              3.65e-13
             ],
             "p324 3708": [
               0,
-              3.92e-13
+              0
             ],
             "p405 4519": [
               0,
-              4.32e-13
+              0
             ],
             "p414 4519": [
               0,
-              4.32e-13
+              4.03e-12
             ],
             "p1146 18575": [
               0,
-              3.62e-13
+              2.84e-14
             ]
           }
         ],
@@ -355,11 +413,11 @@
         "back": [
           [
             [
-              0.67,
+              0.82,
               0
             ],
             [
-              0.6,
+              0.64,
               0
             ]
           ]
@@ -377,15 +435,16 @@
           ]
         ],
         "strayed": [
-          "p1933 62520",
-          "p2085 32123b"
+          "p2161 62520",
+          "p1940 6589"
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 107.8
+        "seconds": 61.8,
+        "peak": 899
       },
       {
         "result": "works",
@@ -406,22 +465,22 @@
         "back": [
           [
             [
-              2.76,
-              0.36
+              2.93,
+              0.38
             ],
             [
-              2.47,
-              0.31
+              1.89,
+              0.24
             ]
           ],
           [
             [
-              2.7,
-              0.34
+              2.34,
+              0.3
             ],
             [
-              3.08,
-              0.4
+              4.01,
+              0.52
             ]
           ]
         ],
@@ -429,21 +488,21 @@
           [
             [
               0.12,
-              0.33
+              0.35
             ],
             [
-              0.1,
-              0.29
+              0.08,
+              0.22
             ]
           ],
           [
             [
-              0.11,
-              0.32
+              0.1,
+              0.28
             ],
             [
-              0.13,
-              0.37
+              0.17,
+              0.49
             ]
           ]
         ],
@@ -455,77 +514,104 @@
           [],
           []
         ],
-        "seconds": 241.8
+        "seconds": 117.1,
+        "peak": 895
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.03,
-            -1.03
-          ]
-        ],
-        "rates": [
-          {
-            "p1358 44294": [
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet tips the bonnet forward about a quarter turn (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=249), but the check itself turns it only 0.02 and 0.03 rad before a collision (parts 362/1383 and 1423/1467), and in the viewer neither a turn nor the pointer moves it. Second viewer sweep, decision 327.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.02,
+              -0.03
+            ]
+          ],
+          "rates": [
+            {
+              "p1358 44294": [
+                1,
+                113
+              ],
+              "p1423 40490": [
+                0.00000136,
+                108
+              ],
+              "p324 3708": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
+            [
+              0,
               1,
-              113
+              362,
+              1383,
+              0.02,
+              0.02
             ],
-            "p1423 40490": [
-              2.86e-7,
-              108
-            ],
-            "p324 3708": [
+            [
               0,
-              0
+              -1,
+              1423,
+              1467,
+              0.03,
+              0.03
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "seconds": 131.3
+          ],
+          "seconds": 3.5,
+          "peak": 852
+        }
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            -1.13
           ],
           [
-            1.5,
-            -1.5
+            1.13,
+            0
           ]
         ],
         "rates": [
@@ -576,19 +662,74 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 1,
         "movedBy": [
           [],
           []
         ],
-        "seconds": 64.6
-      },
-      {
-        "result": "no",
-        "turned": [
+        "collisionStops": [
           [
             0,
+            1,
+            481,
+            851,
+            0,
             0
+          ],
+          [
+            0,
+            -1,
+            856,
+            1491,
+            1.13,
+            1.13
+          ],
+          [
+            1,
+            1,
+            894,
+            1472,
+            1.13,
+            1.13
+          ],
+          [
+            1,
+            -1,
+            481,
+            889,
+            0,
+            0
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p852 6558",
+            "for": "p851 32524"
+          },
+          {
+            "pin": "p890 6558",
+            "for": "p889 32524"
+          }
+        ],
+        "seconds": 46.3,
+        "peak": 1112
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.03,
+            -0.03
           ]
         ],
         "rates": [
@@ -620,22 +761,24 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "control-jammed",
-        "seconds": 8.5
+        "onPlay": 0.13,
+        "seconds": 6.1,
+        "peak": 984
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.6,
+            -0.6
           ]
         ],
         "rates": [
@@ -674,14 +817,39 @@
             ]
           ]
         ],
-        "seconds": 51.2
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            186,
+            1680,
+            0.6,
+            0.6
+          ],
+          [
+            0,
+            -1,
+            185,
+            1685,
+            0.6,
+            0.6
+          ]
+        ],
+        "seconds": 12.7,
+        "peak": 909
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.6,
+            -0.6
           ]
         ],
         "rates": [
@@ -720,7 +888,32 @@
             ]
           ]
         ],
-        "seconds": 52.9
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            186,
+            1680,
+            0.6,
+            0.6
+          ],
+          [
+            0,
+            -1,
+            185,
+            1685,
+            0.6,
+            0.6
+          ]
+        ],
+        "seconds": 12.6,
+        "peak": 894
       },
       {
         "result": "partly",
@@ -731,7 +924,6 @@
           ]
         ],
         "still": [
-          "p2188 62274c01",
           "p2048 18940",
           "p2267 18940"
         ],
@@ -742,20 +934,20 @@
               1.57
             ],
             "p2188 62274c01": [
-              0,
-              1.89e-14
+              0.00658,
+              1.57
             ],
             "p2048 18940": [
               0,
-              0
+              1.89e-14
             ],
             "p2267 18940": [
               0,
-              0
+              1.89e-14
             ],
             "p2083 18575": [
               0,
-              2.37e-14
+              1.89e-14
             ]
           }
         ],
@@ -789,13 +981,13 @@
             "limit"
           ]
         ],
-        "freed": 2,
         "judged": [
           0
         ],
         "cause": "not-driven",
-        "detail": "p2188 62274c01",
-        "seconds": 33.2
+        "detail": "p2048 18940",
+        "seconds": 10.7,
+        "peak": 920
       },
       {
         "result": "partly",
@@ -815,11 +1007,11 @@
           {
             "p1640 94925": [
               1,
-              9.47e-14
+              1.89e-14
             ],
             "p1980 92696": [
               0,
-              1.18e-15
+              0
             ],
             "p2144 92696": [
               0,
@@ -868,18 +1060,19 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 17.2
+        "seconds": 9.9,
+        "peak": 911
       },
       {
         "result": "works",
         "turned": [
           [
-            0.65,
+            0.01,
             -1.05
           ],
           [
             1.05,
-            -0.65
+            -0.01
           ]
         ],
         "rates": [
@@ -932,12 +1125,12 @@
         ],
         "stop": [
           [
-            "stuck",
+            "limit",
             "stuck"
           ],
           [
             "stuck",
-            "stuck"
+            "limit"
           ]
         ],
         "pushed": [
@@ -949,33 +1142,205 @@
           [],
           []
         ],
-        "seconds": 477.8
-      },
-      {
-        "result": "no",
-        "turned": [
+        "collisionStops": [
           [
             0,
-            0
+            1,
+            2060,
+            2061,
+            0.01,
+            0.01
+          ],
+          [
+            1,
+            -1,
+            2279,
+            2280,
+            0.01,
+            0.01
           ]
         ],
-        "rates": [
-          {}
+        "freedFor": [
+          {
+            "pin": "p2071 2780",
+            "for": "p2051 18942"
+          },
+          {
+            "pin": "p2290 2780",
+            "for": "p2270 18942"
+          }
         ],
-        "back": [
-          []
-        ],
-        "torn": [
-          []
-        ],
-        "why": [
-          "p2631 64782 is part of the frame"
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "control-fixed",
-        "seconds": 6.3
+        "seconds": 145.6,
+        "peak": 1091
+      },
+      {
+        "result": "partly",
+        "hold": {
+          "reason": "In the viewer the lock bars hardly slide (p2641 0 of 25 LDU, p2675 4 of 25): a collision stops the push at once at parts 2618/2641, so the doors do not open; the check makes the same slide and passes. Viewer sweep, decision 289.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0,
+              -0.2
+            ],
+            [
+              0.2,
+              0
+            ]
+          ],
+          "rates": [
+            {
+              "p2631 64782 against p2619 32184": [
+                1,
+                60
+              ],
+              "p2665 64782 against p2620 32184": [
+                0,
+                1.23e-14
+              ]
+            },
+            {
+              "p2631 64782 against p2619 32184": [
+                0,
+                0
+              ],
+              "p2665 64782 against p2620 32184": [
+                1,
+                60
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "why": [
+            "p2631 64782 against p2619 32184 is held by friction pins the control doesn't reach",
+            "p2665 64782 against p2620 32184 is held by friction pins the control doesn't reach"
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ],
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "freed": 4,
+          "movedBy": [
+            [
+              "p2631 64782 against p2619 32184"
+            ],
+            [
+              "p2665 64782 against p2620 32184"
+            ]
+          ],
+          "shiftPressed": [
+            2626,
+            2627,
+            2660,
+            2661
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              2588,
+              2651,
+              0,
+              0
+            ],
+            [
+              0,
+              -1,
+              2126,
+              2645,
+              0.2,
+              0.2
+            ],
+            [
+              1,
+              1,
+              2126,
+              2673,
+              0.2,
+              0.2
+            ],
+            [
+              1,
+              -1,
+              2588,
+              2685,
+              0,
+              0
+            ]
+          ],
+          "freedFor": [
+            {
+              "pin": "p2626 6558",
+              "for": "p2631 64782"
+            },
+            {
+              "pin": "p2627 6558",
+              "for": "p2631 64782"
+            },
+            {
+              "pin": "p2660 6558",
+              "for": "p2665 64782"
+            },
+            {
+              "pin": "p2661 6558",
+              "for": "p2665 64782"
+            }
+          ],
+          "seconds": 417.5,
+          "peak": 1095
+        }
       },
       {
         "result": "works",
@@ -1006,84 +1371,84 @@
         "back": [
           [
             [
-              3.09,
-              0.42
+              3.91,
+              0.53
             ],
             [
-              2.72,
-              0.35
+              2.11,
+              0.28
             ]
           ],
           [
             [
-              3.09,
-              0.42
+              4.03,
+              0.54
             ],
             [
-              2.72,
-              0.35
+              2.23,
+              0.29
             ]
           ],
           [
             [
-              2.46,
-              0.32
+              2,
+              0.26
             ],
             [
-              2.75,
-              0.37
+              3.61,
+              0.48
             ]
           ],
           [
             [
-              2.46,
-              0.32
+              1.89,
+              0.25
             ],
             [
-              2.75,
-              0.37
+              3.39,
+              0.46
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.14,
-              0.39
+              0.17,
+              0.49
             ],
             [
-              0.12,
-              0.33
+              0.09,
+              0.26
             ]
           ],
           [
             [
-              0.14,
-              0.39
+              0.18,
+              0.51
             ],
-            [
-              0.12,
-              0.33
-            ]
-          ],
-          [
             [
               0.1,
-              0.3
-            ],
-            [
-              0.12,
-              0.35
+              0.27
             ]
           ],
           [
             [
-              0.1,
-              0.3
+              0.09,
+              0.24
             ],
             [
-              0.12,
-              0.35
+              0.16,
+              0.45
+            ]
+          ],
+          [
+            [
+              0.08,
+              0.23
+            ],
+            [
+              0.15,
+              0.43
             ]
           ]
         ],
@@ -1097,7 +1462,8 @@
           [],
           []
         ],
-        "seconds": 482.4
+        "seconds": 192.7,
+        "peak": 957
       }
     ]
   }

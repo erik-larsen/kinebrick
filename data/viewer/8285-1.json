@@ -1,0 +1,709 @@
+{
+  "set": "8285-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:50:38.204Z",
+  "load": 6.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1790,
+  "seconds": 539,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushing the truck along turns the V6 engine: the first pair of rear wheels drives a differential, whose bevel gears turn a long shaft forward under the deck; at the front a row of three 16-tooth gears (the middle one idling on the steering shaft) turns the crankshaft, so the six pistons go up and down.",
+      "verdict": "shown",
+      "msOneCall": 169,
+      "msPerStep": 61,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 75,
+        "A": 11,
+        "B": 46
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2332 32020",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2507,
+          "msOneCall": 169,
+          "stops": [],
+          "moved": {
+            "p60 6573": [
+              0,
+              85.94
+            ],
+            "p385 50450": [
+              0,
+              171.89
+            ],
+            "p720 3705": [
+              0,
+              171.89
+            ],
+            "p732 2851": [
+              17.99,
+              0
+            ],
+            "p490 3743": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2332 32020",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2550,
+          "msOneCall": 124,
+          "stops": [],
+          "moved": {
+            "p60 6573": [
+              0,
+              85.94
+            ],
+            "p385 50450": [
+              0,
+              171.89
+            ],
+            "p720 3705": [
+              0,
+              171.89
+            ],
+            "p732 2851": [
+              19.97,
+              0
+            ],
+            "p490 3743": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2324 32020",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2347,
+          "msOneCall": 79,
+          "stops": [],
+          "moved": {
+            "p60 6573": [
+              0,
+              85.94
+            ],
+            "p385 50450": [
+              0,
+              171.89
+            ],
+            "p720 3705": [
+              0,
+              171.89
+            ],
+            "p732 2851": [
+              17.99,
+              0
+            ],
+            "p490 3743": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2324 32020",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2608,
+          "msOneCall": 68,
+          "stops": [],
+          "moved": {
+            "p60 6573": [
+              0,
+              85.94
+            ],
+            "p385 50450": [
+              0,
+              171.89
+            ],
+            "p720 3705": [
+              0,
+              171.89
+            ],
+            "p732 2851": [
+              19.97,
+              0
+            ],
+            "p490 3743": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p2332 32020",
+          "seen": true,
+          "cameraTurns": 9,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p60 6573",
+            "p385 50450",
+            "p720 3705"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p2324 32020",
+          "seen": true,
+          "cameraTurns": 24,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p60 6573",
+            "p385 50450",
+            "p720 3705",
+            "p732 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 144
+    },
+    {
+      "function": 2,
+      "does": "The second pair of rear wheels and the front wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 173,
+      "msPerStep": 62,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 69,
+        "A": 17,
+        "B": 71
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2336 32020",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2672,
+          "msOneCall": 173,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2336 32020",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2601,
+          "msOneCall": 124,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2320 32020",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2591,
+          "msOneCall": 88,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2320 32020",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2654,
+          "msOneCall": 83,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2322 32020",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2615,
+          "msOneCall": 88,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2322 32020",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2650,
+          "msOneCall": 78,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p2336 32020",
+          "seen": true,
+          "cameraTurns": 26,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p2320 32020",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p2322 32020",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 172
+    },
+    {
+      "function": 3,
+      "does": "The knob on the cab roof steers the front wheels: its shaft runs down behind the seats, turns through a pair of bevel gears onto a shaft running forward to an 8-tooth pinion on the steering rack, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 148,
+      "msPerStep": 21,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 16
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p901 2654",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 875,
+          "msOneCall": 148,
+          "stops": [],
+          "moved": {
+            "p490 3743": [
+              15.36,
+              0
+            ],
+            "p472 59426": [
+              10.37,
+              24.77
+            ],
+            "p478 59426": [
+              10.37,
+              24.77
+            ],
+            "p720 3705": [
+              0,
+              0
+            ],
+            "p60 6573": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p901 2654",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 882,
+          "msOneCall": 51,
+          "stops": [],
+          "moved": {
+            "p490 3743": [
+              15.36,
+              0
+            ],
+            "p472 59426": [
+              10.37,
+              24.77
+            ],
+            "p478 59426": [
+              10.37,
+              24.77
+            ],
+            "p720 3705": [
+              0,
+              0
+            ],
+            "p60 6573": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p901 2654",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p490 3743",
+            "p472 59426",
+            "p478 59426"
+          ],
+          "stops": [
+            "435/482"
+          ]
+        }
+      ],
+      "seconds": 27
+    },
+    {
+      "function": 4,
+      "does": "The small steering wheel in the cab turns on its own; it isn't linked to the steering.",
+      "verdict": "shown",
+      "msOneCall": 153,
+      "msPerStep": 19,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 18
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p847 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 797,
+          "msOneCall": 153,
+          "stops": [],
+          "moved": {
+            "p490 3743": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p847 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 748,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {
+            "p490 3743": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p847 2819",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 29
+    },
+    {
+      "function": 5,
+      "does": "The bonnet, with the grille and front wings, tilts forward to show the engine.",
+      "held": {
+        "result": "partly",
+        "reason": "In the viewer neither a turn of the control nor a push by hand moves the listed part p1074, with the control in view; the check tilts the bonnet 0.15 rad one way only. Viewer sweep, decision 286."
+      },
+      "verdict": "not shown",
+      "why": "A: p1074 3707 not moved; B: no listed part moved by hand",
+      "msOneCall": 7,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 56,
+        "A": 0,
+        "B": 17
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1069 32034",
+          "way": 1,
+          "asked": 0.15,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p1074 3707": [
+              0,
+              0
+            ],
+            "p720 3705": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1069 32034",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1074 3707": [
+              0,
+              0
+            ],
+            "p720 3705": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1069 32034",
+          "seen": true,
+          "cameraTurns": 25,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "502/1129",
+            "1075/1178",
+            "1140/1167"
+          ]
+        }
+      ],
+      "seconds": 81
+    },
+    {
+      "function": 9,
+      "does": "The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom.",
+      "verdict": "shown",
+      "msOneCall": 174,
+      "msPerStep": 96,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 26,
+        "A": 8,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1719 2654",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.256,
+          "ms": 3447,
+          "msOneCall": 174,
+          "stops": [],
+          "moved": {
+            "p1646 4716": [
+              0,
+              71.02
+            ],
+            "p1648 3648b": [
+              0.2,
+              2.67
+            ],
+            "p1740 32278": [
+              1.32,
+              0.35
+            ],
+            "p1733 32278": [
+              2.75,
+              0.35
+            ],
+            "p1703 32012": [
+              0,
+              0.36
+            ]
+          }
+        },
+        {
+          "control": "p1719 2654",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.291,
+          "ms": 3521,
+          "msOneCall": 160,
+          "stops": [],
+          "moved": {
+            "p1646 4716": [
+              0,
+              73.03
+            ],
+            "p1648 3648b": [
+              0.2,
+              2.76
+            ],
+            "p1740 32278": [
+              1.43,
+              0.39
+            ],
+            "p1733 32278": [
+              2.99,
+              0.39
+            ],
+            "p1703 32012": [
+              0,
+              0.35
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1719 2654",
+          "seen": true,
+          "cameraTurns": 9,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1646 4716",
+            "p1648 3648b",
+            "p1740 32278",
+            "p1733 32278"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 54
+    },
+    {
+      "function": 10,
+      "does": "The knob on the crane base's right side extends and retracts the boom's inner section: bevel gears turn the boom's pivot axle, a shaft up the boom carries the drive to the tip, and an 8-tooth pinion there runs on the racks under the inner section.",
+      "verdict": "shown",
+      "msOneCall": 139,
+      "msPerStep": 22,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 6,
+        "A": 2,
+        "B": 17
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1722 2654",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 947,
+          "msOneCall": 139,
+          "stops": [],
+          "moved": {
+            "p1853 3743 against p1733 32278": [
+              14.99,
+              0
+            ],
+            "p1858 3743 against p1733 32278": [
+              14.99,
+              0
+            ],
+            "p1733 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1722 2654",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 893,
+          "msOneCall": 54,
+          "stops": [],
+          "moved": {
+            "p1853 3743 against p1733 32278": [
+              14.99,
+              0
+            ],
+            "p1858 3743 against p1733 32278": [
+              14.99,
+              0
+            ],
+            "p1733 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1722 2654",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p1853 3743 against p1733 32278",
+            "p1858 3743 against p1733 32278"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 32
+    }
+  ]
+}

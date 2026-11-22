@@ -77,7 +77,8 @@
 1 0 0 -54 60 0 0 1 0 1 0 -1 0 0 4716.dat
 1 7 -72 -54 60 0 0 1 0 1 0 -1 0 0 3650a.dat
 1 7 -30 -54 120 0 0 1 0 1 0 -1 0 0 3647.dat
-1 7 30 -56 120 0 0 1 0 1 0 -1 0 0 3648a.dat
+0 // Corrected for Kinebrick: this gear was at 30 -56 120, 2 LDU off the axle it is on (at -54, with the 16 tooth gear beside it), so it turned off its middle into the bush on the wheel axle; here it is on the axle
+1 7 30 -54 120 0 0 1 0 1 0 -1 0 0 3648a.dat
 1 7 0 -66.856 104.679 -1 0 0 0 0.766 -0.643 0 -0.643 -0.766 3651.dat
 1 0 0 -86.139 81.698 0 0 -1 0.643 0.766 0 0.766 -0.643 0 3705.dat
 0 STEP

@@ -6,6 +6,7 @@ import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr, parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { LoopPath, loopLinks } from '../src/paths.ts';
+import { touchingOf } from './touching.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -236,10 +237,11 @@ ${order.map((i) => links[i]).join('\n')}
 
 // A model in models/, read as the viewer reads it, with what the packer found.
 const packed: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
+const touchings = new Map(await Promise.all(['8835-Forklift', '8844-Helicopter'].map(async (name) => [name, await touchingOf(`models/${name}.mpd`)] as const)));
 function model(name: string) {
   const { primitives, pieces } = packed[name] ?? { primitives: [], pieces: {} };
   const { parts, paths } = parseModel(readFileSync(`models/${name}.mpd`, 'utf-8'), (n) => primitives.includes(n), (n) => pieces[n] ?? null);
-  return { parts, mech: inferMechanism(parts, table, roles, paths) };
+  return { parts, mech: inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), touchings.get(name)!) };
 }
 
 describe('chains placed link by link', () => {
@@ -291,11 +293,11 @@ describe('chains placed link by link', () => {
     expect(turned(b) / turned(a)).toBeCloseTo(1, 6);
   });
 
-  it("the 8844 Helicopter's landing gear chain is found, on the front axle's sprocket; its other end goes round a gear the model places twice (see docs/ldraw-errata.md)", () => {
+  it("the 8844 Helicopter's landing gear chain is found, on the front axle's sprocket and, 5 LDU off, on the rear leg's own 24 tooth gear: its other end goes round a gear the model places twice (see docs/ldraw-errata.md), within a tooth's depth of the real one", () => {
     const { mech } = model('8844-Helicopter');
     expect(mech.loops).toHaveLength(1);
     expect(mech.loops[0].links).toHaveLength(25);
-    // The front axle (p8, with its 16 tooth gear p10).
-    expect(mech.loops[0].wheels.map((w) => w.body)).toEqual([mech.bodyOf[8]]);
+    // The rear leg's axle (p15, with its 24 tooth gear p17) and the front axle (p8, with its 16 tooth gear p10).
+    expect(mech.loops[0].wheels.map((w) => w.body)).toEqual([mech.bodyOf[15], mech.bodyOf[8]]);
   });
 });

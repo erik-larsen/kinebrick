@@ -1,0 +1,812 @@
+{
+  "set": "952-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:33:40.262Z",
+  "load": 9.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 282,
+  "seconds": 170,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel turns the front wheels: its column bends through a universal joint down to an 8 tooth gear on a rack plate, which swings both front wheels the same way on their turntables.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p68 3648a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 58,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p247 3482": [
+              12.63,
+              20.32
+            ],
+            "p248 3482": [
+              12.63,
+              20.32
+            ],
+            "p163 3743": [
+              15.16,
+              0
+            ],
+            "p251 952-3739c01": [
+              0,
+              0
+            ],
+            "p235 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p68 3648a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p247 3482": [
+              12.63,
+              20.34
+            ],
+            "p248 3482": [
+              12.63,
+              20.34
+            ],
+            "p163 3743": [
+              15.16,
+              0
+            ],
+            "p251 952-3739c01": [
+              0,
+              0
+            ],
+            "p235 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p68 3648a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p247 3482",
+            "p248 3482",
+            "p163 3743"
+          ],
+          "stops": [
+            "155/166",
+            "64/65"
+          ]
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 2,
+      "does": "The big rear wheels drive the power take-off: a crown gear on the right half axle turns an 8 tooth gear on a short shaft running back, so the crown gear on its end, behind the tractor, turns three times as fast as the wheels.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p251 952-3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 64,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.83
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p251 952-3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.83
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p252 952-3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.8
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p252 952-3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p27 3650a": [
+              0,
+              257.8
+            ],
+            "p235 3702": [
+              0,
+              0
+            ],
+            "p37 3702": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p251 952-3739c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p27 3650a"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p252 952-3739c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p27 3650a"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 29
+    },
+    {
+      "function": 3,
+      "does": "Pushed along, the front wheels roll freely, and the hitch and its lever stay where they were set.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 2,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p247 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 73,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p235 3702 against p0 3035": [
+              0,
+              0
+            ],
+            "p37 3702 against p0 3035": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p247 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 51,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p235 3702 against p0 3035": [
+              0,
+              0
+            ],
+            "p37 3702 against p0 3035": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p248 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 47,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p235 3702 against p0 3035": [
+              0,
+              0
+            ],
+            "p37 3702 against p0 3035": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p248 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p235 3702 against p0 3035": [
+              0,
+              0
+            ],
+            "p37 3702 against p0 3035": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p247 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p248 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 29
+    },
+    {
+      "function": 4,
+      "does": "The lever on the right beside the seat raises and lowers the hitch: a short link from it swings the hitch's arms on the rear half axles, and the harrow, hung on the cross axle at the arms' ends and held upright by a top link pivoting behind the seat, rises and falls with them.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 5,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 0,
+        "B": 7
+      },
+      "stop": {
+        "control": "p235 3702",
+        "way": 1,
+        "went": 0.136,
+        "asked": 0.17,
+        "by": [
+          "231/237"
+        ]
+      },
+      "stops": [
+        "231/237"
+      ],
+      "A": [
+        {
+          "control": "p235 3702",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.136,
+          "ms": 21,
+          "msOneCall": 16,
+          "stops": [
+            "231/237"
+          ],
+          "moved": {
+            "p37 3702": [
+              5.29,
+              4.99
+            ],
+            "p256 3709b": [
+              12.6,
+              1.7
+            ],
+            "p102 3702": [
+              5.92,
+              5.58
+            ],
+            "p251 952-3739c01": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p235 3702",
+          "way": -1,
+          "asked": 1.4,
+          "went": -1.4,
+          "ms": 111,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p37 3702": [
+              50.23,
+              47.31
+            ],
+            "p256 3709b": [
+              117.87,
+              14.2
+            ],
+            "p102 3702": [
+              53.88,
+              50.76
+            ],
+            "p251 952-3739c01": [
+              0,
+              0
+            ],
+            "p68 3648a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p235 3702",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p37 3702",
+            "p256 3709b",
+            "p102 3702"
+          ],
+          "stops": [
+            "231/237",
+            "38/231",
+            "ground: p298"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p235 3702",
+          "judged": "stands",
+          "why": "stopped at +0.136 rad (231/237); kinds three-point-hitch"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 14
+    },
+    {
+      "function": 5,
+      "does": "Lowered by the lever until it rests on its two small wheels, the harrow's top 40 tooth gear meets the power take-off's crown gear, so as the tractor drives, its three tine rotors spin.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 7,
+        "reach": 0,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p251 952-3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p305 3649 against p256 3709b": [
+              0,
+              773.5
+            ],
+            "p300 3649 against p256 3709b": [
+              0,
+              773.5
+            ],
+            "p310 3649 against p256 3709b": [
+              0,
+              773.5
+            ]
+          }
+        },
+        {
+          "control": "p251 952-3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p305 3649 against p256 3709b": [
+              0,
+              773.5
+            ],
+            "p300 3649 against p256 3709b": [
+              0,
+              773.5
+            ],
+            "p310 3649 against p256 3709b": [
+              0,
+              773.5
+            ]
+          }
+        },
+        {
+          "control": "p252 952-3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 56,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p305 3649 against p256 3709b": [
+              0,
+              773.4
+            ],
+            "p300 3649 against p256 3709b": [
+              0,
+              773.4
+            ],
+            "p310 3649 against p256 3709b": [
+              0,
+              773.4
+            ]
+          }
+        },
+        {
+          "control": "p252 952-3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 56,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p305 3649 against p256 3709b": [
+              0,
+              773.4
+            ],
+            "p300 3649 against p256 3709b": [
+              0,
+              773.4
+            ],
+            "p310 3649 against p256 3709b": [
+              0,
+              773.4
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p251 952-3739c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p305 3649 against p256 3709b",
+            "p300 3649 against p256 3709b",
+            "p310 3649 against p256 3709b"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p252 952-3739c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p305 3649 against p256 3709b",
+            "p300 3649 against p256 3709b",
+            "p310 3649 against p256 3709b"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 36
+    },
+    {
+      "function": 6,
+      "does": "Inside the harrow, the top 40 tooth gear drives the middle rotor's 8 tooth gear five times as fast, and the middle rotor's 40 tooth gear turns the two outer rotors the other way at the same speed.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p286 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 54,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p305 3649 against p256 3709b": [
+              0,
+              429.72
+            ],
+            "p300 3649 against p256 3709b": [
+              0,
+              429.72
+            ],
+            "p310 3649 against p256 3709b": [
+              0,
+              429.72
+            ],
+            "p256 3709b": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p286 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p305 3649 against p256 3709b": [
+              0,
+              429.72
+            ],
+            "p300 3649 against p256 3709b": [
+              0,
+              429.72
+            ],
+            "p310 3649 against p256 3709b": [
+              0,
+              429.72
+            ],
+            "p256 3709b": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p286 3649",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p305 3649 against p256 3709b",
+            "p300 3649 against p256 3709b",
+            "p310 3649 against p256 3709b"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 7,
+      "does": "The harrow's two small wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p298 3464c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 45,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p298 3464c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 37,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p299 3464c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p299 3464c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 31,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p298 3464c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p299 3464c01",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 31
+    }
+  ]
+}

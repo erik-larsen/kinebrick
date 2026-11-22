@@ -1,0 +1,294 @@
+{
+  "set": "42070-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:47.197Z",
+  "load": 16.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1834,
+  "seconds": 46,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive.",
+      "verdict": "shown",
+      "msOneCall": 253,
+      "msPerStep": 52,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 9,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": {
+        "control": "p372 94925",
+        "way": 1,
+        "went": 1.5,
+        "asked": 1.5,
+        "by": [
+          "969/1055"
+        ]
+      },
+      "stops": [
+        "969/1055"
+      ],
+      "A": [
+        {
+          "control": "p372 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2238,
+          "msOneCall": 253,
+          "stops": [
+            "969/1055"
+          ],
+          "moved": {
+            "p160 18575": [
+              0,
+              68.75
+            ],
+            "p406 18946": [
+              0,
+              68.75
+            ],
+            "p390 76244": [
+              0,
+              22.92
+            ],
+            "p430 18575": [
+              0,
+              13.75
+            ],
+            "p506 64781": [
+              3.6,
+              0
+            ],
+            "p524 92909": [
+              5.4,
+              4.4
+            ],
+            "p542 92909": [
+              5.4,
+              4.4
+            ],
+            "p2369 15038": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p372 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2218,
+          "msOneCall": 140,
+          "stops": [],
+          "moved": {
+            "p160 18575": [
+              0,
+              68.75
+            ],
+            "p406 18946": [
+              0,
+              68.75
+            ],
+            "p390 76244": [
+              0,
+              22.92
+            ],
+            "p430 18575": [
+              0,
+              13.75
+            ],
+            "p506 64781": [
+              3.6,
+              0
+            ],
+            "p524 92909": [
+              5.4,
+              4.4
+            ],
+            "p542 92909": [
+              5.4,
+              4.4
+            ],
+            "p2369 15038": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p372 94925",
+          "judged": "stands",
+          "why": "stopped at +1.5 rad (969/1055); kinds electric-motor: M, remote-control, function-selector, rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 20
+    },
+    {
+      "function": 6,
+      "does": "In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable.",
+      "verdict": "not shown",
+      "why": "A: p1320 18938 not moved",
+      "msOneCall": 210,
+      "msPerStep": 53,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 15,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": {
+        "control": "p402 32073",
+        "way": 1,
+        "went": 1.5,
+        "asked": 1.5,
+        "by": [
+          "969/1055",
+          "971/1067"
+        ]
+      },
+      "stops": [
+        "969/1055",
+        "971/1067"
+      ],
+      "A": [
+        {
+          "control": "p402 32073",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2264,
+          "msOneCall": 210,
+          "stops": [
+            "969/1055",
+            "971/1067"
+          ],
+          "moved": {
+            "p174 18946": [
+              0,
+              85.94
+            ],
+            "p378 94925": [
+              0,
+              85.94
+            ],
+            "p124 18946": [
+              0,
+              85.94
+            ],
+            "p1108 18575": [
+              0,
+              57.3
+            ],
+            "p1088 4716": [
+              0,
+              57.3
+            ],
+            "p1096 3648b": [
+              0,
+              2.39
+            ],
+            "p1336 18575": [
+              0,
+              2.39
+            ],
+            "p1320 18938": [
+              0,
+              0.8
+            ],
+            "p2086 40490": [
+              1.24,
+              0.8
+            ],
+            "p2369 15038": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p402 32073",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2149,
+          "msOneCall": 141,
+          "stops": [],
+          "moved": {
+            "p174 18946": [
+              0,
+              85.94
+            ],
+            "p378 94925": [
+              0,
+              85.94
+            ],
+            "p124 18946": [
+              0,
+              85.94
+            ],
+            "p1108 18575": [
+              0,
+              57.3
+            ],
+            "p1088 4716": [
+              0,
+              57.3
+            ],
+            "p1096 3648b": [
+              0,
+              2.39
+            ],
+            "p1336 18575": [
+              0,
+              2.39
+            ],
+            "p1320 18938": [
+              0,
+              0.8
+            ],
+            "p2086 40490": [
+              1.24,
+              0.8
+            ],
+            "p2369 15038": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p402 32073",
+          "judged": "stands",
+          "why": "stopped at +1.5 rad (969/1055, 971/1067); kinds electric-motor: XL, function-selector, worm-drive, turntable: crane"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "not shown",
+        "why": "A: p1320 18938 not moved"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 26
+    }
+  ]
+}

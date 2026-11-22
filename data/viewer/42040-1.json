@@ -1,0 +1,437 @@
+{
+  "set": "42040-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:45:28.559Z",
+  "load": 18.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 567,
+  "seconds": 130,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The propeller turns the engine's crankshaft, and the pistons pump up and down in their cylinders.",
+      "verdict": "shown",
+      "msOneCall": 36,
+      "msPerStep": 7,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p557 99012",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 289,
+          "msOneCall": 36,
+          "stops": [],
+          "moved": {
+            "p75 2853": [
+              0,
+              85.94
+            ],
+            "p76 2852": [
+              15,
+              14.44
+            ],
+            "p77 2852": [
+              15,
+              14.44
+            ],
+            "p78 2851": [
+              8.03,
+              0
+            ],
+            "p79 2851": [
+              10.56,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p557 99012",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 258,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p75 2853": [
+              0,
+              85.94
+            ],
+            "p76 2852": [
+              15,
+              14.44
+            ],
+            "p77 2852": [
+              15,
+              14.44
+            ],
+            "p78 2851": [
+              8.03,
+              0
+            ],
+            "p79 2851": [
+              10.56,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p557 99012",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p75 2853",
+            "p76 2852",
+            "p77 2852",
+            "p78 2851",
+            "p79 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 3,
+      "does": "The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks).",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p251 at 0.068 rad (parts 165/254); the hatch should flip forward. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "msOneCall": 31,
+      "msPerStep": 7,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p251 32140",
+        "way": -1,
+        "went": -0.068,
+        "asked": 0.17,
+        "by": [
+          "165/254"
+        ]
+      },
+      "stops": [
+        "165/254"
+      ],
+      "A": [
+        {
+          "control": "p251 32140",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 14,
+          "msOneCall": 31,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p251 32140",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.068,
+          "ms": 13,
+          "msOneCall": 10,
+          "stops": [
+            "165/254"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p251 32140",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "165/254",
+            "251/424",
+            "254/422",
+            "249/254"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p251 32140",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the hatch flips forward to fill the tank, far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115)",
+      "seconds": 17
+    },
+    {
+      "function": 7,
+      "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
+      "verdict": "not shown",
+      "why": "A: p371 2739a, p330 2736, p338 18945 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 2,
+        "B": 8
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p358 6572",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.4,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p358 6572",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p371 2739a": [
+              0,
+              0
+            ],
+            "p330 2736": [
+              0,
+              0
+            ],
+            "p338 18945": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p358 6572",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "moved": [
+            "p371 2739a",
+            "p330 2736",
+            "p338 18945"
+          ],
+          "stops": [
+            "304/339"
+          ]
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 9,
+      "does": "The wheels under the floats roll.",
+      "verdict": "shown",
+      "msOneCall": 30,
+      "msPerStep": 4,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 14,
+        "A": 1,
+        "B": 50
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p35 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 138,
+          "msOneCall": 30,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p35 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 115,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p36 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 112,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p36 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 121,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p169 56903",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 171,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p169 56903",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 158,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p173 56903",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 157,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p173 56903",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 154,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p35 42610",
+          "seen": true,
+          "cameraTurns": 8,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p36 42610",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p169 56903",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p173 56903",
+          "seen": true,
+          "cameraTurns": 4,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 78
+    }
+  ]
+}

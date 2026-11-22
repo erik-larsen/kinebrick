@@ -55,10 +55,9 @@
           "p129 35188",
           "p120 18947",
           "p121 18947",
-          "p122 18947",
-          "p53 35186"
+          "p122 18947"
         ],
-        "note": "which ring each position slides, and the order of the positions, are inferred: the owner should check"
+        "note": "which ring each position slides, and the order of the positions, are inferred: the owner should check; the ring extension p53 (35186) sits against its gear and does not slide (booklet step 17, page 13), so it is not among the parts that move (Erik signed it, \"Sign 42114 list\", 2026-11-17)"
       },
       {
         "does": "With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back.",
@@ -153,18 +152,17 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 73,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 47,
     "counts": {
-      "partly": 5,
-      "works": 2,
+      "partly": 3,
+      "works": 3,
       "not back": 1,
-      "moved whole": 1
+      "moved whole": 1,
+      "no": 1
     },
     "loose": [
-      "p121 18947",
-      "p122 18947",
       "p428 23816c02",
       "p603 23816c02",
       "p1032 23816c02",
@@ -209,19 +207,19 @@
           {
             "p275 6573": [
               0.333,
-              1.42e-14
+              8.95e-15
             ],
             "p84 65414c01": [
               0,
-              1.19e-25
+              1.57e-27
             ],
             "p318 65414c01": [
               0,
-              1.94e-43
+              6.54e-67
             ],
             "p2352 65414c01": [
               0,
-              1.51e-100
+              0
             ],
             "p4615 15038": [
               0,
@@ -278,41 +276,33 @@
         ],
         "cause": "not-driven",
         "detail": "p84 65414c01",
-        "seconds": 10.9
+        "seconds": 8.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p129 35188",
-          "p121 18947"
-        ],
         "rates": [
           {
             "p129 35188": [
-              0,
-              0
+              1,
+              2.37e-14
             ],
             "p120 18947": [
-              0.556,
-              1.85e-13
+              0,
+              0
             ],
             "p121 18947": [
               0,
               0
             ],
             "p122 18947": [
-              0.333,
+              0,
               0
-            ],
-            "p53 35186": [
-              0.333,
-              6.22e-15
             ]
           }
         ],
@@ -340,12 +330,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "loose-part",
-        "detail": "p121 18947",
-        "seconds": 9.5
+        "seconds": 6.4
       },
       {
         "result": "partly",
@@ -367,7 +352,7 @@
           {
             "p779 32198": [
               0,
-              4.04e-27
+              3.21e-34
             ],
             "p808 4519": [
               0,
@@ -387,7 +372,7 @@
             ],
             "p4170 15458": [
               0,
-              1.11e-26
+              8.32e-34
             ],
             "p4615 15038": [
               0,
@@ -428,7 +413,7 @@
         ],
         "cause": "not-driven",
         "detail": "p779 32198",
-        "seconds": 11.6
+        "seconds": 7.9
       },
       {
         "result": "partly",
@@ -456,11 +441,11 @@
             ],
             "p994 99010": [
               0,
-              2.2e-42
+              4.08e-45
             ],
             "p0 64179": [
               0,
-              1.31e-20
+              4.09e-23
             ],
             "p4617 15038 against p919 92908": [
               0,
@@ -497,14 +482,14 @@
         ],
         "cause": "part-fixed",
         "detail": "p2038 32140",
-        "seconds": 9.2
+        "seconds": 5.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.2,
+            -0.2
           ]
         ],
         "rates": [
@@ -518,11 +503,11 @@
         "back": [
           [
             [
-              10.43,
+              1.49,
               0
             ],
             [
-              9.95,
+              1.49,
               0
             ]
           ]
@@ -540,17 +525,41 @@
           ]
         ],
         "strayed": [
-          "p2670 14769",
-          "p2209 2780"
+          "p2210 2780",
+          "p4493 32009"
         ],
-        "seconds": 9.9
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            411,
+            2085,
+            0.2,
+            0.2
+          ],
+          [
+            0,
+            -1,
+            411,
+            2085,
+            0.2,
+            0.2
+          ]
+        ],
+        "seconds": 4.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.13,
+            -0.37
           ]
         ],
         "rates": [
@@ -585,14 +594,38 @@
             ]
           ]
         ],
-        "seconds": 9.9
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            2405,
+            2470,
+            0.13,
+            0.13
+          ],
+          [
+            0,
+            -1,
+            2405,
+            2466,
+            0.37,
+            0.37
+          ]
+        ],
+        "seconds": 4.1
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
@@ -602,7 +635,7 @@
           {
             "p2766 32525": [
               0,
-              1.69e-12
+              0
             ]
           }
         ],
@@ -630,13 +663,38 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p2766 32525",
-        "seconds": 10.7
+        "collisionStops": [
+          [
+            0,
+            1,
+            2771,
+            2942,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            2650,
+            2947,
+            0,
+            0
+          ]
+        ],
+        "seconds": 4.7
       }
-    ]
+    ],
+    "peak": 1425
   }
 }

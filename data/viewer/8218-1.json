@@ -1,0 +1,426 @@
+{
+  "set": "8218-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:17:10.844Z",
+  "load": 4.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 66,
+  "seconds": 72,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 50,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              15,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              15,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p0 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              15,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p0 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 38,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              15,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p4 2853 against p8 32009",
+            "p22 2852 against p8 32009",
+            "p46 2851 against p8 32009"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p0 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p4 2853 against p8 32009",
+            "p22 2852 against p8 32009",
+            "p46 2851 against p8 32009"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 28
+    },
+    {
+      "function": 3,
+      "does": "The front wheel rolls freely on its axle between the fork's tips.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 0,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 11
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p66 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 10,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p66 2994",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 4,
+      "does": "The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 0,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 24
+      },
+      "stop": {
+        "control": "p60 32062",
+        "way": 1,
+        "went": 1.291,
+        "asked": 1.5,
+        "by": [
+          "29/50"
+        ]
+      },
+      "stops": [
+        "29/50",
+        "30/55"
+      ],
+      "A": [
+        {
+          "control": "p60 32062",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              45
+            ]
+          },
+          "asked": 1.5,
+          "went": 1.291,
+          "ms": 15,
+          "msOneCall": 7,
+          "stops": [
+            "29/50"
+          ],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p66 2994 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p60 32062",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              45
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.291,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [
+            "30/55"
+          ],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p66 2994 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p61 32062",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.291,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [
+            "29/50"
+          ],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p66 2994 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p61 32062",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.291,
+          "ms": 10,
+          "msOneCall": 1,
+          "stops": [
+            "30/55"
+          ],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p66 2994 against p8 32009": [
+              25.8,
+              73.95
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p60 32062",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p49 4519 against p8 32009",
+            "p66 2994 against p8 32009"
+          ],
+          "stops": [
+            "30/55"
+          ]
+        },
+        {
+          "control": "p61 32062",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p49 4519 against p8 32009",
+            "p66 2994 against p8 32009"
+          ],
+          "stops": [
+            "30/55",
+            "29/50"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p60 32062",
+          "judged": "stands",
+          "why": "stopped at +1.291 rad (29/50); -1.291 rad (30/55); kinds fork-steering, friction-brake"
+        },
+        {
+          "control": "p61 32062",
+          "judged": "stands",
+          "why": "stopped at +1.291 rad (29/50); -1.291 rad (30/55); kinds fork-steering, friction-brake"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 29
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "set": "9395-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:50.755Z",
+  "load": 17.2,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 875,
+  "seconds": 8,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the cab roof steers the front wheels: its upright axle comes down to a knob gear, which turns a long axle forward to a small gear that slides the steering rack across the front axle.",
+      "verdict": "shown",
+      "msOneCall": 210,
+      "msPerStep": 48,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p779 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1921,
+          "msOneCall": 210,
+          "stops": [],
+          "moved": {
+            "p324 32072": [
+              0,
+              85.94
+            ],
+            "p214 32072": [
+              0,
+              85.94
+            ],
+            "p192 32270": [
+              0,
+              85.94
+            ],
+            "p158 87761": [
+              23.84,
+              0
+            ],
+            "p930 86652": [
+              29.8,
+              38.64
+            ],
+            "p931 86652": [
+              29.8,
+              38.44
+            ],
+            "p932 86652": [
+              0,
+              0
+            ],
+            "p933 86652": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p779 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2065,
+          "msOneCall": 107,
+          "stops": [],
+          "moved": {
+            "p324 32072": [
+              0,
+              85.94
+            ],
+            "p214 32072": [
+              0,
+              85.94
+            ],
+            "p192 32270": [
+              0,
+              85.94
+            ],
+            "p158 87761": [
+              23.84,
+              0
+            ],
+            "p930 86652": [
+              29.8,
+              38.64
+            ],
+            "p931 86652": [
+              29.8,
+              38.44
+            ],
+            "p932 86652": [
+              0,
+              0
+            ],
+            "p933 86652": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}

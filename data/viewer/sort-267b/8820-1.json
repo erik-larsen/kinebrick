@@ -1,0 +1,129 @@
+{
+  "set": "8820-1",
+  "commit": "799e6dce",
+  "date": "2026-11-21T01:40:07.052Z",
+  "load": 29.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 134,
+  "seconds": 91,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together.",
+      "verdict": "not shown",
+      "why": "A: p105 3894, p32 3707, p30 4254, p125 3482, p127 3482 not moved",
+      "msOneCall": 1,
+      "msPerStep": null,
+      "time": {
+        "open": 7,
+        "collisions": 2,
+        "first": 0,
+        "reach": 1,
+        "A": 1,
+        "B": 81
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p102 3894",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p105 3894": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ],
+            "p30 4254": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ],
+            "p47 2717": [
+              0,
+              0
+            ],
+            "p129 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p102 3894",
+          "way": -1,
+          "asked": 0.35,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p105 3894": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ],
+            "p30 4254": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ],
+            "p47 2717": [
+              0,
+              0
+            ],
+            "p129 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p102 3894",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p105 3894",
+            "p32 3707",
+            "p30 4254",
+            "p125 3482",
+            "p127 3482"
+          ],
+          "stops": [
+            "30/29"
+          ]
+        }
+      ],
+      "seconds": 91
+    }
+  ]
+}

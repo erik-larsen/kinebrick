@@ -6,6 +6,7 @@
 
 import type { Mechanism } from './mechanism.ts';
 import type { Kinematics, Slip } from './kinematics.ts';
+import type { BodyRow } from './linalg.ts';
 import { combine, dot, EPSILON, gramOf, inBasis, nullSpace, orthonormalize, Row, solveSymmetric } from './linalg.ts';
 
 export const TRACE = typeof process !== 'undefined' && !!process.env?.KINEBRICK_TRACE;
@@ -24,7 +25,7 @@ interface Inside {
   slipRows: number[][];
   traceNames: string[] | null;
   treeBasis(): number[][];
-  buildEquations(gaps: number[] | null, slip: Slip | null, skipTree?: boolean, weights?: number[] | null, play?: number[] | null): Row[];
+  buildEquations(gaps: number[] | null, slip: Slip<BodyRow> | null, skipTree?: boolean, weights?: number[] | null, play?: number[] | null): BodyRow[];
 }
 function inside(kin: Kinematics): Inside {
   return kin as unknown as Inside;
@@ -63,7 +64,7 @@ export function traceJam(kin: Kinematics, joint: number, rate: (z: number[]) => 
   const basis = k.treeBasis();
   const q = basis[0].length;
   const look = () => {
-    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
+    const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] };
     const play: number[] = [];
     k.traceNames = [];
     const raw = k.buildEquations(null, slip, true, null, play);
@@ -71,7 +72,7 @@ export function traceJam(kin: Kinematics, joint: number, rate: (z: number[]) => 
     const names = k.traceNames;
     k.traceNames = null;
     const loops = rows.flatMap((row, i) => (play[i] ? [row.map((x) => x * play[i])] : []));
-    return { rows, play, names, loops, slid: inBasis([...slip.sideways, ...slip.lift], basis), raw, slips: [...slip.sideways, ...slip.lift] };
+    return { rows, play, names, loops, slid: inBasis([...slip.sideways, ...slip.lift], basis), raw: raw.map((r) => r.dense()), slips: [...slip.sideways, ...slip.lift].map((r) => r.dense()) };
   };
   const judge = (firm: Row[], loops: Row[]) => {
     const motions = orthonormalize(nullSpace(firm, q));

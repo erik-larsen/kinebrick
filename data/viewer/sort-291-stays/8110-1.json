@@ -1,0 +1,152 @@
+{
+  "set": "8110-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:34:58.333Z",
+  "load": 16.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1867,
+  "seconds": 134,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer.",
+      "verdict": "shown",
+      "msOneCall": 7996,
+      "msPerStep": 2270,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 122,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1504 8110 - 32269",
+        "way": -1,
+        "went": -0.872,
+        "asked": 1.5,
+        "by": [
+          "955/1053"
+        ]
+      },
+      "stops": [
+        "954/1055",
+        "955/1053"
+      ],
+      "A": [
+        {
+          "control": "p1504 8110 - 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.802,
+          "ms": 52043,
+          "msOneCall": 7996,
+          "stops": [
+            "954/1055"
+          ],
+          "moved": {
+            "p1498 32072": [
+              0.06,
+              45.97
+            ],
+            "p1088 32270": [
+              0.04,
+              45.82
+            ],
+            "p1080 87761": [
+              12,
+              1.34
+            ],
+            "p1005 92909": [
+              28.62,
+              24.26
+            ],
+            "p1028 92909": [
+              28.42,
+              24.24
+            ],
+            "p1437 44772": [
+              33.36,
+              24.26
+            ],
+            "p1440 44772": [
+              33.16,
+              24.24
+            ],
+            "p1438 44772": [
+              0.45,
+              0.12
+            ],
+            "p1439 44772": [
+              0.39,
+              0.1
+            ]
+          }
+        },
+        {
+          "control": "p1504 8110 - 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.872,
+          "ms": 54034,
+          "msOneCall": 7894,
+          "stops": [
+            "955/1053"
+          ],
+          "moved": {
+            "p1498 32072": [
+              0.02,
+              49.97
+            ],
+            "p1088 32270": [
+              0.02,
+              49.85
+            ],
+            "p1080 87761": [
+              13.05,
+              1.19
+            ],
+            "p1005 92909": [
+              28.87,
+              24.69
+            ],
+            "p1028 92909": [
+              28.87,
+              24.47
+            ],
+            "p1437 44772": [
+              33.68,
+              24.69
+            ],
+            "p1440 44772": [
+              33.69,
+              24.47
+            ],
+            "p1438 44772": [
+              0.41,
+              0.16
+            ],
+            "p1439 44772": [
+              0.39,
+              0.26
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1504 8110 - 32269",
+          "judged": "stands",
+          "why": "stopped at +0.802 rad (954/1055); -0.872 rad (955/1053); kinds rack-steering, portal-axle"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 134
+    }
+  ]
+}

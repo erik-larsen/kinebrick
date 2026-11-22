@@ -1,0 +1,349 @@
+{
+  "set": "8841-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:27:26.833Z",
+  "load": 7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 185,
+  "seconds": 89,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs down through a universal joint to an 8-tooth pinion on a toothed rack, and the rack pushes both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p683 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p677 3647": [
+              0,
+              85.94
+            ],
+            "p646 3743": [
+              15.36,
+              0
+            ],
+            "p42 4261": [
+              0,
+              22
+            ],
+            "p43 4261": [
+              0,
+              22
+            ],
+            "p14 3707": [
+              0,
+              0
+            ],
+            "p15 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p683 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 36,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p677 3647": [
+              0,
+              85.94
+            ],
+            "p646 3743": [
+              15.36,
+              0
+            ],
+            "p42 4261": [
+              0,
+              22
+            ],
+            "p43 4261": [
+              0,
+              22
+            ],
+            "p14 3707": [
+              0,
+              0
+            ],
+            "p15 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p683 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p677 3647",
+            "p646 3743",
+            "p42 4261",
+            "p43 4261"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 2,
+      "does": "Rolling the buggy works the engine's piston: a pin in the 24-tooth gear on the left rear axle is a crank, and a connecting rod pushes the piston up and down in its block behind the seat.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p700 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 83,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p20 3648a": [
+              0,
+              85.94
+            ],
+            "p25 3652": [
+              13.86,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p700 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 66,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p20 3648a": [
+              0,
+              85.94
+            ],
+            "p25 3652": [
+              18.87,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p700 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p20 3648a",
+            "p25 3652"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 3,
+      "does": "The front wheels turn freely on pins in the steering arms.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 2,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 24
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p698 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 89,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p698 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 71,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p701 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 66,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p701 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 66,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p698 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p701 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 29
+    },
+    {
+      "function": 4,
+      "does": "The rear wheels are on two separate axles; only the left one turns the engine.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 2,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 24
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p699 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p699 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 73,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p700 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 71,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p700 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 70,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p699 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p700 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 29
+    }
+  ]
+}

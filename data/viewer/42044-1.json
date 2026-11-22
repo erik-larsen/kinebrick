@@ -1,0 +1,332 @@
+{
+  "set": "42044-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:20:57.874Z",
+  "load": 5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 110,
+  "seconds": 77,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12-tooth bevel gear on the fuselage's right side is a knob that raises and lowers the landing gear: it turns the nose gear's leg up into the fuselage, and a steering link from the nose gear swings the main gear's axle, so the two main wheels fold up too.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p97 32270",
+        "way": 1,
+        "went": 0.977,
+        "asked": 1.5,
+        "by": [
+          "ground: p109"
+        ]
+      },
+      "stops": [
+        "ground: p109",
+        "0/9"
+      ],
+      "A": [
+        {
+          "control": "p97 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.977,
+          "ms": 46,
+          "msOneCall": 13,
+          "stops": [
+            "ground: p109"
+          ],
+          "moved": {
+            "p106 42610": [
+              39.07,
+              55.96
+            ],
+            "p34 32293": [
+              42.52,
+              8.05
+            ],
+            "p25 32073": [
+              0,
+              60.91
+            ],
+            "p104 42610": [
+              42.52,
+              60.91
+            ],
+            "p105 42610": [
+              42.52,
+              60.91
+            ]
+          }
+        },
+        {
+          "control": "p97 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.907,
+          "ms": 33,
+          "msOneCall": 2,
+          "stops": [
+            "0/9"
+          ],
+          "moved": {
+            "p106 42610": [
+              36.28,
+              51.97
+            ],
+            "p34 32293": [
+              10.9,
+              12.37
+            ],
+            "p25 32073": [
+              0,
+              15.61
+            ],
+            "p104 42610": [
+              10.9,
+              15.65
+            ],
+            "p105 42610": [
+              10.9,
+              15.65
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p97 32270",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p106 42610",
+            "p34 32293",
+            "p25 32073",
+            "p104 42610",
+            "p105 42610"
+          ],
+          "stops": [
+            "ground: p109",
+            "0/9"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p97 32270",
+          "judged": "stands",
+          "why": "stopped at +0.977 rad (ground: p109); -0.907 rad (0/9); kinds crank-and-link: landing gear"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 18
+    },
+    {
+      "function": 2,
+      "does": "The canopy, made of two flexible axles over the cockpit, hinges up at its front to open the cockpit.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p42 6536",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0.67,
+          "ms": 14,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p43 6536": [
+              0,
+              38.39
+            ],
+            "p82 4274": [
+              14.98,
+              38.39
+            ],
+            "p83 4274": [
+              14.98,
+              38.39
+            ]
+          }
+        },
+        {
+          "control": "p42 6536",
+          "way": -1,
+          "asked": 1.33,
+          "went": -1.33,
+          "ms": 22,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p43 6536": [
+              0,
+              76.2
+            ],
+            "p82 4274": [
+              29.74,
+              76.2
+            ],
+            "p83 4274": [
+              29.74,
+              76.2
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p42 6536",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p43 6536",
+            "p82 4274",
+            "p83 4274"
+          ],
+          "stops": [
+            "82/86",
+            "0/43"
+          ]
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 3,
+      "does": "The three landing gear wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 0,
+        "B": 35
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p104 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p104 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 35,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p105 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p105 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 28,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 20,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p104 42610",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p105 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p106 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 44
+    }
+  ]
+}

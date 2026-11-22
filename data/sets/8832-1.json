@@ -82,14 +82,11 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
+    "commit": "4929054b",
+    "date": "2026-11-22",
     "seconds": 2,
     "counts": {
-      "works": 2,
-      "partly": 1,
-      "not back": 1,
-      "free-turned": 1,
+      "works": 3,
       "skipped": 1
     },
     "loose": [
@@ -176,16 +173,12 @@
         "seconds": 0.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.51,
-            -1.51
+            0,
+            -0.27
           ]
-        ],
-        "moved": [
-          "p9 2738",
-          "p32 3707"
         ],
         "rates": [
           {
@@ -194,7 +187,7 @@
               41.2
             ],
             "p42 3707": [
-              1.01,
+              0.644,
               79.6
             ],
             "p61 3749": [
@@ -206,52 +199,49 @@
               60.4
             ],
             "p9 2738": [
-              1.49,
-              74.9
+              0,
+              7.22e-13
             ],
             "p32 3707": [
-              0.512,
-              120
+              0,
+              1.14e-12
             ]
           }
         ],
         "back": [
           [
             [
-              3.09,
-              2.19
+              0,
+              0
             ],
             [
-              2.51,
-              1.78
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              3.09,
-              2.19
+              0,
+              0
             ],
             [
-              2.51,
-              1.78
+              0,
+              0
             ]
           ]
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p31 4254"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
         "pushed": [
           true
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stay-chosen",
-        "detail": "p9 2738",
-        "seconds": 0.7
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -373,8 +363,9 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       }
-    ]
+    ],
+    "peak": 217
   }
 }

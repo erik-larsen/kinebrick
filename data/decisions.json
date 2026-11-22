@@ -1,78 +1,112 @@
 {
   "state": {
     "main": {
-      "works": 685,
-      "moved": "2026-11-15"
+      "works": 701,
+      "moved": "2026-11-18"
     },
     "preview": {
-      "works": 701,
-      "partly": 239,
-      "no": 107,
-      "functions": 1226
+      "works": 693,
+      "partly": 259,
+      "no": 92,
+      "functions": 1223
     },
-    "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
+    "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
+    "pages": [
+      {
+        "label": "Technic status page",
+        "url": "https://claude.ai/artifact/8NVghVnAY8hsbqA81yw3XV"
+      },
+      {
+        "label": "Train status page",
+        "url": "https://claude.ai/artifact/2uSHMoA9rN4Hf7a75LVWNq"
+      }
+    ]
   },
   "waiting": [
     {
-      "id": "42070-spider",
+      "id": "offer-main-2026-11-21",
       "kind": "Sign-off",
-      "title": "42070 6x6 All Terrain Tow Truck: the small gear inside the turned rear differential",
-      "since": "2026-11-16",
-      "what": "A second correction to the published file, following the one you signed today. That one turned the rear differential’s casing half a turn. The small bevel gear inside the casing sits on the casing’s own pin and must turn with it, but it stayed where it was. Left there, it is held by the axle housing instead of the casing, so the rear axle’s two wheels can only turn against each other: the truck can’t roll, and the XL motor can’t drive it. The correction moves that small gear to the other side of the casing’s centre, where the casing’s pin now is, as in the middle differential.",
-      "effect": "The drive (function 1) goes from not working to working: the motor turns both ways and moves all nine parts the function lists. Checked on that function alone; the whole set is checked when you sign.",
-      "confidence": "High. It follows from the part itself: the small gear always sits on its casing’s pin. The worker looked at the middle differential, built the same way, and the gear sits in its casing as this correction puts it.",
+      "title": "Main: the offer is staged. Commit and push it?",
+      "what": "You said \"Yes, prepare it\". The gates are passed at preview's commit 4929054b (decision 341): every working function was swept in the viewer and each finding is mended or held (28 holds); the full check of preview differs from the stored records only in the three functions held today; the slow check of the 8110 is as stored (9 work, 4 partly, 3 do not); the type check and all 1,087 tests pass. Since then your shorter README is merged, a test that it broke is mended, and the site is set to publish the three status pages (342); only the README, that test, the page scripts and the site's workflow changed. The whole of preview is staged in the main checkout as one commit, not yet committed, with a commit message in the chat.",
+      "effect": "Main, and so the published site, gets 703 commits of work since 18 November: the faster viewer, the pin search, the working set, the cam reading, the stop rule, the viewer sweep and its table of times, and all signed list changes and errata. The count shown goes from 701 to 693 working functions. That is not a loss: main's 701 was counted before any hold; on that basis preview stood at 740. The lower figure counts only what the viewer shows a user.",
       "links": [
         {
-          "label": "Booklet p. 92",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=92"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=845,846,847,848"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&option=proposed&show=845,846,847,848"
+          "label": "Technic status page",
+          "url": "https://claude.ai/artifact/8NVghVnAY8hsbqA81yw3XV"
         }
       ],
-      "reply": "Sign 42070 spider"
+      "reply": "Commit and push main",
+      "since": "2026-11-21"
     },
     {
-      "id": "8832-brace",
-      "kind": "Sign-off",
-      "title": "8832 Roadster: the roll bar's two bracing axles",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the swinging arm and its shock absorber (function 2). The shock absorber’s top sits on the roll bar’s top axle, and the file draws it so. The roll bar is braced from the frame by two slanted axles, each running through a toggle joint at its foot and one at its head. The file draws each slanted axle 1 LDU beside its head toggle’s hole, so the bracing isn’t read: the roll bar swings back as the arm pushes the shock absorber up. The correction turns each slanted axle half a degree, so it runs through both its toggles’ holes. The roll bar is then braced, the arm swings, and the shock absorber gives. You said the top sits on the seat. The worker found the top already held, as drawn, once the roll bar is braced, so it isn’t moved.",
-      "effect": "Function 2 goes from partly working to working: the arm swings up to the end of the shock absorber’s travel and comes back, and the roll bar stays. The other three functions are as before. The set is read from Kinebrick’s copy of the file in models/, which is the same as the published file; once you sign, the set reads the published file, so that the correction applies.",
-      "confidence": "High for the bracing: an axle must run through both holes it is drawn in, and turned half a degree it does. The worker looked at steps 12 and 13 of the booklet: step 12 adds the two slanted axles, and step 13’s inset shows the shock absorber behind the seat. The scan doesn’t show clearly where its top sits.",
-      "links": [
-        {
-          "label": "Booklet scans, steps 11 to 13",
-          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8832"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F8832-1+Roadster.mpd&show=31,145,46,9,32,62,64"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F8832-1+Roadster.mpd&option=proposed&show=31,145,46,9,32,62,64"
-        }
-      ],
-      "reply": "Sign 8832"
+      "id": "system-hinges-build",
+      "kind": "Decision",
+      "title": "System hinges, doors and clips: the look is done. Build any of it?",
+      "what": "The worker looked at the 12 functions that failed in the blind trial for this reason (321). In 7 the connection points are already in our data and Kinebrick's reading does not use them; in 4 the data is missing; 1 is not settled. By kind: (A) a hinged lid closed onto studs, 3 of the 12: the hinge is read, but the studs under the closed lid hold it shut; a stud that the hinge's own turn pulls apart should let go. About 3 days, and it touches how every stud holds in every set, so every set is checked. (B) A door that pivots on a stud, 2. (C) A bar in a clip, 1. (D) Glass with no slot in its frame, 1. (E) Three single fittings. (F) is withdrawn: the turntable that seemed to be this kind is a third single fitting, a socket missing from the data. (G) A winch and its string, 1. All of it: about 11 days of the worker's time. The quick wins, B and E, are about 2.5 days for 4 of the 12. How many of the 124 non-Technic candidates each kind could open, by their descriptions and as upper bounds: lids 71, doors 47, turntables 31, strings and winches 27, arms and claws 15, sticks and clips 8.",
+      "effect": "Three choices. Not now: the worker stays on the 186 Technic sets. Quick wins: doors on stud pivots and the two fittings, about 2 days, which opens the door functions and little else. All of it: about 11 days, the worker off the Technic sets for that time, and lids on studs is a change in every set. Claude advises not now: the rolling rule, the second sweep's findings and the first move's speed are open on the 186, and lids on studs is the largest and riskiest part of the gain.",
+      "reply": "Not now",
+      "since": "2026-11-21"
     }
   ],
   "coming": [
     {
-      "title": "The next offer of main",
-      "what": "Preview is ahead of main by 16 working functions (701 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
+      "title": "A sanity check of every working function in the viewer",
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. All times so far, yours and Claude's, were taken while every core was busy with checks, so they are too high by a factor not known (261). The slowest functions are timed again on a quiet computer when the run is through, and you test on another machine. No function is held for speed until you have judged there where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all. On 20 November the sweep's first pass went through all 740 working functions (267): the turn shows 566, does not show 144, and 30 wait for a look at the booklet. Of the 57 sets with every function working, 32 have every function shown. The 144 are not all real: in 28 the sweep did not free pins that the check frees, and in about 45 more it could not turn the control at all, which the pointer pass will try. Claude expects 30 to 70 real ones; the worker sorts them before anything is marked down. On the evening of 20 November the solver's working set was merged into preview and turned on (272): a drag that turns a part now works only on the pieces the drag moves. In the viewer on this machine the 9397's steering takes 15 ms for each step of a drag against 120 ms before, both measured one after the other under the same load; the first move of a drag still takes about 240 ms. The proof is a sample of 19 sets in which no function changed its result. In the night to 21 November three more things went in: big models open quickly again (274: the 42078 Mack Anthem in 5 s against 33 s, a fault Claude's own merge of 20 November had made), the first move of a drag no longer searches twice (275: the 9397's steering starts in 384 ms against 644 ms), and the day's full check of preview ran (278): the counts are the same, 740 work, and the check took 18% less time. The check found three functions in which the working set leaves one freely turning part out of place after the drag, with the result unchanged: the 42020 Twin-rotor Helicopter's rolling wheels (two thin beams, parts 125 and 126) and the 8274 Combine Harvester when pushed (a toothed half bush, part 1081). This was mended the same morning (285): the working set had thrown away a motion kept for the next step; with the mend all three come back whole. On 21 November the worker finished sorting the 144 (279). 100 are shown after all, once the sweep did what a user does: lift the model, press Shift, do the first steps, drag by pointer. On 21 November the check learned to mark a wheel, track or shaft that a collision stops by itself (311), which replaced 22 of the day's holds; 25 functions are still held at partly by hand, and the count of working functions is 698. Six of them are functions the booklet shows moving far and the viewer stops short (298). Of the others: in 29 a collision stops a wheel, track, fan or other part that should turn without end, or a bonnet or mast that the booklet shows moving far (the check stopped at the same place and still said works, which is the check's fault; 279, 288); in 12 the control turns or is pushed and the listed parts do not all move (279, 286); in 2 the drive seemed to slip in one long drag (286), which proved to be a fault of the sweep's own measure, so these two holds were wrong and are lifted, with a third of the same kind, the 42129's function 4 (293); and one is from 19 November. Two holds on the 8063 proved wrong and were lifted (282). About 8 more are doubtful and stay at works until tried properly. The sets with every checked function working are 52, were 57. The worker now sorts each of the 16 contacts into false or true and makes the check judge such a stop itself. Pull preview at the newest commit before you test on the quiet machines on 21 November."
     },
     {
-      "title": "A second worker, asked again at mid-week",
-      "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
+      "title": "System hinges, doors and clips",
+      "what": "The look you chose is done (321, corrected in 323) and the choice of building any of it waits for you, above."
+    },
+    {
+      "title": "A second worker, looked at again after 23 November",
+      "what": "You said not yet on 16 November, and Claude was to ask again about 19 November. Claude does not ask: on 20 November the account's week stands at 63% used with 60% of the week gone, so the three sessions alone are on course to reach the weekly limit some hours before it resets on 23 November. A fourth session would bring that forward. Working functions went from 701 to 740 in five days. Claude looks again after the reset with a full week measured. If the week reaches 80% by 21 November, the worker pauses first."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-17",
+      "what": "8840 Rally Shock n' Roll Racer: the engine's rods and pistons (\"Sign all seven\"). Function 2 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "8258 Crane Truck: the joint under the lower boom's actuator, with the lever set first (\"Sign all seven\"). Function 3 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42077 Rally Car: a rear half shaft's inner ball (\"Sign all seven\"). Function 2 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42096 Porsche 911 RSR: the rear half shafts into their hubs (\"Sign all seven\"). Function 1 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42078 Mack Anthem: the rear crane's actuator axle (\"Sign all seven\"). No score change yet; the legs' rack housings are the next fault."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42112 Concrete Mixer Truck: the drive shaft's gear moved onto its shaft (\"Sign all seven\"). Function 6 now works; function 5 still waits on another fault."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42112 Concrete Mixer Truck, function 4: the white connector is the lever (\"Sign all seven\"). Merged with the mend for the newer catch; function 4 now works."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "9397 Logging Truck and 42022 Hot Rod: the piston is a part that moves and the cylinder stays (\"Sign piston lists\"). The 42022's function 2 and the 9397's function 8 now work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the small gear inside the turned rear differential (\"Sign 42070 spider\"). The drive (function 1) now works; 702 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster: the roll bar's two bracing axles (\"Sign 8832\"). The correction is made in Kinebrick's own copy of the file; function 2 now works. 703 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "You moved main to 24366c8f: 701 of 1,226 functions work on main, where 685 did."
+    },
     {
       "date": "2026-11-16",
       "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
@@ -172,6 +206,294 @@
     {
       "date": "2026-11-14",
       "what": "You moved main to ca95bf02."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You answered the request in the solver owner’s session and showed the browser pane, so it could try its drags by hand. It is working again."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed the 42054’s lists (“Sign 42054 lists”): functions 3, 4 and 5 name the motor as their control with the lever set first. All three work now; the set has 12 of 14 working."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “delete merged branches and make that part of the daily tasks”. 102 branches that were fully merged into preview are deleted on GitHub; 20 are left (main, preview, preview-train and 17 with work that is not merged). From now on a branch is deleted when it is merged, and the rest is checked each day."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You answered the solver owner’s session again and showed the pane; it dragged the eight pin-search functions by hand and reported."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “Install Playwright”. The headless browser is installed (600 MB on disk, more than the 150 to 300 MB Claude had guessed). A first test from the shell worked: the viewer draws, animates and answers a pointer drag with no window shown."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “Download 9397 snowplough”. Both instruction files for the 9397’s second model are downloaded from lego.com (19.3 and 19.7 MB, 160 and 148 pages) and listed with the set’s booklets. The worker now drafts the snowplough’s function list from them; it comes to you to sign."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed three items (“Sign 42050”, “Sign 42114 list”, “Sign 42043 list”). Each brings one function to working: the 42050’s wheelie (function 4), the 42114’s gear shift (function 2) and the 42043’s rear differentials (function 11)."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “9397 - go with the snowplow”: the set’s function list is rewritten for the snowplough, the model the OMR publishes. The worker drafts it from LEGO’s two instruction files; the new list comes to you to sign."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed the 9397’s list for the snowplough (“Sign 9397 list”): six functions in place of nine. Five work and one, the plough, partly works. The total is now 1,223 functions; 742 work."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed the 9396’s lists (“Sign 9396 lists”): the right actuator alone folds the landing gear, the left one pushes the ramp, and the second lever’s directions are put right. The count stays at 742: the winch works for the right reason now; the landing gear and the ramp move every listed part and stay partly working until the solver stops carrying the winch along."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "Tracks drawn link by link now run round their wheels in the viewer (your report on the 9391 Crawler Crane): the 9391, 42006, 42055, 8272, 8275 and 42021. No set is held back from green for an unread track any more. A function about tracks now fails in the check unless its track runs, so four functions went from working to partly working: the 42038’s function 9, the 42042’s functions 2 and 9 (their tracks are drawn off their wheels in the files) and the 8257’s function 1 (a one-piece rubber tread, which stands still while its wheels turn). 739 functions work. Still to come, as a second part: the 42006, 8275 and 8272 run their tracks but do not yet roll along the ground."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "The check now stops where the viewer stops when two parts meet. 726 functions work on preview where 739 did; the 13 lost did not move right in the viewer either. Two results that got better in the check alone are held at partly by hand: the 42082’s cab door and the 8274’s unloading auger. Each early stop now gets its cause, one function at a time: of the first 100 looked at, 49 are real (doors, bonnets and tippers built closed), 6 are missing connections, 2 a fault in the 8868’s file, 6 a wrong motion of the solver, and 34 are not settled yet."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "You signed all eight items (\"Sign all 8\"): the 9397’s plough, the 42042’s tread, the 42038’s treads and list, the 8272’s list, the 42000’s rear drivers and front rockers, the 42110’s front drivers, the 8868’s piston rods, and the 42082’s cab door. 37 corrections are marked signed and four list changes are in. The eight sets were checked by name: preview goes from 726 to 736 working functions, as expected. Ten results are better. One note: the 42000’s rear suspension works, but two of its ways come back a little off their start; the solver owner looks at it."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "The 42078 Mack Anthem’s trailer now swings on its king pin with the container riding on it (function 7 works; 737 on preview). The container stands loose on the trailer and was read as part of the tractor. A second model in a file now rides on the second model it stands on. The container’s doors (function 12) do not open yet; the worker looks at them."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "You merged the one-file mend into main (\"Main is moved\"). GitHub published the three sites again: main as before (701 working functions), preview and preview-train at their newest commits. The sites had been stale since 15 November because a test on main read files that only your Mac has. Claude now looks at GitHub’s runs for the three sites every day and after every push."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude decided (208): a linear actuator at the end of its travel, pushed further by its own screw, is an end of travel; other slides at their ends stay held. The 42055's boom crank and the 42108's boom knob keep their results. The change is not merged yet."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged slides on demand (209): a part on an axle slides only where a function's first step or a Shift-press in the viewer asks. No result changes: 737 working functions. The 42078's doors wait for your sign-off."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged the slides held at their ends after their full check (220): no result changes, 737 working functions. Two results the check gives as works but the viewer does not show stay held (the 42078's doors until you sign them; the 8274's auger)."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged the longer turn for slow parts (228): the 8258's function 5 and the 42081's function 2 now work, 739 working functions. Claude dropped the contact rule (227) after its second measurement: 33 results worse, none better."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "You signed the 42078's doors (\"Sign 42078 doors\"): the correction for door 2 and function 12's list with its lift step. Function 12 now works: 740 working functions."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "You signed the 8110's crane (\"Sign 8110 crane\"): two corrections for the crane's shaft and the lever settings of functions 6 to 10. Its stored results are rewritten by the slow check."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "The Mac ran out of memory twice (16 check processes, 82 GB on 32 GB). Claude set a machine-wide limit: 16 GB and, in your words, \"10 max\" processes. You approved sharing shapes per part type, which takes most of a check's memory away."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Claude merged three mends to how the check reads parts' shapes (242, 247, 248) and a guard against a fault in the collision library, which took two faces lying in one plane for a crossing (249). Five false collision stops are gone; no result changes: 740 working functions. Every such change is now gated with a scan of all 190 models."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Claude merged a mend to the viewer's loading (253): two models had never opened in the viewer, the 42120 Rescue Hovercraft and the 42106 Stunt Show Truck & Bike. All 190 models now open, and a script that opens every one of them gates each change to the loading. The memory pool now serves the oldest waiter first (254)."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Claude merged the first mend for the slow viewer (256): a solver step on the 9397 Logging Truck's steering takes about 285 ms in the viewer, where it took about 520 ms. No result changes: 740 functions work, and the 42020 Twin-rotor Helicopter's wheels now come back. The 9395 Pick-Up Tow Truck's selector lever, which stuck after 4 degrees, now goes its whole way. The memory pool now counts a browser's memory (255)."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "9397 steering (\"still too slow, about 2 seconds\"): you could not judge it. Claude's figure of 285 ms was the wrong measure: each small turn of a drag costs about 1,400 ms. Working functions that slow are held at partly (258). The part you marked, a battery box lid joined to the steering shaft, goes to the worker."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Your priorities (260): per-set corrections and lists are worthwhile as a better OMR database, but the long tail must not hold up speed, the true state of the green sets, or models not tried yet. Claude ordered the work so: speed first, then the sweep, then general rules and the blind trial, then single-set faults."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Your question on being test-bound (269): yes. Every change had cost a full check of two to three hours, by each session for each branch. From now a branch is proven by an aimed check of the sets it can change, and preview gets one full check a day at most. Claude also merged the exact speed work (268): the 42100 Liebherr's function 7 is 3.5 times faster a step, the 9397's steering about 30%, with every result the same."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "The working set is in preview and on (272): the 9397's steering is 8 times faster for each step of a drag in the viewer. Your commit on main that splits the README into README, DEVELOPER.md and ARCHITECTURE.md is merged into preview."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The day's full check of preview (278): 740 functions work, 214 partly, 91 do not, the same as before the working set, the kept touches (274), the first move's reuse (275) and the check's tie (276). Three functions now carry the mark \"not back\" because the working set leaves a part out of place; the set stays on and the solver owner mends them."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The sweep's 144 are sorted (279): 100 shown after all, 27 held at partly, 17 doubtful and still at works. Working functions: 713, were 740. Stage A of the cheaper search gives the same results and almost no gain, so it is not merged (280)."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your point that all cores were busy day and night (281): most of that load was the test browsers, which drew the model in software, 3 to 4 cores each, idle or not. They now draw with the Mac's graphics card and take 0.2 of a core. The machine's load fell from about 40 to about 6, and a viewer test of five functions takes 135 s against 1,282 s."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The 16 collision stops, a first sort (282): seven are true contacts made by a wrong motion (a model rolling on the ground swings its landing-gear legs or tips an axle), four are tight builds that probably rub and pass, four wait for the booklet. Two holds on the 8063 were wrong and are lifted: 715 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The working set's fault is mended (285): the 42020's wheels and the 8274 when pushed no longer leave a part out of place, and the 9397's steering keeps its gain (19 ms a step against 216 ms with the set off). All 1,074 tests pass."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The viewer stops 12 more wheels, fans and sprockets where the check stops too (288): held, 700 functions work. Three more held from the sweep's second pass (286). The guard against a page that hangs is merged, at no cost in speed. Stage B of the cheaper search: the half that keeps every result is built now, the half that changes results waits (287)."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Three more held (289): one wheel of the 8840 that a collision stops, and the 42078's container doors, whose lock bars the viewer does not let slide. 697 functions work. The worker found that the check read 30 models differently from the viewer, and that the check's stored collision data was three days stale; both are being mended."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The cheaper search for a motion is merged, stages A and B1 (290): every result the same to the last bit, and a full solver step a fifth to a quarter quicker in the solver owner's measurements (the 42083's steering 500 to 400 ms). In the viewer the 9397's first move gains only 5%; the solver owner is asked why."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Two of the day's holds are wrong (291): the engines of the 42043 and the 42075 do run when the model is pushed; the sweep measured a crankshaft that had turned almost a whole turn as hardly moved. The sweep's measure is mended and six more holds of the same kind are swept again. The 8844's wheel is a real solver fault: to keep the frame still the solver runs the gear train backwards where the model should roll. That fault, rolling a model on the ground, is now the solver owner's first task."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Three holds lifted with the sweep's measure mended (293): the engines of the 42043 and the 42075 and the 42129's differential locks are shown. Five holds of the same kind stand. The check's stored collision data was stale or missing in 61 models and is made afresh (292); the check of those sets runs."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Why wheels stop when a model is rolled (294): in 12 of the 20 held cases a part that nothing drives, such as a liftarm on one pin or an idle drive train, swings or runs when the model rolls and hits its neighbour; on the real model it stays put. The solver owner now writes a rule for that as a proposal. A small follow-up makes the cheaper search gain in the viewer too: the 42083's first move 370 to 290 ms."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The booklet read for 46 functions with a short travel (297): in 29 the booklet shows the part moving far, in 5 the short travel is real, 12 it does not settle. None is held on that alone; the viewer is swept again on today's code first, since the first sweep's stops are from before today's mends. The sweep's 566 shown functions hold no misread part (296)."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The check of the 61 sets with fresh collision data (300): no result moved, so the stale data had cost nothing. With three wrong holds lifted, 700 functions work. Six functions that the booklet shows moving far and the viewer still stops are held (298); the count is 694 when their records are written."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The six booklet holds are in the records: 694 functions work. The viewer's drag now lifts a part the user asked to slide, as the check does (302); the 42078's container doors are still held, for another stop."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Two holds lifted (305): the 42038's steering and the 8835's mast tilt are shown once Shift is pressed on the part a friction pin holds. 696 functions work. Shift on a wheel or gear that no pin holds makes it slide and stop turning, with no undo but Reset; the worker builds an undo."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The Shift trap is closed (307): Shift again on a part that was asked to slide lets it turn as before, and the viewer's message says so."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The rule for parts that nothing drives (309): counted on 180 functions, such parts move today in 52, in every kind of drag. Some functions work only because a part is carried along by chance, where the model misses the drive to it (the 8261's steering). The rule is built behind a setting, off by default, and is turned on for rolling a model first, once its lists of gains and losses are in."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The worker's check runs (\"You may run the function check by name on your own branches\"): Claude passed your words to the worker; if its session still refuses, Claude runs the five proofs itself, now that it has your word."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "8849 Tractor, the gear 2 LDU off its axle (\"Sign the 8849's gear erratum\"): the worker applies it to our model file; Claude then checks the set and lifts the two holds if the wheels turn."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42080 Forest Machine, function 1 (\"Sign the 42080's control change\"): the control is now the motor. Checked: the motor turns 0.1 radian each way and a collision stops it, and the check still calls that working, so it is a doubtful green for the second sweep."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The blind trial's files (\"Yes, download the ten blind-trial files\"): downloaded from the LDraw OMR into omr/blind-trial/, ten files, 1.99 MB, each of the size listed. None is opened yet; a reader now gives the 28 functions their parts."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The stop rule is proven and merged (311): the check itself marks a wheel, track or shaft that a collision stops, exactly the 20 functions predicted, and 22 holds are gone. The 8849's two functions work with the gear on its axle. 698 functions work. Claude ran the proof itself, on your word; the worker rightly would not act on a permission passed on."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42129 Zetros, function 8 (\"Sign the 42129's wording\"): the list now says the steering wheel in the cab is for show, fixed on its axle, from booklet step 352. Words and source only; what the check tests is unchanged."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42112 Concrete Mixer Truck, the three floating pistons (\"Sign the 42112's piston erratum\"): the worker writes the erratum, nine lines 2 LDU lower; it takes effect with the cam reading, whose proof is running."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Two more of the worker's results proven by Claude and merged (313, 314): the check now reads the same mechanism as the viewer in the 16 models where it had differed, with no result changed, and its record names each friction pin it frees and the part it was freed for. The cam reading failed its proof; its two faults are found and being mended."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The blind trial is run (315): 10 of 28 functions work at the first pass on ten unseen models, 40% of those tried. The failures are System hinges, doors and clips that the model reads as fixed or loose, not the solver."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The rule for parts that nothing drives, tried on rolling a model (319): five stopped wheels now turn the whole way (8844, 8851, 8856, 42113, 42123), but the 9397's six wheels are lost to it, stopping after 0.23 radian. So it stays off and unmerged. Next: a part the rule holds still must give way when the motion comes to need it, as friction does; the same mend frees the parked cam reading."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "System hinges, doors and clips (\"B: a look only\"): the worker finds, for the 12 functions that failed in the blind trial, why each part is read fixed or loose, and counts how many non-Technic OMR sets it would open. About a day; nothing is changed and no check is run. You decide on building it when the figures are in."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The blind trial paid for itself (322): one of its failures led to a fault in the reading of the 186 sets. 4,617 parts in 86 models had no connection points, because their files hold a copy of the part under the set's own name. The mend is being built first of all."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Withdrawn (323): the finding that 4,617 parts in 86 models had no connection points was wrong. They do have them; the worker's count had looked in the wrong place, and Claude passed it on without a check of its own. Claude has now checked the 42131: all 1,679 of its copied parts are connected. Nothing was built, and no count will move from it."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The second sweep of every function (326, 327): of 698 working functions the viewer shows 590 outright and 39 more by the pointer. Two more are held (the 42078's bonnet, the 42080's pump crank); 38 wait for a closer look, most of them a control the pointer cannot find or move. Its records and times are merged."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Twelve sets with tracks did not stand on their tracks, for want of one figure for two track-link parts (325, 328). Claude checked it first this time. The figure is right, but with it 13 functions are worse: a model rolled on its tracks does not come back to where it began, and the 42038 cannot be steered where it stands. So it is not merged alone; the solver owner mends rolling on tracks with it."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "A part that rests on another now follows it when it moves (330): merged, with the 858 and the 8063 the same in every figure. It is what the parked cam reading needed; that is being checked on top of it."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The cam reading is merged, with your signed erratum for the 42112's pistons (332): the 42112's eight wheels now turn the whole way, where a cam ran into a piston after 0.53 radian. 697 functions work. It took three proofs and a mend in the solver to get there."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42070 6x6 All Terrain Tow Truck, the XL motor one stud too low and the motor as the control of functions 1 and 6 (\"Sign it\", your answer to that question): the worker writes the erratum; Claude then names the motor as the control and checks the set."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The five motor controls (\"Sign the five motor controls\") and the 42112's piston (\"Sign the 42112's piston change\"): both applied to the lists; the three sets are being checked."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Weekly usage at 91% (your note): the worker is paused and the solver owner holds after one last report, until the reset on 23 November or your word. Claude keeps to closing what is in flight."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your signed changes checked: the 42112's function 3 now works with the piston p176 named, and the five functions with a motor as their control (42100, 42131) work as before, turning the full way. 698 functions work. The mend for the 42078's drive is right but waits (337): with the engine driven, its pistons stop the truck rolling."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "At the pause (338): the rule for parts that nothing drives has five gains and five losses for rolling a model, one loss serious (the 8880), so it stays off. Against a model tipping as it rolls, the gentler of two mends is taken; it brings the track sets back exactly. Three branches wait, each right in itself, for a further mend. Work starts again there after the reset on 23 November."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The worker's last work before the pause is merged (339): the viewer now offers to free friction pins also when a drag stops short on slack (the 42004's knob then turns); the 42070's XL motor is on its axle by your signed erratum and is the control of functions 1 and 6, which both work from it. The sweep's mended pointer shows 28 of the 29 functions it had failed on. 698 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your three answers are applied (340). The function lists document every function. The 42131's hub power switch stays in the list with its parts and is marked not checked, with a reason that begins \"electrical:\", until electrical functions are in Kinebrick's scope. The 42129's centre differential is now worked as a hand works it: a front wheel turned with the other front wheel held and the motors still. Worked so it does not work, which is the true state: the drive does not pass between the centre differential and the axles in Kinebrick's reading of the truck (the same fault keeps function 1 partly); the old control, an axle inside the differential, had hidden it. The 42070's functions 2 and 7 have the motor as their control; both stay partly. 696 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The offer of main is prepared (341): three last sweep findings held, the full check of preview and the slow check of the 8110 pass with no other change, the tests pass. 693 functions work on preview."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The status pages go to GitHub with the site (342): after main is pushed, the Technic status page is at erik-larsen.github.io/kinebrick/status.html (main) and /preview/status.html, this decisions page at /preview/decisions.html, and the train status page at /preview-train/trains.html once the train branch has merged preview. They are public, as docs/plan.md is. Your shorter README is merged into preview."
     }
   ]
 }

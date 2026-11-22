@@ -1,0 +1,344 @@
+{
+  "set": "42116-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:24:36.274Z",
+  "load": 11.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 138,
+  "seconds": 87,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link.",
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 12,
+      "msPerStep": 1,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p98 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p63 18575": [
+              0,
+              2.58
+            ],
+            "p65 41239": [
+              5.4,
+              2.58
+            ],
+            "p139 18943": [
+              10.8,
+              0
+            ],
+            "p17 24116": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p98 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p63 18575": [
+              0,
+              2.58
+            ],
+            "p65 41239": [
+              5.4,
+              2.58
+            ],
+            "p139 18943": [
+              10.8,
+              0
+            ],
+            "p17 24116": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p98 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 2,
+      "does": "The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 1,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p87 32270",
+        "way": -1,
+        "went": -1.116,
+        "asked": 1.5,
+        "by": [
+          "29/70"
+        ]
+      },
+      "stops": [
+        "70/93",
+        "29/70"
+      ],
+      "A": [
+        {
+          "control": "p87 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.593,
+          "ms": 18,
+          "msOneCall": 12,
+          "stops": [
+            "70/93"
+          ],
+          "moved": {
+            "p73 41239 against p65 41239": [
+              23.72,
+              0
+            ],
+            "p139 18943 against p65 41239": [
+              11.86,
+              33.98
+            ],
+            "p65 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p87 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.116,
+          "ms": 27,
+          "msOneCall": 2,
+          "stops": [
+            "29/70"
+          ],
+          "moved": {
+            "p73 41239 against p65 41239": [
+              44.65,
+              0
+            ],
+            "p139 18943 against p65 41239": [
+              22.32,
+              63.96
+            ],
+            "p65 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p87 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p73 41239 against p65 41239",
+            "p139 18943 against p65 41239"
+          ],
+          "stops": [
+            "70/94",
+            "70/93"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p87 32270",
+          "judged": "stands",
+          "why": "stopped at +0.593 rad (70/93); -1.116 rad (29/70); kinds crank-and-link: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 15
+    },
+    {
+      "function": 3,
+      "does": "The four wheels roll freely; there's no steering and no drive to them.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 46
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p121 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 54,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p121 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 43,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p124 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p124 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 41,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p130 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p130 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 38,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p121 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p124 55981",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p127 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p130 55981",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 57
+    }
+  ]
+}

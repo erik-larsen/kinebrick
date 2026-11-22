@@ -1,0 +1,249 @@
+{
+  "set": "8880-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:39:01.913Z",
+  "load": 17.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1285,
+  "seconds": 54,
+  "functions": [
+    {
+      "function": 2,
+      "does": "In gear, the car rolling runs the V8: the gearbox's output shaft drives the crankshaft by a chain, and the eight pistons run up and down in their two banks.",
+      "verdict": "shown",
+      "msOneCall": 112,
+      "msPerStep": 50,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 4,
+        "reach": 0,
+        "A": 35,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1401 2998",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2131,
+          "msOneCall": 112,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              8.48
+            ],
+            "p767 2851": [
+              16.23,
+              0
+            ],
+            "p771 2851": [
+              18.47,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1401 2998",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2035,
+          "msOneCall": 75,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              14.68
+            ],
+            "p767 2851": [
+              18.15,
+              0
+            ],
+            "p771 2851": [
+              15.69,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1403 2998",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1988,
+          "msOneCall": 74,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              8.48
+            ],
+            "p767 2851": [
+              16.23,
+              0
+            ],
+            "p771 2851": [
+              18.47,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1403 2998",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1986,
+          "msOneCall": 72,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              14.68
+            ],
+            "p767 2851": [
+              18.15,
+              0
+            ],
+            "p771 2851": [
+              15.69,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1405 2998",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1981,
+          "msOneCall": 73,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              8.48
+            ],
+            "p767 2851": [
+              16.23,
+              0
+            ],
+            "p771 2851": [
+              18.47,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1405 2998",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1997,
+          "msOneCall": 73,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              14.68
+            ],
+            "p767 2851": [
+              18.15,
+              0
+            ],
+            "p771 2851": [
+              15.69,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1407 2998",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1970,
+          "msOneCall": 72,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              8.48
+            ],
+            "p767 2851": [
+              16.23,
+              0
+            ],
+            "p771 2851": [
+              18.47,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1407 2998",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1998,
+          "msOneCall": 70,
+          "stops": [],
+          "moved": {
+            "p750 2853": [
+              0,
+              166.63
+            ],
+            "p753 2852": [
+              19.86,
+              14.68
+            ],
+            "p767 2851": [
+              18.15,
+              0
+            ],
+            "p771 2851": [
+              15.69,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 54
+    }
+  ]
+}

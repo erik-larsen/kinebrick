@@ -53,7 +53,7 @@ if (process.argv[1]?.endsWith('collision-pairs.ts')) {
     if (!force && existsSync(file) && JSON.parse(readFileSync(file, 'utf-8')).key === key) continue;
     // The viewer's shapes: its parts' meshes, the first of the packed model's objects; a path's
     // parts (a chain's links) have none.
-    const shapes = (await partShapes(model, text)).slice(0, parts.length).map((s, i) => (parts[i].path ? [] : s.shape));
+    const shapes = (await partShapes(model, text, parts)).slice(0, parts.length).map((s, i) => (parts[i].path ? [] : s.shape));
     const { tested, near } = nearPairsOf(shapes, parts.map((p) => p.matrix));
     writeFileSync(file, JSON.stringify({ key, tested: tested.length, near }) + '\n');
     console.log(`${keptName(model)}: ${parts.length} parts, ${tested.length} pairs meet, ${near.length} near (${((Date.now() - start) / 1000).toFixed(1)} s)`);

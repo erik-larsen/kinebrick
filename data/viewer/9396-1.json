@@ -1,0 +1,244 @@
+{
+  "set": "9396-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:07:02.098Z",
+  "load": 11.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 956,
+  "seconds": 497,
+  "functions": [
+    {
+      "function": 3,
+      "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
+      "verdict": "shown",
+      "msOneCall": 353,
+      "msPerStep": 201,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 7,
+        "reach": 0,
+        "A": 14,
+        "B": 23
+      },
+      "stop": {
+        "control": "p367 32269",
+        "way": 1,
+        "went": 0.907,
+        "asked": 1.5,
+        "by": [
+          "347/1039"
+        ]
+      },
+      "stops": [
+        "347/1039"
+      ],
+      "A": [
+        {
+          "control": "p367 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.907,
+          "ms": 5108,
+          "msOneCall": 353,
+          "stops": [
+            "347/1039"
+          ],
+          "moved": {
+            "p570 32073": [
+              0,
+              86.61
+            ],
+            "p575 30395": [
+              17.32,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p367 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8621,
+          "msOneCall": 310,
+          "stops": [],
+          "moved": {
+            "p570 32073": [
+              0,
+              143.24
+            ],
+            "p575 30395": [
+              28.64,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p367 32269",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p570 32073",
+            "p575 30395"
+          ],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p367 32269",
+          "judged": "stands",
+          "why": "stopped at +0.907 rad (347/1039); kinds function-selector, winch: hook"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 50
+    },
+    {
+      "function": 6,
+      "does": "The wheels roll freely when the landing gear is down.",
+      "verdict": "shown",
+      "msOneCall": 806,
+      "msPerStep": 478,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 53,
+        "A": 86,
+        "B": 292
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p36 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 20498,
+          "msOneCall": 806,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p36 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 16351,
+          "msOneCall": 692,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p37 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14117,
+          "msOneCall": 644,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p37 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13915,
+          "msOneCall": 680,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1198 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 4387,
+          "msOneCall": 278,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1198 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4269,
+          "msOneCall": 288,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1224 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 4291,
+          "msOneCall": 261,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1224 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4268,
+          "msOneCall": 267,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p36 42610",
+          "seen": true,
+          "cameraTurns": 25,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p37 42610",
+          "seen": true,
+          "cameraTurns": 11,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1198 42610",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1224 42610",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 447
+    }
+  ]
+}

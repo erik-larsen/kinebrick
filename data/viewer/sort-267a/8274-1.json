@@ -1,0 +1,78 @@
+{
+  "set": "8274-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T00:01:25.651Z",
+  "load": 12,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1008,
+  "seconds": 31,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The front wheels drive through a differential, so they can turn at different speeds in a bend: with the reel's drive held, turning one front wheel turns the other the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 52,
+      "msPerStep": 9,
+      "time": {
+        "open": 17,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p970 41896",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 396,
+          "msOneCall": 52,
+          "stops": [],
+          "moved": {
+            "p968 41896": [
+              0,
+              85.94
+            ],
+            "p123 3648b": [
+              0,
+              0
+            ],
+            "p18 6573": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p970 41896",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 380,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p968 41896": [
+              0,
+              85.94
+            ],
+            "p123 3648b": [
+              0,
+              0
+            ],
+            "p18 6573": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 31
+    }
+  ]
+}

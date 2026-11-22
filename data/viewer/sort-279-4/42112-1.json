@@ -1,0 +1,160 @@
+{
+  "set": "42112-1",
+  "commit": "0dfe4c17",
+  "date": "2026-11-21T09:47:58.085Z",
+  "load": 10.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1156,
+  "seconds": 40,
+  "functions": [
+    {
+      "function": 6,
+      "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
+      "verdict": "shown",
+      "msOneCall": 98,
+      "msPerStep": 79,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 5,
+        "reach": 0,
+        "A": 3,
+        "B": 23
+      },
+      "stop": {
+        "control": "p1039 42112 - 33299b",
+        "way": -1,
+        "went": -0.523,
+        "asked": 1.5,
+        "by": [
+          "592/1123"
+        ]
+      },
+      "stops": [
+        "592/1123"
+      ],
+      "A": [
+        {
+          "control": "p1039 42112 - 33299b",
+          "way": 1,
+          "asked": 0.93,
+          "went": 0.93,
+          "ms": 1922,
+          "msOneCall": 98,
+          "stops": [],
+          "moved": {
+            "p347 32270": [
+              0,
+              53.29
+            ],
+            "p344 6589": [
+              0,
+              53.29
+            ],
+            "p342 94925": [
+              0,
+              53.29
+            ],
+            "p352 18946": [
+              0,
+              53.29
+            ],
+            "p361 32270": [
+              0,
+              53.29
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              15.99
+            ],
+            "p696 56145": [
+              0,
+              0
+            ],
+            "p17 60485": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1039 42112 - 33299b",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.523,
+          "ms": 1181,
+          "msOneCall": 82,
+          "stops": [
+            "592/1123"
+          ],
+          "moved": {
+            "p347 32270": [
+              0,
+              29.98
+            ],
+            "p344 6589": [
+              0,
+              29.98
+            ],
+            "p342 94925": [
+              0,
+              29.98
+            ],
+            "p352 18946": [
+              0,
+              29.98
+            ],
+            "p361 32270": [
+              0,
+              29.98
+            ],
+            "p1118 42112 - 65421p01": [
+              0,
+              8.99
+            ],
+            "p696 56145": [
+              0,
+              0
+            ],
+            "p17 60485": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1039 42112 - 33299b",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p347 32270",
+            "p344 6589",
+            "p342 94925",
+            "p352 18946",
+            "p361 32270",
+            "p1118 42112 - 65421p01"
+          ],
+          "stops": [
+            "592/1123"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p1039 42112 - 33299b",
+          "judged": "stands",
+          "why": "stopped at -0.523 rad (592/1123); kinds rotary-tool: mixer drum, function-selector"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 40
+    }
+  ]
+}

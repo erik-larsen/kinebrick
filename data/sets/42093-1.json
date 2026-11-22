@@ -86,13 +86,13 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 5,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 3,
     "counts": {
       "skipped": 1,
-      "partly": 1,
-      "works": 2
+      "partly": 2,
+      "works": 1
     },
     "loose": [],
     "errata": {
@@ -191,18 +191,18 @@
         ],
         "cause": "not-driven",
         "detail": "p194 22961",
-        "seconds": 1.1
+        "seconds": 0.8
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.07,
+            -0.07
           ],
           [
-            1.5,
-            -1.5
+            0.07,
+            -0.07
           ]
         ],
         "rates": [
@@ -253,11 +253,57 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 2.4
+        "cause": "stopped-endless",
+        "detail": "p567 56904: p118 41677 against p327 24316",
+        "collisionStops": [
+          [
+            0,
+            1,
+            118,
+            327,
+            0.07,
+            0.07
+          ],
+          [
+            0,
+            -1,
+            118,
+            338,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            1,
+            118,
+            338,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            -1,
+            118,
+            327,
+            0.07,
+            0.07
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -294,8 +340,9 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.5
       }
-    ]
+    ],
+    "peak": 459
   }
 }

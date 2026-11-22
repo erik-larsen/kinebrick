@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { dampedSolution, dot, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, symmetricEigen, Tier, withoutDirections } from '../src/linalg.ts';
+import { dampedSolution, dot, freeCut, leastTurning, NotFinite, nullSpace, orthonormalize, RANK_TOLERANCE, symmetricEigen, Tier, withoutDirections } from '../src/linalg.ts';
 
 // The rows times a vector.
 const times = (rows: number[][], x: number[]) => rows.map((row) => dot(row, x));
@@ -61,6 +61,24 @@ describe('the null space', () => {
 
   it('leaves everything free with no equations', () => {
     expect(nullSpace([], 3).length).toBe(3);
+  });
+
+  // A value that is not finite ends it at once (decision 280): on a NaN, the rook pivoting went round
+  // for ever. A NaN in a row, an ∞, and a NaN that comes of sums too large for a number.
+  it('ends with NotFinite on a row that holds NaN or ∞, or comes to NaN', () => {
+    expect(() => nullSpace([[1, 2, 0], [0, NaN, 1]], 3)).toThrow(NotFinite);
+    expect(() => nullSpace([[NaN, 0, 0]], 3)).toThrow(NotFinite);
+    expect(() => nullSpace([[1, Infinity, 0]], 3)).toThrow(NotFinite);
+    expect(() => nullSpace([[0, -Infinity, 1], [1, 1, 1]], 3)).toThrow(NotFinite);
+    // Sums too large for a number: it ends, with an answer or with NotFinite.
+    let ended: boolean;
+    try {
+      nullSpace([[1e308, 1e308, 0], [1e-308, 1e308, 1e308], [1, -1e308, 1e308]], 3);
+      ended = true;
+    } catch (err) {
+      ended = err instanceof NotFinite;
+    }
+    expect(ended).toBe(true);
   });
 });
 
@@ -190,5 +208,22 @@ describe('the damped solution', () => {
 
   it('gives null with no rows', () => {
     expect(dampedSolution([], [])).toBeNull();
+  });
+});
+
+// The cut between a tier's free motions and its costly ones (decision 191 of 2026-11-18): an
+// eigenvalue counts as free if it is at most `tiny`, or nearer than 2⁻³⁴ of the scale to the
+// largest free one, so that rounding can't put a direction on one side or the other of a near tie.
+describe('freeCut', () => {
+  it('cuts at tiny where the next eigenvalue is well clear of it', () => {
+    expect(freeCut([1, 1e-12, 0.5], 1e-11, 1)).toBe(1e-11);
+  });
+  it('takes in an eigenvalue just above the cut, and one just above that, as free', () => {
+    const near = 1e-11 + 2 ** -36;
+    const nearer = near + 2 ** -36;
+    expect(freeCut([1, 1e-12, near, nearer], 1e-11, 1)).toBe(nearer);
+  });
+  it('stops at the first gap of 2⁻³⁴ of the scale or more', () => {
+    expect(freeCut([1, 1e-12, 1e-12 + 2 ** -33, 0.5], 1e-11, 1)).toBe(1e-11);
   });
 });

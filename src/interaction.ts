@@ -37,8 +37,9 @@ import {
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
-import { Mechanism } from './mechanism.ts';
+import { Mechanism, motorRunPart } from './mechanism.ts';
 import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
+import { letGoOwnSlides } from './slide.ts';
 import { knobTurn } from './turn.ts';
 
 const HANDLE_COLOUR = 0x1d6fe0;
@@ -111,6 +112,7 @@ export interface InteractionSetup {
   onMotorChanged: () => void; // called after a part starts or stops being kept turning
   onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
   onDragEnded: () => void; // called after any drag
+  shiftDue?: () => boolean; // whether a changeover catch now holds its driving ring at another click-in place than the one it's in (then onDragEnded shifts it)
   onMotionStarted: () => void; // called as a drag that moves the mechanism, or a part kept turning or moving, starts
   allowScrub: (needed: number) => number | null; // lets the tyres scrub `needed` (a fraction of how far they roll) and a little over, if that's within the Tyre scrub option's limit: the new allowance in percent, or null if it isn't
   scrubLimit: number; // the most the Tyre scrub option allows, in percent
@@ -119,8 +121,11 @@ export interface InteractionSetup {
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
   shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
-  pinsToFree: (part: number) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found)
+  pinsToFree: (part: number, search?: boolean, at?: Vector3) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
+  pinsToShift: (part: number) => Promise<{ pins: number[]; why: 'more' | 'joints' | null }>; // the friction pins a press with Shift frees (see pinsForShift), and if none, why
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
+  slideOnAxle?: (part: number) => boolean; // asks for a part to slide on its axle (decision 206 of 2026-11-18, see slidesAsked): whether it can
+  unslideOnAxle?: (part: number) => boolean; // takes back a slide asked for, so the part turns again (decision 305): whether it was asked
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -153,8 +158,11 @@ interface Drag {
   lastY: number;
   owed: number; // how far the joint has still to turn to catch up with the pointer (turn only)
   sideOn: boolean; // its plane of turning is seen edge-on, so it's turned by pushing its near side (turn only)
+  putSlidesBack: () => void; // puts back the friction on the slides the drag let go (see letGoOwnSlides)
   target: Vector2 | null; // where the pointer is, if the grabbed point hasn't got there (push only)
   pushSteps: number; // steps taken towards the target so far (push only)
+  pinsAsked: boolean; // whether this drag, stopped on play, has asked for pins (see turnOwed)
+  startState: ReturnType<Kinematics['snapshot']>; // where everything was as the drag began
 }
 
 export function setUpInteraction(s: InteractionSetup) {
@@ -361,11 +369,14 @@ export function setUpInteraction(s: InteractionSetup) {
 
   // Points the arrow along the way the grabbed point moves fastest, of the motions the
   // mechanism allows (pushing a car's frame rolls it, rather than steering, which leaves the
-  // frame where it is). Returns false if the point can't move.
+  // frame where it is): the part's own motions, if it has any (see Kinematics.ownMotions).
+  // Returns false if the point can't move.
   function updateArrow(d: Drag): boolean {
     const g = grabPoint(d);
     let direction = new Vector3();
-    for (const m of s.kin.freeMotions()) {
+    const free = s.kin.freeMotions();
+    const own = s.kin.ownMotions(free, d.body, g);
+    for (const m of own.length ? own : free) {
       const v = s.kin.pointVelocity(m, d.body, g);
       if (v.length() > direction.length()) direction = v;
     }
@@ -380,16 +391,21 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // Moves the mechanism, in small steps, so the grabbed point gets as close as it can to the
-  // pointer on screen. Each step works out, for every allowed motion, how far the grabbed
+  // pointer on screen, by the part's own motions if it has any, else the whole model's. Each step works out, for every allowed motion, how far the grabbed
   // point would move on screen, and picks the mix of motions that best closes the gap
   // (least squares). Returns false if it ran out of time (`deadline`, from performance.now())
   // before getting there, else true (there, or as near as it can get).
   function pushTowards(d: Drag, target: Vector2, deadline: number): boolean {
     for (; d.pushSteps < MAX_STEPS; d.pushSteps++) {
       if (performance.now() > deadline) return false;
-      const motions = s.kin.freeMotions();
-      if (motions.length === 0) return true;
       const g = grabPoint(d);
+      // The part's own motions first (see Kinematics.ownMotions); the whole model only if none.
+      const free = s.kin.freeMotions();
+      const own = s.kin.ownMotions(free, d.body, g);
+      // Only those that move the grabbed point: one that doesn't has no speed on screen to weigh,
+      // and many of a part's own motions are other parts' (a model's every free hinge).
+      const motions = (own.length ? own : free).filter((m) => s.kin.pointVelocity(m, d.body, g).length() > 1e-9);
+      if (motions.length === 0) return true;
       const gScreen = toScreen(g);
       const gap = target.clone().sub(gScreen);
       if (gap.length() < 0.5) return true;
@@ -480,7 +496,21 @@ export function setUpInteraction(s: InteractionSetup) {
     while (d.owed !== 0 && performance.now() < deadline) {
       const step = Math.sign(d.owed) * Math.min(Math.abs(d.owed), TURN_STEP);
       const turned = s.kin.turnJoint(d.joint, step, allowed);
-      d.owed = Math.abs(turned - step) > 1e-12 ? 0 : d.owed - step;
+      const short = Math.abs(turned - step) > 1e-12;
+      // Stopped short on play, not by a collision: a jam that play only put off is a jam, and the
+      // friction pins that make it are asked for, as for a drag that can't move at all (decision
+      // 331: the 42004's knob, held by a pin in the boom it raises, turned 0.3 rad on play and
+      // stopped, and nothing offered the pin). Once a drag.
+      if (short && !d.pinsAsked && s.kin.lastTurnPlayed && !s.blockedBy()) {
+        d.pinsAsked = true;
+        showMessage('Finding the pins that hold it…', d.lastX, d.lastY);
+        waitingForPins = d;
+        freeIfHeld(d.part, d.lastX, d.lastY, "It can't go further this way: the mechanism is jammed", undefined, true, d.grabStart, () => {
+          s.kin.restore(d.startState);
+          s.onMoved();
+        });
+      }
+      d.owed = short ? 0 : d.owed - step;
       if (Math.abs(d.owed) < 1e-12) d.owed = 0;
     }
   }
@@ -591,6 +621,8 @@ export function setUpInteraction(s: InteractionSetup) {
   // Ctrl-click: starts the part turning; on a part already turning, turns it the other way;
   // on one already turned round, stops it.
   function cycleMotor(part: number, clientX: number, clientY: number) {
+    const pressed = part; // an electric motor, or the part it runs (see runBy)
+    part = runBy(part);
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
@@ -609,13 +641,14 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const scrubBefore = s.kin.scrub;
-    const why = startMotor(part, s.camera.position, false);
+    const why = startMotor(pressed, s.camera.position, false, (text) => showMessage(text, clientX, clientY));
     const raised = s.kin.scrub > scrubBefore ? ` · Tyre scrub raised to ${asPercent(s.kin.scrub)}` : '';
     showMessage(why ?? `${motorPush ? 'Moving' : 'Turning'} ${name} · Ctrl-click again to reverse${raised}`, clientX, clientY);
   }
 
   // Keeps a part turning, counter-clockwise (or clockwise) as seen from `seenFrom` (world
-  // coordinates). Returns why it can't, if it can't.
+  // coordinates). Returns why it can't, if it can't. Where friction pins hold an electric motor's
+  // output still, they're freed once, as it starts, and it starts then: `tell` hears how that went.
   // A part that doesn't spin on an axle is kept moving instead (see startPush), away from
   // `seenFrom`, or with `clockwise`, towards it.
   // Why a drag of `body` can't drive what it would drive from the wrong end (see lockedBy).
@@ -623,7 +656,12 @@ export function setUpInteraction(s: InteractionSetup) {
     return s.kin.lockedBy(body) === 'actuator' ? 'a linear actuator can only be worked from its input' : 'a worm gear can only be turned from the worm';
   }
 
-  function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
+  // The part a spin of `part` keeps turning: an electric motor's output (see motorRunPart).
+  const runBy = (part: number) => motorRunPart(s.mech, part);
+
+  function startMotor(part: number, seenFrom: Vector3, clockwise: boolean, tell?: (text: string) => void, pinsAsked = false): string | null {
+    const motor = s.mech.roles[part] === 'motor';
+    part = runBy(part);
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
     if (s.slideOf(part) || s.stickOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
@@ -640,7 +678,23 @@ export function setUpInteraction(s: InteractionSetup) {
       at.x,
       at.y,
     );
-    if (!canTurn) return `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
+    if (!canTurn) {
+      const why = `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
+      // An electric motor's output held still, perhaps by friction pins: the motor's drive forces
+      // them as a hand would, so they're freed (see freeIfHeld), once, as the motor starts, and
+      // the motor starts then (decision 155 of 2026-11-17). Never the motor's own output joint: it
+      // turns stiffly in the motor's gearbox, not on a pin (see pinsToFree). Nor any pin for a
+      // part that only fails to follow the output: nothing forces it.
+      if (!motor || wormLocked || pinsAsked) return why;
+      s.pinsToFree(part).then((pins) => {
+        if (!pins.length) return tell?.(why);
+        s.freePins(pins);
+        const again = startMotor(part, seenFrom, clockwise, tell, true); // `part` is the output now
+        const name = s.mech.bodies[s.mech.bodyOf[part]].name;
+        tell?.(again ?? `${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it freed · Turning ${name} · Ctrl-click again to reverse`);
+      });
+      return "Finding the pins that hold the motor's output…";
+    }
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
     motorMoved = false;
@@ -814,6 +868,10 @@ export function setUpInteraction(s: InteractionSetup) {
         }
       }
     }
+    // A catch the motor has turned past its shift angle shifts its ring now, as a drag's end
+    // would, and the motor goes on (decision 152): its holds are worked out afresh on the next
+    // step, the mechanism having been worked out afresh with the ring slid.
+    if (Math.abs(turned) > 1e-9 && s.shiftDue?.()) s.onDragEnded();
     s.onMoved();
   }
 
@@ -901,6 +959,7 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     if (!drag) return;
     s.kin.letGoAfterDrag();
+    drag.putSlidesBack();
     const turned = drag.joint >= 0 ? s.kin.jointAngles[drag.joint] - drag.startAngle : 0;
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
     if (drag.arc) {
@@ -918,13 +977,31 @@ export function setUpInteraction(s: InteractionSetup) {
   // Frees the friction pins that hold a part still, if freeing them lets it move (see
   // pinsToFree): the drag going on ends, and the mechanism is worked out afresh. If none would,
   // shows `why`.
-  function freeIfHeld(part: number, x: number, y: number, why: string) {
-    s.pinsToFree(part).then((pins) => {
-      if (!pins.length) return showMessage(why, x, y);
+  // With `otherwise`, which says whether the part can go some other way after all, that is
+  // tried first where no pins hold it.
+  // `search` false: only the pins pinsToFree names, not the trial search (see pinWorker.ts), for a
+  // part that moves on play (decision 139 of 2026-11-17).
+  // The drag that waits to hear which pins hold its part (see freeIfHeld), if one does.
+  let waitingForPins: Drag | null = null;
+  // `rewind`, if given, puts the model back before the pins are freed (a drag that went on play
+  // leaves its loops open, and the mechanism is worked out afresh from the parts where they are).
+  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true, at?: Vector3, rewind?: () => void) {
+    s.pinsToFree(part, search, at).then((pins) => {
+      waitingForPins = null;
+      if (!pins.length) return otherwise?.() ? undefined : showMessage(why, x, y);
       endDrag();
+      rewind?.();
       s.freePins(pins);
       showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
     });
+  }
+
+  // Where no friction pins hold a part pressed with Shift, it may slide on its axle (a lock bar,
+  // a pin to pull): asks for that, and says so if it can.
+  function slidesOnAxle(part: number, x: number, y: number) {
+    if (!s.slideOnAxle?.(part)) return false;
+    showMessage('It can slide along its axle: drag it. Shift again lets it turn as before', x, y);
+    return true;
   }
 
   // Runs before the camera controls see the press (capture phase), so a press on a part
@@ -951,13 +1028,35 @@ export function setUpInteraction(s: InteractionSetup) {
         cycleMotor(hit.part, e.clientX, e.clientY);
         return;
       }
+      if (e.shiftKey && s.mech.slid?.includes(hit.part) && s.unslideOnAxle?.(hit.part)) {
+        // Shift on a part asked to slide on its axle takes that back: it turns again as before.
+        e.stopImmediatePropagation();
+        showMessage('It turns on its axle again', e.clientX, e.clientY);
+        return;
+      }
       if (e.shiftKey && s.mech.bodyOf[hit.part] === 0) {
         // Shift held: a part of the frame (which a drag would push, a car rolling) may be held to
         // it only by friction pins (a door on its hinges): free them, so it can move. Keep the
         // camera from moving.
         e.stopImmediatePropagation();
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
-        freeIfHeld(hit.part, e.clientX, e.clientY, 'This part is held by more than friction pins');
+        const [x, y] = [e.clientX, e.clientY];
+        freeIfHeld(hit.part, x, y, 'This part is held by more than friction pins', () => slidesOnAxle(hit.part, x, y));
+        return;
+      }
+      if (e.shiftKey) {
+        // Shift held on any other part: friction pins may hold it in a bigger body, which a drag
+        // turns whole (the 42082's cab door, fused to the cab, so a drag of it slews the cab):
+        // free those that hold it in its body, so it can move on its own (decision 173 of
+        // 2026-11-17). A plain drag is as it was.
+        e.stopImmediatePropagation();
+        const [x, y] = [e.clientX, e.clientY];
+        showMessage('Finding the pins that hold it…', x, y);
+        s.pinsToShift(hit.part).then(({ pins, why }) => {
+          if (!pins.length) return slidesOnAxle(hit.part, x, y) ? undefined : showMessage(why === 'joints' ? 'No friction pins hold this part: drag it' : 'This part is held by more than friction pins', x, y);
+          s.freePins(pins);
+          showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
+        });
         return;
       }
       s.controls.enabled = false;
@@ -986,7 +1085,10 @@ export function setUpInteraction(s: InteractionSetup) {
       // rod) is pushed.
       const link = s.kin.parentLink(body);
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
-      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
+      // A part asked to slide on its axle (Shift, see slidesOnAxle) is pushed with its own slides
+      // let go, for the length of the drag, as a hand overcomes the friction on its axle (see
+      // letGoOwnSlides): held, the 42078's lock bar could not be lifted, where the check lifts it.
+      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, pinsAsked: false, startState: s.kin.snapshot(), sideOn: false, putSlidesBack: letGoOwnSlides(s.mech, body) };
       hideLabel();
       s.onMotionStarted();
 
@@ -994,7 +1096,10 @@ export function setUpInteraction(s: InteractionSetup) {
       // gets more (see raiseScrub) if it can.
       const d = drag;
       let wormLocked = false;
-      const canMove = possibleWithScrub(
+      // A part that hangs on a hinge whose hinge has no exact motion can't start a push where it
+      // hangs: it's held, perhaps by friction pins, as the check has it (see Kinematics.hingeStuck).
+      const hingeStuck = d.joint < 0 && s.kin.hingeStuck(body, [grabStart]);
+      const canMove = !hingeStuck && possibleWithScrub(
         () => {
           if (d.joint >= 0) {
             wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null, d.joint);
@@ -1002,31 +1107,57 @@ export function setUpInteraction(s: InteractionSetup) {
             const directions = grabDirections(d);
             if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
           }
-          return wormLocked || (d.joint >= 0 ? s.kin.jointMotion(d.joint) !== null : grabDirections(d) > 0);
+          // An exact motion only: play is the last resort, after friction pins (see below).
+          return wormLocked || (d.joint >= 0 ? s.kin.jointMotion(d.joint, false) !== null : grabDirections(d) > 0);
         },
         e.clientX,
         e.clientY,
       );
 
+      // The arc a turning drag shows, from the hub to where the part was grabbed.
+      const showArc = () => {
+        const { hub } = turnAxis(d);
+        const radius = Math.max(hit.point.distanceTo(hub), MIN_ARC_RADIUS);
+        d.arc = makeArc(radius);
+        s.ldrawSpace.add(d.arc);
+        updateArc(d);
+      };
       if (!canMove && wormLocked) {
         showMessage(`This part can't move: ${lockedWhy(body)}`, e.clientX, e.clientY);
       } else if (!canMove) {
         // Held still, perhaps by friction pins (a door on its hinges): ask which pins to free so
-        // it can move. If none would, it can't move.
+        // it can move. If none would, a turning drag may still go on play (see Kinematics.loopPlay),
+        // as the check's does: play is the last resort, after the pins. Else it can't move.
         const why =
           s.kin.freeMotions().length === 0
             ? "Can't move: the mechanism is jammed"
             : `This part can't move: ${s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck()}`;
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
-        freeIfHeld(hit.part, e.clientX, e.clientY, why);
+        const onPlay = () => d.joint >= 0 && drag === d && s.kin.jointMotion(d.joint) !== null;
+        // The trial search for pins only for a part that can't move even on play: where play moves
+        // it, freeing a pin elsewhere could let a part swing away (decision 139 of 2026-11-17). The
+        // same test as the check's (see Kinematics.dragMoves); the drag keeps its holds.
+        const movesOnPlay = d.joint >= 0 && s.kin.dragMoves(body, true, true);
+        waitingForPins = d;
+        freeIfHeld(hit.part, e.clientX, e.clientY, why, () => {
+          waitingForPins = null;
+          // A push whose hinge is stuck, where no pins would free it: pushed as before, which may
+          // carry the model (see updateArrow).
+          if (hingeStuck && drag === d && grabDirections(d) > 0) {
+            showingMessage = false;
+            hideLabel();
+            return updateArrow(d);
+          }
+          if (!onPlay()) return false;
+          showingMessage = false;
+          hideLabel();
+          showArc();
+          return true;
+        }, !movesOnPlay, grabStart);
       } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {
-        const { hub } = turnAxis(drag);
-        const radius = Math.max(hit.point.distanceTo(hub), MIN_ARC_RADIUS);
-        drag.arc = makeArc(radius);
-        s.ldrawSpace.add(drag.arc);
-        updateArc(drag);
+        showArc();
       } else if (!updateArrow(drag)) {
         const why = s.kin.frameFixed() ? 'the model has no means of locomotion' : whyStuck();
         showMessage(`This part can't move: ${why}`, e.clientX, e.clientY);
@@ -1067,10 +1198,13 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     if (e.pointerId !== drag.pointerId) return; // another finger or pointer
     if (drag.joint >= 0) {
-      turnTowards(drag, e.clientX, e.clientY);
+      // A turning drag with no arc can't turn, or waits to hear whether pins hold it (see
+      // freeIfHeld): it doesn't go on play in the meantime.
+      if (drag.arc) turnTowards(drag, e.clientX, e.clientY);
       drag.lastX = e.clientX;
       drag.lastY = e.clientY;
-    } else {
+    } else if (drag !== waitingForPins) {
+      // A push waiting to hear whether pins hold it (see freeIfHeld) doesn't go meanwhile.
       drag.target = new Vector2(e.clientX, e.clientY);
       drag.pushSteps = 0;
     }

@@ -1,0 +1,303 @@
+{
+  "set": "8838-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:09:40.304Z",
+  "load": 12,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 233,
+  "seconds": 40,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p227 2910, p219 3706, p220 8838 - 2903 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 3
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p225 2910",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p227 2910": [
+              0,
+              0
+            ],
+            "p219 3706": [
+              0,
+              0
+            ],
+            "p220 8838 - 2903": [
+              0,
+              0
+            ],
+            "p224 2909": [
+              0,
+              0
+            ],
+            "p226 2909": [
+              0,
+              0
+            ],
+            "p77 2905": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p225 2910",
+          "way": -1,
+          "asked": 1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p227 2910": [
+              0,
+              0
+            ],
+            "p219 3706": [
+              0,
+              0
+            ],
+            "p220 8838 - 2903": [
+              0,
+              0
+            ],
+            "p224 2909": [
+              0,
+              0
+            ],
+            "p226 2909": [
+              0,
+              0
+            ],
+            "p77 2905": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p225 2910",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p227 2910",
+            "p219 3706",
+            "p220 8838 - 2903"
+          ],
+          "stops": [
+            "81/113"
+          ]
+        }
+      ],
+      "seconds": 7
+    },
+    {
+      "function": 5,
+      "does": "Turning the rear wheel works the two-cylinder engine: a 24-tooth gear on the rear wheel drives the chain to a 16-tooth gear on the swinging arm's pivot axle; a 24-tooth gear on that axle turns an 8-tooth gear on a 6-long axle, whose 14-tooth bevel gear turns the bevel gear on the crankshaft, so the two pistons go in and out of their cylinders on either side.",
+      "verdict": "shown",
+      "msOneCall": 32,
+      "msPerStep": 5,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p171 8838 - 2903",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 202,
+          "msOneCall": 32,
+          "stops": [],
+          "moved": {
+            "p176 3648a": [
+              0,
+              85.94
+            ],
+            "p62 4019": [
+              0,
+              128.92
+            ],
+            "p63 3648a": [
+              0,
+              128.92
+            ],
+            "p25 4143": [
+              0,
+              386.75
+            ],
+            "p1 2853": [
+              67.44,
+              386.75
+            ],
+            "p5 2851": [
+              45.29,
+              0
+            ],
+            "p6 2851": [
+              43.99,
+              0
+            ],
+            "p19 2850a": [
+              0,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p171 8838 - 2903",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 188,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p176 3648a": [
+              0,
+              85.94
+            ],
+            "p62 4019": [
+              0,
+              128.92
+            ],
+            "p63 3648a": [
+              0,
+              128.92
+            ],
+            "p25 4143": [
+              0,
+              386.75
+            ],
+            "p1 2853": [
+              67.44,
+              386.75
+            ],
+            "p5 2851": [
+              43.99,
+              0
+            ],
+            "p6 2851": [
+              45.29,
+              0
+            ],
+            "p19 2850a": [
+              0,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p171 8838 - 2903",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p176 3648a",
+            "p62 4019",
+            "p63 3648a",
+            "p25 4143",
+            "p1 2853",
+            "p5 2851",
+            "p6 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 6,
+      "does": "The front wheel rolls freely on its 6-long axle.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 2,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p220 8838 - 2903",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 82,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p220 8838 - 2903",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 53,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p220 8838 - 2903",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    }
+  ]
+}

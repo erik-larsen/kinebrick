@@ -1,0 +1,346 @@
+{
+  "set": "42071-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:26:48.796Z",
+  "load": 8.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 170,
+  "seconds": 93,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The upright axle behind the cab steers the compactor by bending it in the middle: its 12 tooth bevel gear turns a 20 tooth bevel gear that turns the turntable carrying the front half.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p92 26287",
+          "way": 1,
+          "asked": 1.33,
+          "went": 1.33,
+          "ms": 32,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p20 18575": [
+              0,
+              45.72
+            ],
+            "p22 99010": [
+              0,
+              32.66
+            ],
+            "p145 64782": [
+              120.37,
+              32.66
+            ],
+            "p139 57520": [
+              80.61,
+              32.66
+            ],
+            "p136 57520": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p92 26287",
+          "way": -1,
+          "asked": 1.33,
+          "went": -1.33,
+          "ms": 24,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p20 18575": [
+              0,
+              45.72
+            ],
+            "p22 99010": [
+              0,
+              32.66
+            ],
+            "p145 64782": [
+              120.37,
+              32.66
+            ],
+            "p139 57520": [
+              80.61,
+              32.66
+            ],
+            "p136 57520": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p92 26287",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p20 18575",
+            "p22 99010",
+            "p145 64782",
+            "p139 57520"
+          ],
+          "stops": [
+            "4/130",
+            "3/99"
+          ]
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 2,
+      "does": "The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p120 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p118 27938": [
+              0,
+              85.94
+            ],
+            "p124 18575": [
+              0,
+              4.3
+            ],
+            "p122 32348": [
+              0,
+              4.3
+            ],
+            "p145 64782": [
+              8,
+              2.49
+            ],
+            "p22 99010": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 59,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p118 27938": [
+              0,
+              85.94
+            ],
+            "p124 18575": [
+              0,
+              4.3
+            ],
+            "p122 32348": [
+              0,
+              4.3
+            ],
+            "p145 64782": [
+              8.09,
+              2.5
+            ],
+            "p22 99010": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p120 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p124 18575",
+            "p122 32348"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    },
+    {
+      "function": 3,
+      "does": "The four spiked compactor wheels roll freely; there is no drive.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 0,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 7,
+        "A": 0,
+        "B": 46
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p136 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 21,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p136 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 18,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p137 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p137 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 15,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p134 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p134 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p139 57520",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 14,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p139 57520",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p136 57520",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p137 57520",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p134 57520",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p139 57520",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 62
+    }
+  ]
+}

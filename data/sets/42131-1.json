@@ -25,7 +25,7 @@
           "crawler-tracks"
         ],
         "source": "book 1 page 15 (the track drawing); steps 1-21 (the two drive motors); the gearing is inferred from the model",
-        "control": "p2686 32062",
+        "control": "p13 42131 - 69730",
         "moves": [
           "p3610 42529",
           "p6163 42131 - 69910"
@@ -33,7 +33,7 @@
         "stays": [
           "p3613 42529"
         ],
-        "note": "The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
       },
       {
         "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
@@ -43,7 +43,7 @@
           "crawler-tracks"
         ],
         "source": "book 1 page 15 and steps 1-21; the gearing is inferred from the model",
-        "control": "p2688 32062",
+        "control": "p1319 42131 - 69730",
         "moves": [
           "p3613 42529",
           "p6105 42131 - 69910"
@@ -51,7 +51,7 @@
         "stays": [
           "p3610 42529"
         ],
-        "note": "The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
       },
       {
         "does": "With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot.",
@@ -60,8 +60,8 @@
         ],
         "source": "book 1 page 15; what the two track motors do together",
         "control": [
-          "p2686 32062",
-          "p2688 32062"
+          "p13 42131 - 69730",
+          "p1319 42131 - 69730"
         ],
         "moves": [
           "p3610 42529",
@@ -76,8 +76,8 @@
         ],
         "source": "book 1 steps 241-262 (the engine); that it is driven by the differential between the drive motors is inferred from the model (p5 62821, p2647 42131 - 18575, p2685 32270, p3433 94925, p3413 18946, p3746 94925)",
         "control": [
-          "p2686 32062",
-          "p2688 32062"
+          "p13 42131 - 69730",
+          "p1319 42131 - 69730"
         ],
         "moves": [
           "p5 62821",
@@ -190,7 +190,9 @@
         "control": "p3449 32056",
         "moves": [
           "p3441 4274"
-        ]
+        ],
+        "skip": "electrical: the lever only presses the hub's power button; listed and not checked until electrical functions are in Kinebrick's scope",
+        "note": "Signed by Erik, 2026-11-21: \"for the electronics on/off switch I think we should document but mark no-op for now\"; electrical functions come into scope later, as they can drive movement. The control and the part it moves are kept for that time."
       },
       {
         "does": "The two drive motors and two gearbox motors are worked from the LEGO Technic Control+ app, which also shows the gearbox test and challenges.",
@@ -232,22 +234,20 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 412,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 533,
     "counts": {
       "works": 4,
-      "partly": 6,
-      "not checked": 1,
-      "skipped": 2
+      "partly": 5,
+      "skipped": 3,
+      "not checked": 1
     },
     "loose": [
       "p14 23816a",
       "p1320 23816a",
       "p2872 23816c02",
       "p3019 23816c02",
-      "p3297 18947",
-      "p3326 18947",
       "p3980 15458",
       "p3981 42131 - 61332",
       "p3982 42131 - 61332",
@@ -260,80 +260,7 @@
       "p4116 43898",
       "p4117 43898",
       "p4118 42131 - 65473",
-      "p4119 42131 - 65473",
-      "p6005 62520",
-      "p6006 62519",
-      "p6007 32062",
-      "p6011 59443",
-      "p6012 23948",
-      "p6013 42131 - 77590",
-      "p6015 42131 - 32523",
-      "p6016 42131 - 42924",
-      "p6017 42131 - 42924",
-      "p6018 15458",
-      "p6019 42131 - 61332",
-      "p6020 42131 - 42924",
-      "p6021 32316",
-      "p6022 42131 - 61332",
-      "p6023 32316",
-      "p6024 42131 - 61332",
-      "p6025 42131 - 61332",
-      "p6026 11947",
-      "p6027 43093",
-      "p6028 32524",
-      "p6029 42131 - 42924",
-      "p6030 42131 - 42924",
-      "p6031 42131 - 32523",
-      "p6032 15458",
-      "p6033 42131 - 61332",
-      "p6034 42131 - 61332",
-      "p6035 42131 - 61332",
-      "p6036 42131 - 61332",
-      "p6037 32278",
-      "p6038 42131 - 42924",
-      "p6039 42131 - 42924",
-      "p6040 42131 - 73507",
-      "p6041 87083",
-      "p6042 42003",
-      "p6043 42131 - 73507",
-      "p6044 3713",
-      "p6045 42131 - 61332",
-      "p6046 18654",
-      "p6047 42131 - 61332",
-      "p6048 42131 - 42924",
-      "p6049 42131 - 71710",
-      "p6050 42131 - 42924",
-      "p6051 42131 - 42924",
-      "p6052 32524",
-      "p6053 42131 - 73507",
-      "p6054 42131 - 61332",
-      "p6055 42131 - 61332",
-      "p6056 32316",
-      "p6057 42131 - 42924",
-      "p6058 42131 - 61332",
-      "p6059 32316",
-      "p6060 4519",
-      "p6061 4519",
-      "p6062 99773",
-      "p6063 11478",
-      "p6064 11478",
-      "p6065 99773",
-      "p6066 4274",
-      "p6067 4274",
-      "p6068 61904",
-      "p6069 32062",
-      "p6070 32062",
-      "p6071 4519",
-      "p6072 62520",
-      "p6073 62520",
-      "p6074 62519",
-      "p6075 32062",
-      "p6076 47157",
-      "p6077 42131 - u9559c01",
-      "p6078 62274c01",
-      "p6079 59443",
-      "p6080 23948",
-      "p6081 42131 - 77590"
+      "p4119 42131 - 65473"
     ],
     "functions": [
       {
@@ -389,7 +316,8 @@
             ]
           ]
         ],
-        "seconds": 24.6
+        "seconds": 48.9,
+        "peak": 1048
       },
       {
         "result": "works",
@@ -444,7 +372,8 @@
             ]
           ]
         ],
-        "seconds": 25.1
+        "seconds": 49.6,
+        "peak": 1020
       },
       {
         "result": "works",
@@ -540,10 +469,11 @@
             "p3613 42529"
           ]
         ],
-        "seconds": 52.4
+        "seconds": 98.6,
+        "peak": 1042
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -554,58 +484,52 @@
             -1.5
           ]
         ],
-        "still": [
-          "p5 62821",
-          "p3661 2853",
-          "p3669 2851",
-          "p3670 2851"
-        ],
         "rates": [
           {
             "p5 62821": [
-              0,
-              3.57e-36
+              0.5,
+              3.86e-13
             ],
             "p3661 2853": [
-              0,
-              3.95e-32
+              1.17,
+              0
             ],
             "p3669 2851": [
               0,
-              0
+              3.81
             ],
             "p3670 2851": [
               0,
-              0
+              10.3
             ]
           },
           {
             "p5 62821": [
-              0,
-              5.87e-36
+              0.5,
+              8.13e-13
             ],
             "p3661 2853": [
-              0,
-              1.5e-32
+              1.17,
+              0
             ],
             "p3669 2851": [
               0,
-              0
+              3.81
             ],
             "p3670 2851": [
               0,
-              0
+              10.3
             ]
           }
         ],
         "expected": [
           {
-            "p3669 2851": 0,
-            "p3670 2851": 0
+            "p3669 2851": 3.81,
+            "p3670 2851": 10.3
           },
           {
-            "p3669 2851": 0,
-            "p3670 2851": 0
+            "p3669 2851": 3.81,
+            "p3670 2851": 10.3
           }
         ],
         "back": [
@@ -653,16 +577,21 @@
           ]
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p5 62821",
+            "p3661 2853",
+            "p3669 2851",
+            "p3670 2851"
+          ],
+          [
+            "p5 62821",
+            "p3661 2853",
+            "p3669 2851",
+            "p3670 2851"
+          ]
         ],
-        "judged": [
-          0,
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p5 62821",
-        "seconds": 52.1
+        "seconds": 98.7,
+        "peak": 1004
       },
       {
         "result": "partly",
@@ -715,9 +644,10 @@
         "judged": [
           0
         ],
-        "cause": "loose-part",
+        "cause": "part-fixed",
         "detail": "p3297 18947",
-        "seconds": 41.5
+        "seconds": 35.8,
+        "peak": 1013
       },
       {
         "result": "partly",
@@ -744,7 +674,7 @@
             ],
             "p5917 32524": [
               0,
-              5.89e-62
+              3.97e-74
             ],
             "p6010 62274c01 against p6009 42131 - u9559c01": [
               0,
@@ -788,7 +718,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p3399 62274c01 against p3398 42131 - u9559c01",
-        "seconds": 42.1
+        "seconds": 37.5,
+        "peak": 1002
       },
       {
         "result": "partly",
@@ -857,7 +788,8 @@
         ],
         "cause": "not-driven",
         "detail": "p4122 62274c01 against p4121 42131 - u9559c01",
-        "seconds": 41.5
+        "seconds": 35.7,
+        "peak": 1023
       },
       {
         "result": "partly",
@@ -884,7 +816,7 @@
             ],
             "p6208 32525 against p5947 42131 - 32523": [
               0,
-              3.79e-14
+              0
             ],
             "p4122 62274c01 against p4121 42131 - u9559c01": [
               0,
@@ -923,9 +855,10 @@
         "judged": [
           0
         ],
-        "cause": "loose-part",
-        "detail": "p6078 62274c01",
-        "seconds": 39.9
+        "cause": "not-driven",
+        "detail": "p6010 62274c01 against p6009 42131 - u9559c01",
+        "seconds": 35.9,
+        "peak": 1016
       },
       {
         "result": "partly",
@@ -988,49 +921,11 @@
         ],
         "cause": "not-driven",
         "detail": "p5717 42131 - 71710",
-        "seconds": 39.4
+        "seconds": 35.8,
+        "peak": 1031
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p3441 4274": [
-              1,
-              53.8
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "seconds": 26.2
+        "result": "skipped"
       },
       {
         "result": "not checked"

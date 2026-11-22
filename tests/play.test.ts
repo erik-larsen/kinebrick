@@ -25,14 +25,17 @@ function mechanism(joints: Joint[], count: number): Mechanism {
   };
 }
 
-// How far joint 0 turns, tried in steps of 0.025.
-function turn(kin: Kinematics, angle: number): number {
+// How far joint 0 turns, tried in steps of 0.025: as a drag of body 1, which it turns, unless
+// `drag` is false. Only a drag of a joint takes play (see Kinematics.jointMotion).
+function turn(kin: Kinematics, angle: number, drag = true): number {
+  if (drag) kin.holdWhatTheDragDoesntNeed(1, () => kin.jointMotion(0) !== null, 0);
   let turned = 0;
   for (let i = 0; i < Math.round(Math.abs(angle) / 0.025); i++) {
     const t = kin.turnJoint(0, Math.sign(angle) * 0.025);
     turned += t;
     if (Math.abs(t) < 1e-9) break;
   }
+  if (drag) kin.letGoAfterDrag();
   return turned;
 }
 
@@ -43,17 +46,23 @@ function turn(kin: Kinematics, angle: number): number {
 // on two towballs 81 LDU apart, against arms 80 apart).
 const nearlyFitting = [pin(0, 1, 0, 0), pin(0, 2, 0, 80), pin(1, 3, 40, 0), pin(2, 3, 40, 80), pin(1, 4, 20, 0), pin(2, 4, 20, 81)];
 
+// Play as an amount (decision 121 of 2026-11-16): the second link's loop has four turning joints,
+// each with 0.35 LDU of clearance (0.1 across and 0.25 along), so it may open 1.4 LDU.
 describe('a loop of rigid parts that fits only as built', () => {
   it('turns on its play: a quarter radian, where the misfit is about 0.03 LDU', () => {
     expect(turn(new Kinematics(mechanism(nearlyFitting, 5)), 0.25)).toBeCloseTo(0.25, 6);
   });
 
-  it('stops once the misfit outgrows the play (0.1 LDU, at about 0.45 radians), and turns back', () => {
+  it('stops once the misfit outgrows the clearances of its joints (1.4 LDU, at about 1.7 radians), and turns back', () => {
     const kin = new Kinematics(mechanism(nearlyFitting, 5));
-    const out = turn(kin, 1);
-    expect(out).toBeGreaterThan(0.3);
-    expect(out).toBeLessThan(0.6);
+    const out = turn(kin, 3);
+    expect(out).toBeGreaterThan(1.5);
+    expect(out).toBeLessThan(2.2);
     expect(turn(kin, -out)).toBeCloseTo(-out, 6);
+  });
+
+  it("takes no play where nothing drags it: play is the last resort, a drag's", () => {
+    expect(turn(new Kinematics(mechanism(nearlyFitting, 5)), 0.25, false)).toBe(0);
   });
 });
 

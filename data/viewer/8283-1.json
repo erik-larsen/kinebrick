@@ -1,0 +1,291 @@
+{
+  "set": "8283-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:18:52.139Z",
+  "load": 15.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 318,
+  "seconds": 106,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Turning the axle end at the boom's head tilts the bucket: a worm on that axle turns an 8-tooth gear on the bucket's pivot axle.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 18,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p203 59426",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 60,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p205 4716 against p223 41239": [
+              0,
+              85.94
+            ],
+            "p202 3647 against p223 41239": [
+              0,
+              10.74
+            ],
+            "p310 2951 against p223 41239": [
+              7.5,
+              10.74
+            ],
+            "p223 41239 against p105 32525": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p203 59426",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 51,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p205 4716 against p223 41239": [
+              0,
+              85.94
+            ],
+            "p202 3647 against p223 41239": [
+              0,
+              10.74
+            ],
+            "p310 2951 against p223 41239": [
+              7.5,
+              10.74
+            ],
+            "p223 41239 against p105 32525": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p203 59426",
+          "seen": true,
+          "cameraTurns": 24,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p205 4716 against p223 41239",
+            "p202 3647 against p223 41239",
+            "p310 2951 against p223 41239"
+          ],
+          "stops": [
+            "ground: p310"
+          ]
+        }
+      ],
+      "seconds": 34
+    },
+    {
+      "function": 5,
+      "does": "The four wheels roll freely; nothing drives them.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 2,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 1,
+        "B": 44
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p311 6595",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 96,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p311 6595",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 86,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p313 6595",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 80,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p313 6595",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 81,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p315 6595",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p315 6595",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 76,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p317 6595",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 75,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p317 6595",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 76,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p311 6595",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p313 6595",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p315 6595",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p317 6595",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 57
+    },
+    {
+      "function": 6,
+      "does": "The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 1,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p231 30663",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p231 30663",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 26,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p231 30663",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    }
+  ]
+}

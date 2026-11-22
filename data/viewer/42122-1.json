@@ -1,0 +1,665 @@
+{
+  "set": "42122-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:54:01.820Z",
+  "load": 9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 657,
+  "seconds": 172,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The front axle swings side to side on a turntable under the chassis, so the front wheels follow rough ground (pendular suspension).",
+      "verdict": "shown",
+      "msOneCall": 33,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 0,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p122 32524",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 22,
+          "msOneCall": 33,
+          "stops": [],
+          "moved": {
+            "p122 32524": [
+              2.6,
+              7.45
+            ],
+            "p157 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p122 32524",
+          "way": -1,
+          "asked": 0.13,
+          "went": -0.13,
+          "ms": 20,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p122 32524": [
+              2.6,
+              7.45
+            ],
+            "p157 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p122 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p122 32524"
+          ],
+          "stops": [
+            "151/248",
+            "147/248",
+            "150/254",
+            "146/254"
+          ]
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 5,
+      "does": "The 16 tooth gear on the front bumper winds the winch drum, reeling the string in or out to raise or lower the tow hook.",
+      "verdict": "shown",
+      "msOneCall": 36,
+      "msPerStep": 3,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p234 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 138,
+          "msOneCall": 36,
+          "stops": [],
+          "moved": {
+            "p235 61510": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p234 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 114,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p235 61510": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p234 94925",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p235 61510"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 6,
+      "does": "The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine.",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p457 at once and at 0.14 rad (parts 269/472 and 323/458); the bonnet should lift open. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "msOneCall": 18,
+      "msPerStep": 7,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 12
+      },
+      "stop": {
+        "control": "p457 32524",
+        "way": -1,
+        "went": -0.14,
+        "asked": 1.5,
+        "by": [
+          "323/458"
+        ]
+      },
+      "stops": [
+        "269/472",
+        "323/458"
+      ],
+      "A": [
+        {
+          "control": "p457 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              446,
+              447
+            ]
+          },
+          "asked": 0.17,
+          "went": 0,
+          "ms": 9,
+          "msOneCall": 18,
+          "stops": [
+            "269/472"
+          ],
+          "moved": {
+            "p448 42122 - 71709": [
+              0,
+              0
+            ],
+            "p459 32524": [
+              0,
+              0
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p457 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              446,
+              447
+            ]
+          },
+          "asked": 1.5,
+          "went": -0.14,
+          "ms": 28,
+          "msOneCall": 18,
+          "stops": [
+            "323/458"
+          ],
+          "moved": {
+            "p448 42122 - 71709": [
+              11.16,
+              7.99
+            ],
+            "p459 32524": [
+              16.74,
+              7.99
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p457 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "moved": [
+            "p448 42122 - 71709",
+            "p459 32524"
+          ],
+          "stops": [
+            "269/472",
+            "323/458"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p457 32524",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the bonnet lifts open (the picture), far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p457 32524: a travel of 0.2 rad or less each way, stopped at +0 rad (269/472); -0.14 rad (323/458) (the bonnet lifts open (the picture), far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6364779.pdf#page=118)",
+      "seconds": 18
+    },
+    {
+      "function": 7,
+      "does": "The two doors swing open.",
+      "verdict": "shown",
+      "msOneCall": 35,
+      "msPerStep": 3,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 3,
+        "B": 25
+      },
+      "stop": {
+        "control": "p378 32524",
+        "way": -1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "121/378"
+        ]
+      },
+      "stops": [
+        "121/378",
+        "120/421"
+      ],
+      "A": [
+        {
+          "control": "p378 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              387,
+              594
+            ]
+          },
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 144,
+          "msOneCall": 35,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p378 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              387,
+              594
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 7,
+          "msOneCall": 8,
+          "stops": [
+            "121/378"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p421 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              387,
+              430,
+              592,
+              594
+            ]
+          },
+          "asked": 1.5,
+          "went": 0,
+          "ms": 6,
+          "msOneCall": 12,
+          "stops": [
+            "120/421"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p421 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              387,
+              430,
+              592,
+              594
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 125,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p378 32524",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "moved": [],
+          "stops": [
+            "121/378"
+          ]
+        },
+        {
+          "control": "p421 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "moved": [],
+          "stops": [
+            "120/421"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p378 32524",
+          "judged": "stands",
+          "why": "stopped at -0 rad (121/378); kinds hinge: doors"
+        },
+        {
+          "control": "p421 32524",
+          "judged": "stands",
+          "why": "stopped at +0 rad (120/421); kinds hinge: doors"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 37
+    },
+    {
+      "function": 8,
+      "does": "The rear seat's backrest folds forward.",
+      "verdict": "not shown",
+      "why": "A: p398 32524 not moved",
+      "msOneCall": 4,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p398 32524",
+          "way": 1,
+          "asked": 0.12,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p398 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p398 32524",
+          "way": -1,
+          "asked": 1.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p398 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p398 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p398 32524"
+          ],
+          "stops": [
+            "361/404",
+            "346/398"
+          ]
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 9,
+      "does": "The four wheels roll freely; there's no drivetrain.",
+      "verdict": "shown",
+      "msOneCall": 38,
+      "msPerStep": 5,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 2,
+        "B": 49
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p658 42122 - 70695",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 213,
+          "msOneCall": 38,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p658 42122 - 70695",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 184,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p662 42122 - 70695",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 182,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p662 42122 - 70695",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 182,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p656 42122 - 70695",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 187,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p656 42122 - 70695",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 185,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p661 42122 - 70695",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 189,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p661 42122 - 70695",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 172,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p658 42122 - 70695",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p662 42122 - 70695",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p656 42122 - 70695",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p661 42122 - 70695",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 65
+    }
+  ]
+}

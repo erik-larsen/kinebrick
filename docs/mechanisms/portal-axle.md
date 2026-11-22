@@ -4,7 +4,7 @@ Gears in the hub drop the wheel below the axle's line, for ground clearance. (Dr
 
 First appears in 2011, in [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1): The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer.
 
-Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 3 partly, 2 no.
+Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 3 works, 3 partly.
 
 ## By decade
 
@@ -17,7 +17,7 @@ Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 3 partly
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (no)
+- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (works)
 - Both portal axles swing about the frame (pendulum suspension), each sprung by two shock absorbers, so the wheels follow rough ground. (partly)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
@@ -26,7 +26,7 @@ Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 3 partly
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (no)
+- The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (works)
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 

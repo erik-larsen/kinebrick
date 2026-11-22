@@ -2,7 +2,7 @@
 
 import type { Kinematics } from '../kinematics.ts';
 import { Vector3 } from 'three';
-import { addPointVelocity, DRIVE_WEIGHT, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, DRIVE_WEIGHT, type Equations } from './equations.ts';
 
 export function couplings(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -33,7 +33,7 @@ export function couplings(solver: Kinematics, eq: Equations) {
     const built = shafts[1].near.clone().sub(shafts[0].near);
     const gap = eq.gaps && floats ? b.at.clone().sub(a.at).sub(built) : new Vector3();
     for (let k = 0; k < 3; k++) {
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       addPointVelocity(row, a.body, a.at, k, 1);
       addPointVelocity(row, b.body, b.at, k, -1);
       add(row, gap.getComponent(k));
@@ -44,13 +44,13 @@ export function couplings(solver: Kinematics, eq: Equations) {
   // mechanism's, one each, in order.
   solver.couplings.forEach(({ shafts }, i) => {
     const ratio = solver.mech.couplings[i]?.ratio ?? 1;
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     shafts.forEach((shaft, side) => {
       const d = solver.shaftAxis(shaft);
       const weight = side === 1 ? ratio : 1;
       for (let k = 0; k < 3; k++) {
-        row[6 * shaft.body + k] += weight * shaft.away * d.getComponent(k);
-        row[6 * shaft.mount + k] -= weight * shaft.away * d.getComponent(k);
+        row.add(6 * shaft.body + k, weight * shaft.away * d.getComponent(k));
+        row.sub(6 * shaft.mount + k, weight * shaft.away * d.getComponent(k));
       }
     });
     add(row, 0, DRIVE_WEIGHT);
@@ -70,7 +70,7 @@ function hanging(solver: Kinematics, eq: Equations, i: number, hangs: 'point' | 
   const axis = c.axisB.clone().transformDirection(solver.poses[c.bodyB]);
   const across = hangs === 'point' ? [new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1)] : acrossOf(axis);
   for (const d of across) {
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
       const w = d.getComponent(k);
       if (w === 0) continue;

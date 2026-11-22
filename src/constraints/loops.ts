@@ -1,7 +1,7 @@
 // Chains, tracks and rubber bands looped round wheels, and what is hooked to a chain.
 
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
 
 export function loops(solver: Kinematics, eq: Equations) {
   const { n, add, gaps } = eq;
@@ -11,14 +11,14 @@ export function loops(solver: Kinematics, eq: Equations) {
     const rims = loop.wheels.map((w) => {
       const point = loop.path.points[w.point];
       const z = point.axis.clone().transformDirection(solver.poses[w.mount]).multiplyScalar(point.turn * point.radius);
-      const row = new Array(n).fill(0);
+      const row = new BodyRow(n);
       for (let k = 0; k < 3; k++) {
-        row[6 * w.body + k] += z.getComponent(k);
-        row[6 * w.mount + k] -= z.getComponent(k);
+        row.add(6 * w.body + k, z.getComponent(k));
+        row.sub(6 * w.mount + k, z.getComponent(k));
       }
       return row;
     });
-    for (let r = 1; r < rims.length; r++) add(rims[0].map((x, k) => x - rims[r][k]), 0, DRIVE_WEIGHT);
+    for (let r = 1; r < rims.length; r++) add(BodyRow.elementwise(n, [rims[0], rims[r]], ([x, y]) => x - y), 0, DRIVE_WEIGHT);
     // What's hooked to it slides along its joint at the speed of the loop's run there: as fast
     // as its wheel's rim turns in what it slides on. Its gap: how far it has slid short of how
     // far the loop has moved.

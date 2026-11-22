@@ -1,0 +1,108 @@
+{
+  "set": "8848-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:04:58.723Z",
+  "load": 10.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 367,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 7,
+      "does": "Pushed along, the front wheels roll freely on their stub axles in the steering arms.",
+      "verdict": "not shown",
+      "msOneCall": 16,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p386 4266",
+        "way": 1,
+        "went": 0.837,
+        "asked": 1.5,
+        "by": [
+          "0/47"
+        ]
+      },
+      "stops": [
+        "0/47",
+        "1/47"
+      ],
+      "A": [
+        {
+          "control": "p386 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.837,
+          "ms": 79,
+          "msOneCall": 16,
+          "stops": [
+            "0/47"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p386 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.488,
+          "ms": 39,
+          "msOneCall": 5,
+          "stops": [
+            "1/47"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p393 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.837,
+          "ms": 64,
+          "msOneCall": 4,
+          "stops": [
+            "0/47"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p393 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.488,
+          "ms": 36,
+          "msOneCall": 4,
+          "stops": [
+            "1/47"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p386 4266",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47)"
+        },
+        {
+          "control": "p393 4266",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p386 4266: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47); p393 4266: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.837 rad (0/47); -0.488 rad (1/47)",
+      "seconds": 3
+    }
+  ]
+}

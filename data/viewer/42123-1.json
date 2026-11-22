@@ -1,0 +1,400 @@
+{
+  "set": "42123-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:58:08.112Z",
+  "load": 9.7,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 819,
+  "seconds": 166,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12 tooth gear on top of the roof steers the front wheels: its upright shaft drives a pair of 12 tooth bevel gears under the cockpit, and a long shaft forward to a 12 tooth gear at the front slides the steering rack across, turning both front hubs.",
+      "verdict": "shown",
+      "msOneCall": 27,
+      "msPerStep": 5,
+      "time": {
+        "open": 17,
+        "collisions": 0,
+        "first": 0,
+        "reach": 8,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p49 87083",
+        "way": 1,
+        "went": 0.698,
+        "asked": 1.5,
+        "by": [
+          "110/117"
+        ]
+      },
+      "stops": [
+        "110/117"
+      ],
+      "A": [
+        {
+          "control": "p49 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 99,
+          "msOneCall": 27,
+          "stops": [
+            "110/117"
+          ],
+          "moved": {
+            "p110 87761": [
+              10.58,
+              0
+            ],
+            "p94 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p97 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p162 55013": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p49 87083",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.698,
+          "ms": 86,
+          "msOneCall": 9,
+          "stops": [
+            "110/117"
+          ],
+          "moved": {
+            "p110 87761": [
+              10.58,
+              0
+            ],
+            "p94 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p97 42123 - 65489": [
+              5.29,
+              15.15
+            ],
+            "p162 55013": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p49 87083",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p110 87761",
+            "p94 42123 - 65489",
+            "p97 42123 - 65489"
+          ],
+          "stops": [
+            "110/117"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p49 87083",
+          "judged": "stands",
+          "why": "stopped at +0.698 rad (110/117); -0.698 rad (110/117); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 37
+    },
+    {
+      "function": 3,
+      "does": "The two doors swing up and forward on hinges at their front corners (dihedral doors).",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 8,
+      "time": {
+        "open": 26,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 26
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p896 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              903
+            ]
+          },
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 160,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p896 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              903
+            ]
+          },
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 8,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p918 32524",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              903,
+              925
+            ]
+          },
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 6,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p918 32524",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              903,
+              925
+            ]
+          },
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 139,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p896 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
+          "moved": [],
+          "stops": [
+            "315/891",
+            "315/890",
+            "82/886"
+          ]
+        },
+        {
+          "control": "p918 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
+          "moved": [],
+          "stops": [
+            "290/912",
+            "83/908",
+            "290/913"
+          ]
+        }
+      ],
+      "seconds": 54
+    },
+    {
+      "function": 4,
+      "does": "The front wheels and the left rear wheel roll freely.",
+      "held": {
+        "result": "partly",
+        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rim p1075 at 0.105 rad each way (parts 165/257 and 165/268); the other two wheels turn freely. Viewer sweep with a full turn asked, decision 288."
+      },
+      "verdict": "not shown",
+      "msOneCall": 28,
+      "msPerStep": 5,
+      "time": {
+        "open": 35,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 1,
+        "B": 36
+      },
+      "stop": {
+        "control": "p1075 42123 - 56145",
+        "way": 1,
+        "went": 0.105,
+        "asked": 1.5,
+        "by": [
+          "165/257"
+        ]
+      },
+      "stops": [
+        "165/257",
+        "165/268"
+      ],
+      "A": [
+        {
+          "control": "p1071 30699",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 135,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1071 30699",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 115,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1074 30699",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 114,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1074 30699",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 114,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1075 42123 - 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.105,
+          "ms": 14,
+          "msOneCall": 9,
+          "stops": [
+            "165/257"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p1075 42123 - 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.105,
+          "ms": 16,
+          "msOneCall": 7,
+          "stops": [
+            "165/268"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p1071 30699",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1074 30699",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p1075 42123 - 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "165/268",
+            "165/257"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p1075 42123 - 56145",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, wheel, roll), but a collision stops it at +0.105 rad (165/257); -0.105 rad (165/268)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p1075 42123 - 56145: turns without end (kinds free-wheels; the text says: wheels, wheel, roll), but a collision stops it at +0.105 rad (165/257); -0.105 rad (165/268)",
+      "seconds": 75
+    }
+  ]
+}

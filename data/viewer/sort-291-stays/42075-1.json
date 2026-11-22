@@ -1,0 +1,193 @@
+{
+  "set": "42075-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:59.620Z",
+  "load": 16.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 507,
+  "seconds": 7,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the cab roof steers the front wheels: its upright shaft turns a long shaft forward through bevel gears, and two 16 tooth gears, by way of an idler that rides loose on the drive shaft, turn the pinion on the front steering rack.",
+      "verdict": "shown",
+      "msOneCall": 36,
+      "msPerStep": 5,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p50 32270",
+        "way": 1,
+        "went": 0.698,
+        "asked": 1.5,
+        "by": [
+          "64/86"
+        ]
+      },
+      "stops": [
+        "64/86",
+        "64/81"
+      ],
+      "A": [
+        {
+          "control": "p50 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 94,
+          "msOneCall": 36,
+          "stops": [
+            "64/86"
+          ],
+          "moved": {
+            "p95 87761": [
+              10.58,
+              0
+            ],
+            "p508 56145": [
+              13.23,
+              15.16
+            ],
+            "p504 56145": [
+              13.23,
+              15.16
+            ],
+            "p174 18575": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.698,
+          "ms": 74,
+          "msOneCall": 12,
+          "stops": [
+            "64/81"
+          ],
+          "moved": {
+            "p95 87761": [
+              10.58,
+              0
+            ],
+            "p508 56145": [
+              13.23,
+              15.16
+            ],
+            "p504 56145": [
+              13.23,
+              15.16
+            ],
+            "p174 18575": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p50 32270",
+          "judged": "stands",
+          "why": "stopped at +0.698 rad (64/86); -0.698 rad (64/81); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 4
+    },
+    {
+      "function": 3,
+      "does": "The front wheels roll freely; only the rear ones are driven.",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 3,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p504 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 125,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p504 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 93,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p508 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 112,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p508 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 118,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

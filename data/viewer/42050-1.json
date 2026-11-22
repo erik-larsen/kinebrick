@@ -1,0 +1,692 @@
+{
+  "set": "42050-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:52:18.630Z",
+  "load": 9.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 632,
+  "seconds": 190,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushing the dragster along runs its V8 engine: the rear axle's 20-tooth bevel gear turns a 12-tooth bevel gear on a shaft running forward under the car, whose 16-tooth sprocket drives a chain up to the crankshaft, so the eight pistons go up and down.",
+      "verdict": "shown",
+      "msOneCall": 73,
+      "msPerStep": 35,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 7,
+        "A": 6,
+        "B": 39
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p864 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1417,
+          "msOneCall": 73,
+          "stops": [],
+          "moved": {
+            "p229 3708": [
+              0,
+              85.94
+            ],
+            "p230 32198": [
+              0,
+              85.94
+            ],
+            "p214 6589": [
+              0.31,
+              144.28
+            ],
+            "p55 94925": [
+              0.04,
+              144.28
+            ],
+            "p89 2853": [
+              0,
+              144.28
+            ],
+            "p91 2851": [
+              16.6,
+              0
+            ],
+            "p93 2851": [
+              18.43,
+              0
+            ],
+            "p97 2851": [
+              13.37,
+              0
+            ],
+            "p100 2851": [
+              17.54,
+              0
+            ],
+            "p105 2851": [
+              18.43,
+              0
+            ],
+            "p106 2851": [
+              16.6,
+              0
+            ],
+            "p108 2851": [
+              13.37,
+              0
+            ],
+            "p111 2851": [
+              17.54,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p864 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1481,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p229 3708": [
+              0,
+              85.94
+            ],
+            "p230 32198": [
+              0,
+              85.94
+            ],
+            "p214 6589": [
+              0.3,
+              142.21
+            ],
+            "p55 94925": [
+              0.04,
+              142.21
+            ],
+            "p89 2853": [
+              0,
+              142.21
+            ],
+            "p91 2851": [
+              17.54,
+              0
+            ],
+            "p93 2851": [
+              13,
+              0
+            ],
+            "p97 2851": [
+              18.43,
+              0
+            ],
+            "p100 2851": [
+              16.27,
+              0
+            ],
+            "p105 2851": [
+              13,
+              0
+            ],
+            "p106 2851": [
+              17.54,
+              0
+            ],
+            "p108 2851": [
+              18.43,
+              0
+            ],
+            "p111 2851": [
+              16.27,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p869 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1381,
+          "msOneCall": 38,
+          "stops": [],
+          "moved": {
+            "p229 3708": [
+              0,
+              85.94
+            ],
+            "p230 32198": [
+              0,
+              85.94
+            ],
+            "p214 6589": [
+              0.31,
+              144.28
+            ],
+            "p55 94925": [
+              0.04,
+              144.28
+            ],
+            "p89 2853": [
+              0,
+              144.28
+            ],
+            "p91 2851": [
+              16.6,
+              0
+            ],
+            "p93 2851": [
+              18.43,
+              0
+            ],
+            "p97 2851": [
+              13.37,
+              0
+            ],
+            "p100 2851": [
+              17.54,
+              0
+            ],
+            "p105 2851": [
+              18.43,
+              0
+            ],
+            "p106 2851": [
+              16.6,
+              0
+            ],
+            "p108 2851": [
+              13.37,
+              0
+            ],
+            "p111 2851": [
+              17.54,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p869 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1391,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {
+            "p229 3708": [
+              0,
+              85.94
+            ],
+            "p230 32198": [
+              0,
+              85.94
+            ],
+            "p214 6589": [
+              0.3,
+              142.21
+            ],
+            "p55 94925": [
+              0.04,
+              142.21
+            ],
+            "p89 2853": [
+              0,
+              142.21
+            ],
+            "p91 2851": [
+              17.54,
+              0
+            ],
+            "p93 2851": [
+              13,
+              0
+            ],
+            "p97 2851": [
+              18.43,
+              0
+            ],
+            "p100 2851": [
+              16.27,
+              0
+            ],
+            "p105 2851": [
+              13,
+              0
+            ],
+            "p106 2851": [
+              17.54,
+              0
+            ],
+            "p108 2851": [
+              18.43,
+              0
+            ],
+            "p111 2851": [
+              16.27,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p864 56908",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p869 56908",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p229 3708",
+            "p230 32198",
+            "p214 6589",
+            "p55 94925",
+            "p89 2853",
+            "p91 2851",
+            "p93 2851",
+            "p97 2851",
+            "p100 2851",
+            "p105 2851",
+            "p106 2851",
+            "p108 2851",
+            "p111 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 61
+    },
+    {
+      "function": 2,
+      "does": "The 12-tooth gear knob on top of the car, behind the cockpit, steers the front wheels: its shaft runs down and forward through a universal joint to a pair of 16-tooth gears, then along a shaft to a 12-tooth bevel gear at the front, which slides the steering rack and turns the two front hubs.",
+      "verdict": "shown",
+      "msOneCall": 44,
+      "msPerStep": 7,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p415 32270",
+        "way": 1,
+        "went": 1.012,
+        "asked": 1.5,
+        "by": [
+          "22/23"
+        ]
+      },
+      "stops": [
+        "22/23"
+      ],
+      "A": [
+        {
+          "control": "p415 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.012,
+          "ms": 193,
+          "msOneCall": 44,
+          "stops": [
+            "22/23"
+          ],
+          "moved": {
+            "p407 62520": [
+              0.1,
+              57.96
+            ],
+            "p57 94925": [
+              0.01,
+              57.96
+            ],
+            "p46 94925": [
+              0.07,
+              58.07
+            ],
+            "p32 32270": [
+              0,
+              58.07
+            ],
+            "p34 87761": [
+              15.57,
+              0
+            ],
+            "p23 48989": [
+              7.79,
+              22.29
+            ],
+            "p24 48989": [
+              7.79,
+              22.29
+            ],
+            "p863 56145": [
+              15.55,
+              26.52
+            ],
+            "p867 56145": [
+              15.55,
+              26.52
+            ]
+          }
+        },
+        {
+          "control": "p415 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.012,
+          "ms": 164,
+          "msOneCall": 14,
+          "stops": [
+            "22/23"
+          ],
+          "moved": {
+            "p407 62520": [
+              0.1,
+              57.96
+            ],
+            "p57 94925": [
+              0.01,
+              57.96
+            ],
+            "p46 94925": [
+              0.07,
+              57.86
+            ],
+            "p32 32270": [
+              0,
+              57.86
+            ],
+            "p34 87761": [
+              15.51,
+              0
+            ],
+            "p23 48989": [
+              7.76,
+              22.21
+            ],
+            "p24 48989": [
+              7.76,
+              22.21
+            ],
+            "p863 56145": [
+              15.49,
+              26.42
+            ],
+            "p867 56145": [
+              15.49,
+              26.42
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p415 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p407 62520",
+            "p57 94925",
+            "p46 94925",
+            "p32 32270",
+            "p34 87761",
+            "p23 48989",
+            "p24 48989",
+            "p863 56145",
+            "p867 56145"
+          ],
+          "stops": [
+            "22/23"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p415 32270",
+          "judged": "stands",
+          "why": "stopped at +1.012 rad (22/23); -1.012 rad (22/23); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 18
+    },
+    {
+      "function": 4,
+      "does": "Function B: turning the knob just in front of the right rear wheel works the linear actuator under the car, which puts the dragster into a wheelie: its nose rises off the ground and the wheelie bars at the back go down.",
+      "verdict": "shown",
+      "msOneCall": 48,
+      "msPerStep": 20,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 20,
+        "A": 1,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p257 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 463,
+          "msOneCall": 48,
+          "stops": [],
+          "moved": {
+            "p246 6589": [
+              0,
+              85.94
+            ],
+            "p242 92696": [
+              1.97,
+              0.84
+            ]
+          }
+        },
+        {
+          "control": "p257 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 843,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p246 6589": [
+              0,
+              85.94
+            ],
+            "p242 92696": [
+              2.11,
+              0.92
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p257 59443",
+          "seen": true,
+          "cameraTurns": 11,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p246 6589",
+            "p242 92696"
+          ],
+          "stops": [
+            "ground: p233",
+            "233/244"
+          ]
+        }
+      ],
+      "seconds": 40
+    },
+    {
+      "function": 5,
+      "does": "The four wheels roll; the front wheels turn on their steering hubs and the wheelie bars' two small wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 54,
+      "msPerStep": 36,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 49
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p863 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1470,
+          "msOneCall": 54,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p863 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1536,
+          "msOneCall": 33,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p867 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1424,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p867 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1427,
+          "msOneCall": 40,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p648 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 183,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p648 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 180,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p649 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 182,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p649 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 182,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p863 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p867 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p648 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p649 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 71
+    }
+  ]
+}

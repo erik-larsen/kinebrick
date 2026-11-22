@@ -22,6 +22,11 @@ export const CAUSES = {
   // loose parts are, so its functions can't count as working either (see Mechanism.frames).
   'control-fixed': { owner: 'inference', says: 'The control is part of the frame, or has no joint to work' },
   'first-failed': { owner: 'check', says: "A control that has to be worked first didn't go" },
+  // A function that runs a track (crawler-tracks) whose track isn't read as a loop round the wheel
+  // it turns, or a track of the model read round no wheel: its links don't run round with it,
+  // whatever the wheel does (the 9391 Crawler Crane's, its links placed by hand, before they were
+  // read as a track).
+  'track-not-read': { owner: 'inference', says: 'The function runs a track, but no track is read round a wheel it turns, or a track is read round no wheel' },
   'control-jammed': { owner: 'inference', says: "The control has a joint, but nothing lets it move" },
   'part-fixed': { owner: 'inference', says: "A part that should move can't move at all against what it's measured against" },
   'not-driven': { owner: 'inference', says: 'A part that should move can move, but nothing ties it to the control' },
@@ -33,6 +38,11 @@ export const CAUSES = {
   'too-little': { owner: 'solver', says: 'The control went far enough, but a part it must move hardly moved' },
   'stay-forced': { owner: 'function lists', says: 'A part that should stay has to move whenever the control does' },
   'stay-chosen': { owner: 'solver', says: 'A part that should stay moved, though the control can move without it' },
+  // A wheel, track, engine or shaft (see endless.ts) that a collision stops, where the real part
+  // turns without end (decision 279 of 2026-11-21): the parts that met overlap in a motion the real
+  // set doesn't make (a leg that swings as the model rolls), or rub where it is built tight. The
+  // pair is in the detail, and in collisionStops.
+  'stopped-endless': { owner: 'inference', says: 'A part that turns without end is stopped by a collision' },
   unknown: { owner: 'check', says: 'None of the above' },
 } as const;
 export type Cause = keyof typeof CAUSES;
@@ -134,4 +144,29 @@ function stoppedWhy(kin: Kinematics, control: { body: number; parent: number }):
   });
   const ratio = gaps[0] / Math.max(gaps[1], 1e-12);
   return gaps[0] > CLOSED && ratio > 3 && ratio < 5 ? { cause: 'one-link-too-many' } : { cause: 'stopped-early' };
+}
+
+// Whether a joint lies on a closed loop of joints: its two bodies are still joined, through
+// other joints, without it. Gears, worms, chains and couplings don't count. A control whose
+// joint is on such a loop turns one of the loop's links itself (the 9392 Quad Bike's
+// handlebars); one whose joint isn't reaches any loop only through them (the 8273's winch knob).
+export function onALoop(mech: { joints: { bodyA: number; bodyB: number }[] }, joint: number): boolean {
+  const j = mech.joints[joint];
+  const seen = new Set([j.bodyA]);
+  let front = new Set([j.bodyA]);
+  while (front.size) {
+    const next = new Set<number>();
+    for (let k = 0; k < mech.joints.length; k++) {
+      if (k === joint) continue;
+      const x = mech.joints[k];
+      for (const [from, to] of [[x.bodyA, x.bodyB], [x.bodyB, x.bodyA]]) {
+        if (!front.has(from) || seen.has(to)) continue;
+        if (to === j.bodyB) return true;
+        seen.add(to);
+        next.add(to);
+      }
+    }
+    front = next;
+  }
+  return false;
 }

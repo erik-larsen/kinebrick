@@ -1,0 +1,374 @@
+{
+  "set": "8836-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:13:45.815Z",
+  "load": 13.1,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 257,
+  "seconds": 93,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The propeller turns the flat-twin engine in the nose: its shaft is the crankshaft, and two connecting rods push the two pistons in and out of the white cylinders on either side.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 3,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p143 2952",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 134,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p69 2853": [
+              0,
+              85.94
+            ],
+            "p70 2852": [
+              15,
+              18.42
+            ],
+            "p71 2852": [
+              15,
+              18.42
+            ],
+            "p73 2851": [
+              7.49,
+              0
+            ],
+            "p74 2851": [
+              5.09,
+              0
+            ],
+            "p75 32061": [
+              0,
+              0
+            ],
+            "p76 32061": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p143 2952",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 116,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p69 2853": [
+              0,
+              85.94
+            ],
+            "p70 2852": [
+              15,
+              9.75
+            ],
+            "p71 2852": [
+              15,
+              9.75
+            ],
+            "p73 2851": [
+              13.37,
+              0
+            ],
+            "p74 2851": [
+              11.45,
+              0
+            ],
+            "p75 32061": [
+              0,
+              0
+            ],
+            "p76 32061": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p143 2952",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p69 2853",
+            "p70 2852",
+            "p71 2852",
+            "p73 2851",
+            "p74 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    },
+    {
+      "function": 3,
+      "does": "The main landing gear is sprung: the two legs swing together on their pivots, joined by a cross axle under the fuselage, and the shock absorber between that axle and the fuselage shortens as they swing.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 4,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p148 4261",
+          "way": 1,
+          "asked": 0.53,
+          "went": 0.53,
+          "ms": 49,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p151 4261": [
+              5.3,
+              30.37
+            ],
+            "p145 3706": [
+              21.62,
+              30.37
+            ],
+            "p22 4254": [
+              21.61,
+              8.07
+            ],
+            "p164 3482": [
+              33.11,
+              30.37
+            ],
+            "p166 3482": [
+              33.11,
+              30.37
+            ],
+            "p162 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p148 4261",
+          "way": -1,
+          "asked": 0.1,
+          "went": -0.1,
+          "ms": 10,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p151 4261": [
+              1,
+              5.73
+            ],
+            "p145 3706": [
+              4.08,
+              5.73
+            ],
+            "p22 4254": [
+              4.08,
+              1.75
+            ],
+            "p164 3482": [
+              6.25,
+              5.73
+            ],
+            "p166 3482": [
+              6.25,
+              5.73
+            ],
+            "p162 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p148 4261",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p151 4261",
+            "p145 3706",
+            "p22 4254",
+            "p164 3482",
+            "p166 3482"
+          ],
+          "stops": [
+            "22/21",
+            "105/149"
+          ]
+        }
+      ],
+      "seconds": 19
+    },
+    {
+      "function": 5,
+      "does": "The wheels roll freely: two nose wheels on one short axle, and a main wheel on each leg. There's no steering.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 2,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 0,
+        "B": 47
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p162 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 72,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p162 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p168 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 50,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p168 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 49,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p164 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 41,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p164 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p166 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 38,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p166 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p162 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p168 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p164 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p166 3482",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 58
+    }
+  ]
+}

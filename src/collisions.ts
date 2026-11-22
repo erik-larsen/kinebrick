@@ -44,6 +44,10 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
   for (const a of mech.connections) {
     for (const b of mech.connections) {
+      // But on an axle asked to slide (see slidesAsked), what the axle carries and the holes it
+      // slides in are watched: there a slide stops (the 42078's lock bar, lifted until its
+      // connector meets the door's pin it slides in).
+      if (a.asked || b.asked) continue;
       if (a.male === b.male && a.female !== b.female && a.kind !== 'stud' && b.kind !== 'stud') connected.add(pairKey(a.female, b.female));
     }
   }
@@ -64,8 +68,15 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   return connected;
 }
 
-// Pulls a part's meshes in towards the middle of their box, by INSET at each face.
+// The lists of meshes shrunk already (see shrink): a list several parts share (every copy of one
+// part, see part-shapes.ts), or one a second Collisions is given, is shrunk once only.
+const shrunk = new WeakSet<PartMesh[]>();
+
+// Pulls a part's meshes in towards the middle of their box, by INSET at each face. It depends on
+// the part's own meshes alone, not on where the part is, so copies of a part may share one list.
 function shrink(list: PartMesh[]) {
+  if (shrunk.has(list)) return;
+  shrunk.add(list);
   const box = new Box3();
   for (const m of list) {
     m.geometry.computeBoundingBox();
@@ -87,7 +98,52 @@ function shrink(list: PartMesh[]) {
     }
   }
 }
-import { MeshBVH } from 'three-mesh-bvh';
+import { ExtendedTriangle, MeshBVH } from 'three-mesh-bvh';
+
+// Two triangles that lie in one plane do not cross (decision 246 of 2026-11-20). three-mesh-bvh's
+// triangle test (ExtendedTriangle.intersectsTriangle, which MeshBVH.intersectsGeometry and the
+// distance routines use) takes two triangles as lying in one plane only where each corner is off
+// the other's plane by less than 1e-15, whatever the size of the coordinates. Two faces in one
+// plane of a model a few hundred LDU across are off it by the rounding of those coordinates, a
+// few 1e-15; the test then works out where two planes cross from two parallel normals, and may
+// answer that the faces meet: the 42075 First Responder's crankshaft against its engine, faces in
+// one plane 11 LDU apart in it, a hit or not by rounding (decision 245). So where the library
+// says two triangles meet, and they lie in one plane within the rounding their own coordinates
+// carry (see inOnePlane), they don't: apart in the plane, they don't meet; lying on each other,
+// they touch, and nothing passes through anything there (a crossing of the parts shows in their
+// other faces). Set once here, so the check, the viewer and the collision worker all have it.
+export const libraryIntersects = ExtendedTriangle.prototype.intersectsTriangle;
+ExtendedTriangle.prototype.intersectsTriangle = function (this: ExtendedTriangle, other: ExtendedTriangle, target?: unknown, suppressLog?: boolean) {
+  const hit = (libraryIntersects as (this: ExtendedTriangle, o: ExtendedTriangle, t?: unknown, s?: boolean) => boolean).call(this, other, target, suppressLog);
+  return hit && !inOnePlane(this, other);
+} as typeof ExtendedTriangle.prototype.intersectsTriangle;
+
+// How many rounded operations the distance of a corner from a triangle's plane takes, at most: the
+// two edges (3 subtractions each) and their cross product (2 products and a subtraction a
+// component), the corner's offset from the triangle (a subtraction), and the dot product (3
+// products and 2 additions). Each rounds by at most half an ulp of a number no bigger than the
+// coordinates' size squared or so; counted generously, the distance is good to PLANE_OPS ulps of
+// the coordinates' size.
+const PLANE_OPS = 16;
+
+// Whether two triangles lie in one plane: every corner of each is off the other's plane by no
+// more than the rounding its coordinates carry, PLANE_OPS ulps of their size (the largest of their
+// coordinates). A triangle with no area has no plane: not in one.
+export function inOnePlane(t1: { a: Vector3; b: Vector3; c: Vector3 }, t2: { a: Vector3; b: Vector3; c: Vector3 }): boolean {
+  const corners = [t1.a, t1.b, t1.c, t2.a, t2.b, t2.c];
+  const size = Math.max(...corners.map((p) => Math.max(Math.abs(p.x), Math.abs(p.y), Math.abs(p.z))));
+  const tolerance = PLANE_OPS * Number.EPSILON * Math.max(size, Number.MIN_VALUE);
+  const off = (t: { a: Vector3; b: Vector3; c: Vector3 }, points: Vector3[]) => {
+    const normal = new Vector3().subVectors(t.b, t.a).cross(new Vector3().subVectors(t.c, t.a));
+    const length = normal.length();
+    if (!(length > 0)) return null;
+    normal.multiplyScalar(1 / length);
+    return Math.max(...points.map((p) => Math.abs(normal.dot(new Vector3().subVectors(p, t.a)))));
+  };
+  const one = off(t1, [t2.a, t2.b, t2.c]);
+  const two = off(t2, [t1.a, t1.b, t1.c]);
+  return one !== null && two !== null && one <= tolerance && two <= tolerance;
+}
 
 // One mesh of a part, in the part's own coordinates.
 export interface PartMesh {
@@ -100,11 +156,14 @@ interface Shape {
   box: Box3; // in the part's own coordinates
 }
 
-// The watched pairs of parts on two bodies.
+// The watched pairs of parts on two bodies: every part in `onA` with every part in `onB` that comes
+// after it, but those near at the start or connected (see Collisions.skip). They aren't listed one
+// by one: on the 42100, with 7,283 parts, 22 million pairs are watched, and as a list they took
+// 1.6 GB, made afresh each time the mechanism was (decision 235 of 2026-11-19).
 interface Group {
-  pairs: [number, number][];
-  onA: number[]; // the parts in those pairs on each body
+  onA: number[]; // the parts in those pairs on each body, each in order
   onB: number[];
+  count: number; // how many pairs
   // A part on each body, and how the second sat relative to the first when the group was last
   // found clear. If that hasn't changed, no pair in the group can have started to overlap.
   a: number;
@@ -162,11 +221,17 @@ export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: n
 // erratum removed it): so a change in the model's file, its errata, or how a part is cut into
 // pieces (roles.json's "pieces" and "split") changes the key, and the kept file goes stale. And
 // the parts library's release (LDConfig.ldr's update line, which a release changes; a part
-// changed between releases isn't caught), INSET and NEAR. A SHA-256 in hex.
+// changed between releases isn't caught), INSET and NEAR, and PASS (below). A SHA-256 in hex.
+
+// The test of the first pass, by number: raised whenever what makes two parts near changes, so
+// that the files kept by an older test go stale. 2 since decision 246 of 2026-11-20 (faces in one
+// plane don't cross), which the files kept before it on 2026-11-18 didn't know: the 9397's had 3
+// near pairs fewer than the test finds now.
+export const PASS = 2;
 export async function collisionKey(parts: { name: string; matrix: Matrix4; removed?: boolean }[], libraryRelease: string): Promise<string> {
   const placement = (m: Matrix4) => [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14].map((k) => Math.round(m.elements[k] * 100) / 100 || 0).join(' ');
   const lines = parts.map((p) => `${p.name} ${placement(p.matrix)}${p.removed ? ' removed' : ''}`);
-  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, INSET, NEAR]));
+  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, INSET, NEAR, PASS]));
   const digest = await crypto.subtle.digest('SHA-256', bytes);
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
@@ -186,6 +251,103 @@ export function libraryRelease(ldconfig: string): string {
   return /^0 !LDRAW_ORG .*$/m.exec(ldconfig)?.[0].trim() ?? '';
 }
 
+// A part's shape for collision tests, from its meshes: shrunk (see shrink), each mesh with its
+// tree, and the box round them all, in the part's own coordinates. A list several parts share
+// (see part-shapes.ts) makes one shape, its tree built once; a tree built before is kept.
+const shapesMade = new WeakMap<PartMesh[], Shape>();
+function shapeOf(list: PartMesh[]): Shape {
+  const known = shapesMade.get(list);
+  if (known) return known;
+  const box = boxOf(list);
+  const built = list.map((m) => {
+    const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
+    m.geometry.boundsTree = bvh;
+    return { geometry: m.geometry, bvh, matrix: m.matrix };
+  });
+  const shape = { meshes: built, box };
+  shapesMade.set(list, shape);
+  return shape;
+}
+
+// The box round a part's shrunk meshes, in its own coordinates (the box of shapeOf), without
+// building their trees.
+const boxesMade = new WeakMap<PartMesh[], Box3>();
+function boxOf(list: PartMesh[]): Box3 {
+  const known = boxesMade.get(list);
+  if (known) return known;
+  shrink(list);
+  const box = new Box3();
+  for (const m of list) {
+    m.geometry.computeBoundingBox();
+    box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
+  }
+  boxesMade.set(list, box);
+  return box;
+}
+
+// What each of some parts touches as built, by the first pass's own test (see nearPairsOf): their
+// boxes within NEAR of each other, then their shrunk shapes within NEAR (shapesNear). For the
+// inference, which asks it for its loose parts (decision 259 of 2026-11-20: a loose part rides
+// with a part it touches as built; see rideAlong). `meshes` are each part's, as the collision pass
+// is given them (the viewer's from its loader, the scripts' from partShapes).
+//
+// As built: the parts placed as `built` says, or else as the first question places them (every
+// caller's first reading is of the model as built). A later question's placement is not looked
+// at: the mechanism is read again after a shift and for each trial of pins, and what a loose part
+// rides with must not change with where the mechanism stands (decision 274 of 2026-11-21).
+//
+// It is asked at every build of the mechanism, three or more for one reading, and it is the
+// slow part of a reading (28 s a time for the 42078 Mack Anthem, whose trailer is 1,100 loose
+// parts until it is read as a second model). So what it works out is kept: the pairs whose boxes
+// meet, found once, and each pair's answer once tested. And a pair of two parts both asked about
+// is left out unless `all`: both are loose, and the rule looks only at the parts a loose part
+// touches that aren't loose. The page gives `all` to its helper (pinWorker.ts), which keeps each
+// part's answer for builds whose loose parts differ.
+export type Touching = (partMatrices: Matrix4[], which: number[], all?: boolean) => Map<number, number[]>;
+export function touchingFrom(meshes: PartMesh[][], built?: Matrix4[]): Touching {
+  let placed: Matrix4[] | null = built ? built.map((m) => m.clone()) : null;
+  let meeting: [number, number][] | null = null;
+  const near = new Map<number, boolean>();
+  return (partMatrices, which, all = false) => {
+    placed ??= partMatrices.map((m) => m.clone());
+    const at = placed;
+    // The parts only: a script's list of meshes goes on with the shapes submodels draw.
+    meeting ??= meetingPairs(at.map((_, i) => boxOf(meshes[i] ?? [])), at, () => true);
+    const wanted = new Set(which);
+    const out = new Map(which.map((i) => [i, [] as number[]]));
+    for (const [a, b] of meeting) {
+      if (!wanted.has(a) && !wanted.has(b)) continue;
+      if (!all && wanted.has(a) && wanted.has(b)) continue;
+      const pair = a * at.length + b;
+      let is = near.get(pair);
+      if (is === undefined) near.set(pair, (is = shapesNear(shapeOf(meshes[a]), shapeOf(meshes[b]), at[a].clone().invert().multiply(at[b]))));
+      if (!is) continue;
+      if (wanted.has(a)) out.get(a)!.push(b);
+      if (wanted.has(b)) out.get(b)!.push(a);
+    }
+    return out;
+  };
+}
+
+// What some parts touch as built, from a model's kept first pass (data/collisions/, see
+// nearPairsOf): its near pairs are the pairs touchingFrom finds, by the same test of the same
+// shrunk shapes, a path's parts (a chain's links) given none in both (decision 274's open point, 2026-11-21), so a model with a kept file whose
+// key matches asks nothing of the shapes, and its first reading costs no contact test. As
+// touchingFrom: a pair of two parts both asked about is left out unless `all`.
+export function keptTouching(near: [number, number][]): Touching {
+  const touches = new Map<number, number[]>();
+  for (const [a, b] of near) {
+    if (!touches.has(a)) touches.set(a, []);
+    if (!touches.has(b)) touches.set(b, []);
+    touches.get(a)!.push(b);
+    touches.get(b)!.push(a);
+  }
+  return (_partMatrices, which, all = false) => {
+    const wanted = new Set(which);
+    return new Map(which.map((i) => [i, (touches.get(i) ?? []).filter((j) => all || !wanted.has(j))]));
+  };
+}
+
 // The first pass's whole result, kept per model (see data/collisions/): every pair of parts
 // whose boxes meet as built, whatever bodies they're on, and which of them are near. It doesn't
 // depend on how the model is read, so a change to the inference never makes it stale.
@@ -198,6 +360,9 @@ export function nearPairsOf(meshes: PartMesh[][], partMatrices: Matrix4[]): { te
 export class Collisions {
   private shapes: Shape[];
   private groups: Group[] = [];
+  // The pairs, by number (see pairNumber), not watched though on two bodies: near at the start, or
+  // connected (see watch).
+  private skip = new Set<number>();
   // For each pair tested for nearness, whether it was near, and how the second part sat relative
   // to the first when tested: a pair that hasn't moved against itself needn't be tested again
   // (after a shift, only the parts the shift moved are).
@@ -207,6 +372,12 @@ export class Collisions {
   // nothing. `last` is the mechanism to watch for once they come.
   waiting = false;
   private last: { bodyOf: number[]; connected: Set<string>; partMatrices: Matrix4[] } | null = null;
+  // Parts that never stop a motion: the model's loose parts (Mechanism.loose). Where a loose part
+  // sits against the mechanism is a guess (it rides along with what's nearest), so its meeting
+  // another part, or the ground, is never evidence of a stop (decision 151 of 2026-11-17: the
+  // 42083 Bugatti Chiron's start key, lying beside the car, rode on a rear wheel and stopped the
+  // car rolling by going below the ground). Set by whoever reads the mechanism.
+  ignored = new Set<number>();
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
@@ -214,18 +385,7 @@ export class Collisions {
   // found here: `nearPairs` then says which they are (see setNear), and the page goes on
   // meanwhile.
   constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false) {
-    this.shapes = meshes.map((list) => {
-      shrink(list);
-      const box = new Box3();
-      const built = list.map((m) => {
-        const bvh = new MeshBVH(m.geometry);
-        m.geometry.boundsTree = bvh;
-        m.geometry.computeBoundingBox();
-        box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
-        return { geometry: m.geometry, bvh, matrix: m.matrix };
-      });
-      return { meshes: built, box };
-    });
+    this.shapes = meshes.map(shapeOf);
     this.waiting = later;
     this.watch(bodyOf, connected, partMatrices);
   }
@@ -296,27 +456,26 @@ export class Collisions {
     const n = this.shapes.length;
     const joined = new Set([...connected].map((key) => key.split(',').map(Number)).map(([a, b]) => pairNumber(a, b, n)));
     const near = new Set(this.candidates(bodyOf, connected, partMatrices).filter(([a, b]) => this.isNear(a, b, partMatrices)).map(([a, b]) => pairNumber(a, b, n)));
-    const groups = new Map<number, Group>();
+    this.skip = new Set([...near, ...joined]);
+    const groups = new Map<number, Group & { inA: Set<number>; inB: Set<number> }>();
     const bodies = Math.max(0, ...bodyOf) + 1;
     for (let a = 0; a < n; a++) {
       for (let b = a + 1; b < n; b++) {
-        if (bodyOf[a] === bodyOf[b] || near.has(a * n + b) || joined.has(a * n + b)) continue;
+        if (bodyOf[a] === bodyOf[b] || this.skip.has(a * n + b)) continue;
         const key = bodyOf[a] * bodies + bodyOf[b];
         let group = groups.get(key);
-        if (!group) groups.set(key, (group = { pairs: [], onA: [], onB: [], a, b, lastClear: null }));
-        group.pairs.push([a, b]);
+        if (!group) groups.set(key, (group = { onA: [], onB: [], count: 0, a, b, lastClear: null, inA: new Set(), inB: new Set() }));
+        group.count++;
+        group.inA.add(a);
+        group.inB.add(b);
       }
     }
-    this.groups = [...groups.values()];
-    for (const g of this.groups) {
-      g.onA = [...new Set(g.pairs.map(([a]) => a))];
-      g.onB = [...new Set(g.pairs.map(([, b]) => b))];
-    }
+    this.groups = [...groups.values()].map(({ inA, inB, ...g }) => ({ ...g, onA: [...inA].sort((x, y) => x - y), onB: [...inB].sort((x, y) => x - y) }));
   }
 
   // How many pairs of parts are being watched.
   get watchedPairs(): number {
-    return this.groups.reduce((sum, g) => sum + g.pairs.length, 0);
+    return this.groups.reduce((sum, g) => sum + g.count, 0);
   }
 
   // A part that has gone below the ground (LDraw y `ground`, which points down), as a pair of
@@ -326,13 +485,21 @@ export class Collisions {
   belowGround(partMatrices: Matrix4[], ground: number, start: Matrix4[]): [number, number] | null {
     for (let i = 0; i < this.shapes.length; i++) {
       const box = this.shapes[i].box;
-      if (box.isEmpty() || box.clone().applyMatrix4(start[i]).max.y > ground - NEAR) continue;
+      if (this.ignored.has(i) || box.isEmpty() || box.clone().applyMatrix4(start[i]).max.y > ground - NEAR) continue;
       // A box turned with its part reaches further than the part (a big wheel's rim, turned an
       // eighth of a turn, would reach below its tyre): so where it does, the part's own shape
       // is looked at.
       if (box.clone().applyMatrix4(partMatrices[i]).max.y > ground && this.lowest(i, partMatrices[i]) > ground) return [i, i];
     }
     return null;
+  }
+
+  // Whether a part's shape, placed as `matrix` says, meets the ground (LDraw y `ground`): reaches
+  // to within NEAR of it, as belowGround leaves out the parts that do at the start.
+  meetsGround(part: number, matrix: Matrix4, ground: number): boolean {
+    const box = this.shapes[part].box;
+    if (box.isEmpty() || box.clone().applyMatrix4(matrix).max.y <= ground - NEAR) return false;
+    return this.lowest(part, matrix) > ground - NEAR;
   }
 
   // How low a part's shape reaches (its greatest LDraw y), placed as `matrix` says.
@@ -363,8 +530,14 @@ export class Collisions {
       for (const a of group.onA) sideA.union(boxOf(a));
       for (const b of group.onB) sideB.union(boxOf(b));
       if (sideA.intersectsBox(sideB)) {
-        for (const [a, b] of group.pairs) {
-          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+        // Its pairs in the order they were made: by the first part, then the second.
+        const n = this.shapes.length;
+        for (const a of group.onA) {
+          if (this.ignored.has(a)) continue;
+          for (const b of group.onB) {
+            if (b <= a || this.skip.has(a * n + b) || this.ignored.has(b)) continue;
+            if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+          }
         }
       }
       group.lastClear = relative;

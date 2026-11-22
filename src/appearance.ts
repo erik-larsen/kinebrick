@@ -1,9 +1,11 @@
 // How parts look. Each kind of information gets its own channel, so they never fight:
 //   fill colour  which body a part belongs to (body colours), or its own LEGO colours
 //   yellow glow  what the pointer is on: the hovered part, and faintly the rest of its body
-//   outline      status: frozen (cyan), the part kept turning (green) and loose (red)
-//   badge        status, as an icon pinned to the part: 📌 frozen, ⚠ loose (a part kept
-//                turning has no badge: its turning shows it)
+//   outline      status: frozen (cyan), the part kept turning (green); and, only with Warnings
+//                on (drawWarnings), the warnings in red: a loose part all the time, and for a
+//                moment the two parts that would have run into each other
+//   badge        with Warnings on, a ⚠ pinned to each loose part (a frozen part has no badge,
+//                only its cyan outline; a part kept turning has none either)
 //   see-through  with drivetrain focus, the parts the last drag or spin didn't move
 
 import { Box3, Color, LineSegments, Material, Mesh, MeshStandardMaterial, Object3D, Vector3 } from 'three';
@@ -22,6 +24,9 @@ const FADED_OPACITY = 0.12;
 
 export class Appearance {
   showBodyColours = true;
+  // Whether the warnings are drawn on the model (the Warnings option, off unless chosen): the red
+  // outline of a loose part, and of two parts a drag stopped at.
+  drawWarnings = false;
   hoveredPart = -1;
   frozenBodies = new Set<number>();
   looseParts = new Set<number>();
@@ -93,22 +98,22 @@ export class Appearance {
     // Outlines
     const partsOf = (test: (part: number) => boolean) => this.partObjects.filter((_, part) => test(part));
     this.outlines.set('frozen', partsOf((p) => this.frozenBodies.has(this.mech.bodyOf[p])));
-    this.outlines.set('loose', partsOf((p) => this.looseParts.has(p)));
+    this.outlines.set('loose', this.drawWarnings ? partsOf((p) => this.looseParts.has(p)) : []);
     // Only the part that was Ctrl-clicked, not the rest of its body.
     this.outlines.set('driven', partsOf((p) => p === this.drivenPart));
     this.outlines.set('shown', partsOf((p) => this.shownParts.has(p)));
 
-    // Badges: one ⚠ per loose part, one 📌 per frozen body (on its biggest part).
+    // Badges: one ⚠ per loose part.
     for (const badge of this.badges) badge.removeFromParent();
     this.badges = [];
     for (const part of this.looseParts) this.addBadge(part, '⚠', 'loose');
-    for (const body of this.frozenBodies) this.addBadge(this.biggestPart(body), '📌', 'frozen');
   }
 
   // Outlines two parts in red for a moment: they'd have run into each other, so the drag stopped.
   flashBlocked(parts: number[]) {
     // Named in the browser's console too, for anyone asking what a model ran into.
     console.debug('blocked by', parts.map((p) => `p${p} ${this.partObjects[p]?.userData?.fileName ?? ''}`).join(' and '));
+    if (!this.drawWarnings) return;
     this.outlines.set('blocked', parts.map((p) => this.partObjects[p]));
     clearTimeout(this.blockedTimer);
     this.blockedTimer = setTimeout(() => this.outlines.set('blocked', []), 700);
@@ -155,19 +160,5 @@ export class Appearance {
     badge.position.copy(obj.worldToLocal(centre));
     obj.add(badge);
     this.badges.push(badge);
-  }
-
-  // The part of a body with the largest bounding box, where its badge goes.
-  private biggestPart(body: number): number {
-    let best = this.mech.bodies[body].parts[0];
-    let bestSize = -1;
-    for (const part of this.mech.bodies[body].parts) {
-      const size = new Box3().setFromObject(this.partObjects[part]).getSize(new Vector3()).length();
-      if (size > bestSize) {
-        best = part;
-        bestSize = size;
-      }
-    }
-    return best;
   }
 }

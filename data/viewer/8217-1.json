@@ -1,0 +1,252 @@
+{
+  "set": "8217-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:16:02.086Z",
+  "load": 3.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 56,
+  "seconds": 43,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushed along, the two wheels turn together on one long axle, and a 12-tooth bevel gear on that axle turns another on the bottom of the upright rotor mast, so the main rotor spins as fast as the wheels; turning the rotor by hand turns the wheels too.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 0,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1 4288",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 12,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              85.94
+            ],
+            "p27 4519": [
+              0,
+              85.94
+            ],
+            "p54 3737": [
+              194.99,
+              85.94
+            ],
+            "p57 3737": [
+              194.99,
+              85.94
+            ],
+            "p50 32017": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 4288",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 6,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              85.94
+            ],
+            "p27 4519": [
+              0,
+              85.94
+            ],
+            "p54 3737": [
+              194.99,
+              85.94
+            ],
+            "p57 3737": [
+              194.99,
+              85.94
+            ],
+            "p50 32017": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p25 4288",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 6,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              85.94
+            ],
+            "p27 4519": [
+              0,
+              85.94
+            ],
+            "p54 3737": [
+              194.99,
+              85.94
+            ],
+            "p57 3737": [
+              194.99,
+              85.94
+            ],
+            "p50 32017": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p25 4288",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 5,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              85.94
+            ],
+            "p27 4519": [
+              0,
+              85.94
+            ],
+            "p54 3737": [
+              194.99,
+              85.94
+            ],
+            "p57 3737": [
+              194.99,
+              85.94
+            ],
+            "p50 32017": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1 4288",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p17 3706",
+            "p27 4519",
+            "p54 3737",
+            "p57 3737"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p25 4288",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p54 3737",
+            "p57 3737"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 28
+    },
+    {
+      "function": 2,
+      "does": "The tail rotor, a dark 5-hole beam with yellow round plates at its ends, spins freely on its pin at the end of the tail boom.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 0,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 11
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p50 32017",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              0
+            ],
+            "p0 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 32017",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p17 3706": [
+              0,
+              0
+            ],
+            "p0 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p50 32017",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 15
+    }
+  ]
+}

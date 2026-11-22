@@ -1,0 +1,110 @@
+{
+  "set": "42031-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-20T23:08:15.482Z",
+  "load": 20.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 148,
+  "seconds": 9,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The whole boom, with its yellow mount, turns round on a single upright pin on top of the chassis behind the cab.",
+      "verdict": "not shown",
+      "msOneCall": 11,
+      "msPerStep": 5,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": {
+        "control": "p101 6632",
+        "way": 1,
+        "went": 0.03,
+        "asked": 0.03,
+        "by": [
+          "92/130"
+        ]
+      },
+      "stops": [
+        "92/130",
+        "91/124"
+      ],
+      "A": [
+        {
+          "control": "p101 6632",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 5,
+          "msOneCall": 11,
+          "stops": [
+            "92/130"
+          ],
+          "moved": {
+            "p101 6632 against p1 64289": [
+              1.21,
+              1.72
+            ],
+            "p122 11478 against p1 64289": [
+              0.75,
+              1.72
+            ],
+            "p122 11478 against p101 6632": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p101 6632",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 2,
+          "msOneCall": 2,
+          "stops": [
+            "91/124"
+          ],
+          "moved": {
+            "p101 6632 against p1 64289": [
+              1.21,
+              1.72
+            ],
+            "p122 11478 against p1 64289": [
+              0.75,
+              1.72
+            ],
+            "p122 11478 against p101 6632": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p101 6632",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the boom turns round on a single pin, far past 0.03 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p101 6632: a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124) (the boom turns round on a single pin, far past 0.03 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36)",
+      "seconds": 9
+    }
+  ]
+}

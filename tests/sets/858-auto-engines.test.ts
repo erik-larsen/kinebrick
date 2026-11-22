@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/858-Auto Engines-2-Cycle Engine.mpd');
+await readShapes('models/858-Auto Engines-Boxer Engine.mpd');
+await readShapes('models/858-Auto Engines-Inline Engine.mpd');
+await readShapes('models/858-Auto Engines-V-6 Engine.mpd');
 
 // The four engines of LEGO set 858, Auto Engines (1980), each a model of its own. Each has a
 // crankshaft built of 24 tooth gears joined by axles off their middles, 16 LDU, so each piston's

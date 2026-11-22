@@ -1,0 +1,238 @@
+{
+  "set": "42110-1",
+  "commit": "0b6bf1ef",
+  "date": "2026-11-21T01:09:01.556Z",
+  "load": 33.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 2565,
+  "seconds": 346,
+  "functions": [
+    {
+      "function": 4,
+      "does": "Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way.",
+      "verdict": "shown",
+      "msOneCall": 287,
+      "msPerStep": 60,
+      "time": {
+        "open": 33,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 21,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2606 42110 - 49294",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2585,
+          "msOneCall": 287,
+          "stops": [],
+          "moved": {
+            "p2613 42110 - 49294": [
+              0,
+              1.82
+            ],
+            "p38 62821": [
+              0,
+              42.06
+            ],
+            "p242 3708": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2606 42110 - 49294",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2496,
+          "msOneCall": 189,
+          "stops": [],
+          "moved": {
+            "p2613 42110 - 49294": [
+              0,
+              1.82
+            ],
+            "p38 62821": [
+              0,
+              42.06
+            ],
+            "p242 3708": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 62
+    },
+    {
+      "function": 6,
+      "does": "The D-N-R lever in the console slides a driving ring in the gearbox in front of the console, choosing forward, neutral or reverse.",
+      "verdict": "shown",
+      "msOneCall": 439,
+      "msPerStep": 83,
+      "time": {
+        "open": 89,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 67,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p377 6641",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 1177,
+          "msOneCall": 422,
+          "stops": [],
+          "moved": {
+            "p330 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p377 6641",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 1190,
+          "msOneCall": 439,
+          "stops": [],
+          "moved": {
+            "p330 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 117
+    },
+    {
+      "function": 7,
+      "does": "The HI-LO lever beside it slides the other driving ring in the same gearbox, choosing the high or low range.",
+      "verdict": "shown",
+      "msOneCall": 428,
+      "msPerStep": 85,
+      "time": {
+        "open": 83,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 65,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p368 6641",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 1149,
+          "msOneCall": 410,
+          "stops": [],
+          "moved": {
+            "p331 18947": [
+              10,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p368 6641",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 1213,
+          "msOneCall": 428,
+          "stops": [],
+          "moved": {
+            "p331 18947": [
+              10,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 110
+    },
+    {
+      "function": 12,
+      "does": "Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways.",
+      "verdict": "not shown",
+      "why": "A: p1504 32065 not moved",
+      "msOneCall": 22,
+      "msPerStep": null,
+      "time": {
+        "open": 37,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 16,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2614 42110 - 49294",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {
+            "p1504 32065": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2614 42110 - 49294",
+          "way": -1,
+          "asked": 0.1,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p1504 32065": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 57
+    }
+  ]
+}

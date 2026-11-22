@@ -1,0 +1,198 @@
+[
+  {
+    "set": "8274-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The auger does not turn in the viewer: it shifts 6 to 14 LDU and stops at once at p395/p694 and p397/p701, at the built position; the check turns 0 and 0.1 rad and judges it by its rates.",
+    "date": "2026-11-19"
+  },
+  {
+    "set": "42031-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p101 at 0.03 rad each way (parts 92/130 and 91/124); the check stops at the same angle and judges by rates. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42040-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p251 at 0.068 rad (parts 165/254); the hatch should flip forward. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42069-1",
+    "function": 7,
+    "result": "partly",
+    "reason": "The booklet shows a long travel, but in the viewer a collision stops the controls p1172 and p1055 at once and at 0.07 rad (parts 231/462, 106/458, 628/2405); the door should swing up and the step lower. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42075-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p186 at 0.136 rad each way (parts 175/187); the mast should swing upright. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42100-1",
+    "function": 9,
+    "result": "partly",
+    "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42122-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p457 at once and at 0.14 rad (parts 269/472 and 323/458); the bonnet should lift open. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42055-1",
+    "function": 7,
+    "result": "partly",
+    "reason": "In the viewer the control turns and these listed parts stay: p2535; a push by hand does not move it either. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42069-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "In the viewer the control turns and these listed parts stay: p1333, p146, p162; a push by hand does not move them either. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8258-1",
+    "function": 7,
+    "result": "partly",
+    "reason": "In the viewer the control turns and these listed parts stay: p682, p6, p1351, p1366, p1367. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8275-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "In the viewer the control turns and these listed parts stay: p2715, p2731. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42053-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p2196, p2201, p2222, p2407 (one of the four moves). Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42055-1",
+    "function": 9,
+    "result": "partly",
+    "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p263, p264. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42082-1",
+    "function": 9,
+    "result": "partly",
+    "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p3789 against p2649. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8844-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "In the viewer two parts listed to stay move 3 to 6 LDU: p14 and p65 against p0. Viewer sweep, decision 279.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8285-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "In the viewer neither a turn of the control nor a push by hand moves the listed part p1074, with the control in view; the check tilts the bonnet 0.15 rad one way only. Viewer sweep, decision 286.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42078-1",
+    "function": 12,
+    "result": "partly",
+    "reason": "In the viewer the lock bars hardly slide (p2641 0 of 25 LDU, p2675 4 of 25): a collision stops the push at once at parts 2618/2641, so the doors do not open; the check makes the same slide and passes. Viewer sweep, decision 289.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42110-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The booklet shows the knob turned about half a turn each way (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490), but in the viewer a collision stops p385 at 0.17 rad (parts 641/642) and 0.105 rad (parts 648/714); the check stops there too. Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42078-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42096-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The booklet's arrow shows the suspension swinging plainly (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=291), but in the viewer a collision stops p22 and p26 at 0.035 to 0.07 rad (parts 242/243 and 239/240). Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8261-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The booklet shows the roof shaft steering to full lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=32), but in the viewer p131 stops at 0.105 rad each way, at a part against itself (193/193 and 191/191); the check turns 1.47 rad. Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42083-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "The booklet shows the key turned both ways to lift the wing (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310), but in the viewer a collision stops p1938 at once one way (parts 1928/2024) and at 0.14 rad the other (parts 1929/1944). Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8002-1",
+    "function": 5,
+    "result": "partly",
+    "reason": "The booklet folds the legs about 90 degrees (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87), but in the viewer a collision stops p11 at 0.035 rad one way (parts 16/45) and 0.66 rad the other (parts 24/118). Viewer sweep on today's code, decision 298.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42078-1",
+    "function": 4,
+    "result": "partly",
+    "reason": "The booklet tips the bonnet forward about a quarter turn (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=249), but the check itself turns it only 0.02 and 0.03 rad before a collision (parts 362/1383 and 1423/1467), and in the viewer neither a turn nor the pointer moves it. Second viewer sweep, decision 327.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42080-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The booklet's motor drives the pump crank round without end (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=92), but the check runs the motor only 0.1 rad each way before a collision (parts 56/71), and in the viewer the listed parts do not move. Second viewer sweep, decision 327.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42077-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: with the mended pointer (decision 339), pushing the rear wheels p1076 and p1080 moved none of the engine's listed parts (p59, p139, p142, p143). Marked before the offer of main, decision 341; to look at after 2026-11-23.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "8272-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: with the mended pointer (decision 339), working the right ski's arm p9 moved none of the listed parts. Marked before the offer of main, decision 341; to look at after 2026-11-23.",
+    "date": "2026-11-21"
+  },
+  {
+    "set": "42110-1",
+    "function": 14,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: no view shows the lid p2475 of the roof case, so no drag can reach it, and a turn of it measured 0 (decisions 329 and 339). Marked before the offer of main, decision 341; to look at after 2026-11-23.",
+    "date": "2026-11-21"
+  }
+]

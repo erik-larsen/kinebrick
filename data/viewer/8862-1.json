@@ -1,0 +1,893 @@
+{
+  "set": "8862-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:52:19.450Z",
+  "load": 9.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 656,
+  "seconds": 237,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The round yellow knob on the cab roof steers the front wheels: its shaft runs down through the cab to a bevel pair, and a shaft with a universal joint runs forward to an 8-tooth gear on the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 24,
+      "msPerStep": 4,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p570 3941",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 168,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p368 3743": [
+              15.36,
+              0
+            ],
+            "p360 4261": [
+              0,
+              22
+            ],
+            "p370 4261": [
+              0,
+              22
+            ]
+          }
+        },
+        {
+          "control": "p570 3941",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 151,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p368 3743": [
+              15.36,
+              0
+            ],
+            "p360 4261": [
+              0,
+              22
+            ],
+            "p370 4261": [
+              0,
+              22
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p570 3941",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p368 3743",
+            "p360 4261",
+            "p370 4261"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 3,
+      "does": "The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket.",
+      "verdict": "shown",
+      "msOneCall": 35,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p574 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 272,
+          "msOneCall": 35,
+          "stops": [],
+          "moved": {
+            "p609 2814 against p596 3702": [
+              3.31,
+              3.16
+            ],
+            "p580 3895": [
+              0,
+              0
+            ],
+            "p596 3702 against p580 3895": [
+              0.36,
+              0.34
+            ]
+          }
+        },
+        {
+          "control": "p574 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 265,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p609 2814 against p596 3702": [
+              3.33,
+              3.18
+            ],
+            "p580 3895": [
+              0,
+              0
+            ],
+            "p596 3702 against p580 3895": [
+              0.35,
+              0.33
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p574 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p609 2814 against p596 3702"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 4,
+      "does": "The handwheel high in the cab on the right swings both outriggers out and down together: its shaft runs down to a bevel pair and a worm, which turns a crown gear driving two 16-tooth gears, each turning an 8-tooth gear on the 24-tooth gear on one outrigger's arms.",
+      "verdict": "shown",
+      "msOneCall": 34,
+      "msPerStep": 7,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p573 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 312,
+          "msOneCall": 34,
+          "stops": [],
+          "moved": {
+            "p158 3702": [
+              2.13,
+              0.41
+            ],
+            "p177 3702": [
+              2.13,
+              0.41
+            ],
+            "p224 3404": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p573 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 269,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p158 3702": [
+              2.1,
+              0.38
+            ],
+            "p177 3702": [
+              2.1,
+              0.38
+            ],
+            "p224 3404": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p573 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p158 3702",
+            "p177 3702"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 5,
+      "does": "Each outrigger's foot tilts on toothed toggle joints to sit flat on the ground.",
+      "verdict": "shown",
+      "msOneCall": 24,
+      "msPerStep": 4,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 24
+      },
+      "stop": {
+        "control": "p159 3701",
+        "way": 1,
+        "went": 0.942,
+        "asked": 1.5,
+        "by": [
+          "71/161"
+        ]
+      },
+      "stops": [
+        "71/161"
+      ],
+      "A": [
+        {
+          "control": "p159 3701",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.942,
+          "ms": 107,
+          "msOneCall": 24,
+          "stops": [
+            "71/161"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p159 3701",
+          "way": -1,
+          "asked": 0.97,
+          "went": -0.97,
+          "ms": 88,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p178 3701",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 135,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p178 3701",
+          "way": -1,
+          "asked": 0.97,
+          "went": -0.97,
+          "ms": 88,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p159 3701",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "71/161",
+            "69/161"
+          ]
+        },
+        {
+          "control": "p178 3701",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p159 3701",
+          "judged": "stands",
+          "why": "stopped at +0.942 rad (71/161); kinds posable-joint: outrigger feet"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 32
+    },
+    {
+      "function": 6,
+      "does": "The handwheel high in the cab on the left slews the backhoe: its shaft runs down to a bevel pair and a worm under the turntable, which turns the crown gear on the turntable's post.",
+      "verdict": "shown",
+      "msOneCall": 27,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p572 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 244,
+          "msOneCall": 27,
+          "stops": [],
+          "moved": {
+            "p224 3404": [
+              0,
+              3.58
+            ],
+            "p264 3702": [
+              17.47,
+              3.58
+            ],
+            "p158 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p572 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 188,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p224 3404": [
+              0,
+              3.58
+            ],
+            "p264 3702": [
+              17.47,
+              3.58
+            ],
+            "p158 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p572 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p224 3404",
+            "p264 3702"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 7,
+      "does": "The cylinder on the turntable raises and lowers the backhoe's boom.",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 9,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p264 3702",
+        "way": -1,
+        "went": -0.035,
+        "asked": 0.07,
+        "by": [
+          "ground: p302"
+        ]
+      },
+      "stops": [
+        "ground: p302"
+      ],
+      "A": [
+        {
+          "control": "p264 3702",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 167,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p233 2796c01 against p232 2793c03": [
+              180.96,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p264 3702",
+          "way": -1,
+          "asked": 0.07,
+          "went": -0.035,
+          "ms": 9,
+          "msOneCall": 8,
+          "stops": [
+            "ground: p302"
+          ],
+          "moved": {
+            "p233 2796c01 against p232 2793c03": [
+              4.22,
+              2.01
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p264 3702",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p233 2796c01 against p232 2793c03"
+          ],
+          "stops": [
+            "232/234"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p264 3702",
+          "judged": "stands",
+          "why": "stopped at -0.035 rad (ground: p302); kinds pneumatic-cylinder: boom"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 17
+    },
+    {
+      "function": 8,
+      "does": "The cylinder along the top of the boom swings the dipper arm in and out.",
+      "verdict": "not shown",
+      "why": "A: p281 2796c01 against p280 2793c03 not moved",
+      "msOneCall": 3,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p292 3703",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p281 2796c01 against p280 2793c03": [
+              0,
+              0
+            ],
+            "p264 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p292 3703",
+          "way": -1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p281 2796c01 against p280 2793c03": [
+              0,
+              0
+            ],
+            "p264 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p292 3703",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p281 2796c01 against p280 2793c03"
+          ],
+          "stops": [
+            "264/281",
+            "306/318",
+            "ground: p302"
+          ]
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 9,
+      "does": "The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage.",
+      "verdict": "not shown",
+      "why": "A: p319 2796c01 against p318 2793c03 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p302 4700",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p319 2796c01 against p318 2793c03": [
+              0,
+              0
+            ],
+            "p292 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p302 4700",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p319 2796c01 against p318 2793c03": [
+              0,
+              0
+            ],
+            "p292 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p302 4700",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p319 2796c01 against p318 2793c03"
+          ],
+          "stops": [
+            "232/234",
+            "306/318",
+            "ground: p302"
+          ]
+        }
+      ],
+      "seconds": 17
+    },
+    {
+      "function": 11,
+      "does": "The bonnet over the pump lifts on the axle along its back edge.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 4,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": {
+        "control": "p525 3958",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "466/525"
+        ]
+      },
+      "stops": [
+        "466/525"
+      ],
+      "A": [
+        {
+          "control": "p525 3958",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 7,
+          "msOneCall": 14,
+          "stops": [
+            "466/525"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p525 3958",
+          "way": -1,
+          "asked": 0.63,
+          "went": -0.63,
+          "ms": 69,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p525 3958",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "386/525",
+            "473/525",
+            "466/525"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p525 3958",
+          "judged": "stands",
+          "why": "stopped at +0 rad (466/525); kinds hinge: bonnet"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 17
+    },
+    {
+      "function": 12,
+      "does": "The four wheels roll freely; nothing drives them.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 4,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 1,
+        "B": 49
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p369 4266c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 180,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p369 4266c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 165,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p376 4266c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 170,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p376 4266c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 168,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p654 3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 160,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p654 3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 156,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p655 3739c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 144,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p655 3739c01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 145,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p369 4266c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p376 4266c01",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p654 3739c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p655 3739c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 65
+    }
+  ]
+}

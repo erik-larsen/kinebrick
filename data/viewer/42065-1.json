@@ -1,0 +1,329 @@
+{
+  "set": "42065-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:26:37.659Z",
+  "load": 13,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 365,
+  "seconds": 130,
+  "functions": [
+    {
+      "function": 3,
+      "does": "With both tracks driven the same way the racer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 2,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 4,
+        "A": 0,
+        "B": 24
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p287 32209",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 104,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p287 32209",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 90,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p289 32209",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 92,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p289 32209",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 85,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p521 57519": [
+              0,
+              85.94
+            ],
+            "p524 57519": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p287 32209",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p521 57519",
+            "p524 57519"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p289 32209",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p521 57519",
+            "p524 57519"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 36
+    },
+    {
+      "function": 4,
+      "does": "The idler sprockets and the eight white road wheels turn freely as the tracks run round them.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 2,
+      "time": {
+        "open": 16,
+        "collisions": 0,
+        "first": 0,
+        "reach": 6,
+        "A": 1,
+        "B": 71
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p523 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 105,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p523 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 88,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p522 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 87,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p522 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 93,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 90,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p102 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 85,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p102 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 94,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 52,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p110 42065 - 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 57,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p110 42065 - 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 54,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p523 57519",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p522 57519",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p98 42065 - 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p102 42065 - 4185",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p106 42065 - 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p110 42065 - 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 94
+    }
+  ]
+}

@@ -1,0 +1,522 @@
+{
+  "set": "9394-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:35:08.794Z",
+  "load": 14.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 466,
+  "seconds": 122,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the round exhaust nozzle at the tail sweeps both wings back and forward together: the nozzle's 24-tooth gear turns a small gear on an axle with a worm, the worm turns a 24-tooth gear whose two gears drive a pair of racks along the fuselage, and the racks' cross axle pushes a link to each wing, which pivots near the wing root.",
+      "verdict": "shown",
+      "msOneCall": 71,
+      "msPerStep": 17,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 13
+      },
+      "stop": {
+        "control": "p284 56145",
+        "way": 1,
+        "went": 1.395,
+        "asked": 1.5,
+        "by": [
+          "315/477"
+        ]
+      },
+      "stops": [
+        "315/477"
+      ],
+      "A": [
+        {
+          "control": "p284 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.395,
+          "ms": 672,
+          "msOneCall": 71,
+          "stops": [
+            "315/477"
+          ],
+          "moved": {
+            "p79 3648b": [
+              0,
+              79.95
+            ],
+            "p85 4716": [
+              0,
+              239.84
+            ],
+            "p281 3648b": [
+              0,
+              9.99
+            ],
+            "p157 64781": [
+              2.62,
+              0
+            ],
+            "p383 32525": [
+              2.63,
+              0.02
+            ],
+            "p315 41239 against p72 32278": [
+              3.96,
+              1.89
+            ],
+            "p325 41239 against p72 32278": [
+              3.96,
+              1.89
+            ],
+            "p72 32278 against p76 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p284 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 672,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p79 3648b": [
+              0,
+              85.94
+            ],
+            "p85 4716": [
+              0,
+              257.83
+            ],
+            "p281 3648b": [
+              0,
+              10.74
+            ],
+            "p157 64781": [
+              2.81,
+              0
+            ],
+            "p383 32525": [
+              2.8,
+              0.01
+            ],
+            "p315 41239 against p72 32278": [
+              4.19,
+              2
+            ],
+            "p325 41239 against p72 32278": [
+              4.19,
+              2
+            ],
+            "p72 32278 against p76 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p284 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p79 3648b",
+            "p85 4716",
+            "p281 3648b"
+          ],
+          "stops": [
+            "315/477"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p284 56145",
+          "judged": "stands",
+          "why": "stopped at +1.395 rad (315/477); kinds swing-wing, worm-drive, rack-and-pinion: wings"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 19
+    },
+    {
+      "function": 2,
+      "does": "The smooth grey axle joiner low on the fuselage's left side raises and lowers the landing gear: it turns a worm, which turns a small gear on a long axle along the belly, and knob gears at its ends swing the nose leg and, through a cross axle, the two main legs.",
+      "verdict": "shown",
+      "msOneCall": 47,
+      "msPerStep": 13,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p25 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 500,
+          "msOneCall": 47,
+          "stops": [],
+          "moved": {
+            "p28 4716": [
+              0,
+              85.94
+            ],
+            "p35 3647": [
+              0,
+              10.74
+            ],
+            "p55 2825": [
+              0,
+              10.74
+            ],
+            "p57 42610": [
+              11.25,
+              10.74
+            ],
+            "p253 32072": [
+              0,
+              10.74
+            ],
+            "p257 32072": [
+              0,
+              10.74
+            ],
+            "p263 42610": [
+              11.86,
+              10.74
+            ],
+            "p268 42610": [
+              11.86,
+              10.74
+            ],
+            "p72 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p25 59443",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.17,
+          "ms": 66,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p28 4716": [
+              0,
+              9.74
+            ],
+            "p35 3647": [
+              0,
+              1.22
+            ],
+            "p55 2825": [
+              0,
+              1.22
+            ],
+            "p57 42610": [
+              1.27,
+              1.22
+            ],
+            "p253 32072": [
+              0,
+              1.22
+            ],
+            "p257 32072": [
+              0,
+              1.22
+            ],
+            "p263 42610": [
+              1.34,
+              1.22
+            ],
+            "p268 42610": [
+              1.34,
+              1.22
+            ],
+            "p72 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p25 59443",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p28 4716",
+            "p35 3647",
+            "p55 2825",
+            "p57 42610",
+            "p253 32072",
+            "p257 32072",
+            "p263 42610",
+            "p268 42610"
+          ],
+          "stops": [
+            "150/261"
+          ]
+        }
+      ],
+      "seconds": 18
+    },
+    {
+      "function": 4,
+      "does": "Moving the control stick in the cockpit forward and back tilts the two tailplanes: rods along the fuselage carry the stick's movement to a crank on the tailplanes' common axle.",
+      "verdict": "not shown",
+      "why": "A: p196 40490, p305 32278, p308 32278, p244 60485, p541 64392, p546 64682 not moved",
+      "msOneCall": 8,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 15
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p194 6553",
+          "way": 1,
+          "asked": 0.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p196 40490": [
+              0,
+              0
+            ],
+            "p305 32278": [
+              0,
+              0
+            ],
+            "p308 32278": [
+              0,
+              0
+            ],
+            "p244 60485": [
+              0,
+              0
+            ],
+            "p541 64392": [
+              0,
+              0
+            ],
+            "p546 64682": [
+              0,
+              0
+            ],
+            "p72 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p194 6553",
+          "way": -1,
+          "asked": 0.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p196 40490": [
+              0,
+              0
+            ],
+            "p305 32278": [
+              0,
+              0
+            ],
+            "p308 32278": [
+              0,
+              0
+            ],
+            "p244 60485": [
+              0,
+              0
+            ],
+            "p541 64392": [
+              0,
+              0
+            ],
+            "p546 64682": [
+              0,
+              0
+            ],
+            "p72 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p194 6553",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p196 40490",
+            "p305 32278",
+            "p308 32278",
+            "p244 60485",
+            "p541 64392",
+            "p546 64682"
+          ],
+          "stops": [
+            "308/550",
+            "185/196"
+          ]
+        }
+      ],
+      "seconds": 19
+    },
+    {
+      "function": 5,
+      "does": "The three landing gear wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 70,
+      "msPerStep": 11,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 15,
+        "A": 3,
+        "B": 40
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p57 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 481,
+          "msOneCall": 70,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p57 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 451,
+          "msOneCall": 28,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p263 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 354,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p263 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 352,
+          "msOneCall": 23,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p268 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 340,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p268 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 332,
+          "msOneCall": 22,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p57 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p263 42610",
+          "seen": true,
+          "cameraTurns": 8,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p268 42610",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 66
+    }
+  ]
+}

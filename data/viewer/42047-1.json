@@ -1,0 +1,271 @@
+{
+  "set": "42047-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:27:05.631Z",
+  "load": 7.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 183,
+  "seconds": 57,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The rear wheels' 12-long axle runs through the pull-back motor at the back of the chassis, so the rear wheels roll, turning the motor's axle with them.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 3,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p171 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 33,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p166 3708": [
+              0,
+              85.94
+            ],
+            "p172 44309": [
+              0,
+              85.94
+            ],
+            "p176 44309": [
+              0,
+              85.94
+            ],
+            "p15 12799": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p171 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 29,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p166 3708": [
+              0,
+              85.94
+            ],
+            "p172 44309": [
+              0,
+              85.94
+            ],
+            "p176 44309": [
+              0,
+              85.94
+            ],
+            "p15 12799": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p175 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 26,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p166 3708": [
+              0,
+              85.94
+            ],
+            "p172 44309": [
+              0,
+              85.94
+            ],
+            "p176 44309": [
+              0,
+              85.94
+            ],
+            "p15 12799": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p175 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 24,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p166 3708": [
+              0,
+              85.94
+            ],
+            "p172 44309": [
+              0,
+              85.94
+            ],
+            "p176 44309": [
+              0,
+              85.94
+            ],
+            "p15 12799": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p171 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p166 3708",
+            "p172 44309",
+            "p176 44309"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p175 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p166 3708",
+            "p172 44309",
+            "p176 44309"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 30
+    },
+    {
+      "function": 2,
+      "does": "The front wheels roll freely on their own 12-long axle; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 20
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p173 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 35,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p165 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p173 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 29,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p165 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p177 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p165 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p177 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p165 3708": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p173 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p165 3708"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p177 56145",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p165 3708"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 26
+    }
+  ]
+}

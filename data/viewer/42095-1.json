@@ -1,0 +1,285 @@
+{
+  "set": "42095-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:18:28.634Z",
+  "load": 15,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 318,
+  "seconds": 70,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The left track: a Power Functions L motor, worked by one lever on the remote through the IR receiver, turns a 16 tooth gear on its shaft, which drives the 16 tooth gear on the big yellow sprocket at the back of the left track, running the track forward or back.",
+      "verdict": "shown",
+      "msOneCall": 20,
+      "msPerStep": 3,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p236 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 118,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p232 94925": [
+              0,
+              85.94
+            ],
+            "p335 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p306 57519": [
+              0,
+              116.76
+            ],
+            "p334 42095 - 42529": [
+              0,
+              0
+            ],
+            "p287 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p236 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 88,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p232 94925": [
+              0,
+              85.94
+            ],
+            "p335 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p306 57519": [
+              0,
+              116.76
+            ],
+            "p334 42095 - 42529": [
+              0,
+              0
+            ],
+            "p287 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p236 94925",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p232 94925",
+            "p335 42095 - 42529",
+            "p306 57519"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 19
+    },
+    {
+      "function": 2,
+      "does": "The right track: the other L motor, worked by the remote's other lever, drives the right track's big yellow sprocket the same way.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 2,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p277 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 100,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p272 94925": [
+              0,
+              85.94
+            ],
+            "p334 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p287 57519": [
+              0,
+              116.76
+            ],
+            "p335 42095 - 42529": [
+              0,
+              0
+            ],
+            "p306 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p277 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 79,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p272 94925": [
+              0,
+              85.94
+            ],
+            "p334 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p287 57519": [
+              0,
+              116.76
+            ],
+            "p335 42095 - 42529": [
+              0,
+              0
+            ],
+            "p306 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p277 94925",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p272 94925",
+            "p334 42095 - 42529",
+            "p287 57519"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 19
+    },
+    {
+      "function": 5,
+      "does": "The two small yellow wheels on the tail, behind and above the tracks, roll freely, so the racer can run on them when it rears up.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 0,
+        "B": 23
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p235 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 56,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p235 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p274 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p274 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 38,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p235 42610",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p274 42610",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 32
+    }
+  ]
+}

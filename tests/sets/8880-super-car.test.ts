@@ -3,10 +3,12 @@ import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../../src/kinematics.ts';
 import { inferMechanism } from '../../src/mechanism.ts';
 import { findSliders, findSticks, sliderMovedTo, stickPositionNow, stickPositions } from '../../src/shift.ts';
-import { load, roles, table } from './load.ts';
+import { load, roles, table, readShapes } from './load.ts';
+
+await readShapes('models/8880-Super Car.mpd');
 
 describe('8880 Super Car', () => {
-  const { parts, mech, kin, bodyOf, turn, motor, frameMoved } = load('models/8880-Super Car.mpd');
+  const { parts, mech, kin, bodyOf, turn, motor, frameMoved, touching } = load('models/8880-Super Car.mpd');
   // Its wheels' steering knuckles (6540b), front ones first, and how far each has turned about
   // the upright, in degrees.
   const knuckles = mech.bodies.flatMap((b, i) => (b.parts.some((p) => parts[p].name === '6540b.dat') ? [i] : []));
@@ -75,7 +77,7 @@ describe('8880 Super Car', () => {
           const dir = new Vector3(0, 0, 1).transformDirection(p.matrix);
           return { ...p, matrix: new Matrix4().makeTranslation(dir.x * by, dir.y * by, dir.z * by).multiply(p.matrix) };
         });
-        const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path));
+        const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path), new Set(), false, null, new Set(), touching);
         const k = new Kinematics(m);
         const wheel = m.bodyOf[shifted.findIndex((p) => p.name === '2998.dat')];
         const joint = k.parentLink(wheel)!.joint;
@@ -104,7 +106,7 @@ describe('8880 Super Car', () => {
       for (const ring of stick.rings) shifted[ring.part] = { ...shifted[ring.part], matrix: sliderMovedTo(shifted, table, ring, position.rings.get(ring.part)!) };
       // Each gear slides one ring, and only one; neutral none.
       expect([...position.rings.values()].filter((at) => at !== 0)).toHaveLength(k === 0 ? 0 : 1);
-      const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path));
+      const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path), new Set(), false, null, new Set(), touching);
       expect(m.loose).toEqual([]);
       const k2 = new Kinematics(m);
       const wheel = m.bodyOf[shifted.findIndex((p) => p.name === '2998.dat')];

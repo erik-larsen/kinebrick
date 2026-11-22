@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, acrossDirections, DRIVE_WEIGHT, STUD, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, acrossDirections, DRIVE_WEIGHT, STUD, type Equations } from './equations.ts';
 
 export function screws(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -18,7 +18,7 @@ export function screws(solver: Kinematics, eq: Equations) {
     const surface = new Vector3().crossVectors(d, out); // how the thread moves there as the input turns
     const lean = Math.atan(screw.lead / (2 * Math.PI * STUD));
     const across = d.clone().multiplyScalar(Math.cos(lean)).addScaledVector(surface, Math.sin(lean));
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
       addPointVelocity(row, screw.input, point, k, across.getComponent(k));
       addPointVelocity(row, screw.piston, point, k, -across.getComponent(k));

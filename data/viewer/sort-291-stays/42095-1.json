@@ -1,0 +1,177 @@
+{
+  "set": "42095-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:30.508Z",
+  "load": 15.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 318,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The left track: a Power Functions L motor, worked by one lever on the remote through the IR receiver, turns a 16 tooth gear on its shaft, which drives the 16 tooth gear on the big yellow sprocket at the back of the left track, running the track forward or back.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p236 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 108,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p232 94925": [
+              0,
+              85.94
+            ],
+            "p335 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p306 57519": [
+              0,
+              116.76
+            ],
+            "p334 42095 - 42529": [
+              0,
+              0
+            ],
+            "p287 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p236 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 92,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p232 94925": [
+              0,
+              85.94
+            ],
+            "p335 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p306 57519": [
+              0,
+              116.76
+            ],
+            "p334 42095 - 42529": [
+              0,
+              0
+            ],
+            "p287 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 2,
+      "does": "The right track: the other L motor, worked by the remote's other lever, drives the right track's big yellow sprocket the same way.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 2,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p277 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 82,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p272 94925": [
+              0,
+              85.94
+            ],
+            "p334 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p287 57519": [
+              0,
+              116.76
+            ],
+            "p335 42095 - 42529": [
+              0,
+              0
+            ],
+            "p306 57519": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p277 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 77,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p272 94925": [
+              0,
+              85.94
+            ],
+            "p334 42095 - 42529": [
+              0,
+              85.94
+            ],
+            "p287 57519": [
+              0,
+              116.76
+            ],
+            "p335 42095 - 42529": [
+              0,
+              0
+            ],
+            "p306 57519": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

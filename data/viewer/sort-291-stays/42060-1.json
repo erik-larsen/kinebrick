@@ -1,0 +1,176 @@
+{
+  "set": "42060-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:41.554Z",
+  "load": 14.8,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 357,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 11,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p30 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 11,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p159 32525": [
+              1.1,
+              0.35
+            ],
+            "p173 32525": [
+              1.1,
+              0.35
+            ],
+            "p172 15458": [
+              1,
+              0.35
+            ],
+            "p156 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p30 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 10,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p159 32525": [
+              1.12,
+              0.35
+            ],
+            "p173 32525": [
+              1.12,
+              0.35
+            ],
+            "p172 15458": [
+              1.02,
+              0.35
+            ],
+            "p156 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 5,
+      "does": "The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 2,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p270 32270",
+        "way": 1,
+        "went": 1.012,
+        "asked": 1.5,
+        "by": [
+          "259/277"
+        ]
+      },
+      "stops": [
+        "259/277"
+      ],
+      "A": [
+        {
+          "control": "p270 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.012,
+          "ms": 71,
+          "msOneCall": 7,
+          "stops": [
+            "259/277"
+          ],
+          "moved": {
+            "p244 42060 - 18575": [
+              0,
+              2.9
+            ],
+            "p277 32316": [
+              4.83,
+              6.92
+            ],
+            "p228 11214": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p270 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 98,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p244 42060 - 18575": [
+              0,
+              4.3
+            ],
+            "p277 32316": [
+              6.62,
+              9.48
+            ],
+            "p228 11214": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p270 32270",
+          "judged": "stands",
+          "why": "stopped at +1.012 rad (259/277); kinds worm-drive, crank-and-link: boom"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 0
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "set": "8202-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:47:15.579Z",
+  "load": 12.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 67,
+  "seconds": 16,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The twin front wheels roll freely together on their short axle at the end of the long fork; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 0,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p61 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p62 4185": [
+              0,
+              85.94
+            ],
+            "p63 2815": [
+              0,
+              85.94
+            ],
+            "p64 2815": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p61 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 12,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p62 4185": [
+              0,
+              85.94
+            ],
+            "p63 2815": [
+              0,
+              85.94
+            ],
+            "p64 2815": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p61 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p62 4185",
+            "p63 2815",
+            "p64 2815"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    }
+  ]
+}

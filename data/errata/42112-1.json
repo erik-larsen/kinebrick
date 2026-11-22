@@ -1,0 +1,145 @@
+{
+  "set": "42112-1",
+  "entries": [
+    {
+      "id": "drive-shaft-bevel-on-the-shaft",
+      "what": "move",
+      "file": "",
+      "line": "1 19 20 0 204 1 0 0 0 1 0 0 0 1 18575.dat",
+      "part": "p326 18575",
+      "position": [20, 0, 184],
+      "evidence": "The drive shaft along the chassis ends in a tan 20 tooth double bevel gear that meshes the front rear axle's differential ring, so rolling the truck turns the shaft and, through the selector, the drum (function 5). Step 81 (book 1 page 56, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=56) puts the gear into the rear axles' frame and shows the shaft's red axle going through a beam into it. The file places the gear (p326, in the main model) at z 204, while the shaft's axle 6 (p15) ends at z 194, so the gear is on no axle and meshes nothing. The gear that links the two differentials (p246, at z 264) meshes the same ring from its other side; mirrored about the ring's axis (z 224), the drive gear belongs at z 184, where the axle's last 20 LDU fill its hole and it meshes the ring. Moved 20 LDU, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-17",
+        "words": "Sign all seven (42112)"
+      }
+    },
+    {
+      "id": "piston-first-axle-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 14 20 -130 -256 0 -1 0 -1 0 0 0 0 -1 4519.dat",
+      "part": "p170 4519",
+      "position": [20, -128, -256],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the first piston (lines 136 to 138 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-first-half-bush-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 14 20 -155 -256 -1 0 0 0 0 1 0 1 0 32123b.dat",
+      "part": "p171 32123b",
+      "position": [20, -153, -256],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the first piston (lines 136 to 138 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-first-bush-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 71 20 -110 -256 0 1 0 0 0 -1 -1 0 0 3713.dat",
+      "part": "p172 3713",
+      "position": [20, -108, -256],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the first piston (lines 136 to 138 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-second-axle-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 14 20 -130 -276 0 -1 0 -1 0 0 0 0 -1 4519.dat",
+      "part": "p173 4519",
+      "position": [20, -128, -276],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the second piston (lines 139 to 141 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-second-half-bush-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 14 20 -155 -276 -1 0 0 0 0 1 0 1 0 32123b.dat",
+      "part": "p174 32123b",
+      "position": [20, -153, -276],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the second piston (lines 139 to 141 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-second-bush-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 71 20 -110 -276 0 1 0 0 0 -1 -1 0 0 3713.dat",
+      "part": "p175 3713",
+      "position": [20, -108, -276],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the second piston (lines 139 to 141 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-fourth-axle-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 14 20 -130 -316 0 -1 0 -1 0 0 0 0 -1 4519.dat",
+      "part": "p179 4519",
+      "position": [20, -128, -316],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the fourth piston (lines 145 to 147 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-fourth-half-bush-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 14 20 -155 -316 -1 0 0 0 0 1 0 1 0 32123b.dat",
+      "part": "p180 32123b",
+      "position": [20, -153, -316],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the fourth piston (lines 145 to 147 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    },
+    {
+      "id": "piston-fourth-bush-on-the-plate",
+      "what": "move",
+      "file": "",
+      "line": "1 71 20 -110 -316 0 1 0 0 0 -1 -1 0 0 3713.dat",
+      "part": "p181 3713",
+      "position": [20, -108, -316],
+      "evidence": "The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the fourth piston (lines 145 to 147 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-21",
+        "words": "Sign the 42112's piston erratum"
+      }
+    }
+  ]
+}

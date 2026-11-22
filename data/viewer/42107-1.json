@@ -1,0 +1,397 @@
+{
+  "set": "42107-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:50:55.239Z",
+  "load": 11.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 631,
+  "seconds": 82,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The grey gear lever on the gearbox's right side picks neutral, first or second gear: it turns the selector shaft, whose orange rotary catch slides the driving ring between the two clutch gears.",
+      "verdict": "shown",
+      "msOneCall": 34,
+      "msPerStep": 3,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p129 33299a",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 140,
+          "msOneCall": 34,
+          "stops": [],
+          "moved": {
+            "p137 35188": [
+              0,
+              85.94
+            ],
+            "p127 18947": [
+              10,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ],
+            "p247 35189": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p129 33299a",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 140,
+          "msOneCall": 32,
+          "stops": [],
+          "moved": {
+            "p137 35188": [
+              0,
+              85.94
+            ],
+            "p127 18947": [
+              10,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ],
+            "p247 35189": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p129 33299a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p137 35188",
+            "p127 18947"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 20
+    },
+    {
+      "function": 3,
+      "does": "The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall.",
+      "verdict": "not shown",
+      "why": "A: p247 35189, p284 4254 not moved",
+      "msOneCall": 3,
+      "msPerStep": null,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p262 40490",
+          "way": 1,
+          "asked": 0.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p284 4254": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p262 40490",
+          "way": -1,
+          "asked": 0.01,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p284 4254": [
+              0,
+              0
+            ],
+            "p379 88516": [
+              0,
+              0
+            ],
+            "p185 2854": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p262 40490",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p247 35189",
+            "p284 4254"
+          ],
+          "stops": [
+            "284/640"
+          ]
+        }
+      ],
+      "seconds": 19
+    },
+    {
+      "function": 5,
+      "does": "The handlebars steer: they turn the front fork with the front wheel on the steering head.",
+      "verdict": "shown",
+      "msOneCall": 33,
+      "msPerStep": 4,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 1,
+        "A": 2,
+        "B": 12
+      },
+      "stop": {
+        "control": "p340 15462",
+        "way": 1,
+        "went": 0.488,
+        "asked": 1.5,
+        "by": [
+          "356/420"
+        ]
+      },
+      "stops": [
+        "356/420",
+        "355/454"
+      ],
+      "A": [
+        {
+          "control": "p340 15462",
+          "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              349,
+              369
+            ]
+          },
+          "asked": 1.5,
+          "went": 0.488,
+          "ms": 57,
+          "msOneCall": 33,
+          "stops": [
+            "356/420"
+          ],
+          "moved": {
+            "p351 15462": [
+              21.84,
+              27.98
+            ],
+            "p372 44294": [
+              0,
+              27.98
+            ],
+            "p379 88516": [
+              0.49,
+              27.98
+            ],
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p129 33299a": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p340 15462",
+          "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              349,
+              369
+            ]
+          },
+          "asked": 1.5,
+          "went": -0.488,
+          "ms": 59,
+          "msOneCall": 14,
+          "stops": [
+            "355/454"
+          ],
+          "moved": {
+            "p351 15462": [
+              21.84,
+              27.98
+            ],
+            "p372 44294": [
+              0,
+              27.98
+            ],
+            "p379 88516": [
+              0.49,
+              27.98
+            ],
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p129 33299a": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p340 15462",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "moved": [
+            "p351 15462",
+            "p372 44294",
+            "p379 88516"
+          ],
+          "stops": [
+            "376/414",
+            "371/410",
+            "356/420"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p340 15462",
+          "judged": "stands",
+          "why": "stopped at +0.488 rad (356/420); -0.488 rad (355/454); kinds fork-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 21
+    },
+    {
+      "function": 7,
+      "does": "The front wheel rolls freely on its axle between the fork legs.",
+      "verdict": "shown",
+      "msOneCall": 46,
+      "msPerStep": 8,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p379 88516",
+          "way": 1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 340,
+          "msOneCall": 46,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p379 88516",
+          "way": -1,
+          "ringShifted": true,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 335,
+          "msOneCall": 43,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p379 88516",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 22
+    }
+  ]
+}

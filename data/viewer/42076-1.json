@@ -1,0 +1,478 @@
+{
+  "set": "42076-1",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T15:13:40.063Z",
+  "load": 13.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1015,
+  "seconds": 279,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller.",
+      "verdict": "shown",
+      "msOneCall": 63,
+      "msPerStep": 8,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 97,
+        "A": 2,
+        "B": 27
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p32 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 351,
+          "msOneCall": 63,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              238.73
+            ],
+            "p647 15790": [
+              0,
+              238.73
+            ]
+          }
+        },
+        {
+          "control": "p32 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 329,
+          "msOneCall": 20,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              238.73
+            ],
+            "p647 15790": [
+              0,
+              238.73
+            ]
+          }
+        },
+        {
+          "control": "p42 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 325,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              238.73
+            ],
+            "p647 15790": [
+              0,
+              238.73
+            ]
+          }
+        },
+        {
+          "control": "p42 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 345,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p615 15790": [
+              0,
+              238.73
+            ],
+            "p647 15790": [
+              0,
+              238.73
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p32 55982",
+          "seen": true,
+          "cameraTurns": 24,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p615 15790",
+            "p647 15790"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p42 55982",
+          "seen": true,
+          "cameraTurns": 26,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p615 15790",
+            "p647 15790"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 135
+    },
+    {
+      "function": 2,
+      "does": "The black gear on top at the stern steers: it swings both propeller pods together, and the hidden wheels under the stern steer with them, so the hovercraft turns as it's pushed.",
+      "verdict": "shown",
+      "msOneCall": 64,
+      "msPerStep": 11,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 13
+      },
+      "stop": {
+        "control": "p374 32269",
+        "way": 1,
+        "went": 0.349,
+        "asked": 1.5,
+        "by": [
+          "177/183"
+        ]
+      },
+      "stops": [
+        "177/183",
+        "177/189"
+      ],
+      "A": [
+        {
+          "control": "p374 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.349,
+          "ms": 106,
+          "msOneCall": 64,
+          "stops": [
+            "177/183"
+          ],
+          "moved": {
+            "p596 87080": [
+              26.61,
+              21.14
+            ],
+            "p628 87080": [
+              26.61,
+              21.14
+            ],
+            "p194 42610": [
+              20.93,
+              58.06
+            ],
+            "p195 42610": [
+              20.93,
+              58.06
+            ],
+            "p32 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p374 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.349,
+          "ms": 97,
+          "msOneCall": 27,
+          "stops": [
+            "177/189"
+          ],
+          "moved": {
+            "p596 87080": [
+              26.61,
+              21.14
+            ],
+            "p628 87080": [
+              26.61,
+              21.14
+            ],
+            "p194 42610": [
+              20.93,
+              58.06
+            ],
+            "p195 42610": [
+              20.93,
+              58.06
+            ],
+            "p32 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p374 32269",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p596 87080",
+            "p628 87080",
+            "p194 42610",
+            "p195 42610"
+          ],
+          "stops": [
+            "177/183",
+            "177/189"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p374 32269",
+          "judged": "stands",
+          "why": "stopped at +0.349 rad (177/183); -0.349 rad (177/189); kinds swivel-axle-steering: propeller pods and wheels"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 20
+    },
+    {
+      "function": 8,
+      "does": "The truck's four wheels roll; it can drive up the ramp onto the deck.",
+      "verdict": "shown",
+      "msOneCall": 60,
+      "msPerStep": 7,
+      "time": {
+        "open": 14,
+        "collisions": 0,
+        "first": 0,
+        "reach": 9,
+        "A": 2,
+        "B": 54
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p982 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 259,
+          "msOneCall": 60,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p982 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 231,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p985 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 265,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p985 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 265,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p987 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 280,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p987 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 265,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p989 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 255,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p989 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 260,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p982 55982",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p985 55982",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p987 55982",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p989 55982",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 79
+    },
+    {
+      "function": 9,
+      "does": "The rotors in the two red fans on deck spin freely.",
+      "verdict": "shown",
+      "msOneCall": 53,
+      "msPerStep": 7,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 8,
+        "A": 1,
+        "B": 28
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p661 46667",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 282,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p661 46667",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 242,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p675 46667",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 244,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p675 46667",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 250,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p661 46667",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p675 46667",
+          "seen": true,
+          "cameraTurns": 4,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 45
+    }
+  ]
+}
