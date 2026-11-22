@@ -50,8 +50,8 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
+    "commit": "4929054b",
+    "date": "2026-11-22",
     "seconds": 1,
     "counts": {
       "works": 2
@@ -143,6 +143,12 @@
             0.77
           ]
         ],
+        "freedFor": [
+          {
+            "pin": "p40 2780",
+            "for": "p36 32073"
+          }
+        ],
         "seconds": 0.1
       },
       {
@@ -212,6 +218,6 @@
         "seconds": 0.1
       }
     ],
-    "peak": 257
+    "peak": 264
   }
 }

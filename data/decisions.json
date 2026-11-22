@@ -5,8 +5,8 @@
       "moved": "2026-11-18"
     },
     "preview": {
-      "works": 696,
-      "partly": 256,
+      "works": 693,
+      "partly": 259,
       "no": 92,
       "functions": 1223
     },
@@ -23,6 +23,21 @@
     ]
   },
   "waiting": [
+    {
+      "id": "offer-main-2026-11-21",
+      "kind": "Sign-off",
+      "title": "Main: the offer is staged. Commit and push it?",
+      "what": "You said \"Yes, prepare it\". The gates are passed at preview's commit 4929054b (decision 341): every working function was swept in the viewer and each finding is mended or held (28 holds); the full check of preview differs from the stored records only in the three functions held today; the slow check of the 8110 is as stored (9 work, 4 partly, 3 do not); the type check and all 1,087 tests pass. The whole of preview is staged in the main checkout as one commit, not yet committed, with a commit message in the chat.",
+      "effect": "Main, and so the published site, gets 703 commits of work since 18 November: the faster viewer, the pin search, the working set, the cam reading, the stop rule, the viewer sweep and its table of times, and all signed list changes and errata. The count shown goes from 701 to 693 working functions. That is not a loss: main's 701 was counted before any hold; on that basis preview stood at 740. The lower figure counts only what the viewer shows a user.",
+      "links": [
+        {
+          "label": "Technic status page",
+          "url": "https://claude.ai/artifact/8NVghVnAY8hsbqA81yw3XV"
+        }
+      ],
+      "reply": "Commit and push main",
+      "since": "2026-11-21"
+    },
     {
       "id": "system-hinges-build",
       "kind": "Decision",
@@ -41,10 +56,6 @@
     {
       "title": "System hinges, doors and clips",
       "what": "The look you chose is done (321, corrected in 323) and the choice of building any of it waits for you, above."
-    },
-    {
-      "title": "The next offer of main",
-      "what": "preview has 696 working functions after the sweep's holds of 21 November (740 before them) and main 701, counted before any hold. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
     },
     {
       "title": "A second worker, looked at again after 23 November",
@@ -475,6 +486,10 @@
     {
       "date": "2026-11-21",
       "what": "Your three answers are applied (340). The function lists document every function. The 42131's hub power switch stays in the list with its parts and is marked not checked, with a reason that begins \"electrical:\", until electrical functions are in Kinebrick's scope. The 42129's centre differential is now worked as a hand works it: a front wheel turned with the other front wheel held and the motors still. Worked so it does not work, which is the true state: the drive does not pass between the centre differential and the axles in Kinebrick's reading of the truck (the same fault keeps function 1 partly); the old control, an axle inside the differential, had hidden it. The 42070's functions 2 and 7 have the motor as their control; both stay partly. 696 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The offer of main is prepared (341): three last sweep findings held, the full check of preview and the slow check of the 8110 pass with no other change, the tests pass. 693 functions work on preview."
     }
   ]
 }

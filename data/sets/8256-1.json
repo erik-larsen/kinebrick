@@ -70,9 +70,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
-    "date": "2026-11-21",
-    "seconds": 5,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 4,
     "counts": {
       "partly": 1,
       "works": 2
@@ -303,7 +303,7 @@
             "p15 2851 against p10 2850a"
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -421,9 +421,9 @@
           [],
           []
         ],
-        "seconds": 2.7
+        "seconds": 2
       }
     ],
-    "peak": 329
+    "peak": 372
   }
 }
