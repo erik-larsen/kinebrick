@@ -1,36 +1,27 @@
 # [Kinebrick Play](https://erik-larsen.github.io/kinebrick/)
+*Animate LEGO automatically from the parts themselves, with no hand-made animations.*
 
 ![LEGO set 956, Auto Chassis, from 1978, steered halfway to full lock with its rear axle kept turning at 10 rpm: the red, yellow and blue chassis drives round in a circle, its front wheels turned, its four-cylinder engine's pistons running and its rear tyres skidding round the bend](media/auto-chassis.webp)
 
-A web [viewer](https://erik-larsen.github.io/kinebrick/?model=956-Auto+Chassis&turn=354,-93.9&autospin=451&rpm=21) that enables LEGO [models](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter&autospin=143&rpm=186) to [move](https://erik-larsen.github.io/kinebrick/?model=855-Mobile+Crane&autospin=313,cw&rpm=98) as they were [designed](https://erik-larsen.github.io/kinebrick/?model=8448-Super+Car-V8+engine&autospin=115,cw&rpm=171&option=focus). Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn.
+A web [viewer](https://erik-larsen.github.io/kinebrick/?model=956-Auto+Chassis&turn=354,-93.9&autospin=451&rpm=21) that enables LEGO [models](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter&autospin=143&rpm=186) to [move](https://erik-larsen.github.io/kinebrick/?model=855-Mobile+Crane&autospin=313,cw&rpm=98) as they were [designed](https://erik-larsen.github.io/kinebrick/?model=8448-Super+Car-V8+engine&autospin=115,cw&rpm=171&option=focus). Open any model (.ldr, .mpd, .io) and drag its parts or set it moving continuously.
 
-**Kinebrick works all this out from the parts themselves, with no hand-made animation.**
+Kinebrick is also documenting all functions of LDraw Official Model Repository (OMR) models and correcting mistakes in these files.  See the [Mechanism catalog](docs/mechanisms/README.md) and [Per-set data](ARCHITECTURE.md#per-set-data) for further details.
 
-Technic models are the initial focus, since they are built to move. The long-term goal though is enabling full functionality of any LEGO model with moving parts.
+The project is currently working its way through Technic models.  Long term goal is to be able to handle every Lego set with movement of any sort.
 
-## Credits
 
-Kinebrick builds on these existing projects:
+## How it works
 
-- **[Roland Melkert's LDCad](https://www.melkert.net/LDCad)** provides the [shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) to specify the location of each part's studs, holes and axles, and its path data specifies where a chain, track or string runs.
-- **[LDraw's](https://www.ldraw.org)** parts library gives every part its shape, and its [Official Model Repository](https://library.ldraw.org/omr) provides official LEGO sets.
-- **[LSynth](https://wiki.ldraw.org/wiki/LSynth)** draws the flexible hoses, cables and ropes in many OMR models, and Kinebrick reads its ropes as winch strings.
-- **[Three.js's LDraw loader](https://threejs.org/examples/#webgl_loader_ldraw)** renders models in the browser.
+To see how to build and run Kinebrick locally and get development details, see [DEVELOPER.md](DEVELOPER.md). For a deeper technical dive, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-Also see [Data sources and licenses](#data-sources-and-licenses).
-
-## Enhanced Model Data
-
-Besides providing a Lego viewer with automatic animation, Kinebrick is finding corrections for OMR models and documenting model functions.  See [Per-set data](ARCHITECTURE.md#per-set-data) and the [Mechanism catalog](docs/mechanisms/README.md) for further details.
+Kinebrick is built using other projects.  See [Credits](#credits) and [Data sources and licenses](#data-sources-and-licenses).  A list of [related projects](#related-projects) is also available.
 
 
 ## Models
 
-Click a model to open it in the viewer; each opens ready to drag, and some with a part already turning.
-
 ### Official Models
 
-Read straight from their files in the [LDraw Official Model Repository](https://library.ldraw.org/omr), oldest first.  Here are some initial working sets:
+A sampling of working sets from the [LDraw Official Model Repository](https://library.ldraw.org/omr), from older to newer.
 
 <table>
 <tr>
@@ -56,36 +47,6 @@ Read straight from their files in the [LDraw Official Model Repository](https://
 <tr>
 <td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=8880-Super+Car&autospin=1401&turn=894,167.3"><img src="media/thumbs/8880-super-car.webp" width="260" alt="8880 Super Car"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=8880-Super+Car&autospin=1401&turn=894,167.3">8880 Super Car</a></b> · WIP<details><summary>Details</summary><i>1994</i><br>Four-wheel drive through three differentials, four-wheel steering, a four-speed gearbox and a V8.</details></td>
 <td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car"><img src="media/thumbs/8448-super-car.webp" width="260" alt="8448 Super Street Sensation"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car">8448 Super Street Sensation</a></b> · WIP<details><summary>Details</summary><i>1999</i><br>1290 parts. It loads, but doesn’t move as it should yet.</details></td>
-</tr>
-</table>
-
-### Test models
-These test mechanisms in isolation.
-
-<table>
-<tr>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=simple-car&autospin=12"><img src="media/thumbs/simple-car.webp" width="260" alt="Simple car"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=simple-car&autospin=12">Simple car</a></b><details><summary>Details</summary>Push it and it rolls, its wheels turning against the ground.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=geared-car&autospin=13&rpm=24"><img src="media/thumbs/geared-car.webp" width="260" alt="Geared car"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=geared-car&autospin=13&rpm=24">Geared car</a></b><details><summary>Details</summary>Rolling it spins a second axle the other way through two gears.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=gear-train&autospin=6"><img src="media/thumbs/gear-train.webp" width="260" alt="Gear train"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=gear-train&autospin=6">Gear train</a></b><details><summary>Details</summary>8, 24 and 40 tooth gears, turning at the right ratios.</details></td>
-</tr>
-<tr>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=right-angle&autospin=5"><img src="media/thumbs/right-angle.webp" width="260" alt="Right-angle drive"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=right-angle&autospin=5">Right-angle drive</a></b><details><summary>Details</summary>Two bevel gears meshing at a right angle.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=differential&autospin=11&rpm=39"><img src="media/thumbs/differential.webp" width="260" alt="Differential"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=differential&autospin=11&rpm=39">Differential</a></b><details><summary>Details</summary>Freeze the input, and one output turns the other backwards.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=steering-car&turn=21,38.4&autospin=27,cw"><img src="media/thumbs/steering-car.webp" width="260" alt="Steering car"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=steering-car&turn=21,38.4&autospin=27,cw">Steering car</a></b><details><summary>Details</summary>Steer it, push it, and it drives round a circle on its differential.</details></td>
-</tr>
-<tr>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=steering-car-solid&turn=16,-45.7&autospin=22,cw"><img src="media/thumbs/steering-car-solid.webp" width="260" alt="Steering car, solid rear axle"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=steering-car-solid&turn=16,-45.7&autospin=22,cw">Steering car, solid rear axle</a></b><details><summary>Details</summary>No differential: steered, its rear tyres skid round the bend.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=ackermann-car&turn=51,-160.6&autospin=55,cw"><img src="media/thumbs/ackermann-car.webp" width="260" alt="Ackermann car"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=ackermann-car&turn=51,-160.6&autospin=55,cw">Ackermann car</a></b><details><summary>Details</summary>Rack and pinion steering; the inside wheel turns further.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=worm-drive&autospin=13&rpm=120"><img src="media/thumbs/worm-drive.webp" width="260" alt="Worm drive"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=worm-drive&autospin=13&rpm=120">Worm drive</a></b><details><summary>Details</summary>The worm turns the gear, but the gear can’t turn the worm.</details></td>
-</tr>
-<tr>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=gearbox&autospin=13"><img src="media/thumbs/gearbox.webp" width="260" alt="Two-speed gearbox"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=gearbox&autospin=13">Two-speed gearbox</a></b><details><summary>Details</summary>Move the gear lever, or slide the driving ring, to change gear.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=single-piston-engine&autospin=7,cw&rpm=200"><img src="media/thumbs/single-piston-engine.webp" width="260" alt="Single-cylinder engine"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=single-piston-engine&autospin=7,cw&rpm=200">Single-cylinder engine</a></b><details><summary>Details</summary>A crank, connecting rod and piston.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=four-bar&turn=3,-8.7&autospin=3"><img src="media/thumbs/four-bar.webp" width="260" alt="Four-bar linkage"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=four-bar&turn=3,-8.7&autospin=3">Four-bar linkage</a></b><details><summary>Details</summary>The crank turns all the way round; the far beam rocks.</details></td>
-</tr>
-<tr>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=rack-and-pinion&autospin=11&rpm=42"><img src="media/thumbs/rack-and-pinion.webp" width="260" alt="Rack and pinion"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=rack-and-pinion&autospin=11&rpm=42">Rack and pinion</a></b><details><summary>Details</summary>The gear slides the rack until it runs out of teeth.</details></td>
-<td align="center" valign="top" width="33%"><a href="https://erik-larsen.github.io/kinebrick/?model=linear-actuator&autospin=12&rpm=160"><img src="media/thumbs/linear-actuator.webp" width="260" alt="Linear actuator"></a><br><b><a href="https://erik-larsen.github.io/kinebrick/?model=linear-actuator&autospin=12&rpm=160">Linear actuator</a></b><details><summary>Details</summary>Turning the gear pushes the piston out, raising the arm.</details></td>
 </tr>
 </table>
 
@@ -142,13 +103,13 @@ For example, `?model=8448-Super%20Car-V8%20engine&option=bodycolours,axes&rpm=60
 
 A model file can carry Kinebrick's own settings as LDraw meta-commands, which other LDraw programs skip. `0 !KINEBRICK SCRUB [percent=16]` in its main file sets its tyre scrub (the 854 Go-Kart has it: its front wheels turn alike, and at full lock its tyres scrub more than 10%). `0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.6 -108.5] [dir=0 0 -1] [positions=0,20]` lets a part slide, with whatever turns on it, between those click positions, in LDU that way from where it's built (the 956 Auto Chassis's input shaft, which its gear lever slides from one gear to the other). A real LEGO set's lines are kept in its file in [data/sets/](data/sets/README.md), by its name in `models/`, rather than edited into its model file: `npm run data` puts them there, so a fresh copy from the OMR gets them too.
 
-## How it works
 
-The project is currently working its way through Technic models available on LDraw's Official Model Repository (OMR), generally from oldest and simplest models first.
+## Credits
+- **[Roland Melkert's LDCad](https://www.melkert.net/LDCad)** provides the [shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) to specify the location of each part's studs, holes and axles, and its path data specifies where a chain, track or string runs.
+- **[LDraw's](https://www.ldraw.org)** parts library gives every part its shape, and its [Official Model Repository](https://library.ldraw.org/omr) provides official LEGO sets.
+- **[LSynth](https://wiki.ldraw.org/wiki/LSynth)** draws the flexible hoses, cables and ropes in many OMR models, and Kinebrick reads its ropes as winch strings.
+- **[Three.js's LDraw loader](https://threejs.org/examples/#webgl_loader_ldraw)** renders models in the browser.
 
-To build and run Kinebrick locally, and to get project development details, see [DEVELOPER.md](DEVELOPER.md).
-
-And for a deeper technical dive on Kinebrick, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Related Projects
 
