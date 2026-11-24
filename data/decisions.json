@@ -43,8 +43,8 @@
       "what": "The look you chose is done (321, corrected in 323) and the choice of building any of it waits for you, above."
     },
     {
-      "title": "A second worker, looked at again after 23 November",
-      "what": "You said not yet on 16 November, and Claude was to ask again about 19 November. Claude does not ask: on 20 November the account's week stands at 63% used with 60% of the week gone, so the three sessions alone are on course to reach the weekly limit some hours before it resets on 23 November. A fourth session would bring that forward. Working functions went from 701 to 740 in five days. Claude looks again after the reset with a full week measured. If the week reaches 80% by 21 November, the worker pauses first."
+      "title": "A second worker: not proposed for now",
+      "what": "Last week reached 91% of the account's week two days before the reset, with the solver owner, the worker and the train owner at work. So there is no room for a fourth session. Each session now sends one report per task, which is the first saving; Claude looks at the week's use on Thursday 26 November and proposes a second worker only if the week then has room. It starts only on your word."
     },
     {
       "title": "The next offer of main",
@@ -487,6 +487,10 @@
     {
       "date": "2026-11-21",
       "what": "Main moved (343): on your word the whole of preview is committed and pushed as a31db83e. Main and preview now hold the same files: 693 functions work on both, counted as the viewer shows them."
+    },
+    {
+      "date": "2026-11-23",
+      "what": "The work is started again after the usage reset (344). The solver owner: the 8880 under the free-parts rule, then the tipping mend with the track depth. The worker: the pistons of the 42078 and 42110, then the 42129's drive line, then the three functions held on 21 November. The train owner: merge preview so that the train status page appears on the site. Each sends one report per task."
     }
   ]
 }
