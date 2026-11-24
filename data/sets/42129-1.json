@@ -35,20 +35,24 @@
         "note": "The motors are single parts; their 24 tooth gears (p483 3648b, p484 3648b) are what they turn."
       },
       {
-        "does": "The centre differential lets the front and rear axles turn at different speeds while it's unlocked: holding the motors, turning the front drive shaft turns the rear one the opposite way.",
+        "does": "The centre differential lets the front and rear axles turn at different speeds while it's unlocked: with the truck lifted, the motors still and one front wheel held, turning the other front wheel turns the rear axle's drive the opposite way.",
         "mechanisms": [
           "differential: centre"
         ],
         "source": "book: step 13 (the differential), 16 (the motors' gears on its housing)",
-        "control": "p466 99008",
+        "control": "p2930 42129 - 69912",
+        "lifted": true,
         "moves": [
-          "p471 4519 against p468 6573"
+          "p1309 65414c01",
+          "p471 4519 against p468 6573",
+          "p1032 65414c01"
         ],
         "held": [
           "p483 3648b",
-          "p484 3648b"
+          "p484 3648b",
+          "p2936 42129 - 69912"
         ],
-        "note": "the motors are held, as the function says (\"holding the motors\"): their 24 tooth gears p483 and p484, which function 1's note names as what they turn, are frozen while the shaft is turned, as a user freezes them in the viewer"
+        "note": "Signed by Erik, 2026-11-21: differentials stay in the list, \"exercised via turning or one wheel stuck\". The control was the axle p466 99008 inside the differential, which no hand reaches on the built truck; it is now a front wheel, with the other front wheel held (the stuck wheel) so that the front axle's differential p1309 passes the turn to the front drive shaft. The motors are still: their 24 tooth gears p483 and p484, which function 1's note names as what they turn, are frozen while the wheel is turned, as a user freezes them in the viewer, so the centre differential's housing p468 stands and its shaft p471 turns against it; the rear axle's differential p1032 turns. lifted: a wheel turned by hand needs the truck off the floor (decision 74)."
       },
       {
         "does": "The front and rear axle differentials let each axle's wheels turn at different speeds in a corner.",
@@ -150,12 +154,13 @@
     ]
   },
   "generated": {
-    "commit": "12570d92",
-    "date": "2026-11-21",
-    "seconds": 120,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 72,
     "counts": {
       "partly": 1,
-      "works": 6,
+      "no": 1,
+      "works": 5,
       "not back": 1,
       "torn": 1,
       "skipped": 1
@@ -340,21 +345,34 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 33.2
+        "seconds": 21.8
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p1309 65414c01",
+          "p471 4519 against p468 6573",
+          "p1032 65414c01"
         ],
         "rates": [
           {
+            "p1309 65414c01": [
+              0,
+              0
+            ],
             "p471 4519 against p468 6573": [
-              1,
-              2.17e-13
+              0,
+              0
+            ],
+            "p1032 65414c01": [
+              0,
+              0
             ]
           }
         ],
@@ -382,7 +400,17 @@
             ]
           ]
         ],
-        "seconds": 15.4
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -470,7 +498,7 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 16.1
+        "seconds": 11.3
       },
       {
         "result": "works",
@@ -556,7 +584,7 @@
             0.2
           ]
         ],
-        "seconds": 29.7
+        "seconds": 19.7
       },
       {
         "result": "works",
@@ -630,7 +658,7 @@
             0.4
           ]
         ],
-        "seconds": 5.8
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -768,7 +796,7 @@
           ]
         ],
         "onPlay": 0.27,
-        "seconds": 10.6
+        "seconds": 7.5
       },
       {
         "result": "skipped",
@@ -838,9 +866,9 @@
             0.13
           ]
         ],
-        "seconds": 4
+        "seconds": 2.8
       }
     ],
-    "peak": 1190
+    "peak": 1621
   }
 }

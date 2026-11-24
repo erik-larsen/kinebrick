@@ -12,15 +12,18 @@ import { canMove, pinsForDrag } from '../src/pinSearch.ts';
 // no friction pin (decision 155 of 2026-11-17).
 describe("the pins a motor's start frees", () => {
   const towTruck = 'omr/42070-1 6x6 All Terrain Tow Truck.mpd';
-  it.skipIf(!existsSync(towTruck))("frees none for the 42070 Tow Truck's stuck motor, and never names the motor's own joint", async () => {
+  // The 42070's XL motor was stuck until its erratum (decision 333 of 2026-11-21) set it on the
+  // gearbox's axle: its output now turns, and its start still names no pin of its own.
+  it.skipIf(!existsSync(towTruck))("never names the motor's own joint, for the 42070 Tow Truck's motor", async () => {
     const loaded = await loadModel(towTruck, true);
     const output = motorRunPart(loaded.mech, 593);
     const at = new Vector3().setFromMatrixPosition(loaded.parts[output].matrix);
-    expect(canMove(loaded.mech, output, at)).toBe(false);
+    expect(canMove(loaded.mech, output, at)).toBe(true);
     const motorParts = loaded.mech.connections.filter((c) => c.motor).flatMap((c) => [c.male, c.female]);
     expect(motorParts.length).toBeGreaterThan(0);
     expect(heldPins(loaded.mech, output).pins.filter((p) => motorParts.includes(p))).toEqual([]);
     const pins = pinsForDrag((freed) => loaded.read(loaded.parts, freed).mech, loaded.allFree(loaded.parts), output, at, new Set(), true);
-    expect(pins).toEqual([]);
+    // The pin search for its output names no part of the motor's own joint (it names p433, a friction pin of the frame).
+    expect(pins.filter((p) => motorParts.includes(p))).toEqual([]);
   }, 120_000);
 });

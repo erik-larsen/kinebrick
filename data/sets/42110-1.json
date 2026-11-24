@@ -204,12 +204,12 @@
     ]
   },
   "generated": {
-    "commit": "d04fc6b5",
-    "date": "2026-11-21",
-    "seconds": 809,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 440,
     "counts": {
-      "works": 11,
-      "partly": 2,
+      "works": 10,
+      "partly": 3,
       "skipped": 2
     },
     "loose": [
@@ -314,8 +314,8 @@
             ]
           ]
         ],
-        "seconds": 97.7,
-        "peak": 966
+        "seconds": 52.2,
+        "peak": 1043
       },
       {
         "result": "works",
@@ -357,8 +357,8 @@
             ]
           ]
         ],
-        "seconds": 99.4,
-        "peak": 920
+        "seconds": 52,
+        "peak": 1020
       },
       {
         "result": "partly",
@@ -417,8 +417,8 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 73.3,
-        "peak": 907
+        "seconds": 39.3,
+        "peak": 980
       },
       {
         "result": "works",
@@ -468,8 +468,8 @@
             ]
           ]
         ],
-        "seconds": 11.7,
-        "peak": 936
+        "seconds": 7.7,
+        "peak": 952
       },
       {
         "result": "partly",
@@ -555,8 +555,8 @@
               0.17
             ]
           ],
-          "seconds": 6.3,
-          "peak": 739
+          "seconds": 3.1,
+          "peak": 963
         }
       },
       {
@@ -623,8 +623,8 @@
             0.5
           ]
         ],
-        "seconds": 8.8,
-        "peak": 912
+        "seconds": 4.5,
+        "peak": 998
       },
       {
         "result": "works",
@@ -690,8 +690,8 @@
             0.5
           ]
         ],
-        "seconds": 7.9,
-        "peak": 961
+        "seconds": 4.6,
+        "peak": 1039
       },
       {
         "result": "works",
@@ -733,8 +733,8 @@
             ]
           ]
         ],
-        "seconds": 15.3,
-        "peak": 965
+        "seconds": 8.3,
+        "peak": 1102
       },
       {
         "result": "skipped"
@@ -854,8 +854,8 @@
             "for": "p1902 64782"
           }
         ],
-        "seconds": 276,
-        "peak": 928
+        "seconds": 154.6,
+        "peak": 1087
       },
       {
         "result": "works",
@@ -908,8 +908,8 @@
             0
           ]
         ],
-        "seconds": 10.2,
-        "peak": 908
+        "seconds": 5.2,
+        "peak": 1054
       },
       {
         "result": "works",
@@ -978,8 +978,8 @@
             0.1
           ]
         ],
-        "seconds": 5.6,
-        "peak": 832
+        "seconds": 2.7,
+        "peak": 1020
       },
       {
         "result": "works",
@@ -1051,73 +1051,80 @@
             "for": "p2586 32739"
           }
         ],
-        "seconds": 28.1,
-        "peak": 843
+        "seconds": 13.7,
+        "peak": 949
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.07,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
+        "result": "partly",
+        "hold": {
+          "reason": "The viewer sweep does not show it: no view shows the lid p2475 of the roof case, so no drag can reach it, and a turn of it measured 0 (decisions 329 and 339). Marked before the offer of main, decision 341; to look at after 2026-11-23.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
             [
-              0,
-              0
-            ],
-            [
-              0,
-              0
+              0.07,
+              -1.5
             ]
-          ]
-        ],
-        "torn": [
-          [
+          ],
+          "rates": [
+            {}
+          ],
+          "back": [
             [
-              0,
-              0
-            ],
-            [
-              0,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "freed": 2,
-        "collisionStops": [
-          [
-            0,
-            1,
-            2466,
-            2492,
-            0.07,
-            0.07
-          ]
-        ],
-        "freedFor": [
-          {
-            "pin": "p2498 2780",
-            "for": "p2475 3710"
-          },
-          {
-            "pin": "p2499 2780",
-            "for": "p2475 3710"
-          }
-        ],
-        "seconds": 29.1,
-        "peak": 850
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              null
+            ]
+          ],
+          "freed": 2,
+          "collisionStops": [
+            [
+              0,
+              1,
+              2466,
+              2492,
+              0.07,
+              0.07
+            ]
+          ],
+          "freedFor": [
+            {
+              "pin": "p2498 2780",
+              "for": "p2475 3710"
+            },
+            {
+              "pin": "p2499 2780",
+              "for": "p2475 3710"
+            }
+          ],
+          "seconds": 14.5,
+          "peak": 912
+        }
       },
       {
         "result": "skipped"

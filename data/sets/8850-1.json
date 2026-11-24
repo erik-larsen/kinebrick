@@ -127,9 +127,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 7,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 6,
     "counts": {
       "works": 5,
       "pivoted": 1,
@@ -218,7 +218,7 @@
           "rise": 0,
           "tyre": "p349 4267"
         },
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -236,13 +236,13 @@
           {
             "p76 73071 against p0 3702": [
               1,
-              6.29e-13
+              6.75e-13
             ]
           },
           {
             "p76 73071 against p0 3702": [
               1,
-              6.42e-13
+              8.65e-13
             ]
           }
         ],
@@ -301,7 +301,7 @@
             "p76 73071 against p0 3702"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -320,23 +320,23 @@
           {
             "p21 3708 against p0 3702": [
               2,
-              1.03e-13
+              1.12e-13
             ],
             "p264 4019 against p0 3702": [
               2,
-              1.52e-13
+              2.03e-13
             ],
             "p240 2853 against p0 3702": [
               0,
-              6.8e-14
+              6.35e-14
             ],
             "p252 2851 against p0 3702": [
               0,
-              1.46e-10
+              1.36e-10
             ],
             "p255 2851 against p0 3702": [
               0,
-              1.46e-10
+              1.36e-10
             ]
           }
         ],
@@ -372,7 +372,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -386,7 +386,7 @@
           {
             "p94 3737 against p0 3702": [
               6.03,
-              1.45e-13
+              1.39e-13
             ]
           }
         ],
@@ -417,7 +417,7 @@
         "strayed": [
           "p92 3647"
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -486,7 +486,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -594,7 +594,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 2825 against p0 3702",
-        "seconds": 1
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -631,13 +631,13 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 343
+    "peak": 367
   }
 }

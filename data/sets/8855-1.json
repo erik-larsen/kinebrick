@@ -92,9 +92,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 20,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 19,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -256,7 +256,7 @@
             0.43
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -373,7 +373,7 @@
             0.43
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -447,7 +447,7 @@
           [
             [
               6.07,
-              5.74
+              5.75
             ],
             [
               5.65,
@@ -496,9 +496,9 @@
           []
         ],
         "onPlay": 6.14,
-        "seconds": 17.6
+        "seconds": 16.1
       }
     ],
-    "peak": 452
+    "peak": 502
   }
 }

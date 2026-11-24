@@ -78,7 +78,7 @@
           "turntable: superstructure"
         ],
         "source": "book 1: turntable and slewing steps 91-131 (motor at step 104, the gear train inset at step 102); the gear train is inferred from the model",
-        "control": "p707 32270",
+        "control": "p536 42100 - 22169",
         "moves": [
           "p1927 42003 against p87 42003",
           "p516 18938 against p515 18939"
@@ -86,7 +86,7 @@
         "stays": [
           "p313 42100 - 42529 against p87 42003"
         ],
-        "note": "The motor (p536 42100 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its axle."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p536 42100 - 22169, a Control+ L motor) turns the 12 tooth gear p707 on its axle, the control named before."
       },
       {
         "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
@@ -176,9 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
-    "date": "2026-11-21",
-    "seconds": 1813,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 1312,
     "counts": {
       "partly": 6,
       "works": 3,
@@ -374,8 +374,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 14.7,
-        "peak": 929
+        "seconds": 14.4,
+        "peak": 958
       },
       {
         "result": "partly",
@@ -438,8 +438,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 15.9,
-        "peak": 965
+        "seconds": 14.3,
+        "peak": 967
       },
       {
         "result": "partly",
@@ -533,8 +533,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 30.2,
-        "peak": 946
+        "seconds": 27.4,
+        "peak": 957
       },
       {
         "result": "works",
@@ -584,8 +584,8 @@
             ]
           ]
         ],
-        "seconds": 15.5,
-        "peak": 1016
+        "seconds": 15.4,
+        "peak": 954
       },
       {
         "result": "works",
@@ -639,8 +639,8 @@
             ]
           ]
         ],
-        "seconds": 681.8,
-        "peak": 993
+        "seconds": 457.5,
+        "peak": 990
       },
       {
         "result": "works",
@@ -748,8 +748,8 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 265.6,
-        "peak": 1055
+        "seconds": 222.7,
+        "peak": 1219
       },
       {
         "result": "partly",
@@ -822,8 +822,8 @@
         "cause": "too-little",
         "detail": "p3600 15458 against p3322 42003",
         "onPlay": 20.66,
-        "seconds": 692.6,
-        "peak": 1547
+        "seconds": 481.3,
+        "peak": 1459
       },
       {
         "result": "partly",
@@ -882,8 +882,8 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.33,
-        "seconds": 15.8,
-        "peak": 977
+        "seconds": 14.3,
+        "peak": 987
       },
       {
         "result": "partly",
@@ -956,8 +956,14 @@
               0
             ]
           ],
-          "seconds": 15.2,
-          "peak": 923
+          "freedFor": [
+            {
+              "pin": "p4671 6558",
+              "for": "p4660 40490"
+            }
+          ],
+          "seconds": 14.7,
+          "peak": 914
         }
       }
     ]

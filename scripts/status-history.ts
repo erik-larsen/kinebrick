@@ -89,6 +89,17 @@ const same = (a: Point, b: Point) => a.buckets.join() === b.buckets.join() && a.
 export function history(): Point[] {
   const head = git('rev-parse HEAD').toString().trim();
   let kept: Kept | null = existsSync(FILE) ? JSON.parse(readFileSync(FILE, 'utf-8')) : null;
+  // A shallow checkout (GitHub's build of the site fetches only the last commit) has no history
+  // to walk: the kept points stand as they are, and HEAD's own state is added as the last point.
+  // Nothing is kept from such a run.
+  if (git('rev-parse --is-shallow-repository').toString().trim() === 'true') {
+    const now = new Map<string, SetState>();
+    for (const [path, text] of read(head, setFiles(head))) now.set(path, setState(text));
+    const last = point(Number(git(`show -s --format=%ct ${head}`).toString()), head, now);
+    const points = kept && kept.start === START ? kept.points : [];
+    if (points.length === 0 || !same(points[points.length - 1], last)) points.push(last);
+    return points;
+  }
   // Kept points are used only if they end on a commit that HEAD's first parents pass.
   if (kept && (kept.start !== START || !git(`rev-list --first-parent ${START}~1..HEAD`).toString().includes(kept.upto))) kept = null;
   const from = kept ? kept.upto : git(`rev-parse ${START}`).toString().trim();
