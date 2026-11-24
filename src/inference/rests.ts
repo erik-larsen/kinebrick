@@ -202,7 +202,25 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     }
     if (!on.length) continue;
     // Each bush on the top of a hole under it.
-    const holeSpans = holes.map(span);
+    // A hole's whole length, its counterbores too: the connection covers only where the axle fits
+    // (a beam's hole, R8 2 + R6 16 + R8 2, gives its middle 16), so its top would stand 2 LDU below
+    // the beam's face, and a bush resting on the beam would seem 2 LDU above it (the
+    // 42078's and the 42110's pistons, and the 42112's before its erratum).
+    const holeSpan = (c: Connection): [number, number] => {
+      const [lo, hi] = span(c);
+      const mid = c.from.clone().add(c.to).multiplyScalar(0.5);
+      const hole = cyls.find((h) => h.part === c.female && h.gender === 'F' && Math.abs(Math.abs(h.dir.dot(up)) - 1) < ANGLE_TOLERANCE && (() => {
+        const off = new Vector3().subVectors(mid, h.start);
+        const along = off.dot(h.dir);
+        const length = h.secs.reduce((sum, sec) => sum + sec.length, 0);
+        return off.addScaledVector(h.dir, -along).length() < AXIS_TOLERANCE && along >= -AXIS_TOLERANCE && along <= length + AXIS_TOLERANCE;
+      })());
+      if (!hole) return [lo, hi];
+      const length = hole.secs.reduce((sum, sec) => sum + sec.length, 0);
+      const ends = [height(hole.start), height(hole.start.clone().addScaledVector(hole.dir, length))];
+      return [Math.min(lo, ...ends), Math.max(hi, ...ends)];
+    };
+    const holeSpans = holes.map(holeSpan);
     let [drop, rise] = [Infinity, Infinity];
     for (const b of bushes) {
       for (const h of holeSpans) {
