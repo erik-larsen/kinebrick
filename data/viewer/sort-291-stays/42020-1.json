@@ -1,0 +1,231 @@
+{
+  "set": "42020-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:24.784Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 140,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning either rotor turns the other: a long shaft under the roof joins the two rotor heads through bevel gears, so the front and rear rotors spin together.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p100 57585",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p100 57585",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 36,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p137 57585",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 31,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p137 57585",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The nose wheels' strut turns on a vertical axle, so the front wheels castor.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p83 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p53 42610": [
+              42.42,
+              124.78
+            ],
+            "p54 42610": [
+              42.42,
+              124.78
+            ],
+            "p52 42610": [
+              0,
+              0
+            ],
+            "p55 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p83 87083",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p53 42610": [
+              42.42,
+              124.78
+            ],
+            "p54 42610": [
+              42.42,
+              124.78
+            ],
+            "p52 42610": [
+              0,
+              0
+            ],
+            "p55 42610": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}

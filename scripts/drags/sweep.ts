@@ -58,17 +58,21 @@ import { loadavg } from 'node:os';
 import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
 import { LAUNCH, LIBRARY, open, type Viewer } from './drag.ts';
+import { foundOf } from '../holds.ts';
+import { ENDLESS_WORDS, endlessKinds, endlessPart } from '../endless.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
 const MOTOR_MOST_MS = 60_000;
 const PUSHES: [number, number][] = [[120, 0], [-120, 0], [0, 120], [0, -120]];
+// A person's drag on a control (see handWays): round its middle by this much on the screen, in
+// radians, as a knob is turned; or this many pixels along the way it goes.
+const HAND_TURN = 1.5;
+const HAND_PUSH = 150;
 // How a collision stop is judged (decision 252 of 2026-11-20). A stop is right where the real part
 // has an end (a door against its frame, steering at its lock), and wrong where it turns without
 // end. The kinds that turn without end are a first sieve (a function with one of them and no kind
 // with an end); the words of the function's text that say so are recorded beside them.
-const ENDLESS = new Set(['belt-drive', 'chain-drive', 'conveyor', 'crawler-tracks', 'differential', 'driven-detail', 'driven-rotor', 'free-wheels', 'piston-engine', 'planetary-hub', 'portal-axle', 'power-take-off', 'pull-back-motor', 'rotary-tool', 'valve-train']);
-const ENDLESS_WORDS = /\b(rolls?|rolling|spins?|spinning|rotors?|fans?|engine|pistons?|tracks?|power take-off|turns? freely|runs? freely|drive shaft|propellers?|wheels?)\b/gi;
 const SHORT = 0.2; // radians each way: a travel this short is compared with the booklet's picture
 // Judgements made by hand where the sweep can't tell (a short travel against the booklet's
 // picture): data/viewer/judged.json, {"<set> <function>": {stop, why, page}}, stop "shown",
@@ -98,7 +102,9 @@ const commit = process.env.KB_SWEEP_COMMIT || execSync('git rev-parse --short HE
 process.env.KB_SWEEP_COMMIT = commit;
 const setFile = (set: string) => `data/sets/${set}.json`;
 const outFile = (set: string) => `${outDir}/${set}.json`;
-const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
+// A held function (data/holds.json) is swept by what the check found (decision 279): a sweep that
+// shows it is what may lift its hold.
+const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => foundOf(g)?.result === 'works').length;
 
 const oneAt = args.indexOf('--one');
 const quiet = args.includes('--quiet');
@@ -254,7 +260,8 @@ async function sweepSet(set: string) {
   const fails = new Map<string, string | null>();
   const onlyQuiet = quiet ? new Set(quietFunctions(set)) : null;
   for (const [i, fn] of (data.curated.functions as any[]).entries()) {
-    const g = data.generated.functions[i];
+    const stored = data.generated.functions[i];
+    const g = foundOf(stored);
     if (g?.result !== 'works') continue;
     if (onlyQuiet && !onlyQuiet.has(i + 1)) continue;
     if (only && !only.has(`${set} ${i + 1}`)) continue;
@@ -263,7 +270,7 @@ async function sweepSet(set: string) {
     const file: string = fn.model ?? model;
     try {
       if (fails.get(file)) throw new Error('known');
-      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null));
+      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null, `${set} ${i + 1}`));
       if (aOnly) {
         const why = await untrusted(file, listed && fn.lifted ? 'lifted=1' : '');
         if (why) line.reopened = why;
@@ -277,7 +284,7 @@ async function sweepSet(set: string) {
       const fail = fails.get(file);
       line = fail ? { verdict: 'does not open', why: fail } : { verdict: 'not shown', why: `the sweep failed: ${String(e).slice(0, 200)}` };
     }
-    const record: Record<string, any> = { function: i + 1, does: fn.does, ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
+    const record: Record<string, any> = { function: i + 1, does: fn.does, ...(stored?.hold ? { held: { result: stored.result, reason: stored.hold.reason } } : {}), ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
     out.functions.push(record);
     console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msOneCall as number | undefined) ?? '-'} ms one call, ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
   }
@@ -299,7 +306,7 @@ async function sweepSet(set: string) {
 
 // One function, A and B. `fn` is the list's entry, `g` the check's record of it.
 // With `viewerFor`, part A alone, on a viewer kept open for the set (see --a).
-async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: string) => Promise<Viewer>) | null = null): Promise<Record<string, any>> {
+async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: string) => Promise<Viewer>) | null = null, fnKey = ''): Promise<Record<string, any>> {
   const controls: string[] = [fn.control].flat();
   const moves = (fn.moves ?? []).map(refOf);
   const stays = (fn.stays ?? []).map(refOf);
@@ -325,6 +332,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const v = viewerFor ? await timed('open', viewerFor(file)) : await timed('open', open(file, settings));
     if (!viewerFor) await timed('collisions', collisionsReady(v));
     const notDone = await timed('first', firstSteps(v, fn.first ?? []));
+    // KB_FREE_PINS (decision 304): {"set fn": [pins]}, the pins the viewer's Shift frees on a listed
+    // part (setup.pinsToShift on it), freed before the turn, as a user's Shift press on that part.
+    const freeAsked = process.env.KB_FREE_PINS ? (JSON.parse(process.env.KB_FREE_PINS) as Record<string, number[]>)[fnKey] : undefined;
+    if (freeAsked?.length) await v.page.evaluate((pins) => (window as any).kinebrick.setup.freePins(pins), freeAsked);
     if (noteLimits) limits.push(...notDone);
     if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
     return v;
@@ -342,12 +353,20 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       // The camera turned till the control is in view, the pointer on it, and Shift pressed and let
       // go (no drag): what the viewer said, and the pins freed.
       let shifted: { seen: boolean; said?: string[]; freed?: number[] } | null = null;
-      if (shiftFirst && g.freed) {
+      if (shiftFirst && g.freed && !(await turnsPlain(v, control))) {
         const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
         shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
       }
       for (const [wi, way] of [1, -1].entries()) {
-        const asked = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
+        // As far as the check turned it, but a part that turns without end (endlessPart) the full
+        // turn each way, whatever the check's record turned (ordered after decision 284): where the check stopped
+        // at a collision, asking only that far never shows whether the viewer stops there too.
+        // (At least the full turn: never less than the check turned it, as a slow gearing needs
+        // more, the 856's handwheel 8.3 rad.)
+        const checkTurned = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
+        // KB_SWEEP_FULL=1: every control the full turn at least, to find where the viewer itself
+        // stops whatever the check turned (decision 297: the booklet's functions swept again).
+        const asked = process.env.KB_SWEEP_FULL === '1' || endlessPart(ref.split(' ').slice(1).join(' ')) ? Math.max(1.5, checkTurned) : checkTurned;
         const r = (await v.page.evaluate(
           ({ control, asked, way, step, parts, dragEnd }) => {
             const k = (window as any).kinebrick;
@@ -366,9 +385,41 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
               oneCall = performance.now() - t1;
               k.kin.restore(snap);
             }
+            // Each part's motion added up over the turn, piece by piece (decision 291): sampled at
+            // each of the solver's steps, which ask the collision test (blockedBy) whether they may
+            // stand, as the check's turnMeasuring adds them up. Measured from start to end alone, a
+            // part that turns nearly a whole turn read as hardly moved (the 42075's crankshaft at
+            // rate 3.89 turns 5.83 rad for 1.5 in, and read 25.8 degrees).
+            const relOf = (now: any[], [a, b]: number[]) => now[b >= 0 ? b : frame].clone().invert().multiply(now[a]);
+            const summed = parts.map(() => [0, 0]);
+            let was = parts.map((p: number[]) => relOf(before, p));
+            const sample = () => {
+              const now = k.matrices();
+              parts.forEach((p: number[], i: number) => {
+                const is = relOf(now, p);
+                const e = was[i].clone().invert().multiply(is).elements;
+                summed[i][0] += Math.hypot(is.elements[12] - was[i].elements[12], is.elements[13] - was[i].elements[13], is.elements[14] - was[i].elements[14]);
+                summed[i][1] += (Math.acos(Math.max(-1, Math.min(1, (e[0] + e[5] + e[10] - 1) / 2))) * 180) / Math.PI;
+                was[i] = is;
+              });
+            };
+            const blockedBy = k.setup.blockedBy;
+            k.setup.blockedBy = () => {
+              const hit = blockedBy();
+              if (!hit) sample();
+              return hit;
+            };
             const t0 = performance.now();
             if (k.mech.roles[control] === 'motor') how = 'motor';
-            else went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
+            else {
+              try {
+                went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
+              } finally {
+                k.setup.blockedBy = blockedBy;
+              }
+            }
+            k.setup.blockedBy = blockedBy;
+            sample();
             const ms = performance.now() - t0;
             // The drag let go: a catch past its shift angle shifts its ring (see shiftDue).
             let shiftedRing = false;
@@ -386,7 +437,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
               const deg = (Math.acos(Math.max(-1, Math.min(1, (e[0] + e[5] + e[10] - 1) / 2))) * 180) / Math.PI;
               return [Math.round(ldu * 100) / 100, Math.round(deg * 100) / 100];
             };
-            const moved = parts.map(moveOf);
+            // The summed motion where the turn was sampled; else (a motor, measured apart) from start
+            // to end. A ring shifted at the drag's end moved after the turn: its shift is added.
+            const shiftMoves = parts.map(moveOf);
+            const moved = parts.map((p: number[], i: number) => (summed[i][0] || summed[i][1] ? [Math.round(Math.max(summed[i][0], shiftMoves[i][0]) * 100) / 100, Math.round(Math.max(summed[i][1], shiftMoves[i][1]) * 100) / 100] : shiftMoves[i]));
             const rebuilt = k.mech !== mechBefore;
             if (!rebuilt) k.kin.restore(snap);
             return { went, ms, how, moved, oneCall, shiftedRing, rebuilt };
@@ -407,7 +461,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
           // Worked out afresh (a ring shifted): opened afresh for the other way, Shift pressed again.
           if (!viewerFor) await v.close();
           v = await prepare(ref, false);
-          if (shiftFirst && g.freed && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
+          if (shifted?.seen && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
         }
         A.push({ control: ref, way, ...(shifted ? { shift: shifted } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
@@ -419,11 +473,14 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   // B, the hand.
   const B: unknown[] = [];
   const movedByB = new Set<string>();
+  const controlsMovedByB = new Set<string>();
   for (const ref of viewerFor ? [] : controls) {
     const control = refOf(ref).part;
     const v = await timed('open', open(file, settings));
     await timed('collisions', collisionsReady(v));
     await timed('first', firstSteps(v, fn.first ?? []));
+    const freeAskedB = process.env.KB_FREE_PINS ? (JSON.parse(process.env.KB_FREE_PINS) as Record<string, number[]>)[fnKey] : undefined;
+    if (freeAskedB?.length) await v.page.evaluate((pins) => (window as any).kinebrick.setup.freePins(pins), freeAskedB);
     if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
     const turns = await timed('reach', v.reach(control));
     const tB = Date.now();
@@ -434,40 +491,73 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       continue;
     }
     const parts = moves.flatMap((m: Ref) => [m.part, m.against].filter((p) => p >= 0));
-    const before = await v.where(parts);
     const isMotor = await v.page.evaluate((p) => (window as any).kinebrick.mech.roles[p] === 'motor', control);
     let shift: string[] = [];
+    // How far the control and each listed part went in B: the most over B's drags, each measured
+    // from where the drag began (decision 329), as A's are.
+    const watch = [control, ...parts];
+    const most = new Map<string, [number, number]>();
+    const note = (ref: string, ldu: number, degrees: number) => {
+      const was = most.get(ref) ?? [0, 0];
+      most.set(ref, [Math.max(was[0], round(ldu)), Math.max(was[1], round(degrees))]);
+    };
+    const drags: { kind: string; amount: number }[] = [];
+    // One drag's measure: the control against the frame, each listed part against what the list
+    // measures it against.
+    const measure = async (before: number[][]) => {
+      const [c] = await v.moved([control], [before[0], before[before.length - 1]]);
+      note(ref, c.ldu, c.degrees);
+      for (const m of moves) {
+        const [r] = await v.moved([m.part, ...(m.against >= 0 ? [m.against] : [])], await pick(v, before, watch, [m.part, ...(m.against >= 0 ? [m.against] : [])]), m.against);
+        note(m.ref, r.ldu, r.degrees);
+      }
+    };
     if (isMotor) {
+      const before = await v.where(watch);
       await v.page.keyboard.down('Control');
       await v.page.mouse.down();
       await v.page.mouse.up();
       await v.page.keyboard.up('Control');
       await v.page.waitForTimeout(10_000);
       await v.page.evaluate(() => (window as any).kinebrick.interaction.pauseMotor(true));
+      await measure(before);
     } else {
-      if (g.freed) shift = (await v.press({ shift: true, release: true })).said;
-      for (const [dx, dy] of PUSHES) {
+      if (g.freed && !(await turnsPlain(v, control))) shift = (await v.press({ shift: true, release: true })).said;
+      // As a person drags (decision 329): round the control's middle where it turns like a knob,
+      // and straight along the way its fastest point goes as its joint turns (as the check aims a
+      // push, wayOnJoint), each way; the four fixed pushes only where neither applies.
+      const ways = await handWays(v, control);
+      for (const w of ways) {
         if (!(await v.aim(control))) continue;
+        const before = await v.where(watch);
         await v.press();
-        await v.push(dx, dy);
+        if (w.kind === 'round') await v.turn(control, w.amount);
+        else await v.push(w.dx, w.dy);
+        drags.push({ kind: w.kind, amount: w.kind === 'round' ? w.amount : Math.sign(w.amount) });
+        await measure(before);
       }
     }
-    const moved: string[] = [];
-    for (const m of moves) {
-      const [r] = await v.moved([m.part, ...(m.against >= 0 ? [m.against] : [])], await pick(v, before, parts, [m.part, ...(m.against >= 0 ? [m.against] : [])]), m.against);
-      if (r.moved) moved.push(m.ref);
-    }
-    moved.forEach((m) => movedByB.add(m));
-    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, shift, moved, stops: await v.stops() });
+    const moved = moves.filter((m: Ref) => { const x = most.get(m.ref); return !!x && (x[0] >= MOVED || x[1] >= MOVED); }).map((m: Ref) => m.ref);
+    const c = most.get(ref) ?? [0, 0];
+    const controlMoved = c[0] >= MOVED || c[1] >= MOVED;
+    moved.forEach((m: string) => movedByB.add(m));
+    if (controlMoved) controlsMovedByB.add(ref);
+    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), stops: await v.stops() });
     time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
 
-  const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0;
-  const bShows = !!viewerFor || movedByB.size > 0 || moves.length === 0;
+  // Every control turned (or ran, a motor) in some way: a turn of 0 never shows a function, even one
+  // that lists no part to move (the 8840's function 5, whose wheels all turned 0, was shown).
+  // A turn of 0 by turnPart on a part the hand moves is no verdict (decision 329): a control
+  // counts as worked if A turned it or B moved it.
+  const turnedEach = controls.every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01) || controlsMovedByB.has(ref));
+  const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0 && turnedEach;
+  // Where the function lists no part to move, B shows it if it moved every control (decision 329).
+  const bShows = !!viewerFor || (moves.length === 0 ? controls.every((ref) => controlsMovedByB.has(ref)) : movedByB.size > 0);
   const why = [
     ...(aShows ? [] : [`A: ${moves.filter((m: Ref) => !movedByA.has(m.ref)).map((m: Ref) => m.ref).join(', ') || 'none'} not moved${staysMovedByA.size ? `; ${[...staysMovedByA].join(', ')} listed to stay moved` : ''}`]),
-    ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : 'no listed part moved by hand'}`]),
+    ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : moves.length === 0 ? 'the control not moved by hand' : 'no listed part moved by hand'}`]),
     ...limits,
   ].join('; ');
   // The farthest the control turned in a way that a collision stopped, and the pair that stopped it.
@@ -491,12 +581,69 @@ async function hold(v: Viewer, refs: string[]) {
   }, refs.map((r) => refOf(r).part));
 }
 
+// Whether a control moves by a plain drag (a turn of 0.01 rad, put back): where it does, a user
+// presses no Shift on it. Shift on a part no friction pins hold asks for it to slide on its axle
+// (slidesOnAxle in interaction.ts), and a wheel asked so turns no more: the 8840's p210, which the
+// sweep pressed because the check's record had freed pins elsewhere, then turned 0 both ways.
+async function turnsPlain(v: Viewer, control: number): Promise<boolean> {
+  return v.page.evaluate((control) => {
+    const k = (window as any).kinebrick;
+    if (k.mech.roles[control] === 'motor') return true;
+    const snap = k.kin.snapshot();
+    const went = k.interaction.turnPart(control, 0.01, k.setup.camera.position);
+    // A turn on play is no plain turn (decision 331): a jam play only puts off.
+    const played = k.kin.lastTurnPlayed;
+    k.kin.restore(snap);
+    return Math.abs(went) > 1e-4 && !played;
+  }, control);
+}
+
 async function firstSteps(v: Viewer, first: { control: string; by: number; slide?: boolean }[]): Promise<string[]> {
   const notDone: string[] = [];
   for (const step of first) {
     const part = refOf(step.control).part;
     if (step.slide) {
-      notDone.push(`first step not done by the sweep: ${step.control} slid ${step.by}`);
+      // A slide on the part's axle, as a user does it (decision 279, item 4): Shift pressed on the
+      // part asks for the slide (setup.slideOnAxle), then a drag along it, which pushes its slide
+      // joint, `by` LDU along the part's own axis that runs along the slide (as the check's
+      // slidePart), a step at a time with the viewer's collision stop; the drag's end reads the
+      // model where it now is (afterSlide).
+      const went = await v.page.evaluate(
+        ({ part, by }) => {
+          const k = (window as any).kinebrick;
+          if (!k.setup.slideOnAxle?.(part)) return null;
+          // The slide joint asked for, found by its bodies: it need not hang the part's body in
+          // the tree (the 42078's lock bar's closes a loop, and the body has no parent link). A
+          // user's drag of such a part pushes it (the viewer's push: pushStep), as here.
+          const body = k.mech.bodyOf[part];
+          const joint = k.mech.joints.find((j: any) => j.kind === 'slide' && j.asked && (j.bodyA === body || j.bodyB === body));
+          if (!joint) return null;
+          const other = joint.bodyA === body ? joint.bodyB : joint.bodyA;
+          const V = k.setup.camera.position.constructor;
+          const axis = joint.to.clone().sub(joint.from).normalize().transformDirection(k.kin.poses[other]);
+          const m = k.matrices()[part];
+          const own = [0, 1, 2].map((c: number) => new V().setFromMatrixColumn(m, c).normalize());
+          const kAxis = own.reduce((best: number, v: any, i: number) => (Math.abs(v.dot(axis)) > Math.abs(own[best].dot(axis)) ? i : best), 0);
+          const dir = axis.clone().multiplyScalar(Math.sign(own[kAxis].dot(axis)) * Math.sign(by));
+          const start = new V().setFromMatrixPosition(m);
+          const grab = start.clone().applyMatrix4(k.kin.poses[body].clone().invert());
+          const directions = k.pointDirections(k.kin, body, start);
+          if (directions > 0) k.kin.holdWhatTheDragDoesntNeed(body, () => k.pointDirections(k.kin, body, grab.clone().applyMatrix4(k.kin.poses[body])) === directions);
+          let moved = 0;
+          while (moved < Math.abs(by) - 1e-9) {
+            const step = Math.min(1, Math.abs(by) - moved);
+            if (k.pushStep(k.kin, body, grab, dir, step, () => k.setup.blockedBy() === null) !== 'moved') break;
+            moved += step;
+          }
+          k.kin.letGoAfterDrag();
+          k.setup.onDragEnded();
+          return moved;
+        },
+        { part, by: step.by },
+      );
+      if (went === null) notDone.push(`first step not done by the sweep: ${step.control} slid ${step.by} (it can't slide on its axle in the viewer)`);
+      else if (went < 0.9 * Math.abs(step.by)) notDone.push(`first step short: ${step.control} slid ${Math.round(went * 10) / 10} of ${Math.abs(step.by)} LDU`);
+      await v.page.waitForTimeout(2000);
       continue;
     }
     const done = await v.page.evaluate(
@@ -509,6 +656,33 @@ async function firstSteps(v: Viewer, first: { control: string; by: number; slide
           const wanted = slide.position + by;
           const nearest = slide.positions.reduce((best: number, p: number) => (Math.abs(p - wanted) < Math.abs(best - wanted) ? p : best));
           if (Math.abs(nearest - slide.position) < 1e-6) return false;
+          // A ring a changeover catch holds: slid by hand in the viewer, it goes back where the
+          // catch's fork is when the drag ends (meshAfresh), so a user turns the catch instead,
+          // till the drag's end shifts the ring there (decision 279, item 4). The catch is dragged
+          // round its joint each way in small steps, with the viewer's collision stop, till a shift
+          // to that place is due.
+          const catchPart = k.catchOf?.(part);
+          if (catchPart !== null && catchPart !== undefined) {
+            const body = k.mech.bodyOf[catchPart];
+            const link = k.kin.parentLink(body);
+            if (!link) return false;
+            for (const way of [1, -1]) {
+              const snap = k.kin.snapshot();
+              for (let turned = 0; turned < 1.6; turned += 0.02) {
+                k.kin.holdWhatTheDragDoesntNeed(body, () => k.kin.jointMotion(link.joint) !== null, link.joint);
+                const went = k.kin.turnJoint(link.joint, way * 0.02, () => k.setup.blockedBy() === null);
+                k.kin.letGoAfterDrag();
+                const due = k.catchShiftsNow().find(([ring]: [number, number]) => ring === slide.part || ring === part);
+                if (due && Math.abs(due[1] - nearest) < 1e-6) {
+                  k.setup.onDragEnded();
+                  return Math.abs((k.setup.slideOf(part)?.position ?? NaN) - nearest) < 1e-6;
+                }
+                if (due || Math.abs(went) < 1e-4) break;
+              }
+              k.kin.restore(snap);
+            }
+            return false;
+          }
           k.setup.shift(part, nearest);
           k.setup.onDragEnded();
           return true;
@@ -593,6 +767,47 @@ async function collisionsReady(v: Viewer) {
 }
 
 // The rows of `before` (from where(parts)) for the parts `want`, then the frame's, as moved() takes them.
+// The drags a person makes on a control (decision 329): round its middle on the screen, each way,
+// where it turns like a knob (Kinematics.turnsLikeAKnob); straight along the way its fastest point
+// goes as its own joint turns, each way, where it has one (the screen direction of that point's
+// velocity, as wayOnJoint in push.ts gives it); the four fixed pushes where neither applies.
+async function handWays(v: Viewer, control: number): Promise<({ kind: 'round'; amount: number } | { kind: 'along' | 'push'; amount: number; dx: number; dy: number })[]> {
+  const found = await v.page.evaluate((control) => {
+    const k = (window as any).kinebrick;
+    const kin = k.kin;
+    const body = k.mech.bodyOf[control];
+    const link = kin.parentLink(body);
+    const knob = link !== null && kin.turnsLikeAKnob(body);
+    const motion = link ? kin.jointMotion(link.joint, false) : null;
+    let along: [number, number] | null = null;
+    if (motion) {
+      const M = k.matrices()[control];
+      const V = k.setup.camera.position.constructor;
+      const mid = new V().setFromMatrixPosition(M);
+      let best: any = null;
+      for (const c of [-1, 0, 1, 2]) for (const s of [1, -1]) {
+        const g = c < 0 ? mid.clone() : mid.clone().addScaledVector(new V().setFromMatrixColumn(M, c).normalize(), 20 * s);
+        const vel = kin.pointVelocity(motion, body, g).sub(kin.pointVelocity(motion, 0, g));
+        if (!best || vel.length() > best.vel.length()) best = { g, vel };
+      }
+      if (best && best.vel.length() > 1e-6) {
+        const world = (p: any) => p.clone().applyMatrix4(k.setup.ldrawSpace.matrixWorld);
+        const r = k.setup.renderer.domElement.getBoundingClientRect();
+        const px = (p: any) => { const q = world(p).project(k.setup.camera); return [r.left + ((q.x + 1) / 2) * r.width, r.top + ((1 - q.y) / 2) * r.height]; };
+        const a = px(best.g), b = px(best.g.clone().addScaledVector(best.vel.normalize(), 30));
+        const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (len > 1) along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
+      }
+    }
+    return { knob, along };
+  }, control);
+  const ways: ({ kind: 'round'; amount: number } | { kind: 'along' | 'push'; amount: number; dx: number; dy: number })[] = [];
+  if (found.knob) ways.push({ kind: 'round', amount: HAND_TURN }, { kind: 'round', amount: -HAND_TURN });
+  if (found.along) for (const s of [1, -1]) ways.push({ kind: 'along', amount: s, dx: s * HAND_PUSH * found.along[0], dy: s * HAND_PUSH * found.along[1] });
+  if (!ways.length) for (const [dx, dy] of PUSHES) ways.push({ kind: 'push', amount: 1, dx, dy });
+  return ways;
+}
+
 async function pick(_v: Viewer, before: number[][], parts: number[], want: number[]): Promise<number[][]> {
   return [...want.map((p) => before[parts.indexOf(p)]), before[before.length - 1]];
 }
@@ -630,14 +845,17 @@ function judge(key: string, fn: any, line: Record<string, any>): Record<string, 
   const stopped = [...new Set(A.filter((a) => a.stops.length).map((a) => a.control as string))];
   if (!stopped.length) return line;
   const kinds: string[] = fn.mechanisms ?? [];
-  const endlessKinds = kinds.filter((k) => ENDLESS.has(k));
-  const endless = endlessKinds.length > 0 && endlessKinds.length === kinds.length;
+  const { kinds: endlessOnes, endless } = endlessKinds(kinds);
   const words = [...new Set(((fn.does as string).match(ENDLESS_WORDS) ?? []).map((w) => w.toLowerCase()))];
   const stopsJudged = stopped.map((control) => {
     const ways = A.filter((a) => a.control === control);
     const at = ways.filter((a) => a.stops.length).map((a) => `${a.way > 0 ? '+' : '-'}${Math.abs(a.went)} rad (${a.stops.join(', ')})`).join('; ');
     const short = ways.every((a) => Math.abs(a.went) <= SHORT);
-    if (endless) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessKinds.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
+    // Judged so only where the stopped control is itself a part that turns without end
+    // (endlessPart, decision 282): a lever at the end of its travel stands.
+    // A ground stop (a part would go below the ground) is named as one, not as two parts that met.
+    const ground = ways.some((a) => a.stops.some((x: string) => x.startsWith('ground')));
+    if (endless && endlessPart(control.split(' ').slice(1).join(' '))) return { control, judged: 'not shown', ...(ground ? { ground: true } : {}), why: `turns without end (kinds ${endlessOnes.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but ${ground ? 'the ground' : 'a collision'} stops it at ${at}` };
     if (short) return { control, judged: 'to compare with the booklet', why: `a travel of ${SHORT} rad or less each way, stopped at ${at}` };
     return { control, judged: 'stands', why: `stopped at ${at}; kinds ${kinds.join(', ') || 'none'}` };
   });

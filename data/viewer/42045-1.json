@@ -1,25 +1,25 @@
 {
   "set": "42045-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:58:10.614Z",
-  "load": 6.9,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:01:50.651Z",
+  "load": 8.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 170,
-  "seconds": 10,
+  "seconds": 30,
   "functions": [
     {
       "function": 1,
       "does": "Pushing the hydroplane along on the two small wheels under its nose runs the inline four-cylinder engine: the wheels' axle carries a 20-tooth bevel gear that turns a 12-tooth bevel gear on the front of the crankshaft, so the four pistons go up and down.",
       "verdict": "shown",
-      "msOneCall": 12,
+      "msOneCall": 18,
       "msPerStep": 3,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 0,
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -29,16 +29,16 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 123,
-          "msOneCall": 12,
+          "ms": 115,
+          "msOneCall": 18,
           "stops": [],
           "moved": {
             "p55 32270": [
-              0.22,
+              0.28,
               142.28
             ],
             "p27 2854": [
-              0.06,
+              0.08,
               142.28
             ],
             "p26 2851": [
@@ -64,16 +64,16 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 103,
-          "msOneCall": 4,
+          "ms": 94,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p55 32270": [
-              0.22,
+              0.29,
               144.21
             ],
             "p27 2854": [
-              0.06,
+              0.08,
               144.21
             ],
             "p26 2851": [
@@ -99,16 +99,16 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 95,
-          "msOneCall": 4,
+          "ms": 90,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p55 32270": [
-              0.22,
+              0.28,
               142.28
             ],
             "p27 2854": [
-              0.06,
+              0.08,
               142.28
             ],
             "p26 2851": [
@@ -134,16 +134,16 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 104,
+          "ms": 88,
           "msOneCall": 4,
           "stops": [],
           "moved": {
             "p55 32270": [
-              0.22,
+              0.29,
               144.21
             ],
             "p27 2854": [
-              0.06,
+              0.08,
               144.21
             ],
             "p26 2851": [
@@ -165,8 +165,41 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p93 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p55 32270",
+            "p27 2854",
+            "p26 2851",
+            "p34 2851",
+            "p36 2851",
+            "p38 2851"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p98 4185",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p55 32270",
+            "p27 2854",
+            "p26 2851",
+            "p34 2851",
+            "p36 2851",
+            "p38 2851"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 30
     }
   ]
 }

@@ -1,25 +1,25 @@
 {
   "set": "42062-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T20:28:03.389Z",
-  "load": 29.4,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T14:50:06.061Z",
+  "load": 12.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 627,
-  "seconds": 92,
+  "seconds": 132,
   "functions": [
     {
       "function": 6,
       "does": "The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot.",
       "verdict": "shown",
-      "msOneCall": 78,
-      "msPerStep": 18,
+      "msOneCall": 70,
+      "msPerStep": 12,
       "time": {
-        "open": 18,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 9,
-        "B": 0
+        "A": 1,
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 778,
-          "msOneCall": 78,
+          "ms": 528,
+          "msOneCall": 70,
           "stops": [],
           "moved": {
             "p443 42062 - 18575": [
@@ -56,8 +56,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 738,
-          "msOneCall": 42,
+          "ms": 487,
+          "msOneCall": 18,
           "stops": [],
           "moved": {
             "p443 42062 - 18575": [
@@ -69,7 +69,7 @@
               2.94
             ],
             "p547 32524": [
-              30.65,
+              30.66,
               0
             ],
             "p508 32270": [
@@ -79,23 +79,37 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 30
+      "B": [
+        {
+          "control": "p507 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p443 42062 - 18575",
+            "p510 18940",
+            "p547 32524"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 20
     },
     {
       "function": 7,
       "does": "The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure).",
       "verdict": "not shown",
       "why": "A: p511 18942 against p510 18940, p547 32524 against p510 18940 not moved",
-      "msOneCall": 0,
+      "msOneCall": 6,
       "msPerStep": null,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 8,
-        "B": 0
+        "A": 0,
+        "B": 19
       },
       "stop": null,
       "stops": [],
@@ -106,7 +120,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p511 18942 against p510 18940": [
@@ -147,22 +161,37 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 14
+      "B": [
+        {
+          "control": "p530 6553",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p511 18942 against p510 18940",
+            "p547 32524 against p510 18940"
+          ],
+          "stops": [
+            "510/532"
+          ]
+        }
+      ],
+      "seconds": 24
     },
     {
       "function": 8,
       "does": "The spreader turns on the boom's tip to line up with a container.",
       "verdict": "shown",
-      "msOneCall": 207,
-      "msPerStep": 41,
+      "msOneCall": 173,
+      "msPerStep": 27,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 7,
-        "B": 0
+        "A": 1,
+        "B": 13
       },
       "stop": {
         "control": "p547 32524",
@@ -182,8 +211,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.244,
-          "ms": 266,
-          "msOneCall": 207,
+          "ms": 187,
+          "msOneCall": 173,
           "stops": [
             "511/591"
           ],
@@ -199,8 +228,8 @@
           "way": -1,
           "asked": 0.23,
           "went": -0.23,
-          "ms": 273,
-          "msOneCall": 186,
+          "ms": 171,
+          "msOneCall": 115,
           "stops": [],
           "moved": {
             "p511 18942": [
@@ -210,7 +239,19 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p547 32524",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": [
+            "511/591"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p547 32524",
@@ -222,21 +263,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 12
+      "seconds": 19
     },
     {
       "function": 10,
       "does": "The reach stacker's four wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 50,
-      "msPerStep": 16,
+      "msOneCall": 61,
+      "msPerStep": 12,
       "time": {
-        "open": 3,
+        "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 32,
-        "B": 0
+        "reach": 3,
+        "A": 4,
+        "B": 49
       },
       "stop": null,
       "stops": [],
@@ -246,8 +287,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 668,
-          "msOneCall": 50,
+          "ms": 512,
+          "msOneCall": 61,
           "stops": [],
           "moved": {}
         },
@@ -256,8 +297,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 652,
-          "msOneCall": 48,
+          "ms": 496,
+          "msOneCall": 24,
           "stops": [],
           "moved": {}
         },
@@ -266,8 +307,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 646,
-          "msOneCall": 45,
+          "ms": 484,
+          "msOneCall": 21,
           "stops": [],
           "moved": {}
         },
@@ -276,8 +317,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 664,
-          "msOneCall": 45,
+          "ms": 458,
+          "msOneCall": 22,
           "stops": [],
           "moved": {}
         },
@@ -286,8 +327,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 646,
-          "msOneCall": 46,
+          "ms": 455,
+          "msOneCall": 20,
           "stops": [],
           "moved": {}
         },
@@ -296,8 +337,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 635,
-          "msOneCall": 46,
+          "ms": 464,
+          "msOneCall": 20,
           "stops": [],
           "moved": {}
         },
@@ -306,8 +347,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 629,
-          "msOneCall": 44,
+          "ms": 456,
+          "msOneCall": 20,
           "stops": [],
           "moved": {}
         },
@@ -316,14 +357,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 626,
-          "msOneCall": 43,
+          "ms": 444,
+          "msOneCall": 20,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 37
+      "B": [
+        {
+          "control": "p597 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p601 55981",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p603 55981",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p605 55981",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 69
     }
   ]
 }

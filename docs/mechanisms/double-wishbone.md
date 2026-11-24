@@ -4,7 +4,7 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 18 of the 186 surveyed sets, by 27 functions. Kinebrick: 16 works, 3 partly, 7 no, 1 skipped.
+Used in 18 of the 186 surveyed sets, by 27 functions. Kinebrick: 14 works, 5 partly, 7 no, 1 skipped.
 
 ## By decade
 
@@ -46,7 +46,7 @@ Each detail by the set it first appears in.
 **2007, [8272 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8272-1)**
 
 - The left ski has independent suspension: it rides on two wishbones of thin grey beams, upper and lower, and moves up and down, the yellow shock absorber squeezing. (works)
-- The right ski has independent suspension, as the left. (works)
+- The right ski has independent suspension, as the left. (partly)
 
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
@@ -86,7 +86,7 @@ Each detail by the set it first appears in.
 **2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
 
 - The front wheels each have independent suspension: the hub rides between a lower and an upper suspension arm, and a shock absorber lets the wheel rise and fall. (works)
-- *rear:* The rear wheels have independent suspension too, on pairs of arms with a shock absorber each. (works)
+- *rear:* The rear wheels have independent suspension too, on pairs of arms with a shock absorber each. (partly)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 

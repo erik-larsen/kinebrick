@@ -1,0 +1,299 @@
+{
+  "set": "5542-1",
+  "curated": {
+    "model": "omr/blind-trial/5542-1 Black Thunder.mpd",
+    "functions": [
+      {
+        "does": "opening engine hatch",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-5542-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p427 2873",
+          "p429 2873"
+        ],
+        "moves": [
+          "p427 2873",
+          "p429 2873"
+        ],
+        "stays": [
+          "p426 4315"
+        ],
+        "note": "The only hinged cover on the engine housing under the rotor is in submodel Phase 49-50: two 2x4 hinge tiles 2873 (p427, p429), one each side, hung on 4315 hinge plates (p426, p428) and placed tilted in the file. Not sure these are the 'hatch' meant."
+      },
+      {
+        "does": "two sets of opening doors",
+        "source": "blind trial (decision 306): the words from https://brickset.com/reviews/set-5542-1; the parts read from the file by a read-only reader, without the viewer or the check",
+        "control": [
+          "p322 4181",
+          "p324 4182",
+          "p326 4182",
+          "p328 4181"
+        ],
+        "moves": [
+          "p322 4181",
+          "p323 4183",
+          "p324 4182",
+          "p325 4183",
+          "p326 4182",
+          "p327 4183",
+          "p328 4181",
+          "p329 4183"
+        ],
+        "stays": [
+          "p342 3029",
+          "p338 3029"
+        ],
+        "note": "Submodel Phase 39-40 holds two pairs of train doors 4181/4182 with glass, one pair on each side; train doors swing on their own top and bottom pins, under the roof plates p342/p338."
+      }
+    ]
+  },
+  "generated": {
+    "commit": "9ba81da6",
+    "date": "2026-11-21",
+    "seconds": 29,
+    "counts": {
+      "works": 1,
+      "no": 1
+    },
+    "loose": [
+      "p201 5542 - 4111899h",
+      "p202 5542 - 4111899h",
+      "p239 5542 - 4111899d",
+      "p240 5542 - 4111899d",
+      "p273 4034",
+      "p275 4034",
+      "p311 5542 - 4111899a",
+      "p312 5542 - 4111899b",
+      "p318 5542 - 4111899j",
+      "p323 4183",
+      "p325 4183",
+      "p327 4183",
+      "p329 4183",
+      "p330 5542 - 4111899g",
+      "p331 5542 - 4111899e",
+      "p332 5542 - 4111899f",
+      "p333 5542 - 4111899g",
+      "p346 5542 - 4111899j",
+      "p347 5542 - 4111899j",
+      "p400 5542 - 4111899c",
+      "p401 5542 - 4111899c",
+      "p479 5542 - 4111899i",
+      "p480 5542 - 4111899i"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.4,
+            -1.5
+          ],
+          [
+            0.4,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p427 2873": [
+              1,
+              24.3
+            ],
+            "p429 2873": [
+              0,
+              0
+            ],
+            "p426 4315": [
+              0,
+              0
+            ]
+          },
+          {
+            "p427 2873": [
+              0,
+              0
+            ],
+            "p429 2873": [
+              1,
+              24.3
+            ],
+            "p426 4315": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ],
+          [
+            "limit",
+            null
+          ]
+        ],
+        "freed": 4,
+        "movedBy": [
+          [
+            "p427 2873"
+          ],
+          [
+            "p429 2873"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            392,
+            427,
+            0.4,
+            0.4
+          ],
+          [
+            1,
+            1,
+            391,
+            429,
+            0.4,
+            0.4
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p426 4315",
+            "for": "p427 2873"
+          },
+          {
+            "pin": "p427 2873",
+            "for": "p427 2873"
+          },
+          {
+            "pin": "p428 4315",
+            "for": "p429 2873"
+          },
+          {
+            "pin": "p429 2873",
+            "for": "p429 2873"
+          }
+        ],
+        "seconds": 1.7
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p322 4181",
+          "p323 4183",
+          "p324 4182",
+          "p325 4183",
+          "p326 4182",
+          "p327 4183",
+          "p328 4181",
+          "p329 4183"
+        ],
+        "rates": [
+          {},
+          {},
+          {},
+          {}
+        ],
+        "back": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "torn": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "why": [
+          "p322 4181 is part of the frame",
+          "p324 4182 is part of the frame",
+          "p326 4182 is part of the frame",
+          "p328 4181 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "judged": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cause": "loose-part",
+        "detail": "p323 4183",
+        "seconds": 25.1
+      }
+    ],
+    "peak": 464
+  }
+}

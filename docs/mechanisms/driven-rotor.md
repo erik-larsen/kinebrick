@@ -4,7 +4,7 @@ The drive spins a propeller, rotor or fan: rolling the model, a knob, a motor or
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.
 
-Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 15 works, 10 partly.
+Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 14 works, 11 partly.
 
 ## By decade
 
@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 
 **1981, [8844 Helicopter](https://erik-larsen.github.io/kinebrick/?model=8844-Helicopter)**
 
-- *main rotor:* The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast. (works)
+- *main rotor:* The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast. (partly)
 - *tail rotor:* The same handwheel turns the tail rotor: a second crown gear on its axle drives an 8 tooth gear on a shaft running back down the tail boom through universal joints to a 16 tooth gear and a crown gear at the tail, whose belt wheel drives the tail rotor's pulley, two round plates, by a rubber band. (partly)
 
 **1990, [8825 Night Chopper](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8825-1)**

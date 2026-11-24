@@ -1,0 +1,120 @@
+{
+  "set": "9390-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:23.080Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 134,
+  "seconds": 2,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on top behind the cab is a steering knob: it turns an upright axle whose arm pushes a beam across under the front axle and steers the front wheels.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p13 32270",
+        "way": 1,
+        "went": 0.488,
+        "asked": 1.5,
+        "by": [
+          "490/491"
+        ]
+      },
+      "stops": [
+        "490/491",
+        "495/514"
+      ],
+      "A": [
+        {
+          "control": "p13 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.488,
+          "ms": 22,
+          "msOneCall": 13,
+          "stops": [
+            "490/491"
+          ],
+          "moved": {
+            "p491 32316": [
+              9.77,
+              0
+            ],
+            "p505 55982": [
+              14.65,
+              35.65
+            ],
+            "p515 55982": [
+              14.65,
+              35.65
+            ],
+            "p521 55982": [
+              0,
+              0
+            ],
+            "p523 55982": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p13 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.349,
+          "ms": 12,
+          "msOneCall": 4,
+          "stops": [
+            "495/514"
+          ],
+          "moved": {
+            "p491 32316": [
+              6.98,
+              0
+            ],
+            "p505 55982": [
+              10.46,
+              25.46
+            ],
+            "p515 55982": [
+              10.46,
+              25.46
+            ],
+            "p521 55982": [
+              0,
+              0
+            ],
+            "p523 55982": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p13 32270",
+          "judged": "stands",
+          "why": "stopped at +0.488 rad (490/491); -0.349 rad (495/514); kinds linkage-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 2
+    }
+  ]
+}

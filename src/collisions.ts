@@ -261,11 +261,17 @@ export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: n
 // pieces (roles.json's "pieces" and "split") changes the key, and the kept file goes stale. And
 // the parts library's release (LDConfig.ldr's update line, which a release changes; a part
 // changed between releases isn't caught), the inset and the near distance (INSET and NEAR, or
-// LAYOUT_INSET and LAYOUT_NEAR on a train layout). A SHA-256 in hex.
+// LAYOUT_INSET and LAYOUT_NEAR on a train layout), and PASS (below). A SHA-256 in hex.
+
+// The test of the first pass, by number: raised whenever what makes two parts near changes, so
+// that the files kept by an older test go stale. 2 since decision 246 of 2026-11-20 (faces in one
+// plane don't cross), which the files kept before it on 2026-11-18 didn't know: the 9397's had 3
+// near pairs fewer than the test finds now.
+export const PASS = 2;
 export async function collisionKey(parts: { name: string; matrix: Matrix4; removed?: boolean }[], libraryRelease: string, inset = INSET, near = NEAR): Promise<string> {
   const placement = (m: Matrix4) => [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14].map((k) => Math.round(m.elements[k] * 100) / 100 || 0).join(' ');
   const lines = parts.map((p) => `${p.name} ${placement(p.matrix)}${p.removed ? ' removed' : ''}`);
-  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, inset, near]));
+  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, inset, near, PASS]));
   const digest = await crypto.subtle.digest('SHA-256', bytes);
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
@@ -365,6 +371,25 @@ export function touchingFrom(meshes: PartMesh[][], built?: Matrix4[], layout = f
       if (wanted.has(b)) out.get(b)!.push(a);
     }
     return out;
+  };
+}
+
+// What some parts touch as built, from a model's kept first pass (data/collisions/, see
+// nearPairsOf): its near pairs are the pairs touchingFrom finds, by the same test of the same
+// shrunk shapes, a path's parts (a chain's links) given none in both (decision 274's open point, 2026-11-21), so a model with a kept file whose
+// key matches asks nothing of the shapes, and its first reading costs no contact test. As
+// touchingFrom: a pair of two parts both asked about is left out unless `all`.
+export function keptTouching(near: [number, number][]): Touching {
+  const touches = new Map<number, number[]>();
+  for (const [a, b] of near) {
+    if (!touches.has(a)) touches.set(a, []);
+    if (!touches.has(b)) touches.set(b, []);
+    touches.get(a)!.push(b);
+    touches.get(b)!.push(a);
+  }
+  return (_partMatrices, which, all = false) => {
+    const wanted = new Set(which);
+    return new Map(which.map((i) => [i, (touches.get(i) ?? []).filter((j) => all || !wanted.has(j))]));
   };
 }
 

@@ -20,11 +20,10 @@ import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
-import { touchingFrom } from '../src/collisions.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { isLayout } from '../src/track.ts';
 import { partShapes } from './part-shapes.ts';
-import { keptPivots, readParts } from './load-model.ts';
+import { keptPivots, readParts, touchingFor } from './load-model.ts';
 
 // With --trains, the train sets' models (data/trains), read as the train check reads them: run it
 // with KINEBRICK_AS_OMR=1.
@@ -46,7 +45,7 @@ function text(value: unknown): string {
 async function lineFor(set: string, model: string): Promise<string> {
   const { text: modelText, table, parts, paths } = readParts(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-  const touching = touchingFrom((await partShapes(model, modelText, parts)).map((s) => s.shape), parts.map((p) => p.matrix), isLayout(parts, roles));
+  const touching = await touchingFor(model, parts, async () => (await partShapes(model, modelText, parts)).map((s) => s.shape), isLayout(parts, roles));
   const mech = inferMechanism(parts, table, roles, paths, new Set(), false, keptPivots(model, parts, table, roles), new Set(), touching) as unknown as Record<string, unknown>;
   const fields = Object.keys(mech)
     .sort()

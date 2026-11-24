@@ -86,13 +86,13 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 4,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 3,
     "counts": {
       "skipped": 1,
-      "partly": 1,
-      "works": 2
+      "partly": 2,
+      "works": 1
     },
     "loose": [],
     "errata": {
@@ -191,10 +191,10 @@
         ],
         "cause": "not-driven",
         "detail": "p194 22961",
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             0.07,
@@ -267,6 +267,8 @@
           [],
           []
         ],
+        "cause": "stopped-endless",
+        "detail": "p567 56904: p118 41677 against p327 24316",
         "collisionStops": [
           [
             0,
@@ -338,9 +340,9 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       }
     ],
-    "peak": 489
+    "peak": 459
   }
 }

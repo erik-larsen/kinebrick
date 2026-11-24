@@ -108,12 +108,12 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
+    "commit": "4929054b",
+    "date": "2026-11-22",
     "seconds": 3,
     "counts": {
-      "partly": 1,
-      "works": 3,
+      "partly": 3,
+      "works": 1,
       "skipped": 1,
       "not checked": 1
     },
@@ -194,10 +194,10 @@
         ],
         "cause": "not-driven",
         "detail": "p51 4261 against p0 3703",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             0.07,
@@ -259,6 +259,8 @@
           ]
         ],
         "freed": 5,
+        "cause": "stopped-endless",
+        "detail": "p210 4266: p104 3040b against p113 4274",
         "collisionStops": [
           [
             0,
@@ -276,6 +278,28 @@
             0.03,
             0.03
           ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p100 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p114 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p115 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p124 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p129 2780",
+            "for": "p210 4266"
+          }
         ],
         "seconds": 0.3
       },
@@ -348,14 +372,14 @@
         "pushed": [
           true
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -489,6 +513,8 @@
           [],
           []
         ],
+        "cause": "stopped-endless",
+        "detail": "p210 4266: p104 3040b against p113 4274",
         "collisionStops": [
           [
             2,
@@ -507,13 +533,35 @@
             0.03
           ]
         ],
-        "seconds": 1
+        "freedFor": [
+          {
+            "pin": "p100 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p114 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p115 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p124 2780",
+            "for": "p210 4266"
+          },
+          {
+            "pin": "p129 2780",
+            "for": "p210 4266"
+          }
+        ],
+        "seconds": 0.8
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 331
+    "peak": 311
   }
 }

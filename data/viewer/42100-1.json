@@ -1,24 +1,25 @@
 {
   "set": "42100-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T18:18:16.120Z",
-  "load": 14.7,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T17:27:48.911Z",
+  "load": 10.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 4079,
-  "seconds": 650,
+  "seconds": 1012,
   "functions": [
     {
       "function": 4,
       "does": "The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth.",
-      "verdict": "shown",
-      "msOneCall": 521,
-      "msPerStep": 117,
+      "verdict": "not shown",
+      "why": "B: the control could not be seen",
+      "msOneCall": 406,
+      "msPerStep": 46,
       "time": {
-        "open": 39,
+        "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 26,
+        "reach": 542,
+        "A": 5,
         "B": 0
       },
       "stop": null,
@@ -29,8 +30,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 5016,
-          "msOneCall": 521,
+          "ms": 1988,
+          "msOneCall": 406,
           "stops": [],
           "moved": {
             "p1927 42003 against p87 42003": [
@@ -52,8 +53,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 4925,
-          "msOneCall": 205,
+          "ms": 1921,
+          "msOneCall": 73,
           "stops": [],
           "moved": {
             "p1927 42003 against p87 42003": [
@@ -71,22 +72,27 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 68
+      "B": [
+        {
+          "control": "p707 32270",
+          "seen": false
+        }
+      ],
+      "seconds": 560
     },
     {
       "function": 5,
       "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
       "verdict": "shown",
-      "msOneCall": 1140,
-      "msPerStep": 1007,
+      "msOneCall": 641,
+      "msPerStep": 395,
       "time": {
-        "open": 9,
+        "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 365,
-        "B": 0
+        "A": 137,
+        "B": 55
       },
       "stop": null,
       "stops": [],
@@ -96,8 +102,8 @@
           "way": 1,
           "asked": 6,
           "went": 6,
-          "ms": 172616,
-          "msOneCall": 1140,
+          "ms": 67731,
+          "msOneCall": 641,
           "stops": [],
           "moved": {
             "p2971 42003 against p1927 42003": [
@@ -123,8 +129,8 @@
           "way": -1,
           "asked": 6.1,
           "went": -6.1,
-          "ms": 175309,
-          "msOneCall": 1110,
+          "ms": 67486,
+          "msOneCall": 418,
           "stops": [],
           "moved": {
             "p2971 42003 against p1927 42003": [
@@ -146,22 +152,34 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 378
+      "B": [
+        {
+          "control": "p1718 32270",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p2971 42003 against p1927 42003"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 205
     },
     {
       "function": 6,
       "does": "Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step.",
       "verdict": "shown",
-      "msOneCall": 638,
-      "msPerStep": 750,
+      "msOneCall": 532,
+      "msPerStep": 241,
       "time": {
-        "open": 8,
+        "open": 20,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 161,
-        "B": 0
+        "reach": 26,
+        "A": 46,
+        "B": 96
       },
       "stop": null,
       "stops": [],
@@ -171,8 +189,8 @@
           "way": 1,
           "asked": 1.9,
           "went": 1.9,
-          "ms": 36930,
-          "msOneCall": 638,
+          "ms": 12638,
+          "msOneCall": 532,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -198,8 +216,8 @@
           "way": -1,
           "asked": 1.9,
           "went": -1.9,
-          "ms": 24259,
-          "msOneCall": 495,
+          "ms": 9373,
+          "msOneCall": 186,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -225,8 +243,8 @@
           "way": 1,
           "asked": 1.9,
           "went": 1.9,
-          "ms": 40723,
-          "msOneCall": 470,
+          "ms": 13063,
+          "msOneCall": 182,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -252,8 +270,8 @@
           "way": -1,
           "asked": 1.9,
           "went": -1.9,
-          "ms": 23718,
-          "msOneCall": 473,
+          "ms": 9150,
+          "msOneCall": 182,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -275,50 +293,113 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 173
+      "B": [
+        {
+          "control": "p2982 94925",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3322 42003 against p2971 42003",
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p2983 94925",
+          "seen": true,
+          "cameraTurns": 4,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3322 42003 against p2971 42003",
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 189
     },
     {
       "function": 9,
       "does": "The access ladder at the back left of the superstructure swings up out of the way and down to the ground.",
+      "held": {
+        "result": "partly",
+        "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279."
+      },
       "verdict": "not shown",
-      "why": "A: p4686 40490 not moved",
-      "msOneCall": 0,
-      "msPerStep": null,
+      "msOneCall": 414,
+      "msPerStep": 76,
       "time": {
-        "open": 8,
+        "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 17,
-        "B": 0
+        "A": 10,
+        "B": 34
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p4660 40490",
+        "way": 1,
+        "went": 0.035,
+        "asked": 0.07,
+        "by": [
+          "4244/4678"
+        ]
+      },
+      "stops": [
+        "4244/4678",
+        "4678/4743"
+      ],
       "A": [
         {
           "control": "p4660 40490",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              4671
+            ]
+          },
           "asked": 0.07,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
-          "stops": [],
+          "went": 0.035,
+          "ms": 76,
+          "msOneCall": 414,
+          "stops": [
+            "4244/4678"
+          ],
           "moved": {
             "p4686 40490": [
-              0,
-              0
+              11.38,
+              2.01
             ]
           }
         },
         {
           "control": "p4660 40490",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…"
+            ],
+            "freed": [
+              4671
+            ]
+          },
           "asked": 1.5,
           "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
-          "stops": [],
+          "ms": 41,
+          "msOneCall": 46,
+          "stops": [
+            "4678/4743"
+          ],
           "moved": {
             "p4686 40490": [
               0,
@@ -327,8 +408,43 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 31
+      "B": [
+        {
+          "control": "p4660 40490",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
+          "moved": [
+            "p4686 40490"
+          ],
+          "stops": [
+            "4678/4743",
+            "4242/4684",
+            "4244/4678"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p4660 40490",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the ladder swings up out of the way and down to the ground, far past 0.07 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p4660 40490: a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743) (the ladder swings up out of the way and down to the ground, far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307)",
+      "seconds": 58
     }
   ]
 }

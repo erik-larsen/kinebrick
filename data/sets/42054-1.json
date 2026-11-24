@@ -231,9 +231,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 391,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 359,
     "counts": {
       "works": 12,
       "partly": 2
@@ -313,8 +313,8 @@
             ]
           ]
         ],
-        "seconds": 6.4,
-        "peak": 942
+        "seconds": 5.7,
+        "peak": 953
       },
       {
         "result": "partly",
@@ -362,8 +362,8 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 3,
-        "peak": 912
+        "seconds": 3.1,
+        "peak": 919
       },
       {
         "result": "works",
@@ -434,8 +434,8 @@
             1.43
           ]
         ],
-        "seconds": 12.2,
-        "peak": 1006
+        "seconds": 12,
+        "peak": 986
       },
       {
         "result": "works",
@@ -448,7 +448,7 @@
         "rates": [
           {
             "p1820 92696 against p1818 92693c01": [
-              1.04e-7,
+              1.08e-7,
               0.096
             ],
             "p1841 40490 against p1659 42054 - 18938": [
@@ -485,8 +485,8 @@
             ]
           ]
         ],
-        "seconds": 94.1,
-        "peak": 944
+        "seconds": 83.9,
+        "peak": 949
       },
       {
         "result": "works",
@@ -532,8 +532,8 @@
             ]
           ]
         ],
-        "seconds": 23.8,
-        "peak": 1018
+        "seconds": 22.4,
+        "peak": 956
       },
       {
         "result": "works",
@@ -575,8 +575,8 @@
             ]
           ]
         ],
-        "seconds": 5,
-        "peak": 937
+        "seconds": 4.8,
+        "peak": 910
       },
       {
         "result": "works",
@@ -630,8 +630,8 @@
             ]
           ]
         ],
-        "seconds": 7.4,
-        "peak": 946
+        "seconds": 6.7,
+        "peak": 936
       },
       {
         "result": "works",
@@ -697,8 +697,8 @@
             0.4
           ]
         ],
-        "seconds": 2.9,
-        "peak": 1002
+        "seconds": 2.8,
+        "peak": 945
       },
       {
         "result": "works",
@@ -778,8 +778,8 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 19.4,
-        "peak": 951
+        "seconds": 17.9,
+        "peak": 932
       },
       {
         "result": "works",
@@ -900,8 +900,18 @@
             1.42
           ]
         ],
-        "seconds": 110,
-        "peak": 1034
+        "freedFor": [
+          {
+            "pin": "p1764 6558",
+            "for": "p1765 32524"
+          },
+          {
+            "pin": "p1775 6558",
+            "for": "p1776 32524"
+          }
+        ],
+        "seconds": 97.4,
+        "peak": 1032
       },
       {
         "result": "partly",
@@ -998,8 +1008,8 @@
             0.07
           ]
         ],
-        "seconds": 2,
-        "peak": 992
+        "seconds": 1.8,
+        "peak": 909
       },
       {
         "result": "works",
@@ -1036,8 +1046,8 @@
             ]
           ]
         ],
-        "seconds": 7.7,
-        "peak": 870
+        "seconds": 7.4,
+        "peak": 904
       },
       {
         "result": "works",
@@ -1155,8 +1165,8 @@
           [],
           []
         ],
-        "seconds": 37.1,
-        "peak": 932
+        "seconds": 35,
+        "peak": 873
       },
       {
         "result": "works",
@@ -1217,8 +1227,8 @@
             0.03
           ]
         ],
-        "seconds": 1.7,
-        "peak": 988
+        "seconds": 1.5,
+        "peak": 903
       }
     ]
   }

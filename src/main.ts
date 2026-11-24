@@ -29,9 +29,10 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, connectedPairs, INSET, LAYOUT_INSET, LAYOUT_NEAR, NEAR, pairNumber, PartMesh, touchingFrom } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, INSET, keptTouching, LAYOUT_INSET, LAYOUT_NEAR, NEAR, pairNumber, PartMesh, touchingFrom } from './collisions.ts';
 import { isLayout } from './track.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
+import { pointDirections, pushStep } from './push.ts';
 import { keptPivots } from './keptPivots.ts';
 import { pivotsKey } from './pivotsKey.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
@@ -521,8 +522,15 @@ async function start() {
   // The mechanism, worked out from the parts as placed and what its loose parts touch as built.
   summary.textContent = 'Working out how it moves…';
   await shown();
-  // On a train layout, as its collision test has them (see isLayout).
-  const touching = touchingFrom(shapes, startParts.map((p) => p.matrix), isLayout(startParts, roles));
+  // From the model's kept first collision pass where its key matches (see keptPairs.ts): its near
+  // pairs are the touches, by the same test, and nothing need be tested (decision 274's open point).
+  // On a train layout, by the layout's inset and near, so a file kept with the Technic values
+  // never serves it (see isLayout).
+  const layout = isLayout(startParts, roles);
+  const keptKey = await keyFor(startParts, layout ? LAYOUT_INSET : INSET, layout ? LAYOUT_NEAR : NEAR);
+  const keptName = FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL;
+  const keptPass = await keptPairs(keptName, keptKey);
+  const touching = keptPass?.all ? keptTouching(keptPass.near) : touchingFrom(shapes, startParts.map((p) => p.matrix), layout);
   let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins, new Set(), touching);
   // The strings the loader was told of are the mechanism's (see stringPaths): else a rope's shape
   // would be drawn in part, or built whole for nothing.
@@ -629,6 +637,29 @@ async function start() {
     slid.delete(part);
     readAsBuilt(new Map());
     return false;
+  };
+  // Takes back a slide asked for (decision 305 of 2026-11-21): the part comes out of the parts asked
+  // to slide, and of the address, and the mechanism is worked out afresh as it now stands, so the
+  // part turns on its axle again. Shift on a wheel or gear that no pin holds asks it to slide, and
+  // it then turned no more until Reset; Shift again now takes that back. Whether it was asked.
+  const unslideOnAxle = (part: number) => {
+    if (!slid.has(part)) return false;
+    slid.delete(part);
+    // Its body's parts back where they were built, if the slide moved them (the 42078's roof gear,
+    // slid out of its mesh, turned freely after): each the move that takes it from where it is read
+    // now to its place as built, as the frame sees it (see readAsBuilt's asBuilt).
+    const moves = new Map<number, Matrix4>();
+    const back = kin.poses[0].clone().invert();
+    const body = mech.bodyOf[part];
+    for (const i of mech.bodies[body].parts) {
+      const toBuilt = startParts[i].matrix.clone().multiply(parts[i].matrix.clone().invert());
+      if (toBuilt.equals(new Matrix4())) continue;
+      const onFrame = back.clone().multiply(kin.poses[mech.bodyOf[i]]);
+      moves.set(i, onFrame.clone().multiply(toBuilt).multiply(onFrame.clone().invert()));
+    }
+    readAsBuilt(moves);
+    showSlid();
+    return true;
   };
   // After a drag, a part asked to slide that has moved along its slide is read where it now is
   // against the body it slides on (see readAsBuilt), so that an axle it took out of a hole no
@@ -1240,6 +1271,7 @@ async function start() {
     pinsToShift,
     freePins,
     slideOnAxle,
+    unslideOnAxle,
   };
   summary.textContent = 'Setting up…';
   await shown();
@@ -1283,7 +1315,7 @@ async function start() {
   ldrawSpace.add(marks);
   setup.flipSwitch = (part) => flipSwitch(mech, marks, part);
   const interaction = setUpInteraction(setup);
-  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), noChild: () => partObjects.flatMap((obj, i) => (obj.userData.noChild ? [{ part: i, name: obj.name, why: obj.userData.noChild }] : [])), setup, interaction, collisions: () => collisions, views };
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), noChild: () => partObjects.flatMap((obj, i) => (obj.userData.noChild ? [{ part: i, name: obj.name, why: obj.userData.noChild }] : [])), setup, interaction, collisions: () => collisions, catchOf: (ring: number) => catches.find((c) => c.ring.part === ring || (c.ring.riders ?? []).includes(ring))?.part ?? null, catchShiftsNow: () => [...catchShifts(partsNow(), table, catches)], pushStep, pointDirections, views };
   // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
   // on the title card: a box to type it in, and a button either side that changes it by 10,
   // never below 1 or above MAX_RPM.

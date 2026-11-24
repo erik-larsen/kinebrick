@@ -1,0 +1,111 @@
+{
+  "set": "42055-1",
+  "commit": "3d7ec1d4",
+  "date": "2026-11-21T11:17:07.240Z",
+  "load": 10.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3896,
+  "seconds": 96,
+  "functions": [
+    {
+      "function": 7,
+      "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
+      "held": {
+        "result": "partly",
+        "reason": "In the viewer the control turns and these listed parts stay: p2535; a push by hand does not move it either. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "why": "A: p2535 42055 - 55615 not moved",
+      "msOneCall": 392,
+      "msPerStep": 212,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 13,
+        "B": 68
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1809 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 129,
+          "msOneCall": 276,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              0,
+              0
+            ],
+            "p1513 62274c01": [
+              0,
+              0
+            ],
+            "p2535 42055 - 55615": [
+              0,
+              0
+            ],
+            "p3153 58121": [
+              0,
+              0
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1809 32269",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 9101,
+          "msOneCall": 392,
+          "stops": [],
+          "moved": {
+            "p1510 62274c01": [
+              1,
+              0.08
+            ],
+            "p1513 62274c01": [
+              1,
+              0.08
+            ],
+            "p2535 42055 - 55615": [
+              0.58,
+              0.15
+            ],
+            "p3153 58121": [
+              1.59,
+              0.15
+            ],
+            "p418 64178": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p1809 32269",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p3153 58121"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 96
+    }
+  ]
+}

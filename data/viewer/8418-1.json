@@ -1,73 +1,73 @@
 {
   "set": "8418-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:04:26.037Z",
-  "load": 22.1,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:16:46.419Z",
+  "load": 3.8,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 64,
-  "seconds": 13,
+  "seconds": 86,
   "functions": [
     {
       "function": 1,
       "does": "The grey knob at the back (a 12-tooth double bevel gear) raises and lowers the loader arms and bucket: it turns a worm, which turns an 8-tooth gear on a cross axle at the top of the back; the two arms, long axles along the sides, are fixed on that axle's ends and carry the crossbar the bucket clips onto.",
       "verdict": "shown",
-      "msOneCall": 7,
-      "msPerStep": 1,
+      "msOneCall": 6,
+      "msPerStep": 2,
       "time": {
-        "open": 6,
+        "open": 3,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 1,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p21 32270",
         "way": 1,
-        "went": 0.138,
-        "asked": 1.1,
+        "went": 0.14,
+        "asked": 1.5,
         "by": [
-          "57/57"
+          "ground: p57"
         ]
       },
       "stops": [
-        "57/57"
+        "ground: p57"
       ],
       "A": [
         {
           "control": "p21 32270",
           "way": 1,
-          "asked": 1.1,
-          "went": 0.138,
+          "asked": 1.5,
+          "went": 0.14,
           "ms": 6,
-          "msOneCall": 7,
+          "msOneCall": 6,
           "stops": [
-            "57/57"
+            "ground: p57"
           ],
           "moved": {
             "p22 4716 against p0 32009": [
               0,
-              7.88
+              7.99
             ],
             "p39 3647 against p0 32009": [
               0,
-              0.98
+              1
             ],
             "p45 44294 against p0 32009": [
-              1.37,
-              0.98
+              1.4,
+              1
             ],
             "p54 44294 against p0 32009": [
-              1.37,
-              0.98
+              1.4,
+              1
             ],
             "p47 3706 against p0 32009": [
-              2.75,
-              0.98
+              2.79,
+              1
             ],
             "p57 30394 against p0 32009": [
-              3.17,
-              0.98
+              3.22,
+              1
             ],
             "p30 32063 against p0 32009": [
               0,
@@ -84,7 +84,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -97,19 +97,19 @@
               10.74
             ],
             "p45 44294 against p0 32009": [
-              14.97,
+              15,
               10.74
             ],
             "p54 44294 against p0 32009": [
-              14.97,
+              15,
               10.74
             ],
             "p47 3706 against p0 32009": [
-              29.96,
+              30,
               10.74
             ],
             "p57 30394 against p0 32009": [
-              34.52,
+              34.57,
               10.74
             ],
             "p30 32063 against p0 32009": [
@@ -123,50 +123,87 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p21 32270",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p22 4716 against p0 32009",
+            "p39 3647 against p0 32009",
+            "p45 44294 against p0 32009",
+            "p54 44294 against p0 32009",
+            "p47 3706 against p0 32009",
+            "p57 30394 against p0 32009"
+          ],
+          "stops": [
+            "ground: p57"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p21 32270",
           "judged": "stands",
-          "why": "stopped at +0.138 rad (57/57); kinds worm-drive"
+          "why": "stopped at +0.14 rad (ground: p57); kinds worm-drive"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 7
+      "seconds": 15
     },
     {
       "function": 2,
       "does": "The bucket tilts by hand on its click hinge under the arms' crossbar, holding at each click.",
-      "verdict": "not shown",
-      "why": "A: p57 30394 against p47 3706 not moved",
-      "msOneCall": 2,
-      "msPerStep": null,
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
       "time": {
-        "open": 0,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 0
+        "B": 12
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p57 30394",
+        "way": 1,
+        "went": 0.035,
+        "asked": 0.77,
+        "by": [
+          "ground: p57"
+        ]
+      },
+      "stops": [
+        "ground: p57"
+      ],
       "A": [
         {
           "control": "p57 30394",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              56
+            ]
+          },
           "asked": 0.77,
-          "went": 0,
+          "went": 0.035,
           "ms": 1,
-          "msOneCall": 2,
-          "stops": [],
+          "msOneCall": 5,
+          "stops": [
+            "ground: p57"
+          ],
           "moved": {
             "p57 30394 against p47 3706": [
               0,
-              0
+              2.01
             ],
             "p47 3706 against p0 32009": [
               0,
@@ -177,15 +214,22 @@
         {
           "control": "p57 30394",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [],
+            "freed": [
+              56
+            ]
+          },
           "asked": 1.03,
-          "went": 0,
-          "ms": 1,
+          "went": -1.03,
+          "ms": 11,
           "msOneCall": 1,
           "stops": [],
           "moved": {
             "p57 30394 against p47 3706": [
-              0,
-              0
+              0.01,
+              59.01
             ],
             "p47 3706 against p0 32009": [
               0,
@@ -194,22 +238,49 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 1
+      "B": [
+        {
+          "control": "p57 30394",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p57 30394 against p47 3706"
+          ],
+          "stops": [
+            "46/57",
+            "48/57",
+            "ground: p57"
+          ]
+        }
+      ],
+      "stopsJudged": [
+        {
+          "control": "p57 30394",
+          "judged": "stands",
+          "why": "stopped at +0.035 rad (ground: p57); kinds posable-joint: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 16
     },
     {
       "function": 3,
       "does": "The four wheels roll freely on pins; there's no steering (a skid loader).",
       "verdict": "shown",
-      "msOneCall": 2,
+      "msOneCall": 6,
       "msPerStep": 1,
       "time": {
-        "open": 0,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 4,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 46
       },
       "stop": null,
       "stops": [],
@@ -220,12 +291,32 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 22,
-          "msOneCall": 2,
+          "msOneCall": 6,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p58 30285",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p61 30285",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p61 30285",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
@@ -235,31 +326,11 @@
           "moved": {}
         },
         {
-          "control": "p61 30285",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 18,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p61 30285",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 16,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {}
-        },
-        {
           "control": "p63 30285",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 24,
+          "ms": 16,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -269,7 +340,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 18,
+          "ms": 17,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -279,7 +350,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 16,
+          "ms": 15,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -289,14 +360,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 16,
+          "ms": 15,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p58 30285",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p61 30285",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p63 30285",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p65 30285",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 55
     }
   ]
 }

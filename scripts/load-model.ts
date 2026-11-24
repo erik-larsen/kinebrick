@@ -8,7 +8,7 @@ import { applyErrata, type Errata, setOfFile } from '../src/errata.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { embeddedParts, modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
-import { keptFileName, type PartMesh, touchingFrom } from '../src/collisions.ts';
+import { collisionKey, INSET, keptFileName, keptTouching, LAYOUT_INSET, LAYOUT_NEAR, NEAR, type PartMesh, type Touching, touchingFrom } from '../src/collisions.ts';
 import { partShapes } from './part-shapes.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { pivotsKey } from '../src/pivotsKey.ts';
@@ -23,7 +23,7 @@ export async function loadModel(file: string, omr: boolean, status: (now: string
   status('reading its parts\' shapes');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   // (On a train layout, as its collision test has them: see isLayout.)
-  const touching = touchingFrom((shapes ?? (await partShapes(file, text, parts))).map((s) => s.shape), parts.map((p) => p.matrix), isLayout(parts, roles));
+  const touching = await touchingFor(file, parts, async () => (shapes ?? (await partShapes(file, text, parts))).map((s) => s.shape), isLayout(parts, roles));
   const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   status('working out its mechanism');
   const kept = keptPivots(file, parts, table, roles);
@@ -40,6 +40,27 @@ export async function loadModel(file: string, omr: boolean, status: (now: string
   // The mechanism with every friction pin free, for pinsToFree.
   const allFree = (placed: PlacedPart[]) => inferMechanism(placed, table, roles, paths, new Set(), true, null, new Set(), touching);
   return { name, table, errata, slides: modelSettings(text).slides, ...read(parts), read, allFree, touching };
+}
+
+// What the model's loose parts touch as built (see touchingFrom): from its kept first collision
+// pass (data/collisions/<model>.json, made by npm run collisions), whose near pairs are the same
+// test's answers (a path's parts given no shape in both), where its key matches the parts as read; else worked out from the parts' shapes,
+// read only then (decision 274's open point). KINEBRICK_KEPT_TOUCHES=0 always works it out, for
+// comparing.
+// On a train layout (`layout`, see isLayout) the key and the worked-out answer take the layout's
+// inset and near, so a file kept with the Technic values never serves a layout.
+export async function touchingFor(file: string, parts: PlacedPart[], shapes: () => Promise<PartMesh[][]>, layout = false): Promise<Touching> {
+  const kept = `data/collisions/${keptFileName(file)}.json`;
+  if (process.env.KINEBRICK_KEPT_TOUCHES !== '0' && existsSync(kept) && existsSync('data/collisions/library.json')) {
+    const { key, near } = JSON.parse(readFileSync(kept, 'utf-8'));
+    const release = JSON.parse(readFileSync('data/collisions/library.json', 'utf-8')).release;
+    if (key === (await collisionKey(parts, release, layout ? LAYOUT_INSET : INSET, layout ? LAYOUT_NEAR : NEAR))) return keptTouching(near);
+  }
+  // A path's parts (a chain's links, a hose's segments) have no shape here, as in the viewer and
+  // the collision pass (main.ts): they only show where the path runs. Until 2026-11-21 the scripts
+  // gave them their shapes, and the check's mechanism differed from the viewer's in the models with
+  // a path a loose part touches.
+  return touchingFrom((await shapes()).map((s, i) => (parts[i]?.path ? [] : s)), parts.map((p) => p.matrix), layout);
 }
 
 // The pins the rule for stuck actuators frees in the model, as kept for it (see keptPivots.ts in

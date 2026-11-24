@@ -93,6 +93,7 @@ import { loadModel, readParts } from './load-model.ts';
 import { checkTrainSet } from './train-checks.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { endlessKinds, endlessPart } from './endless.ts';
 import { normalizePartName } from '../src/connections.ts';
 import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
@@ -257,6 +258,7 @@ interface Checked {
   wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
   judged?: number[]; // for a function that doesn't work: for each control, which way (0 or 1, as in `turned`) its cause was judged from, so that --causes judges it so too
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
+  freedFor?: { pin: string; for: string }[]; // each pin freed, and the part it was freed for: the control, a part in `moves`, or the control after its first steps (decision 304)
   onPlay?: number; // how far its drags went on play, all ways together (radians, or LDU for a push; see Kinematics.onPlay): a record, read beside `turned`
   pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
@@ -928,6 +930,12 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
     let freedPins = 0;
+    // For each friction pin freed, the part it was freed for (decision 304): the control, a part the
+    // function lists to move, or the control after its first steps; the first reason kept.
+    const freedFor = new Map<number, string>();
+    const noteFreed = (pins: Iterable<number>, forRef: string) => {
+      for (const pin of pins) if (!freedFor.has(pin)) freedFor.set(pin, forRef);
+    };
     const collisionStops: [number, number, number, number, number, number][] = [];
     // Controls worked together are worked as one, by the first, the others turning with it.
     const controls = [fn.control!].flat();
@@ -971,11 +979,16 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         const byTrial = (forPart: number, ok: () => boolean) => pinsByTrial(heldPins(asLoaded.mech, forPart, freed), (pins) => withFreed(pins, ok));
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
-          freed = new Set([...shiftFreed, ...pinsToFree(allFree, c)]);
+          const forControl = pinsToFree(allFree, c);
+          noteFreed(forControl, ref);
+          freed = new Set([...shiftFreed, ...forControl]);
           // A push with no point to push can't start, on play or not (see grabOf). No pins are
           // tried for a control that sits in the frame even with every pin free (see
           // freeWithEveryPin), as the viewer tries none.
-          if (pinTrial && freeWithEveryPin(allFree, c) && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
+          if (pinTrial && freeWithEveryPin(allFree, c) && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) {
+            freed.add(pin);
+            noteFreed([pin], ref);
+          }
         }
         // So too a part the function lists to move that friction pins hold fast to what it's
         // measured against, but only where the control doesn't go (it jams, or a push has no
@@ -1001,14 +1014,20 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
           if (goes() && !(pinTrial && !dragGoes(c))) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
           else {
             allFree ??= loaded.allFree(asLoaded.parts);
-            for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
+            for (const m of held) for (const pin of pinsToFree(allFree, m.part)) {
+              freed.add(pin);
+              noteFreed([pin], m.ref);
+            }
             // Whether the part has come loose from what it's measured against.
             for (const m of held) {
               const loose = () => {
                 const a = against(m.ref);
                 return mech.bodyOf[a.part] !== a.body;
               };
-              if (pinTrial && !withFreed(new Set(), loose)) for (const pin of byTrial(m.part, loose)) freed.add(pin);
+              if (pinTrial && !withFreed(new Set(), loose)) for (const pin of byTrial(m.part, loose)) {
+                freed.add(pin);
+                noteFreed([pin], m.ref);
+              }
             }
           }
         }
@@ -1064,6 +1083,7 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
           });
           if (pins.length) {
             for (const pin of pins) freed.add(pin);
+            noteFreed(pins, `${ref}, after its first steps`);
             use(loaded.read(now, freed, slid));
             freedPins = Math.max(freedPins, freed.size);
           }
@@ -1444,7 +1464,25 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
       combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still))!;
     }
     // The collisions that stopped a way (collisionStops), beside the result.
-    const withCollisions = <T extends object>(r: T) => ({ ...r, ...(collisionStops.length ? { collisionStops } : {}) });
+    // A function whose kinds all turn without end (see endless.ts) works at most partly where a
+    // collision stopped a control that is itself a part that turns without end, a wheel, sprocket
+    // or shaft (endlessPart; decisions 279 and 282 of 2026-11-21), however far its parts moved
+    // first: a wheel that rolls doesn't stop, so the stop is a fault, as the viewer sweep judges it.
+    // A lever stopped (the 8063's) is at the end of its travel, whatever the function's kinds.
+    // What tells such a part from a lever is the part itself (endlessPart: its role, else its LDraw
+    // title), not its joint: a wheel and a lever both turn on a revolute joint, and the 8063's lever
+    // is a connector turning on its own axle. A function with several controls or ways of which only
+    // some are stopped so is at most partly too: one stopped wheel is one the user sees stop.
+    const endless = endlessKinds(fn.mechanisms).endless;
+    const controlRefs = [fn.control!].flat();
+    const withCollisions = <T extends { result?: Result; cause?: Cause; detail?: string }>(r: T): T => {
+      if (!collisionStops.length) return r;
+      const judged = endless ? collisionStops.find(([wi]) => controlRefs[wi] !== undefined && endlessPart(parts[part(controlRefs[wi])].name)) : undefined;
+      const stopped = judged && r.result === 'works' ? { result: 'partly' as Result, cause: 'stopped-endless' as Cause, detail: `${controlRefs[judged[0]]}: ${name(judged[2])} against ${name(judged[3])}` } : {};
+      return { ...r, ...stopped, collisionStops };
+    };
+    // The pins freed, each with the part it was freed for, beside the count (`freed`).
+    const withFreedFor = <T extends object>(r: T) => (freedFor.size ? { ...r, freedFor: [...freedFor].sort((a, b) => a[0] - b[0]).map(([pin, forRef]) => ({ pin: name(pin), for: forRef })) } : r);
     // A function that doesn't work as read, whose control moves only together with a bigger body
     // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
     // the cab): worked again with those pins freed, as a user who sees that would press it with
@@ -1464,12 +1502,17 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         pressed = loaded.allFree(placedNow());
       }
       const pins = new Set<number>();
+      const shiftFor = new Map<number, string>();
       for (const ref of all) {
         const c = part(ref);
         const body = mech.roles[c] === 'motor' ? motorOutput(mech, c) : mech.bodyOf[c];
         const link = kin.parentLink(body);
         const moves = !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint, false) !== null;
-        if (moves && heldInBodyByPins(mech, pressed, c)) for (const pin of pinsForShift(mech, pressed, c).pins) pins.add(pin);
+        if (moves && heldInBodyByPins(mech, pressed, c)) for (const pin of pinsForShift(mech, pressed, c).pins) {
+          pins.add(pin);
+          // Freed for the part Shift was pressed on (the 42060's fn8: freed 1, and said for none).
+          if (!shiftFor.has(pin)) shiftFor.set(pin, ref);
+        }
       }
       if (pins.size) {
         const [whyBefore, freedBefore] = [why.length, freedPins];
@@ -1480,14 +1523,15 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
         shiftFreed = new Set();
         if (again && RANK[again.result] < RANK[combined.result]) {
           collisionStops.splice(0, stopsBefore);
-          return withCollisions({ ...again, shiftPressed: [...pins].sort((a, b) => a - b) });
+          for (const [pin, ref] of shiftFor) noteFreed([pin], ref);
+          return withFreedFor(withCollisions({ ...again, shiftPressed: [...pins].sort((a, b) => a - b) }));
         }
         why.length = whyBefore;
         freedPins = freedBefore;
         collisionStops.length = stopsBefore;
       }
     }
-    return combined ? withCollisions(combined) : combined;
+    return combined ? withFreedFor(withCollisions(combined)) : combined;
   };
 
   // Each function's entry says how long it took (`seconds`), so a slow set shows which function

@@ -1,0 +1,86 @@
+{
+  "set": "42061-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:31:34.972Z",
+  "load": 9.3,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 256,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The gear on the side of the chassis, between the wheels, raises and lowers the boom: its axle turns a bevel gear pair that drives a small linear actuator, which pushes the boom up about its pivot at the back.",
+      "verdict": "shown",
+      "msOneCall": 19,
+      "msPerStep": 4,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p142 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 159,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {
+            "p85 32348": [
+              2.64,
+              1.2
+            ],
+            "p90 18940": [
+              4.4,
+              1.2
+            ],
+            "p178 42061 - 28216": [
+              8.93,
+              1.2
+            ],
+            "p252 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p142 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 141,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p85 32348": [
+              2.66,
+              1.22
+            ],
+            "p90 18940": [
+              4.44,
+              1.22
+            ],
+            "p178 42061 - 28216": [
+              9.02,
+              1.22
+            ],
+            "p252 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

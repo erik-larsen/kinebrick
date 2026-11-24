@@ -1,0 +1,157 @@
+{
+  "set": "8856-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:32:59.447Z",
+  "load": 16.6,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 480,
+  "seconds": 4,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The small crank low on the right side retracts and lowers the landing gear: a worm turns the long shaft under the floor, which swings the nose wheel's leg through a bevel pair at the front and the two main wheels' legs through a crown gear on the rear axle.",
+      "verdict": "shown",
+      "msOneCall": 23,
+      "msPerStep": 6,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p390 8856 - 4185a",
+        "way": 1,
+        "went": 0.488,
+        "asked": 1.5,
+        "by": [
+          "93/105"
+        ]
+      },
+      "stops": [
+        "93/105"
+      ],
+      "A": [
+        {
+          "control": "p390 8856 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.488,
+          "ms": 89,
+          "msOneCall": 23,
+          "stops": [
+            "93/105"
+          ],
+          "moved": {
+            "p17 3708": [
+              0,
+              1.17
+            ],
+            "p79 4263": [
+              0.43,
+              0.82
+            ],
+            "p82 4263": [
+              0.43,
+              0.82
+            ],
+            "p87 3482": [
+              0.86,
+              1.39
+            ],
+            "p103 4519": [
+              0.41,
+              1.17
+            ],
+            "p109 4519": [
+              0.41,
+              1.17
+            ],
+            "p129 3482": [
+              1.22,
+              0.88
+            ],
+            "p131 3482": [
+              1.22,
+              0.88
+            ],
+            "p193 3706": [
+              0,
+              0
+            ],
+            "p408 2738": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p390 8856 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 159,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p17 3708": [
+              0,
+              3.58
+            ],
+            "p79 4263": [
+              1.33,
+              2.54
+            ],
+            "p82 4263": [
+              1.33,
+              2.54
+            ],
+            "p87 3482": [
+              2.66,
+              4.29
+            ],
+            "p103 4519": [
+              1.25,
+              3.58
+            ],
+            "p109 4519": [
+              1.25,
+              3.58
+            ],
+            "p129 3482": [
+              3.75,
+              2.71
+            ],
+            "p131 3482": [
+              3.75,
+              2.71
+            ],
+            "p193 3706": [
+              0,
+              0
+            ],
+            "p408 2738": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p390 8856 - 4185a",
+          "judged": "stands",
+          "why": "stopped at +0.488 rad (93/105); kinds retractable-landing-gear, worm-drive"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 4
+    }
+  ]
+}

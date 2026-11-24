@@ -1,0 +1,113 @@
+{
+  "set": "42096-1",
+  "commit": "3f9d95fa",
+  "date": "2026-11-21T12:01:01.859Z",
+  "load": 14.1,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 1544,
+  "seconds": 6,
+  "functions": [
+    {
+      "function": 5,
+      "does": "The rear wheels have independent suspension too, on pairs of arms with a shock absorber each.",
+      "verdict": "not shown",
+      "msOneCall": 225,
+      "msPerStep": 204,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p22 32063",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "242/243"
+        ]
+      },
+      "stops": [
+        "242/243",
+        "239/240"
+      ],
+      "A": [
+        {
+          "control": "p22 32063",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 330,
+          "msOneCall": 225,
+          "stops": [
+            "242/243"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p22 32063",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 204,
+          "msOneCall": 158,
+          "stops": [
+            "239/240"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p26 32063",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 184,
+          "msOneCall": 130,
+          "stops": [
+            "242/243"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p26 32063",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 266,
+          "msOneCall": 113,
+          "stops": [
+            "239/240"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p22 32063",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (242/243); -0.035 rad (239/240)"
+        },
+        {
+          "control": "p26 32063",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (242/243); -0.07 rad (239/240)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the photo shows a large up-and-down double arrow on the rear wheel, so the suspension arms swing visibly, far more than 0.035 rad (the booklet gives no number for the travel).",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=291"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p22 32063: a travel of 0.2 rad or less each way, stopped at +0.07 rad (242/243); -0.035 rad (239/240); p26 32063: a travel of 0.2 rad or less each way, stopped at +0.035 rad (242/243); -0.07 rad (239/240) (the photo shows a large up-and-down double arrow on the rear wheel, so the suspension arms swing visibly, far more than 0.035 rad (the booklet gives no number for the travel)., https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=291)",
+      "seconds": 6
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 {
   "set": "42063-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T17:38:18.581Z",
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:39:10.108Z",
+  "load": 14.3,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 598,
-  "seconds": 86,
+  "seconds": 106,
   "functions": [
     {
       "function": 1,
@@ -14,12 +15,12 @@
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 11,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 7,
-        "B": 0
+        "A": 0,
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -117,22 +118,53 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 20
+      "B": [
+        {
+          "control": "p418 32016",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p386 88517",
+            "p345 32278"
+          ],
+          "stops": [
+            "178/364",
+            "178/363"
+          ]
+        },
+        {
+          "control": "p419 32016",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p386 88517",
+            "p345 32278"
+          ],
+          "stops": [
+            "178/363",
+            "178/364"
+          ]
+        }
+      ],
+      "seconds": 34
     },
     {
       "function": 2,
       "does": "Pushing the bike along turns the boxer engine: the rear wheel's 20 tooth bevel gear turns a 12 tooth bevel gear on a drive shaft that runs forward along the swing arm through two universal joints, and a 20 and 12 tooth gear pair turns the crankshaft, so the two pistons slide in and out of their cylinders on either side of the bike.",
       "verdict": "shown",
-      "msOneCall": 53,
-      "msPerStep": 9,
+      "msOneCall": 42,
+      "msPerStep": 8,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 1,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -142,8 +174,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 383,
-          "msOneCall": 53,
+          "ms": 324,
+          "msOneCall": 42,
           "stops": [],
           "moved": {
             "p83 6589": [
@@ -156,14 +188,14 @@
             ],
             "p64 2853": [
               0,
-              121.27
+              238.73
             ],
             "p67 2851": [
-              16.11,
+              23.87,
               0
             ],
             "p68 2851": [
-              14.27,
+              25.71,
               0
             ],
             "p386 88517": [
@@ -177,8 +209,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 345,
-          "msOneCall": 15,
+          "ms": 298,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p83 6589": [
@@ -191,14 +223,14 @@
             ],
             "p64 2853": [
               0,
-              121.27
+              238.73
             ],
             "p67 2851": [
-              16.11,
+              23.87,
               0
             ],
             "p68 2851": [
-              14.27,
+              25.71,
               0
             ],
             "p386 88517": [
@@ -208,22 +240,36 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p334 88517",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p83 6589",
+            "p23 32269",
+            "p64 2853"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 19
     },
     {
       "function": 3,
       "does": "The front wheel rolls freely.",
       "verdict": "shown",
-      "msOneCall": 10,
+      "msOneCall": 28,
       "msPerStep": 2,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -233,8 +279,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 95,
-          "msOneCall": 10,
+          "ms": 93,
+          "msOneCall": 28,
           "stops": [],
           "moved": {}
         },
@@ -243,29 +289,39 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 101,
-          "msOneCall": 7,
+          "ms": 84,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 7
+      "B": [
+        {
+          "control": "p386 88517",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 17
     },
     {
       "function": 4,
       "does": "The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall.",
       "verdict": "not shown",
       "why": "A: p386 88517, p164 4254 not moved",
-      "msOneCall": 0,
+      "msOneCall": 2,
       "msPerStep": null,
       "time": {
-        "open": 2,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 18,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -276,7 +332,7 @@
           "asked": 0.2,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p386 88517": [
@@ -317,23 +373,39 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 25
+      "B": [
+        {
+          "control": "p157 57515",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p386 88517",
+            "p164 4254"
+          ],
+          "stops": [
+            "404/367",
+            "164/163"
+          ]
+        }
+      ],
+      "seconds": 17
     },
     {
       "function": 5,
       "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",
       "verdict": "not shown",
       "why": "A: p334 88517, p198 4254 not moved",
-      "msOneCall": 0,
+      "msOneCall": 2,
       "msPerStep": null,
       "time": {
-        "open": 13,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 11,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -344,7 +416,7 @@
           "asked": 0.17,
           "went": 0,
           "ms": 0,
-          "msOneCall": 0,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p334 88517": [
@@ -385,8 +457,24 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 27
+      "B": [
+        {
+          "control": "p72 14720",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p334 88517",
+            "p198 4254"
+          ],
+          "stops": [
+            "119/195",
+            "198/197"
+          ]
+        }
+      ],
+      "seconds": 18
     }
   ]
 }

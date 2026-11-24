@@ -65,6 +65,12 @@ export function restTouch(contact: RestContact, facePose: Matrix4, shapePose: Ma
   return { point: top, dir: n, clearance: off.dot(n) - up };
 }
 
+// The half bush in both its forms, as a bush on a push rod: data/roles.json names only the older
+// form, 32123a, as a bush. The newer form, 32123b, the 42112's pistons' half bushes, is not given
+// the role there, because the role would move the 8203's frame: its chassis is mostly half
+// bushes, and the frame is the body with the most structure parts (decision 313).
+const HALF_BUSHES = new Set(['32123a.dat', '32123b.dat']);
+
 // Parts resting on others under gravity, which Kinebrick has no forces for, so keeps touching
 // what they rest on (see Rest). Two kinds, both in the 858 inline engine's valve train:
 //
@@ -87,6 +93,12 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
   // The axes a body turns about (in a round hole, on an axle).
   const axesOf = (body: number) => connections.filter((c) => c.kind === 'revolute' && bodyOf[c.male] !== bodyOf[c.female] && (bodyOf[c.male] === body || bodyOf[c.female] === body)).map((c) => new Vector3().subVectors(c.to, c.from).normalize());
   const turnsAbout = (body: number, d: Vector3) => axesOf(body).some((a) => a.clone().cross(d).length() < ANGLE_TOLERANCE);
+  // A point on the line a body turns about along a direction (where one of its round holes or
+  // axles is), or null.
+  const axisPointOf = (body: number, d: Vector3): Vector3 | null => {
+    const c = connections.find((c) => c.kind === 'revolute' && bodyOf[c.male] !== bodyOf[c.female] && (bodyOf[c.male] === body || bodyOf[c.female] === body) && new Vector3().subVectors(c.to, c.from).normalize().cross(d).length() < ANGLE_TOLERANCE);
+    return c ? c.from.clone() : null;
+  };
   // Each part's underside, facing down: where its anti-studs open, as a face reaching half a stud
   // beyond their middles. And the studs pointing up, which an underside may rest on.
   const mouths = new Map<number, WorldCylinder[]>();
@@ -107,11 +119,30 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     undersides.set(part, { point: middle, normal, across: sideways, along: lengthways, half: [halfOf(sideways), halfOf(lengthways)] });
   }
   const studs = cyls.filter((c) => c.gender === 'M' && c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 6) < AXIS_TOLERANCE && -c.dir.y > 0.5);
+  // A beam's (a liftarm's) rounded end round one of its holes, as a cylinder to stand on: half the
+  // beam's width round the hole's line. The width is a fact of the part, read from its own holes:
+  // a beam's holes stand in a row a stud apart, and the beam is as wide as that pitch, so another
+  // hole of the same part parallel to this one, one pitch (PITCH, 20 LDU) off its line, makes it a
+  // beam's hole, its rounded end reaching half the pitch round it. A hole with no such neighbour
+  // (a single hole in a brick, a connector's) is not stood on.
+  const PITCH = 20;
+  const femaleOf = new Map<number, WorldCylinder[]>();
+  for (const c of cyls) if (c.gender === 'F') femaleOf.set(c.part, [...(femaleOf.get(c.part) ?? []), c]);
+  const beamHalfWidth = (c: WorldCylinder): number | null => {
+    for (const d of femaleOf.get(c.part) ?? []) {
+      if (d === c || Math.abs(d.dir.dot(c.dir)) < 1 - ANGLE_TOLERANCE) continue;
+      const off = new Vector3().subVectors(d.start, c.start);
+      const across = off.addScaledVector(c.dir, -off.dot(c.dir)).length();
+      if (Math.abs(across - PITCH) < AXIS_TOLERANCE) return PITCH / 2;
+    }
+    return null;
+  };
+  const isBush = (i: number) => roles[i] === 'bush' || HALF_BUSHES.has(parts[i].name.replace(/^.* - /, '').toLowerCase());
   const rests: Rest[] = [];
   for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle' && Math.abs(c.dir.y) > 1 - ANGLE_TOLERANCE)) {
     const rod = bodyOf[axle.part];
     const own = parts.flatMap((_, i) => (bodyOf[i] === rod ? [i] : []));
-    if (rod === 0 || own.some((i) => i !== axle.part && roles[i] !== 'bush')) continue;
+    if (rod === 0 || own.some((i) => i !== axle.part && !isBush(i))) continue;
     const holes = connections.filter((c) => c.kind === 'revolute' && c.male === axle.part && bodyOf[c.female] !== rod);
     if (!holes.length || new Set(holes.map((c) => bodyOf[c.female])).size > 1) continue;
     if (connections.some((c) => !holes.includes(c) && bodyOf[c.male] !== bodyOf[c.female] && (bodyOf[c.male] === rod || bodyOf[c.female] === rod))) continue;
@@ -125,7 +156,7 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     // a stop's flange).
     const heightAt = (t: number) => height(axle.start.clone().addScaledVector(axle.dir, t));
     const bushes = [
-      ...connections.filter((c) => c.kind === 'rigid' && c.male === axle.part && roles[c.female] === 'bush').map(span),
+      ...connections.filter((c) => c.kind === 'rigid' && c.male === axle.part && isBush(c.female)).map(span),
       ...axleStops(axle).map(([a, b]): [number, number] => [Math.min(heightAt(a), heightAt(b)), Math.max(heightAt(a), heightAt(b))]),
     ];
     if (!bushes.length) continue;
@@ -138,16 +169,35 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     const on: RestContact[] = [];
     for (const c of cyls) {
       const body = bodyOf[c.part];
-      if (c.gender !== 'M' || body === rod || body === mount || Math.abs(c.dir.dot(up)) > ANGLE_TOLERANCE || !turnsAbout(body, c.dir)) continue;
+      // A pin or axle (male) is stood on round its own radius; a beam's hole (female), round the
+      // beam's rounded end (see beamHalfWidth): the 42112's camshaft lifts its pistons by liftarm
+      // ends, where the 858's lifts its push rods by pins.
+      const half = c.gender === 'F' ? beamHalfWidth(c) : null;
+      if ((c.gender !== 'M' && half === null) || body === rod || body === mount || Math.abs(c.dir.dot(up)) > ANGLE_TOLERANCE || !turnsAbout(body, c.dir)) continue;
       let at = 0;
       for (const sec of c.secs) {
         const start = c.start.clone().addScaledVector(c.dir, at);
         at += sec.length;
         const t = new Vector3().subVectors(footAt, start).dot(c.dir);
         if (t < -BUSH_RADIUS || t > sec.length + BUSH_RADIUS) continue; // not across under it
-        const off = new Vector3().subVectors(start.clone().addScaledVector(c.dir, t), footAt);
-        if (Math.abs(off.dot(up)) > REACH || off.addScaledVector(up, -off.dot(up)).length() > BUSH_RADIUS + REACH) continue;
-        on.push({ face: foot(bottom[0]), body, shape: { kind: 'cylinder', point: start, axis: c.dir.clone(), length: sec.length, radius: sec.radius } });
+        // Near enough, built where it is or at the top of the circle it sweeps as its body turns:
+        // a lobe pointing away as built (one of the 42112's four points down) comes round under
+        // the foot at the top of its circle. (Not the point of the circle nearest the foot: a
+        // body turning about a line far off sweeps parts built high above the foot past it.)
+        const near = (q: Vector3) => {
+          const off = new Vector3().subVectors(q, footAt);
+          return Math.abs(off.dot(up)) <= REACH && off.addScaledVector(up, -off.dot(up)).length() <= BUSH_RADIUS + REACH;
+        };
+        const at0 = start.clone().addScaledVector(c.dir, t);
+        const axis = axisPointOf(body, c.dir);
+        let top: Vector3 | null = null;
+        if (axis) {
+          const centre = axis.addScaledVector(c.dir, new Vector3().subVectors(at0, axis).dot(c.dir));
+          const upward = up.clone().addScaledVector(c.dir, -up.dot(c.dir));
+          if (upward.lengthSq() > 1e-12) top = centre.addScaledVector(upward.normalize(), at0.distanceTo(centre));
+        }
+        if (!near(at0) && !(top && near(top))) continue;
+        on.push({ face: foot(bottom[0]), body, shape: { kind: 'cylinder', point: start, axis: c.dir.clone(), length: sec.length, radius: half ?? sec.radius } });
       }
     }
     if (!on.length) continue;
@@ -167,10 +217,12 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     // little, so resting on the hole's top doesn't count as the end of its travel.
     for (const c of holes) {
       const room: [number, number] = [-(Math.min(drop, REACH) + 1), Math.min(rise, REACH)];
+      // `room` is up and down the rod; the slide measures the axle along the hole's own line, so
+      // it is turned round where that line points down.
       const way = new Vector3().subVectors(c.to, c.from).dot(up) >= 0 ? 1 : -1;
       c.kind = 'slide';
       c.turns = true;
-      c.extents = { male: [0, 0], female: way > 0 ? [-room[1], -room[0]] : room, overlap: 0 };
+      c.extents = { male: [0, 0], female: way > 0 ? room : [-room[1], -room[0]], overlap: 0 };
     }
     rests.push({ body: rod, on });
     // A rocker lying on its top bush: a part's underside (its anti-studs' mouths) over the bush's

@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 53 works, 23 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 52 works, 23 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -163,7 +163,7 @@ Each detail by the set it first appears in.
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
-- Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (works)
+- Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (partly)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
@@ -216,7 +216,7 @@ Each detail by the set it first appears in.
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
 - The eight wheels roll. The four rear wheels drive through a differential on each rear axle; the front wheels roll freely on their steering knuckles. (works)
-- Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down. (partly)
+- Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down. (works)
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
@@ -239,7 +239,7 @@ Each detail by the set it first appears in.
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
 - *centre:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
-- *centre:* The centre differential lets the front and rear axles turn at different speeds while it's unlocked: holding the motors, turning the front drive shaft turns the rear one the opposite way. (works)
+- *centre:* The centre differential lets the front and rear axles turn at different speeds while it's unlocked: with the truck lifted, the motors still and one front wheel held, turning the other front wheel turns the rear axle's drive the opposite way. (no)
 - The front and rear axle differentials let each axle's wheels turn at different speeds in a corner. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

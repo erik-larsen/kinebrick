@@ -1,0 +1,161 @@
+{
+  "set": "9393-1",
+  "commit": "8842c0d6",
+  "date": "2026-11-21T10:04:49.763Z",
+  "load": 8.5,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 350,
+  "seconds": 3,
+  "functions": [
+    {
+      "function": 3,
+      "does": "Rolling the tractor spins the hay tedder's two rotors: the right rear wheel's axle turns a bevel gear on the power take-off shaft, whose universal joints carry the drive back to the tedder, where bevel gears and a 24-tooth gear turn a 24-tooth gear on each arm, and its small gear turns the rotor.",
+      "verdict": "not shown",
+      "msOneCall": 26,
+      "msPerStep": 8,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": {
+        "control": "p280 56908",
+        "way": 1,
+        "went": 0.698,
+        "asked": 1.5,
+        "by": [
+          "339/343"
+        ]
+      },
+      "stops": [
+        "339/343",
+        "342/343"
+      ],
+      "A": [
+        {
+          "control": "p280 56908",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.698,
+          "ms": 155,
+          "msOneCall": 26,
+          "stops": [
+            "339/343"
+          ],
+          "moved": {
+            "p103 6589": [
+              0,
+              39.97
+            ],
+            "p100 6589": [
+              0,
+              39.97
+            ],
+            "p328 6589": [
+              0.14,
+              39.97
+            ],
+            "p337 3648b": [
+              0,
+              39.36
+            ],
+            "p305 3648b": [
+              0,
+              39.36
+            ],
+            "p315 3648b": [
+              0,
+              39.36
+            ],
+            "p301 6587": [
+              0,
+              118.07
+            ],
+            "p311 6587": [
+              0,
+              118.07
+            ],
+            "p299 48989 against p93 32140": [
+              0,
+              0
+            ],
+            "p309 48989 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p280 56908",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.698,
+          "ms": 135,
+          "msOneCall": 12,
+          "stops": [
+            "342/343"
+          ],
+          "moved": {
+            "p103 6589": [
+              0,
+              39.97
+            ],
+            "p100 6589": [
+              0,
+              39.97
+            ],
+            "p328 6589": [
+              0.14,
+              39.97
+            ],
+            "p337 3648b": [
+              0,
+              39.36
+            ],
+            "p305 3648b": [
+              0,
+              39.36
+            ],
+            "p315 3648b": [
+              0,
+              39.36
+            ],
+            "p301 6587": [
+              0,
+              118.07
+            ],
+            "p311 6587": [
+              0,
+              118.07
+            ],
+            "p299 48989 against p93 32140": [
+              0,
+              0
+            ],
+            "p309 48989 against p93 32140": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p280 56908",
+          "judged": "not shown",
+          "why": "turns without end (kinds power-take-off; the text says: rolling, spins, rotors, wheel, power take-off, rotor), but a collision stops it at +0.698 rad (339/343); -0.698 rad (342/343)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p280 56908: turns without end (kinds power-take-off; the text says: rolling, spins, rotors, wheel, power take-off, rotor), but a collision stops it at +0.698 rad (339/343); -0.698 rad (342/343)",
+      "seconds": 3
+    }
+  ]
+}

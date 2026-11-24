@@ -84,8 +84,8 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
+    "commit": "4929054b",
+    "date": "2026-11-22",
     "seconds": 5,
     "counts": {
       "partly": 1,
@@ -160,7 +160,13 @@
           0
         ],
         "cause": "one-link-too-many",
-        "seconds": 0.4
+        "freedFor": [
+          {
+            "pin": "p149 2780",
+            "for": "p23 32270"
+          }
+        ],
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -306,7 +312,7 @@
             0.3
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -482,9 +488,9 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.7
       }
     ],
-    "peak": 383
+    "peak": 375
   }
 }

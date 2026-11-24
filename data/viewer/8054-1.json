@@ -1,25 +1,25 @@
 {
   "set": "8054-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:08:07.656Z",
-  "load": 16.1,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:18:13.389Z",
+  "load": 6.4,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 74,
-  "seconds": 12,
+  "seconds": 43,
   "functions": [
     {
       "function": 1,
       "does": "The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.",
       "verdict": "shown",
-      "msOneCall": 7,
+      "msOneCall": 8,
       "msPerStep": 1,
       "time": {
-        "open": 9,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -30,7 +30,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 25,
-          "msOneCall": 7,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p50 4185": [
@@ -56,8 +56,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 19,
-          "msOneCall": 3,
+          "ms": 20,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p50 4185": [
@@ -79,22 +79,34 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p72 4265a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p50 4185"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 15
     },
     {
       "function": 2,
       "does": "The two front wheels roll freely on their axle; there's no steering.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 7,
       "msPerStep": 1,
       "time": {
-        "open": 0,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -104,8 +116,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 44,
-          "msOneCall": 3,
+          "ms": 49,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -114,8 +126,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 42,
-          "msOneCall": 3,
+          "ms": 43,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -134,14 +146,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 39,
+          "ms": 38,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 2
+      "B": [
+        {
+          "control": "p76 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p78 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 28
     }
   ]
 }

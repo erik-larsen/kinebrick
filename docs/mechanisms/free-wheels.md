@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 144 works, 6 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 137 works, 13 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -75,7 +75,7 @@ Each detail by the set it first appears in.
 
 **1981, [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck)**
 
-- Pushed along, the front wheels roll freely on their stub axles in the steering arms. (works)
+- Pushed along, the front wheels roll freely on their stub axles in the steering arms. (partly)
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
@@ -136,7 +136,7 @@ Each detail by the set it first appears in.
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 
-- Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine. (works)
+- Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine. (partly)
 
 **1990, [8850 Rally Support Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8850-1)**
 
@@ -343,7 +343,7 @@ Each detail by the set it first appears in.
 
 **2014, [42024 Container Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42024-1)**
 
-- The front wheels and the four wheels on the two rear axles roll freely; nothing is driven from them. (works)
+- The front wheels and the four wheels on the two rear axles roll freely; nothing is driven from them. (partly)
 
 **2014, [42026 Black Champion Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42026-1)**
 
@@ -507,7 +507,7 @@ Each detail by the set it first appears in.
 
 - The four wheels roll freely; there's no drive to them. (works)
 - *propellers:* The drone's four three-bladed propellers spin, and the drone lifts off its pad on top of the rear body to be played with on its own. (works)
-- *fans:* The two seven-bladed fans set into the top of the rear body spin. (works)
+- *fans:* The two seven-bladed fans set into the top of the rear body spin. (partly)
 
 **2018, [42084 Hook Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42084-1)**
 
@@ -520,7 +520,7 @@ Each detail by the set it first appears in.
 
 **2019, [42093 Chevrolet Corvette ZR1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42093-1)**
 
-- The front wheels roll freely and turn with the steering. (works)
+- The front wheels roll freely and turn with the steering. (partly)
 
 **2019, [42095 Remote-Controlled Stunt Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42095-1)**
 
@@ -537,7 +537,7 @@ Each detail by the set it first appears in.
 **2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1)**
 
 - The truck's four wheels roll freely; there's no drive. The two rear wheels turn together on one axle; each front wheel turns on its own short axle in its steering knuckle. (partly)
-- The trailer's two wheels roll freely together on one axle line. (works)
+- The trailer's two wheels roll freely together on one axle line. (partly)
 - The bike's front wheel rolls freely on its axle in the fork. (works)
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
@@ -575,7 +575,7 @@ Each detail by the set it first appears in.
 
 **2021, [42123 McLaren Senna GTR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42123-1)**
 
-- The front wheels and the left rear wheel roll freely. (works)
+- The front wheels and the left rear wheel roll freely. (partly)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 

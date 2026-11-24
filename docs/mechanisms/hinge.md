@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 75 works, 15 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 70 works, 20 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -174,7 +174,7 @@ Each detail by the set it first appears in.
 - *head:* The head on the front end of the shell, with its red-tipped sensors, folds down against the body. (works)
 - *arms:* Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim. (works)
 - *elbows:* Each twin blaster bends at the elbow of its arm. (partly)
-- *front legs:* The two front legs fold back under the body for rolling and swing down to stand on. (works)
+- *front legs:* The two front legs fold back under the body for rolling and swing down to stand on. (partly)
 - *back leg:* The single back leg swings up over the back to close the wheel, and down again to stand on. (works)
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
@@ -192,7 +192,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (works)
+- *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (partly)
 - *wheel-lift arm:* The wheel-lift arm hinges at the back of the deck, so it swings up and down as the cylinder works it, carrying the grey wheel forks. (no)
 - *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (no)
 - *locker doors:* The two side lockers behind the cab open: each door, with a handle, hinges up at its top edge. (no)
@@ -354,10 +354,10 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
+- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (partly)
 - *doors:* The cab doors swing open. (works)
 - *king pin:* The trailer swings on its king pin behind the tractor. (works)
-- *container doors:* The container's two end doors swing open, each once its lock bar is lifted. (works)
+- *container doors:* The container's two end doors swing open, each once its lock bar is lifted. (partly)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
@@ -399,7 +399,7 @@ Each detail by the set it first appears in.
 - *bonnet:* The bonnet lifts, hinged at its back edge, showing the engine. (works)
 - *tailgate:* Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways. (works)
 - *lid:* The lid of the box on the roof rack lifts open. (works)
-- *lid:* The lid of the case on the right side of the roof swings open. (works)
+- *lid:* The lid of the case on the right side of the roof swings open. (partly)
 
 **2020, [42102 Mini CLAAS XERION](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42102-1)**
 

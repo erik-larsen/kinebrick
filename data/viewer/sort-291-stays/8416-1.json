@@ -1,0 +1,142 @@
+{
+  "set": "8416-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:33:28.815Z",
+  "load": 16.9,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 722,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The beacon on the cab roof is a knob that steers the rear wheels: its axle runs down through the cab to a pair of bevel gears, and two 8-tooth gears slide a rack sideways between the rear steering knuckles.",
+      "verdict": "shown",
+      "msOneCall": 41,
+      "msPerStep": 6,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p670 6143",
+          "way": 1,
+          "asked": 1.43,
+          "went": 1.43,
+          "ms": 259,
+          "msOneCall": 41,
+          "stops": [],
+          "moved": {
+            "p639 3708 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p414 32198 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p399 6589 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p396 3647 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p383 3743 against p308 32526": [
+              25.45,
+              0
+            ],
+            "p366 48989 against p308 32526": [
+              12.73,
+              36.46
+            ],
+            "p372 48989 against p308 32526": [
+              12.73,
+              36.46
+            ],
+            "p712 41896 against p308 32526": [
+              31.82,
+              42.14
+            ],
+            "p708 41896 against p308 32526": [
+              31.82,
+              42.14
+            ],
+            "p714 41896 against p308 32526": [
+              0,
+              0
+            ],
+            "p49 32278 against p308 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p670 6143",
+          "way": -1,
+          "asked": 1.43,
+          "went": -1.43,
+          "ms": 202,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p639 3708 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p414 32198 against p308 32526": [
+              0,
+              81.93
+            ],
+            "p399 6589 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p396 3647 against p308 32526": [
+              0,
+              136.55
+            ],
+            "p383 3743 against p308 32526": [
+              25.45,
+              0
+            ],
+            "p366 48989 against p308 32526": [
+              12.73,
+              36.46
+            ],
+            "p372 48989 against p308 32526": [
+              12.73,
+              36.46
+            ],
+            "p712 41896 against p308 32526": [
+              31.82,
+              42.14
+            ],
+            "p708 41896 against p308 32526": [
+              31.82,
+              42.14
+            ],
+            "p714 41896 against p308 32526": [
+              0,
+              0
+            ],
+            "p49 32278 against p308 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

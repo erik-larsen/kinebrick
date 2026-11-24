@@ -144,7 +144,7 @@ Each detail by the set it first appears in.
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- *PF L:* The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air. (works)
+- *PF L:* The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air. (partly)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
@@ -203,7 +203,7 @@ Each detail by the set it first appears in.
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
 - *L:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
-- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (partly)
+- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (works)
 - *L:* The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

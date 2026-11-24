@@ -1,25 +1,25 @@
 {
   "set": "8835-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:26:31.877Z",
-  "load": 20.5,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:30:26.397Z",
+  "load": 15.5,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 235,
-  "seconds": 30,
+  "seconds": 103,
   "functions": [
     {
       "function": 1,
       "does": "The crank handle on the big grey wheel on the cab's right side raises and lowers the forks: its worm turns a 24-tooth gear on a shaft under the cab, which through two 16-tooth gears and the crown gear on the front axle turns an 8-tooth gear on the mast's bottom axle, and that axle's sprocket drives the chain that carries the forks up the mast.",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 15,
       "msPerStep": 1,
       "time": {
-        "open": 9,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 50,
-          "msOneCall": 8,
+          "ms": 58,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p63 2823 against p29 3703": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
-          "msOneCall": 7,
+          "ms": 39,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p63 2823 against p29 3703": [
@@ -95,23 +95,37 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 11
+      "B": [
+        {
+          "control": "p212 3736",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p63 2823 against p29 3703",
+            "p75 3707",
+            "p71 3706"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
       "verdict": "not shown",
-      "why": "A: p29 3703, p128 4262, p63 2823 not moved",
-      "msOneCall": 11,
-      "msPerStep": 12,
+      "why": "A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand",
+      "msOneCall": 8,
+      "msPerStep": 9,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -119,10 +133,10 @@
         {
           "control": "p207 4185a",
           "way": 1,
-          "asked": 1.07,
+          "asked": 1.5,
           "went": 0.035,
-          "ms": 12,
-          "msOneCall": 11,
+          "ms": 9,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p29 3703": [
@@ -152,8 +166,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.035,
-          "ms": 10,
-          "msOneCall": 9,
+          "ms": 8,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p29 3703": [
@@ -179,22 +193,32 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 5
+      "B": [
+        {
+          "control": "p207 4185a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 3,
       "does": "The yellow round knob on the cab roof steers the rear wheels: its vertical axle runs down through the cab to a bevel gear, which turns an 8-tooth gear on the rack under the rear, pushing the steering arms.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -204,12 +228,12 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 29,
-          "msOneCall": 3,
+          "ms": 49,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p13 3743": [
-              15.27,
+              15.36,
               0
             ],
             "p9 4261": [
@@ -221,12 +245,12 @@
               22
             ],
             "p14 2695c01": [
-              7.63,
-              24.75
+              7.68,
+              24.79
             ],
             "p18 2695c01": [
-              7.63,
-              24.75
+              7.68,
+              24.79
             ],
             "p231 2695c01": [
               0,
@@ -247,12 +271,12 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 31,
-          "msOneCall": 3,
+          "ms": 36,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p13 3743": [
-              15.27,
+              15.36,
               0
             ],
             "p9 4261": [
@@ -264,12 +288,12 @@
               22
             ],
             "p14 2695c01": [
-              7.63,
-              24.75
+              7.68,
+              24.79
             ],
             "p18 2695c01": [
-              7.63,
-              24.75
+              7.68,
+              24.79
             ],
             "p231 2695c01": [
               0,
@@ -286,22 +310,38 @@
           }
         }
       ],
-      "B": [],
-      "seconds": 4
+      "B": [
+        {
+          "control": "p216 3941",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p13 3743",
+            "p9 4261",
+            "p15 4261",
+            "p14 2695c01",
+            "p18 2695c01"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 16
     },
     {
       "function": 4,
       "does": "The four wheels roll freely; there's no drive to them.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
-        "open": 1,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 0,
-        "A": 8,
-        "B": 0
+        "reach": 1,
+        "A": 0,
+        "B": 44
       },
       "stop": null,
       "stops": [],
@@ -311,8 +351,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 38,
-          "msOneCall": 3,
+          "ms": 47,
+          "msOneCall": 10,
           "stops": [],
           "moved": {}
         },
@@ -322,7 +362,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 39,
-          "msOneCall": 3,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -331,8 +371,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 33,
-          "msOneCall": 3,
+          "ms": 36,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -342,7 +382,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 33,
-          "msOneCall": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -351,8 +391,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 38,
-          "msOneCall": 3,
+          "ms": 34,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -362,7 +402,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 38,
-          "msOneCall": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -371,8 +411,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 33,
-          "msOneCall": 3,
+          "ms": 34,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -381,14 +421,51 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 33,
-          "msOneCall": 3,
+          "ms": 31,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 10
+      "B": [
+        {
+          "control": "p231 2695c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p232 2695c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p14 2695c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p18 2695c01",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 56
     }
   ]
 }

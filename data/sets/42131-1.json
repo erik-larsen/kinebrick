@@ -25,7 +25,7 @@
           "crawler-tracks"
         ],
         "source": "book 1 page 15 (the track drawing); steps 1-21 (the two drive motors); the gearing is inferred from the model",
-        "control": "p2686 32062",
+        "control": "p13 42131 - 69730",
         "moves": [
           "p3610 42529",
           "p6163 42131 - 69910"
@@ -33,7 +33,7 @@
         "stays": [
           "p3613 42529"
         ],
-        "note": "The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
       },
       {
         "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
@@ -43,7 +43,7 @@
           "crawler-tracks"
         ],
         "source": "book 1 page 15 and steps 1-21; the gearing is inferred from the model",
-        "control": "p2688 32062",
+        "control": "p1319 42131 - 69730",
         "moves": [
           "p3613 42529",
           "p6105 42131 - 69910"
@@ -51,7 +51,7 @@
         "stays": [
           "p3610 42529"
         ],
-        "note": "The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself, in place of the shaft buried at it. The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
       },
       {
         "does": "With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot.",
@@ -60,8 +60,8 @@
         ],
         "source": "book 1 page 15; what the two track motors do together",
         "control": [
-          "p2686 32062",
-          "p2688 32062"
+          "p13 42131 - 69730",
+          "p1319 42131 - 69730"
         ],
         "moves": [
           "p3610 42529",
@@ -76,8 +76,8 @@
         ],
         "source": "book 1 steps 241-262 (the engine); that it is driven by the differential between the drive motors is inferred from the model (p5 62821, p2647 42131 - 18575, p2685 32270, p3433 94925, p3413 18946, p3746 94925)",
         "control": [
-          "p2686 32062",
-          "p2688 32062"
+          "p13 42131 - 69730",
+          "p1319 42131 - 69730"
         ],
         "moves": [
           "p5 62821",
@@ -190,7 +190,9 @@
         "control": "p3449 32056",
         "moves": [
           "p3441 4274"
-        ]
+        ],
+        "skip": "electrical: the lever only presses the hub's power button; listed and not checked until electrical functions are in Kinebrick's scope",
+        "note": "Signed by Erik, 2026-11-21: \"for the electronics on/off switch I think we should document but mark no-op for now\"; electrical functions come into scope later, as they can drive movement. The control and the part it moves are kept for that time."
       },
       {
         "does": "The two drive motors and two gearbox motors are worked from the LEGO Technic Control+ app, which also shows the gearbox test and challenges.",
@@ -232,14 +234,14 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 600,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 533,
     "counts": {
-      "works": 5,
+      "works": 4,
       "partly": 5,
-      "not checked": 1,
-      "skipped": 2
+      "skipped": 3,
+      "not checked": 1
     },
     "loose": [
       "p14 23816a",
@@ -314,8 +316,8 @@
             ]
           ]
         ],
-        "seconds": 52.7,
-        "peak": 1411
+        "seconds": 48.9,
+        "peak": 1048
       },
       {
         "result": "works",
@@ -370,8 +372,8 @@
             ]
           ]
         ],
-        "seconds": 52.5,
-        "peak": 1021
+        "seconds": 49.6,
+        "peak": 1020
       },
       {
         "result": "works",
@@ -467,8 +469,8 @@
             "p3613 42529"
           ]
         ],
-        "seconds": 103.7,
-        "peak": 1445
+        "seconds": 98.6,
+        "peak": 1042
       },
       {
         "result": "works",
@@ -486,7 +488,7 @@
           {
             "p5 62821": [
               0.5,
-              5.34e-13
+              3.86e-13
             ],
             "p3661 2853": [
               1.17,
@@ -504,7 +506,7 @@
           {
             "p5 62821": [
               0.5,
-              8.52e-13
+              8.13e-13
             ],
             "p3661 2853": [
               1.17,
@@ -588,8 +590,8 @@
             "p3670 2851"
           ]
         ],
-        "seconds": 102.7,
-        "peak": 1452
+        "seconds": 98.7,
+        "peak": 1004
       },
       {
         "result": "partly",
@@ -644,8 +646,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p3297 18947",
-        "seconds": 38.5,
-        "peak": 987
+        "seconds": 35.8,
+        "peak": 1013
       },
       {
         "result": "partly",
@@ -716,8 +718,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p3399 62274c01 against p3398 42131 - u9559c01",
-        "seconds": 40,
-        "peak": 1139
+        "seconds": 37.5,
+        "peak": 1002
       },
       {
         "result": "partly",
@@ -786,8 +788,8 @@
         ],
         "cause": "not-driven",
         "detail": "p4122 62274c01 against p4121 42131 - u9559c01",
-        "seconds": 38.8,
-        "peak": 986
+        "seconds": 35.7,
+        "peak": 1023
       },
       {
         "result": "partly",
@@ -855,8 +857,8 @@
         ],
         "cause": "not-driven",
         "detail": "p6010 62274c01 against p6009 42131 - u9559c01",
-        "seconds": 39,
-        "peak": 987
+        "seconds": 35.9,
+        "peak": 1016
       },
       {
         "result": "partly",
@@ -919,75 +921,11 @@
         ],
         "cause": "not-driven",
         "detail": "p5717 42131 - 71710",
-        "seconds": 38.8,
-        "peak": 982
+        "seconds": 35.8,
+        "peak": 1031
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.17,
-            -0.7
-          ]
-        ],
-        "rates": [
-          {
-            "p3441 4274": [
-              1,
-              53.8
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            3449,
-            3650,
-            0.17,
-            0.17
-          ],
-          [
-            0,
-            -1,
-            3017,
-            3440,
-            0.7,
-            0.7
-          ]
-        ],
-        "seconds": 22.4,
-        "peak": 1100
+        "result": "skipped"
       },
       {
         "result": "not checked"

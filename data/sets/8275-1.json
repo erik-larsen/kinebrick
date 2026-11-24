@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "fe0dd791",
-    "date": "2026-11-21",
-    "seconds": 93,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 73,
     "counts": {
       "partly": 4,
       "works": 2,
@@ -269,7 +269,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2625 57518",
-        "seconds": 7.7
+        "seconds": 6
       },
       {
         "result": "partly",
@@ -342,7 +342,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2669 57518",
-        "seconds": 2.9
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -438,7 +438,7 @@
             "p2613 57519"
           ]
         ],
-        "seconds": 8.3
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -503,7 +503,7 @@
             ]
           ]
         ],
-        "seconds": 5.7
+        "seconds": 4.4
       },
       {
         "result": "partly",
@@ -551,11 +551,11 @@
               ],
               "p2983 32278": [
                 0,
-                9.75e-70
+                3.48e-70
               ],
               "p2611 57519": [
                 0,
-                1.39e-41
+                1.6e-41
               ]
             }
           ],
@@ -592,7 +592,17 @@
             ]
           ],
           "freed": 2,
-          "seconds": 47
+          "freedFor": [
+            {
+              "pin": "p2760 6558",
+              "for": "p125 3647"
+            },
+            {
+              "pin": "p2766 6558",
+              "for": "p125 3647"
+            }
+          ],
+          "seconds": 38.3
         }
       },
       {
@@ -674,13 +684,13 @@
         ],
         "cause": "control-jammed",
         "onPlay": 6,
-        "seconds": 13.3
+        "seconds": 10.6
       },
       {
         "result": "skipped",
         "seconds": 0
       }
     ],
-    "peak": 972
+    "peak": 852
   }
 }

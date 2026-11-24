@@ -1,25 +1,25 @@
 {
   "set": "8203-1",
-  "commit": "7023ada7",
-  "date": "2026-11-20T19:02:07.324Z",
-  "load": 23.6,
-  "part": "A",
+  "commit": "b55a79f6",
+  "date": "2026-11-21T13:16:02.118Z",
+  "load": 3.2,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 31,
-  "seconds": 9,
+  "seconds": 68,
   "functions": [
     {
       "function": 1,
       "does": "The four wheels roll freely, each on its own pin in the yellow chassis; there's no steering.",
       "verdict": "shown",
-      "msOneCall": 5,
+      "msOneCall": 9,
       "msPerStep": 0,
       "time": {
-        "open": 5,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 0
+        "A": 0,
+        "B": 46
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 12,
-          "msOneCall": 5,
+          "ms": 14,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -39,28 +39,28 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
+          "ms": 8,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p11 6118",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p11 6118",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
           "ms": 13,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p11 6118",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 14,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p11 6118",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 10,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -69,58 +69,95 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 12,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p14 6118",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 9,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p15 6118",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 9,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p15 6118",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
           "ms": 15,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p14 6118",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 9,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p15 6118",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p15 6118",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 9,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
         }
       ],
-      "B": [],
-      "seconds": 8
+      "B": [
+        {
+          "control": "p10 6118",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p11 6118",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p14 6118",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        },
+        {
+          "control": "p15 6118",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 54
     },
     {
       "function": 2,
       "does": "The black arm carrying the hose roll cage tilts on the 4-long axle through the middle of the yellow chassis: pressing the cage's nose down lifts the arm's back end, with its yellow hose connectors, off the chassis.",
       "verdict": "not decided",
-      "msOneCall": 2,
-      "msPerStep": 1,
+      "msOneCall": 8,
+      "msPerStep": 3,
       "time": {
-        "open": 0,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 0
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p21 6629",
@@ -140,8 +177,8 @@
           "way": 1,
           "asked": 0.43,
           "went": 0.033,
-          "ms": 1,
-          "msOneCall": 2,
+          "ms": 3,
+          "msOneCall": 8,
           "stops": [
             "4/22"
           ],
@@ -186,7 +223,7 @@
           "asked": 0.03,
           "went": -0.03,
           "ms": 1,
-          "msOneCall": 2,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p31 32015": [
@@ -224,7 +261,25 @@
           }
         }
       ],
-      "B": [],
+      "B": [
+        {
+          "control": "p21 6629",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p31 32015",
+            "p32 32015",
+            "p25 6536",
+            "p26 6536"
+          ],
+          "stops": [
+            "4/22",
+            "0/21"
+          ]
+        }
+      ],
       "stopsJudged": [
         {
           "control": "p21 6629",
@@ -237,7 +292,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p21 6629: a travel of 0.2 rad or less each way, stopped at +0.033 rad (4/22)",
-      "seconds": 1
+      "seconds": 14
     }
   ]
 }

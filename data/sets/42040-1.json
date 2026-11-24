@@ -145,9 +145,9 @@
     ]
   },
   "generated": {
-    "commit": "fe0dd791",
-    "date": "2026-11-21",
-    "seconds": 14,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 10,
     "counts": {
       "partly": 4,
       "works": 3,
@@ -187,19 +187,19 @@
           {
             "p160 6589": [
               1,
-              9.47e-15
+              2.84e-14
             ],
             "p157 32270": [
               1,
-              4.19e-13
+              3.47e-13
             ],
             "p144 6589": [
               1,
-              2.89e-13
+              2.65e-13
             ],
             "p148 6589": [
               1,
-              2.04e-13
+              2.89e-13
             ],
             "p557 99012": [
               0,
@@ -247,7 +247,7 @@
         ],
         "cause": "not-driven",
         "detail": "p557 99012",
-        "seconds": 1.3
+        "seconds": 1
       },
       {
         "result": "works",
@@ -310,7 +310,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -377,7 +377,7 @@
               0.17
             ]
           ],
-          "seconds": 0.2
+          "seconds": 0.1
         }
       },
       {
@@ -433,7 +433,7 @@
         ],
         "cause": "not-driven",
         "detail": "p226 60483",
-        "seconds": 1
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -540,7 +540,13 @@
             0.3
           ]
         ],
-        "seconds": 1
+        "freedFor": [
+          {
+            "pin": "p331 2780",
+            "for": "p358 6572"
+          }
+        ],
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -618,7 +624,13 @@
             0.3
           ]
         ],
-        "seconds": 1
+        "freedFor": [
+          {
+            "pin": "p331 2780",
+            "for": "p358 6572"
+          }
+        ],
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -673,7 +685,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -791,9 +803,9 @@
           [],
           []
         ],
-        "seconds": 4.7
+        "seconds": 3.2
       }
     ],
-    "peak": 592
+    "peak": 502
   }
 }

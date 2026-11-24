@@ -155,13 +155,13 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 239,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 184,
     "counts": {
       "no": 1,
-      "works": 6,
-      "partly": 1,
+      "works": 5,
+      "partly": 2,
       "skipped": 1
     },
     "loose": [
@@ -280,8 +280,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 6,
-        "peak": 958
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -302,7 +301,7 @@
               1.99
             ],
             "p442 62274c01 against p441 62271c01": [
-              9.92e-8,
+              1.24e-7,
               0.594
             ],
             "p1136 15265 against p0 64179": [
@@ -311,11 +310,11 @@
             ],
             "p621 18940 against p0 64179": [
               0,
-              6.74e-10
+              6.76e-10
             ],
             "p506 62274c01 against p505 62271c01": [
               7.44e-8,
-              7.14e-13
+              6.36e-13
             ]
           },
           {
@@ -324,7 +323,7 @@
               1.99
             ],
             "p442 62274c01 against p441 62271c01": [
-              9.92e-8,
+              1.24e-7,
               0.594
             ],
             "p1136 15265 against p0 64179": [
@@ -333,11 +332,11 @@
             ],
             "p621 18940 against p0 64179": [
               0,
-              6.74e-10
+              6.76e-10
             ],
             "p506 62274c01 against p505 62271c01": [
               7.44e-8,
-              7.14e-13
+              6.36e-13
             ]
           }
         ],
@@ -397,8 +396,7 @@
             "p1136 15265 against p0 64179"
           ]
         ],
-        "seconds": 88.7,
-        "peak": 924
+        "seconds": 77.1
       },
       {
         "result": "works",
@@ -496,8 +494,7 @@
             "p506 62274c01 against p505 62271c01"
           ]
         ],
-        "seconds": 41.7,
-        "peak": 872
+        "seconds": 35.2
       },
       {
         "result": "partly",
@@ -612,8 +609,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 9.07,
-        "seconds": 24.9,
-        "peak": 969
+        "seconds": 22.6
       },
       {
         "result": "works",
@@ -631,7 +627,7 @@
             ],
             "p610 18942 against p0 64179": [
               0,
-              3.88e-33
+              3.87e-33
             ],
             "p464 32271 against p0 64179": [
               0,
@@ -663,8 +659,7 @@
             ]
           ]
         ],
-        "seconds": 5.6,
-        "peak": 921
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -782,8 +777,7 @@
           [],
           []
         ],
-        "seconds": 21.3,
-        "peak": 857
+        "seconds": 17.6
       },
       {
         "result": "works",
@@ -901,11 +895,10 @@
           [],
           []
         ],
-        "seconds": 20.6,
-        "peak": 981
+        "seconds": 17.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             0.73,
@@ -978,6 +971,8 @@
           [],
           []
         ],
+        "cause": "stopped-endless",
+        "detail": "p694 87751: p694 87751 against p720 48989",
         "collisionStops": [
           [
             0,
@@ -1012,12 +1007,13 @@
             0.3
           ]
         ],
-        "seconds": 2.3,
-        "peak": 897
+        "seconds": 1.9
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
-    ]
+    ],
+    "peak": 967
   }
 }

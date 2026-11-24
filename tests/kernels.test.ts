@@ -154,17 +154,28 @@ const kernels: Record<string, { old: (...args: never[]) => unknown; now: (...arg
 };
 
 // The calls of each kernel in one turn of a control by a step, as a drag makes it: up to `most`
-// of each, the first ones and then every so often, copied as they were given.
-async function callsInAStep(model: string, part: number, most = 30): Promise<Call[]> {
+// of each, the first ones and then every so often, copied as they were given. And every null space,
+// worked there and then on the very rows it was given (which carry the places inBasis wrote, a copy
+// not), against the old elimination: the first that differs, in `live`.
+async function callsInAStep(model: string, part: number, most = 30, live: { differ: string | null; count: number } = { differ: null, count: 0 }): Promise<Call[]> {
   const { mech, kin } = await loadModel(model, true);
   const body = mech.bodyOf[part];
   const link = kin.parentLink(body)!;
   const seen: Record<string, number> = {};
   const calls: Call[] = [];
-  kernelSpy.on = (kernel, args) => {
+  const spy = (kernel: string, args: unknown[]) => {
+    if (kernel === 'nullSpace') {
+      kernelSpy.on = null;
+      const [rows, n] = args as [Row[], number];
+      const d = firstDifference(nullSpace(rows, n), oldNullSpace(rows.map(copy) as Row[], n));
+      kernelSpy.on = spy;
+      live.count++;
+      if (d !== null && live.differ === null) live.differ = d;
+    }
     const n = (seen[kernel] = (seen[kernel] ?? 0) + 1);
     if (n <= most / 2 || (n % 7 === 0 && calls.filter((c) => c.kernel === kernel).length < most)) calls.push({ kernel, args: args.map(copy) });
   };
+  kernelSpy.on = spy;
   try {
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(link.joint) !== null, link.joint);
     kin.turnJoint(link.joint, 0.035, () => true);
@@ -281,16 +292,97 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
     }
   });
 
+  it('the null space on rows as big and as sparse as a step\'s, with ties, rows that repeat others and −0', () => {
+    let seed = 4242;
+    const random = () => ((seed = (seed * 1103515245 + 12345) % 2 ** 31) / 2 ** 31);
+    // Entries from a few values, so that many are as large as each other (ties for the pivot), and some
+    // of any size.
+    const value = (): number => {
+      const r = random();
+      if (r < 0.3) return [1, -1, 0.5, -0.5, 2][Math.floor(random() * 5)];
+      if (r < 0.35) return -0;
+      if (r < 0.37) return 1e-12 * (random() - 0.5);
+      return random() * 2 - 1;
+    };
+    const calls: Call[] = [];
+    for (let t = 0; t < 40; t++) {
+      const n = 5 + Math.floor(random() * 120);
+      const count = 1 + Math.floor(random() * 200);
+      const share = 0.01 + random() * 0.08;
+      const rows = Array.from({ length: count }, () => Array.from({ length: n }, () => (random() < share ? value() : 0)));
+      // Rows that repeat others (a sum, a multiple, a copy), as the equations of a loop do.
+      for (let d = 0; d < 1 + Math.floor(random() * 10) && count > 2; d++) {
+        const [i, j] = [Math.floor(random() * count), Math.floor(random() * count)];
+        const how = random();
+        rows.push(rows[i].map((x, k) => (how < 0.4 ? x + rows[j][k] : how < 0.7 ? 3 * x : x)));
+      }
+      // No NaN: the rook pivoting never ends on one, in the present elimination as in this (a NaN is
+      // never as large as itself, so the search goes on round it).
+      calls.push({ kernel: 'nullSpace', args: [rows, n] });
+    }
+    sameOnAll(calls);
+  });
+
+  // Rows made by inBasis come with their places (decision 287), and nullSpace goes over those only:
+  // the same numbers. Bodies' rows of a few places, a basis of a few places in each of its rows, values
+  // drawn from a few so that sums cancel to 0 (a place written that holds 0) and pivots tie, and rows
+  // that repeat others.
+  it('the null space on rows inBasis made, gone over at their places only', () => {
+    let seed = 777;
+    const random = () => ((seed = (seed * 1103515245 + 12345) % 2 ** 31) / 2 ** 31);
+    const pick = () => [1, -1, 0.5, -0.5, 2, 0.25][Math.floor(random() * 6)];
+    for (let t = 0; t < 30; t++) {
+      const bodies = 3 + Math.floor(random() * 40);
+      const n = 6 * bodies;
+      const q = 3 + Math.floor(random() * Math.min(n, 150));
+      const basis = Array.from({ length: n }, () => Array.from({ length: q }, () => (random() < 0.08 ? (random() < 0.5 ? pick() : random() - 0.5) : 0)));
+      const rows: BodyRow[] = [];
+      for (let i = 0; i < 1 + Math.floor(random() * 120); i++) {
+        const row = new BodyRow(n);
+        for (let e = 0; e < 1 + Math.floor(random() * 6); e++) row.add(Math.floor(random() * n), random() < 0.6 ? pick() : random() - 0.5);
+        rows.push(row);
+      }
+      for (let d = 0; d < 3 && rows.length > 2; d++) rows.push(BodyRow.elementwise(n, [rows[d], rows[d + 1]], ([x, y]) => x - 2 * y));
+      const made = inBasis(rows, basis);
+      const d = firstDifference(nullSpace(made, q), oldNullSpace(made.map(copy) as Row[], q));
+      expect(d, `case ${t}`).toBeNull();
+    }
+  });
+
+  // KINEBRICK_CHECK_PLACES=1 (decision 290): a row written into after inBasis made it, at a place it
+  // didn't write, is caught, where nullSpace would trust its places and leave that out.
+  it('the places check catches a row written into after inBasis', () => {
+    const basis = [[1, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    const row = new BodyRow(6);
+    row.add(0, 2);
+    const [made] = inBasis([row], basis);
+    const was = process.env.KINEBRICK_CHECK_PLACES;
+    process.env.KINEBRICK_CHECK_PLACES = '1';
+    try {
+      expect(() => nullSpace([made], 3)).not.toThrow();
+      made[2] = 5;
+      expect(() => nullSpace([made], 3)).toThrow(/leave out place 2/);
+    } finally {
+      if (was === undefined) delete process.env.KINEBRICK_CHECK_PLACES;
+      else process.env.KINEBRICK_CHECK_PLACES = was;
+    }
+  });
+
   const models: [string, string, number][] = [
     ['the 9397 Logging Truck, its steering', 'omr/9397-1 Logging Truck.mpd', 1000],
     ['the 8110 Unimog, its steering', 'omr/8110-1 Mercedes-Benz Unimog U 400.mpd', 1504],
+    ["the 8110 Unimog, its slewing motor (function 8's holds)", 'omr/8110-1 Mercedes-Benz Unimog U 400.mpd', 60],
+    ['the 42083 Bugatti Chiron, its steering', 'omr/42083-1 Bugatti Chiron.mpd', 2742],
     ["the 42100 Liebherr R 9800, its bucket's motor", 'omr/42100-1 Liebherr R 9800.mpd', 3237],
   ];
   for (const [what, model, part] of models) {
     it.skipIf(!existsSync(model))(`on what a step of ${what} gives them`, async () => {
-      const calls = await callsInAStep(model, part);
+      const live = { differ: null as string | null, count: 0 };
+      const calls = await callsInAStep(model, part, 30, live);
       for (const kernel of Object.keys(kernels)) expect(calls.some((c) => c.kernel === kernel), kernel).toBe(true);
       sameOnAll(calls);
+      expect(live.count).toBeGreaterThan(0);
+      expect(live.differ, 'a null space worked on its own rows').toBeNull();
     }, 300_000);
   }
 });

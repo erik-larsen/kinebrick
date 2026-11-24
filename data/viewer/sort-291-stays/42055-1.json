@@ -1,0 +1,136 @@
+{
+  "set": "42055-1",
+  "commit": "c79b95de",
+  "date": "2026-11-21T11:37:13.558Z",
+  "load": 14.4,
+  "part": "A, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 3896,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 8,
+      "does": "The mine truck's white knob on top of its cab, a 12 tooth gear on an upright axle, steers its front wheels: knob gears at the bottom of the axle turn a 12 tooth gear on a gear rack across the front axle.",
+      "verdict": "shown",
+      "msOneCall": 311,
+      "msPerStep": 56,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": {
+        "control": "p156 32270",
+        "way": 1,
+        "went": 0.942,
+        "asked": 1.5,
+        "by": [
+          "37/40"
+        ]
+      },
+      "stops": [
+        "37/40",
+        "38/39"
+      ],
+      "A": [
+        {
+          "control": "p156 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.942,
+          "ms": 1495,
+          "msOneCall": 311,
+          "stops": [
+            "37/40"
+          ],
+          "moved": {
+            "p13 32072": [
+              0,
+              53.96
+            ],
+            "p51 32072": [
+              0,
+              53.96
+            ],
+            "p49 87761": [
+              14.42,
+              0
+            ],
+            "p294 56145": [
+              18.03,
+              26.55
+            ],
+            "p303 56145": [
+              18.03,
+              26.55
+            ],
+            "p297 56145": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p156 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.942,
+          "ms": 1457,
+          "msOneCall": 136,
+          "stops": [
+            "38/39"
+          ],
+          "moved": {
+            "p13 32072": [
+              0,
+              53.96
+            ],
+            "p51 32072": [
+              0,
+              53.96
+            ],
+            "p49 87761": [
+              14.42,
+              0
+            ],
+            "p294 56145": [
+              18.03,
+              26.55
+            ],
+            "p303 56145": [
+              18.03,
+              26.55
+            ],
+            "p297 56145": [
+              0,
+              0
+            ],
+            "p300 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p156 32270",
+          "judged": "stands",
+          "why": "stopped at +0.942 rad (37/40); -0.942 rad (38/39); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 14
+    }
+  ]
+}

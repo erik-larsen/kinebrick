@@ -19,12 +19,12 @@
           "pneumatic-pump"
         ],
         "source": "book: page 203 (the Power Functions and Pneumatic V2 badges; picture 1 of each pair shows the battery box switched on); the pump's build steps are inferred",
-        "control": "p820 44294",
+        "control": "p654 99499",
         "moves": [
           "p821 6632",
           "p653 42080 - u9413"
         ],
-        "note": "the motor (p654 99499) is the control; the axle named is its output. Unsure which parts make up the pump"
+        "note": "Signed by Erik, 2026-11-21: the control is the motor itself (p654 99499); the axle p820 named before is a pivot at the pump's head that rocks, not the motor's output (booklet page 92). Unsure which parts make up the pump"
       },
       {
         "does": "The black gear on the machine's left, by the cab, turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
@@ -129,14 +129,15 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 73,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 130,
     "counts": {
-      "works": 5,
-      "not back": 2,
-      "free-turned": 2,
-      "no": 3
+      "partly": 1,
+      "no": 3,
+      "works": 4,
+      "not back": 1,
+      "free-turned": 1
     },
     "loose": [
       "p403 165",
@@ -365,81 +366,80 @@
     ],
     "functions": [
       {
-        "result": "works",
-        "turned": [
-          [
-            -0.39,
-            0.3
-          ]
-        ],
-        "rates": [
-          {
-            "p821 6632": [
-              1.01,
-              184
-            ],
-            "p653 42080 - u9413": [
-              1.01,
-              162
+        "result": "partly",
+        "hold": {
+          "reason": "The booklet's motor drives the pump crank round without end (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245456.pdf#page=92), but the check runs the motor only 0.1 rad each way before a collision (parts 56/71), and in the viewer the listed parts do not move. Second viewer sweep, decision 327.",
+          "date": "2026-11-21"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.1,
+              -0.1
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              1.76,
-              0.32
-            ],
-            [
-              1.76,
-              0.32
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              1.76,
-              0.32
-            ],
-            [
-              1.76,
-              0.32
-            ]
-          ]
-        ],
-        "freeTurned": true,
-        "strayed": [
-          "p1041 26603"
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            56,
-            99,
-            0.39,
-            0.39
           ],
-          [
-            0,
-            -1,
-            56,
-            71,
-            0.3,
-            0.3
-          ]
-        ],
-        "seconds": 16.3
+          "rates": [
+            {
+              "p821 6632": [
+                2.99,
+                540
+              ],
+              "p653 42080 - u9413": [
+                3.19,
+                474
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                223.65,
+                79.49
+              ],
+              [
+                350.92,
+                120.77
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                223.65,
+                79.49
+              ],
+              [
+                350.92,
+                120.77
+              ]
+            ]
+          ],
+          "strayed": [
+            "p2048 42080 - 10197",
+            "p2044 3062b"
+          ],
+          "stop": [
+            [
+              "limit",
+              "stuck"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              56,
+              71,
+              0.1,
+              0.1
+            ]
+          ],
+          "seconds": 79.7
+        }
       },
       {
         "result": "no",
@@ -543,7 +543,7 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -597,7 +597,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 9.1
+        "seconds": 8.5
       },
       {
         "result": "no",
@@ -660,7 +660,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -697,7 +697,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 3
       },
       {
         "result": "works",
@@ -919,9 +919,9 @@
           [],
           []
         ],
-        "seconds": 35.5
+        "seconds": 30.4
       }
     ],
-    "peak": 869
+    "peak": 1019
   }
 }

@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 39 works, 34 partly, 5 no, 1 not checked.
+Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 38 works, 34 partly, 5 no, 1 skipped, 1 not checked.
 
 ## By decade
 
@@ -85,7 +85,7 @@ Each detail by the set it first appears in.
 
 **1989, [8835 Forklift](https://erik-larsen.github.io/kinebrick/?model=8835-Forklift)**
 
-- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (partly)
+- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (works)
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
@@ -282,7 +282,7 @@ Each detail by the set it first appears in.
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
-- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (works)
+- *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (partly)
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 
@@ -312,7 +312,7 @@ Each detail by the set it first appears in.
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
 - *ladder:* With the gearbox set to the ladder, the function L motor lowers and raises the boarding ladder on the left side by the cab: a worm on top of the gearbox turns a 20 tooth gear, and a shaft up into the cab and a linkage across swing the ladder down and out. (partly)
-- *hub switch:* The red lever in the engine compartment switches the Control+ hub on: pressing it pushes a pin onto the hub's button. (works)
+- *hub switch:* The red lever in the engine compartment switches the Control+ hub on: pressing it pushes a pin onto the hub's button. (skipped)
 
 ---
 

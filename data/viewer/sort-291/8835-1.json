@@ -1,0 +1,109 @@
+{
+  "set": "8835-1",
+  "commit": "3d7ec1d4",
+  "date": "2026-11-21T11:13:43.615Z",
+  "load": 4.9,
+  "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
+  "parts": 235,
+  "seconds": 16,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
+      "held": {
+        "result": "partly",
+        "reason": "In the viewer the control turns and these listed parts stay: p29, p128, p63; a push by hand does not move them either. Viewer sweep, decision 279."
+      },
+      "verdict": "not shown",
+      "why": "A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand",
+      "msOneCall": 8,
+      "msPerStep": 9,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p207 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.035,
+          "ms": 9,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p29 3703": [
+              0.29,
+              0.12
+            ],
+            "p128 4262": [
+              0.23,
+              0.12
+            ],
+            "p63 2823": [
+              0.22,
+              0.12
+            ],
+            "p212 3736": [
+              0,
+              0
+            ],
+            "p216 3941": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p207 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 7,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p29 3703": [
+              0.31,
+              0.13
+            ],
+            "p128 4262": [
+              0.25,
+              0.13
+            ],
+            "p63 2823": [
+              0.23,
+              0.13
+            ],
+            "p212 3736": [
+              0,
+              0
+            ],
+            "p216 3941": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p207 4185a",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 16
+    }
+  ]
+}
