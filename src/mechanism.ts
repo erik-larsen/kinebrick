@@ -624,7 +624,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   loose.sort((a, b) => a - b);
   // A removed part rides along with what's nearest, as a loose part does, but isn't loose: it isn't there.
   for (let k = loose.length - 1; k >= 0; k--) if (parts[loose[k]].removed) loose.splice(k, 1);
-  treads.push(...trackTreads(loops));
+  treads.push(...trackTreads(loops, parts));
   // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   const screws = [...actuatorScrews(actuators, bodyOf), ...wormRacks(gears)];
