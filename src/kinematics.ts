@@ -404,7 +404,7 @@ export class Kinematics {
   private blockedByEnds = false;
   endReached = false;
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
-  private satellites: number[][] | null = null; // each differential's satellites' joints in its casing (see lockDifferentials)
+  private satellites: { casing: number; sats: number[] }[] | null = null; // each differential's joint it turns on and its satellites' joints (see lockDifferentials)
   private lockRateOf: ((z: number[], i: number) => number) | null = null; // the joints' rates for lockDifferentials, from the last leastTiers
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
   private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
@@ -3747,12 +3747,31 @@ export class Kinematics {
       const most = Math.max(0, ...all.map((m) => Math.abs(rate(m))));
       return most > 0 && motions.some((m) => Math.abs(rate(m)) > 1e-6 * most);
     };
+    // Only a differential the drag drives through its casing: where the joint can turn with the
+    // casing still, the drag turns one of its outputs (one wheel turned to show the other turn the
+    // opposite way, the 42039's, 42041's and 42099's lists), and the other output is what turns.
+    // Again until none is left, as a centre differential's locking drives the axles' casings.
+    const driven = (motions: number[][], casing: number) => {
+      const row = motions.map((m) => rateOf(m, casing));
+      if (row.every((x) => Math.abs(x) < 1e-12)) return false;
+      return !turns(orthonormalize(mixes(motions, nullSpace([row], motions.length))));
+    };
     let motions = all;
-    for (const sats of this.satelliteJoints()) {
-      const rows = sats.map((j) => motions.map((m) => rateOf(m, j)));
-      if (rows.every((row) => row.every((x) => Math.abs(x) < 1e-12))) continue;
-      const locked = orthonormalize(mixes(motions, nullSpace(rows, motions.length)));
-      if (locked.length && turns(locked)) motions = locked;
+    const left = this.satelliteJoints().slice();
+    for (let changed = true; changed; ) {
+      changed = false;
+      for (let k = 0; k < left.length; k++) {
+        const { casing, sats } = left[k];
+        const rows = sats.map((j) => motions.map((m) => rateOf(m, j)));
+        if (rows.every((row) => row.every((x) => Math.abs(x) < 1e-12))) continue;
+        if (!driven(motions, casing)) continue;
+        const locked = orthonormalize(mixes(motions, nullSpace(rows, motions.length)));
+        left.splice(k--, 1);
+        if (locked.length && turns(locked)) {
+          motions = locked;
+          changed = true;
+        }
+      }
     }
     return motions;
   }
@@ -3760,7 +3779,7 @@ export class Kinematics {
   // Each differential's satellites (see lockDifferentials): the joints of its casing (a part whose
   // role is `differential`) to a body with a gear, across the casing's own axis (that of the joint
   // it turns on), as the satellites' posts cross the half shafts.
-  private satelliteJoints(): number[][] {
+  private satelliteJoints(): { casing: number; sats: number[] }[] {
     if (this.satellites) return this.satellites;
     const casings = [...new Set(this.mech.roles.flatMap((r, i) => (r === 'differential' && this.mech.bodyOf[i] >= 0 ? [this.mech.bodyOf[i]] : [])))];
     const axis = (j: Joint) => axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
@@ -3773,7 +3792,7 @@ export class Kinematics {
         const other = j.bodyA === c ? j.bodyB : j.bodyA;
         return this.mech.gears.some((g) => g.body === other) && Math.abs(axis(j).dot(own)) < 0.5 ? [i] : [];
       });
-      return sats.length ? [sats] : [];
+      return sats.length ? [{ casing: link.joint, sats }] : [];
     });
     return this.satellites;
   }
