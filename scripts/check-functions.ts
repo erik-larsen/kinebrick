@@ -422,6 +422,12 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
     if (bare >= 0) throw new Error(`part ${bare} (${parts[bare].name}) has no shape, and no reason is given`);
     return known;
   };
+  // Nor two parts that turn face to face on one joint, as in the viewer (see Collisions.faceToFace),
+  // measured where the parts were when the mechanism was worked out.
+  const faceToFace = (c: Collisions, connected: Set<string>) => {
+    for (const key of c.faceToFace(mech, parts.map((p) => p.matrix)).keys()) connected.add(key);
+    return connected;
+  };
   const collisionsNow = () => {
     const known = shapesHere();
     if (!known) return null;
@@ -435,10 +441,13 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
       // The pairs that touch as built, from the kept file, as the viewer has them.
       const built = loaded.parts.map((p) => p.matrix);
       stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, built, true);
+      faceToFace(stopWatch, connected);
       const n = parts.length;
       stopWatch.setNear(stopWatch.candidates(mech.bodyOf, connected, built), new Set(near.map(([a, b]) => pairNumber(a, b, n))), built, matrices);
-    } else if (!stopWatch) stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, matrices);
-    else stopWatch.watch(mech.bodyOf, connected, matrices);
+    } else if (!stopWatch) {
+      stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, matrices);
+      stopWatch.watch(mech.bodyOf, faceToFace(stopWatch, connected), matrices);
+    } else stopWatch.watch(mech.bodyOf, faceToFace(stopWatch, connected), matrices);
     // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
     stopWatch.ignored = new Set(mech.loose);
     return stopWatch;
@@ -1419,6 +1428,7 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
             // which only show where it runs, as in the viewer).
             const known = shapesHere();
             const collisions = known ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            if (collisions) collisions.watch(mech.bodyOf, faceToFace(collisions, connectedPairs(mech)), placedNow().map((p) => p.matrix));
             // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
             if (collisions) collisions.ignored = new Set(mech.loose);
             let met = false;
