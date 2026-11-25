@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 696,
-      "partly": 257,
+      "works": 699,
+      "partly": 254,
       "no": 91,
       "functions": 1223
     },
@@ -41,6 +41,25 @@
       ],
       "reply": "Sign the 42110's lid control",
       "since": "2026-11-24"
+    },
+    {
+      "id": "42114-front-shaft-axle",
+      "kind": "Sign-off",
+      "title": "42114 Volvo Articulated Hauler: one axle of the front drive shaft is a stud off in the file. Sign the erratum?",
+      "what": "The front axle's differential gets no drive in Kinebrick. The worker traced it to one part of the shaft that runs forward under the cab: an axle 4 with a stop in its middle (part 99008, p1030, in the cabin's sub-model). Claude checked it from the LDraw shapes alone. As the file has it, the axle's rear end only touches the connector that should drive it, without entering it, and its front half fills the next connector from end to end, in the same socket as another axle: the two overlap by 19 LDU. Moved one stud (20 LDU) back, the axle sits 20 LDU in each connector and overlaps nothing, and its stop sits in the round hole it is made for. The booklet's step 275 (page 172) does not show the shaft clearly enough to settle it.",
+      "effect": "With your yes the erratum moves that one axle 20 LDU. By the worker's trial the front differential and both front wheels then turn with the motor. Function 1 (the motor drives all six wheels) stays partly for now, because the middle axle's wheel still stands for another reason, which the solver owner has.",
+      "links": [
+        {
+          "label": "42114 in the viewer, the axle marked",
+          "url": "http://localhost:5174/?file=omr/42114-1+6x6+Volvo+Articulated+Hauler.mpd&show=1030&autospin=427,paused"
+        },
+        {
+          "label": "Booklet, page 172 (step 275)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=172"
+        }
+      ],
+      "reply": "Sign the 42114's axle erratum",
+      "since": "2026-11-25"
     }
   ],
   "coming": [
@@ -62,7 +81,7 @@
     },
     {
       "title": "The new differential (part 65414c01): read as its pieces now; its wheels do not yet turn against each other",
-      "what": "Merged on 24 November (348). Kinebrick had no gears and no differential role for this part, so both wheels of an axle were one rigid piece. It is in 4 sets: the 42114 Volvo Hauler, the 42129 Zetros, the 42124 Off-Road Buggy and the 42109 Top Gear Rally Car. Now the Zetros's centre differential works (function 2), and the motors of the 42124 and the 42109 drive their rear wheels. One function left the working count: the 42109's function 2, turning one rear wheel turns the other the opposite way. It had passed falsely: the two wheels were one piece and turned the same way, and the check measures how far a part turns, not which way. Still wrong: with the motor's gear held, one wheel turns the other only a little and then stops. The worker traces that next. Nothing for you to sign yet."
+      "what": "Merged on 24 November (348): the Zetros's centre differential works, and the motors of the 42124 and the 42109 drive their rear wheels. Still wrong, with the causes now found (356): with the motor's gear held, one wheel turns the other only a little, because the differential's three small gears lock each other after the first steps; the worker mends that in the reading. And an open differential sends its whole turn to one side, so the Zetros's rear axle and the Hauler's middle axle get no drive; the solver owner mends that. The Hauler's front axle waits for your signature on an axle that is a stud off in the file."
     }
   ],
   "done": [
