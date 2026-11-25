@@ -49,27 +49,6 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42055-1",
-    "function": 7,
-    "result": "partly",
-    "reason": "In the viewer the control turns and these listed parts stay: p2535; a push by hand does not move it either. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "8258-1",
-    "function": 7,
-    "result": "partly",
-    "reason": "In the viewer the control turns and these listed parts stay: p682, p6, p1351, p1366, p1367. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "8275-1",
-    "function": 5,
-    "result": "partly",
-    "reason": "In the viewer the control turns and these listed parts stay: p2715, p2731. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
     "set": "42053-1",
     "function": 5,
     "result": "partly",
@@ -95,13 +74,6 @@
     "function": 1,
     "result": "partly",
     "reason": "In the viewer two parts listed to stay move 3 to 6 LDU: p14 and p65 against p0. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "8285-1",
-    "function": 5,
-    "result": "partly",
-    "reason": "In the viewer neither a turn of the control nor a push by hand moves the listed part p1074, with the control in view; the check tilts the bonnet 0.15 rad one way only. Viewer sweep, decision 286.",
     "date": "2026-11-21"
   },
   {
@@ -175,13 +147,6 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42038-1",
-    "function": 1,
-    "result": "partly",
-    "reason": "Under a hand the steering goes one way only: since the press handler's mend (decision 358) a plain press on the gear p170 frees its two friction pins p278 and p279 and a drag turns it 105 degrees until p205 meets p288, the track units' hubs moving 27 to 43 LDU; the other way it creeps about 1.2 degrees for each drag. The check turns it 1.5 rad each way. The sweep at 5a5eace2.",
-    "date": "2026-11-25"
-  },
-  {
     "set": "42111-1",
     "function": 10,
     "result": "partly",
@@ -207,6 +172,55 @@
     "function": 4,
     "result": "partly",
     "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "42107-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "Under a hand the swing arm moves (the wheel end 22 to 62 LDU), but two parts listed to stay turn 2.96 degrees with it: the rear wheel hub p379 and the crankshaft part p185. That is over a tenth of the least-moved listed part (22.4). The viewer's own turn does not take the control p262. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8002-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "Under a hand each arm swings (18 and 91 LDU), but the body p0, listed to stay, shifts 3.3 LDU and turns 3.69 degrees with it, over a tenth of the least-moved listed part (18.5). The viewer's own turn does not take the controls p238 and p250. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8273-1",
+    "function": 9,
+    "result": "partly",
+    "reason": "Under a hand the tailgate swings 142 degrees, but the beam p370, listed to stay, moves 45 LDU and turns 32 degrees with it. The viewer's own turn does not take the control p345. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8838-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "Under a hand the suspension is not shown: a drag on the shock absorber's rod p225 swings the whole fork 68.7 degrees, the cylinders p224 and p226 and the part p77 (listed to stay) exactly as far as the rods and the wheel, so the rods do not slide in the cylinders. The viewer's own turn does not take the control. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8849-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "Under a hand the front axle rocks 63 degrees, but the axle p118, listed to stay, turns 9.85 degrees with it. The viewer's own turn does not take the control p97. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8862-1",
+    "function": 8,
+    "result": "partly",
+    "reason": "Under a hand the cylinder moves 22.9 LDU, but the beam p264, listed to stay, moves 3.71 LDU with it, over a tenth of that. The viewer's own turn does not take the control p292. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8862-1",
+    "function": 9,
+    "result": "partly",
+    "reason": "Under a hand the cylinder moves 31.6 LDU, but the axle p292, listed to stay, moves 14.8 LDU and turns 13.7 degrees with it. The viewer's own turn does not take the control p302. Full viewer sweep at ac22e339, decision 363.",
     "date": "2026-11-25"
   }
 ]

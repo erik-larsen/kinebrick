@@ -207,7 +207,11 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
       down = false;
     },
     async turn(part, turn) {
-      const [cx, cy] = await middle(part);
+      // Round where the viewer turns the part about (turnCentre: its axle level with the point
+      // grabbed), so that the pointer's first move, out from the grabbed point to the circle, is
+      // straight out from there and sweeps no angle; round the part's middle where that isn't known.
+      const centre = await page.evaluate(([x, y]) => (window as any).kinebrick.interaction.turnCentre(x, y), at);
+      const [cx, cy] = centre ?? (await middle(part));
       const a0 = Math.atan2(at[1] - cy, at[0] - cx);
       const r = Math.max(40, Math.hypot(at[0] - cx, at[1] - cy));
       for (let i = 1; i <= 40; i++) {

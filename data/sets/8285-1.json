@@ -250,13 +250,13 @@
     ]
   },
   "generated": {
-    "commit": "55ee538d",
+    "commit": "e32f5816",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 183,
+    "seconds": 123,
     "counts": {
-      "works": 6,
-      "partly": 3,
+      "works": 7,
+      "partly": 2,
       "skipped": 3,
       "no": 3
     },
@@ -400,7 +400,7 @@
             "p732 2851"
           ]
         ],
-        "seconds": 39.5
+        "seconds": 30.4
       },
       {
         "result": "works",
@@ -492,7 +492,7 @@
           [],
           []
         ],
-        "seconds": 62.1
+        "seconds": 46.5
       },
       {
         "result": "works",
@@ -550,7 +550,7 @@
             ]
           ]
         ],
-        "seconds": 6
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -592,87 +592,80 @@
             ]
           ]
         ],
-        "seconds": 6.7
+        "seconds": 4.2
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "In the viewer neither a turn of the control nor a push by hand moves the listed part p1074, with the control in view; the check tilts the bonnet 0.15 rad one way only. Viewer sweep, decision 286.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.15,
+        "result": "works",
+        "turned": [
+          [
+            0.15,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p1074 3707": [
+              0,
+              28.3
+            ],
+            "p720 3705": [
+              0,
               0
             ]
-          ],
-          "rates": [
-            {
-              "p1074 3707": [
-                0,
-                28.3
-              ],
-              "p720 3705": [
-                0,
-                0
-              ]
-            }
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "pushed": [
-            true
-          ],
-          "collisionStops": [
+          }
+        ],
+        "back": [
+          [
             [
               0,
-              1,
-              1140,
-              1167,
-              0.15,
-              0.15
+              0
             ],
             [
               0,
-              -1,
-              502,
-              1129,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1140,
+            1167,
+            0.15,
+            0.15
           ],
-          "seconds": 2.9
-        }
+          [
+            0,
+            -1,
+            502,
+            1129,
+            0,
+            0
+          ]
+        ],
+        "seconds": 2
       },
       {
         "result": "partly",
@@ -741,7 +734,7 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 6.2
+        "seconds": 3.7
       },
       {
         "result": "partly",
@@ -803,7 +796,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 5.6
+        "seconds": 3.3
       },
       {
         "result": "skipped",
@@ -872,7 +865,7 @@
             "for": "p1719 2654"
           }
         ],
-        "seconds": 13.7
+        "seconds": 7
       },
       {
         "result": "works",
@@ -922,7 +915,7 @@
             ]
           ]
         ],
-        "seconds": 6.4
+        "seconds": 3
       },
       {
         "result": "skipped",
@@ -990,7 +983,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 6.8
+        "seconds": 3.6
       },
       {
         "result": "no",
@@ -1049,7 +1042,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 7.2
+        "seconds": 3.6
       },
       {
         "result": "no",
@@ -1134,9 +1127,9 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 15
+        "seconds": 7.7
       }
     ],
-    "peak": 999
+    "peak": 1469
   }
 }
