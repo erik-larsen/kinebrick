@@ -298,7 +298,7 @@ Each detail by the set it first appears in.
 
 **2021, [42123 McLaren Senna GTR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42123-1)**
 
-- *V8:* Rolling the car turns the V8 engine behind the seats: the right rear wheel's axle turns the crankshaft through two 12 tooth bevel gears, and the crankshaft pushes the eight yellow pistons up and down in their two tilted banks. (partly)
+- *V8:* Rolling the car turns the V8 engine behind the seats: the right rear wheel's axle turns the crankshaft through two 12 tooth bevel gears, and the crankshaft pushes the eight yellow pistons up and down in their two tilted banks. (works)
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
