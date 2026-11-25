@@ -125,16 +125,13 @@
     ]
   },
   "generated": {
-    "commit": "61abedc1",
+    "commit": "55ee538d",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 8,
+    "seconds": 9,
     "counts": {
       "no": 1,
-      "works": 4,
-      "partly": 1,
-      "not back": 1,
-      "moved whole": 1,
+      "works": 5,
       "skipped": 2
     },
     "loose": [
@@ -242,19 +239,19 @@
           {
             "p889 32498": [
               1,
-              4.37e-13
+              3.21e-13
             ],
             "p464 65414": [
               1.29,
-              5.5e-13
+              2.65e-13
             ],
             "p972 56908": [
               1.29,
-              3.62e-13
+              2.93e-13
             ],
             "p974 56908": [
               1.29,
-              2.82e-13
+              2.94e-13
             ]
           }
         ],
@@ -282,21 +279,21 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.5,
-            -0.5
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
             "p974 56908 against p464 65414": [
               1,
-              3.19e-13
+              6.26e-13
             ]
           }
         ],
@@ -304,11 +301,11 @@
           [
             [
               0,
-              28.65
+              0
             ],
             [
               0,
-              28.65
+              0
             ]
           ]
         ],
@@ -316,28 +313,15 @@
           [
             [
               0,
-              28.65
+              0
             ],
             [
               0,
-              28.65
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p463 59426"
-        ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -435,7 +419,7 @@
             "p343 15460"
           ]
         ],
-        "seconds": 1
+        "seconds": 1.3
       },
       {
         "result": "skipped",
@@ -491,7 +475,7 @@
             "limit"
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -561,9 +545,9 @@
           [],
           []
         ],
-        "seconds": 2.5
+        "seconds": 3
       }
     ],
-    "peak": 620
+    "peak": 618
   }
 }

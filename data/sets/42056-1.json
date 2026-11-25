@@ -199,9 +199,10 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 266,
+    "commit": "55ee538d",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 399,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -316,8 +317,8 @@
             1.27
           ]
         ],
-        "seconds": 16.2,
-        "peak": 929
+        "seconds": 25,
+        "peak": 1001
       },
       {
         "result": "partly",
@@ -412,8 +413,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 23.5,
-        "peak": 1022
+        "seconds": 36.4,
+        "peak": 940
       },
       {
         "result": "partly",
@@ -533,8 +534,8 @@
         ],
         "cause": "not-driven",
         "detail": "p340 32072",
-        "seconds": 20,
-        "peak": 924
+        "seconds": 30.3,
+        "peak": 904
       },
       {
         "result": "partly",
@@ -605,8 +606,8 @@
             1.4
           ]
         ],
-        "seconds": 10.3,
-        "peak": 918
+        "seconds": 15,
+        "peak": 904
       },
       {
         "result": "works",
@@ -722,8 +723,8 @@
             0.27
           ]
         ],
-        "seconds": 6.4,
-        "peak": 1041
+        "seconds": 9,
+        "peak": 933
       },
       {
         "result": "works",
@@ -823,8 +824,8 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 10.2,
-        "peak": 894
+        "seconds": 15.3,
+        "peak": 921
       },
       {
         "result": "skipped"
@@ -978,8 +979,8 @@
             "for": "p2437 64394"
           }
         ],
-        "seconds": 26.4,
-        "peak": 1087
+        "seconds": 41.1,
+        "peak": 926
       },
       {
         "result": "works",
@@ -1040,8 +1041,8 @@
             0
           ]
         ],
-        "seconds": 35,
-        "peak": 931
+        "seconds": 55.8,
+        "peak": 935
       },
       {
         "result": "no",
@@ -1126,8 +1127,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 17.1,
-        "peak": 935
+        "seconds": 23,
+        "peak": 888
       },
       {
         "result": "works",
@@ -1188,8 +1189,8 @@
             1.01
           ]
         ],
-        "seconds": 24.8,
-        "peak": 922
+        "seconds": 39.1,
+        "peak": 911
       },
       {
         "result": "works",
@@ -1255,8 +1256,8 @@
           [],
           []
         ],
-        "seconds": 19.7,
-        "peak": 906
+        "seconds": 30.5,
+        "peak": 929
       }
     ]
   }

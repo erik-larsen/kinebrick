@@ -1,25 +1,25 @@
 {
   "set": "42102-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:22:15.974Z",
-  "load": 3.3,
+  "commit": "55ee538d",
+  "date": "2026-11-25T07:10:27.457Z",
+  "load": 17.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 128,
-  "seconds": 107,
+  "seconds": 102,
   "functions": [
     {
       "function": 1,
       "does": "The black 12 tooth gear on top of the cab steers the front wheels: its shaft runs down to a 16 tooth gear, which drives a second 16 tooth gear and then a third on the steering post between the front wheels; that post's arm swings the two steering knuckles.",
       "verdict": "shown",
-      "msOneCall": 10,
+      "msOneCall": 11,
       "msPerStep": 2,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p120 32270",
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.384,
-          "ms": 21,
-          "msOneCall": 10,
+          "ms": 22,
+          "msOneCall": 11,
           "stops": [
             "0/8"
           ],
@@ -92,8 +92,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.384,
-          "ms": 16,
-          "msOneCall": 2,
+          "ms": 21,
+          "msOneCall": 3,
           "stops": [
             "0/8"
           ],
@@ -148,6 +148,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            44.59
+          ],
           "moved": [
             "p13 94925",
             "p22 94925",
@@ -156,6 +178,55 @@
             "p5 48989",
             "p121 55982",
             "p123 55982"
+          ],
+          "went": {
+            "p13 94925": [
+              0,
+              44.59
+            ],
+            "p22 94925": [
+              0,
+              44.57
+            ],
+            "p15 94925": [
+              0,
+              44.59
+            ],
+            "p0 48989": [
+              15.17,
+              44.59
+            ],
+            "p5 48989": [
+              15.17,
+              44.59
+            ],
+            "p121 55982": [
+              30.35,
+              63.85
+            ],
+            "p123 55982": [
+              30.35,
+              63.85
+            ]
+          },
+          "staysWent": {
+            "p125 55982": [
+              0,
+              2.33
+            ],
+            "p127 55982": [
+              0,
+              2.33
+            ],
+            "p103 32524": [
+              0,
+              1.84
+            ]
+          },
+          "staysMoved": [
+            "p125 55982",
+            "p127 55982",
+            "p103 32524"
           ],
           "stops": [
             "0/8"
@@ -173,21 +244,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 15
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way.",
       "verdict": "shown",
-      "msOneCall": 15,
-      "msPerStep": 2,
+      "msOneCall": 12,
+      "msPerStep": 1,
       "time": {
-        "open": 5,
+        "open": 2,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
+        "reach": 0,
         "A": 0,
-        "B": 15
+        "B": 0
       },
       "stop": null,
       "stops": [],
@@ -197,8 +268,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 65,
-          "msOneCall": 15,
+          "ms": 62,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p112 44294": [
@@ -232,78 +303,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 48,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {
-            "p112 44294": [
-              0,
-              85.94
-            ],
-            "p87 3705": [
-              0,
-              143.24
-            ],
-            "p109 32270": [
-              0,
-              143.24
-            ],
-            "p107 32498": [
-              0,
-              47.75
-            ],
-            "p108 32498": [
-              0,
-              47.75
-            ],
-            "p103 32524 against p93 32140": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p127 55982",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 43,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p112 44294": [
-              0,
-              85.94
-            ],
-            "p87 3705": [
-              0,
-              143.24
-            ],
-            "p109 32270": [
-              0,
-              143.24
-            ],
-            "p107 32498": [
-              0,
-              47.75
-            ],
-            "p108 32498": [
-              0,
-              47.75
-            ],
-            "p103 32524 against p93 32140": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p127 55982",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 42,
-          "msOneCall": 2,
+          "ms": 56,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p112 44294": [
@@ -335,52 +336,29 @@
       ],
       "B": [
         {
-          "control": "p125 55982",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p112 44294",
-            "p87 3705",
-            "p109 32270",
-            "p107 32498",
-            "p108 32498"
+          "control": [
+            "p125 55982",
+            "p127 55982"
           ],
-          "stops": []
-        },
-        {
-          "control": "p127 55982",
-          "seen": true,
-          "cameraTurns": 1,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p112 44294",
-            "p87 3705",
-            "p109 32270",
-            "p107 32498",
-            "p108 32498"
-          ],
-          "stops": []
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 22
+      "seconds": 2
     },
     {
       "function": 3,
       "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
       "verdict": "not shown",
-      "why": "A: p103 32524, p107 32498, p108 32498 not moved",
       "msOneCall": 5,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 0,
-        "B": 12
+        "A": 2,
+        "B": 8
       },
       "stop": null,
       "stops": [],
@@ -388,9 +366,16 @@
         {
           "control": "p93 32140",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 0.16,
           "went": 0,
-          "ms": 1,
+          "ms": 6,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -423,6 +408,13 @@
         {
           "control": "p93 32140",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 0.69,
           "went": 0,
           "ms": 1,
@@ -460,21 +452,70 @@
         {
           "control": "p93 32140",
           "seen": true,
-          "cameraTurns": 1,
+          "cameraTurns": 0,
           "motor": false,
-          "shift": [],
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            }
+          ],
+          "controlWent": [
+            11.86,
+            4.64
+          ],
           "moved": [
             "p103 32524",
             "p107 32498",
             "p108 32498"
           ],
+          "went": {
+            "p103 32524": [
+              28.91,
+              16.72
+            ],
+            "p107 32498": [
+              29.48,
+              19.09
+            ],
+            "p108 32498": [
+              29.48,
+              19.09
+            ]
+          },
+          "staysWent": {
+            "p125 55982": [
+              0,
+              2.33
+            ],
+            "p127 55982": [
+              0,
+              2.33
+            ],
+            "p120 32270": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [
+            "p125 55982",
+            "p127 55982"
+          ],
           "stops": [
-            "96/116",
             "16/87"
           ]
         }
       ],
-      "seconds": 16
+      "why": "by hand: p125 55982, p127 55982 listed to stay moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 15
     },
     {
       "function": 4,
@@ -486,9 +527,9 @@
         "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 4,
+        "reach": 9,
         "A": 0,
-        "B": 39
+        "B": 49
       },
       "stop": null,
       "stops": [],
@@ -498,7 +539,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 72,
+          "ms": 67,
           "msOneCall": 12,
           "stops": [],
           "moved": {}
@@ -508,13 +549,33 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 57,
+          "ms": 54,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p123 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 51,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p123 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p125 55982",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
@@ -524,31 +585,11 @@
           "moved": {}
         },
         {
-          "control": "p123 55982",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 52,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p125 55982",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 54,
-          "msOneCall": 3,
-          "stops": [],
-          "moved": {}
-        },
-        {
           "control": "p125 55982",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 56,
+          "ms": 49,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -558,8 +599,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 53,
-          "msOneCall": 3,
+          "ms": 48,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -568,7 +609,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 52,
+          "ms": 48,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -578,10 +619,35 @@
         {
           "control": "p121 55982",
           "seen": true,
-          "cameraTurns": 3,
+          "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            75.16
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -590,7 +656,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            159.22
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -599,7 +690,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            177.61
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -608,11 +724,24 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            61.58
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 54
+      "seconds": 68
     }
   ]
 }

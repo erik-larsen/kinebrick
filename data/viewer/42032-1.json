@@ -1,18 +1,18 @@
 {
   "set": "42032-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:12:14.967Z",
-  "load": 17,
+  "commit": "55ee538d",
+  "date": "2026-11-25T05:59:59.460Z",
+  "load": 11,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 245,
-  "seconds": 61,
+  "seconds": 78,
   "functions": [
     {
       "function": 1,
       "does": "The gear-wheel knob at the back turns a worm, which turns a 24-tooth gear behind the cab; cranks on the gear's axle push links that raise and lower the two loader arms, carrying the bucket and the fork with them. The worm holds the arms wherever they're left.",
       "verdict": "shown",
       "msOneCall": 15,
-      "msPerStep": 3,
+      "msPerStep": 2,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 109,
+          "ms": 99,
           "msOneCall": 15,
           "stops": [],
           "moved": {
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 80,
-          "msOneCall": 4,
+          "ms": 69,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p15 4716 against p0 32009": [
@@ -102,11 +102,64 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            109.98
+          ],
           "moved": [
             "p15 4716 against p0 32009",
+            "p28 3648b against p0 32009",
+            "p97 32278 against p0 32009",
+            "p120 32278 against p0 32009",
             "p116 3706 against p0 32009",
             "p139 59443 against p0 32009"
           ],
+          "went": {
+            "p15 4716 against p0 32009": [
+              0,
+              109.98
+            ],
+            "p28 3648b against p0 32009": [
+              0,
+              4.58
+            ],
+            "p97 32278 against p0 32009": [
+              4.91,
+              1.95
+            ],
+            "p120 32278 against p0 32009": [
+              4.91,
+              1.95
+            ],
+            "p116 3706 against p0 32009": [
+              10.53,
+              2.02
+            ],
+            "p139 59443 against p0 32009": [
+              10.61,
+              2.17
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -115,8 +168,7 @@
     {
       "function": 3,
       "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
-      "verdict": "not shown",
-      "why": "A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved",
+      "verdict": "shown",
       "msOneCall": 1,
       "msPerStep": null,
       "time": {
@@ -125,7 +177,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 13
+        "B": 7
       },
       "stop": null,
       "stops": [],
@@ -206,31 +258,67 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            59.29,
+            69.52
+          ],
           "moved": [
             "p107 87083 against p97 32278",
             "p139 59443 against p97 32278"
           ],
+          "went": {
+            "p107 87083 against p97 32278": [
+              59.29,
+              69.52
+            ],
+            "p139 59443 against p97 32278": [
+              67.13,
+              68.03
+            ]
+          },
+          "staysWent": {
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "97/149",
-            "117/144"
+            "117/145"
           ]
         }
       ],
-      "seconds": 18
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 11
     },
     {
       "function": 4,
       "does": "The two tracks run round their wheels, so the loader rolls along.",
       "verdict": "shown",
-      "msOneCall": 15,
+      "msOneCall": 13,
       "msPerStep": 2,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 4,
+        "reach": 17,
         "A": 0,
-        "B": 16
+        "B": 27
       },
       "stop": null,
       "stops": [],
@@ -240,8 +328,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 83,
-          "msOneCall": 15,
+          "ms": 77,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         },
@@ -250,7 +338,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 50,
+          "ms": 46,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -260,8 +348,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 49,
-          "msOneCall": 2,
+          "ms": 45,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -270,8 +358,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
-          "msOneCall": 3,
+          "ms": 43,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
@@ -283,7 +371,20 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            164.13
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -292,11 +393,36 @@
           "cameraTurns": 3,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            150.98
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 27
+      "seconds": 50
     }
   ]
 }

@@ -13,7 +13,7 @@ import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts'
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
 import { crankWebs, lockedJoints, dropBallsInBearings, findCouplings, groovedBalls, reductions, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
-import { findGears, findMeshes, wormRacks } from './inference/gears.ts';
+import { findGears, findMeshes, satelliteMeshesKept, wormRacks } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
 import { chainHooks, hookedParts } from './inference/hooks.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -611,7 +611,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const treads = findTreads(cyls, bodyOf, roles);
   const riders = rails.length ? findRiders(treads) : [];
   const gears = findGears(cyls, bodyOf);
-  const meshes = findMeshes(gears);
+  const meshes = satelliteMeshesKept(findMeshes(gears), gears, joints, roles, bodyOf);
   // After lineUpBalls: dropBallsInBearings and findCouplings find a nudged ball's joint where
   // lineUpBalls has put it.
   dropBallsInBearings(joints, joined, roles, bodyOf);

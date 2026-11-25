@@ -56,13 +56,6 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42069-1",
-    "function": 5,
-    "result": "partly",
-    "reason": "In the viewer the control turns and these listed parts stay: p1333, p146, p162; a push by hand does not move them either. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
     "set": "8258-1",
     "function": 7,
     "result": "partly",
@@ -182,10 +175,38 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42004-1",
-    "function": 3,
+    "set": "42038-1",
+    "function": 1,
     "result": "partly",
-    "reason": "The viewer sweep does not show it: turning the gear p227 on the loader arm moves neither listed part of the bucket's tilt (p229 2951, p207 6632, each against p50 44294). The sweep of 2026-11-21 said the same and it was not held then; the sweep at 25b50532 confirms it (decision 354). The check turns the gear and judges the parts by their rates.",
-    "date": "2026-11-24"
+    "reason": "Under a hand the steering goes one way only: since the press handler's mend (decision 358) a plain press on the gear p170 frees its two friction pins p278 and p279 and a drag turns it 105 degrees until p205 meets p288, the track units' hubs moving 27 to 43 LDU; the other way it creeps about 1.2 degrees for each drag. The check turns it 1.5 rad each way. The sweep at 5a5eace2.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "42111-1",
+    "function": 10,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355).",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8835-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355).",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "42060-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "42106-1",
+    "function": 4,
+    "result": "partly",
+    "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+    "date": "2026-11-25"
   }
 ]

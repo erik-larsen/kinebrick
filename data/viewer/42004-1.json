@@ -1,20 +1,20 @@
 {
   "set": "42004-1",
-  "commit": "25b50532",
-  "date": "2026-11-25T03:34:20.617Z",
-  "load": 6.8,
+  "commit": "55ee538d",
+  "date": "2026-11-25T05:54:49.007Z",
+  "load": 2.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 244,
-  "seconds": 188,
+  "seconds": 173,
   "functions": [
     {
       "function": 1,
       "does": "The knob on the cab roof steers: its vertical shaft drives a 20-tooth gear that turns the turntable between the front and rear halves, so the machine bends in the middle (articulated steering).",
       "verdict": "shown",
-      "msOneCall": 18,
+      "msOneCall": 26,
       "msPerStep": 2,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.116,
-          "ms": 76,
-          "msOneCall": 18,
+          "ms": 66,
+          "msOneCall": 26,
           "stops": [
             "56/81"
           ],
@@ -73,8 +73,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 73,
-          "msOneCall": 5,
+          "ms": 50,
+          "msOneCall": 3,
           "stops": [
             "59/85"
           ],
@@ -150,6 +150,17 @@
               40.91
             ]
           },
+          "staysWent": {
+            "p236 56145": [
+              0,
+              0
+            ],
+            "p238 56145": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "56/81"
           ]
@@ -166,21 +177,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "Turning the exhaust stack raises and lowers the loader arm: the stack is the top of a vertical shaft with a worm at its foot, which turns an 8-tooth gear on the loader arm's pivot axle.",
       "verdict": "shown",
-      "msOneCall": 25,
-      "msPerStep": 4,
+      "msOneCall": 37,
+      "msPerStep": 3,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 18
+        "B": 15
       },
       "stop": {
         "control": "p40 55013",
@@ -200,8 +211,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 157,
-          "msOneCall": 25,
+          "ms": 113,
+          "msOneCall": 37,
           "stops": [],
           "moved": {
             "p50 44294": [
@@ -227,8 +238,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 96,
-          "msOneCall": 7,
+          "ms": 73,
+          "msOneCall": 4,
           "stops": [
             "29/201"
           ],
@@ -292,6 +303,13 @@
               0
             ]
           },
+          "staysWent": {
+            "p25 40490": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "29/201"
           ]
@@ -308,17 +326,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 23
+      "seconds": 19
     },
     {
       "function": 3,
       "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
       "verdict": "not shown",
-      "why": "A: p229 2951 against p50 44294, p207 6632 against p50 44294 not moved",
-      "msOneCall": 3,
+      "msOneCall": 5,
       "msPerStep": null,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -334,7 +351,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p229 2951 against p50 44294": [
@@ -410,22 +427,33 @@
               100.08
             ]
           },
+          "staysWent": {
+            "p50 44294": [
+              2.8,
+              2.73
+            ]
+          },
+          "staysMoved": [
+            "p50 44294"
+          ],
           "stops": [
             "34/210",
             "ground: p229"
           ]
         }
       ],
-      "seconds": 11
+      "why": "by hand: p50 44294 listed to stay moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 9
     },
     {
       "function": 4,
       "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
       "verdict": "shown",
-      "msOneCall": 18,
-      "msPerStep": 8,
+      "msOneCall": 13,
+      "msPerStep": 5,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -447,8 +475,8 @@
           },
           "asked": 1.5,
           "went": 0.279,
-          "ms": 55,
-          "msOneCall": 18,
+          "ms": 43,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -477,8 +505,8 @@
           },
           "asked": 1.5,
           "went": -0.314,
-          "ms": 71,
-          "msOneCall": 11,
+          "ms": 43,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -533,19 +561,26 @@
               13.02
             ]
           },
+          "staysWent": {
+            "p25 40490": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 13
+      "seconds": 12
     },
     {
       "function": 5,
       "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
       "verdict": "shown",
-      "msOneCall": 20,
-      "msPerStep": 4,
+      "msOneCall": 21,
+      "msPerStep": 3,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -581,8 +616,8 @@
           },
           "asked": 1.5,
           "went": 1.465,
-          "ms": 117,
-          "msOneCall": 20,
+          "ms": 88,
+          "msOneCall": 21,
           "stops": [
             "169/172"
           ],
@@ -612,8 +647,8 @@
           },
           "asked": 1.5,
           "went": -0.07,
-          "ms": 8,
-          "msOneCall": 5,
+          "ms": 6,
+          "msOneCall": 3,
           "stops": [
             "159/177"
           ],
@@ -669,6 +704,13 @@
               87.04
             ]
           },
+          "staysWent": {
+            "p159 32525": [
+              0,
+              0.54
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "159/177",
             "169/172"
@@ -686,14 +728,14 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 17
     },
     {
       "function": 6,
       "does": "The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand.",
       "verdict": "shown",
-      "msOneCall": 13,
-      "msPerStep": 2,
+      "msOneCall": 9,
+      "msPerStep": 1,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -727,8 +769,8 @@
           },
           "asked": 1.5,
           "went": 1.256,
-          "ms": 50,
-          "msOneCall": 13,
+          "ms": 37,
+          "msOneCall": 9,
           "stops": [
             "ground: p177"
           ],
@@ -751,8 +793,8 @@
           },
           "asked": 0.33,
           "went": -0.33,
-          "ms": 17,
-          "msOneCall": 4,
+          "ms": 13,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p177 30394 against p169 40490": [
@@ -800,6 +842,8 @@
               92.54
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "177/179",
             "ground: p177"
@@ -817,21 +861,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 17
     },
     {
       "function": 7,
       "does": "The four wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 21,
-      "msPerStep": 4,
+      "msOneCall": 16,
+      "msPerStep": 3,
       "time": {
-        "open": 11,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 8,
+        "reach": 7,
         "A": 1,
-        "B": 51
+        "B": 50
       },
       "stop": null,
       "stops": [],
@@ -841,8 +885,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 154,
-          "msOneCall": 21,
+          "ms": 111,
+          "msOneCall": 16,
           "stops": [],
           "moved": {}
         },
@@ -851,8 +895,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 122,
-          "msOneCall": 6,
+          "ms": 93,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -861,8 +905,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 121,
-          "msOneCall": 4,
+          "ms": 90,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -871,7 +915,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 106,
+          "ms": 89,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -881,8 +925,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 114,
-          "msOneCall": 4,
+          "ms": 89,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -891,8 +935,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 106,
-          "msOneCall": 5,
+          "ms": 92,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -901,8 +945,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 103,
-          "msOneCall": 5,
+          "ms": 89,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -911,7 +955,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 111,
+          "ms": 89,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -948,6 +992,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -980,6 +1026,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -1012,6 +1060,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -1044,16 +1094,18 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 70
+      "seconds": 66
     },
     {
       "function": 8,
       "does": "The steering wheel in the cab turns on its pin; it isn't connected to anything.",
       "verdict": "shown",
-      "msOneCall": 18,
+      "msOneCall": 16,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -1072,7 +1124,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 53,
-          "msOneCall": 18,
+          "msOneCall": 16,
           "stops": [],
           "moved": {}
         },
@@ -1081,7 +1133,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 50,
+          "ms": 46,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -1118,6 +1170,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
