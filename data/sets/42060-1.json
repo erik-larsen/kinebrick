@@ -131,10 +131,9 @@
     ]
   },
   "generated": {
-    "commit": "a0509fa9",
-    "uncommitted": true,
+    "commit": "80b9529a",
     "date": "2026-11-25",
-    "seconds": 4,
+    "seconds": 7,
     "counts": {
       "partly": 3,
       "not back": 1,
@@ -151,7 +150,7 @@
         "turned": [
           [
             0.08,
-            -0.08
+            -0.03
           ]
         ],
         "rates": [
@@ -166,15 +165,15 @@
             ],
             "p76 42060 - 18575": [
               0.6,
-              0
+              4.06e-13
             ],
             "p73 32316": [
-              0.000736,
+              0.000743,
               24
             ],
             "p159 32525": [
               0,
-              1.06e-14
+              3.86e-13
             ]
           }
         ],
@@ -190,8 +189,8 @@
               8.98
             ],
             [
-              33.34,
-              6.97
+              0.01,
+              0
             ]
           ]
         ],
@@ -202,27 +201,36 @@
               5.12
             ],
             [
-              0.85,
-              4.01
+              0,
+              0
             ]
           ]
         ],
         "strayed": [
-          "p122 15100",
-          "p124 15100"
+          "p122 15100"
         ],
         "stop": [
           [
             "dead point",
-            "dead point"
+            "limit"
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "one-link-too-many",
-        "onPlay": 0.33,
-        "seconds": 0.3
+        "collisionStops": [
+          [
+            0,
+            -1,
+            49,
+            49,
+            0.03,
+            0.03
+          ]
+        ],
+        "onPlay": 0.2,
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -299,7 +307,7 @@
             "for": "p30 59443"
           }
         ],
-        "seconds": 0.3
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -417,7 +425,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -483,7 +491,7 @@
             0.3
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -549,7 +557,7 @@
             1
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -639,7 +647,7 @@
               "for": "p287 59443"
             }
           ],
-          "seconds": 0.1
+          "seconds": 0.2
         }
       },
       {
@@ -766,7 +774,7 @@
             0
           ]
         ],
-        "seconds": 0.4
+        "seconds": 1
       },
       {
         "result": "works",
@@ -837,9 +845,9 @@
             "for": "p294 30394"
           }
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       }
     ],
-    "peak": 371
+    "peak": 364
   }
 }

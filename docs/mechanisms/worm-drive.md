@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 53 of the 186 surveyed sets, by 83 functions. Kinebrick: 51 works, 30 partly, 2 skipped.
+Used in 53 of the 186 surveyed sets, by 83 functions. Kinebrick: 52 works, 29 partly, 2 skipped.
 
 ## By decade
 
@@ -123,7 +123,7 @@ Each detail by the set it first appears in.
 
 **2009, [8259 Mini Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8259-1)**
 
-- Turning the knob at the back (a bush on the long axle through the body) turns the worm under the seat, which turns the 8 tooth gear on the lift arms' axle: the arms swing and the blade rises and lowers. (partly)
+- Turning the knob at the back (a bush on the long axle through the body) turns the worm under the seat, which turns the 8 tooth gear on the lift arms' axle: the arms swing and the blade rises and lowers. (works)
 
 **2009, [8260 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8260-1)**
 

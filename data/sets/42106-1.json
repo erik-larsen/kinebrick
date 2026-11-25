@@ -157,10 +157,9 @@
     ]
   },
   "generated": {
-    "commit": "a0509fa9",
-    "uncommitted": true,
+    "commit": "80b9529a",
     "date": "2026-11-25",
-    "seconds": 18,
+    "seconds": 32,
     "counts": {
       "works": 5,
       "partly": 3,
@@ -276,7 +275,7 @@
             1
           ]
         ],
-        "seconds": 1
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -451,7 +450,7 @@
             0.5
           ]
         ],
-        "seconds": 6.5
+        "seconds": 11.7
       },
       {
         "result": "works",
@@ -517,7 +516,7 @@
             0.57
           ]
         ],
-        "seconds": 1.3
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -529,31 +528,31 @@
           "result": "works",
           "turned": [
             [
-              1.5,
+              0.4,
               0
             ]
           ],
           "rates": [
             {
               "p2084 40490": [
-                0.0383,
-                57.4
+                0.102,
+                52.4
               ],
               "p2089 32524": [
-                0.868,
-                52
+                0.711,
+                42.7
               ],
               "p2095 32524": [
-                0.868,
-                52
+                0.711,
+                42.7
               ],
               "p2060 64782": [
                 0,
-                3.28e-12
+                8.4e-12
               ],
               "p2136 55982": [
                 0,
-                3.08e-12
+                7.62e-12
               ]
             }
           ],
@@ -583,7 +582,7 @@
           ],
           "stop": [
             [
-              null,
+              "limit",
               "limit"
             ]
           ],
@@ -592,6 +591,14 @@
           ],
           "freed": 1,
           "collisionStops": [
+            [
+              0,
+              1,
+              2103,
+              2103,
+              0.4,
+              0.4
+            ],
             [
               0,
               -1,
@@ -607,7 +614,7 @@
               "for": "p2085 32270"
             }
           ],
-          "seconds": 1
+          "seconds": 1.4
         }
       },
       {
@@ -708,7 +715,7 @@
             0.73
           ]
         ],
-        "seconds": 3.6
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -770,7 +777,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1.5
       },
       {
         "result": "skipped",
@@ -811,7 +818,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.5
       },
       {
         "result": "not checked",
@@ -919,9 +926,9 @@
             0
           ]
         ],
-        "seconds": 1.1
+        "seconds": 2
       }
     ],
-    "peak": 745
+    "peak": 751
   }
 }

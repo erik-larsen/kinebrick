@@ -5,9 +5,9 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 703,
-      "partly": 250,
-      "no": 91,
+      "works": 704,
+      "partly": 248,
+      "no": 92,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -505,6 +505,10 @@
     {
       "date": "2026-11-25",
       "what": "The set work is paused for performance work first (\"let's bring the work to a stop after the latest in progress tasks are done and tested\"). The sessions finish and test only what they have in hand and then stop; System hinges, a second worker and an offer of main wait until you say the pause is over (372)."
+    },
+    {
+      "date": "2026-11-25",
+      "what": "A hung-task check, run every ten minutes (\"we definitely do need a 'hung task' check\"): built as scripts/pool-watch.ts. It watches every job in the machine's pool and wakes the session that runs it when a job has stopped working; it costs nothing while all is well (375)."
     }
   ]
 }
