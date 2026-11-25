@@ -1138,8 +1138,7 @@
     {
       "function": 12,
       "does": "Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways.",
-      "verdict": "not shown",
-      "why": "A: p1504 32065 not moved",
+      "verdict": "shown",
       "msOneCall": 15,
       "msPerStep": null,
       "time": {
@@ -1219,7 +1218,8 @@
           ]
         }
       ],
-      "seconds": 23
+      "seconds": 23,
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control"
     },
     {
       "function": 13,

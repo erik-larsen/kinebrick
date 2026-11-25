@@ -646,8 +646,7 @@
     {
       "function": 8,
       "does": "The rear seat's backrest folds forward.",
-      "verdict": "not shown",
-      "why": "A: p398 32524 not moved",
+      "verdict": "shown",
       "msOneCall": 4,
       "msPerStep": null,
       "time": {
@@ -727,7 +726,8 @@
           ]
         }
       ],
-      "seconds": 12
+      "seconds": 12,
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control"
     },
     {
       "function": 9,

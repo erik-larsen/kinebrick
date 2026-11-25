@@ -1,90 +1,67 @@
 {
   "set": "42093-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:44:56.563Z",
-  "load": 24,
+  "commit": "55ee538d",
+  "date": "2026-11-25T06:00:03.342Z",
+  "load": 10.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 565,
-  "seconds": 53,
+  "seconds": 81,
   "functions": [
     {
       "function": 3,
       "does": "The front wheels roll freely and turn with the steering.",
-      "held": {
-        "result": "partly",
-        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the rims p567 and p574 at 0.07 rad each way (parts 118/327 and 118/338). Viewer sweep with a full turn asked, decision 288."
-      },
-      "verdict": "not shown",
-      "msOneCall": 34,
-      "msPerStep": 9,
+      "verdict": "shown",
+      "msOneCall": 51,
+      "msPerStep": 16,
       "time": {
-        "open": 8,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 4,
-        "A": 0,
-        "B": 23
+        "reach": 22,
+        "A": 3,
+        "B": 31
       },
-      "stop": {
-        "control": "p567 56904",
-        "way": 1,
-        "went": 0.07,
-        "asked": 1.5,
-        "by": [
-          "118/327"
-        ]
-      },
-      "stops": [
-        "118/327",
-        "118/338"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p567 56904",
           "way": 1,
           "asked": 1.5,
-          "went": 0.07,
-          "ms": 19,
-          "msOneCall": 34,
-          "stops": [
-            "118/327"
-          ],
+          "went": 1.5,
+          "ms": 697,
+          "msOneCall": 51,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p567 56904",
           "way": -1,
           "asked": 1.5,
-          "went": -0.07,
-          "ms": 16,
-          "msOneCall": 8,
-          "stops": [
-            "118/338"
-          ],
+          "went": -1.5,
+          "ms": 670,
+          "msOneCall": 18,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p574 56904",
           "way": 1,
           "asked": 1.5,
-          "went": 0.07,
-          "ms": 14,
-          "msOneCall": 11,
-          "stops": [
-            "118/327"
-          ],
+          "went": 1.5,
+          "ms": 667,
+          "msOneCall": 17,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p574 56904",
           "way": -1,
           "asked": 1.5,
-          "went": -0.07,
-          "ms": 12,
-          "msOneCall": 7,
-          "stops": [
-            "118/338"
-          ],
+          "went": -1.5,
+          "ms": 666,
+          "msOneCall": 17,
+          "stops": [],
           "moved": {}
         }
       ],
@@ -95,10 +72,34 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            169.28
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
-            "118/338",
-            "118/327"
+            "ground: p192"
           ]
         },
         {
@@ -107,45 +108,52 @@
           "cameraTurns": 3,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            179.13
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
-            "118/327",
-            "118/338"
+            "ground: p192"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p567 56904",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338)"
-        },
-        {
-          "control": "p574 56904",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p567 56904: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338); p574 56904: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.07 rad (118/327); -0.07 rad (118/338)",
-      "seconds": 36
+      "seconds": 63
     },
     {
       "function": 4,
       "does": "The steering wheel in the cockpit turns on its pin; it isn't linked to the steering.",
       "verdict": "shown",
-      "msOneCall": 27,
-      "msPerStep": 3,
+      "msOneCall": 39,
+      "msPerStep": 4,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -155,8 +163,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 108,
-          "msOneCall": 27,
+          "ms": 163,
+          "msOneCall": 39,
           "stops": [],
           "moved": {}
         },
@@ -165,8 +173,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 92,
-          "msOneCall": 5,
+          "ms": 137,
+          "msOneCall": 10,
           "stops": [],
           "moved": {}
         }
@@ -178,7 +186,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            131.59
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
