@@ -121,12 +121,13 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 4,
+    "commit": "25b50532",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 5,
     "counts": {
-      "partly": 2,
-      "works": 3,
+      "partly": 1,
+      "works": 4,
       "skipped": 1
     },
     "loose": [
@@ -244,7 +245,7 @@
             0
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -328,98 +329,91 @@
           }
         ],
         "onPlay": 0.6,
-        "seconds": 0.9
+        "seconds": 1.3
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "The viewer sweep does not show it: with the mended pointer (decision 339), working the right ski's arm p9 moved none of the listed parts. Marked before the offer of main, decision 341; to look at after 2026-11-23.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
+        "result": "works",
+        "turned": [
+          [
+            0,
+            -0.3
+          ]
+        ],
+        "rates": [
+          {
+            "p42 32063": [
+              1,
+              50
+            ],
+            "p21 32063": [
+              1,
+              50
+            ],
+            "p35 32063": [
+              1,
+              50
+            ],
+            "p10 6587": [
+              0.000249,
+              100
+            ],
+            "p51 2736": [
+              0.0318,
+              99.8
+            ],
+            "p626 32271": [
+              0.0318,
+              100
+            ],
+            "p12 32063": [
+              0,
+              1.01e-7
+            ],
+            "p615 32271": [
+              0.0141,
+              0.277
+            ]
+          }
+        ],
+        "back": [
+          [
             [
               0,
-              -0.3
-            ]
-          ],
-          "rates": [
-            {
-              "p42 32063": [
-                1,
-                50
-              ],
-              "p21 32063": [
-                1,
-                50
-              ],
-              "p35 32063": [
-                1,
-                50
-              ],
-              "p10 6587": [
-                0.000249,
-                100
-              ],
-              "p51 2736": [
-                0.0318,
-                99.8
-              ],
-              "p626 32271": [
-                0.0318,
-                100
-              ],
-              "p12 32063": [
-                0,
-                1.01e-7
-              ],
-              "p615 32271": [
-                0.0141,
-                0.277
-              ]
-            }
-          ],
-          "back": [
+              0
+            ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0.03,
-                0.01
-              ]
+              0.03,
+              0.01
             ]
-          ],
-          "torn": [
+          ]
+        ],
+        "torn": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0.03,
-                0.01
-              ]
-            ]
-          ],
-          "stop": [
+              0,
+              0
+            ],
             [
-              "limit",
-              "limit"
+              0.03,
+              0.01
             ]
-          ],
-          "freed": 1,
-          "freedFor": [
-            {
-              "pin": "p24 6558",
-              "for": "p21 32063"
-            }
-          ],
-          "onPlay": 0.6,
-          "seconds": 0.8
-        }
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 1,
+        "freedFor": [
+          {
+            "pin": "p24 6558",
+            "for": "p21 32063"
+          }
+        ],
+        "onPlay": 0.6,
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -469,7 +463,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -597,9 +591,9 @@
             0.3
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       }
     ],
-    "peak": 435
+    "peak": 381
   }
 }

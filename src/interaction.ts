@@ -121,7 +121,7 @@ export interface InteractionSetup {
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
   shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
-  pinsToFree: (part: number, search?: boolean, at?: Vector3) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
+  pinsToFree: (part: number, search?: boolean, at?: Vector3, exact?: boolean) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search; with `exact`, only if they give it an exact motion
   pinsToShift: (part: number) => Promise<{ pins: number[]; why: 'more' | 'joints' | null }>; // the friction pins a press with Shift frees (see pinsForShift), and if none, why
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
   slideOnAxle?: (part: number) => boolean; // asks for a part to slide on its axle (decision 206 of 2026-11-18, see slidesAsked): whether it can
@@ -500,7 +500,9 @@ export function setUpInteraction(s: InteractionSetup) {
       // Stopped short on play, not by a collision: a jam that play only put off is a jam, and the
       // friction pins that make it are asked for, as for a drag that can't move at all (decision
       // 331: the 42004's knob, held by a pin in the boom it raises, turned 0.3 rad on play and
-      // stopped, and nothing offered the pin). Once a drag.
+      // stopped, and nothing offered the pin). Once a drag. Only pins that give it an exact motion
+      // count: where it would still move only on play, it keeps what it turned and nothing is
+      // freed (see pinsForDrag; the 8272 Snowmobile's ski arm).
       if (short && !d.pinsAsked && s.kin.lastTurnPlayed && !s.blockedBy()) {
         d.pinsAsked = true;
         showMessage('Finding the pins that hold it…', d.lastX, d.lastY);
@@ -508,7 +510,7 @@ export function setUpInteraction(s: InteractionSetup) {
         freeIfHeld(d.part, d.lastX, d.lastY, "It can't go further this way: the mechanism is jammed", undefined, true, d.grabStart, () => {
           s.kin.restore(d.startState);
           s.onMoved();
-        });
+        }, true);
       }
       d.owed = short ? 0 : d.owed - step;
       if (Math.abs(d.owed) < 1e-12) d.owed = 0;
@@ -985,8 +987,9 @@ export function setUpInteraction(s: InteractionSetup) {
   let waitingForPins: Drag | null = null;
   // `rewind`, if given, puts the model back before the pins are freed (a drag that went on play
   // leaves its loops open, and the mechanism is worked out afresh from the parts where they are).
-  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true, at?: Vector3, rewind?: () => void) {
-    s.pinsToFree(part, search, at).then((pins) => {
+  // `exact`: only pins that give the part an exact motion (see pinsForDrag).
+  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true, at?: Vector3, rewind?: () => void, exact = false) {
+    s.pinsToFree(part, search, at, exact).then((pins) => {
       waitingForPins = null;
       if (!pins.length) return otherwise?.() ? undefined : showMessage(why, x, y);
       endDrag();

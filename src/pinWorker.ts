@@ -8,11 +8,12 @@
 //       builds it with every friction pin free, once, which on a big model takes seconds
 //   { ask: number, part: number, freed: number[], shift: true }  which pins a press with Shift
 //       frees (see pinsForShift): the answer is { ask, pins, why }
-//   { ask: number, part: number, freed: number[], search?, lifted?, at? }  which pins to free so
+//   { ask: number, part: number, freed: number[], search?, lifted?, at?, exact? }  which pins to free so
 //       that part can move (grabbed at `at`, on it as built, else at its middle),
 //       besides those freed already: the answer is { ask, pins }, pins being part numbers (none
 //       if freeing pins wouldn't let it move). Where the pins that pinsToFree names don't let it
 //       move, they're found by trying them in the model as read (see pinsByTrial): a build each.
+//       With `exact`, only pins that give it an exact motion (see pinsForDrag).
 // Messages are answered in the order they come, so a question sent before the model is built
 // waits until it is.
 //
@@ -86,7 +87,7 @@ function answer(message: any) {
     }
     // Grabbed where the page says (on the part as built), or else at the part's middle.
     const at = m && message.at ? new Vector3(...(message.at as [number, number, number])) : m ? new Vector3().setFromMatrixPosition(m.parts[message.part].matrix) : new Vector3();
-    const pins = allFree && m ? pinsForDrag((freed) => inferMechanism(m.parts, m.table, m.roles, m.paths, freed, false, null, new Set(), touching), allFree, message.part, at, new Set<number>(message.freed ?? []), message.search !== false, message.lifted === true) : [];
+    const pins = allFree && m ? pinsForDrag((freed) => inferMechanism(m.parts, m.table, m.roles, m.paths, freed, false, null, new Set(), touching), allFree, message.part, at, new Set<number>(message.freed ?? []), message.search !== false, message.lifted === true, message.exact === true) : [];
     if (!missing.size) self.postMessage({ ask: message.ask, pins });
   }
 }

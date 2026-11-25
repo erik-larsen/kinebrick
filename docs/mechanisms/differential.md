@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 55 works, 21 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 56 works, 20 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -163,7 +163,7 @@ Each detail by the set it first appears in.
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
-- Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (partly)
+- Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (works)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
