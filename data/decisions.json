@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 695,
-      "partly": 258,
+      "works": 696,
+      "partly": 257,
       "no": 91,
       "functions": 1223
     },
@@ -22,27 +22,7 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "42112-piston-erratum-withdraw",
-      "kind": "Sign-off",
-      "title": "42112 Concrete Mixer Truck: withdraw the piston erratum you signed on 21 November?",
-      "what": "On 21 November Claude asked you to sign an erratum that moves three of the engine's four pistons 2 LDU down, saying they hang 2 LDU above the beam they pass through. That was wrong, and it was Kinebrick's fault, not the file's. Kinebrick measured a beam's hole only where the axle fits, the middle 16 LDU of its 20, so a half bush lying on the beam's face read as 2 LDU above it. The worker found this on the 42078 Mack Anthem and the 42110 Land Rover Defender, whose pistons failed the same way. Claude then checked the 42112 from the LDraw shapes alone: as built, the first piston's yellow half bush reaches from y -160 to -150 and the 13-long beam under it from -150 to -130, so they touch. The erratum pushes the pistons 2 LDU into the beam. LEGO's booklet shows the half bushes lying on the beam's top face (book 1, page 38, step 50).",
-      "effect": "With your yes: the nine piston entries leave the 42112's errata (the drive gear's erratum of 17 November stays), the pistons stand as the file has them, and the reading's mend merges with it. By the worker's checks, which Claude has repeated in a folder of its own with the same results (348): the 42112 keeps its 7 working functions, and the 42078's function 2 (pushing the truck drives the engine) goes from partly to works. Each piston then rises 10 LDU on its cam, not 12. Without your yes the mend cannot merge, because with the erratum in place the 42112's two wheel functions would stop on a piston.",
-      "links": [
-        {
-          "label": "42112 in the viewer, first piston's half bush marked",
-          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&show=171"
-        },
-        {
-          "label": "Booklet 1, page 38 (step 50)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=38"
-        }
-      ],
-      "reply": "Withdraw the 42112's piston erratum",
-      "since": "2026-11-24"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
@@ -58,7 +38,7 @@
     },
     {
       "title": "The next offer of main",
-      "what": "After the piston branch (waits for your word on the 42112's erratum), the free-parts rule, the track depth with the tipping mend, and the differentials' second cause (348), each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+      "what": "After the free-parts rule, the track depth with the tipping mend, and the differentials' second cause (348), each when it loses no working function; the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     },
     {
       "title": "The new differential (part 65414c01): read as its pieces now; its wheels do not yet turn against each other",
@@ -509,6 +489,10 @@
     {
       "date": "2026-11-24",
       "what": "System hinges, doors and clips: you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). Not started yet; the order and the condition are in decision 345."
+    },
+    {
+      "date": "2026-11-24",
+      "what": "42112 Concrete Mixer Truck: the piston erratum of 21 November is withdrawn (\"Withdraw it\"). It was Kinebrick's measuring fault, not the file's. With the mend merged, the 42078 Mack Anthem's function 2 (pushing the truck drives the engine) works; the 42112 keeps its 7 working functions (349)."
     }
   ]
 }
