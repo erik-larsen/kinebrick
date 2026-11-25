@@ -4,7 +4,7 @@ The motors are worked from a distance: infrared, a Bluetooth hub or an app. (Pow
 
 First appears in 2007, in [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1): The left XL motor drives the left track: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the left front sprocket.
 
-Used in 11 of the 186 surveyed sets, by 21 functions. Kinebrick: 7 works, 12 partly, 2 not checked.
+Used in 11 of the 186 surveyed sets, by 21 functions. Kinebrick: 8 works, 11 partly, 2 not checked.
 
 ## By decade
 
@@ -63,7 +63,7 @@ Each detail by the set it first appears in.
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
-- *Control+:* The XL motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns the two rear half shafts, so the rear wheels can turn at different speeds in a bend. (partly)
+- *Control+:* The XL motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns the two rear half shafts, so the rear wheels can turn at different speeds in a bend. (works)
 - *Control+:* The Control+ hub runs both motors from the app, with drive and steering controls, gyro steering by tilting the phone, and challenges. (not checked)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
