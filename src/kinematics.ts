@@ -3680,8 +3680,10 @@ export class Kinematics {
   // that a search can be reused whether or not holds are being chosen (see jointMotionNearOrigin).
   private motionChoices(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[], tiers?: Tier[]): { motion: number[] | null; parked: number[] | null } {
     const basis = this.treeBasis();
-    if (tiers && this.options.lockedDiffs) all = this.lockDifferentials(all, rate);
-    const smallest = (motions: number[][]) => (tiers ? leastTurning(motions, rate, tiers) : smallestTurning(motions, rate, size));
+    // An open differential turns as one where it can (see lockDifferentials), within each set of
+    // motions chosen from: after the frame is kept where it is, not before.
+    const lock = this.options.lockedDiffs && this.contactTreads.length === 0;
+    const smallest = (motions: number[][]) => (tiers ? leastTurning(lock ? this.lockDifferentials(motions, rate) : motions, rate, tiers) : smallestTurning(motions, rate, size));
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
     const frameRows = dotsWith(basis.slice(0, 6), all);
     const still = all.length ? orthonormalize(mixes(all, nullSpace(frameRows, all.length))) : [];
@@ -3730,9 +3732,14 @@ export class Kinematics {
   // satellites stand still in its casing, if any of them still turns the joint (`rate`), so its
   // two outputs turn alike with the casing. A wheel held, or the list's gear held, or tyres on the
   // ground in a corner, that leave no such motion make them differ as before. Each differential in
-  // turn, before the frame is kept where it is (see motionChoices): the 42129 Zetros, its front
-  // tyres built 2 LDU off the ground, stood on its rear tyres while its centre differential sent
-  // the whole of the motors' turn to the front wheels, spinning in the air.
+  // turn, among the motions left once the frame is kept where it can be (see motionChoices). Before
+  // that, the 42129 Zetros, its front tyres built 2 LDU off the ground, rolled on its motors' drive
+  // rather than spin its front wheels in the air; but the 8880 Super Car's steering, which turns
+  // its wheels about their kingpins and so its differentials, moved the car and stopped at once.
+  // Only with no tyre on the ground: there the tyres' rows decide how its outputs turn. Locked
+  // there too, the 8880, its steering near full lock, rounded a corner on its motor with its
+  // differentials locked and its tyres scrubbing up to what's allowed, and stopped a sixth of the
+  // way round.
   private lockDifferentials(all: number[][], rate: (z: number[]) => number): number[][] {
     const rateOf = this.lockRateOf;
     if (!rateOf || all.length === 0) return all;
