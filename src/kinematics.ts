@@ -138,13 +138,12 @@ const TIE_BREAK = 0.1;
 const LOOP_TOLERANCE = 1e-11;
 // Setting a model down on its tyres (see Kinematics.seat): a tyre up to SEAT_REACH LDU above the
 // lowest of its model's is one it should stand on, and is set down to within SEAT_FIT of the
-// ground; by no joint turning more than SEAT_TURN radians, in at most SEAT_ROUNDS steps, each
-// turning a joint at most SEAT_STEP.
+// ground, in at most SEAT_ROUNDS steps, by moves that take no part further than SEAT_MOVE LDU
+// from where it was built against its model's frame.
 const SEAT_REACH = 6;
 const SEAT_FIT = 0.05;
-const SEAT_TURN = 0.1;
+const SEAT_MOVE = 2 * SEAT_REACH;
 const SEAT_ROUNDS = 30;
-const SEAT_STEP = 0.05;
 // How far off its axle's axis a gear's or tyre's centre may be and still be taken on it (see
 // onAxis), in LDU: a part placed a hair off, not one on another axle.
 const ON_AXIS = 1;
@@ -625,7 +624,8 @@ export class Kinematics {
   // wheels. A tyre up to SEAT_REACH above the ground is set down on it: first by tipping the model
   // as one (as settle does), and where that can't put them all down, by turning its joints too,
   // the least that does (a hitch, a bogie), the springs held. Kept only where every such tyre ends
-  // on the ground, none below it, and no joint turned more than SEAT_TURN; else the model stands
+  // on the ground, none below it, and no part moved further than SEAT_MOVE against the frame (a
+// part that only spins on its axle, as a track's wheels do, doesn't count); else the model stands
   // as built. Then the ground and the tyres on it are found afresh where it stands.
   private seat() {
     if (!this.options.seat || this.options.lifted || this.mech.rails?.length || !this.mech.treads.length) return;
@@ -667,8 +667,7 @@ export class Kinematics {
       this.updatePoses();
     }
     if (off() < SEAT_FIT) return true;
-    this.restore(start);
-    // With its joints: a step at a time, the least motion that sets each such tyre down by how far
+    // With its joints, from where tipping it left it: a step at a time, the least motion that sets each such tyre down by how far
     // it stands off the ground (and those on it not at all), the loops closed after each.
     // A step that leaves it further off is taken back and tried at half the length, a few times.
     let best = { state: this.snapshot(), off: off() };
@@ -676,8 +675,7 @@ export class Kinematics {
     for (let round = 0; round < SEAT_ROUNDS && best.off >= SEAT_FIT && share > 1 / 16; round++) {
       const motion = this.seatMotion(near, ground);
       if (!motion) break;
-      const fastest = Math.max(0, ...this.mech.joints.map((j, k) => (j.kind === 'revolute' ? Math.abs(this.jointRate(motion, k)) : 0)));
-      this.advance(motion, share * Math.min(1, SEAT_STEP / Math.max(fastest, EPSILON)));
+      this.advance(motion, share);
       if (off() < best.off) best = { state: this.snapshot(), off: off() };
       else {
         this.restore(best.state);
@@ -685,10 +683,29 @@ export class Kinematics {
       }
     }
     this.restore(best.state);
-    const turned = Math.max(0, ...this.jointAngles.map((a, j) => Math.abs(a - start.jointAngles[j])));
-    if (off() < SEAT_FIT && turned <= SEAT_TURN) return true;
+    if (off() < SEAT_FIT && this.movedOnFrame(start, f) <= SEAT_MOVE) return true;
     this.restore(start);
     return false;
+  }
+
+  // How far model `f` has moved against its frame since `from`: the most any joint's axis has
+  // gone, at its two ends, on either body it joins (so that a body spinning on its axle hasn't
+  // gone anywhere).
+  private movedOnFrame(from: KinematicsState, f: number): number {
+    const now = this.snapshot();
+    const posesNow = this.poses.map((p) => p.clone());
+    this.restore(from);
+    const posesThen = this.poses.map((p) => p.clone());
+    this.restore(now);
+    const against = (poses: Matrix4[], b: number, point: Vector3) => point.clone().applyMatrix4(poses[b]).applyMatrix4(poses[f].clone().invert());
+    let most = 0;
+    for (const j of this.mech.joints) {
+      for (const b of [j.bodyA, j.bodyB]) {
+        if (this.frameOf[b] !== f) continue;
+        for (const point of [j.from, j.to]) most = Math.max(most, against(posesNow, b, point).distanceTo(against(posesThen, b, point)));
+      }
+    }
+    return most;
   }
 
   // The least motion (in the tree basis's coordinates, as a motion vector) by which the tyres
