@@ -525,6 +525,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42110-1](#42110-1-front-driver-at-z-plus-177-on-its-hub-axis) | front-driver-at-z-plus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 177.81 | Signed off by Erik, 2026-11-18 |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
 | [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Signed off by Erik, 2026-11-17 |
+| [42114-1](#42114-1-front-shaft-axle-a-stud-back) | front-shaft-axle-a-stud-back | moves `99008.dat` (in `42114 - cabin.ldr`) to 0 -20 -210 | Signed off by Erik, 2026-11-25 |
 
 ### 850-1: handwheel-down
 
@@ -1633,5 +1634,19 @@ In the main model (p326 18575), the line
 ```
 
 is read with its part at 20 0 184.
+
+### 42114-1: front-shaft-axle-a-stud-back
+
+Signed off by Erik, 2026-11-25.
+
+The front axle's differential gets no drive: one axle of the drive shaft that runs forward under the cab, an axle 4 with a stop in its middle (99008, p1030, in 42114 - cabin.ldr), is a stud off. From the LDraw shapes alone: as the file has it, the axle's rear end only touches the connector that should drive it, without entering it, and its front half fills the next connector from end to end, in the same socket as another axle, the two overlapping by 19 LDU. Moved one stud (20 LDU) back, to local z -210, the axle sits 20 LDU in each connector and overlaps nothing, and its stop sits in the round hole it is made for. The booklet's step 275 (page 172, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=172) does not show the shaft clearly enough to settle it.
+
+In `42114 - cabin.ldr`, the line
+
+```
+1 19 0 -20 -190 0 1 0 0 0 1 1 0 0 99008.dat
+```
+
+is read with its part at 0 -20 -210.
 
 <!-- errata: end -->
