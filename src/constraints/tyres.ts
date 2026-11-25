@@ -34,9 +34,9 @@ export function tyres(solver: Kinematics, eq: Equations) {
     if (first && axis.dot(first) < 0) axis.negate();
     const forward = new Vector3().crossVectors(DOWN, axis).normalize();
     const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
-    const along = (point: Vector3, dir: Vector3) => {
+    const along = (point: Vector3, dir: Vector3, body = tread.body) => {
       const row = new BodyRow(n);
-      for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
+      for (let k = 0; k < 3; k++) addPointVelocity(row, body, point, k, dir.getComponent(k));
       return row;
     };
     // A steered tyre pivots on the ground about the upright axis its wheel steers on, as a parked
@@ -59,7 +59,17 @@ export function tyres(solver: Kinematics, eq: Equations) {
     const hub = solver.onAxis(tread.body, tread.center.clone().applyMatrix4(pose), axis);
     const rollAt = tread.rollRadius === undefined ? p : hub.clone().lerp(p, tread.rollRadius / tread.radius);
     // A train motor's wheels are part of it and can't turn: it slides along the rails.
-    if (!tread.fixed) rolling.get(tread.body)!.rows.push(along(rollAt, forward));
+    // An end of a track's run rolls as the rim of the wheel that drives the run does, at the
+    // radius it drives it at, below its axle: that's how fast the run moves (see Tread.roll).
+    if (tread.roll) {
+      const r = tread.roll;
+      const wheelPose = solver.poses[r.body];
+      const wheelAxis = axis.clone();
+      const wheelHub = solver.onAxis(r.body, r.center.clone().applyMatrix4(wheelPose), wheelAxis);
+      const under = DOWN.clone().addScaledVector(wheelAxis, -DOWN.dot(wheelAxis)).normalize();
+      if (!rolling.has(r.body)) rolling.set(r.body, { axis, rows: [] });
+      rolling.get(r.body)!.rows.push(along(wheelHub.addScaledVector(under, r.radius), forward, r.body));
+    } else if (!tread.fixed) rolling.get(tread.body)!.rows.push(along(rollAt, forward));
     const onRails = riderBodies.has(tread.body);
     if (tread.track !== undefined) {
       if (!tracks.has(tread.track)) tracks.set(tread.track, { axis, rows: [] });

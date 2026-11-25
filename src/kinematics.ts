@@ -37,6 +37,7 @@ import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { TRACE, trace, traceJam } from './trace.ts';
 import { BodyRow, combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, NotFinite, nullSpace, orthonormalize, rowsTimes, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
+import { GROUND_TOLERANCE } from './inference/treads.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
@@ -44,9 +45,6 @@ export { acrossDirections, nullSpace };
 // order of the rows decides which the elimination takes first, and so the motions to the last bit.
 const CONNECTIONS: Connection[] = [holds, joints, couplings, spinners, links, gears, screws, rests, tyres, rails, loops, strings];
 
-// How close a tyre must be to the ground to count as touching it, in LDU. Models are often
-// built half an LDU out (an official tractor's front tyres sit half an LDU above its rear ones).
-const GROUND_TOLERANCE = 1;
 // How far past the end of its travel a slide may go, in LDU, before it counts as there: closing
 // the loops leaves a slide built at its end a hair past it.
 const LIMIT_TOLERANCE = 1e-6;

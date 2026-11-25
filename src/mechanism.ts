@@ -111,6 +111,10 @@ export interface Tread {
   // moves at the path's speed, though its links reach further out (to `radius`) under the wheel.
   rollRadius?: number;
   fixed?: boolean; // a wheel that's part of its body and can't turn (a train motor's), which slides along the rail rather than rolling
+  // For an end of a track's run along the ground (see trackTreads), on what carries the run there
+  // and doesn't turn with the track: the track's wheel that drives the run, and the radius it
+  // drives it at (its path's). The run there moves as that wheel's rim does at that radius.
+  roll?: { body: number; center: Vector3; radius: number };
 }
 
 // A piece of a train track's centreline (see findRails), in model coordinates as built, at the
@@ -624,7 +628,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   loose.sort((a, b) => a - b);
   // A removed part rides along with what's nearest, as a loose part does, but isn't loose: it isn't there.
   for (let k = loose.length - 1; k >= 0; k--) if (parts[loose[k]].removed) loose.splice(k, 1);
-  treads.push(...trackTreads(loops, parts));
+  treads.push(...trackTreads(loops, parts, joints));
   // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   const screws = [...actuatorScrews(actuators, bodyOf), ...wormRacks(gears)];

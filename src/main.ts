@@ -1694,7 +1694,7 @@ function updateReadout(mech: Mechanism, kin: Kinematics, still = false) {
     if (turn.mount !== 0) line += ` in ${mech.bodies[turn.mount].name}`;
     if (kin.isFrozen(b)) line += ' (frozen)';
     // A wheel on the ground: its turn should match how far it rolled ÷ its radius.
-    const t = mech.treads.findIndex((tr) => tr.body === b);
+    const t = mech.treads.findIndex((tr) => tr.body === b && !tr.roll);
     if (t >= 0 && kin.groundY !== null) {
       const rolled = Math.abs(kin.treadTravel[t]);
       const radius = mech.treads[t].rollRadius ?? mech.treads[t].radius; // a track rolls at its path's radius
