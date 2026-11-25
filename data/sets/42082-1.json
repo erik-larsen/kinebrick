@@ -257,9 +257,10 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "55ee538d",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 1909,
+    "seconds": 1684,
     "counts": {
       "partly": 7,
       "not back": 1,
@@ -596,8 +597,8 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.1,
-        "seconds": 84.6,
-        "peak": 1175
+        "seconds": 92.5,
+        "peak": 1144
       },
       {
         "result": "works",
@@ -869,8 +870,8 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 499.4,
-        "peak": 1285
+        "seconds": 446.8,
+        "peak": 887
       },
       {
         "result": "works",
@@ -916,8 +917,8 @@
             ]
           ]
         ],
-        "seconds": 33.3,
-        "peak": 971
+        "seconds": 31.2,
+        "peak": 911
       },
       {
         "result": "partly",
@@ -1011,8 +1012,8 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 135.9,
-        "peak": 1071
+        "seconds": 122.1,
+        "peak": 1226
       },
       {
         "result": "partly",
@@ -1075,8 +1076,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 96.1,
-        "peak": 1087
+        "seconds": 97.1,
+        "peak": 1013
       },
       {
         "result": "partly",
@@ -1144,8 +1145,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 96.2,
-        "peak": 983
+        "seconds": 95.9,
+        "peak": 927
       },
       {
         "result": "partly",
@@ -1208,8 +1209,8 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 91.3,
-        "peak": 1264
+        "seconds": 97.7,
+        "peak": 954
       },
       {
         "result": "partly",
@@ -1275,8 +1276,8 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 101.9,
-        "peak": 992
+        "seconds": 98.4,
+        "peak": 913
       },
       {
         "result": "partly",
@@ -1369,8 +1370,8 @@
               "for": "p3789 32524"
             }
           ],
-          "seconds": 504.8,
-          "peak": 1132
+          "seconds": 353.8,
+          "peak": 1427
         }
       },
       {
