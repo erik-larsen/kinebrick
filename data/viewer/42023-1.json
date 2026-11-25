@@ -15,15 +15,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p213 64782 against p300 32278 turned 0.44 degrees, 0.409 predicted (rate 0.0238, turn -0.3)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p213 64782 against p300 32278 turned 0.44 degrees, 0.409 predicted (rate 0.0238, turn -0.3)"
       ],
-      "msOneCall": 24,
+      "msOneCall": 19,
       "msPerStep": 4,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 20,
+        "reach": 18,
         "A": 0,
-        "B": 26
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -33,8 +33,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 182,
-          "msOneCall": 24,
+          "ms": 157,
+          "msOneCall": 19,
           "stops": [],
           "moved": {
             "p317 32198 against p0 32140": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 35,
-          "msOneCall": 8,
+          "ms": 29,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p317 32198 against p0 32140": [
@@ -95,7 +95,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 159,
+          "ms": 130,
           "msOneCall": 7,
           "stops": [],
           "moved": {
@@ -126,7 +126,7 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 37,
+          "ms": 27,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -180,7 +180,7 @@
           ],
           "controlWent": [
             0,
-            126.81
+            83.03
           ],
           "moved": [
             "p317 32198 against p0 32140",
@@ -191,19 +191,19 @@
           "went": {
             "p317 32198 against p0 32140": [
               0,
-              126.81
+              83.03
             ],
             "p247 6589 against p0 32140": [
-              1.24,
-              155.15
+              0.5,
+              136.62
             ],
             "p244 92695 against p245 92693c01": [
               0,
-              155.15
+              136.62
             ],
             "p213 64782 against p300 32278": [
-              10.38,
-              5.1
+              4.03,
+              1.98
             ]
           },
           "staysWent": {
@@ -213,7 +213,9 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "234/300"
+          ]
         },
         {
           "control": "p314 59443",
@@ -241,7 +243,7 @@
           ],
           "controlWent": [
             0,
-            123.57
+            123.15
           ],
           "moved": [
             "p317 32198 against p0 32140",
@@ -252,19 +254,19 @@
           "went": {
             "p317 32198 against p0 32140": [
               0,
-              123.57
+              123.15
             ],
             "p247 6589 against p0 32140": [
-              0.71,
-              165.41
+              0.64,
+              157.02
             ],
             "p244 92695 against p245 92693c01": [
               0,
-              165.41
+              157.02
             ],
             "p213 64782 against p300 32278": [
-              5.75,
-              2.83
+              5.38,
+              2.65
             ]
           },
           "staysWent": {
@@ -279,13 +281,15 @@
           ]
         }
       ],
-      "seconds": 52
+      "seconds": 49,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:33:51.481Z"
     },
     {
       "function": 3,
       "does": "The dump body's tailgate hangs from pins at its top and swings open as the body tips, letting the load out.",
       "verdict": "shown",
-      "msOneCall": 15,
+      "msOneCall": 18,
       "msPerStep": 2,
       "time": {
         "open": 4,
@@ -313,8 +317,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 71,
-          "msOneCall": 15,
+          "ms": 80,
+          "msOneCall": 18,
           "stops": [],
           "moved": {
             "p256 6558 against p213 64782": [
@@ -329,7 +333,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 3,
-          "msOneCall": 3,
+          "msOneCall": 4,
           "stops": [
             "206/249"
           ],
@@ -367,16 +371,16 @@
             }
           ],
           "controlWent": [
-            77.73,
-            58.08
+            126.38,
+            104.3
           ],
           "moved": [
             "p256 6558 against p213 64782"
           ],
           "went": {
             "p256 6558 against p213 64782": [
-              77.73,
-              58.08
+              126.38,
+              104.3
             ]
           },
           "staysWent": {},
@@ -397,7 +401,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 26
+      "seconds": 27,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:33:51.481Z"
     },
     {
       "function": 4,

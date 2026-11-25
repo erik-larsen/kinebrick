@@ -181,8 +181,8 @@
       "function": 3,
       "does": "The main landing gear is sprung: the two legs swing together on their pivots, joined by a cross axle under the fuselage, and the shock absorber between that axle and the fuselage shortens as they swing.",
       "verdict": "shown",
-      "msOneCall": 18,
-      "msPerStep": 3,
+      "msOneCall": 24,
+      "msPerStep": 4,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -199,8 +199,8 @@
           "way": 1,
           "asked": 0.53,
           "went": 0.53,
-          "ms": 36,
-          "msOneCall": 18,
+          "ms": 46,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p151 4261": [
@@ -234,8 +234,8 @@
           "way": -1,
           "asked": 0.1,
           "went": -0.1,
-          "ms": 8,
-          "msOneCall": 4,
+          "ms": 11,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p151 4261": [
@@ -291,8 +291,8 @@
             }
           ],
           "controlWent": [
-            6.45,
-            37.55
+            6.46,
+            37.64
           ],
           "moved": [
             "p151 4261",
@@ -303,24 +303,24 @@
           ],
           "went": {
             "p151 4261": [
-              6.45,
-              37.55
+              6.46,
+              37.64
             ],
             "p145 3706": [
-              26.31,
-              37.55
+              26.38,
+              37.64
             ],
             "p22 4254": [
-              26.3,
-              10.31
+              26.37,
+              10.3
             ],
             "p164 3482": [
-              40.3,
-              37.63
+              40.39,
+              37.71
             ],
             "p166 3482": [
-              40.3,
-              37.63
+              40.39,
+              37.73
             ]
           },
           "staysWent": {
@@ -331,12 +331,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "22/21",
-            "105/149"
+            "105/149",
+            "22/21"
           ]
         }
       ],
-      "seconds": 30
+      "seconds": 32,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:28:32.141Z"
     },
     {
       "function": 5,

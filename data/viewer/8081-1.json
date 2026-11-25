@@ -713,10 +713,10 @@
       "function": 4,
       "does": "The bonnet tilts up on a hinge at the windscreen, showing the engine.",
       "verdict": "shown",
-      "msOneCall": 18,
+      "msOneCall": 19,
       "msPerStep": 4,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -752,8 +752,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 8,
-          "msOneCall": 16,
+          "ms": 9,
+          "msOneCall": 15,
           "stops": [
             "274/520"
           ],
@@ -784,8 +784,8 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 154,
-          "msOneCall": 18,
+          "ms": 165,
+          "msOneCall": 19,
           "stops": [],
           "moved": {
             "p530 64392": [
@@ -806,7 +806,6 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [
-            "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
           ],
           "drags": [
@@ -829,15 +828,15 @@
           ],
           "controlWent": [
             0,
-            61.47
+            73.89
           ],
           "moved": [
             "p530 64392"
           ],
           "went": {
             "p530 64392": [
-              0.03,
-              61.47
+              0.04,
+              73.89
             ]
           },
           "staysWent": {
@@ -864,14 +863,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 19
+      "seconds": 20,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:03:09.534Z"
     },
     {
       "function": 5,
       "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
       "verdict": "shown",
-      "msOneCall": 36,
-      "msPerStep": 8,
+      "msOneCall": 32,
+      "msPerStep": 6,
       "time": {
         "open": 9,
         "collisions": 0,
@@ -908,8 +909,8 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 190,
-          "msOneCall": 36,
+          "ms": 176,
+          "msOneCall": 32,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -951,8 +952,8 @@
           },
           "asked": 0.07,
           "went": -0.07,
-          "ms": 12,
-          "msOneCall": 10,
+          "ms": 13,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -990,8 +991,8 @@
           ],
           "asked": 0.07,
           "went": 0.07,
-          "ms": 15,
-          "msOneCall": 18,
+          "ms": 12,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -1029,7 +1030,7 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 178,
+          "ms": 161,
           "msOneCall": 10,
           "stops": [],
           "moved": {
@@ -1058,9 +1059,7 @@
             {
               "part": 507,
               "seen": true,
-              "said": [
-                "Finding the pins that hold it…"
-              ],
+              "said": [],
               "freed": [
                 505
               ]
@@ -1175,114 +1174,114 @@
         }
       ],
       "seconds": 40,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:48:09.548Z"
+      "commit": "994fe940",
+      "date": "2026-11-25T18:03:09.534Z"
     },
     {
       "function": 7,
       "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm, and moves up and down, steering as it goes; the rear axle sits on two shock absorbers.",
       "verdict": "shown",
-      "msOneCall": 38,
+      "msOneCall": 40,
       "msPerStep": 12,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 27,
+        "reach": 30,
         "A": 0,
-        "B": 26
+        "B": 27
       },
       "stop": {
         "control": "p199 6572",
-        "way": 1,
-        "went": 0.236,
+        "way": -1,
+        "went": -0.236,
         "asked": 0.27,
         "by": [
-          "202/214"
+          "199/211"
         ]
       },
       "stops": [
-        "202/214",
-        "199/211"
+        "199/211",
+        "202/214"
       ],
       "A": [
         {
           "control": "p199 6572",
           "way": 1,
-          "asked": 0.27,
-          "went": 0.236,
-          "ms": 79,
-          "msOneCall": 38,
-          "stops": [
-            "202/214"
-          ],
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 78,
+          "msOneCall": 40,
+          "stops": [],
           "moved": {
             "p210 6571": [
-              18.9,
-              1.29
+              18.4,
+              1.28
             ],
             "p213 6571": [
-              20.11,
-              4.15
+              19.54,
+              3.98
             ]
           }
         },
         {
           "control": "p199 6572",
           "way": -1,
-          "asked": 0.23,
-          "went": -0.23,
-          "ms": 62,
-          "msOneCall": 14,
-          "stops": [],
+          "asked": 0.27,
+          "went": -0.236,
+          "ms": 75,
+          "msOneCall": 17,
+          "stops": [
+            "199/211"
+          ],
           "moved": {
             "p210 6571": [
-              18.4,
-              3.66
+              18.9,
+              3.8
             ],
             "p213 6571": [
-              17.38,
-              1.26
+              17.82,
+              1.27
             ]
           }
         },
         {
           "control": "p202 6572",
           "way": 1,
-          "asked": 0.23,
-          "went": 0.23,
-          "ms": 62,
-          "msOneCall": 13,
-          "stops": [],
+          "asked": 0.27,
+          "went": 0.236,
+          "ms": 76,
+          "msOneCall": 15,
+          "stops": [
+            "202/214"
+          ],
           "moved": {
             "p210 6571": [
-              17.38,
-              1.26
+              17.82,
+              1.27
             ],
             "p213 6571": [
-              18.4,
-              3.65
+              18.9,
+              3.79
             ]
           }
         },
         {
           "control": "p202 6572",
           "way": -1,
-          "asked": 0.27,
-          "went": -0.236,
-          "ms": 69,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 64,
           "msOneCall": 13,
-          "stops": [
-            "199/211"
-          ],
+          "stops": [],
           "moved": {
             "p210 6571": [
-              20.11,
-              4.15
+              19.54,
+              3.98
             ],
             "p213 6571": [
-              18.9,
-              1.29
+              18.4,
+              1.28
             ]
           }
         }
@@ -1313,8 +1312,8 @@
             }
           ],
           "controlWent": [
-            21.07,
-            30.47
+            21.12,
+            30.53
           ],
           "moved": [
             "p210 6571",
@@ -1322,12 +1321,12 @@
           ],
           "went": {
             "p210 6571": [
-              42.14,
-              5.57
+              42.23,
+              5.53
             ],
             "p213 6571": [
-              41.78,
-              5.55
+              41.89,
+              5.54
             ]
           },
           "staysWent": {},
@@ -1362,8 +1361,8 @@
             }
           ],
           "controlWent": [
-            20.76,
-            30.01
+            20.47,
+            29.57
           ],
           "moved": [
             "p210 6571",
@@ -1371,19 +1370,19 @@
           ],
           "went": {
             "p210 6571": [
-              41.71,
-              5.36
+              41.26,
+              5.34
             ],
             "p213 6571": [
-              41.53,
-              5.53
+              40.94,
+              5.5
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "199/211",
-            "202/214"
+            "202/214",
+            "199/211"
           ]
         }
       ],
@@ -1391,19 +1390,21 @@
         {
           "control": "p199 6572",
           "judged": "stands",
-          "why": "stopped at +0.236 rad (202/214); kinds double-wishbone, sprung-axle"
+          "why": "stopped at -0.236 rad (199/211); kinds double-wishbone, sprung-axle"
         },
         {
           "control": "p202 6572",
           "judged": "stands",
-          "why": "stopped at -0.236 rad (199/211); kinds double-wishbone, sprung-axle"
+          "why": "stopped at +0.236 rad (202/214); kinds double-wishbone, sprung-axle"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 62
+      "seconds": 66,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:03:09.534Z"
     },
     {
       "function": 9,

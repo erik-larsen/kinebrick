@@ -369,48 +369,36 @@
       "function": 5,
       "does": "Each outrigger's foot tilts on toothed toggle joints to sit flat on the ground.",
       "verdict": "shown",
-      "msOneCall": 24,
+      "msOneCall": 27,
       "msPerStep": 4,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 0,
-        "B": 26
+        "A": 1,
+        "B": 27
       },
-      "stop": {
-        "control": "p159 3701",
-        "way": 1,
-        "went": 0.942,
-        "asked": 1.5,
-        "by": [
-          "71/161"
-        ]
-      },
-      "stops": [
-        "71/161"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p159 3701",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.942,
-          "ms": 95,
-          "msOneCall": 24,
-          "stops": [
-            "71/161"
-          ],
+          "asked": 0.97,
+          "went": 0.97,
+          "ms": 114,
+          "msOneCall": 27,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p159 3701",
           "way": -1,
-          "asked": 0.97,
-          "went": -0.97,
-          "ms": 82,
-          "msOneCall": 7,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 144,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -419,8 +407,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 119,
-          "msOneCall": 6,
+          "ms": 132,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -429,8 +417,8 @@
           "way": -1,
           "asked": 0.97,
           "went": -0.97,
-          "ms": 80,
-          "msOneCall": 6,
+          "ms": 100,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         }
@@ -461,16 +449,14 @@
             }
           ],
           "controlWent": [
-            76.56,
-            136.36
+            70.62,
+            117.82
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
-          "stops": [
-            "158/162"
-          ]
+          "stops": []
         },
         {
           "control": "p178 3701",
@@ -497,30 +483,22 @@
             }
           ],
           "controlWent": [
-            80.65,
-            155.93
+            61.5,
+            96.47
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "75/180",
             "177/181"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p159 3701",
-          "judged": "stands",
-          "why": "stopped at +0.942 rad (71/161); kinds posable-joint: outrigger feet"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 34
+      "seconds": 36,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:40:10.672Z"
     },
     {
       "function": 6,
@@ -645,15 +623,15 @@
       "function": 7,
       "does": "The cylinder on the turntable raises and lowers the backhoe's boom.",
       "verdict": "shown",
-      "msOneCall": 24,
-      "msPerStep": 8,
+      "msOneCall": 30,
+      "msPerStep": 9,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p264 3702",
@@ -673,8 +651,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 149,
-          "msOneCall": 24,
+          "ms": 199,
+          "msOneCall": 30,
           "stops": [],
           "moved": {
             "p233 2796c01 against p232 2793c03": [
@@ -688,8 +666,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.035,
-          "ms": 8,
-          "msOneCall": 7,
+          "ms": 9,
+          "msOneCall": 8,
           "stops": [
             "ground: p302"
           ],
@@ -727,16 +705,16 @@
             }
           ],
           "controlWent": [
-            256.1,
-            64.2
+            270.57,
+            68.31
           ],
           "moved": [
             "p233 2796c01 against p232 2793c03"
           ],
           "went": {
             "p233 2796c01 against p232 2793c03": [
-              128.23,
-              64.2
+              135.47,
+              68.31
             ]
           },
           "staysWent": {},
@@ -757,13 +735,19 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:40:10.672Z"
     },
     {
       "function": 8,
       "does": "The cylinder along the top of the boom swings the dipper arm in and out.",
+      "held": {
+        "result": "partly",
+        "reason": "Under a hand the cylinder moves 22.9 LDU, but the beam p264, listed to stay, moves 3.71 LDU with it, over a tenth of that. The viewer's own turn does not take the control p292. Full viewer sweep at ac22e339, decision 363."
+      },
       "verdict": "not shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
@@ -771,7 +755,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 6
+        "B": 7
       },
       "stop": null,
       "stops": [],
@@ -782,7 +766,7 @@
           "asked": 0.17,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p281 2796c01 against p280 2793c03": [
@@ -833,22 +817,22 @@
             }
           ],
           "controlWent": [
-            36.6,
-            23.66
+            35.54,
+            23.57
           ],
           "moved": [
             "p281 2796c01 against p280 2793c03"
           ],
           "went": {
             "p281 2796c01 against p280 2793c03": [
-              22.88,
-              1.34
+              23.25,
+              1.38
             ]
           },
           "staysWent": {
             "p264 3702": [
-              3.71,
-              0.88
+              5.42,
+              1.29
             ]
           },
           "staysMoved": [
@@ -862,16 +846,22 @@
       ],
       "why": "by hand: p264 3702 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 12
+      "seconds": 12,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:40:10.672Z"
     },
     {
       "function": 9,
       "does": "The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage.",
+      "held": {
+        "result": "partly",
+        "reason": "Under a hand the cylinder moves 31.6 LDU, but the axle p292, listed to stay, moves 14.8 LDU and turns 13.7 degrees with it. The viewer's own turn does not take the control p302. Full viewer sweep at ac22e339, decision 363."
+      },
       "verdict": "not shown",
-      "msOneCall": 2,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -887,7 +877,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 2,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p319 2796c01 against p318 2793c03": [
@@ -967,14 +957,16 @@
       ],
       "why": "by hand: p292 3703 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 11
+      "seconds": 12,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:40:10.672Z"
     },
     {
       "function": 11,
       "does": "The bonnet over the pump lifts on the axle along its back edge.",
       "verdict": "shown",
-      "msOneCall": 16,
-      "msPerStep": 4,
+      "msOneCall": 19,
+      "msPerStep": 5,
       "time": {
         "open": 5,
         "collisions": 0,
@@ -1001,8 +993,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 7,
-          "msOneCall": 16,
+          "ms": 8,
+          "msOneCall": 19,
           "stops": [
             "466/525"
           ],
@@ -1013,8 +1005,8 @@
           "way": -1,
           "asked": 0.63,
           "went": -0.63,
-          "ms": 65,
-          "msOneCall": 14,
+          "ms": 84,
+          "msOneCall": 16,
           "stops": [],
           "moved": {}
         }
@@ -1045,8 +1037,8 @@
             }
           ],
           "controlWent": [
-            124.56,
-            36.14
+            123.65,
+            35.87
           ],
           "moved": [],
           "went": {},
@@ -1054,8 +1046,8 @@
           "staysMoved": [],
           "stops": [
             "386/525",
-            "473/525",
-            "466/525"
+            "466/525",
+            "473/525"
           ]
         }
       ],
@@ -1070,7 +1062,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:40:10.672Z"
     },
     {
       "function": 12,

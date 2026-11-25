@@ -228,7 +228,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 34
+      "seconds": 34,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:52:12.494Z"
     },
     {
       "function": 2,
@@ -468,7 +470,7 @@
       "function": 4,
       "does": "The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
@@ -487,7 +489,7 @@
           "asked": 0.2,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p386 88517": [
@@ -577,13 +579,15 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 11
+      "seconds": 11,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:52:12.494Z"
     },
     {
       "function": 5,
       "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
@@ -602,7 +606,7 @@
           "asked": 0.17,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p334 88517": [
@@ -692,7 +696,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 11
+      "seconds": 11,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:52:12.494Z"
     }
   ]
 }

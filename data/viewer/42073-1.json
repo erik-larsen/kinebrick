@@ -417,10 +417,10 @@
       "function": 3,
       "does": "When the car runs into a wall, the red lever sticking out low at the front is knocked back, and its upright arm flicks the loose bonnet block up off the car.",
       "verdict": "shown",
-      "msOneCall": 6,
+      "msOneCall": 8,
       "msPerStep": 1,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 1,
@@ -435,8 +435,8 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 5,
-          "msOneCall": 6,
+          "ms": 6,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p41 18654": [
@@ -450,8 +450,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 1,
-          "msOneCall": 1,
+          "ms": 2,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p41 18654": [
@@ -487,27 +487,29 @@
             }
           ],
           "controlWent": [
-            11.85,
-            17.1
+            11.98,
+            17.28
           ],
           "moved": [
             "p41 18654"
           ],
           "went": {
             "p41 18654": [
-              5.92,
-              17.1
+              5.98,
+              17.28
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "38/129",
-            "37/38"
+            "37/38",
+            "38/129"
           ]
         }
       ],
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:04:37.600Z"
     }
   ]
 }

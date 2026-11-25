@@ -11,15 +11,15 @@
       "function": 1,
       "does": "The steering wheel steers the front wheels: its column runs forward along the cockpit's left side to bevel gears under the nose, and a shaft down the middle turns the pinion on the steering rack.",
       "verdict": "shown",
-      "msOneCall": 669,
-      "msPerStep": 237,
+      "msOneCall": 667,
+      "msPerStep": 252,
       "time": {
-        "open": 18,
+        "open": 19,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 30,
-        "B": 32
+        "A": 32,
+        "B": 37
       },
       "stop": {
         "control": "p2742 2741",
@@ -40,8 +40,8 @@
           "ringShifted": true,
           "asked": 1.47,
           "went": 1.47,
-          "ms": 9750,
-          "msOneCall": 669,
+          "ms": 10207,
+          "msOneCall": 667,
           "stops": [],
           "moved": {
             "p1039 42083 - 23801": [
@@ -64,8 +64,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": -1.465,
-          "ms": 9927,
-          "msOneCall": 625,
+          "ms": 10555,
+          "msOneCall": 612,
           "stops": [
             "1106/1126"
           ],
@@ -112,7 +112,7 @@
           ],
           "controlWent": [
             0,
-            71.15
+            71.94
           ],
           "moved": [
             "p1039 42083 - 23801",
@@ -122,14 +122,14 @@
           "went": {
             "p1039 42083 - 23801": [
               0,
-              16.24
+              16.43
             ],
             "p1046 42083 - 23801": [
-              0.01,
-              16.21
+              0.02,
+              16.39
             ],
             "p1119 64781": [
-              11.18,
+              11.3,
               0
             ]
           },
@@ -149,7 +149,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 74
+      "seconds": 82,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:11:18.414Z"
     },
     {
       "function": 5,
@@ -291,15 +293,15 @@
         "reason": "The booklet shows the key turned both ways to lift the wing (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310), but in the viewer a collision stops p1938 at once one way (parts 1928/2024) and at 0.14 rad the other (parts 1929/1944). Viewer sweep on today's code, decision 298."
       },
       "verdict": "not decided",
-      "msOneCall": 375,
-      "msPerStep": 82,
+      "msOneCall": 376,
+      "msPerStep": 83,
       "time": {
-        "open": 18,
+        "open": 19,
         "collisions": 0,
         "first": 0,
-        "reach": 177,
-        "A": 10,
-        "B": 26
+        "reach": 232,
+        "A": 11,
+        "B": 28
       },
       "stop": {
         "control": "p1938 59443",
@@ -320,8 +322,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": 0,
-          "ms": 130,
-          "msOneCall": 324,
+          "ms": 133,
+          "msOneCall": 319,
           "stops": [
             "1928/2024"
           ],
@@ -342,8 +344,8 @@
           "ringShifted": true,
           "asked": 0.17,
           "went": -0.17,
-          "ms": 397,
-          "msOneCall": 375,
+          "ms": 402,
+          "msOneCall": 376,
           "stops": [],
           "moved": {
             "p1939 15458": [
@@ -384,7 +386,7 @@
           ],
           "controlWent": [
             0,
-            10.68
+            10.55
           ],
           "moved": [
             "p1939 15458",
@@ -392,18 +394,18 @@
           ],
           "went": {
             "p1939 15458": [
-              28.91,
-              10.75
+              28.57,
+              10.62
             ],
             "p1910 32073": [
-              7.49,
-              10.68
+              7.41,
+              10.55
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "1929/1944",
+            "1927/1944",
             "1928/2024"
           ]
         }
@@ -425,7 +427,9 @@
         "verdict": "shown"
       },
       "why": "not decided: p1938 59443: a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024)",
-      "seconds": 226
+      "seconds": 284,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:11:18.414Z"
     },
     {
       "function": 7,

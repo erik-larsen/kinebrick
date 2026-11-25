@@ -238,10 +238,10 @@
       "function": 2,
       "does": "The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -257,7 +257,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p105 3894": [
@@ -404,7 +404,9 @@
         "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p129 3482 moved 1.74, the least-moved listed part 20.14"
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 9
+      "seconds": 10,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:27:46.794Z"
     },
     {
       "function": 4,

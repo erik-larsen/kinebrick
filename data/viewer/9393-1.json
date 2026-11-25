@@ -498,10 +498,10 @@
       "function": 5,
       "does": "The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox.",
       "verdict": "shown",
-      "msOneCall": 19,
+      "msOneCall": 17,
       "msPerStep": 5,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -509,12 +509,12 @@
         "B": 27
       },
       "stop": {
-        "control": "p309 48989",
-        "way": -1,
-        "went": -0.105,
-        "asked": 0.63,
+        "control": "p299 48989",
+        "way": 1,
+        "went": 0.1,
+        "asked": 0.6,
         "by": [
-          "ground: p338"
+          "ground: p351"
         ]
       },
       "stops": [
@@ -527,8 +527,8 @@
           "way": 1,
           "asked": 0.6,
           "went": 0.1,
-          "ms": 15,
-          "msOneCall": 19,
+          "ms": 14,
+          "msOneCall": 17,
           "stops": [
             "ground: p351"
           ],
@@ -552,7 +552,7 @@
           "way": -1,
           "asked": 0.63,
           "went": -0.63,
-          "ms": 36,
+          "ms": 47,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -573,10 +573,10 @@
         {
           "control": "p309 48989",
           "way": 1,
-          "asked": 0.6,
-          "went": 0.6,
-          "ms": 38,
-          "msOneCall": 5,
+          "asked": 0.63,
+          "went": 0.63,
+          "ms": 37,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p301 6587": [
@@ -584,8 +584,8 @@
               0
             ],
             "p311 6587": [
-              37.94,
-              34.38
+              39.84,
+              36.1
             ],
             "p93 32140": [
               0,
@@ -596,10 +596,10 @@
         {
           "control": "p309 48989",
           "way": -1,
-          "asked": 0.63,
-          "went": -0.105,
-          "ms": 8,
-          "msOneCall": 4,
+          "asked": 0.6,
+          "went": -0.1,
+          "ms": 10,
+          "msOneCall": 5,
           "stops": [
             "ground: p338"
           ],
@@ -609,8 +609,8 @@
               0
             ],
             "p311 6587": [
-              6.64,
-              6.02
+              6.32,
+              5.73
             ],
             "p93 32140": [
               0,
@@ -645,16 +645,16 @@
             }
           ],
           "controlWent": [
-            47.57,
-            72.93
+            47.63,
+            73.04
           ],
           "moved": [
             "p301 6587"
           ],
           "went": {
             "p301 6587": [
-              75.22,
-              72.93
+              75.32,
+              73.04
             ],
             "p311 6587": [
               0,
@@ -670,7 +670,6 @@
           "staysMoved": [],
           "stops": [
             "293/299",
-            "290/297",
             "ground: p351"
           ]
         },
@@ -699,8 +698,8 @@
             }
           ],
           "controlWent": [
-            5.45,
-            7.44
+            4.67,
+            6.26
           ],
           "moved": [
             "p311 6587"
@@ -711,8 +710,8 @@
               0
             ],
             "p311 6587": [
-              8.61,
-              7.44
+              7.39,
+              6.26
             ]
           },
           "staysWent": {
@@ -724,8 +723,7 @@
           "staysMoved": [],
           "stops": [
             "ground: p338",
-            "296/307",
-            "ground: p339"
+            "296/307"
           ]
         }
       ],
@@ -738,14 +736,16 @@
         {
           "control": "p309 48989",
           "judged": "stands",
-          "why": "stopped at -0.105 rad (ground: p338); kinds hinge: tedder arms"
+          "why": "stopped at -0.1 rad (ground: p338); kinds hinge: tedder arms"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 33
+      "seconds": 34,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:43:36.944Z"
     },
     {
       "function": 6,

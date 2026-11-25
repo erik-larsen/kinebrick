@@ -867,7 +867,7 @@
       "function": 7,
       "does": "The rear seat's centre armrest, two Technic bricks pinned between its backs, folds up into the slot in the seat back.",
       "verdict": "shown",
-      "msOneCall": 17,
+      "msOneCall": 19,
       "msPerStep": 2,
       "time": {
         "open": 5,
@@ -875,7 +875,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -885,8 +885,8 @@
           "way": 1,
           "asked": 0.33,
           "went": 0.33,
-          "ms": 18,
-          "msOneCall": 17,
+          "ms": 21,
+          "msOneCall": 19,
           "stops": [],
           "moved": {}
         },
@@ -895,8 +895,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 51,
-          "msOneCall": 3,
+          "ms": 62,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         }
@@ -927,19 +927,21 @@
             }
           ],
           "controlWent": [
-            44.63,
-            172.77
+            34.98,
+            102.97
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "418/426"
+            "401/425"
           ]
         }
       ],
-      "seconds": 17
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:46:35.258Z"
     }
   ]
 }

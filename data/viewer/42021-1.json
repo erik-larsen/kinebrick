@@ -11,15 +11,15 @@
       "function": 4,
       "does": "Each ski pivots on its mount, so its tip can tilt up and down over bumps.",
       "verdict": "shown",
-      "msOneCall": 20,
-      "msPerStep": 3,
+      "msOneCall": 15,
+      "msPerStep": 5,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 10,
+        "reach": 9,
         "A": 0,
-        "B": 25
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 3,
-          "msOneCall": 20,
+          "ms": 5,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -39,7 +39,7 @@
           "way": -1,
           "asked": 0.47,
           "went": -0.47,
-          "ms": 17,
+          "ms": 16,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -50,7 +50,7 @@
           "asked": 0.03,
           "went": 0.03,
           "ms": 2,
-          "msOneCall": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -59,7 +59,7 @@
           "way": -1,
           "asked": 0.47,
           "went": -0.47,
-          "ms": 17,
+          "ms": 13,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -91,8 +91,8 @@
             }
           ],
           "controlWent": [
-            14.62,
-            29.95
+            14.61,
+            29.93
           ],
           "moved": [],
           "went": {},
@@ -100,6 +100,7 @@
           "staysMoved": [],
           "stops": [
             "176/177",
+            "169/170",
             "170/176"
           ]
         },
@@ -128,8 +129,8 @@
             }
           ],
           "controlWent": [
-            14.69,
-            30.11
+            14.67,
+            30.07
           ],
           "moved": [],
           "went": {},
@@ -142,7 +143,9 @@
           ]
         }
       ],
-      "seconds": 40
+      "seconds": 38,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:49.223Z"
     },
     {
       "function": 5,

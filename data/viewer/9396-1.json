@@ -11,15 +11,15 @@
       "function": 3,
       "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
       "verdict": "shown",
-      "msOneCall": 374,
-      "msPerStep": 206,
+      "msOneCall": 397,
+      "msPerStep": 226,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
-        "first": 7,
+        "first": 8,
         "reach": 0,
-        "A": 15,
-        "B": 30
+        "A": 16,
+        "B": 26
       },
       "stop": {
         "control": "p367 32269",
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.907,
-          "ms": 5258,
-          "msOneCall": 374,
+          "ms": 5728,
+          "msOneCall": 397,
           "stops": [
             "347/1039"
           ],
@@ -60,7 +60,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 8828,
+          "ms": 9688,
           "msOneCall": 329,
           "stops": [],
           "moved": {
@@ -102,7 +102,7 @@
           ],
           "controlWent": [
             0,
-            128.35
+            124.82
           ],
           "moved": [
             "p570 32073",
@@ -111,18 +111,16 @@
           "went": {
             "p570 32073": [
               0,
-              152.01
+              151.96
             ],
             "p575 30395": [
-              77.19,
+              41.59,
               0
             ]
           },
           "staysWent": {},
           "staysMoved": [],
-          "stops": [
-            "569/575"
-          ]
+          "stops": []
         }
       ],
       "stopsJudged": [
@@ -136,7 +134,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 58
+      "seconds": 57,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:44:28.491Z"
     },
     {
       "function": 6,

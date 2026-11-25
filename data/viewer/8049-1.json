@@ -184,10 +184,10 @@
       "function": 6,
       "does": "The black gear on the grab opens and closes its two jaws: it turns a worm, which turns an 8-tooth gear on one jaw's axle, and two 16-tooth gears mesh between the jaws so they swing together.",
       "verdict": "shown",
-      "msOneCall": 32,
+      "msOneCall": 30,
       "msPerStep": 3,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -212,8 +212,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.291,
-          "ms": 127,
-          "msOneCall": 32,
+          "ms": 125,
+          "msOneCall": 30,
           "stops": [
             "477/479"
           ],
@@ -253,7 +253,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 114,
+          "ms": 120,
           "msOneCall": 6,
           "stops": [],
           "moved": {
@@ -374,7 +374,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 19
+      "seconds": 20,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:01:17.911Z"
     },
     {
       "function": 8,

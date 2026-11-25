@@ -533,7 +533,7 @@
       "function": 6,
       "does": "The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it.",
       "verdict": "shown",
-      "msOneCall": 22,
+      "msOneCall": 25,
       "msPerStep": 4,
       "time": {
         "open": 5,
@@ -541,7 +541,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -551,8 +551,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 135,
-          "msOneCall": 22,
+          "ms": 145,
+          "msOneCall": 25,
           "stops": [],
           "moved": {
             "p285 2723 against p177 32009": [
@@ -579,7 +579,7 @@
           "asked": 0.13,
           "went": -0.13,
           "ms": 14,
-          "msOneCall": 6,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p285 2723 against p177 32009": [
@@ -627,8 +627,8 @@
             }
           ],
           "controlWent": [
-            178.93,
-            76.68
+            227.25,
+            103.97
           ],
           "moved": [
             "p285 2723 against p177 32009",
@@ -636,12 +636,12 @@
           ],
           "went": {
             "p285 2723 against p177 32009": [
-              175.88,
-              76.68
+              223.38,
+              103.97
             ],
             "p189 99773 against p177 32009": [
-              49.62,
-              76.68
+              63.03,
+              103.97
             ]
           },
           "staysWent": {
@@ -656,48 +656,49 @@
           },
           "staysMoved": [],
           "stops": [
-            "341/343"
+            "341/343",
+            "168/188"
           ]
         }
       ],
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:05:17.475Z"
     },
     {
       "function": 8,
       "does": "The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 20,
       "msPerStep": 3,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 25
+        "B": 26
       },
       "stop": {
         "control": "p242 32009",
-        "way": -1,
-        "went": -1.151,
+        "way": 1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "234/242"
+          "244/249"
         ]
       },
       "stops": [
-        "244/249",
-        "234/242",
-        "234/246"
+        "244/249"
       ],
       "A": [
         {
           "control": "p242 32009",
           "way": 1,
-          "asked": 1.13,
+          "asked": 1.5,
           "went": 0,
-          "ms": 6,
-          "msOneCall": 16,
+          "ms": 8,
+          "msOneCall": 20,
           "stops": [
             "244/249"
           ],
@@ -711,13 +712,11 @@
         {
           "control": "p242 32009",
           "way": -1,
-          "asked": 1.5,
-          "went": -1.151,
-          "ms": 90,
-          "msOneCall": 10,
-          "stops": [
-            "234/242"
-          ],
+          "asked": 1.13,
+          "went": -1.13,
+          "ms": 105,
+          "msOneCall": 11,
+          "stops": [],
           "moved": {
             "p188 6629 against p177 32009": [
               0,
@@ -728,13 +727,11 @@
         {
           "control": "p246 32009",
           "way": 1,
-          "asked": 1.5,
-          "went": 1.116,
-          "ms": 79,
-          "msOneCall": 5,
-          "stops": [
-            "234/246"
-          ],
+          "asked": 1.13,
+          "went": 1.13,
+          "ms": 90,
+          "msOneCall": 9,
+          "stops": [],
           "moved": {
             "p188 6629 against p177 32009": [
               0,
@@ -745,10 +742,10 @@
         {
           "control": "p246 32009",
           "way": -1,
-          "asked": 1.13,
+          "asked": 1.5,
           "went": 0,
           "ms": 3,
-          "msOneCall": 5,
+          "msOneCall": 4,
           "stops": [
             "244/249"
           ],
@@ -786,8 +783,8 @@
             }
           ],
           "controlWent": [
-            132.74,
-            67.16
+            132.53,
+            67.04
           ],
           "moved": [],
           "went": {},
@@ -799,8 +796,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "244/249",
-            "234/242"
+            "234/242",
+            "244/249"
           ]
         },
         {
@@ -828,8 +825,8 @@
             }
           ],
           "controlWent": [
-            68.41,
-            33.12
+            91.08,
+            44.6
           ],
           "moved": [],
           "went": {},
@@ -850,25 +847,27 @@
         {
           "control": "p242 32009",
           "judged": "stands",
-          "why": "stopped at +0 rad (244/249); -1.151 rad (234/242); kinds hinge: arms"
+          "why": "stopped at +0 rad (244/249); kinds hinge: arms"
         },
         {
           "control": "p246 32009",
           "judged": "stands",
-          "why": "stopped at +1.116 rad (234/246); -0 rad (244/249); kinds hinge: arms"
+          "why": "stopped at -0 rad (244/249); kinds hinge: arms"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 33
+      "seconds": 34,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:05:17.475Z"
     },
     {
       "function": 10,
       "does": "A black T-shaped foot hangs on a cross axle under the front of the body and swings.",
       "verdict": "shown",
-      "msOneCall": 22,
+      "msOneCall": 24,
       "msPerStep": 5,
       "time": {
         "open": 5,
@@ -876,7 +875,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -886,8 +885,8 @@
           "way": 1,
           "asked": 0.17,
           "went": 0.17,
-          "ms": 22,
-          "msOneCall": 22,
+          "ms": 24,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p188 6629 against p177 32009": [
@@ -905,8 +904,8 @@
           "way": -1,
           "asked": 0.5,
           "went": -0.5,
-          "ms": 43,
-          "msOneCall": 6,
+          "ms": 47,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p188 6629 against p177 32009": [
@@ -946,8 +945,8 @@
             }
           ],
           "controlWent": [
-            29.6,
-            38.65
+            29.74,
+            38.84
           ],
           "moved": [],
           "went": {},
@@ -963,12 +962,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "185/236",
-            "186/237"
+            "186/237",
+            "185/236"
           ]
         }
       ],
-      "seconds": 18
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:05:17.475Z"
     }
   ]
 }

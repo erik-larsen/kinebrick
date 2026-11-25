@@ -204,55 +204,45 @@
       "does": "The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up.",
       "verdict": "shown",
       "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2097 62274c01 turned 0.02 degrees, 0.006 predicted (rate 0.00156, turn -0.072)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2123 32526 against p2046 40490 turned 0.14 degrees, 0.044 predicted (rate 0.0106, turn -0.072)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2180 32524 against p2046 40490 turned 0.08 degrees, 0.025 predicted (rate 0.00612, turn -0.072)"
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2097 62274c01 turned 0.04 degrees, 0.022 predicted (rate 0.00156, turn -0.245)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2123 32526 against p2046 40490 turned 0.24 degrees, 0.149 predicted (rate 0.0106, turn -0.245)"
       ],
       "msOneCall": null,
-      "msPerStep": 567,
+      "msPerStep": 167,
       "time": {
         "open": 8,
         "collisions": 0,
-        "first": 6,
+        "first": 5,
         "reach": 0,
         "A": 4,
         "B": 11
       },
-      "stop": {
-        "control": "p767 58121",
-        "way": 1,
-        "went": -0.072,
-        "asked": 0.07,
-        "by": [
-          "2097/2096"
-        ]
-      },
-      "stops": [
-        "2097/2096"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p767 58121",
           "way": 1,
           "asked": 0.07,
-          "went": -0.072,
-          "ms": 1166,
+          "went": -0.245,
+          "ms": 1174,
           "msOneCall": null,
-          "stops": [
+          "stops": [],
+          "passed": [
             "2097/2096"
           ],
           "moved": {
             "p2097 62274c01": [
-              0.14,
-              0.02
+              0.24,
+              0.04
             ],
             "p2123 32526 against p2046 40490": [
-              0.1,
-              0.14
+              0.17,
+              0.24
             ],
             "p2180 32524 against p2046 40490": [
-              0.93,
-              0.08
+              1.6,
+              0.14
             ],
             "p2046 40490": [
               0,
@@ -268,22 +258,22 @@
           "control": "p767 58121",
           "way": -1,
           "asked": 1.7,
-          "went": -2.976,
-          "ms": 2188,
+          "went": -2.977,
+          "ms": 2208,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p2097 62274c01": [
-              1.88,
-              0.27
+              1.89,
+              0.28
             ],
             "p2123 32526 against p2046 40490": [
-              1.31,
-              1.87
+              1.32,
+              1.88
             ],
             "p2180 32524 against p2046 40490": [
-              12.37,
-              1.09
+              12.46,
+              1.1
             ],
             "p2046 40490": [
               0,
@@ -306,7 +296,7 @@
           "drags": [],
           "controlWent": [
             0,
-            0
+            912.296
           ],
           "moved": [
             "p2097 62274c01",
@@ -315,16 +305,16 @@
           ],
           "went": {
             "p2097 62274c01": [
-              8.98,
+              9.01,
               1.77
             ],
             "p2123 32526 against p2046 40490": [
-              6.22,
-              8.91
+              6.24,
+              8.94
             ],
             "p2180 32524 against p2046 40490": [
-              59.35,
-              5.32
+              59.53,
+              5.34
             ]
           },
           "staysWent": {
@@ -343,18 +333,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p767 58121",
-          "judged": "stands",
-          "why": "stopped at +0.072 rad (2097/2096); kinds electric-motor, function-selector, linear-actuator: lower boom"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 28
+      "seconds": 29,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:07:37.278Z"
     },
     {
       "function": 5,

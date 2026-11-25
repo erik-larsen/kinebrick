@@ -510,14 +510,14 @@
       "function": 10,
       "does": "Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.",
       "verdict": "shown",
-      "msOneCall": 53,
+      "msOneCall": 56,
       "msPerStep": 13,
       "time": {
         "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 6,
+        "A": 7,
         "B": 29
       },
       "stop": null,
@@ -561,8 +561,8 @@
           },
           "asked": 0.5,
           "went": 0.5,
-          "ms": 140,
-          "msOneCall": 53,
+          "ms": 154,
+          "msOneCall": 56,
           "stops": [],
           "moved": {}
         },
@@ -604,8 +604,8 @@
           },
           "asked": 0.1,
           "went": -0.1,
-          "ms": 38,
-          "msOneCall": 25,
+          "ms": 36,
+          "msOneCall": 23,
           "stops": [],
           "moved": {}
         },
@@ -637,8 +637,8 @@
           ],
           "asked": 0.5,
           "went": 0.5,
-          "ms": 120,
-          "msOneCall": 29,
+          "ms": 134,
+          "msOneCall": 32,
           "stops": [],
           "moved": {}
         },
@@ -670,8 +670,8 @@
           ],
           "asked": 0.1,
           "went": -0.1,
-          "ms": 32,
-          "msOneCall": 23,
+          "ms": 34,
+          "msOneCall": 25,
           "stops": [],
           "moved": {}
         }
@@ -791,8 +791,8 @@
         }
       ],
       "seconds": 47,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:54:24.009Z"
+      "commit": "994fe940",
+      "date": "2026-11-25T18:41:30.432Z"
     }
   ]
 }

@@ -1287,14 +1287,14 @@
       "does": "The headlights pop up: the small knob on the centre console, just in front of the gear lever, turns a shaft through a universal joint, two 16 tooth gears and a pair of bevel gears to a cross shaft at the nose, which tips both headlight pods up together.",
       "verdict": "shown",
       "msOneCall": 82,
-      "msPerStep": 13,
+      "msPerStep": 12,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 15
       },
       "stop": null,
       "stops": [],
@@ -1304,7 +1304,7 @@
           "way": 1,
           "asked": 1.2,
           "went": 1.2,
-          "ms": 434,
+          "ms": 413,
           "msOneCall": 82,
           "stops": [],
           "moved": {
@@ -1335,8 +1335,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 453,
-          "msOneCall": 24,
+          "ms": 488,
+          "msOneCall": 25,
           "stops": [],
           "moved": {
             "p937 3041p01": [
@@ -1389,7 +1389,7 @@
           ],
           "controlWent": [
             0,
-            155.25
+            153.28
           ],
           "moved": [
             "p937 3041p01",
@@ -1398,16 +1398,16 @@
           ],
           "went": {
             "p937 3041p01": [
-              66.41,
-              155.24
+              66.15,
+              153.27
             ],
             "p947 3041p01": [
-              66.41,
-              155.24
+              66.15,
+              153.27
             ],
             "p744 3706": [
               0,
-              155.24
+              153.27
             ]
           },
           "staysWent": {
@@ -1424,21 +1424,23 @@
           "stops": []
         }
       ],
-      "seconds": 23
+      "seconds": 23,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:42:09.599Z"
     },
     {
       "function": 12,
       "does": "The two seat backs tilt on their finger hinges.",
       "verdict": "not decided",
-      "msOneCall": 75,
-      "msPerStep": 20,
+      "msOneCall": 81,
+      "msPerStep": 19,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 11,
-        "B": 32
+        "A": 9,
+        "B": 33
       },
       "stop": {
         "control": "p1092 3031",
@@ -1492,8 +1494,8 @@
           },
           "asked": 0.1,
           "went": 0.1,
-          "ms": 58,
-          "msOneCall": 75,
+          "ms": 52,
+          "msOneCall": 81,
           "stops": [],
           "moved": {}
         },
@@ -1535,8 +1537,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 19,
-          "msOneCall": 21,
+          "ms": 18,
+          "msOneCall": 19,
           "stops": [
             "982/1092"
           ],
@@ -1570,8 +1572,8 @@
           ],
           "asked": 0.1,
           "went": 0.1,
-          "ms": 56,
-          "msOneCall": 62,
+          "ms": 54,
+          "msOneCall": 59,
           "stops": [],
           "moved": {}
         },
@@ -1603,8 +1605,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 22,
-          "msOneCall": 22,
+          "ms": 20,
+          "msOneCall": 24,
           "stops": [
             "981/1126"
           ],
@@ -1748,9 +1750,9 @@
         "verdict": "shown"
       },
       "why": "not decided: p1092 3031: a travel of 0.2 rad or less each way, stopped at -0 rad (982/1092); p1126 3031: a travel of 0.2 rad or less each way, stopped at -0 rad (981/1126)",
-      "seconds": 60,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:54:42.830Z"
+      "seconds": 58,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:42:09.599Z"
     },
     {
       "function": 13,

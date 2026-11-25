@@ -145,10 +145,10 @@
       "function": 2,
       "does": "The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front.",
       "verdict": "shown",
-      "msOneCall": 11,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -174,8 +174,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.593,
-          "ms": 17,
-          "msOneCall": 11,
+          "ms": 20,
+          "msOneCall": 10,
           "stops": [
             "70/93"
           ],
@@ -199,7 +199,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 26,
+          "ms": 27,
           "msOneCall": 2,
           "stops": [
             "29/70"
@@ -247,7 +247,7 @@
           ],
           "controlWent": [
             0,
-            97.92
+            83.25
           ],
           "moved": [
             "p73 41239 against p65 41239",
@@ -255,12 +255,12 @@
           ],
           "went": {
             "p73 41239 against p65 41239": [
-              60.34,
+              53.14,
               0
             ],
             "p139 18943 against p65 41239": [
-              30.17,
-              97.92
+              26.57,
+              83.25
             ]
           },
           "staysWent": {
@@ -271,8 +271,7 @@
           },
           "staysMoved": [],
           "stops": [
-            "29/70",
-            "70/94"
+            "29/70"
           ]
         }
       ],
@@ -287,7 +286,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:46:53.446Z"
     },
     {
       "function": 3,

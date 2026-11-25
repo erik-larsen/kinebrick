@@ -608,10 +608,10 @@
       "function": 4,
       "does": "The number board at the front tilts on its hinge.",
       "verdict": "shown",
-      "msOneCall": 7,
-      "msPerStep": 1,
+      "msOneCall": 8,
+      "msPerStep": 2,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -636,8 +636,8 @@
           },
           "asked": 0.93,
           "went": 0.93,
-          "ms": 19,
-          "msOneCall": 7,
+          "ms": 25,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p61 3068bp81": [
@@ -666,7 +666,7 @@
           "asked": 0.07,
           "went": -0.07,
           "ms": 3,
-          "msOneCall": 2,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p61 3068bp81": [
@@ -708,16 +708,16 @@
             }
           ],
           "controlWent": [
-            9.85,
-            58.99
+            9.82,
+            58.82
           ],
           "moved": [
             "p61 3068bp81"
           ],
           "went": {
             "p61 3068bp81": [
-              20.28,
-              58.99
+              20.23,
+              58.82
             ]
           },
           "staysWent": {
@@ -733,7 +733,9 @@
           ]
         }
       ],
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:27:21.325Z"
     }
   ]
 }

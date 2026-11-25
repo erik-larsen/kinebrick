@@ -244,15 +244,15 @@
       "function": 3,
       "does": "The black gear on top of the roll cage behind the seat steers the front wheels (hand of god steering): its vertical shaft turns, through bevel gears, a long shaft running forward under the car to a 12 tooth gear on the front steering rack, and the rack's links turn both front hubs.",
       "verdict": "shown",
-      "msOneCall": 126,
-      "msPerStep": 51,
+      "msOneCall": 105,
+      "msPerStep": 46,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 3,
-        "B": 18
+        "B": 17
       },
       "stop": {
         "control": "p349 32270",
@@ -273,8 +273,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.151,
-          "ms": 1685,
-          "msOneCall": 126,
+          "ms": 1528,
+          "msOneCall": 105,
           "stops": [
             "76/85"
           ],
@@ -318,8 +318,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.081,
-          "ms": 1562,
-          "msOneCall": 55,
+          "ms": 1295,
+          "msOneCall": 59,
           "stops": [
             "76/84"
           ],
@@ -407,7 +407,7 @@
             ],
             "p66 11949": [
               0.4,
-              47.09
+              47.08
             ],
             "p76 11949": [
               0.41,
@@ -415,7 +415,7 @@
             ],
             "p491 45982": [
               39.93,
-              47.09
+              47.08
             ],
             "p495 45982": [
               40.92,
@@ -437,7 +437,7 @@
             "p493 45982"
           ],
           "stops": [
-            "76/84"
+            "76/85"
           ]
         }
       ],
@@ -452,7 +452,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 27
+      "seconds": 25,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:35:14.981Z"
     },
     {
       "function": 4,
@@ -462,15 +464,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.06 degrees, 0.052 predicted (rate 0.0304, turn -0.03)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p96 4254 turned 0.06 degrees, 0.064 predicted (rate 0.0372, turn 0.03)"
       ],
-      "msOneCall": 98,
-      "msPerStep": 91,
+      "msOneCall": 110,
+      "msPerStep": 103,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 5,
-        "B": 23
+        "A": 6,
+        "B": 22
       },
       "stop": null,
       "stops": [],
@@ -495,8 +497,8 @@
           ],
           "asked": 0.63,
           "went": 0.63,
-          "ms": 1036,
-          "msOneCall": 98,
+          "ms": 1216,
+          "msOneCall": 110,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -537,8 +539,8 @@
           ],
           "asked": 0.03,
           "went": -0.03,
-          "ms": 86,
-          "msOneCall": 88,
+          "ms": 103,
+          "msOneCall": 100,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -567,7 +569,6 @@
               "part": 58,
               "seen": true,
               "said": [
-                "Finding the pins that hold it…",
                 "No friction pins hold this part: drag it"
               ],
               "freed": [
@@ -610,8 +611,8 @@
           },
           "asked": 0.03,
           "went": 0.03,
-          "ms": 91,
-          "msOneCall": 93,
+          "ms": 97,
+          "msOneCall": 99,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -640,7 +641,6 @@
               "part": 58,
               "seen": true,
               "said": [
-                "Finding the pins that hold it…",
                 "No friction pins hold this part: drag it"
               ],
               "freed": [
@@ -683,8 +683,8 @@
           },
           "asked": 0.63,
           "went": -0.63,
-          "ms": 1124,
-          "msOneCall": 93,
+          "ms": 1131,
+          "msOneCall": 99,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -727,7 +727,9 @@
             396,
             417
           ],
-          "shift": [],
+          "shift": [
+            "13 friction pins that held it can now turn: drag it again"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -836,8 +838,8 @@
         }
       ],
       "seconds": 37,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:22:21.373Z"
+      "commit": "994fe940",
+      "date": "2026-11-25T16:35:14.981Z"
     },
     {
       "function": 5,

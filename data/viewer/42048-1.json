@@ -11,48 +11,36 @@
       "function": 2,
       "does": "The red gear lever on the seat's left has three positions, 1, N and 2: it turns a cross shaft under the seat, whose liftarm on the right side pushes a black link back to rock the changeover catch at the back, which slides the driving ring on the rear axle to lock one of the two 16-tooth clutch gears to the axle, or neither.",
       "verdict": "shown",
-      "msOneCall": 23,
-      "msPerStep": 5,
+      "msOneCall": 24,
+      "msPerStep": 6,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 13
+        "A": 3,
+        "B": 12
       },
-      "stop": {
-        "control": "p368 32015",
-        "way": 1,
-        "went": 0.636,
-        "asked": 0.67,
-        "by": [
-          "205/215"
-        ]
-      },
-      "stops": [
-        "205/215"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p368 32015",
           "way": 1,
           "ringShifted": true,
-          "asked": 0.67,
-          "went": 0.636,
-          "ms": 91,
-          "msOneCall": 23,
-          "stops": [
-            "205/215"
-          ],
+          "asked": 0.63,
+          "went": 0.63,
+          "ms": 105,
+          "msOneCall": 24,
+          "stops": [],
           "moved": {
             "p278 32293": [
-              40.17,
-              5.31
+              39.76,
+              5.2
             ],
             "p215 6641": [
-              10.04,
-              28.77
+              9.94,
+              28.48
             ],
             "p67 18947": [
               10,
@@ -72,19 +60,19 @@
           "control": "p368 32015",
           "way": -1,
           "ringShifted": true,
-          "asked": 0.63,
-          "went": -0.63,
-          "ms": 72,
-          "msOneCall": 22,
+          "asked": 0.67,
+          "went": -0.67,
+          "ms": 91,
+          "msOneCall": 23,
           "stops": [],
           "moved": {
             "p278 32293": [
-              38.15,
-              6
+              40.24,
+              6.7
             ],
             "p215 6641": [
-              9.54,
-              27.32
+              10.06,
+              28.82
             ],
             "p67 18947": [
               10,
@@ -127,8 +115,8 @@
             }
           ],
           "controlWent": [
-            72.93,
-            74.83
+            73.84,
+            75.93
           ],
           "moved": [
             "p278 32293",
@@ -137,12 +125,12 @@
           ],
           "went": {
             "p278 32293": [
-              77.07,
-              4.72
+              77.97,
+              7.04
             ],
             "p215 6641": [
-              19.27,
-              57.59
+              19.49,
+              58.33
             ],
             "p67 18947": [
               20,
@@ -166,18 +154,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p368 32015",
-          "judged": "stands",
-          "why": "stopped at +0.636 rad (205/215); kinds driving-ring-gearbox: 2 speeds"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 19
+      "seconds": 20,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:44:11.388Z"
     },
     {
       "function": 3,

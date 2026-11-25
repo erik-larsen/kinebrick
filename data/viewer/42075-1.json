@@ -661,10 +661,10 @@
       "function": 8,
       "does": "The two seats tip forward.",
       "verdict": "shown",
-      "msOneCall": 20,
-      "msPerStep": 3,
+      "msOneCall": 18,
+      "msPerStep": 4,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -673,26 +673,25 @@
       },
       "stop": {
         "control": "p239 24116",
-        "way": -1,
-        "went": -0.279,
+        "way": 1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "239/308"
+          "0/239"
         ]
       },
       "stops": [
         "0/239",
-        "239/308",
         "0/240"
       ],
       "A": [
         {
           "control": "p239 24116",
           "way": 1,
-          "asked": 0.3,
+          "asked": 1.5,
           "went": 0,
-          "ms": 5,
-          "msOneCall": 15,
+          "ms": 6,
+          "msOneCall": 16,
           "stops": [
             "0/239"
           ],
@@ -701,13 +700,11 @@
         {
           "control": "p239 24116",
           "way": -1,
-          "asked": 1.5,
-          "went": -0.279,
-          "ms": 27,
-          "msOneCall": 20,
-          "stops": [
-            "239/308"
-          ],
+          "asked": 0.3,
+          "went": -0.3,
+          "ms": 31,
+          "msOneCall": 18,
+          "stops": [],
           "moved": {}
         },
         {
@@ -715,8 +712,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 4,
-          "msOneCall": 6,
+          "ms": 6,
+          "msOneCall": 9,
           "stops": [
             "0/240"
           ],
@@ -727,8 +724,8 @@
           "way": -1,
           "asked": 1.47,
           "went": -1.47,
-          "ms": 99,
-          "msOneCall": 7,
+          "ms": 109,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         }
@@ -767,9 +764,9 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "239/308",
             "239/306",
-            "0/239",
-            "239/308"
+            "0/239"
           ]
         },
         {
@@ -798,7 +795,7 @@
           ],
           "controlWent": [
             0,
-            86.66
+            86.65
           ],
           "moved": [],
           "went": {},
@@ -814,7 +811,7 @@
         {
           "control": "p239 24116",
           "judged": "stands",
-          "why": "stopped at +0 rad (0/239); -0.279 rad (239/308); kinds hinge: seats"
+          "why": "stopped at +0 rad (0/239); kinds hinge: seats"
         },
         {
           "control": "p240 24116",
@@ -826,7 +823,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 34
+      "seconds": 35,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:04:57.837Z"
     }
   ]
 }

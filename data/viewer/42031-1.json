@@ -15,7 +15,7 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p133 3648b against p101 6632 turned 0.58 degrees, 0.583 predicted (rate 0.0417, turn 0.244)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p122 11478 against p101 6632 turned 0.58 degrees, 0.583 predicted (rate 0.0417, turn 0.244)"
       ],
-      "msOneCall": 17,
+      "msOneCall": 13,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -44,7 +44,7 @@
           "asked": 1.5,
           "went": 0.244,
           "ms": 9,
-          "msOneCall": 17,
+          "msOneCall": 13,
           "stops": [
             "83/124"
           ],
@@ -72,8 +72,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 34,
-          "msOneCall": 2,
+          "ms": 43,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p120 4716 against p101 6632": [
@@ -122,7 +122,7 @@
           ],
           "controlWent": [
             0,
-            68.31
+            86.55
           ],
           "moved": [
             "p120 4716 against p101 6632",
@@ -132,15 +132,15 @@
           "went": {
             "p120 4716 against p101 6632": [
               0,
-              68.31
+              86.55
             ],
             "p133 3648b against p101 6632": [
               0,
-              2.85
+              3.61
             ],
             "p122 11478 against p101 6632": [
-              1.99,
-              2.85
+              2.52,
+              3.61
             ]
           },
           "staysWent": {
@@ -166,7 +166,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:34:28.456Z"
     },
     {
       "function": 2,

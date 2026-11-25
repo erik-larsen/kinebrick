@@ -8,6 +8,184 @@
   "seconds": 37,
   "functions": [
     {
+      "function": 1,
+      "does": "Turning the knob at the back (a bush on the long axle through the body) turns the worm under the seat, which turns the 8 tooth gear on the lift arms' axle: the arms swing and the blade rises and lowers.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p75 4019 against p0 32523, p74 4019 against p0 32523 listed to stay moved",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 2,
+        "A": 0,
+        "B": 12
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p16 3713",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0.2,
+          "ms": 14,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p56 4716 against p0 32523": [
+              0,
+              11.46
+            ],
+            "p39 3647 against p0 32523": [
+              0,
+              1.43
+            ],
+            "p57 2825 against p0 32523": [
+              0,
+              1.43
+            ],
+            "p58 2825 against p0 32523": [
+              0,
+              1.43
+            ],
+            "p157 3832 against p0 32523": [
+              1.88,
+              0.78
+            ],
+            "p75 4019 against p0 32523": [
+              0,
+              0.39
+            ],
+            "p74 4019 against p0 32523": [
+              0,
+              0.39
+            ]
+          }
+        },
+        {
+          "control": "p16 3713",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 63,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p56 4716 against p0 32523": [
+              0,
+              85.94
+            ],
+            "p39 3647 against p0 32523": [
+              0,
+              10.8
+            ],
+            "p57 2825 against p0 32523": [
+              0,
+              10.8
+            ],
+            "p58 2825 against p0 32523": [
+              0,
+              10.8
+            ],
+            "p157 3832 against p0 32523": [
+              14.28,
+              5.91
+            ],
+            "p75 4019 against p0 32523": [
+              0,
+              2.96
+            ],
+            "p74 4019 against p0 32523": [
+              0,
+              2.96
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p16 3713",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            63.75,
+            121.01
+          ],
+          "moved": [
+            "p56 4716 against p0 32523",
+            "p39 3647 against p0 32523",
+            "p57 2825 against p0 32523",
+            "p58 2825 against p0 32523",
+            "p157 3832 against p0 32523"
+          ],
+          "went": {
+            "p56 4716 against p0 32523": [
+              0,
+              120.84
+            ],
+            "p39 3647 against p0 32523": [
+              0,
+              56.71
+            ],
+            "p57 2825 against p0 32523": [
+              0,
+              56.68
+            ],
+            "p58 2825 against p0 32523": [
+              0,
+              56.68
+            ],
+            "p157 3832 against p0 32523": [
+              69.73,
+              29.19
+            ]
+          },
+          "staysWent": {
+            "p75 4019 against p0 32523": [
+              0,
+              14.6
+            ],
+            "p74 4019 against p0 32523": [
+              0,
+              14.6
+            ]
+          },
+          "staysMoved": [
+            "p75 4019 against p0 32523",
+            "p74 4019 against p0 32523"
+          ],
+          "stops": [
+            "ground: p142"
+          ]
+        }
+      ],
+      "seconds": 17,
+      "commit": "f3b86e27",
+      "date": "2026-11-25T19:13:06.865Z"
+    },
+    {
       "function": 2,
       "does": "The two tracks roll as the bulldozer is pushed along; nothing drives them. Each track runs round a 16 tooth gear at each end of its side, so its two gears turn together: p75 with p46 on one side, p74 with p55 on the other.",
       "verdict": "shown",

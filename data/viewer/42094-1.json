@@ -453,11 +453,11 @@
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 7,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
+        "A": 0,
         "B": 9
       },
       "stop": null,
@@ -517,7 +517,9 @@
           "pinsAsked": [
             1116
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "along",
@@ -529,16 +531,16 @@
             }
           ],
           "controlWent": [
-            33.28,
-            131.14
+            32.82,
+            129.2
           ],
           "moved": [
             "p1061 60485"
           ],
           "went": {
             "p1061 60485": [
-              33.28,
-              131.14
+              32.82,
+              129.2
             ]
           },
           "staysWent": {
@@ -556,26 +558,26 @@
         }
       ],
       "decidedBy": [
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p1094 32278 moved 1.52, the least-moved listed part 131.14"
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p1094 32278 moved 1.52, the least-moved listed part 129.2"
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 17,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:40:48.178Z"
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:22:09.336Z"
     },
     {
       "function": 6,
       "does": "The armrest consoles beside the seat, carrying the control levers, tip up on hinges at the back of the cab.",
       "verdict": "shown",
       "msOneCall": 53,
-      "msPerStep": 17,
+      "msPerStep": 20,
       "time": {
-        "open": 9,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 8,
+        "reach": 9,
         "A": 1,
-        "B": 38
+        "B": 28
       },
       "stop": {
         "control": "p965 2853",
@@ -596,7 +598,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 19,
+          "ms": 21,
           "msOneCall": 53,
           "stops": [
             "914/934"
@@ -621,8 +623,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 282,
-          "msOneCall": 25,
+          "ms": 272,
+          "msOneCall": 26,
           "stops": [],
           "moved": {
             "p948 11946": [
@@ -644,8 +646,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 262,
-          "msOneCall": 17,
+          "ms": 283,
+          "msOneCall": 19,
           "stops": [],
           "moved": {
             "p948 11946": [
@@ -667,8 +669,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.035,
-          "ms": 17,
-          "msOneCall": 18,
+          "ms": 20,
+          "msOneCall": 16,
           "stops": [
             "284/982"
           ],
@@ -699,23 +701,19 @@
             {
               "kind": "round",
               "amount": 1.5
-            },
-            {
-              "kind": "round",
-              "amount": -1.5
             }
           ],
           "controlWent": [
-            46.15,
-            17.9
+            252.46,
+            116.63
           ],
           "moved": [
             "p948 11946"
           ],
           "went": {
             "p948 11946": [
-              33.6,
-              17.9
+              183.81,
+              116.63
             ],
             "p979 11947": [
               0,
@@ -729,9 +727,7 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "914/934"
-          ]
+          "stops": []
         },
         {
           "control": "p965 2853",
@@ -758,8 +754,8 @@
             }
           ],
           "controlWent": [
-            136.83,
-            54.93
+            191.82,
+            80.57
           ],
           "moved": [
             "p979 11947"
@@ -770,8 +766,8 @@
               0
             ],
             "p979 11947": [
-              99.62,
-              54.93
+              139.66,
+              80.57
             ]
           },
           "staysWent": {
@@ -782,7 +778,6 @@
           },
           "staysMoved": [],
           "stops": [
-            "284/983",
             "284/982"
           ]
         }
@@ -803,7 +798,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 57
+      "seconds": 48,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:22:09.336Z"
     },
     {
       "function": 7,

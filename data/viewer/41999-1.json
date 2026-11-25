@@ -452,15 +452,15 @@
       "function": 6,
       "does": "The two front doors open.",
       "verdict": "shown",
-      "msOneCall": 107,
-      "msPerStep": 15,
+      "msOneCall": 88,
+      "msPerStep": 13,
       "time": {
-        "open": 11,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 695,
+        "reach": 595,
         "A": 1,
-        "B": 61
+        "B": 52
       },
       "stop": {
         "control": "p1190 43093",
@@ -483,8 +483,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.291,
-          "ms": 564,
-          "msOneCall": 107,
+          "ms": 493,
+          "msOneCall": 88,
           "stops": [
             "1177/1524"
           ],
@@ -504,8 +504,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 25,
-          "msOneCall": 27,
+          "ms": 21,
+          "msOneCall": 22,
           "stops": [
             "1025/1174"
           ],
@@ -525,7 +525,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 20,
+          "ms": 21,
           "msOneCall": 22,
           "stops": [
             "908/1229"
@@ -546,7 +546,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.291,
-          "ms": 513,
+          "ms": 467,
           "msOneCall": 33,
           "stops": [
             "1222/1534"
@@ -577,16 +577,16 @@
             }
           ],
           "controlWent": [
-            24.15,
-            74.29
+            24.38,
+            75.1
           ],
           "moved": [
             "p1171 11954"
           ],
           "went": {
             "p1171 11954": [
-              144.92,
-              74.29
+              146.26,
+              75.1
             ],
             "p1216 11954": [
               0,
@@ -596,7 +596,6 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "1025/1174",
             "1177/1524"
           ]
         },
@@ -617,8 +616,8 @@
             }
           ],
           "controlWent": [
-            24.09,
-            74.05
+            23.88,
+            73.31
           ],
           "moved": [
             "p1216 11954"
@@ -629,8 +628,8 @@
               0
             ],
             "p1216 11954": [
-              144.51,
-              74.05
+              143.28,
+              73.31
             ]
           },
           "staysWent": {},
@@ -657,7 +656,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 768
+      "seconds": 658,
+      "commit": "994fe940",
+      "date": "2026-11-25T19:01:32.156Z"
     }
   ]
 }

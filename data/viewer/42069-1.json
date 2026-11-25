@@ -392,15 +392,15 @@
       "function": 6,
       "does": "The four track units roll; each pivots on its axle to follow the ground.",
       "verdict": "shown",
-      "msOneCall": 195,
-      "msPerStep": 33,
+      "msOneCall": 155,
+      "msPerStep": 29,
       "time": {
         "open": 24,
         "collisions": 0,
         "first": 0,
-        "reach": 105,
-        "A": 8,
-        "B": 87
+        "reach": 125,
+        "A": 7,
+        "B": 93
       },
       "stop": {
         "control": "p1490 57519",
@@ -423,8 +423,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 915,
-          "msOneCall": 195,
+          "ms": 800,
+          "msOneCall": 155,
           "stops": [
             "1365/1426"
           ],
@@ -435,8 +435,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.977,
-          "ms": 822,
-          "msOneCall": 76,
+          "ms": 710,
+          "msOneCall": 66,
           "stops": [
             "1366/1406"
           ],
@@ -447,8 +447,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 867,
-          "msOneCall": 72,
+          "ms": 732,
+          "msOneCall": 67,
           "stops": [
             "1366/1406"
           ],
@@ -459,8 +459,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.977,
-          "ms": 820,
-          "msOneCall": 69,
+          "ms": 730,
+          "msOneCall": 68,
           "stops": [
             "1365/1426"
           ],
@@ -471,8 +471,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1223,
-          "msOneCall": 74,
+          "ms": 1063,
+          "msOneCall": 65,
           "stops": [],
           "moved": {}
         },
@@ -481,8 +481,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1240,
-          "msOneCall": 69,
+          "ms": 1065,
+          "msOneCall": 56,
           "stops": [],
           "moved": {}
         },
@@ -491,8 +491,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.767,
-          "ms": 676,
-          "msOneCall": 68,
+          "ms": 551,
+          "msOneCall": 62,
           "stops": [
             "1788/1811"
           ],
@@ -503,8 +503,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.733,
-          "ms": 672,
-          "msOneCall": 69,
+          "ms": 557,
+          "msOneCall": 58,
           "stops": [
             "1789/1811"
           ],
@@ -574,7 +574,7 @@
           ],
           "controlWent": [
             0,
-            69.14
+            69.79
           ],
           "moved": [],
           "went": {},
@@ -610,7 +610,7 @@
           ],
           "controlWent": [
             0,
-            94.31
+            111.33
           ],
           "moved": [],
           "went": {},
@@ -651,8 +651,8 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "1788/1811",
-            "1789/1811"
+            "1789/1811",
+            "1788/1811"
           ]
         }
       ],
@@ -677,7 +677,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 226
+      "seconds": 249,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:54:16.420Z"
     },
     {
       "function": 7,
@@ -687,29 +689,28 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the controls p1172 and p1055 at once and at 0.07 rad (parts 231/462, 106/458, 628/2405); the door should swing up and the step lower. Viewer sweep, decision 279."
       },
       "verdict": "not shown",
-      "msOneCall": 264,
-      "msPerStep": 163,
+      "msOneCall": 251,
+      "msPerStep": 122,
       "time": {
-        "open": 15,
+        "open": 16,
         "collisions": 0,
         "first": 0,
         "reach": 1,
         "A": 2,
-        "B": 55
+        "B": 58
       },
       "stop": {
-        "control": "p1055 32525",
+        "control": "p1172 32525",
         "way": -1,
-        "went": -0.07,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "628/2405"
+          "231/462"
         ]
       },
       "stops": [
         "231/462",
-        "106/458",
-        "628/2405"
+        "106/458"
       ],
       "A": [
         {
@@ -717,8 +718,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 236,
-          "msOneCall": 264,
+          "ms": 238,
+          "msOneCall": 251,
           "stops": [],
           "moved": {
             "p1150 62531": [
@@ -736,8 +737,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 117,
-          "msOneCall": 117,
+          "ms": 107,
+          "msOneCall": 105,
           "stops": [
             "231/462"
           ],
@@ -755,10 +756,10 @@
         {
           "control": "p1055 32525",
           "way": 1,
-          "asked": 0.07,
+          "asked": 1.5,
           "went": 0,
-          "ms": 111,
-          "msOneCall": 110,
+          "ms": 110,
+          "msOneCall": 109,
           "stops": [
             "106/458"
           ],
@@ -776,21 +777,19 @@
         {
           "control": "p1055 32525",
           "way": -1,
-          "asked": 1.5,
+          "asked": 0.07,
           "went": -0.07,
-          "ms": 326,
-          "msOneCall": 142,
-          "stops": [
-            "628/2405"
-          ],
+          "ms": 243,
+          "msOneCall": 136,
+          "stops": [],
           "moved": {
             "p1150 62531": [
               0,
               0
             ],
             "p1033 62531": [
-              1.88,
-              2.41
+              1.89,
+              2.42
             ]
           }
         }
@@ -821,16 +820,16 @@
             }
           ],
           "controlWent": [
-            12.55,
-            4.81
+            10.46,
+            4.01
           ],
           "moved": [
             "p1150 62531"
           ],
           "went": {
             "p1150 62531": [
-              2.27,
-              2.91
+              1.89,
+              2.42
             ],
             "p1033 62531": [
               0,
@@ -840,11 +839,11 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "625/2407",
+            "231/462",
+            "113/522",
             "506/1172",
             "605/1180",
-            "231/462",
-            "113/522"
+            "625/2407"
           ]
         },
         {
@@ -872,8 +871,8 @@
             }
           ],
           "controlWent": [
-            12.6,
-            4.83
+            12.37,
+            4.74
           ],
           "moved": [
             "p1033 62531"
@@ -884,18 +883,17 @@
               0
             ],
             "p1033 62531": [
-              2.28,
-              2.92
+              2.23,
+              2.86
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "106/458",
             "628/2405",
             "506/1055",
             "611/1063",
-            "616/1063",
+            "106/458",
             "89/521"
           ]
         }
@@ -909,7 +907,7 @@
         {
           "control": "p1055 32525",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405)"
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (106/458)"
         }
       ],
       "stopVerdict": "not shown",
@@ -921,22 +919,24 @@
       "moved": {
         "verdict": "shown"
       },
-      "why": "a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405) (the door swings up and the step lowers (the picture), far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388)",
-      "seconds": 72
+      "why": "a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458) (the door swings up and the step lowers (the picture), far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388)",
+      "seconds": 77,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:54:16.420Z"
     },
     {
       "function": 9,
       "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
       "verdict": "shown",
-      "msOneCall": 202,
-      "msPerStep": 57,
+      "msOneCall": 173,
+      "msPerStep": 53,
       "time": {
-        "open": 16,
+        "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 51,
-        "A": 66,
-        "B": 50
+        "reach": 46,
+        "A": 63,
+        "B": 48
       },
       "stop": null,
       "stops": [],
@@ -973,8 +973,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 115,
-          "msOneCall": 202,
+          "ms": 105,
+          "msOneCall": 173,
           "stops": [],
           "moved": {}
         },
@@ -1010,8 +1010,8 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 987,
-          "msOneCall": 81,
+          "ms": 851,
+          "msOneCall": 78,
           "stops": [],
           "moved": {}
         },
@@ -1038,8 +1038,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1062,
-          "msOneCall": 138,
+          "ms": 944,
+          "msOneCall": 129,
           "stops": [],
           "moved": {}
         },
@@ -1066,8 +1066,8 @@
           ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 103,
-          "msOneCall": 79,
+          "ms": 88,
+          "msOneCall": 71,
           "stops": [],
           "moved": {}
         }
@@ -1182,9 +1182,9 @@
           ]
         }
       ],
-      "seconds": 244,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:25:30.507Z"
+      "seconds": 227,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:54:16.420Z"
     }
   ]
 }

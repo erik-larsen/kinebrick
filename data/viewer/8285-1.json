@@ -688,18 +688,14 @@
     {
       "function": 5,
       "does": "The bonnet, with the grille and front wings, tilts forward to show the engine.",
-      "held": {
-        "result": "partly",
-        "reason": "In the viewer neither a turn of the control nor a push by hand moves the listed part p1074, with the control in view; the check tilts the bonnet 0.15 rad one way only. Viewer sweep, decision 286."
-      },
       "verdict": "shown",
-      "msOneCall": 14,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 156,
+        "reach": 195,
         "A": 0,
         "B": 9
       },
@@ -712,7 +708,7 @@
           "asked": 0.15,
           "went": 0,
           "ms": 0,
-          "msOneCall": 14,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p1074 3707": [
@@ -789,21 +785,23 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 174
+      "seconds": 212,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:17:49.021Z"
     },
     {
       "function": 9,
       "does": "The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom.",
       "verdict": "shown",
-      "msOneCall": 145,
-      "msPerStep": 40,
+      "msOneCall": 124,
+      "msPerStep": 35,
       "time": {
-        "open": 9,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 100,
-        "A": 6,
-        "B": 26
+        "reach": 98,
+        "A": 5,
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -816,8 +814,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1693,
-          "msOneCall": 145,
+          "ms": 1516,
+          "msOneCall": 124,
           "stops": [],
           "moved": {
             "p1646 4716": [
@@ -850,8 +848,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1635,
-          "msOneCall": 78,
+          "ms": 1504,
+          "msOneCall": 76,
           "stops": [],
           "moved": {
             "p1646 4716": [
@@ -886,7 +884,9 @@
           "pinsAsked": [
             1739
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -945,9 +945,9 @@
           "stops": []
         }
       ],
-      "seconds": 141,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:49:22.389Z"
+      "seconds": 136,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:17:49.021Z"
     },
     {
       "function": 10,

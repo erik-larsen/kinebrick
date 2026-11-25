@@ -15,8 +15,8 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p79 4263 turned 0.82 degrees, 0.825 predicted (rate 0.0295, turn 0.488)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p82 4263 turned 0.82 degrees, 0.825 predicted (rate 0.0295, turn 0.488)"
       ],
-      "msOneCall": 19,
-      "msPerStep": 4,
+      "msOneCall": 23,
+      "msPerStep": 5,
       "time": {
         "open": 7,
         "collisions": 0,
@@ -43,8 +43,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.488,
-          "ms": 58,
-          "msOneCall": 19,
+          "ms": 73,
+          "msOneCall": 23,
           "stops": [
             "93/105"
           ],
@@ -96,8 +96,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 120,
-          "msOneCall": 7,
+          "ms": 142,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p17 3708": [
@@ -170,7 +170,7 @@
           ],
           "controlWent": [
             0,
-            140.96
+            141.85
           ],
           "moved": [
             "p17 3708",
@@ -185,35 +185,35 @@
           "went": {
             "p17 3708": [
               0,
-              9.53
+              5.62
             ],
             "p79 4263": [
-              3.64,
-              6.7
+              2.19,
+              3.76
             ],
             "p82 4263": [
-              3.64,
-              6.7
+              2.19,
+              3.76
             ],
             "p87 3482": [
-              7.27,
-              11.58
+              4.38,
+              6.83
             ],
             "p103 4519": [
-              3.38,
-              9.59
+              2.06,
+              5.72
             ],
             "p109 4519": [
-              3.38,
-              9.59
+              2.06,
+              5.72
             ],
             "p129 3482": [
-              10.15,
-              7.16
+              6.18,
+              4.21
             ],
             "p131 3482": [
-              10.15,
-              7.16
+              6.18,
+              4.21
             ]
           },
           "staysWent": {
@@ -227,7 +227,9 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "93/105"
+          ]
         }
       ],
       "stopsJudged": [
@@ -241,7 +243,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 20
+      "seconds": 20,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:39:48.486Z"
     }
   ]
 }

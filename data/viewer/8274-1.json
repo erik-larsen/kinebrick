@@ -320,59 +320,56 @@
         "reason": "The auger does not turn in the viewer: it shifts 6 to 14 LDU and stops at once at p395/p694 and p397/p701, at the built position; the check turns 0 and 0.1 rad and judges it by its rates."
       },
       "verdict": "not shown",
-      "why": "B: no listed part moved by hand; not decided: p919 32278: a travel of 0.2 rad or less each way, stopped at +0.105 rad (397/701); -0 rad (395/694)",
-      "msOneCall": 99,
-      "msPerStep": 42,
+      "why": "B: no listed part moved by hand; not decided: p919 32278: a travel of 0.2 rad or less each way, stopped at -0 rad (395/694)",
+      "msOneCall": 94,
+      "msPerStep": 33,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p919 32278",
-        "way": 1,
-        "went": 0.105,
+        "way": -1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "397/701"
+          "395/694"
         ]
       },
       "stops": [
-        "397/701",
         "395/694"
       ],
       "A": [
         {
           "control": "p919 32278",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.105,
-          "ms": 125,
-          "msOneCall": 99,
-          "stops": [
-            "397/701"
-          ],
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 95,
+          "msOneCall": 94,
+          "stops": [],
           "moved": {
             "p938 43857": [
-              55.31,
-              6
+              52.86,
+              5.73
             ],
             "p964 56145": [
               0,
-              0.27
+              0.26
             ]
           }
         },
         {
           "control": "p919 32278",
           "way": -1,
-          "asked": 0.1,
+          "asked": 1.5,
           "went": 0,
-          "ms": 35,
-          "msOneCall": 34,
+          "ms": 33,
+          "msOneCall": 32,
           "stops": [
             "395/694"
           ],
@@ -438,7 +435,7 @@
         {
           "control": "p919 32278",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.105 rad (397/701); -0 rad (395/694)"
+          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (395/694)"
         }
       ],
       "stopVerdict": "not decided",
@@ -446,7 +443,9 @@
         "verdict": "not shown",
         "why": "B: no listed part moved by hand"
       },
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:16:00.633Z"
     },
     {
       "function": 6,

@@ -110,37 +110,28 @@
         "A": 12,
         "B": 12
       },
-      "stop": {
-        "control": "p240 58120",
-        "way": 1,
-        "went": 4.712,
-        "asked": 4.1,
-        "by": [
-          "211/216"
-        ]
-      },
-      "stops": [
-        "211/216"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p240 58120",
           "way": 1,
           "asked": 4.1,
-          "went": 4.712,
-          "ms": 6015,
+          "went": 4.555,
+          "ms": 5885,
           "msOneCall": null,
-          "stops": [
+          "stops": [],
+          "passed": [
             "211/216"
           ],
           "moved": {
             "p624 62274c01 against p623 62271c01": [
-              1.73,
+              1.68,
               0
             ],
             "p894 64178": [
-              1.2,
-              0.86
+              1.16,
+              0.83
             ]
           }
         },
@@ -149,7 +140,7 @@
           "way": -1,
           "asked": 4.2,
           "went": -5.184,
-          "ms": 5463,
+          "ms": 5622,
           "msOneCall": null,
           "stops": [],
           "moved": {
@@ -174,7 +165,7 @@
           "drags": [],
           "controlWent": [
             0,
-            0
+            567
           ],
           "moved": [
             "p624 62274c01 against p623 62271c01",
@@ -182,12 +173,12 @@
           ],
           "went": {
             "p624 62274c01 against p623 62271c01": [
-              4.03,
+              3.52,
               0.09
             ],
             "p894 64178": [
-              2.84,
-              2.03
+              2.47,
+              1.77
             ]
           },
           "staysWent": {},
@@ -197,18 +188,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p240 58120",
-          "judged": "stands",
-          "why": "stopped at +4.712 rad (211/216); kinds electric-motor, function-selector, linear-actuator: container tipper"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 40
+      "seconds": 41,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:45:40.858Z"
     },
     {
       "function": 3,

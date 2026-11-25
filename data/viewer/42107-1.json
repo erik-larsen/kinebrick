@@ -148,8 +148,12 @@
     {
       "function": 3,
       "does": "The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall.",
+      "held": {
+        "result": "partly",
+        "reason": "Under a hand the swing arm moves (the wheel end 22 to 62 LDU), but two parts listed to stay turn 2.96 degrees with it: the rear wheel hub p379 and the crankshaft part p185. That is over a tenth of the least-moved listed part (22.4). The viewer's own turn does not take the control p262. Full viewer sweep at ac22e339, decision 363."
+      },
       "verdict": "not shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
@@ -168,7 +172,7 @@
           "asked": 0.3,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p247 35189": [
@@ -273,7 +277,9 @@
       ],
       "why": "by hand: p379 88516, p185 2854 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 12
+      "seconds": 12,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:29:52.833Z"
     },
     {
       "function": 5,

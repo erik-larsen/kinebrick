@@ -11,13 +11,13 @@
       "function": 1,
       "does": "The grey knob at the back (a 12-tooth double bevel gear) raises and lowers the loader arms and bucket: it turns a worm, which turns an 8-tooth gear on a cross axle at the top of the back; the two arms, long axles along the sides, are fixed on that axle's ends and carry the crossbar the bucket clips onto.",
       "verdict": "shown",
-      "msOneCall": 6,
-      "msPerStep": 1,
+      "msOneCall": 7,
+      "msPerStep": 2,
       "time": {
         "open": 3,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
+        "reach": 3,
         "A": 0,
         "B": 12
       },
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.14,
-          "ms": 5,
-          "msOneCall": 6,
+          "ms": 6,
+          "msOneCall": 7,
           "stops": [
             "ground: p57"
           ],
@@ -84,8 +84,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21,
-          "msOneCall": 1,
+          "ms": 27,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p22 4716 against p0 32009": [
@@ -150,7 +150,7 @@
           ],
           "controlWent": [
             0,
-            115.96
+            115.91
           ],
           "moved": [
             "p22 4716 against p0 32009",
@@ -163,27 +163,27 @@
           "went": {
             "p22 4716 against p0 32009": [
               0,
-              115.96
+              115.91
             ],
             "p39 3647 against p0 32009": [
               0,
-              30.56
+              30.57
             ],
             "p45 44294 against p0 32009": [
               42.09,
-              30.56
+              30.57
             ],
             "p54 44294 against p0 32009": [
               42.09,
-              30.56
+              30.57
             ],
             "p47 3706 against p0 32009": [
-              84.19,
-              30.56
+              84.2,
+              30.57
             ],
             "p57 30394 against p0 32009": [
-              97.02,
-              30.56
+              97.04,
+              30.57
             ]
           },
           "staysWent": {
@@ -215,14 +215,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:21:39.704Z"
     },
     {
       "function": 2,
       "does": "The bucket tilts by hand on its click hinge under the arms' crossbar, holding at each click.",
       "verdict": "shown",
-      "msOneCall": 4,
-      "msPerStep": 1,
+      "msOneCall": 6,
+      "msPerStep": 2,
       "time": {
         "open": 3,
         "collisions": 0,
@@ -256,8 +258,8 @@
           },
           "asked": 0.77,
           "went": 0.035,
-          "ms": 1,
-          "msOneCall": 4,
+          "ms": 2,
+          "msOneCall": 6,
           "stops": [
             "ground: p57"
           ],
@@ -284,7 +286,7 @@
           },
           "asked": 1.03,
           "went": -1.03,
-          "ms": 10,
+          "ms": 13,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -326,7 +328,7 @@
           ],
           "controlWent": [
             0.01,
-            62.89
+            62.02
           ],
           "moved": [
             "p57 30394 against p47 3706"
@@ -334,7 +336,7 @@
           "went": {
             "p57 30394 against p47 3706": [
               0.01,
-              62.91
+              62.04
             ]
           },
           "staysWent": {
@@ -348,8 +350,7 @@
           ],
           "stops": [
             "46/57",
-            "ground: p57",
-            "48/57"
+            "ground: p57"
           ]
         }
       ],
@@ -364,7 +365,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:21:39.704Z"
     },
     {
       "function": 3,

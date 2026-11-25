@@ -11,15 +11,15 @@
       "function": 1,
       "does": "The droid changes from its standing attack shape into a wheel: the curved brown shell, hinged to the top of the back, swings forward and down round the body, while the arms, head and legs fold in, until it is a ball that can be rolled along the floor.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 6
+        "B": 7
       },
       "stop": null,
       "stops": [],
@@ -30,7 +30,7 @@
           "asked": 0.02,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p0 32009 against p305 32016": [
@@ -94,16 +94,18 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 12
+      "seconds": 12,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:57:42.107Z"
     },
     {
       "function": 2,
       "does": "The head on the front end of the shell, with its red-tipped sensors, folds down against the body.",
       "verdict": "shown",
-      "msOneCall": 38,
+      "msOneCall": 42,
       "msPerStep": 4,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -128,8 +130,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 119,
-          "msOneCall": 38,
+          "ms": 139,
+          "msOneCall": 42,
           "stops": [],
           "moved": {
             "p564 6536 against p305 32016": [
@@ -190,16 +192,16 @@
             }
           ],
           "controlWent": [
-            57.37,
-            91.77
+            59.89,
+            97.06
           ],
           "moved": [
             "p564 6536 against p305 32016"
           ],
           "went": {
             "p564 6536 against p305 32016": [
-              90.72,
-              91.77
+              94.69,
+              97.06
             ]
           },
           "staysWent": {
@@ -212,8 +214,9 @@
             "p0 32009 against p305 32016"
           ],
           "stops": [
+            "558/560",
             "557/577",
-            "558/560"
+            "241/569"
           ]
         }
       ],
@@ -228,13 +231,19 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:57:42.107Z"
     },
     {
       "function": 3,
       "does": "Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim.",
+      "held": {
+        "result": "partly",
+        "reason": "Under a hand each arm swings (18 and 91 LDU), but the body p0, listed to stay, shifts 3.3 LDU and turns 3.69 degrees with it, over a tenth of the least-moved listed part (18.5). The viewer's own turn does not take the controls p238 and p250. Full viewer sweep at ac22e339, decision 363."
+      },
       "verdict": "not shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 8,
@@ -253,7 +262,7 @@
           "asked": 0.6,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p619 6536 against p0 32009": [
@@ -441,7 +450,9 @@
       ],
       "why": "by hand: p0 32009 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 21
+      "seconds": 21,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:57:42.107Z"
     },
     {
       "function": 5,
@@ -451,7 +462,7 @@
         "reason": "The booklet folds the legs about 90 degrees (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4133412.pdf#page=87), but in the viewer a collision stops p11 at 0.035 rad one way (parts 16/45) and 0.66 rad the other (parts 24/118). Viewer sweep on today's code, decision 298."
       },
       "verdict": "shown",
-      "msOneCall": 37,
+      "msOneCall": 43,
       "msPerStep": 11,
       "time": {
         "open": 5,
@@ -481,7 +492,7 @@
           "asked": 1.5,
           "went": 0.035,
           "ms": 11,
-          "msOneCall": 37,
+          "msOneCall": 43,
           "stops": [
             "16/45"
           ],
@@ -501,8 +512,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.663,
-          "ms": 59,
-          "msOneCall": 9,
+          "ms": 66,
+          "msOneCall": 11,
           "stops": [
             "24/118"
           ],
@@ -544,8 +555,8 @@
             }
           ],
           "controlWent": [
-            32.92,
-            43.36
+            33.04,
+            43.52
           ],
           "moved": [
             "p164 32310 against p0 32009",
@@ -553,12 +564,12 @@
           ],
           "went": {
             "p164 32310 against p0 32009": [
-              124.88,
-              43.3
+              125.34,
+              43.46
             ],
             "p182 32310 against p0 32009": [
-              124.88,
-              43.3
+              125.34,
+              43.46
             ]
           },
           "staysWent": {},
@@ -580,13 +591,15 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 19
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:57:42.107Z"
     },
     {
       "function": 6,
       "does": "The single back leg swings up over the back to close the wheel, and down again to stand on.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
@@ -605,7 +618,7 @@
           "asked": 0.01,
           "went": 0,
           "ms": 0,
-          "msOneCall": 3,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p197 32310 against p0 32009": [
@@ -669,7 +682,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 12
+      "seconds": 12,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:57:42.107Z"
     }
   ]
 }

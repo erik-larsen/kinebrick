@@ -11,13 +11,13 @@
       "function": 1,
       "does": "The 12-tooth bevel gear on the fuselage's right side is a knob that raises and lowers the landing gear: it turns the nose gear's leg up into the fuselage, and a steering link from the nose gear swings the main gear's axle, so the two main wheels fold up too.",
       "verdict": "shown",
-      "msOneCall": 11,
+      "msOneCall": 13,
       "msPerStep": 2,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 10,
+        "reach": 12,
         "A": 0,
         "B": 12
       },
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 43,
-          "msOneCall": 11,
+          "ms": 46,
+          "msOneCall": 13,
           "stops": [
             "ground: p109"
           ],
@@ -73,7 +73,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.907,
-          "ms": 33,
+          "ms": 43,
           "msOneCall": 3,
           "stops": [
             "0/9"
@@ -129,7 +129,7 @@
           ],
           "controlWent": [
             0,
-            57.7
+            58.99
           ],
           "moved": [
             "p106 42610",
@@ -140,24 +140,24 @@
           ],
           "went": {
             "p106 42610": [
-              38.62,
-              57.72
+              39.4,
+              59.02
             ],
             "p34 32293": [
-              41.65,
+              42.29,
               13.48
             ],
             "p25 32073": [
               0,
-              62.76
+              63.83
             ],
             "p104 42610": [
-              41.65,
-              62.76
+              42.29,
+              63.83
             ],
             "p105 42610": [
-              41.65,
-              62.76
+              42.29,
+              63.83
             ]
           },
           "staysWent": {},
@@ -179,16 +179,18 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 26
+      "seconds": 28,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:43:26.689Z"
     },
     {
       "function": 2,
       "does": "The canopy, made of two flexible axles over the cockpit, hinges up at its front to open the cockpit.",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -203,8 +205,8 @@
           "way": 1,
           "asked": 0.67,
           "went": 0.67,
-          "ms": 15,
-          "msOneCall": 8,
+          "ms": 18,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p43 6536": [
@@ -226,8 +228,8 @@
           "way": -1,
           "asked": 1.33,
           "went": -1.33,
-          "ms": 24,
-          "msOneCall": 1,
+          "ms": 29,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p43 6536": [
@@ -272,7 +274,7 @@
           ],
           "controlWent": [
             0,
-            96.34
+            76.08
           ],
           "moved": [
             "p43 6536",
@@ -282,25 +284,27 @@
           "went": {
             "p43 6536": [
               0,
-              96.34
+              76.08
             ],
             "p82 4274": [
-              33.32,
-              96.34
+              27.56,
+              76.08
             ],
             "p83 4274": [
-              33.32,
-              96.34
+              27.56,
+              76.08
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "0/43"
+            "82/86"
           ]
         }
       ],
-      "seconds": 16
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:43:26.689Z"
     },
     {
       "function": 3,

@@ -17,14 +17,14 @@
       "verdict": "not shown",
       "why": "A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved",
       "msOneCall": 21,
-      "msPerStep": 10,
+      "msPerStep": 9,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 18
+        "B": 14
       },
       "stop": {
         "control": "p69 3705",
@@ -82,8 +82,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.419,
-          "ms": 118,
-          "msOneCall": 8,
+          "ms": 111,
+          "msOneCall": 5,
           "stops": [
             "70/94"
           ],
@@ -141,8 +141,8 @@
             }
           ],
           "controlWent": [
-            2.04,
-            32.34
+            1.68,
+            16.44
           ],
           "moved": [
             "p270 3482 against p0 3034",
@@ -151,26 +151,26 @@
           ],
           "went": {
             "p270 3482 against p0 3034": [
-              80.15,
-              54.69
+              39.48,
+              23.86
             ],
             "p279 3482 against p0 3034": [
-              80.37,
-              54.66
+              39.59,
+              23.88
             ],
             "p284 3482 against p0 3034": [
-              120.63,
-              78.11
+              54.5,
+              27.34
             ]
           },
           "staysWent": {
             "p14 3895 against p0 3034": [
-              4.98,
-              3.96
+              4.09,
+              3.61
             ],
             "p65 3673 against p0 3034": [
-              9.94,
-              3.24
+              8.16,
+              3.09
             ],
             "p172 3648a against p65 3673": [
               0,
@@ -183,10 +183,9 @@
             "p172 3648a against p65 3673"
           ],
           "stops": [
-            "70/94",
+            "36/215",
             "78/274",
-            "76/265",
-            "90/107"
+            "76/265"
           ]
         }
       ],
@@ -206,7 +205,9 @@
         "verdict": "not shown",
         "why": "A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved"
       },
-      "seconds": 22
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:32:58.884Z"
     },
     {
       "function": 5,

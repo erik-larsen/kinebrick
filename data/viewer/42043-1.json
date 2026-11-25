@@ -847,15 +847,15 @@
       "function": 8,
       "does": "Function K: the orange beacons on the two back corners of the cab's roof are knobs that steer the two front axles (the first by up to 28 degrees, the second by 19): each beacon's upright shaft has a 12-tooth gear on the same 20-tooth gear, on a third upright shaft behind the cab, whose 12-tooth bevel gear at the bottom turns a 20-tooth bevel gear on a cross shaft; the cross shaft's towballs push links to both front axles' steering arms.",
       "verdict": "shown",
-      "msOneCall": 793,
-      "msPerStep": 169,
+      "msOneCall": 764,
+      "msPerStep": 161,
       "time": {
         "open": 17,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 29,
-        "B": 81
+        "A": 28,
+        "B": 75
       },
       "stop": null,
       "stops": [],
@@ -865,8 +865,8 @@
           "way": 1,
           "asked": 1.47,
           "went": 1.47,
-          "ms": 7093,
-          "msOneCall": 793,
+          "ms": 6744,
+          "msOneCall": 764,
           "stops": [],
           "moved": {
             "p1278 32270": [
@@ -932,8 +932,8 @@
           "way": -1,
           "asked": 1.37,
           "went": -1.37,
-          "ms": 6544,
-          "msOneCall": 367,
+          "ms": 6309,
+          "msOneCall": 350,
           "stops": [],
           "moved": {
             "p1278 32270": [
@@ -999,8 +999,8 @@
           "way": 1,
           "asked": 1.47,
           "went": 1.47,
-          "ms": 6938,
-          "msOneCall": 357,
+          "ms": 6745,
+          "msOneCall": 355,
           "stops": [],
           "moved": {
             "p1278 32270": [
@@ -1066,8 +1066,8 @@
           "way": -1,
           "asked": 1.37,
           "went": -1.37,
-          "ms": 6448,
-          "msOneCall": 390,
+          "ms": 6319,
+          "msOneCall": 341,
           "stops": [],
           "moved": {
             "p1278 32270": [
@@ -1156,7 +1156,7 @@
           ],
           "controlWent": [
             0,
-            83.86
+            81.17
           ],
           "moved": [
             "p1278 32270",
@@ -1174,47 +1174,47 @@
           "went": {
             "p1278 32270": [
               0,
-              83.86
+              81.17
             ],
             "p1187 32269": [
               0,
-              50.32
+              48.7
             ],
             "p897 6589": [
               0,
-              50.32
+              48.7
             ],
             "p899 32198": [
               0,
-              30.23
+              29.26
             ],
             "p901 2736": [
-              20.83,
-              30.23
+              20.18,
+              29.26
             ],
             "p1026 32293": [
-              20.14,
-              2.7
+              20.05,
+              2.69
             ],
             "p1123 32005": [
-              19.94,
-              4.93
+              20.73,
+              4.91
             ],
             "p2217 86652": [
-              14.95,
-              32.26
+              15.55,
+              33.56
             ],
             "p2211 86652": [
-              14.95,
-              32.26
+              15.55,
+              33.56
             ],
             "p2215 86652": [
-              9.74,
-              20.92
+              9.7,
+              20.83
             ],
             "p2213 86652": [
-              9.74,
-              20.92
+              9.7,
+              20.83
             ]
           },
           "staysWent": {
@@ -1233,6 +1233,7 @@
           },
           "staysMoved": [],
           "stops": [
+            "1080/1112",
             "1079/1111"
           ]
         },
@@ -1262,7 +1263,7 @@
           ],
           "controlWent": [
             0,
-            84.22
+            81.11
           ],
           "moved": [
             "p1278 32270",
@@ -1280,47 +1281,47 @@
           "went": {
             "p1278 32270": [
               0,
-              84.22
+              81.11
             ],
             "p1187 32269": [
               0,
-              50.53
+              48.67
             ],
             "p897 6589": [
               0,
-              50.53
+              48.67
             ],
             "p899 32198": [
               0,
-              30.36
+              29.24
             ],
             "p901 2736": [
-              20.92,
-              30.36
+              20.17,
+              29.24
             ],
             "p1026 32293": [
-              20.24,
-              2.68
+              19.97,
+              2.64
             ],
             "p1123 32005": [
-              20.04,
-              4.89
+              20.67,
+              4.83
             ],
             "p2217 86652": [
-              15.03,
-              32.43
+              15.51,
+              33.47
             ],
             "p2211 86652": [
-              15.03,
-              32.43
+              15.51,
+              33.47
             ],
             "p2215 86652": [
-              9.79,
-              21.03
+              9.65,
+              20.74
             ],
             "p2213 86652": [
-              9.79,
-              21.03
+              9.65,
+              20.74
             ]
           },
           "staysWent": {
@@ -1339,11 +1340,14 @@
           },
           "staysMoved": [],
           "stops": [
+            "36/917",
             "1079/1111"
           ]
         }
       ],
-      "seconds": 128
+      "seconds": 122,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:38:25.483Z"
     },
     {
       "function": 9,
@@ -1799,39 +1803,37 @@
       "function": 14,
       "does": "Function J: the two cab doors open.",
       "verdict": "shown",
-      "msOneCall": 573,
-      "msPerStep": 60,
+      "msOneCall": 543,
+      "msPerStep": 52,
       "time": {
-        "open": 17,
+        "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 78,
-        "A": 5,
-        "B": 60
+        "reach": 95,
+        "A": 4,
+        "B": 62
       },
       "stop": {
         "control": "p6740 32316",
-        "way": -1,
-        "went": -0.872,
+        "way": 1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "6816/7003"
+          "6579/6740"
         ]
       },
       "stops": [
         "6579/6740",
-        "6816/7003",
-        "6841/7004",
         "6580/6747"
       ],
       "A": [
         {
           "control": "p6740 32316",
           "way": 1,
-          "asked": 0.87,
+          "asked": 1.5,
           "went": 0,
-          "ms": 225,
-          "msOneCall": 573,
+          "ms": 186,
+          "msOneCall": 543,
           "stops": [
             "6579/6740"
           ],
@@ -1840,34 +1842,30 @@
         {
           "control": "p6740 32316",
           "way": -1,
-          "asked": 1.5,
-          "went": -0.872,
-          "ms": 1496,
-          "msOneCall": 242,
-          "stops": [
-            "6816/7003"
-          ],
+          "asked": 0.87,
+          "went": -0.87,
+          "ms": 1290,
+          "msOneCall": 220,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p6747 32316",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.872,
-          "ms": 1471,
-          "msOneCall": 232,
-          "stops": [
-            "6841/7004"
-          ],
+          "asked": 0.87,
+          "went": 0.87,
+          "ms": 1257,
+          "msOneCall": 202,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p6747 32316",
           "way": -1,
-          "asked": 0.87,
+          "asked": 1.5,
           "went": 0,
-          "ms": 184,
-          "msOneCall": 187,
+          "ms": 161,
+          "msOneCall": 162,
           "stops": [
             "6580/6747"
           ],
@@ -1909,10 +1907,10 @@
           "staysMoved": [],
           "stops": [
             "6816/7003",
+            "6683/6809",
             "6579/6740",
             "6579/6741",
-            "6579/6809",
-            "6683/6809"
+            "6579/6809"
           ]
         },
         {
@@ -1940,21 +1938,19 @@
             }
           ],
           "controlWent": [
-            52.13,
-            51.5
+            52.26,
+            51.63
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "6841/7004",
             "6580/6747",
             "6580/6748",
             "6580/6835",
             "6704/6787",
-            "6704/6806",
-            "6704/6835"
+            "6841/7004"
           ]
         }
       ],
@@ -1962,19 +1958,21 @@
         {
           "control": "p6740 32316",
           "judged": "stands",
-          "why": "stopped at +0 rad (6579/6740); -0.872 rad (6816/7003); kinds hinge: doors"
+          "why": "stopped at +0 rad (6579/6740); kinds hinge: doors"
         },
         {
           "control": "p6747 32316",
           "judged": "stands",
-          "why": "stopped at +0.872 rad (6841/7004); -0 rad (6580/6747); kinds hinge: doors"
+          "why": "stopped at -0 rad (6580/6747); kinds hinge: doors"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 160
+      "seconds": 178,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:38:25.483Z"
     }
   ]
 }

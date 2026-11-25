@@ -579,15 +579,15 @@
       "function": 8,
       "does": "The two doors swing open on hinges at their front edges.",
       "verdict": "shown",
-      "msOneCall": 219,
-      "msPerStep": 86,
+      "msOneCall": 214,
+      "msPerStep": 82,
       "time": {
-        "open": 22,
+        "open": 21,
         "collisions": 0,
         "first": 0,
-        "reach": 389,
-        "A": 21,
-        "B": 81
+        "reach": 410,
+        "A": 25,
+        "B": 76
       },
       "stop": {
         "control": "p2462 24316",
@@ -600,7 +600,6 @@
       },
       "stops": [
         "370/2434",
-        "2401/2437",
         "2468/2708",
         "2616/2709"
       ],
@@ -619,10 +618,10 @@
               2455
             ]
           },
-          "asked": 0.73,
+          "asked": 1.5,
           "went": 0,
-          "ms": 123,
-          "msOneCall": 145,
+          "ms": 116,
+          "msOneCall": 149,
           "stops": [
             "370/2434"
           ],
@@ -642,13 +641,11 @@
               2455
             ]
           },
-          "asked": 1.5,
-          "went": -0.733,
-          "ms": 1808,
-          "msOneCall": 219,
-          "stops": [
-            "2401/2437"
-          ],
+          "asked": 0.73,
+          "went": -0.73,
+          "ms": 1719,
+          "msOneCall": 214,
+          "stops": [],
           "moved": {}
         },
         {
@@ -670,8 +667,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1043,
-          "msOneCall": 88,
+          "ms": 1115,
+          "msOneCall": 85,
           "stops": [],
           "moved": {}
         },
@@ -694,8 +691,8 @@
           ],
           "asked": 1.5,
           "went": -1.151,
-          "ms": 815,
-          "msOneCall": 81,
+          "ms": 847,
+          "msOneCall": 119,
           "stops": [
             "2468/2708"
           ],
@@ -720,8 +717,8 @@
           ],
           "asked": 1.5,
           "went": 1.116,
-          "ms": 989,
-          "msOneCall": 87,
+          "ms": 843,
+          "msOneCall": 70,
           "stops": [
             "2616/2709"
           ],
@@ -746,8 +743,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1293,
-          "msOneCall": 84,
+          "ms": 1098,
+          "msOneCall": 72,
           "stops": [],
           "moved": {}
         }
@@ -781,8 +778,8 @@
             }
           ],
           "controlWent": [
-            89.75,
-            43.29
+            90.1,
+            43.47
           ],
           "moved": [],
           "went": {},
@@ -836,7 +833,7 @@
           ],
           "controlWent": [
             0,
-            127.15
+            67.53
           ],
           "moved": [],
           "went": {},
@@ -886,7 +883,7 @@
           ],
           "controlWent": [
             0,
-            102.29
+            104.29
           ],
           "moved": [],
           "went": {},
@@ -901,7 +898,7 @@
         {
           "control": "p2437 64394",
           "judged": "stands",
-          "why": "stopped at +0 rad (370/2434); -0.733 rad (2401/2437); kinds hinge: doors"
+          "why": "stopped at +0 rad (370/2434); kinds hinge: doors"
         },
         {
           "control": "p2462 24316",
@@ -918,13 +915,15 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 523
+      "seconds": 542,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:48:45.242Z"
     },
     {
       "function": 9,
       "does": "The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment.",
       "verdict": "shown",
-      "msOneCall": 7,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 11,
@@ -932,7 +931,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 15
+        "B": 16
       },
       "stop": null,
       "stops": [],
@@ -943,7 +942,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 7,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p2135 41239": [
@@ -1006,21 +1005,23 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 26
+      "seconds": 27,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:48:45.242Z"
     },
     {
       "function": 11,
       "does": "The rear wing's angle can be adjusted: the wing tilts on its two supports.",
       "verdict": "shown",
-      "msOneCall": 14,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 11,
+        "reach": 24,
         "A": 0,
-        "B": 26
+        "B": 33
       },
       "stop": null,
       "stops": [],
@@ -1030,8 +1031,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 14,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p2553 32523": [
@@ -1088,7 +1089,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 49
+      "seconds": 69,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:48:45.242Z"
     },
     {
       "function": 12,

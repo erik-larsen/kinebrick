@@ -253,8 +253,9 @@
     {
       "function": 2,
       "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
-      "verdict": "shown",
-      "msOneCall": 13,
+      "verdict": "not shown",
+      "why": "B: no listed part moved by hand",
+      "msOneCall": 16,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -282,8 +283,8 @@
           "way": 1,
           "asked": 0.27,
           "went": 0.236,
-          "ms": 18,
-          "msOneCall": 13,
+          "ms": 19,
+          "msOneCall": 16,
           "stops": [
             "3/198"
           ],
@@ -327,8 +328,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 2,
+          "ms": 3,
+          "msOneCall": 4,
           "stops": [
             "3/198"
           ],
@@ -395,45 +396,37 @@
           ],
           "controlWent": [
             0,
-            14.83
+            0.63
           ],
-          "moved": [
-            "p45 32271",
-            "p51 32271",
-            "p43 59426",
-            "p52 59426",
-            "p194 56145",
-            "p196 56145",
-            "p55 44294"
-          ],
+          "moved": [],
           "went": {
             "p45 32271": [
               0,
-              14.83
+              0.63
             ],
             "p51 32271": [
               0,
-              14.83
+              0.63
             ],
             "p43 59426": [
-              34.29,
-              14.83
+              0,
+              0.63
             ],
             "p52 59426": [
-              34.29,
-              14.83
+              0,
+              0.63
             ],
             "p194 56145": [
-              34.29,
-              14.83
+              0,
+              0.63
             ],
             "p196 56145": [
-              34.29,
-              14.83
+              0,
+              0.63
             ],
             "p55 44294": [
               0,
-              14.83
+              0.63
             ]
           },
           "staysWent": {
@@ -457,9 +450,12 @@
       ],
       "stopVerdict": "shown",
       "moved": {
-        "verdict": "shown"
+        "verdict": "not shown",
+        "why": "B: no listed part moved by hand"
       },
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:08:29.301Z"
     },
     {
       "function": 4,

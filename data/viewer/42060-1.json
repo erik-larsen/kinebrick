@@ -11,7 +11,7 @@
       "function": 2,
       "does": "Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it.",
       "verdict": "shown",
-      "msOneCall": 11,
+      "msOneCall": 9,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -42,8 +42,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 5,
-          "msOneCall": 8,
+          "ms": 4,
+          "msOneCall": 6,
           "stops": [
             "26/172"
           ],
@@ -74,8 +74,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 131,
-          "msOneCall": 11,
+          "ms": 110,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -171,9 +171,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:24:54.663Z"
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:49:48.765Z"
     },
     {
       "function": 3,
@@ -567,7 +567,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.012,
-          "ms": 76,
+          "ms": 77,
           "msOneCall": 21,
           "stops": [
             "259/277"
@@ -592,7 +592,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 88,
+          "ms": 91,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -677,7 +677,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:49:48.765Z"
     },
     {
       "function": 6,
@@ -695,7 +697,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 7
       },
       "stop": null,
       "stops": [],
@@ -753,28 +755,23 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            281
+          ],
           "shift": [],
           "drags": [
             {
-              "kind": "push",
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            48.76,
-            11.76
+            67.92,
+            30.01
           ],
           "moved": [
             "p288 42060 - 33299b",
@@ -782,18 +779,18 @@
           ],
           "went": {
             "p288 42060 - 33299b": [
-              54.88,
-              11.76
+              77.07,
+              30.01
             ],
             "p295 32524 against p277 32316": [
-              2.79,
-              8.02
+              1.93,
+              5.55
             ]
           },
           "staysWent": {
             "p277 32316": [
-              39.01,
-              18.14
+              66.83,
+              31.59
             ]
           },
           "staysMoved": [
@@ -807,16 +804,16 @@
       ],
       "why": "by hand: p277 32316 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 17,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:24:54.663Z"
+      "seconds": 11,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:49:48.765Z"
     },
     {
       "function": 8,
       "does": "The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand.",
       "verdict": "shown",
-      "msOneCall": 14,
-      "msPerStep": 2,
+      "msOneCall": 15,
+      "msPerStep": 3,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -827,15 +824,15 @@
       },
       "stop": {
         "control": "p294 30394",
-        "way": 1,
-        "went": 0.235,
+        "way": -1,
+        "went": -0.536,
         "asked": 0.57,
         "by": [
-          "294/308"
+          "172/294"
         ]
       },
       "stops": [
-        "294/308"
+        "172/294"
       ],
       "A": [
         {
@@ -848,13 +845,11 @@
               293
             ]
           },
-          "asked": 0.57,
-          "went": 0.235,
-          "ms": 15,
-          "msOneCall": 14,
-          "stops": [
-            "294/308"
-          ],
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 17,
+          "msOneCall": 15,
+          "stops": [],
           "moved": {}
         },
         {
@@ -867,11 +862,13 @@
               293
             ]
           },
-          "asked": 0.23,
-          "went": -0.23,
-          "ms": 11,
-          "msOneCall": 3,
-          "stops": [],
+          "asked": 0.57,
+          "went": -0.536,
+          "ms": 23,
+          "msOneCall": 5,
+          "stops": [
+            "172/294"
+          ],
           "moved": {}
         }
       ],
@@ -902,16 +899,17 @@
           ],
           "controlWent": [
             0,
-            47.64
+            47.7
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "167/294",
             "172/294",
-            "294/308"
+            "167/294",
+            "294/308",
+            "159/294"
           ]
         }
       ],
@@ -919,14 +917,16 @@
         {
           "control": "p294 30394",
           "judged": "stands",
-          "why": "stopped at +0.235 rad (294/308); kinds posable-joint: bucket"
+          "why": "stopped at -0.536 rad (172/294); kinds posable-joint: bucket"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:49:48.765Z"
     }
   ]
 }

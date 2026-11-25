@@ -11,15 +11,15 @@
       "function": 2,
       "does": "The left ski has independent suspension: it rides on two wishbones of thin grey beams, upper and lower, and moves up and down, the yellow shock absorber squeezing.",
       "verdict": "shown",
-      "msOneCall": 19,
-      "msPerStep": 10,
+      "msOneCall": 20,
+      "msPerStep": 11,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 7
+        "B": 8
       },
       "stop": {
         "control": "p12 32063",
@@ -60,8 +60,8 @@
           },
           "asked": 0.3,
           "went": 0.3,
-          "ms": 85,
-          "msOneCall": 19,
+          "ms": 96,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p43 32063": [
@@ -125,7 +125,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 9,
-          "msOneCall": 10,
+          "msOneCall": 12,
           "stops": [
             "33/648"
           ],
@@ -197,8 +197,8 @@
             }
           ],
           "controlWent": [
-            15.46,
-            17.68
+            14.2,
+            16.22
           ],
           "moved": [
             "p43 32063",
@@ -210,28 +210,28 @@
           ],
           "went": {
             "p43 32063": [
-              15.46,
-              17.79
+              14.2,
+              16.33
             ],
             "p17 32063": [
-              15.46,
-              17.68
+              14.2,
+              16.22
             ],
             "p36 32063": [
-              15.46,
-              17.78
+              14.2,
+              16.33
             ],
             "p13 6587": [
-              30.92,
+              28.41,
               0
             ],
             "p53 2736": [
-              30.86,
+              28.36,
               0
             ],
             "p615 32271": [
-              30.92,
-              0.51
+              28.41,
+              0.47
             ]
           },
           "staysWent": {
@@ -240,8 +240,8 @@
               0
             ],
             "p626 32271": [
-              0.11,
-              0.32
+              0.1,
+              0.3
             ]
           },
           "staysMoved": [],
@@ -261,26 +261,28 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 14
+      "seconds": 14,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:08:47.787Z"
     },
     {
       "function": 3,
       "does": "The right ski has independent suspension, as the left.",
       "verdict": "shown",
       "msOneCall": 22,
-      "msPerStep": 12,
+      "msPerStep": 11,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 10,
-        "A": 26,
+        "reach": 11,
+        "A": 29,
         "B": 8
       },
       "stop": {
         "control": "p9 32063",
-        "way": 1,
-        "went": 0.279,
+        "way": -1,
+        "went": 0,
         "asked": 1.5,
         "by": [
           "34/650"
@@ -314,37 +316,35 @@
               24
             ]
           },
-          "asked": 1.5,
-          "went": 0.279,
-          "ms": 98,
+          "asked": 0.3,
+          "went": 0.3,
+          "ms": 93,
           "msOneCall": 22,
-          "stops": [
-            "34/650"
-          ],
+          "stops": [],
           "moved": {
             "p42 32063": [
-              13.95,
-              15.99
+              15,
+              17.19
             ],
             "p21 32063": [
-              13.95,
-              15.99
+              15,
+              17.19
             ],
             "p35 32063": [
-              13.95,
-              15.99
+              15,
+              17.19
             ],
             "p10 6587": [
-              27.91,
+              30,
               0
             ],
             "p51 2736": [
-              27.85,
-              0.5
+              29.94,
+              0.55
             ],
             "p626 32271": [
-              27.91,
-              0.5
+              30,
+              0.55
             ],
             "p12 32063": [
               0,
@@ -352,7 +352,7 @@
             ],
             "p615 32271": [
               0.08,
-              0.22
+              0.24
             ]
           }
         },
@@ -380,10 +380,10 @@
               24
             ]
           },
-          "asked": 0.3,
+          "asked": 1.5,
           "went": 0,
           "ms": 10,
-          "msOneCall": 11,
+          "msOneCall": 10,
           "stops": [
             "34/650"
           ],
@@ -455,8 +455,8 @@
             }
           ],
           "controlWent": [
-            14.91,
-            17.04
+            15.32,
+            17.52
           ],
           "moved": [
             "p42 32063",
@@ -468,28 +468,28 @@
           ],
           "went": {
             "p42 32063": [
-              14.91,
-              17.15
+              15.32,
+              17.63
             ],
             "p21 32063": [
-              14.91,
-              17.04
+              15.32,
+              17.52
             ],
             "p35 32063": [
-              14.91,
-              17.15
+              15.32,
+              17.63
             ],
             "p10 6587": [
-              29.82,
+              30.65,
               0
             ],
             "p51 2736": [
-              29.76,
+              30.59,
               0
             ],
             "p626 32271": [
-              29.82,
-              0.55
+              30.65,
+              0.57
             ]
           },
           "staysWent": {
@@ -498,7 +498,7 @@
               0
             ],
             "p615 32271": [
-              0.08,
+              0.09,
               0.26
             ]
           },
@@ -512,14 +512,16 @@
         {
           "control": "p9 32063",
           "judged": "stands",
-          "why": "stopped at +0.279 rad (34/650); -0 rad (34/650); kinds double-wishbone"
+          "why": "stopped at -0 rad (34/650); kinds double-wishbone"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 63
+      "seconds": 70,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:08:47.787Z"
     },
     {
       "function": 5,

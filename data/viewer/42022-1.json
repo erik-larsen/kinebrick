@@ -11,15 +11,15 @@
       "function": 1,
       "does": "The knob on the upright post behind the cab steers the front wheels: a bevel gear at its foot turns a long shaft forward along the chassis, whose knob gears turn a short arm that pushes the steering link across to both front wheels.",
       "verdict": "shown",
-      "msOneCall": 31,
-      "msPerStep": 8,
+      "msOneCall": 24,
+      "msPerStep": 6,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 0.3,
           "went": 0.3,
-          "ms": 66,
-          "msOneCall": 31,
+          "ms": 48,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p140 32072": [
@@ -68,8 +68,8 @@
           "way": -1,
           "asked": 0.53,
           "went": -0.53,
-          "ms": 89,
-          "msOneCall": 9,
+          "ms": 59,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p140 32072": [
@@ -130,7 +130,7 @@
           ],
           "controlWent": [
             0,
-            57.98
+            54.48
           ],
           "moved": [
             "p140 32072",
@@ -142,23 +142,23 @@
           "went": {
             "p140 32072": [
               0,
-              34.89
+              32.8
             ],
             "p169 32072": [
               0,
-              34.73
+              32.62
             ],
             "p61 32293": [
-              23.87,
-              2.26
+              22.47,
+              2.12
             ],
             "p205 48989": [
-              11.37,
-              33.01
+              10.7,
+              31.03
             ],
             "p206 48989": [
-              11.37,
-              33.01
+              10.7,
+              31.03
             ]
           },
           "staysWent": {
@@ -173,12 +173,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "61/202",
-            "61/200"
+            "61/200",
+            "61/202"
           ]
         }
       ],
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:33:28.161Z"
     },
     {
       "function": 2,
@@ -539,13 +541,13 @@
       "function": 4,
       "does": "The black gear knob on the cab's side opens the body: turning it swings the blue side panels open and folds the black seat-back frame forward, through two long links; turned back, it closes them.",
       "verdict": "shown",
-      "msOneCall": 21,
-      "msPerStep": 5,
+      "msOneCall": 16,
+      "msPerStep": 4,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 5,
+        "reach": 4,
         "A": 0,
         "B": 12
       },
@@ -567,8 +569,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 9,
-          "msOneCall": 21,
+          "ms": 8,
+          "msOneCall": 16,
           "stops": [
             "79/402"
           ],
@@ -596,8 +598,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 208,
-          "msOneCall": 17,
+          "ms": 157,
+          "msOneCall": 14,
           "stops": [],
           "moved": {
             "p399 32271": [
@@ -646,7 +648,7 @@
           ],
           "controlWent": [
             0,
-            87.71
+            84.44
           ],
           "moved": [
             "p399 32271",
@@ -656,20 +658,20 @@
           ],
           "went": {
             "p399 32271": [
-              164.06,
-              67.57
+              162.09,
+              66.65
             ],
             "p402 64391": [
-              164.06,
-              67.57
+              162.09,
+              66.65
             ],
             "p397 32525": [
-              45.35,
-              12.33
+              44.59,
+              11.69
             ],
             "p368 32063": [
-              88.74,
-              87.71
+              86.07,
+              84.44
             ]
           },
           "staysWent": {},
@@ -690,7 +692,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 22
+      "seconds": 20,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:33:28.161Z"
     }
   ]
 }

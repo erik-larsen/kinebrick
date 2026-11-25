@@ -618,15 +618,15 @@
       "function": 4,
       "does": "The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.",
       "verdict": "shown",
-      "msOneCall": 16,
-      "msPerStep": 4,
+      "msOneCall": 17,
+      "msPerStep": 3,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 1,
         "A": 0,
-        "B": 16
+        "B": 17
       },
       "stop": null,
       "stops": [],
@@ -636,8 +636,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 122,
-          "msOneCall": 16,
+          "ms": 137,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p39 3702": [
@@ -667,7 +667,7 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 4,
+          "ms": 3,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -709,15 +709,11 @@
             {
               "kind": "round",
               "amount": -1.5
-            },
-            {
-              "kind": "along",
-              "amount": 1
             }
           ],
           "controlWent": [
-            26.55,
-            73.45
+            29.7,
+            83.95
           ],
           "moved": [
             "p39 3702",
@@ -726,16 +722,16 @@
           ],
           "went": {
             "p39 3702": [
-              49.97,
-              48.31
+              43.56,
+              41.8
             ],
             "p102 3702": [
-              51.78,
-              50.91
+              44.89,
+              43.76
             ],
             "p260 3709b": [
-              118.58,
-              14.08
+              102.88,
+              11.86
             ]
           },
           "staysWent": {
@@ -749,13 +745,12 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "22/287",
-            "45/232"
-          ]
+          "stops": []
         }
       ],
-      "seconds": 21
+      "seconds": 23,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:24:53.315Z"
     }
   ]
 }
