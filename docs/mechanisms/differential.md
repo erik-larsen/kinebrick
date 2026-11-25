@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 57 works, 19 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 57 works, 17 partly, 1 no, 1 skipped, 2 not checked.
 
 ## By decade
 
@@ -97,8 +97,8 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- Rolling the truck turns the four-cylinder engine: both axles' differentials are linked by shafts with universal joints (permanent four-wheel drive), and the drive turns the crankshaft, so the pistons pump up and down. (works)
-- Each axle's differential lets its two wheels turn at different speeds round corners. (works)
+- Rolling the truck turns the four-cylinder engine: both axles' differentials are linked by shafts with universal joints (permanent four-wheel drive), and the drive turns the crankshaft, so the pistons pump up and down. (not checked)
+- Each axle's differential lets its two wheels turn at different speeds round corners. (not checked)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
@@ -206,7 +206,7 @@ Each detail by the set it first appears in.
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
 - The XL motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns the two rear half shafts, so the rear wheels can turn at different speeds in a bend. (works)
-- With the XL motor still, turning one rear wheel turns the other the opposite way through the differential. (partly)
+- With the XL motor still, turning one rear wheel turns the other the opposite way through the differential. (works)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 
@@ -229,7 +229,7 @@ Each detail by the set it first appears in.
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
 - The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (works)
-- The differential lets one rear wheel turn while the other is held, or turn backwards against it when the motor's gear is held. (partly)
+- The differential lets one rear wheel turn while the other is held, or turn backwards against it when the motor's gear is held. (works)
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 

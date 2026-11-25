@@ -345,9 +345,10 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "55ee538d",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 1111,
+    "seconds": 1177,
     "counts": {
       "works": 9,
       "partly": 3,
@@ -461,8 +462,8 @@
             ]
           ]
         ],
-        "seconds": 87.3,
-        "peak": 891
+        "seconds": 96.3,
+        "peak": 928
       },
       {
         "result": "partly",
@@ -587,8 +588,8 @@
             0.6
           ]
         ],
-        "seconds": 89.7,
-        "peak": 936
+        "seconds": 92.2,
+        "peak": 945
       },
       {
         "result": "works",
@@ -658,8 +659,8 @@
             ]
           ]
         ],
-        "seconds": 88.2,
-        "peak": 974
+        "seconds": 87.9,
+        "peak": 1186
       },
       {
         "result": "works",
@@ -754,8 +755,8 @@
             ]
           ]
         ],
-        "seconds": 93.4,
-        "peak": 976
+        "seconds": 104.3,
+        "peak": 893
       },
       {
         "result": "partly",
@@ -847,8 +848,8 @@
         ],
         "cause": "stay-chosen",
         "detail": "p2368 42043 - 18938",
-        "seconds": 99.9,
-        "peak": 947
+        "seconds": 84,
+        "peak": 965
       },
       {
         "result": "works",
@@ -972,8 +973,8 @@
             "p1577 4519"
           ]
         ],
-        "seconds": 135,
-        "peak": 904
+        "seconds": 141.7,
+        "peak": 895
       },
       {
         "result": "skipped"
@@ -1238,8 +1239,8 @@
           "rise": 0,
           "tyre": "p2214 32019"
         },
-        "seconds": 121.5,
-        "peak": 934
+        "seconds": 121.4,
+        "peak": 930
       },
       {
         "result": "works",
@@ -1276,8 +1277,8 @@
             ]
           ]
         ],
-        "seconds": 34.8,
-        "peak": 919
+        "seconds": 39.4,
+        "peak": 872
       },
       {
         "result": "works",
@@ -1377,8 +1378,8 @@
             ]
           ]
         ],
-        "seconds": 155.1,
-        "peak": 892
+        "seconds": 170.4,
+        "peak": 906
       },
       {
         "result": "works",
@@ -1476,8 +1477,8 @@
             "p2227 86652"
           ]
         ],
-        "seconds": 37.6,
-        "peak": 1052
+        "seconds": 43.9,
+        "peak": 925
       },
       {
         "result": "skipped"
@@ -1551,8 +1552,8 @@
             0.17
           ]
         ],
-        "seconds": 33.1,
-        "peak": 914
+        "seconds": 38.3,
+        "peak": 880
       },
       {
         "result": "works",
@@ -1662,8 +1663,8 @@
             0.87
           ]
         ],
-        "seconds": 29.8,
-        "peak": 889
+        "seconds": 33.4,
+        "peak": 886
       },
       {
         "result": "no",
@@ -1735,8 +1736,8 @@
         ],
         "cause": "not-driven",
         "detail": "p6909 2741",
-        "seconds": 24,
-        "peak": 905
+        "seconds": 27.1,
+        "peak": 900
       }
     ]
   }

@@ -1,7 +1,7 @@
 // Gears and which of them mesh: spur, worm, rack, crown and bevel meshes.
 
 import { Matrix4, Vector3 } from 'three';
-import type { Gear, Mechanism, Mesh, Screw } from '../mechanism.ts';
+import type { Gear, Joint, Mechanism, Mesh, Screw } from '../mechanism.ts';
 import { ANGLE_TOLERANCE, AXIS_TOLERANCE, MIN_OVERLAP, type WorldCylinder } from './shared.ts';
 
 // How far meshing gears' axles (or a gear and a rack's pitch line) may be from exactly their
@@ -64,7 +64,7 @@ export function meshesChanged(mech: Mechanism, poses: Matrix4[]): boolean {
     return { ...g, center: g.center.clone().applyMatrix4(pose), axis: g.axis.clone().transformDirection(pose), face: g.face ? g.face.clone().transformDirection(pose) : null };
   });
   const key = (m: Mesh) => `${m.gearA} ${m.gearB} ${m.kind}`;
-  const now = new Set(findMeshes(moved).map(key));
+  const now = new Set(satelliteMeshesKept(findMeshes(moved), moved, mech.joints, mech.roles, mech.bodyOf).map(key));
   const before = new Set(mech.meshes.map(key));
   return now.size !== before.size || [...now].some((k) => !before.has(k));
 }
@@ -106,6 +106,43 @@ export function findMeshes(gears: Gear[]): Mesh[] {
     });
   }
   return meshes;
+}
+
+// A differential's satellites: each meshes with both side gears, so each closes a loop between
+// them. The loops agree, but past the first one they say nothing new, and over a turn the solver
+// finds the redundant ones in conflict and stops: the 65414c01's three satellites stopped the
+// 42109's rear wheel at 0.083 rad with the casing held, and the 42124's at 0.358, where any one
+// satellite alone turned it on without end (the worker's Task 5, 2026-11-25). So on a part whose role is
+// `differential` (its casing), one satellite keeps both its meshes and each other keeps only its
+// mesh with one side gear: it still turns as it should, carried by that one, and closes no loop.
+// The side gears are two bodies turning in the casing on one line; the satellites, the bodies
+// turning in the casing that mesh with both. Only a differential's: gears elsewhere keep every mesh.
+export function satelliteMeshesKept(meshes: Mesh[], gears: Gear[], joints: Joint[], roles: string[], bodyOf: number[]): Mesh[] {
+  const casings = new Set(bodyOf.filter((_, i) => roles[i] === 'differential'));
+  if (casings.size === 0) return meshes;
+  const drop = new Set<Mesh>();
+  const bodyA = (m: Mesh) => gears[m.gearA].body;
+  const bodyB = (m: Mesh) => gears[m.gearB].body;
+  for (const casing of casings) {
+    // The bodies turning in the casing, each with its axis there.
+    const axis = new Map<number, Vector3>();
+    for (const j of joints) {
+      if (j.kind !== 'revolute' || (j.bodyA !== casing && j.bodyB !== casing)) continue;
+      const other = j.bodyA === casing ? j.bodyB : j.bodyA;
+      if (other !== casing && !axis.has(other)) axis.set(other, new Vector3().subVectors(j.to, j.from).normalize());
+    }
+    const inside = meshes.filter((m) => m.kind === 'bevel' && axis.has(bodyA(m)) && axis.has(bodyB(m)));
+    const meshed = (a: number, b: number) => inside.filter((m) => (bodyA(m) === a && bodyB(m) === b) || (bodyA(m) === b && bodyB(m) === a));
+    const turning = [...axis.keys()].sort((a, b) => a - b);
+    for (const [k, s1] of turning.entries()) {
+      for (const s2 of turning.slice(k + 1)) {
+        if (new Vector3().crossVectors(axis.get(s1)!, axis.get(s2)!).length() > 0.01) continue;
+        const satellites = turning.filter((b) => b !== s1 && b !== s2 && meshed(b, s1).length > 0 && meshed(b, s2).length > 0);
+        for (const sat of satellites.slice(1)) for (const m of meshed(sat, s2)) drop.add(m);
+      }
+    }
+  }
+  return drop.size ? meshes.filter((m) => !drop.has(m)) : meshes;
 }
 
 // Spur gears on parallel axes mesh when their teeth are the same size, line up along the

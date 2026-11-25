@@ -204,9 +204,10 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "55ee538d",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 2253,
+    "seconds": 2008,
     "counts": {
       "works": 10,
       "partly": 3,
@@ -314,8 +315,8 @@
             ]
           ]
         ],
-        "seconds": 110.7,
-        "peak": 940
+        "seconds": 102.3,
+        "peak": 942
       },
       {
         "result": "works",
@@ -357,8 +358,8 @@
             ]
           ]
         ],
-        "seconds": 118.2,
-        "peak": 914
+        "seconds": 105.8,
+        "peak": 980
       },
       {
         "result": "partly",
@@ -416,8 +417,8 @@
         ],
         "cause": "too-little",
         "detail": "p211 4519",
-        "seconds": 1401.1,
-        "peak": 927
+        "seconds": 1224,
+        "peak": 958
       },
       {
         "result": "works",
@@ -467,8 +468,8 @@
             ]
           ]
         ],
-        "seconds": 15.8,
-        "peak": 949
+        "seconds": 15.9,
+        "peak": 947
       },
       {
         "result": "partly",
@@ -554,8 +555,8 @@
               0.17
             ]
           ],
-          "seconds": 6.2,
-          "peak": 945
+          "seconds": 5.5,
+          "peak": 975
         }
       },
       {
@@ -622,8 +623,8 @@
             0.5
           ]
         ],
-        "seconds": 10,
-        "peak": 926
+        "seconds": 8,
+        "peak": 956
       },
       {
         "result": "works",
@@ -689,8 +690,8 @@
             0.5
           ]
         ],
-        "seconds": 9.8,
-        "peak": 920
+        "seconds": 8.3,
+        "peak": 954
       },
       {
         "result": "works",
@@ -732,8 +733,8 @@
             ]
           ]
         ],
-        "seconds": 17.1,
-        "peak": 909
+        "seconds": 16.7,
+        "peak": 945
       },
       {
         "result": "skipped"
@@ -853,8 +854,8 @@
             "for": "p1902 64782"
           }
         ],
-        "seconds": 342.5,
-        "peak": 926
+        "seconds": 320.5,
+        "peak": 931
       },
       {
         "result": "works",
@@ -907,8 +908,8 @@
             0
           ]
         ],
-        "seconds": 11.7,
-        "peak": 936
+        "seconds": 10.7,
+        "peak": 944
       },
       {
         "result": "works",
@@ -977,8 +978,8 @@
             0.1
           ]
         ],
-        "seconds": 5.1,
-        "peak": 939
+        "seconds": 4.8,
+        "peak": 940
       },
       {
         "result": "works",
@@ -1050,8 +1051,8 @@
             "for": "p2586 32739"
           }
         ],
-        "seconds": 29.4,
-        "peak": 923
+        "seconds": 26.9,
+        "peak": 957
       },
       {
         "result": "partly",
@@ -1121,8 +1122,8 @@
               "for": "p2475 3710"
             }
           ],
-          "seconds": 29.5,
-          "peak": 960
+          "seconds": 28.2,
+          "peak": 930
         }
       },
       {
