@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 696,
-      "partly": 257,
+      "works": 697,
+      "partly": 256,
       "no": 91,
       "functions": 1223
     },
@@ -85,7 +85,7 @@
       "kind": "Sign-off",
       "title": "42038 Arctic Truck, function 1 (the gear on top steers the front track units): work it with the truck lifted?",
       "what": "The file draws the front axle hanging at full droop, 27.7 degrees, as the truck is when held up (362). With the tracks on the ground in that pose, steering would have to lift one front track unit and lower the other, so it hardly turns: 0.47 rad one way and 0.10 the other. With the truck held up it turns 1.5 rad each way and both hubs swing alike. The solver owner tried it on the branch that reads how deep the tracks stand; Claude ran both there and got the same figures. On preview today nothing changes, because there the front tracks do not yet reach the ground.",
-      "effect": "With your yes function 1 gets the setting \"lifted\". That lets the track depth and the track reading come to Claude's gate without losing this function. The function stays held at partly for another reason: with the viewer's first camera a drag turns the gear one way only. That is a fault of the viewer's reading of the drag, which the solver owner traces next.",
+      "effect": "With your yes function 1 gets the setting \"lifted\". That lets the track depth and the track reading come to Claude's gate without losing this function. A correction to what stood here this morning: the function is no longer held. Claude had found that a drag turned the gear one way only and called it a fault of the viewer. It was a fault of the test scripts' pointer path; the viewer was right, and a pointer now steers it both ways (366).",
       "links": [
         {
           "label": "42038 in the viewer, lifted, the hubs and their bearings marked",
@@ -103,7 +103,7 @@
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You asked for it on 20 November: every function the check calls working is tried in the viewer, both by the viewer's own turn and by a pointer drag as a person makes it, and what the viewer does not show is held at partly. The second pass ran on 25 November over all 729 working functions at preview's newest code and took six hours (363). The viewer shows 671. Claude read each of the others by its figures: 4 holds are lifted, because the parts do move, and 7 are set, because a part that should stay moves with the function under a hand. So 696 functions work, 3 fewer than before the pass; 33 are held. Still open: 23 functions where the viewer's own turn stops at a collision after a few degrees while a pointer drag takes the same part far. One of the two is wrong, and the worker finds out which; none of the 23 is held, since a hand does move them. Four more wait for a trace (the 8063's power take-off, the 8419's stick, the 42113's motor, the 42056's seats); two of those are faults of the sweep, not of the viewer."
+      "what": "You asked for it on 20 November: every function the check calls working is tried in the viewer, both by the viewer's own turn and by a pointer drag as a person makes it, and what the viewer does not show is held at partly. The second pass ran on 25 November over all 729 working functions at preview's newest code and took six hours (363). The viewer shows 671. Claude read each of the others by its figures: 4 holds are lifted, because the parts do move, and 7 are set, because a part that should stay moves with the function under a hand. So 696 functions worked after the pass, 3 fewer than before it; with the 42038's steering freed the same day (366) 697 work and 32 are held. Still open: 23 functions where the viewer's own turn stops at a collision after a few degrees while a pointer drag takes the same part far. One of the two is wrong, and the worker finds out which; none of the 23 is held, since a hand does move them. Four more wait for a trace (the 8063's power take-off, the 8419's stick, the 42113's motor, the 42056's seats); two of those are faults of the sweep, not of the viewer."
     },
     {
       "title": "System hinges, doors and clips",

@@ -212,15 +212,15 @@
     ]
   },
   "generated": {
-    "commit": "c76d82aa",
+    "commit": "098b0db7",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 36,
+    "seconds": 37,
     "counts": {
-      "partly": 2,
-      "works": 6,
+      "works": 7,
       "no": 1,
       "skipped": 1,
+      "partly": 1,
       "not checked": 2
     },
     "loose": [
@@ -240,84 +240,77 @@
     },
     "functions": [
       {
-        "result": "partly",
-        "hold": {
-          "reason": "The viewer sweep does not show it: with Shift pressed on the steering gear p170 (no friction pin holds it), the viewer's turn of it goes 0 both ways and a pointer drag turns it 0; the listed parts move 0.1 at most (the sweep at 85aa8904, decision 355). The check turns it 1.5 rad each way.",
-          "date": "2026-11-25"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              1.5,
-              -1.5
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p290 32270": [
+              1,
+              0.00438
+            ],
+            "p288 64781": [
+              0,
+              15.9
+            ],
+            "p284 92909": [
+              0.397,
+              14.3
+            ],
+            "p285 92909": [
+              0.397,
+              14.3
+            ],
+            "p237 92909": [
+              0,
+              0
+            ],
+            "p238 92909": [
+              0,
+              0
             ]
-          ],
-          "rates": [
-            {
-              "p290 32270": [
-                1,
-                0.00438
-              ],
-              "p288 64781": [
-                0,
-                15.9
-              ],
-              "p284 92909": [
-                0.397,
-                14.3
-              ],
-              "p285 92909": [
-                0.397,
-                14.3
-              ],
-              "p237 92909": [
-                0,
-                0
-              ],
-              "p238 92909": [
-                0,
-                0
-              ]
-            }
-          ],
-          "back": [
+          }
+        ],
+        "back": [
+          [
             [
-              [
-                0.36,
-                0.14
-              ],
-              [
-                0.36,
-                0.14
-              ]
-            ]
-          ],
-          "torn": [
+              0.36,
+              0.14
+            ],
             [
-              [
-                0.36,
-                0.14
-              ],
-              [
-                0.36,
-                0.14
-              ]
+              0.36,
+              0.14
             ]
-          ],
-          "freed": 2,
-          "freedFor": [
-            {
-              "pin": "p278 6558",
-              "for": "p170 32270"
-            },
-            {
-              "pin": "p279 6558",
-              "for": "p170 32270"
-            }
-          ],
-          "seconds": 4.5
-        }
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.36,
+              0.14
+            ],
+            [
+              0.36,
+              0.14
+            ]
+          ]
+        ],
+        "freed": 2,
+        "freedFor": [
+          {
+            "pin": "p278 6558",
+            "for": "p170 32270"
+          },
+          {
+            "pin": "p279 6558",
+            "for": "p170 32270"
+          }
+        ],
+        "seconds": 4.2
       },
       {
         "result": "works",
@@ -407,7 +400,7 @@
             0.8
           ]
         ],
-        "seconds": 4.1
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -491,7 +484,7 @@
             "limit"
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -607,7 +600,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "works",
@@ -653,7 +646,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -769,7 +762,7 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 3.8
+        "seconds": 4.4
       },
       {
         "result": "skipped",
@@ -1105,7 +1098,7 @@
             0.17
           ]
         ],
-        "seconds": 9.7
+        "seconds": 10.7
       },
       {
         "result": "not checked",
@@ -1153,6 +1146,6 @@
         "seconds": 0
       }
     ],
-    "peak": 767
+    "peak": 787
   }
 }
