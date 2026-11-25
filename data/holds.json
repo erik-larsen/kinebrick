@@ -175,17 +175,17 @@
     "date": "2026-11-21"
   },
   {
-    "set": "8272-1",
-    "function": 3,
-    "result": "partly",
-    "reason": "The viewer sweep does not show it: with the mended pointer (decision 339), working the right ski's arm p9 moved none of the listed parts. Marked before the offer of main, decision 341; to look at after 2026-11-23.",
-    "date": "2026-11-21"
-  },
-  {
     "set": "42110-1",
     "function": 14,
     "result": "partly",
     "reason": "The viewer sweep does not show it: no view shows the lid p2475 of the roof case, so no drag can reach it, and a turn of it measured 0 (decisions 329 and 339). Marked before the offer of main, decision 341; to look at after 2026-11-23.",
     "date": "2026-11-21"
+  },
+  {
+    "set": "42004-1",
+    "function": 3,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: turning the gear p227 on the loader arm moves neither listed part of the bucket's tilt (p229 2951, p207 6632, each against p50 44294). The sweep of 2026-11-21 said the same and it was not held then; the sweep at 25b50532 confirms it (decision 354). The check turns the gear and judges the parts by their rates.",
+    "date": "2026-11-24"
   }
 ]

@@ -110,7 +110,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 11 works, 2 partly, 3 no |
 | [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 works |
-| [Double wishbone suspension](double-wishbone.md) | 18 | 1988 |  | 1 | 2 | 2 | 10 | 3 | 14 works, 5 partly, 7 no, 1 skipped |
+| [Double wishbone suspension](double-wishbone.md) | 18 | 1988 |  | 1 | 2 | 2 | 10 | 3 | 15 works, 4 partly, 7 no, 1 skipped |
 | [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 4 works |
 | [Pendular axle](pendular-axle.md) | 7 | 1986 |  | 1 |  |  | 5 | 1 | 3 works, 1 partly, 2 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
@@ -153,7 +153,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 18 works, 8 partly, 4 no |
 | [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 19 works, 29 partly, 1 no |
 | [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 4 works, 8 partly, 11 no, 6 skipped |
-| [Crank and link](crank-and-link.md) | 57 | 1979 | 1 | 6 | 6 | 9 | 28 | 7 | 38 works, 34 partly, 5 no, 1 skipped, 1 not checked |
+| [Crank and link](crank-and-link.md) | 57 | 1979 | 1 | 6 | 6 | 9 | 28 | 7 | 37 works, 35 partly, 5 no, 1 skipped, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 21 works, 8 partly |
