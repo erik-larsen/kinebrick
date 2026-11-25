@@ -133,11 +133,17 @@ export function findWheel(point: PathPoint, index: number, parts: PlacedPart[], 
     });
   });
   if (!best) return null;
+  const wheel: LoopWheel = best;
+  const steps = stepsFromFrame(joints);
+  // A wheel turns in its mount, the nearer the frame of the two: where the part nearest the middle
+  // is in the nearer (an axle fixed in the frame, a roller turning on it either side of the
+  // middle), the roller is the wheel. Read the other way, the 42100 Liebherr's top rollers (bevel
+  // gears on an axle fixed in the undercarriage) had the undercarriage, 1,084 parts, as their
+  // wheel, so its tipping drove the tracks.
+  if ((steps[wheel.mount] ?? Infinity) > (steps[wheel.body] ?? Infinity)) [wheel.body, wheel.mount] = [wheel.mount, wheel.body];
   // Of the joints it turns on along the circle's axis, the one in what's nearest the frame:
   // a gearbox's output shaft turns in the frame, and in the clutch gears freewheeling on it,
   // and it's how it turns in the frame that drives the chain.
-  const wheel: LoopWheel = best;
-  const steps = stepsFromFrame(joints);
   joints.forEach((joint, j) => {
     if (joint.kind !== 'revolute' || (joint.bodyA !== wheel.body && joint.bodyB !== wheel.body)) return;
     const d = new Vector3().subVectors(joint.to, joint.from).normalize();

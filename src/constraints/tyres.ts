@@ -16,8 +16,9 @@ export function tyres(solver: Kinematics, eq: Equations) {
   // (Each tyre's forward is taken with its axis turned to point the way the body's first
   // tyre's does: tyres either side of a car face opposite ways.)
   // A track (a tyre whose `track` is set, see trackTreads) skids sideways freely where it
-  // touches the ground under each of its wheels, as a tracked vehicle does to turn, but its
-  // middle doesn't slide sideways: the average of its wheels' sideways speeds is 0.
+  // touches the ground, under its wheels and at the ends of its run, as a tracked vehicle does to
+  // turn, but its middle scrubs sideways only as a tyre does: the average of its contacts'
+  // sideways speeds is a scrub row, like a tyre's (see below).
   const rolling = new Map<number, { axis: Vector3; rows: BodyRow[] }>(); // for each body, its tyres' rows
   const tracks = new Map<number, { axis: Vector3; rows: BodyRow[] }>(); // for each track, its sideways rows
   const riderBodies = new Set((solver.mech.riders ?? []).map((r) => r.body));
@@ -73,7 +74,7 @@ export function tyres(solver: Kinematics, eq: Equations) {
     const onRails = riderBodies.has(tread.body);
     if (tread.track !== undefined) {
       if (!tracks.has(tread.track)) tracks.set(tread.track, { axis, rows: [] });
-      tracks.get(tread.track)!.rows.push(along(p, sideways));
+      tracks.get(tread.track)!.rows.push(pivoting(along(p, sideways), sideways));
     }
     if (onRails) {
       // A train wheel neither lifts off its rail nor sinks into it, exactly; its flanges keep
@@ -94,11 +95,18 @@ export function tyres(solver: Kinematics, eq: Equations) {
       add(pivoting(along(p, DOWN), DOWN));
     }
   }
-  for (const { rows: tyres } of [...rolling.values(), ...tracks.values()]) {
-    if (tyres.length === 0) continue;
+  const averageOf = (tyres: BodyRow[]) => {
     const average = new BodyRow(n);
     // Each row's places, in the rows' order (where a row has none, it added 0).
     for (const row of tyres) for (const [k, v] of row.entries()) average.add(k, v / tyres.length);
-    add(average);
-  }
+    return average;
+  };
+  for (const { rows: tyres } of rolling.values()) if (tyres.length) add(averageOf(tyres));
+  // A track's middle scrubs sideways as a tyre does, within the same allowance (see leastScrub),
+  // and the steering's carry of it doesn't count (see steeringPivot): a track unit steered about
+  // a pivot off its run's middle scrubs, as a real one does (decision 369: held exactly, the
+  // 42069 Extreme Adventure's front units, steered 80 LDU inboard of their tracks and standing on
+  // both ends of their runs, whose middle is 1.25 LDU off the line they steer about, stopped at
+  // 0.3 rad with the frame tipping). Like a tyre's, it's a row only where slip is asked for.
+  if (slip) for (const { rows: tyres } of tracks.values()) if (tyres.length) slip.sideways.push(averageOf(tyres));
 }

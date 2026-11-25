@@ -2413,9 +2413,9 @@ export class Kinematics {
     this.slipRows = [];
     const [sideways, travel, lift, rise] = [slip.sideways, slip.travel, slip.lift, slip.rise].map((r) => inBasis(r, basis));
     // Whether anything stands on the ground with slip: every tread on the ground, tyre or track, has a
-    // row for its lift, where only a tyre has one for scrubbing sideways (a track's sideways rows are
-    // its average, kept exactly; see tyres). Asked of the sideways rows, a model on tracks alone had
-    // none, so its motions were taken unjudged, and its tracks could sink into the ground or rise off
+    // row for its lift, where a tyre has one for scrubbing sideways and a track one for its middle's
+    // (see tyres). Asked of the sideways rows, when a track's were its average kept exactly, a model
+    // on tracks alone had none, so its motions were taken unjudged, and its tracks could sink into the ground or rise off
     // it as freely as roll (the 42021 Snowmobile, on one track wheel, sank 23.6 LDU as it rolled).
     const grounded = lift.length > 0;
     if (grounded) this.slipRows = [...sideways, ...lift];
