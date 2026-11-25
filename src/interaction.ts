@@ -161,6 +161,8 @@ interface Drag {
   putSlidesBack: () => void; // puts back the friction on the slides the drag let go (see letGoOwnSlides)
   target: Vector2 | null; // where the pointer is, if the grabbed point hasn't got there (push only)
   pushSteps: number; // steps taken towards the target so far (push only)
+  pinsAsked: boolean; // whether this drag, stopped on play, has asked for pins (see turnOwed)
+  startState: ReturnType<Kinematics['snapshot']>; // where everything was as the drag began
 }
 
 export function setUpInteraction(s: InteractionSetup) {
@@ -494,7 +496,21 @@ export function setUpInteraction(s: InteractionSetup) {
     while (d.owed !== 0 && performance.now() < deadline) {
       const step = Math.sign(d.owed) * Math.min(Math.abs(d.owed), TURN_STEP);
       const turned = s.kin.turnJoint(d.joint, step, allowed);
-      d.owed = Math.abs(turned - step) > 1e-12 ? 0 : d.owed - step;
+      const short = Math.abs(turned - step) > 1e-12;
+      // Stopped short on play, not by a collision: a jam that play only put off is a jam, and the
+      // friction pins that make it are asked for, as for a drag that can't move at all (decision
+      // 331: the 42004's knob, held by a pin in the boom it raises, turned 0.3 rad on play and
+      // stopped, and nothing offered the pin). Once a drag.
+      if (short && !d.pinsAsked && s.kin.lastTurnPlayed && !s.blockedBy()) {
+        d.pinsAsked = true;
+        showMessage('Finding the pins that hold it…', d.lastX, d.lastY);
+        waitingForPins = d;
+        freeIfHeld(d.part, d.lastX, d.lastY, "It can't go further this way: the mechanism is jammed", undefined, true, d.grabStart, () => {
+          s.kin.restore(d.startState);
+          s.onMoved();
+        });
+      }
+      d.owed = short ? 0 : d.owed - step;
       if (Math.abs(d.owed) < 1e-12) d.owed = 0;
     }
   }
@@ -967,11 +983,14 @@ export function setUpInteraction(s: InteractionSetup) {
   // part that moves on play (decision 139 of 2026-11-17).
   // The drag that waits to hear which pins hold its part (see freeIfHeld), if one does.
   let waitingForPins: Drag | null = null;
-  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true, at?: Vector3) {
+  // `rewind`, if given, puts the model back before the pins are freed (a drag that went on play
+  // leaves its loops open, and the mechanism is worked out afresh from the parts where they are).
+  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true, at?: Vector3, rewind?: () => void) {
     s.pinsToFree(part, search, at).then((pins) => {
       waitingForPins = null;
       if (!pins.length) return otherwise?.() ? undefined : showMessage(why, x, y);
       endDrag();
+      rewind?.();
       s.freePins(pins);
       showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
     });
@@ -1069,7 +1088,7 @@ export function setUpInteraction(s: InteractionSetup) {
       // A part asked to slide on its axle (Shift, see slidesOnAxle) is pushed with its own slides
       // let go, for the length of the drag, as a hand overcomes the friction on its axle (see
       // letGoOwnSlides): held, the 42078's lock bar could not be lifted, where the check lifts it.
-      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false, putSlidesBack: letGoOwnSlides(s.mech, body) };
+      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, pinsAsked: false, startState: s.kin.snapshot(), sideOn: false, putSlidesBack: letGoOwnSlides(s.mech, body) };
       hideLabel();
       s.onMotionStarted();
 

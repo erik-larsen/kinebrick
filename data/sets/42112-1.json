@@ -77,12 +77,12 @@
           "p17 60485",
           "p160 94925",
           "p139 94925",
-          "p170 4519"
+          "p176 4519"
         ],
         "stays": [
           "p1006 32270"
         ],
-        "note": "inferred: whether the four upright axles are an engine's pistons; turn both rear wheels the same way, or the differentials take up the drive"
+        "note": "Signed by Erik, 2026-11-21: the piston named is p176, which a turn of 1.5 rad moves both ways, in place of p170, whose cam points away as built (booklet 1, step 50). inferred: whether the four upright axles are an engine's pistons; turn both rear wheels the same way, or the differentials take up the drive"
       },
       {
         "does": "The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank.",
@@ -193,12 +193,12 @@
     ]
   },
   "generated": {
-    "commit": "6797e6f7",
-    "date": "2026-11-21",
-    "seconds": 121,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 84,
     "counts": {
-      "works": 5,
-      "partly": 3,
+      "works": 7,
+      "partly": 1,
       "not back": 1,
       "torn": 1
     },
@@ -323,7 +323,16 @@
     ],
     "errata": {
       "applied": [
-        "drive-shaft-bevel-on-the-shaft"
+        "drive-shaft-bevel-on-the-shaft",
+        "piston-first-axle-on-the-plate",
+        "piston-first-half-bush-on-the-plate",
+        "piston-first-bush-on-the-plate",
+        "piston-second-axle-on-the-plate",
+        "piston-second-half-bush-on-the-plate",
+        "piston-second-bush-on-the-plate",
+        "piston-fourth-axle-on-the-plate",
+        "piston-fourth-half-bush-on-the-plate",
+        "piston-fourth-bush-on-the-plate"
       ],
       "refused": []
     },
@@ -376,11 +385,11 @@
             ],
             "p688 56145": [
               0,
-              2.82e-31
+              8.45e-31
             ],
             "p696 56145": [
               0,
-              0
+              3.17e-31
             ],
             "p1118 42112 - 65421p01": [
               0,
@@ -436,42 +445,42 @@
             0.7
           ]
         ],
-        "seconds": 4.1
+        "seconds": 1.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.53,
+            1.5,
             -1.5
           ],
           [
             1.5,
-            -0.53
-          ],
-          [
-            0.53,
             -1.5
           ],
           [
             1.5,
-            -0.53
-          ],
-          [
-            0.53,
-            -1.5
-          ],
-          [
-            0.53,
             -1.5
           ],
           [
             1.5,
-            -0.53
+            -1.5
           ],
           [
             1.5,
-            -0.53
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -648,40 +657,6 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            null
-          ],
-          [
-            null,
-            "limit"
-          ],
-          [
-            "limit",
-            null
-          ],
-          [
-            null,
-            "limit"
-          ],
-          [
-            "limit",
-            null
-          ],
-          [
-            "limit",
-            null
-          ],
-          [
-            null,
-            "limit"
-          ],
-          [
-            null,
-            "limit"
-          ]
-        ],
         "movedBy": [
           [],
           [],
@@ -692,112 +667,41 @@
           [],
           []
         ],
-        "cause": "stopped-endless",
-        "detail": "p688 56145: p135 60483 against p175 3713",
-        "collisionStops": [
-          [
-            0,
-            1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            1,
-            -1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            2,
-            1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            3,
-            -1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            4,
-            1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            5,
-            1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            6,
-            -1,
-            135,
-            175,
-            0.53,
-            0.53
-          ],
-          [
-            7,
-            -1,
-            135,
-            175,
-            0.53,
-            0.53
-          ]
-        ],
-        "seconds": 53.8
+        "seconds": 46.9
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.53,
+            1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p170 4519"
         ],
         "rates": [
           {
             "p249 62821": [
               1,
-              5.27e-13
+              4.78e-13
             ],
             "p245 18575": [
               1.4,
-              1.52e-14
+              1.77e-14
             ],
             "p17 60485": [
               1.4,
-              3.27e-14
+              1.52e-14
             ],
             "p160 94925": [
               1.4,
-              8.78e-14
+              1.52e-14
             ],
             "p139 94925": [
               1.4,
-              4.74e-15
+              7.48e-14
             ],
-            "p170 4519": [
+            "p176 4519": [
               0,
-              0
+              8
             ],
             "p1006 32270": [
               0,
@@ -838,28 +742,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "judged": [
-          1
-        ],
-        "cause": "not-driven",
-        "detail": "p170 4519",
-        "collisionStops": [
-          [
-            0,
-            1,
-            135,
-            175,
-            0.53,
-            0.53
-          ]
-        ],
-        "seconds": 7.7
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -925,7 +808,7 @@
             0.5
           ]
         ],
-        "seconds": 3
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -942,27 +825,27 @@
           {
             "p231 94925": [
               1.4,
-              1.48e-14
+              1.81e-14
             ],
             "p356 42112 - 35185": [
               1.12,
-              1.89e-14
+              1.42e-14
             ],
             "p361 32270": [
               1.12,
-              1.89e-14
+              1.42e-14
             ],
             "p390 3648b": [
               0.56,
-              1.89e-14
+              2.84e-14
             ],
             "p436 32498": [
               0.56,
-              1.26e-13
+              1.84e-13
             ],
             "p448 18938": [
               0.336,
-              2.1e-13
+              1.92e-13
             ],
             "p1118 42112 - 65421p01": [
               0.336,
@@ -1026,7 +909,7 @@
             0.47
           ]
         ],
-        "seconds": 23.5
+        "seconds": 12.3
       },
       {
         "result": "works",
@@ -1044,11 +927,11 @@
             ],
             "p344 6589": [
               1,
-              4.74e-15
+              1.42e-14
             ],
             "p342 94925": [
               1,
-              4.74e-15
+              1.42e-14
             ],
             "p352 18946": [
               1,
@@ -1064,11 +947,11 @@
             ],
             "p696 56145": [
               0,
-              3.56e-51
+              4.45e-51
             ],
             "p17 60485": [
               0,
-              1.24e-29
+              5.26e-31
             ]
           }
         ],
@@ -1105,7 +988,7 @@
           ]
         ],
         "strayed": [
-          "p351 24316"
+          "p341 55013"
         ],
         "stop": [
           [
@@ -1123,7 +1006,7 @@
             0.93
           ]
         ],
-        "seconds": 14
+        "seconds": 10.3
       },
       {
         "result": "works",
@@ -1193,7 +1076,7 @@
             0.27
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -1211,11 +1094,11 @@
             ],
             "p1118 42112 - 65421p01": [
               0,
-              8.53e-15
+              0
             ],
             "p696 56145": [
               0,
-              0
+              1.45e-67
             ]
           }
         ],
@@ -1267,9 +1150,9 @@
             0.83
           ]
         ],
-        "seconds": 2.1
+        "seconds": 1.5
       }
     ],
-    "peak": 627
+    "peak": 1026
   }
 }

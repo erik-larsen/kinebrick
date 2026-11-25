@@ -65,6 +65,10 @@ const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
 const MOTOR_MOST_MS = 60_000;
 const PUSHES: [number, number][] = [[120, 0], [-120, 0], [0, 120], [0, -120]];
+// A person's drag on a control (see handWays): round its middle by this much on the screen, in
+// radians, as a knob is turned; or this many pixels along the way it goes.
+const HAND_TURN = 1.5;
+const HAND_PUSH = 150;
 // How a collision stop is judged (decision 252 of 2026-11-20). A stop is right where the real part
 // has an end (a door against its frame, steering at its lock), and wrong where it turns without
 // end. The kinds that turn without end are a first sieve (a function with one of them and no kind
@@ -469,6 +473,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   // B, the hand.
   const B: unknown[] = [];
   const movedByB = new Set<string>();
+  const controlsMovedByB = new Set<string>();
   for (const ref of viewerFor ? [] : controls) {
     const control = refOf(ref).part;
     const v = await timed('open', open(file, settings));
@@ -486,43 +491,73 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       continue;
     }
     const parts = moves.flatMap((m: Ref) => [m.part, m.against].filter((p) => p >= 0));
-    const before = await v.where(parts);
     const isMotor = await v.page.evaluate((p) => (window as any).kinebrick.mech.roles[p] === 'motor', control);
     let shift: string[] = [];
+    // How far the control and each listed part went in B: the most over B's drags, each measured
+    // from where the drag began (decision 329), as A's are.
+    const watch = [control, ...parts];
+    const most = new Map<string, [number, number]>();
+    const note = (ref: string, ldu: number, degrees: number) => {
+      const was = most.get(ref) ?? [0, 0];
+      most.set(ref, [Math.max(was[0], round(ldu)), Math.max(was[1], round(degrees))]);
+    };
+    const drags: { kind: string; amount: number }[] = [];
+    // One drag's measure: the control against the frame, each listed part against what the list
+    // measures it against.
+    const measure = async (before: number[][]) => {
+      const [c] = await v.moved([control], [before[0], before[before.length - 1]]);
+      note(ref, c.ldu, c.degrees);
+      for (const m of moves) {
+        const [r] = await v.moved([m.part, ...(m.against >= 0 ? [m.against] : [])], await pick(v, before, watch, [m.part, ...(m.against >= 0 ? [m.against] : [])]), m.against);
+        note(m.ref, r.ldu, r.degrees);
+      }
+    };
     if (isMotor) {
+      const before = await v.where(watch);
       await v.page.keyboard.down('Control');
       await v.page.mouse.down();
       await v.page.mouse.up();
       await v.page.keyboard.up('Control');
       await v.page.waitForTimeout(10_000);
       await v.page.evaluate(() => (window as any).kinebrick.interaction.pauseMotor(true));
+      await measure(before);
     } else {
       if (g.freed && !(await turnsPlain(v, control))) shift = (await v.press({ shift: true, release: true })).said;
-      for (const [dx, dy] of PUSHES) {
+      // As a person drags (decision 329): round the control's middle where it turns like a knob,
+      // and straight along the way its fastest point goes as its joint turns (as the check aims a
+      // push, wayOnJoint), each way; the four fixed pushes only where neither applies.
+      const ways = await handWays(v, control);
+      for (const w of ways) {
         if (!(await v.aim(control))) continue;
+        const before = await v.where(watch);
         await v.press();
-        await v.push(dx, dy);
+        if (w.kind === 'round') await v.turn(control, w.amount);
+        else await v.push(w.dx, w.dy);
+        drags.push({ kind: w.kind, amount: w.kind === 'round' ? w.amount : Math.sign(w.amount) });
+        await measure(before);
       }
     }
-    const moved: string[] = [];
-    for (const m of moves) {
-      const [r] = await v.moved([m.part, ...(m.against >= 0 ? [m.against] : [])], await pick(v, before, parts, [m.part, ...(m.against >= 0 ? [m.against] : [])]), m.against);
-      if (r.moved) moved.push(m.ref);
-    }
-    moved.forEach((m) => movedByB.add(m));
-    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, shift, moved, stops: await v.stops() });
+    const moved = moves.filter((m: Ref) => { const x = most.get(m.ref); return !!x && (x[0] >= MOVED || x[1] >= MOVED); }).map((m: Ref) => m.ref);
+    const c = most.get(ref) ?? [0, 0];
+    const controlMoved = c[0] >= MOVED || c[1] >= MOVED;
+    moved.forEach((m: string) => movedByB.add(m));
+    if (controlMoved) controlsMovedByB.add(ref);
+    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), stops: await v.stops() });
     time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
 
   // Every control turned (or ran, a motor) in some way: a turn of 0 never shows a function, even one
   // that lists no part to move (the 8840's function 5, whose wheels all turned 0, was shown).
-  const turnedEach = controls.every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01));
+  // A turn of 0 by turnPart on a part the hand moves is no verdict (decision 329): a control
+  // counts as worked if A turned it or B moved it.
+  const turnedEach = controls.every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01) || controlsMovedByB.has(ref));
   const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0 && turnedEach;
-  const bShows = !!viewerFor || movedByB.size > 0 || moves.length === 0;
+  // Where the function lists no part to move, B shows it if it moved every control (decision 329).
+  const bShows = !!viewerFor || (moves.length === 0 ? controls.every((ref) => controlsMovedByB.has(ref)) : movedByB.size > 0);
   const why = [
     ...(aShows ? [] : [`A: ${moves.filter((m: Ref) => !movedByA.has(m.ref)).map((m: Ref) => m.ref).join(', ') || 'none'} not moved${staysMovedByA.size ? `; ${[...staysMovedByA].join(', ')} listed to stay moved` : ''}`]),
-    ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : 'no listed part moved by hand'}`]),
+    ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : moves.length === 0 ? 'the control not moved by hand' : 'no listed part moved by hand'}`]),
     ...limits,
   ].join('; ');
   // The farthest the control turned in a way that a collision stopped, and the pair that stopped it.
@@ -556,8 +591,10 @@ async function turnsPlain(v: Viewer, control: number): Promise<boolean> {
     if (k.mech.roles[control] === 'motor') return true;
     const snap = k.kin.snapshot();
     const went = k.interaction.turnPart(control, 0.01, k.setup.camera.position);
+    // A turn on play is no plain turn (decision 331): a jam play only puts off.
+    const played = k.kin.lastTurnPlayed;
     k.kin.restore(snap);
-    return Math.abs(went) > 1e-4;
+    return Math.abs(went) > 1e-4 && !played;
   }, control);
 }
 
@@ -730,6 +767,47 @@ async function collisionsReady(v: Viewer) {
 }
 
 // The rows of `before` (from where(parts)) for the parts `want`, then the frame's, as moved() takes them.
+// The drags a person makes on a control (decision 329): round its middle on the screen, each way,
+// where it turns like a knob (Kinematics.turnsLikeAKnob); straight along the way its fastest point
+// goes as its own joint turns, each way, where it has one (the screen direction of that point's
+// velocity, as wayOnJoint in push.ts gives it); the four fixed pushes where neither applies.
+async function handWays(v: Viewer, control: number): Promise<({ kind: 'round'; amount: number } | { kind: 'along' | 'push'; amount: number; dx: number; dy: number })[]> {
+  const found = await v.page.evaluate((control) => {
+    const k = (window as any).kinebrick;
+    const kin = k.kin;
+    const body = k.mech.bodyOf[control];
+    const link = kin.parentLink(body);
+    const knob = link !== null && kin.turnsLikeAKnob(body);
+    const motion = link ? kin.jointMotion(link.joint, false) : null;
+    let along: [number, number] | null = null;
+    if (motion) {
+      const M = k.matrices()[control];
+      const V = k.setup.camera.position.constructor;
+      const mid = new V().setFromMatrixPosition(M);
+      let best: any = null;
+      for (const c of [-1, 0, 1, 2]) for (const s of [1, -1]) {
+        const g = c < 0 ? mid.clone() : mid.clone().addScaledVector(new V().setFromMatrixColumn(M, c).normalize(), 20 * s);
+        const vel = kin.pointVelocity(motion, body, g).sub(kin.pointVelocity(motion, 0, g));
+        if (!best || vel.length() > best.vel.length()) best = { g, vel };
+      }
+      if (best && best.vel.length() > 1e-6) {
+        const world = (p: any) => p.clone().applyMatrix4(k.setup.ldrawSpace.matrixWorld);
+        const r = k.setup.renderer.domElement.getBoundingClientRect();
+        const px = (p: any) => { const q = world(p).project(k.setup.camera); return [r.left + ((q.x + 1) / 2) * r.width, r.top + ((1 - q.y) / 2) * r.height]; };
+        const a = px(best.g), b = px(best.g.clone().addScaledVector(best.vel.normalize(), 30));
+        const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (len > 1) along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
+      }
+    }
+    return { knob, along };
+  }, control);
+  const ways: ({ kind: 'round'; amount: number } | { kind: 'along' | 'push'; amount: number; dx: number; dy: number })[] = [];
+  if (found.knob) ways.push({ kind: 'round', amount: HAND_TURN }, { kind: 'round', amount: -HAND_TURN });
+  if (found.along) for (const s of [1, -1]) ways.push({ kind: 'along', amount: s, dx: s * HAND_PUSH * found.along[0], dy: s * HAND_PUSH * found.along[1] });
+  if (!ways.length) for (const [dx, dy] of PUSHES) ways.push({ kind: 'push', amount: 1, dx, dy });
+  return ways;
+}
+
 async function pick(_v: Viewer, before: number[][], parts: number[], want: number[]): Promise<number[][]> {
   return [...want.map((p) => before[parts.indexOf(p)]), before[before.length - 1]];
 }

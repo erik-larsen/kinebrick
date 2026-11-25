@@ -199,9 +199,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 337,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 266,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -316,8 +316,8 @@
             1.27
           ]
         ],
-        "seconds": 21.2,
-        "peak": 943
+        "seconds": 16.2,
+        "peak": 929
       },
       {
         "result": "partly",
@@ -340,7 +340,7 @@
           {
             "p689 62821": [
               1,
-              5.08e-13
+              5.2e-13
             ],
             "p910 2853": [
               0,
@@ -348,27 +348,27 @@
             ],
             "p917 2851": [
               0,
-              2.46e-13
+              1.38e-13
             ],
             "p919 2851": [
               0,
-              2.31e-13
+              9.62e-14
             ],
             "p921 2851": [
               0,
-              1.18e-13
+              3.58e-14
             ],
             "p923 2851": [
               0,
-              1.03e-13
+              1.35e-13
             ],
             "p925 2851": [
               0,
-              2.09e-13
+              5.49e-14
             ],
             "p927 2851": [
               0,
-              7.22e-14
+              3.43e-14
             ]
           }
         ],
@@ -412,8 +412,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 30.4,
-        "peak": 937
+        "seconds": 23.5,
+        "peak": 1022
       },
       {
         "result": "partly",
@@ -533,8 +533,8 @@
         ],
         "cause": "not-driven",
         "detail": "p340 32072",
-        "seconds": 27.3,
-        "peak": 955
+        "seconds": 20,
+        "peak": 924
       },
       {
         "result": "partly",
@@ -605,8 +605,8 @@
             1.4
           ]
         ],
-        "seconds": 14.1,
-        "peak": 947
+        "seconds": 10.3,
+        "peak": 918
       },
       {
         "result": "works",
@@ -722,8 +722,8 @@
             0.27
           ]
         ],
-        "seconds": 7.5,
-        "peak": 932
+        "seconds": 6.4,
+        "peak": 1041
       },
       {
         "result": "works",
@@ -823,8 +823,8 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 12.6,
-        "peak": 946
+        "seconds": 10.2,
+        "peak": 894
       },
       {
         "result": "skipped"
@@ -968,8 +968,18 @@
             1.13
           ]
         ],
-        "seconds": 34.3,
-        "peak": 1115
+        "freedFor": [
+          {
+            "pin": "p2447 6558",
+            "for": "p2437 64394"
+          },
+          {
+            "pin": "p2455 6558",
+            "for": "p2437 64394"
+          }
+        ],
+        "seconds": 26.4,
+        "peak": 1087
       },
       {
         "result": "works",
@@ -1030,8 +1040,8 @@
             0
           ]
         ],
-        "seconds": 46.7,
-        "peak": 971
+        "seconds": 35,
+        "peak": 931
       },
       {
         "result": "no",
@@ -1116,8 +1126,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 19.6,
-        "peak": 964
+        "seconds": 17.1,
+        "peak": 935
       },
       {
         "result": "works",
@@ -1178,8 +1188,8 @@
             1.01
           ]
         ],
-        "seconds": 32.9,
-        "peak": 993
+        "seconds": 24.8,
+        "peak": 922
       },
       {
         "result": "works",
@@ -1245,8 +1255,8 @@
           [],
           []
         ],
-        "seconds": 26.5,
-        "peak": 942
+        "seconds": 19.7,
+        "peak": 906
       }
     ]
   }

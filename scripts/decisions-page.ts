@@ -13,7 +13,14 @@ import { dirname, join } from 'node:path';
 const out = process.argv[2] ?? join('dist', 'decisions.html');
 const data = JSON.parse(readFileSync(join('data', 'decisions.json'), 'utf-8'));
 // Where preview and main stand comes from git, so the page cannot name an old commit.
-const short = (ref: string) => execSync(`git rev-parse --short=8 ${ref}`, { encoding: 'utf-8' }).trim();
+// (A checkout that does not have the branch named, as GitHub's build may not, gives no commit.)
+const short = (ref: string) => {
+  try {
+    return execSync(`git rev-parse --short=8 ${ref}`, { encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+  } catch {
+    return '';
+  }
+};
 data.state.preview.commit = short('HEAD');
 data.state.main.commit = short('origin/main');
 // The web servers running on this computer now: each node process that listens on a port, named

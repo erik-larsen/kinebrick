@@ -112,8 +112,8 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
+    "commit": "4929054b",
+    "date": "2026-11-22",
     "seconds": 4,
     "counts": {
       "no": 1,
@@ -230,7 +230,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -315,7 +315,13 @@
           ]
         ],
         "freed": 1,
-        "seconds": 1.2
+        "freedFor": [
+          {
+            "pin": "p280 6558",
+            "for": "p204 32269"
+          }
+        ],
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -491,6 +497,6 @@
         "seconds": 0
       }
     ],
-    "peak": 371
+    "peak": 367
   }
 }

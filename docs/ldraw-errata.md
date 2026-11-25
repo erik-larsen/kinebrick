@@ -504,6 +504,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
 | [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
+| [42070-1](#42070-1-xl-motor-on-its-axle) | xl-motor-on-its-axle | moves `42070 - powerFuncMotorXL-LQ-1.ldr` to 0 -256 -390 | Signed off by Erik, 2026-11-21 |
 | [42077-1](#42077-1-rear-half-shaft-inner-ball-level) | rear-half-shaft-inner-ball-level | moves `32494.dat` (in `42077 - rearaxle.ldr`) to -60 0 0, turned | Signed off by Erik, 2026-11-17 |
 | [42078-1](#42078-1-rear-crane-actuator-axle-to-its-connectors) | rear-crane-actuator-axle-to-its-connectors | moves `60485.dat` (in `42078 - craneactu.ldr` as placed in `42078 - crane1.ldr` only) to -0.012 -20 49.983 | Signed off by Erik, 2026-11-17 |
 | [42078-1](#42078-1-door-2-has-no-13L-beam) | door-2-has-no-13L-beam | removes `41239.dat` (in `42078 - containerdoor2.ldr`) | Signed off by Erik, 2026-11-19 |
@@ -524,6 +525,15 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42110-1](#42110-1-front-driver-at-z-plus-177-on-its-hub-axis) | front-driver-at-z-plus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 177.81 | Signed off by Erik, 2026-11-18 |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
 | [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Signed off by Erik, 2026-11-17 |
+| [42112-1](#42112-1-piston-first-axle-on-the-plate) | piston-first-axle-on-the-plate | moves `4519.dat` to 20 -128 -256 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-first-half-bush-on-the-plate) | piston-first-half-bush-on-the-plate | moves `32123b.dat` to 20 -153 -256 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-first-bush-on-the-plate) | piston-first-bush-on-the-plate | moves `3713.dat` to 20 -108 -256 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-second-axle-on-the-plate) | piston-second-axle-on-the-plate | moves `4519.dat` to 20 -128 -276 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-second-half-bush-on-the-plate) | piston-second-half-bush-on-the-plate | moves `32123b.dat` to 20 -153 -276 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-second-bush-on-the-plate) | piston-second-bush-on-the-plate | moves `3713.dat` to 20 -108 -276 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-fourth-axle-on-the-plate) | piston-fourth-axle-on-the-plate | moves `4519.dat` to 20 -128 -316 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-fourth-half-bush-on-the-plate) | piston-fourth-half-bush-on-the-plate | moves `32123b.dat` to 20 -153 -316 | Signed off by Erik, 2026-11-21 |
+| [42112-1](#42112-1-piston-fourth-bush-on-the-plate) | piston-fourth-bush-on-the-plate | moves `3713.dat` to 20 -108 -316 | Signed off by Erik, 2026-11-21 |
 
 ### 850-1: handwheel-down
 
@@ -1334,6 +1344,20 @@ In `42070 - axle3.ldr` (p848 6589), the line
 
 is read with its part at 0 0 -17, turned to -0.259 0.966 0 -0.966 -0.259 0 0 0 1.
 
+### 42070-1: xl-motor-on-its-axle
+
+Signed off by Erik, 2026-11-21.
+
+Step 116 (book 1, PDF page 73, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=73) slides the XL motor (58121), with its cable, onto the gearbox's axle by its output. The file places the motor's submodel (42070 - powerFuncMotorXL-LQ-1.ldr, the motor p593 and its cable) with its output at y -236, but the axle it should drive, p402 (axle 5, z -410 to -310), runs at y -256, through the motor's round housing hole one stud above the output, and its line is fixed by the gearbox parts it runs through (p405 18946, p445 41239); the long pin p444 (6558) sits in the output instead. So the motor's output is joined to nothing and it drives nothing (functions 1 and 6). Moved 20 LDU up, to y -256, the axle sits in the output and the pin in the housing hole below it, as the step shows; the motor and its cable move together, nothing else moves.
+
+In the main model, the line
+
+```
+1 4 0 -236 -390 -1 0 0 0 1 0 0 0 -1 42070 - powerFuncMotorXL-LQ-1.ldr
+```
+
+is read with its part at 0 -256 -390.
+
 ### 42077-1: rear-half-shaft-inner-ball-level
 
 Signed off by Erik, 2026-11-17.
@@ -1618,5 +1642,131 @@ In the main model (p326 18575), the line
 ```
 
 is read with its part at 20 0 184.
+
+### 42112-1: piston-first-axle-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the first piston (lines 136 to 138 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p170 4519), the line
+
+```
+1 14 20 -130 -256 0 -1 0 -1 0 0 0 0 -1 4519.dat
+```
+
+is read with its part at 20 -128 -256.
+
+### 42112-1: piston-first-half-bush-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the first piston (lines 136 to 138 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p171 32123b), the line
+
+```
+1 14 20 -155 -256 -1 0 0 0 0 1 0 1 0 32123b.dat
+```
+
+is read with its part at 20 -153 -256.
+
+### 42112-1: piston-first-bush-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the first piston (lines 136 to 138 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p172 3713), the line
+
+```
+1 71 20 -110 -256 0 1 0 0 0 -1 -1 0 0 3713.dat
+```
+
+is read with its part at 20 -108 -256.
+
+### 42112-1: piston-second-axle-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the second piston (lines 139 to 141 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p173 4519), the line
+
+```
+1 14 20 -130 -276 0 -1 0 -1 0 0 0 0 -1 4519.dat
+```
+
+is read with its part at 20 -128 -276.
+
+### 42112-1: piston-second-half-bush-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the second piston (lines 139 to 141 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p174 32123b), the line
+
+```
+1 14 20 -155 -276 -1 0 0 0 0 1 0 1 0 32123b.dat
+```
+
+is read with its part at 20 -153 -276.
+
+### 42112-1: piston-second-bush-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the second piston (lines 139 to 141 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p175 3713), the line
+
+```
+1 71 20 -110 -276 0 1 0 0 0 -1 -1 0 0 3713.dat
+```
+
+is read with its part at 20 -108 -276.
+
+### 42112-1: piston-fourth-axle-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the fourth piston (lines 145 to 147 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p179 4519), the line
+
+```
+1 14 20 -130 -316 0 -1 0 -1 0 0 0 0 -1 4519.dat
+```
+
+is read with its part at 20 -128 -316.
+
+### 42112-1: piston-fourth-half-bush-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the fourth piston (lines 145 to 147 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p180 32123b), the line
+
+```
+1 14 20 -155 -316 -1 0 0 0 0 1 0 1 0 32123b.dat
+```
+
+is read with its part at 20 -153 -316.
+
+### 42112-1: piston-fourth-bush-on-the-plate
+
+Signed off by Erik, 2026-11-21.
+
+The engine's four pistons (upright axles 3 with a half bush and a bush, over the liftarm cams of the camshaft p133 to p137) rest by their weight on the plate they pass through, or on a cam where its end is under them. In the file the fourth piston (lines 145 to 147 of the main model) hangs 2 LDU above that plate: its bush's bottom is 2 LDU clear of the plate's top, and its cam points away. The third (lines 142 to 144, p176 to p178) rests on its cam, 10 LDU higher, as built. Moved 2 LDU down with its piston, nothing else moves.
+
+In the main model (p181 3713), the line
+
+```
+1 71 20 -110 -316 0 1 0 0 0 -1 -1 0 0 3713.dat
+```
+
+is read with its part at 20 -108 -316.
 
 <!-- errata: end -->

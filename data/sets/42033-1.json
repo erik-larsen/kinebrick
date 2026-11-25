@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
-    "date": "2026-11-21",
-    "seconds": 2,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 1,
     "counts": {
       "works": 3,
       "skipped": 1,
@@ -190,7 +190,7 @@
             "p120 56145 against p12 12799"
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -386,6 +386,6 @@
         "seconds": 0.1
       }
     ],
-    "peak": 348
+    "peak": 347
   }
 }

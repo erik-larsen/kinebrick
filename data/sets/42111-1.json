@@ -198,9 +198,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
-    "date": "2026-11-21",
-    "seconds": 54,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 39,
     "counts": {
       "works": 7,
       "skipped": 2,
@@ -321,7 +321,7 @@
             0.63
           ]
         ],
-        "seconds": 4.4
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -495,7 +495,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 23.9
+        "seconds": 17.4
       },
       {
         "result": "works",
@@ -537,7 +537,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -695,7 +695,7 @@
             0.23
           ]
         ],
-        "seconds": 2.4
+        "seconds": 1.7
       },
       {
         "result": "skipped",
@@ -772,7 +772,13 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 2.1
+        "freedFor": [
+          {
+            "pin": "p93 6558",
+            "for": "p0 92910"
+          }
+        ],
+        "seconds": 1.7
       },
       {
         "result": "skipped",
@@ -838,7 +844,7 @@
             0.03
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -911,7 +917,7 @@
             0
           ]
         ],
-        "seconds": 8.6
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -994,9 +1000,19 @@
             0.73
           ]
         ],
-        "seconds": 5
+        "freedFor": [
+          {
+            "pin": "p176 2780",
+            "for": "p328 2825"
+          },
+          {
+            "pin": "p177 2780",
+            "for": "p328 2825"
+          }
+        ],
+        "seconds": 3.4
       }
     ],
-    "peak": 737
+    "peak": 739
   }
 }

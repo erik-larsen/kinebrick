@@ -31,7 +31,7 @@ import { holdRows, holds } from './constraints/holds.ts';
 import { joints } from './constraints/joints.ts';
 import { loops } from './constraints/loops.ts';
 import { rails } from './constraints/rails.ts';
-import { rests } from './constraints/rests.ts';
+import { rests, restingOn } from './constraints/rests.ts';
 import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
@@ -416,12 +416,18 @@ export class Kinematics {
   spinners: number[] = [];
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private played = false;
+  // Whether the last turn's last step went on play (see loopPlay): a drag that stops short so is
+  // stopped by a jam that play only put off (decision 331), and is offered the pin search.
+  get lastTurnPlayed(): boolean {
+    return this.played;
+  }
   private closingFirmOnly = false; // whether only the rows that take no play are being closed (see closeLoops)
   private turningJointsOf: number[][] | null = null; // each body's turning joints (see onAxis), found when first needed
   traceNames: string[] | null = null; // with TRACE, each row's kind of connection, as buildEquations adds it (see traceJam in trace.ts)
   private traceName = ''; // with TRACE, the kind of connection whose rows buildEquations is adding
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
+  private closingFollowers = new Set<number>(); // resting bodies whose support moves in the step: they follow it as the loops close (see advance)
   private gripped = false; // whether the motion last chosen was one of those
   // The slides held at an end of their travel for the step under way, which the motion chosen
   // would otherwise push past it (see jointMotion; decision 192 of 2026-11-18). Each holds as a
@@ -3735,7 +3741,12 @@ export class Kinematics {
       for (let c = 0; c < z.length; c++) sum += row[c] * z[c];
       return sum;
     };
-    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
+    // A resting body on something other than what it's mounted on (a push rod on its cam) goes as
+    // that moves it, not as a mount: kept still on its mount, it would keep the cam still too, and
+    // the drag would go another way (the 42112 Concrete Mixer Truck's front wheel, rolled, turned its
+    // steering instead once a lobe began to lift a rod).
+    const riding = new Set((this.mech.rests ?? []).flatMap((r) => { const on = restingOn(this, r); return on && on.body !== this.mounts.get(r.body) ? [r.body] : []; }));
+    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b) && !this.closingFollowers.has(b) && !riding.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
     // The steering is kept still on a car on its tyres, and lifted too: in the hand, nothing turns a
     // knuckle against its chassis but friction in the steering, which holds it there (the 42053
@@ -3761,7 +3772,7 @@ export class Kinematics {
     const springs = inBasis(this.springRows(), basis);
     const pins = (z: number[]) => [...stiff.map((j) => rateOf(z, j)), ...springs.map((row) => dot(row, z))];
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.body)));
-    const bodies = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && b !== grabbed && !pulleys.has(b));
+    const bodies = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && b !== grabbed && !pulleys.has(b) && !this.closingFollowers.has(b));
     // With SPARSE_FRICTION, each body counts by how many parts it has: heavier.
     const mass = new Array(this.bodyCount).fill(SPARSE_FRICTION ? 0 : 1);
     if (SPARSE_FRICTION) for (const b of this.mech.bodyOf) if (b >= 0) mass[b]++;
@@ -3849,7 +3860,22 @@ export class Kinematics {
     // the ground, swung it round the other rear wheel and tipped it forward.
     const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
     const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
-    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
+    // A resting body following its support as the loops close (see advance): its joints' turning costs
+    // nothing either.
+    const followed = this.closingFollowers;
+    const pulleyJoints = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.joint] : []))));
+    const sizeHere = followed.size
+      ? (z: number[]) =>
+          this.mech.joints.flatMap((j, i) => {
+            if (pulleyJoints.has(i) || followed.has(j.bodyA) || followed.has(j.bodyB)) return [];
+            if (j.kind === 'revolute' || (j.kind === 'slide' && j.turns)) return [rateOf(z, i)];
+            if (j.kind !== 'ball') return [];
+            const w = turning(z);
+            const [a, b] = [3 * j.bodyA, 3 * j.bodyB];
+            return [w[b] - w[a], w[b + 1] - w[a + 1], w[b + 2] - w[a + 2]];
+          })
+      : size;
+    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: sizeHere, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
@@ -3928,7 +3954,16 @@ export class Kinematics {
         if (this.options.leastMotion && this.drag.turning !== null && this.options.closeStill > 0) {
           const most = Math.max(...m.map(Math.abs));
           const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
-          this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
+          // A resting body follows what it stands on (decisions 317, 319 and 324): where the support it rests
+          // on now moves in the step (a camshaft's lobe turning under a push rod at its top, still to
+          // first order there), it isn't kept still, nor costs anything in closing's tiers (see
+          // leastTiers), so closing the loops sets it on its support rather than turning the support
+          // back (the 42112's camshaft, turned back through the open rear differentials until the step
+          // was refused). Kept still, still, where its support is still too (the 858's push rods on
+          // their plate, whose crank jams a turn short otherwise).
+          const moving = (b: number) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * b + k] - m[k]) > 1e-9 * most);
+          this.closingFollowers = new Set((this.mech.rests ?? []).flatMap((r) => { const on = restingOn(this, r); return on && moving(on.body) ? [r.body] : []; }));
+          this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && !this.closingFollowers.has(b) && !moving(b));
         }
         // Least motion: what slides or swivels on the car (see findMounts) and the step leaves
         // still on it is held there while the loops are closed, as tier 1 kept it, but for
@@ -3939,11 +3974,23 @@ export class Kinematics {
         const mountsHeld = this.options.leastMotion && !this.options.oneProblem && this.drag.turning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.drag.held.has(b) && b !== this.drag.turning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
         for (const b of mountsHeld) this.drag.held.add(b);
         this.move(m, amount);
+        // A support that arrives under a resting body in the step (a lobe coming round under a push
+        // rod's foot that stood on the plate): where it rests on now, after the move, counts too.
+        if (this.closingFollowers.size || this.mech.rests?.length) {
+          const most = Math.max(...m.map(Math.abs));
+          const moving = (b: number) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * b + k] - m[k]) > 1e-9 * most);
+          for (const r of this.mech.rests ?? []) {
+            const on = restingOn(this, r);
+            if (on && moving(on.body)) this.closingFollowers.add(r.body);
+          }
+          this.closingStill = this.closingStill.filter((b) => !this.closingFollowers.has(b));
+        }
         let gap: number;
         try {
           gap = this.closeLoops(keep);
         } finally {
           this.closingStill = [];
+          this.closingFollowers = new Set();
           for (const b of mountsHeld) this.drag.held.delete(b);
         }
         this.settle();

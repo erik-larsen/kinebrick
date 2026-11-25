@@ -128,6 +128,7 @@ The commands:
 - `npm run functions` checks each real set's functions, what [its controls are supposed to do](data/sets/README.md), against what Kinebrick does with its model, and writes what it found into the set's file in `data/sets/` (see [The function check](ARCHITECTURE.md#the-function-check)). `npm run instructions` downloads each set's building instructions into `omr/instructions/` (not committed) and writes down which file is which book.
 - `npm run invariance` checks whether the function check's results stay the same when a model is moved, turned or has its parts nudged a hair (see [Invariance and jitter](ARCHITECTURE.md#the-function-check)). `npm run nudge` says what such a nudge changes in the mechanism worked out. `npm run digest` writes a fingerprint of the mechanism worked out for every set, to compare before and after a change that must not alter any (`-- --write before.txt`, then `-- --compare before.txt`).
 - `npm run functions -- --causes` works out afresh why each function that doesn't work doesn't, from a [fixed list of causes](ARCHITECTURE.md#causes), and `npm run probe -- 8880 2` works one function's control piece by piece and says what moved and what stopped it.
+- `npm run site-pages` writes the pages the site publishes beside the viewer (the status page, the decisions page, and on `preview-train` the train status page), as the deploy does for each branch.
 - `npm run status` writes the status page, `dist/status.html`: every set as a box, sized by its number of pieces and coloured by the share of its checked functions that work, from each set's results in `data/sets/`.
 - `npm run mechanisms` writes the [mechanism catalog](docs/mechanisms/README.md) into `docs/mechanisms/` from the kinds in `data/mechanisms.json` and the `mechanisms` each set's functions list in `data/sets/`. Run it after tagging a set's functions; `npm run functions` runs it itself, as the catalog quotes each function's result, and a test fails if the catalog is out of date.
 - `npm run build` builds the site into `dist/`. Every push to `main` runs the tests, then builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`). If a test fails, the live site stays as it was. A preview of work that has not reached `main` goes up beside it: the `preview` branch at [erik-larsen.github.io/kinebrick/preview/](https://erik-larsen.github.io/kinebrick/preview/), `preview-train` at [/preview-train/](https://erik-larsen.github.io/kinebrick/preview-train/), and so on for any branch named `preview` or `preview-<something>`. Every push to `main` or to one of those branches publishes them all afresh. A preview's tests don't hold up the site: each push to a preview branch runs them on their own instead (see `.github/workflows/test.yml`), with a type check, and a failure shows as a red mark on the commit. A preview's heading says which branch, commit and date it was built from.
@@ -142,16 +143,18 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 **Under way: [the solver phase](docs/solver-phase.md).** Since release 0.850, rather than fixing sets one at a time, the work is on the solver itself: one general way to choose how a mechanism moves in place of special cases, and a quicker check that says how far each part should move. Every set under [Models](README.md#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own. The plan to get every set's every function working is in [docs/plan.md](docs/plan.md).
 
+**Live pages**, written from each branch's data whenever the site is published: the Technic status page of [main](https://erik-larsen.github.io/kinebrick/status.html) and of [preview](https://erik-larsen.github.io/kinebrick/preview/status.html) (every set as a box, each function's result, the table of times), the [decisions page](https://erik-larsen.github.io/kinebrick/preview/decisions.html) (what waits for Erik, what is coming, what was decided) and the [train status page](https://erik-larsen.github.io/kinebrick/preview-train/trains.html). Their links into the viewer that name a port open a viewer running on your own computer (see [Getting started](#getting-started)).
+
 **[Function check](ARCHITECTURE.md#the-function-check) on all 186 sets.** Each set's functions, from its instruction book, tried on its model.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 696 | 57% |
-| Partly | 258 | 21% |
-| Doesn't work | 91 | 7% |
-| Skipped or not checked | 178 | 15% |
+| Works | 693 | 57% |
+| Partly | 259 | 21% |
+| Doesn't work | 92 | 8% |
+| Skipped or not checked | 179 | 15% |
 
-Of the functions checked, 67% work in full. Only 25 of the 186 sets have every function working.
+Of the functions checked, 66% work in full. Only 25 of the 186 sets have every function working.
 
 **Major things left:**
 
