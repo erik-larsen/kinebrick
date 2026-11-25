@@ -2412,7 +2412,13 @@ export class Kinematics {
     this.leastScrub = 0;
     this.slipRows = [];
     const [sideways, travel, lift, rise] = [slip.sideways, slip.travel, slip.lift, slip.rise].map((r) => inBasis(r, basis));
-    if (sideways.length) this.slipRows = [...sideways, ...lift];
+    // Whether anything stands on the ground with slip: every tread on the ground, tyre or track, has a
+    // row for its lift, where only a tyre has one for scrubbing sideways (a track's sideways rows are
+    // its average, kept exactly; see tyres). Asked of the sideways rows, a model on tracks alone had
+    // none, so its motions were taken unjudged, and its tracks could sink into the ground or rise off
+    // it as freely as roll (the 42021 Snowmobile, on one track wheel, sank 23.6 LDU as it rolled).
+    const grounded = lift.length > 0;
+    if (grounded) this.slipRows = [...sideways, ...lift];
     const frameStill = inBasis(
       Array.from({ length: 6 }, (_, k) => {
         const row = new BodyRow(n);
@@ -2421,8 +2427,8 @@ export class Kinematics {
       }),
       basis,
     );
-    const springs = sideways.length ? inBasis(this.springRows(), basis) : [];
-    const every = sideways.length ? [...rows, ...sideways, ...travel, ...lift, ...rise, ...springs, ...frameStill] : rows;
+    const springs = grounded ? inBasis(this.springRows(), basis) : [];
+    const every = grounded ? [...rows, ...sideways, ...travel, ...lift, ...rise, ...springs, ...frameStill] : rows;
     const tied: number[] = [];
     const free: number[] = [];
     for (let c = 0; c < q; c++) (every.some((row) => Math.abs(row[c]) >= RANK_TOLERANCE) ? tied : free).push(c);
@@ -2446,7 +2452,7 @@ export class Kinematics {
   // the springs and the frame kept still, in those coordinates.
   private freeMotionsOf(rows: number[][], sideways: number[][], travel: number[][], lift: number[][], rise: number[][], springs: number[][], frameStill: number[][], q: number): [number[][], number[][]] {
     const motions = orthonormalize(nullSpace(rows, q));
-    if (sideways.length === 0 || motions.length === 0) return [motions, []];
+    if (lift.length === 0 || motions.length === 0) return [motions, []]; // nothing on the ground (see grounded)
     // Parked and rolling, the car is on its springs (see Joint.springHeld): rolling is chosen as
     // the motion that scrubs least, and with its suspension free it mixed in the car sinking and
     // tipping to scrub a hair less (the 8880 Super Car, pushed along on sliding shock absorbers,
