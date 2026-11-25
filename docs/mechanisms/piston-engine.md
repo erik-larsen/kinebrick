@@ -250,7 +250,7 @@ Each detail by the set it first appears in.
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
-- *V6:* Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (partly)
+- *V6:* Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (works)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
