@@ -206,7 +206,8 @@ export function reductions(parts: PlacedPart[], table: ConnectionTable, bodyOf: 
 // universal joint and both turn in the chassis: no differential, the wheels locked together).
 // It tests the turning connections round the joint, not the joint's pose: a half shaft's joint,
 // straight at rest, still bends, since its shafts turn in different bodies. Returns the joints it
-// makes rigid; their couplings are made rigid connections, and they leave `joined`.
+// makes rigid; their connections (a coupling, or a nudged ball's ball) are made rigid, and they
+// leave `joined`.
 export function lockedJoints(count: number, connections: Connection[], joined: { partA: number; partB: number }[]): { partA: number; partB: number }[] {
   const LINE = 1; // LDU
   const group = rigidGroups(count, connections);
@@ -229,7 +230,11 @@ export function lockedJoints(count: number, connections: Connection[], joined: {
     if (ga === gb) continue;
     const onA = turnsIn(ga), onB = turnsIn(gb);
     if (!onA.some((p) => p.other !== gb && onB.some((q) => q.other === p.other && sameLine(p, q)))) continue;
-    for (const c of connections) if (c.kind === 'coupling' && ((c.male === j.partA && c.female === j.partB) || (c.male === j.partB && c.female === j.partA))) c.kind = 'rigid';
+    // Made rigid whatever its kind: a universal joint's or a grooved ball's coupling, and a nudged
+    // ball's ball (decision 333: the 42078's drive shaft, whose nudged ball 32494 sits in a
+    // constant velocity joint's female on one line with it, was left a plain ball, which passes
+    // no turning, once its coupling left `joined`).
+    for (const c of connections) if ((c.kind === 'coupling' || c.kind === 'ball') && ((c.male === j.partA && c.female === j.partB) || (c.male === j.partB && c.female === j.partA))) c.kind = 'rigid';
     joined.splice(joined.indexOf(j), 1);
     locked.push(j);
   }

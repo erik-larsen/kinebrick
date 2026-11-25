@@ -5,9 +5,9 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 693,
-      "partly": 259,
-      "no": 92,
+      "works": 696,
+      "partly": 257,
+      "no": 91,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -38,7 +38,11 @@
     },
     {
       "title": "The next offer of main",
-      "what": "After the sessions restart on 23 November: the free-parts rule, the track depth with the tipping mend, the locked balls (338) and the 42129's drive line (340), each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+      "what": "After the free-parts rule, the track depth with the tipping mend, and the differentials' second cause (348), each when it loses no working function; the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+    },
+    {
+      "title": "The new differential (part 65414c01): read as its pieces now; its wheels do not yet turn against each other",
+      "what": "Merged on 24 November (348). Kinebrick had no gears and no differential role for this part, so both wheels of an axle were one rigid piece. It is in 4 sets: the 42114 Volvo Hauler, the 42129 Zetros, the 42124 Off-Road Buggy and the 42109 Top Gear Rally Car. Now the Zetros's centre differential works (function 2), and the motors of the 42124 and the 42109 drive their rear wheels. One function left the working count: the 42109's function 2, turning one rear wheel turns the other the opposite way. It had passed falsely: the two wheels were one piece and turned the same way, and the check measures how far a part turns, not which way. Still wrong: with the motor's gear held, one wheel turns the other only a little and then stops. The worker traces that next. Nothing for you to sign yet."
     }
   ],
   "done": [
@@ -485,6 +489,10 @@
     {
       "date": "2026-11-24",
       "what": "System hinges, doors and clips: you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). Not started yet; the order and the condition are in decision 345."
+    },
+    {
+      "date": "2026-11-24",
+      "what": "42112 Concrete Mixer Truck: the piston erratum of 21 November is withdrawn (\"Withdraw it\"). It was Kinebrick's measuring fault, not the file's. With the mend merged, the 42078 Mack Anthem's function 2 (pushing the truck drives the engine) works; the 42112 keeps its 7 working functions (349)."
     }
   ]
 }
