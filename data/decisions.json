@@ -5,9 +5,9 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 693,
-      "partly": 259,
-      "no": 92,
+      "works": 695,
+      "partly": 258,
+      "no": 91,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -28,7 +28,7 @@
       "kind": "Sign-off",
       "title": "42112 Concrete Mixer Truck: withdraw the piston erratum you signed on 21 November?",
       "what": "On 21 November Claude asked you to sign an erratum that moves three of the engine's four pistons 2 LDU down, saying they hang 2 LDU above the beam they pass through. That was wrong, and it was Kinebrick's fault, not the file's. Kinebrick measured a beam's hole only where the axle fits, the middle 16 LDU of its 20, so a half bush lying on the beam's face read as 2 LDU above it. The worker found this on the 42078 Mack Anthem and the 42110 Land Rover Defender, whose pistons failed the same way. Claude then checked the 42112 from the LDraw shapes alone: as built, the first piston's yellow half bush reaches from y -160 to -150 and the 13-long beam under it from -150 to -130, so they touch. The erratum pushes the pistons 2 LDU into the beam. LEGO's booklet shows the half bushes lying on the beam's top face (book 1, page 38, step 50).",
-      "effect": "With your yes: the nine piston entries leave the 42112's errata (the drive gear's erratum of 17 November stays), the pistons stand as the file has them, and the reading's mend merges with it. By the worker's checks, which Claude is repeating now: the 42112 keeps its 7 working functions, and the 42078's function 2 (pushing the truck drives the engine) goes from partly to works. Each piston then rises 10 LDU on its cam, not 12. Without your yes the mend cannot merge, because with the erratum in place the 42112's two wheel functions would stop on a piston.",
+      "effect": "With your yes: the nine piston entries leave the 42112's errata (the drive gear's erratum of 17 November stays), the pistons stand as the file has them, and the reading's mend merges with it. By the worker's checks, which Claude has repeated in a folder of its own with the same results (348): the 42112 keeps its 7 working functions, and the 42078's function 2 (pushing the truck drives the engine) goes from partly to works. Each piston then rises 10 LDU on its cam, not 12. Without your yes the mend cannot merge, because with the erratum in place the 42112's two wheel functions would stop on a piston.",
       "links": [
         {
           "label": "42112 in the viewer, first piston's half bush marked",
@@ -58,11 +58,11 @@
     },
     {
       "title": "The next offer of main",
-      "what": "After the sessions restart on 23 November: the free-parts rule, the track depth with the tipping mend, the locked balls (338) and the 42129's drive line (340), each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+      "what": "After the piston branch (waits for your word on the 42112's erratum), the free-parts rule, the track depth with the tipping mend, and the differentials' second cause (348), each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     },
     {
-      "title": "The new differential (part 65414c01) is read as a solid block",
-      "what": "Found on 24 November from the 42129 Zetros, whose drive stops at its axle differentials (347). Kinebrick's data has no gears and no differential role for this part, so both wheels of an axle are one rigid piece. It is in 4 sets: the 42114 Volvo Hauler (3), the 42129 Zetros (2), the 42124 Off-Road Buggy (1) and the 42109 Top Gear Rally Car (1); six functions that fail today name it. The worker mends the data, about a day with the checks. Nothing for you to sign."
+      "title": "The new differential (part 65414c01): read as its pieces now; its wheels do not yet turn against each other",
+      "what": "Merged on 24 November (348). Kinebrick had no gears and no differential role for this part, so both wheels of an axle were one rigid piece. It is in 4 sets: the 42114 Volvo Hauler, the 42129 Zetros, the 42124 Off-Road Buggy and the 42109 Top Gear Rally Car. Now the Zetros's centre differential works (function 2), and the motors of the 42124 and the 42109 drive their rear wheels. One function left the working count: the 42109's function 2, turning one rear wheel turns the other the opposite way. It had passed falsely: the two wheels were one piece and turned the same way, and the check measures how far a part turns, not which way. Still wrong: with the motor's gear held, one wheel turns the other only a little and then stops. The worker traces that next. Nothing for you to sign yet."
     }
   ],
   "done": [
