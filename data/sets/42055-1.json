@@ -181,9 +181,10 @@
     ]
   },
   "generated": {
-    "commit": "565e62a3",
-    "date": "2026-11-24",
-    "seconds": 399,
+    "commit": "92d6a509",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 502,
     "counts": {
       "no": 1,
       "partly": 5,
@@ -495,8 +496,8 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 14.9,
-        "peak": 938
+        "seconds": 9.3,
+        "peak": 962
       },
       {
         "result": "partly",
@@ -588,8 +589,8 @@
             0.5
           ]
         ],
-        "seconds": 13.3,
-        "peak": 822
+        "seconds": 15,
+        "peak": 966
       },
       {
         "result": "partly",
@@ -663,8 +664,8 @@
             0.5
           ]
         ],
-        "seconds": 25.9,
-        "peak": 937
+        "seconds": 17.3,
+        "peak": 987
       },
       {
         "result": "partly",
@@ -757,8 +758,8 @@
             0.5
           ]
         ],
-        "seconds": 18,
-        "peak": 887
+        "seconds": 24,
+        "peak": 947
       },
       {
         "result": "works",
@@ -812,8 +813,8 @@
             ]
           ]
         ],
-        "seconds": 24.1,
-        "peak": 808
+        "seconds": 34,
+        "peak": 964
       },
       {
         "result": "works",
@@ -879,8 +880,8 @@
             0.5
           ]
         ],
-        "seconds": 17.4,
-        "peak": 973
+        "seconds": 11.8,
+        "peak": 1003
       },
       {
         "result": "partly",
@@ -950,8 +951,8 @@
               "limit"
             ]
           ],
-          "seconds": 65.9,
-          "peak": 967
+          "seconds": 110.5,
+          "peak": 955
         }
       },
       {
@@ -1042,8 +1043,8 @@
             0.93
           ]
         ],
-        "seconds": 21.1,
-        "peak": 888
+        "seconds": 14.7,
+        "peak": 964
       },
       {
         "result": "partly",
@@ -1126,8 +1127,8 @@
               1.2
             ]
           ],
-          "seconds": 16.4,
-          "peak": 975
+          "seconds": 22.2,
+          "peak": 959
         }
       },
       {
@@ -1255,8 +1256,8 @@
           [],
           []
         ],
-        "seconds": 99.3,
-        "peak": 1011
+        "seconds": 167.9,
+        "peak": 964
       }
     ]
   }
