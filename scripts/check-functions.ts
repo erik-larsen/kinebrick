@@ -395,10 +395,15 @@ async function checkModel(model: string, functions: Fn[], priors: (Checked | und
   let stopping: Collisions | null = null;
   let stoppedBy: [number, number] | null = null;
   // Whether a step may stand: no limit met, and (see collide) no two parts pushing into each other.
+  // And, as in the viewer (its blockedBy), no part gone below the ground where the model stands on
+  // it: Collisions.belowGround, the viewer's own test, against the parts as last read. A lifted
+  // model has no ground (Kinematics' groundY is null), as in the viewer (decision 368: the 42111's
+  // wheelie bar turned 0.73 rad in the check and stopped at the floor in the viewer).
   const mayGo = () => {
     if (kin.atLimit() !== null) return false;
     if (!stopping) return true;
-    const hit = stopping.check(placedNow().map((p) => p.matrix));
+    const now = placedNow().map((p) => p.matrix);
+    const hit = stopping.check(now) ?? (kin.groundY === null ? null : stopping.belowGround(now, kin.groundY, parts.map((p) => p.matrix)));
     if (hit && !stoppedBy) stoppedBy = hit;
     return hit === null;
   };
