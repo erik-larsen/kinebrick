@@ -22,17 +22,7 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "system-hinges-build",
-      "kind": "Decision",
-      "title": "System hinges, doors and clips: the look is done. Build any of it?",
-      "what": "The worker looked at the 12 functions that failed in the blind trial for this reason (321). In 7 the connection points are already in our data and Kinebrick's reading does not use them; in 4 the data is missing; 1 is not settled. By kind: (A) a hinged lid closed onto studs, 3 of the 12: the hinge is read, but the studs under the closed lid hold it shut; a stud that the hinge's own turn pulls apart should let go. About 3 days, and it touches how every stud holds in every set, so every set is checked. (B) A door that pivots on a stud, 2. (C) A bar in a clip, 1. (D) Glass with no slot in its frame, 1. (E) Three single fittings. (F) is withdrawn: the turntable that seemed to be this kind is a third single fitting, a socket missing from the data. (G) A winch and its string, 1. All of it: about 11 days of the worker's time. The quick wins, B and E, are about 2.5 days for 4 of the 12. How many of the 124 non-Technic candidates each kind could open, by their descriptions and as upper bounds: lids 71, doors 47, turntables 31, strings and winches 27, arms and claws 15, sticks and clips 8.",
-      "effect": "Three choices. Not now: the worker stays on the 186 Technic sets. Quick wins: doors on stud pivots and the two fittings, about 2 days, which opens the door functions and little else. All of it: about 11 days, the worker off the Technic sets for that time, and lids on studs is a change in every set. Claude advises not now: the rolling rule, the second sweep's findings and the first move's speed are open on the 186, and lids on studs is the largest and riskiest part of the gain.",
-      "reply": "Not now",
-      "since": "2026-11-21"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
@@ -40,7 +30,7 @@
     },
     {
       "title": "System hinges, doors and clips",
-      "what": "The look you chose is done (321, corrected in 323) and the choice of building any of it waits for you, above."
+      "what": "On 24 November you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). It does not start yet (345). It starts when the worker's four tasks on the Technic sets are in or parked (the pistons of the 42078 and 42110, the 42129's drive line, the three functions held on 21 November, the tilted rods of the 42123's V8) and the next offer of main has gone to you. The order then: first doors on a stud pivot and the three single fittings, about 2.5 days, which touch no set that works today; then the bar in a clip and the glass; lids closed onto studs last and on a branch of their own, because that changes how every stud holds in every set and needs a full check. The winch and its string wait for a rule on strings."
     },
     {
       "title": "A second worker: not proposed for now",
@@ -491,6 +481,10 @@
     {
       "date": "2026-11-23",
       "what": "The work is started again after the usage reset (344). The solver owner: the 8880 under the free-parts rule, then the tipping mend with the track depth. The worker: the pistons of the 42078 and 42110, then the 42129's drive line, then the three functions held on 21 November. The train owner: merge preview so that the train status page appears on the site. Each sends one report per task."
+    },
+    {
+      "date": "2026-11-24",
+      "what": "System hinges, doors and clips: you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). Not started yet; the order and the condition are in decision 345."
     }
   ]
 }

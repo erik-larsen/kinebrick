@@ -1,8 +1,8 @@
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { join, resolve } from 'node:path';
+import { afterEach, describe, expect, it, onTestFinished } from 'vitest';
 import { alive, estimateMb, partCounts, Pool } from '../scripts/check-pool.ts';
 
 // The machine's check pool (see scripts/check-pool.ts): a check starts a child only while the
@@ -126,6 +126,49 @@ describe('the check pool', () => {
     expect(readdirSync(dir).filter((f) => f.endsWith('.json'))).toEqual([]);
     expect(wrapper.stderr).toContain('a failing command: exit 3');
   });
+
+  it("drops the wrapper's entry when its command asks the pool for room itself, so that the two cannot wait for each other", () => {
+    const dir = mkdtempSync(join(tmpdir(), 'check-pool-'));
+    dirs.push(dir);
+    // As on 23 November: a budget of 1000, a wrapper at 500, and an older request of 600 waiting.
+    // The command asks for 300 as a function check does for a child. With the wrapper's 500 held,
+    // the 600 never has room and the 300 waits behind it for ever.
+    const older = new Pool(dir, 1000);
+    const kid = join(dir, 'kid.mts');
+    writeFileSync(
+      kid,
+      [
+        `import { Pool } from ${JSON.stringify(resolve('scripts/check-pool.ts'))};`,
+        `const pool = new Pool(${JSON.stringify(dir)}, 1000);`,
+        "const got = await pool.reserve(300, 'a child');",
+        'pool.release(got);',
+      ].join('\n'),
+    );
+    const args = ['--import', 'tsx', 'scripts/check-pool.ts', 'run', '--mb', '500', '--what', 'a wrapped check', '--', process.execPath, '--import', 'tsx', kid];
+    const wrapper = spawn(process.execPath, args, { env: { ...process.env, KINEBRICK_POOL_DIR: dir }, stdio: 'ignore' });
+    // If the two do wait for each other, the test ends by its time limit: the wrapper is stopped then.
+    onTestFinished(() => void wrapper.kill('SIGTERM'));
+    let waiting: Promise<string> | null = null;
+    return new Promise<void>((done, fail) => {
+      const timer = setInterval(() => {
+        // The older request enters once the wrapper is in: it waits, as the tests' 8,500 MB did.
+        const names = readdirSync(dir).filter((f) => f.endsWith('.json'));
+        if (names.length === 1 && !names[0].startsWith('wait-') && !waiting) waiting = older.reserve(600, 'older');
+      }, 20);
+      wrapper.on('exit', async (code) => {
+        clearInterval(timer);
+        try {
+          expect(code).toBe(0);
+          expect(waiting).not.toBeNull();
+          older.release(await waiting!);
+          expect(readdirSync(dir).filter((f) => f.endsWith('.json'))).toEqual([]);
+          done();
+        } catch (err) {
+          fail(err);
+        }
+      });
+    });
+  }, 20_000);
 
   // A command whose child starts a grandchild in a process group of its own, as Playwright starts
   // a browser (decision 255), that takes about 100 MB; the child writes its id, waits `ms`, and ends.

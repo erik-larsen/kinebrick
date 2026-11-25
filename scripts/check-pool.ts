@@ -26,6 +26,14 @@
 // command and every process it made took, so that the next caller can give a better figure. Those
 // processes are found by parent process, whatever their group, so a browser counts (decision 255);
 // they are stopped with the command, and any left when it ends are stopped then.
+//
+// A command run by the wrapper that asks the pool for room itself gives the wrapper's entry back
+// at its first request (decision 346 of 2026-11-24): a function check enters each of its children,
+// so the wrapper's entry counted the same memory twice. Worse, the two could wait for each other
+// for ever: on 23 November a check wrapped at 8,000 MB had its children waiting behind an older
+// request of 8,500 MB, which had no room while the wrapper's 8,000 were held, and the wrapper held
+// them until the check ended. Every session's jobs stood still for 20 hours. So a check needs no
+// wrapper, and one that is wrapped all the same no longer blocks the pool.
 
 import { execFileSync, spawn } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
@@ -82,6 +90,8 @@ interface Waiter {
   since: number; // when it began to wait (ms)
 }
 const WAITING = 'wait-';
+// Set by the wrapper for its command: the file of the wrapper's entry (see the top of this file).
+const WRAPPER_ENTRY = 'KINEBRICK_POOL_ENTRY';
 
 const sleep = (ms: number) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
@@ -183,6 +193,7 @@ export class Pool {
   // yet. With `ticket` (its waiting entry, from enqueue), only the waiters older than it count, and
   // the waiting entry is dropped once there is room; without, it is younger than every waiter.
   tryReserve(mb: number, what: string, ticket?: string): string | null {
+    this.giveBackWrapper();
     return this.locked(() => {
       const waiters = this.waiters();
       const mine = ticket === undefined ? -1 : waiters.findIndex(([name]) => name === ticket);
@@ -196,6 +207,14 @@ export class Pool {
       if (ticket !== undefined) rmSync(join(this.dir, ticket), { force: true });
       return name;
     });
+  }
+
+  // This process runs inside a wrapper's entry of this pool and now asks for room itself: the
+  // wrapper's entry is dropped, since this process's own requests count its memory (see the top
+  // of this file).
+  private giveBackWrapper() {
+    const file = process.env[WRAPPER_ENTRY];
+    if (file && resolve(dirname(file)) === resolve(this.dir)) rmSync(file, { force: true });
   }
 
   // As tryReserve, waiting until there is room, in turn: oldest first.
@@ -352,7 +371,8 @@ async function run(args: string[]) {
     process.exit(2);
   }
   const what = opt('--what') ?? command.join(' ');
-  const pool = new Pool(poolDir());
+  const dir = poolDir();
+  const pool = new Pool(dir);
   let entry: string | null = null;
   let child: ReturnType<typeof spawn> | null = null;
   // The command's processes seen so far (see processTree).
@@ -381,7 +401,8 @@ async function run(args: string[]) {
   }
   // In a process group of its own, so that a signal to the group reaches its own children. It is
   // measured and stopped with every process it makes, whatever their group (see processTree).
-  child = spawn(command[0], command.slice(1), { stdio: 'inherit', detached: true });
+  // The command is told which entry is the wrapper's, to give it back if it asks for room itself.
+  child = spawn(command[0], command.slice(1), { stdio: 'inherit', detached: true, env: { ...process.env, [WRAPPER_ENTRY]: join(dir, entry) } });
   let peak = 0;
   if (child.pid) pool.started(entry, child.pid);
   const root = child.pid ?? 0;
