@@ -4,7 +4,7 @@ Gears in the hub drop the wheel below the axle's line, for ground clearance. (Dr
 
 First appears in 2011, in [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1): The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer.
 
-Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 3 works, 3 partly.
+Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 4 works, 2 partly.
 
 ## By decade
 
@@ -34,7 +34,7 @@ Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 3 works, 3 partly
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
-- The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
+- The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (works)
 
 ---
 

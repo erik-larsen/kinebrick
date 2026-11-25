@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 38 works, 34 partly, 5 no, 1 skipped, 1 not checked.
+Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 38 works, 33 partly, 6 no, 1 skipped, 1 not checked.
 
 ## By decade
 
@@ -226,7 +226,7 @@ Each detail by the set it first appears in.
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
-- *dump body:* The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it. (partly)
+- *dump body:* The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it. (no)
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
