@@ -1,25 +1,25 @@
 {
   "set": "8865-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:59:46.927Z",
-  "load": 9.7,
+  "commit": "85aa8904",
+  "date": "2026-11-25T05:15:14.064Z",
+  "load": 12.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 868,
-  "seconds": 99,
+  "seconds": 109,
   "functions": [
     {
       "function": 1,
       "does": "The steering wheel on the left steers the front wheels: its column, through two universal joints and a row of three 16-tooth gears, turns the 8-tooth pinion on the rack behind the front axle, and the rack's two links push the tall steering arms.",
       "verdict": "shown",
-      "msOneCall": 74,
-      "msPerStep": 18,
+      "msOneCall": 56,
+      "msPerStep": 16,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 13
+        "A": 1,
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 757,
-          "msOneCall": 74,
+          "ms": 700,
+          "msOneCall": 56,
           "stops": [],
           "moved": {
             "p287 3743": [
@@ -72,8 +72,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 706,
-          "msOneCall": 24,
+          "ms": 672,
+          "msOneCall": 26,
           "stops": [],
           "moved": {
             "p287 3743": [
@@ -118,6 +118,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            126.32
+          ],
           "moved": [
             "p287 3743",
             "p423 2737",
@@ -125,7 +147,31 @@
             "p898 3739",
             "p902 3739"
           ],
-          "stops": []
+          "went": {
+            "p287 3743": [
+              22.05,
+              0
+            ],
+            "p423 2737": [
+              0,
+              25.45
+            ],
+            "p424 2737": [
+              0,
+              19.97
+            ],
+            "p898 3739": [
+              26.43,
+              25.45
+            ],
+            "p902 3739": [
+              20.81,
+              19.97
+            ]
+          },
+          "stops": [
+            "423/914"
+          ]
         }
       ],
       "seconds": 21
@@ -134,15 +180,15 @@
       "function": 2,
       "does": "Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins.",
       "verdict": "shown",
-      "msOneCall": 80,
-      "msPerStep": 20,
+      "msOneCall": 71,
+      "msPerStep": 18,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 15
+        "B": 21
       },
       "stop": null,
       "stops": [],
@@ -152,8 +198,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 860,
-          "msOneCall": 80,
+          "ms": 758,
+          "msOneCall": 71,
           "stops": [],
           "moved": {
             "p904 3739": [
@@ -195,8 +241,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 872,
-          "msOneCall": 34,
+          "ms": 758,
+          "msOneCall": 30,
           "stops": [],
           "moved": {
             "p904 3739": [
@@ -241,6 +287,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            179.83
+          ],
           "moved": [
             "p904 3739",
             "p149 73071",
@@ -251,24 +319,58 @@
             "p536 3652",
             "p659 4032a"
           ],
+          "went": {
+            "p904 3739": [
+              0,
+              179.83
+            ],
+            "p149 73071": [
+              0,
+              179.83
+            ],
+            "p175 3706": [
+              0,
+              145.05
+            ],
+            "p178 3737": [
+              0,
+              145.05
+            ],
+            "p400 3707": [
+              0,
+              96.7
+            ],
+            "p514 3708": [
+              0,
+              96.7
+            ],
+            "p536 3652": [
+              15.78,
+              1.48
+            ],
+            "p659 4032a": [
+              0,
+              96.7
+            ]
+          },
           "stops": []
         }
       ],
-      "seconds": 23
+      "seconds": 28
     },
     {
       "function": 4,
       "does": "The differential lets the rear wheels turn at different speeds in a bend: with the engine held, turning one rear wheel turns the other the opposite way.",
       "verdict": "shown",
-      "msOneCall": 43,
-      "msPerStep": 6,
+      "msOneCall": 37,
+      "msPerStep": 5,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 12
+        "A": 0,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -278,8 +380,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 251,
-          "msOneCall": 43,
+          "ms": 216,
+          "msOneCall": 37,
           "stops": [],
           "moved": {
             "p904 3739": [
@@ -305,8 +407,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 249,
-          "msOneCall": 13,
+          "ms": 206,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p904 3739": [
@@ -335,14 +437,46 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            154.57
+          ],
           "moved": [
             "p904 3739",
             "p150 4143"
           ],
+          "went": {
+            "p904 3739": [
+              0,
+              154.57
+            ],
+            "p150 4143": [
+              0,
+              154.57
+            ]
+          },
           "stops": []
         }
       ],
-      "seconds": 18
+      "seconds": 19
     },
     {
       "function": 10,
@@ -355,8 +489,8 @@
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 26
+        "A": 3,
+        "B": 27
       },
       "stop": {
         "control": "p840 3036",
@@ -375,6 +509,22 @@
         {
           "control": "p840 3036",
           "way": 1,
+          "shiftOthers": [
+            {
+              "part": 863,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "4 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                859,
+                860,
+                861,
+                862
+              ]
+            }
+          ],
           "shift": {
             "seen": true,
             "said": [
@@ -385,7 +535,11 @@
               836,
               837,
               838,
-              839
+              839,
+              859,
+              860,
+              861,
+              862
             ]
           },
           "asked": 0.1,
@@ -398,6 +552,22 @@
         {
           "control": "p840 3036",
           "way": -1,
+          "shiftOthers": [
+            {
+              "part": 863,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "4 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                859,
+                860,
+                861,
+                862
+              ]
+            }
+          ],
           "shift": {
             "seen": true,
             "said": [
@@ -408,12 +578,16 @@
               836,
               837,
               838,
-              839
+              839,
+              859,
+              860,
+              861,
+              862
             ]
           },
           "asked": 0.5,
           "went": -0.1,
-          "ms": 32,
+          "ms": 34,
           "msOneCall": 20,
           "stops": [
             "672/851"
@@ -423,54 +597,60 @@
         {
           "control": "p863 3036",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "4 friction pins that held it can now turn: drag it again"
-            ],
-            "freed": [
-              836,
-              837,
-              838,
-              839,
-              859,
-              860,
-              861,
-              862
-            ]
-          },
+          "shiftOthers": [
+            {
+              "part": 840,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "This part is held by more than friction pins"
+              ],
+              "freed": [
+                836,
+                837,
+                838,
+                839,
+                859,
+                860,
+                861,
+                862
+              ]
+            }
+          ],
           "asked": 0.1,
           "went": 0.1,
-          "ms": 32,
-          "msOneCall": 30,
+          "ms": 27,
+          "msOneCall": 19,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p863 3036",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "4 friction pins that held it can now turn: drag it again"
-            ],
-            "freed": [
-              836,
-              837,
-              838,
-              839,
-              859,
-              860,
-              861,
-              862
-            ]
-          },
+          "shiftOthers": [
+            {
+              "part": 840,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "This part is held by more than friction pins"
+              ],
+              "freed": [
+                836,
+                837,
+                838,
+                839,
+                859,
+                860,
+                861,
+                862
+              ]
+            }
+          ],
           "asked": 0.5,
           "went": -0.1,
-          "ms": 32,
-          "msOneCall": 21,
+          "ms": 29,
+          "msOneCall": 17,
           "stops": [
             "675/875"
           ],
@@ -483,11 +663,50 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "shiftOthers": [
+            {
+              "part": 863,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "4 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                859,
+                860,
+                861,
+                862
+              ]
+            }
+          ],
           "shift": [
             "Finding the pins that hold it…",
             "4 friction pins that held it can now turn: drag it again"
           ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            53.06,
+            34.23
+          ],
           "moved": [],
+          "went": {},
           "stops": [
             "672/851",
             "843/845"
@@ -498,11 +717,50 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "shiftOthers": [
+            {
+              "part": 840,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "4 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                836,
+                837,
+                838,
+                839
+              ]
+            }
+          ],
           "shift": [
             "Finding the pins that hold it…",
             "4 friction pins that held it can now turn: drag it again"
           ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            53.14,
+            34.29
+          ],
           "moved": [],
+          "went": {},
           "stops": [
             "675/875",
             "866/868"
@@ -526,7 +784,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p840 3036: a travel of 0.2 rad or less each way, stopped at -0.1 rad (672/851); p863 3036: a travel of 0.2 rad or less each way, stopped at -0.1 rad (675/875)",
-      "seconds": 37
+      "seconds": 41
     }
   ]
 }
