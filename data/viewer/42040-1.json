@@ -1,11 +1,11 @@
 {
   "set": "42040-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:45:28.559Z",
-  "load": 18.9,
+  "commit": "85aa8904",
+  "date": "2026-11-25T03:45:56.983Z",
+  "load": 10.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 567,
-  "seconds": 130,
+  "seconds": 157,
   "functions": [
     {
       "function": 2,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 289,
+          "ms": 288,
           "msOneCall": 36,
           "stops": [],
           "moved": {
@@ -60,8 +60,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 258,
-          "msOneCall": 10,
+          "ms": 256,
+          "msOneCall": 14,
           "stops": [],
           "moved": {
             "p75 2853": [
@@ -94,6 +94,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            68.63,
+            118.12
+          ],
           "moved": [
             "p75 2853",
             "p76 2852",
@@ -101,10 +123,32 @@
             "p78 2851",
             "p79 2851"
           ],
+          "went": {
+            "p75 2853": [
+              0,
+              118.13
+            ],
+            "p76 2852": [
+              17.15,
+              23.21
+            ],
+            "p77 2852": [
+              17.15,
+              23.21
+            ],
+            "p78 2851": [
+              11.65,
+              0.91
+            ],
+            "p79 2851": [
+              13.99,
+              0.91
+            ]
+          },
           "stops": []
         }
       ],
-      "seconds": 18
+      "seconds": 19
     },
     {
       "function": 3,
@@ -114,15 +158,15 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p251 at 0.068 rad (parts 165/254); the hatch should flip forward. Viewer sweep, decision 279."
       },
       "verdict": "not shown",
-      "msOneCall": 31,
-      "msPerStep": 7,
+      "msOneCall": 30,
+      "msPerStep": 8,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p251 32140",
@@ -142,8 +186,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 14,
-          "msOneCall": 31,
+          "ms": 13,
+          "msOneCall": 30,
           "stops": [],
           "moved": {}
         },
@@ -152,8 +196,8 @@
           "way": -1,
           "asked": 0.17,
           "went": -0.068,
-          "ms": 13,
-          "msOneCall": 10,
+          "ms": 16,
+          "msOneCall": 9,
           "stops": [
             "165/254"
           ],
@@ -167,7 +211,30 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            16.1,
+            14.65
+          ],
           "moved": [],
+          "went": {},
           "stops": [
             "165/254",
             "251/424",
@@ -193,7 +260,7 @@
         "verdict": "shown"
       },
       "why": "a collision stops a control: p251 32140: a travel of 0.2 rad or less each way, stopped at -0.068 rad (165/254) (the hatch flips forward to fill the tank, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115)",
-      "seconds": 17
+      "seconds": 18
     },
     {
       "function": 7,
@@ -206,9 +273,9 @@
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
-        "A": 2,
-        "B": 8
+        "reach": 8,
+        "A": 8,
+        "B": 15
       },
       "stop": null,
       "stops": [],
@@ -283,31 +350,67 @@
           "shift": [
             "No friction pins hold this part: drag it"
           ],
+          "drags": [
+            {
+              "kind": "push",
+              "amount": 1
+            },
+            {
+              "kind": "push",
+              "amount": 1
+            },
+            {
+              "kind": "push",
+              "amount": 1
+            },
+            {
+              "kind": "push",
+              "amount": 1
+            }
+          ],
+          "controlWent": [
+            11.49,
+            33.41
+          ],
           "moved": [
             "p371 2739a",
             "p330 2736",
             "p338 18945"
           ],
+          "went": {
+            "p371 2739a": [
+              34.48,
+              1.21
+            ],
+            "p330 2736": [
+              24.64,
+              48.5
+            ],
+            "p338 18945": [
+              0,
+              48.05
+            ]
+          },
           "stops": [
             "304/339"
           ]
         }
       ],
-      "seconds": 17
+      "seconds": 36
     },
     {
       "function": 9,
       "does": "The wheels under the floats roll.",
       "verdict": "shown",
-      "msOneCall": 30,
+      "msOneCall": 29,
       "msPerStep": 4,
       "time": {
         "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 14,
+        "reach": 16,
         "A": 1,
-        "B": 50
+        "B": 55
       },
       "stop": null,
       "stops": [],
@@ -317,8 +420,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 138,
-          "msOneCall": 30,
+          "ms": 133,
+          "msOneCall": 29,
           "stops": [],
           "moved": {}
         },
@@ -327,8 +430,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 115,
-          "msOneCall": 8,
+          "ms": 110,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -337,8 +440,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 112,
-          "msOneCall": 8,
+          "ms": 114,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -347,7 +450,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 121,
+          "ms": 104,
           "msOneCall": 7,
           "stops": [],
           "moved": {}
@@ -357,7 +460,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 171,
+          "ms": 146,
           "msOneCall": 10,
           "stops": [],
           "moved": {}
@@ -367,7 +470,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 158,
+          "ms": 151,
           "msOneCall": 8,
           "stops": [],
           "moved": {}
@@ -377,8 +480,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 157,
-          "msOneCall": 7,
+          "ms": 152,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -387,7 +490,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 154,
+          "ms": 145,
           "msOneCall": 8,
           "stops": [],
           "moved": {}
@@ -397,10 +500,33 @@
         {
           "control": "p35 42610",
           "seen": true,
-          "cameraTurns": 8,
+          "cameraTurns": 3,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            177.74
+          ],
           "moved": [],
+          "went": {},
           "stops": []
         },
         {
@@ -409,7 +535,30 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            112.24
+          ],
           "moved": [],
+          "went": {},
           "stops": []
         },
         {
@@ -418,20 +567,66 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.01,
+            157.79
+          ],
           "moved": [],
+          "went": {},
           "stops": []
         },
         {
           "control": "p173 56903",
           "seen": true,
-          "cameraTurns": 4,
+          "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.01,
+            99.66
+          ],
           "moved": [],
+          "went": {},
           "stops": []
         }
       ],
-      "seconds": 78
+      "seconds": 85
     }
   ]
 }
