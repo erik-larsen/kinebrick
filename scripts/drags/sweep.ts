@@ -907,6 +907,26 @@ async function handWays(v: Viewer, control: number): Promise<({ kind: 'round'; a
         if (len > 1) along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
       }
     }
+    // A control that slides (as the check's slideOf has it: no parent link, one slide and only
+    // hinges besides): along its slide's way on the screen, as the check pushes it along the slide
+    // (decision 365). Pushed only the four fixed ways, the 8838's fork rod steered the fork.
+    if (!along && !link && !kin.frames.includes(body)) {
+      const own = k.mech.joints.filter((j: any) => j.bodyA === body || j.bodyB === body);
+      const slides = own.filter((j: any) => j.kind === 'slide');
+      if (slides.length === 1 && own.every((j: any) => j === slides[0] || j.kind === 'revolute')) {
+        const j = slides[0];
+        const other = j.bodyA === body ? j.bodyB : j.bodyA;
+        const dir = j.to.clone().sub(j.from).normalize().transformDirection(kin.poses[other]);
+        const V = k.setup.camera.position.constructor;
+        const mid = new V().setFromMatrixPosition(k.matrices()[control]);
+        const world = (p: any) => p.clone().applyMatrix4(k.setup.ldrawSpace.matrixWorld);
+        const r = k.setup.renderer.domElement.getBoundingClientRect();
+        const px = (p: any) => { const q = world(p).project(k.setup.camera); return [r.left + ((q.x + 1) / 2) * r.width, r.top + ((1 - q.y) / 2) * r.height]; };
+        const a = px(mid), b = px(mid.clone().addScaledVector(dir, 30));
+        const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (len > 1) along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
+      }
+    }
     return { knob, along };
   }, control);
   const ways: ({ kind: 'round'; amount: number } | { kind: 'along' | 'push'; amount: number; dx: number; dy: number })[] = [];
