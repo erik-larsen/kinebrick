@@ -600,43 +600,33 @@
     {
       "function": 6,
       "does": "Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers.",
-      "verdict": "not decided",
+      "verdict": "shown",
       "decidedBy": [
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1032 65414 turned 0.01 degrees, 0.006 predicted (rate 0.00375, turn 0.03)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1032 65414 turned 0.03 degrees, 0.028 predicted (rate 0.00375, turn -0.13)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.01 degrees, 0.008 predicted (rate 0.00485, turn 0.03)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.01 degrees, 0.009 predicted (rate 0.00485, turn -0.033)"
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.03 degrees, 0.028 predicted (rate 0.00485, turn 0.1)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.01 degrees, 0.008 predicted (rate 0.00485, turn -0.03)"
       ],
-      "msOneCall": 323,
-      "msPerStep": 296,
+      "msOneCall": 330,
+      "msPerStep": 247,
       "time": {
-        "open": 12,
+        "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 46,
+        "reach": 67,
         "A": 3,
-        "B": 36
+        "B": 43
       },
-      "stop": {
-        "control": "p1198 42129 - 31794",
-        "way": -1,
-        "went": -0.033,
-        "asked": 0.1,
-        "by": [
-          "830/1303"
-        ]
-      },
-      "stops": [
-        "830/1303"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p958 42129 - 31794",
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 250,
-          "msOneCall": 323,
+          "ms": 247,
+          "msOneCall": 330,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -662,8 +652,8 @@
           "way": -1,
           "asked": 0.13,
           "went": -0.13,
-          "ms": 659,
-          "msOneCall": 213,
+          "ms": 710,
+          "msOneCall": 217,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -687,10 +677,37 @@
         {
           "control": "p1198 42129 - 31794",
           "way": 1,
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 516,
+          "msOneCall": 198,
+          "stops": [],
+          "moved": {
+            "p1309 65414": [
+              0,
+              0.03
+            ],
+            "p1032 65414": [
+              7.91,
+              0.47
+            ],
+            "p1379 4254 against p1380 4255": [
+              0,
+              0
+            ],
+            "p1215 4254 against p1216 4255": [
+              7.61,
+              0.74
+            ]
+          }
+        },
+        {
+          "control": "p1198 42129 - 31794",
+          "way": -1,
           "asked": 0.03,
-          "went": 0.03,
-          "ms": 205,
-          "msOneCall": 220,
+          "went": -0.03,
+          "ms": 204,
+          "msOneCall": 219,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -698,7 +715,7 @@
               0.01
             ],
             "p1032 65414": [
-              2.37,
+              2.38,
               0.14
             ],
             "p1379 4254 against p1380 4255": [
@@ -706,37 +723,8 @@
               0
             ],
             "p1215 4254 against p1216 4255": [
-              2.26,
+              2.25,
               0.26
-            ]
-          }
-        },
-        {
-          "control": "p1198 42129 - 31794",
-          "way": -1,
-          "asked": 0.1,
-          "went": -0.033,
-          "ms": 296,
-          "msOneCall": 199,
-          "stops": [
-            "830/1303"
-          ],
-          "moved": {
-            "p1309 65414": [
-              0,
-              0.01
-            ],
-            "p1032 65414": [
-              2.64,
-              0.16
-            ],
-            "p1379 4254 against p1380 4255": [
-              0,
-              0
-            ],
-            "p1215 4254 against p1216 4255": [
-              2.5,
-              0.28
             ]
           }
         }
@@ -760,7 +748,7 @@
           ],
           "controlWent": [
             0,
-            6.45
+            6.91
           ],
           "moved": [
             "p1309 65414",
@@ -768,15 +756,15 @@
           ],
           "went": {
             "p1309 65414": [
-              9.27,
-              0.31
+              9.89,
+              0.33
             ],
             "p1032 65414": [
               0,
-              0.02
+              0.03
             ],
             "p1379 4254 against p1380 4255": [
-              9,
+              9.61,
               0
             ],
             "p1215 4254 against p1216 4255": [
@@ -808,7 +796,7 @@
           ],
           "controlWent": [
             0,
-            10.23
+            9.03
           ],
           "moved": [
             "p1032 65414",
@@ -817,18 +805,18 @@
           "went": {
             "p1309 65414": [
               0,
-              0.05
+              0.04
             ],
             "p1032 65414": [
-              13.39,
-              0.66
+              12.66,
+              0.76
             ],
             "p1379 4254 against p1380 4255": [
               0,
               0
             ],
             "p1215 4254 against p1216 4255": [
-              12.71,
+              12.08,
               0
             ]
           },
@@ -840,62 +828,35 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p1198 42129 - 31794",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.033 rad (830/1303)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "byHand": {
-        "stop": "not decided",
-        "why": "sprung axles: 0.03 to 0.13 rad; the picture shows the truck over rough ground, not how far",
-        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=372"
-      },
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p1198 42129 - 31794: a travel of 0.2 rad or less each way, stopped at -0.033 rad (830/1303)",
-      "seconds": 98
+      "seconds": 127,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:45:24.388Z"
     },
     {
       "function": 8,
       "does": "The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle.",
-      "verdict": "not decided",
-      "msOneCall": 238,
-      "msPerStep": 49,
+      "verdict": "shown",
+      "msOneCall": 256,
+      "msPerStep": 53,
       "time": {
         "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 24
+        "B": 26
       },
-      "stop": {
-        "control": "p1935 2819",
-        "way": 1,
-        "went": 0.133,
-        "asked": 0.53,
-        "by": [
-          "1935/2287"
-        ]
-      },
-      "stops": [
-        "1935/2287"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p1935 2819",
           "way": 1,
-          "asked": 0.53,
-          "went": 0.133,
-          "ms": 186,
-          "msOneCall": 238,
-          "stops": [
-            "1935/2287"
-          ],
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 195,
+          "msOneCall": 256,
+          "stops": [],
           "moved": {
             "p1402 87761": [
               0,
@@ -906,10 +867,10 @@
         {
           "control": "p1935 2819",
           "way": -1,
-          "asked": 0.13,
-          "went": -0.13,
-          "ms": 176,
-          "msOneCall": 118,
+          "asked": 0.53,
+          "went": -0.53,
+          "ms": 568,
+          "msOneCall": 92,
           "stops": [],
           "moved": {
             "p1402 87761": [
@@ -945,8 +906,8 @@
             }
           ],
           "controlWent": [
-            36.35,
-            39.34
+            36.41,
+            39.41
           ],
           "moved": [],
           "went": {},
@@ -958,25 +919,15 @@
           },
           "staysMoved": [],
           "stops": [
-            "1935/2287",
             "1879/1935",
+            "1935/2287",
             "1935/2036"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p1935 2819",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.133 rad (1935/2287)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p1935 2819: a travel of 0.2 rad or less each way, stopped at +0.133 rad (1935/2287)",
-      "seconds": 34
+      "seconds": 37,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:45:24.388Z"
     }
   ]
 }

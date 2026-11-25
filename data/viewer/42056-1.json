@@ -195,37 +195,27 @@
     {
       "function": 5,
       "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
-      "verdict": "not decided",
-      "msOneCall": 202,
-      "msPerStep": 85,
+      "verdict": "shown",
+      "msOneCall": 210,
+      "msPerStep": 80,
       "time": {
-        "open": 16,
+        "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 105,
+        "reach": 129,
         "A": 2,
-        "B": 49
+        "B": 56
       },
-      "stop": {
-        "control": "p543 57515",
-        "way": -1,
-        "went": -0.067,
-        "asked": 0.27,
-        "by": [
-          "547/546"
-        ]
-      },
-      "stops": [
-        "547/546"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p535 57515",
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 167,
-          "msOneCall": 202,
+          "ms": 159,
+          "msOneCall": 210,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -243,8 +233,8 @@
           "way": -1,
           "asked": 0.27,
           "went": -0.27,
-          "ms": 443,
-          "msOneCall": 88,
+          "ms": 427,
+          "msOneCall": 77,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -260,10 +250,29 @@
         {
           "control": "p543 57515",
           "way": 1,
+          "asked": 0.27,
+          "went": 0.27,
+          "ms": 442,
+          "msOneCall": 75,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              0,
+              0
+            ],
+            "p2734 23800": [
+              16.2,
+              0.63
+            ]
+          }
+        },
+        {
+          "control": "p543 57515",
+          "way": -1,
           "asked": 0.07,
-          "went": 0.07,
-          "ms": 124,
-          "msOneCall": 83,
+          "went": -0.07,
+          "ms": 159,
+          "msOneCall": 81,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -272,28 +281,7 @@
             ],
             "p2734 23800": [
               4.2,
-              0.22
-            ]
-          }
-        },
-        {
-          "control": "p543 57515",
-          "way": -1,
-          "asked": 0.27,
-          "went": -0.067,
-          "ms": 165,
-          "msOneCall": 80,
-          "stops": [
-            "547/546"
-          ],
-          "moved": {
-            "p2731 23800": [
-              0,
-              0
-            ],
-            "p2734 23800": [
-              4.05,
-              0.37
+              0.39
             ]
           }
         }
@@ -333,7 +321,7 @@
           "went": {
             "p2731 23800": [
               21.26,
-              0.21
+              0.3
             ],
             "p2734 23800": [
               0,
@@ -343,8 +331,7 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "2657/2732",
-            "540/539"
+            "2657/2732"
           ]
         },
         {
@@ -385,30 +372,20 @@
             ],
             "p2734 23800": [
               20.89,
-              0.36
+              0.29
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "2383/2735",
-            "547/546"
+            "547/546",
+            "2383/2735"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p543 57515",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p543 57515: a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)",
-      "seconds": 171
+      "seconds": 205,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:31.282Z"
     },
     {
       "function": 6,
@@ -1118,14 +1095,14 @@
       "does": "The seats sit on their own pins and can be tipped or slid by hand.",
       "verdict": "not shown",
       "why": "B: the control could not be seen",
-      "msOneCall": 213,
-      "msPerStep": 27,
+      "msOneCall": 268,
+      "msPerStep": 32,
       "time": {
-        "open": 16,
+        "open": 18,
         "collisions": 0,
         "first": 0,
-        "reach": 2208,
-        "A": 5,
+        "reach": 646,
+        "A": 6,
         "B": 0
       },
       "stop": null,
@@ -1136,8 +1113,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1166,
-          "msOneCall": 213,
+          "ms": 1353,
+          "msOneCall": 268,
           "stops": [],
           "moved": {}
         },
@@ -1146,8 +1123,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1166,
-          "msOneCall": 72,
+          "ms": 1270,
+          "msOneCall": 81,
           "stops": [],
           "moved": {}
         },
@@ -1156,8 +1133,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1126,
-          "msOneCall": 69,
+          "ms": 1257,
+          "msOneCall": 76,
           "stops": [],
           "moved": {}
         },
@@ -1166,8 +1143,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1148,
-          "msOneCall": 71,
+          "ms": 1269,
+          "msOneCall": 76,
           "stops": [],
           "moved": {}
         }
@@ -1182,7 +1159,9 @@
           "seen": false
         }
       ],
-      "seconds": 2229
+      "seconds": 670,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:31.282Z"
     }
   ]
 }

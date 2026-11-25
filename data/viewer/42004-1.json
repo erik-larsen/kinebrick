@@ -452,15 +452,15 @@
       "function": 4,
       "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
       "verdict": "shown",
-      "msOneCall": 20,
-      "msPerStep": 7,
+      "msOneCall": 11,
+      "msPerStep": 4,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 7
+        "A": 0,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -468,26 +468,22 @@
         {
           "control": "p147 55013",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            153
+          ],
           "asked": 1.5,
-          "went": 0.279,
-          "ms": 53,
-          "msOneCall": 20,
+          "went": 1.5,
+          "ms": 156,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p159 32525": [
-              1.17,
-              0.6
+              20.55,
+              11.77
             ],
             "p158 10928": [
-              0.42,
-              2.02
+              0,
+              10.74
             ],
             "p25 40490": [
               0,
@@ -498,26 +494,22 @@
         {
           "control": "p147 55013",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            153
+          ],
           "asked": 1.5,
-          "went": -0.314,
-          "ms": 59,
-          "msOneCall": 12,
+          "went": -1.5,
+          "ms": 119,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p159 32525": [
-              1.25,
-              0.64
+              19.68,
+              11.28
             ],
             "p158 10928": [
-              0.45,
-              2.22
+              0,
+              10.74
             ],
             "p25 40490": [
               0,
@@ -532,9 +524,10 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            153
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -543,11 +536,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
             0,
-            106.28
+            109.42
           ],
           "moved": [
             "p159 32525",
@@ -555,12 +556,12 @@
           ],
           "went": {
             "p159 32525": [
-              25.57,
-              14.7
+              26.23,
+              15.08
             ],
             "p158 10928": [
               0,
-              13.02
+              13.42
             ]
           },
           "staysWent": {
@@ -573,7 +574,9 @@
           "stops": []
         }
       ],
-      "seconds": 12
+      "seconds": 17,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:21:59.605Z"
     },
     {
       "function": 5,

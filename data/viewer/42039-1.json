@@ -1067,15 +1067,15 @@
       "function": 6,
       "does": "The rear wheels each have independent suspension, as the front ones do: each hub rides between an upper and a lower pair of arms that pivot on the frame, the drive shafts reach the hubs through constant velocity joints, and two shock absorbers lying across the car, between an L-beam on each lower arm and the middle of the frame, spring them.",
       "verdict": "shown",
-      "msOneCall": 71,
+      "msOneCall": 70,
       "msPerStep": 18,
       "time": {
-        "open": 11,
+        "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 89,
-        "A": 93,
-        "B": 31
+        "reach": 101,
+        "A": 101,
+        "B": 33
       },
       "stop": {
         "control": "p61 32524",
@@ -1126,8 +1126,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 32,
-          "msOneCall": 71,
+          "ms": 26,
+          "msOneCall": 70,
           "stops": [
             "80/79"
           ],
@@ -1177,8 +1177,8 @@
           },
           "asked": 0.23,
           "went": -0.23,
-          "ms": 116,
-          "msOneCall": 29,
+          "ms": 108,
+          "msOneCall": 31,
           "stops": [],
           "moved": {
             "p80 4254": [
@@ -1212,10 +1212,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            66
+          ],
           "asked": 0.23,
           "went": 0.23,
-          "ms": 119,
-          "msOneCall": 27,
+          "ms": 117,
+          "msOneCall": 62,
           "stops": [],
           "moved": {
             "p80 4254": [
@@ -1249,10 +1252,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            66
+          ],
           "asked": 1.5,
           "went": 0,
           "ms": 21,
-          "msOneCall": 21,
+          "msOneCall": 24,
           "stops": [
             "82/81"
           ],
@@ -1312,16 +1318,16 @@
             }
           ],
           "controlWent": [
-            14.33,
-            13.71
+            14.35,
+            13.72
           ],
           "moved": [
             "p80 4254"
           ],
           "went": {
             "p80 4254": [
-              20.27,
-              6.31
+              20.29,
+              6.32
             ],
             "p82 4254": [
               0,
@@ -1331,7 +1337,6 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "80/79",
             "1228/1299"
           ]
         },
@@ -1398,8 +1403,7 @@
           "staysMoved": [],
           "stops": [
             "82/81",
-            "1234/1294",
-            "97/224"
+            "1234/1294"
           ]
         }
       ],
@@ -1419,7 +1423,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 256
+      "seconds": 281,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:22:59.598Z"
     },
     {
       "function": 8,

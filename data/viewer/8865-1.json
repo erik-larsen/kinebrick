@@ -509,30 +509,19 @@
     {
       "function": 10,
       "does": "Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.",
-      "verdict": "not decided",
-      "msOneCall": 43,
+      "verdict": "shown",
+      "msOneCall": 53,
       "msPerStep": 13,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 28
+        "A": 6,
+        "B": 29
       },
-      "stop": {
-        "control": "p840 3036",
-        "way": -1,
-        "went": -0.1,
-        "asked": 0.5,
-        "by": [
-          "672/851"
-        ]
-      },
-      "stops": [
-        "672/851",
-        "675/875"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p840 3036",
@@ -570,10 +559,10 @@
               862
             ]
           },
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 34,
-          "msOneCall": 43,
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 140,
+          "msOneCall": 53,
           "stops": [],
           "moved": {}
         },
@@ -613,13 +602,11 @@
               862
             ]
           },
-          "asked": 0.5,
+          "asked": 0.1,
           "went": -0.1,
           "ms": 38,
-          "msOneCall": 23,
-          "stops": [
-            "672/851"
-          ],
+          "msOneCall": 25,
+          "stops": [],
           "moved": {}
         },
         {
@@ -645,10 +632,13 @@
               ]
             }
           ],
-          "asked": 0.1,
-          "went": 0.1,
-          "ms": 32,
-          "msOneCall": 19,
+          "pinsAsked": [
+            872
+          ],
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 120,
+          "msOneCall": 29,
           "stops": [],
           "moved": {}
         },
@@ -675,13 +665,14 @@
               ]
             }
           ],
-          "asked": 0.5,
-          "went": -0.1,
-          "ms": 28,
-          "msOneCall": 18,
-          "stops": [
-            "675/875"
+          "pinsAsked": [
+            872
           ],
+          "asked": 0.1,
+          "went": -0.1,
+          "ms": 32,
+          "msOneCall": 23,
+          "stops": [],
           "moved": {}
         }
       ],
@@ -730,8 +721,8 @@
             }
           ],
           "controlWent": [
-            53.06,
-            34.23
+            53.02,
+            34.21
           ],
           "moved": [],
           "went": {},
@@ -786,7 +777,7 @@
             }
           ],
           "controlWent": [
-            53.14,
+            53.15,
             34.29
           ],
           "moved": [],
@@ -799,24 +790,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p840 3036",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.1 rad (672/851)"
-        },
-        {
-          "control": "p863 3036",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.1 rad (675/875)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p840 3036: a travel of 0.2 rad or less each way, stopped at -0.1 rad (672/851); p863 3036: a travel of 0.2 rad or less each way, stopped at -0.1 rad (675/875)",
-      "seconds": 42
+      "seconds": 47,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:54:24.009Z"
     }
   ]
 }

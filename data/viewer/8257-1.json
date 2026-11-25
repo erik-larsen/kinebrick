@@ -171,44 +171,32 @@
     {
       "function": 4,
       "does": "Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.",
-      "verdict": "not decided",
-      "msOneCall": 52,
-      "msPerStep": 12,
+      "verdict": "shown",
+      "msOneCall": 58,
+      "msPerStep": 14,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 14
       },
-      "stop": {
-        "control": "p594 6629",
-        "way": 1,
-        "went": 0.103,
-        "asked": 1.37,
-        "by": [
-          "348/594"
-        ]
-      },
-      "stops": [
-        "348/594"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p594 6629",
           "way": 1,
-          "asked": 1.37,
-          "went": 0.103,
-          "ms": 34,
-          "msOneCall": 52,
-          "stops": [
-            "348/594"
-          ],
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 40,
+          "msOneCall": 58,
+          "stops": [],
           "moved": {
             "p602 2723 against p550 32018": [
-              12.03,
-              5.89
+              11.7,
+              5.73
             ],
             "p604 32065 against p550 32018": [
               0,
@@ -219,15 +207,15 @@
         {
           "control": "p594 6629",
           "way": -1,
-          "asked": 0.1,
-          "went": -0.1,
-          "ms": 28,
-          "msOneCall": 18,
+          "asked": 1.37,
+          "went": -1.37,
+          "ms": 269,
+          "msOneCall": 21,
           "stops": [],
           "moved": {
             "p602 2723 against p550 32018": [
-              11.7,
-              5.73
+              160.34,
+              78.5
             ],
             "p604 32065 against p550 32018": [
               0,
@@ -262,16 +250,16 @@
             }
           ],
           "controlWent": [
-            155.15,
-            86.58
+            153.89,
+            85.71
           ],
           "moved": [
             "p602 2723 against p550 32018"
           ],
           "went": {
             "p602 2723 against p550 32018": [
-              160.51,
-              86.58
+              159.21,
+              85.71
             ]
           },
           "staysWent": {
@@ -282,24 +270,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "348/594",
-            "465/594"
+            "465/594",
+            "348/594"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p594 6629",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.103 rad (348/594)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p594 6629: a travel of 0.2 rad or less each way, stopped at +0.103 rad (348/594)",
-      "seconds": 19
+      "seconds": 20,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:48:27.099Z"
     },
     {
       "function": 5,

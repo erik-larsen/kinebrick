@@ -350,15 +350,15 @@
       "function": 3,
       "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
       "verdict": "shown",
-      "msOneCall": 6,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
-        "A": 2,
-        "B": 8
+        "reach": 2,
+        "A": 0,
+        "B": 6
       },
       "stop": null,
       "stops": [],
@@ -366,17 +366,13 @@
         {
           "control": "p93 32140",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            18
+          ],
           "asked": 0.16,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 6,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -408,17 +404,13 @@
         {
           "control": "p93 32140",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            18
+          ],
           "asked": 0.69,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 4,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -454,22 +446,23 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            18
           ],
+          "shift": [],
           "drags": [
             {
-              "kind": "round",
-              "amount": 1.5
+              "kind": "along",
+              "amount": 1
             },
             {
-              "kind": "round",
-              "amount": -1.5
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            11.86,
-            4.64
+            13.92,
+            5.83
           ],
           "moved": [
             "p103 32524",
@@ -478,16 +471,16 @@
           ],
           "went": {
             "p103 32524": [
-              28.91,
-              16.73
+              33.41,
+              19.32
             ],
             "p107 32498": [
-              29.48,
-              19.09
+              34.07,
+              22.06
             ],
             "p108 32498": [
-              29.48,
-              19.09
+              34.07,
+              22.06
             ]
           },
           "staysWent": {
@@ -509,16 +502,19 @@
             "p127 55982"
           ],
           "stops": [
+            "96/116",
             "16/87"
           ]
         }
       ],
       "decidedBy": [
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 28.91",
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 28.91"
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 33.41",
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 33.41"
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 14
+      "seconds": 12,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:07.330Z"
     },
     {
       "function": 4,

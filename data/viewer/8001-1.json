@@ -10,47 +10,35 @@
     {
       "function": 1,
       "does": "The droid folds up for transport: the legs swing up against the body at the hips, turning round the axle of the 24-tooth gear in the hips, and a catch clicks into the gear to hold them folded.",
-      "verdict": "not decided",
-      "msOneCall": 25,
-      "msPerStep": 7,
+      "verdict": "shown",
+      "msOneCall": 32,
+      "msPerStep": 8,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
         "B": 12
       },
-      "stop": {
-        "control": "p62 32177",
-        "way": 1,
-        "went": 0.035,
-        "asked": 1.5,
-        "by": [
-          "23/27"
-        ]
-      },
-      "stops": [
-        "23/27"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p62 32177",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.035,
-          "ms": 7,
-          "msOneCall": 25,
-          "stops": [
-            "23/27"
-          ],
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 8,
+          "msOneCall": 32,
+          "stops": [],
           "moved": {
             "p42 32165 against p95 32184": [
-              7.11,
+              6.12,
               0
             ],
             "p71 32165 against p95 32184": [
-              7.11,
+              6.12,
               0
             ],
             "p0 32140 against p95 32184": [
@@ -62,18 +50,18 @@
         {
           "control": "p62 32177",
           "way": -1,
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 5,
-          "msOneCall": 6,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 91,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p42 32165 against p95 32184": [
-              6.12,
+              305.93,
               0
             ],
             "p71 32165 against p95 32184": [
-              6.12,
+              305.93,
               0
             ],
             "p0 32140 against p95 32184": [
@@ -109,8 +97,8 @@
             }
           ],
           "controlWent": [
-            133.88,
-            76.86
+            187.77,
+            121.31
           ],
           "moved": [
             "p42 32165 against p95 32184",
@@ -118,11 +106,11 @@
           ],
           "went": {
             "p42 32165 against p95 32184": [
-              253.54,
+              355.58,
               0
             ],
             "p71 32165 against p95 32184": [
-              253.54,
+              355.58,
               0
             ]
           },
@@ -133,24 +121,12 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "23/27"
-          ]
+          "stops": []
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p62 32177",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (23/27)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p62 32177: a travel of 0.2 rad or less each way, stopped at +0.035 rad (23/27)",
-      "seconds": 17
+      "seconds": 18,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:45:43.760Z"
     },
     {
       "function": 2,
@@ -381,45 +357,35 @@
     {
       "function": 6,
       "does": "The left arm swings at the shoulder and bends at the elbow, so it can be posed.",
-      "verdict": "not decided",
-      "msOneCall": 25,
+      "verdict": "shown",
+      "msOneCall": 33,
       "msPerStep": 3,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
-      "stop": {
-        "control": "p830 32177",
-        "way": -1,
-        "went": -0.174,
-        "asked": 0.8,
-        "by": [
-          "825/830"
-        ]
-      },
-      "stops": [
-        "825/830"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p830 32177",
           "way": 1,
-          "asked": 0.17,
-          "went": 0.17,
-          "ms": 16,
-          "msOneCall": 25,
+          "asked": 0.8,
+          "went": 0.8,
+          "ms": 69,
+          "msOneCall": 33,
           "stops": [],
           "moved": {
             "p825 32177 against p95 32184": [
-              16.99,
+              79.94,
               0
             ],
             "p815 6536 against p95 32184": [
-              16.99,
+              79.94,
               0
             ],
             "p848 32177 against p95 32184": [
@@ -431,20 +397,18 @@
         {
           "control": "p830 32177",
           "way": -1,
-          "asked": 0.8,
-          "went": -0.174,
-          "ms": 15,
+          "asked": 0.17,
+          "went": -0.17,
+          "ms": 13,
           "msOneCall": 5,
-          "stops": [
-            "825/830"
-          ],
+          "stops": [],
           "moved": {
             "p825 32177 against p95 32184": [
-              17.38,
+              16.99,
               0
             ],
             "p815 6536 against p95 32184": [
-              17.38,
+              16.99,
               0
             ],
             "p848 32177 against p95 32184": [
@@ -509,19 +473,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p830 32177",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.174 rad (825/830)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p830 32177: a travel of 0.2 rad or less each way, stopped at -0.174 rad (825/830)",
-      "seconds": 17
+      "seconds": 18,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:45:43.760Z"
     },
     {
       "function": 7,

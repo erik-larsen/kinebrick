@@ -314,15 +314,15 @@
       "function": 3,
       "does": "The two doors swing up and forward on hinges at their front corners (dihedral doors).",
       "verdict": "shown",
-      "msOneCall": 40,
-      "msPerStep": 14,
+      "msOneCall": 45,
+      "msPerStep": 15,
       "time": {
-        "open": 26,
+        "open": 28,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 28
+        "A": 4,
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -354,8 +354,8 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 223,
-          "msOneCall": 40,
+          "ms": 234,
+          "msOneCall": 45,
           "stops": [],
           "moved": {}
         },
@@ -386,8 +386,8 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 14,
-          "msOneCall": 15,
+          "ms": 15,
+          "msOneCall": 12,
           "stops": [],
           "moved": {}
         },
@@ -407,10 +407,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            914
+          ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 14,
-          "msOneCall": 14,
+          "ms": 15,
+          "msOneCall": 25,
           "stops": [],
           "moved": {}
         },
@@ -430,10 +433,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            914
+          ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 197,
-          "msOneCall": 14,
+          "ms": 216,
+          "msOneCall": 12,
           "stops": [],
           "moved": {}
         }
@@ -478,16 +484,16 @@
             }
           ],
           "controlWent": [
-            81.8,
-            133.42
+            76.24,
+            117.75
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "82/886",
-            "315/891"
+            "315/891",
+            "315/890"
           ]
         },
         {
@@ -529,20 +535,23 @@
             }
           ],
           "controlWent": [
-            66.42,
-            96.43
+            68.51,
+            100.55
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "290/913",
             "290/912",
-            "918/930"
+            "83/908"
           ]
         }
       ],
-      "seconds": 59
+      "seconds": 62,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:44:40.079Z"
     },
     {
       "function": 4,

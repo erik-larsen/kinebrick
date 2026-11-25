@@ -869,30 +869,19 @@
     {
       "function": 5,
       "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
-      "verdict": "not decided",
-      "msOneCall": 34,
-      "msPerStep": 9,
+      "verdict": "shown",
+      "msOneCall": 36,
+      "msPerStep": 8,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 32
+        "A": 3,
+        "B": 27
       },
-      "stop": {
-        "control": "p475 41239",
-        "way": -1,
-        "went": -0.07,
-        "asked": 1.5,
-        "by": [
-          "378/478"
-        ]
-      },
-      "stops": [
-        "378/478",
-        "368/510"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p475 41239",
@@ -917,10 +906,10 @@
               505
             ]
           },
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 18,
-          "msOneCall": 34,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 190,
+          "msOneCall": 36,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -960,13 +949,11 @@
               505
             ]
           },
-          "asked": 1.5,
+          "asked": 0.07,
           "went": -0.07,
-          "ms": 19,
-          "msOneCall": 11,
-          "stops": [
-            "378/478"
-          ],
+          "ms": 12,
+          "msOneCall": 10,
+          "stops": [],
           "moved": {
             "p472 41239": [
               0,
@@ -998,13 +985,14 @@
               ]
             }
           ],
-          "asked": 1.5,
-          "went": 0.07,
-          "ms": 14,
-          "msOneCall": 9,
-          "stops": [
-            "368/510"
+          "pinsAsked": [
+            508
           ],
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 15,
+          "msOneCall": 18,
+          "stops": [],
           "moved": {
             "p472 41239": [
               0,
@@ -1036,10 +1024,13 @@
               ]
             }
           ],
-          "asked": 0.07,
-          "went": -0.07,
-          "ms": 12,
-          "msOneCall": 11,
+          "pinsAsked": [
+            508
+          ],
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 178,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -1067,7 +1058,9 @@
             {
               "part": 507,
               "seen": true,
-              "said": [],
+              "said": [
+                "Finding the pins that hold it…"
+              ],
               "freed": [
                 505
               ]
@@ -1082,11 +1075,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            76.13,
-            44.64
+            118.95,
+            72.92
           ],
           "moved": [],
           "went": {},
@@ -1106,7 +1107,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "378/478"
+            "378/478",
+            "456/478"
           ]
         },
         {
@@ -1118,7 +1120,9 @@
             {
               "part": 475,
               "seen": true,
-              "said": [],
+              "said": [
+                "Finding the pins that hold it…"
+              ],
               "freed": [
                 473
               ]
@@ -1144,8 +1148,8 @@
             }
           ],
           "controlWent": [
-            119.53,
-            73.34
+            37.41,
+            21.34
           ],
           "moved": [],
           "went": {},
@@ -1170,24 +1174,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p475 41239",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.07 rad (378/478)"
-        },
-        {
-          "control": "p507 41239",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (368/510)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p475 41239: a travel of 0.2 rad or less each way, stopped at -0.07 rad (378/478); p507 41239: a travel of 0.2 rad or less each way, stopped at +0.07 rad (368/510)",
-      "seconds": 44
+      "seconds": 40,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:48:09.548Z"
     },
     {
       "function": 7,

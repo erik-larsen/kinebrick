@@ -10,15 +10,14 @@
     {
       "function": 1,
       "does": "The motor in the fuselage, run from the hub, drives whichever function is selected by four red push buttons on the fuselage sides (two each side, behind the wing): each button slides a driving ring in a gearbox under the wing, connecting that function's shaft to the motor.",
-      "verdict": "not shown",
-      "why": "B: the control not moved by hand",
+      "verdict": "shown",
       "msOneCall": null,
       "msPerStep": 24,
       "time": {
-        "open": 11,
+        "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 8,
+        "reach": 9,
         "A": 2,
         "B": 10
       },
@@ -29,8 +28,8 @@
           "control": "p769 22169",
           "way": 1,
           "asked": 1.5,
-          "went": -1.587,
-          "ms": 1073,
+          "went": -1.581,
+          "ms": 1091,
           "msOneCall": null,
           "stops": [],
           "moved": {}
@@ -39,8 +38,8 @@
           "control": "p769 22169",
           "way": -1,
           "asked": 1.5,
-          "went": 1.65,
-          "ms": 1073,
+          "went": 1.647,
+          "ms": 1076,
           "msOneCall": null,
           "stops": [],
           "moved": {}
@@ -56,7 +55,7 @@
           "drags": [],
           "controlWent": [
             0,
-            0
+            921.267
           ],
           "moved": [],
           "went": {},
@@ -65,7 +64,9 @@
           "stops": []
         }
       ],
-      "seconds": 32
+      "seconds": 35,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:43:06.877Z"
     }
   ]
 }

@@ -1005,44 +1005,32 @@
     {
       "function": 8,
       "does": "The bonnet opens: it lifts on hinges at the windscreen end to show the engine and supercharger.",
-      "verdict": "not decided",
-      "msOneCall": 101,
-      "msPerStep": 60,
+      "verdict": "shown",
+      "msOneCall": 124,
+      "msPerStep": 61,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 0,
-        "B": 13
+        "A": 1,
+        "B": 14
       },
-      "stop": {
-        "control": "p708 41239",
-        "way": 1,
-        "went": 0.035,
-        "asked": 1.5,
-        "by": [
-          "557/708"
-        ]
-      },
-      "stops": [
-        "557/708"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p708 41239",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.035,
-          "ms": 60,
-          "msOneCall": 101,
-          "stops": [
-            "557/708"
-          ],
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 61,
+          "msOneCall": 124,
+          "stops": [],
           "moved": {
             "p721 15458": [
-              4.19,
-              2
+              3.6,
+              1.72
             ],
             "p390 2854": [
               0,
@@ -1053,15 +1041,15 @@
         {
           "control": "p708 41239",
           "way": -1,
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 38,
-          "msOneCall": 42,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 570,
+          "msOneCall": 46,
           "stops": [],
           "moved": {
             "p721 15458": [
-              3.6,
-              1.72
+              179.99,
+              85.94
             ],
             "p390 2854": [
               0,
@@ -1096,16 +1084,16 @@
             }
           ],
           "controlWent": [
-            186.93,
-            39
+            443.95,
+            104.89
           ],
           "moved": [
             "p721 15458"
           ],
           "went": {
             "p721 15458": [
-              80.11,
-              39
+              190.26,
+              104.89
             ]
           },
           "staysWent": {
@@ -1116,23 +1104,15 @@
           },
           "staysMoved": [],
           "stops": [
-            "544/708"
+            "557/708",
+            "544/708",
+            "700/721"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p708 41239",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (557/708)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p708 41239: a travel of 0.2 rad or less each way, stopped at +0.035 rad (557/708)",
-      "seconds": 20
+      "seconds": 23,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:58.703Z"
     },
     {
       "function": 9,
@@ -1268,36 +1248,45 @@
         "result": "partly",
         "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355)."
       },
-      "verdict": "not shown",
-      "msOneCall": 76,
-      "msPerStep": null,
+      "verdict": "not decided",
+      "msOneCall": 95,
+      "msPerStep": 79,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 12,
-        "A": 13,
-        "B": 10
+        "reach": 14,
+        "A": 2,
+        "B": 20
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p328 2825",
+        "way": -1,
+        "went": -0.07,
+        "asked": 0.73,
+        "by": [
+          "ground: p167"
+        ]
+      },
+      "stops": [
+        "170/180",
+        "ground: p167"
+      ],
       "A": [
         {
           "control": "p328 2825",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            176,
+            177
+          ],
           "asked": 1.5,
           "went": 0,
-          "ms": 21,
-          "msOneCall": 76,
-          "stops": [],
+          "ms": 70,
+          "msOneCall": 95,
+          "stops": [
+            "170/180"
+          ],
           "moved": {
             "p326 15462": [
               0,
@@ -1324,31 +1313,29 @@
         {
           "control": "p328 2825",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            176,
+            177
+          ],
           "asked": 0.73,
-          "went": 0,
-          "ms": 19,
-          "msOneCall": 64,
-          "stops": [],
+          "went": -0.07,
+          "ms": 158,
+          "msOneCall": 78,
+          "stops": [
+            "ground: p167"
+          ],
           "moved": {
             "p326 15462": [
               0,
-              0
+              3.98
             ],
             "p463 3749": [
-              0,
-              0
+              6.22,
+              3.98
             ],
             "p466 3749": [
-              0,
-              0
+              6.22,
+              3.98
             ],
             "p471 56908": [
               0,
@@ -1367,10 +1354,11 @@
           "seen": true,
           "cameraTurns": 1,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…",
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            176,
+            177
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -1379,27 +1367,37 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            0,
-            1.65
+            4.51,
+            4.62
           ],
           "moved": [
-            "p326 15462"
+            "p326 15462",
+            "p463 3749",
+            "p466 3749"
           ],
           "went": {
             "p326 15462": [
               0,
-              1.65
+              4.62
             ],
             "p463 3749": [
-              0,
-              0.3
+              6.73,
+              4.32
             ],
             "p466 3749": [
-              0,
-              0.3
+              6.73,
+              4.32
             ]
           },
           "staysWent": {
@@ -1414,13 +1412,27 @@
           },
           "staysMoved": [],
           "stops": [
+            "ground: p169",
+            "ground: p167",
             "170/180"
           ]
         }
       ],
-      "why": "by hand: p463 3749, p466 3749 not moved",
-      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 41
+      "stopsJudged": [
+        {
+          "control": "p328 2825",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (170/180); -0.07 rad (ground: p167)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p328 2825: a travel of 0.2 rad or less each way, stopped at +0 rad (170/180); -0.07 rad (ground: p167)",
+      "seconds": 44,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:58.703Z"
     }
   ]
 }

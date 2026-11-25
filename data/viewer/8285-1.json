@@ -795,15 +795,15 @@
       "function": 9,
       "does": "The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom.",
       "verdict": "shown",
-      "msOneCall": 205,
-      "msPerStep": 99,
+      "msOneCall": 145,
+      "msPerStep": 40,
       "time": {
         "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 88,
-        "A": 113,
-        "B": 12
+        "reach": 100,
+        "A": 6,
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -811,78 +811,68 @@
         {
           "control": "p1719 2654",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            1739
+          ],
           "asked": 1.5,
-          "went": 1.291,
-          "ms": 3637,
-          "msOneCall": 205,
+          "went": 1.5,
+          "ms": 1693,
+          "msOneCall": 145,
           "stops": [],
           "moved": {
             "p1646 4716": [
               0,
-              73.03
+              85.94
             ],
             "p1648 3648b": [
-              0.2,
-              2.76
+              0,
+              3.58
             ],
             "p1740 32278": [
-              1.43,
-              0.39
+              3.96,
+              0.22
             ],
             "p1733 32278": [
-              2.99,
-              0.39
+              7.43,
+              0.96
             ],
             "p1703 32012": [
               0,
-              0.35
+              0
             ]
           }
         },
         {
           "control": "p1719 2654",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            1739
+          ],
           "asked": 1.5,
-          "went": -1.256,
-          "ms": 3550,
-          "msOneCall": 170,
+          "went": -1.5,
+          "ms": 1635,
+          "msOneCall": 78,
           "stops": [],
           "moved": {
             "p1646 4716": [
               0,
-              71.02
+              85.94
             ],
             "p1648 3648b": [
-              0.2,
-              2.67
+              0,
+              3.58
             ],
             "p1740 32278": [
-              1.32,
-              0.35
+              3.97,
+              0.26
             ],
             "p1733 32278": [
-              2.75,
-              0.35
+              7.51,
+              0.97
             ],
             "p1703 32012": [
               0,
-              0.36
+              0
             ]
           }
         }
@@ -893,10 +883,10 @@
           "seen": true,
           "cameraTurns": 5,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…",
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            1739
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -905,11 +895,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
             0,
-            150.26
+            149.16
           ],
           "moved": [
             "p1646 4716",
@@ -920,18 +918,18 @@
           "went": {
             "p1646 4716": [
               0,
-              150.26
+              149.16
             ],
             "p1648 3648b": [
               0,
-              6.26
+              6.21
             ],
             "p1740 32278": [
-              6.94,
+              6.89,
               0
             ],
             "p1733 32278": [
-              13.16,
+              13.03,
               0
             ]
           },
@@ -947,7 +945,9 @@
           "stops": []
         }
       ],
-      "seconds": 222
+      "seconds": 141,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:49:22.389Z"
     },
     {
       "function": 10,

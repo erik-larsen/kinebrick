@@ -1430,29 +1430,27 @@
       "function": 12,
       "does": "The two seat backs tilt on their finger hinges.",
       "verdict": "not decided",
-      "msOneCall": 70,
-      "msPerStep": 19,
+      "msOneCall": 75,
+      "msPerStep": 20,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 6,
-        "B": 30
+        "A": 11,
+        "B": 32
       },
       "stop": {
         "control": "p1092 3031",
-        "way": 1,
-        "went": 0.105,
+        "way": -1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "1093/1097"
+          "982/1092"
         ]
       },
       "stops": [
-        "1093/1097",
         "982/1092",
-        "1127/1131",
         "981/1126"
       ],
       "A": [
@@ -1492,13 +1490,11 @@
               1123
             ]
           },
-          "asked": 1.5,
-          "went": 0.105,
-          "ms": 51,
-          "msOneCall": 70,
-          "stops": [
-            "1093/1097"
-          ],
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 58,
+          "msOneCall": 75,
+          "stops": [],
           "moved": {}
         },
         {
@@ -1537,10 +1533,10 @@
               1123
             ]
           },
-          "asked": 0.1,
+          "asked": 1.5,
           "went": 0,
           "ms": 19,
-          "msOneCall": 19,
+          "msOneCall": 21,
           "stops": [
             "982/1092"
           ],
@@ -1569,13 +1565,14 @@
               ]
             }
           ],
-          "asked": 1.5,
-          "went": 0.105,
-          "ms": 56,
-          "msOneCall": 33,
-          "stops": [
-            "1127/1131"
+          "pinsAsked": [
+            277
           ],
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 56,
+          "msOneCall": 62,
+          "stops": [],
           "moved": {}
         },
         {
@@ -1601,10 +1598,13 @@
               ]
             }
           ],
-          "asked": 0.1,
+          "pinsAsked": [
+            277
+          ],
+          "asked": 1.5,
           "went": 0,
-          "ms": 18,
-          "msOneCall": 20,
+          "ms": 22,
+          "msOneCall": 22,
           "stops": [
             "981/1126"
           ],
@@ -1656,8 +1656,8 @@
             }
           ],
           "controlWent": [
-            16.56,
-            7.19
+            16.82,
+            7.31
           ],
           "moved": [],
           "went": {},
@@ -1713,7 +1713,7 @@
             }
           ],
           "controlWent": [
-            16.69,
+            16.68,
             7.25
           ],
           "moved": [],
@@ -1722,8 +1722,8 @@
           "staysMoved": [],
           "stops": [
             "981/1126",
-            "1066/1124",
-            "1127/1131"
+            "1127/1131",
+            "1066/1124"
           ]
         }
       ],
@@ -1731,12 +1731,12 @@
         {
           "control": "p1092 3031",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.105 rad (1093/1097); -0 rad (982/1092)"
+          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (982/1092)"
         },
         {
           "control": "p1126 3031",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.105 rad (1127/1131); -0 rad (981/1126)"
+          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (981/1126)"
         }
       ],
       "stopVerdict": "not decided",
@@ -1747,8 +1747,10 @@
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p1092 3031: a travel of 0.2 rad or less each way, stopped at +0.105 rad (1093/1097); -0 rad (982/1092); p1126 3031: a travel of 0.2 rad or less each way, stopped at +0.105 rad (1127/1131); -0 rad (981/1126)",
-      "seconds": 51
+      "why": "not decided: p1092 3031: a travel of 0.2 rad or less each way, stopped at -0 rad (982/1092); p1126 3031: a travel of 0.2 rad or less each way, stopped at -0 rad (981/1126)",
+      "seconds": 60,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:54:42.830Z"
     },
     {
       "function": 13,
