@@ -225,6 +225,10 @@ export interface Options {
   // afresh too and counts the motions that differ in a bit (see searchStats).
   reuseSearch: boolean;
   reuseSearchCheck: boolean;
+  // An open differential whose outputs nothing makes differ turns as one, its satellites still in
+  // it (see Kinematics.lockDifferentials). Off by default while it is proved; KINEBRICK_DIFF_LOCKED=1
+  // turns it on.
+  lockedDiffs: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
@@ -253,6 +257,7 @@ export const experiments: Options = {
   workingSetCompare: setting('KINEBRICK_WORKING_SET_COMPARE') === '1',
   reuseSearch: setting('KINEBRICK_REUSE_SEARCH') !== '0',
   reuseSearchCheck: setting('KINEBRICK_REUSE_SEARCH') === 'check',
+  lockedDiffs: setting('KINEBRICK_DIFF_LOCKED') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -399,6 +404,8 @@ export class Kinematics {
   private blockedByEnds = false;
   endReached = false;
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
+  private satellites: number[][] | null = null; // each differential's satellites' joints in its casing (see lockDifferentials)
+  private lockRateOf: ((z: number[], i: number) => number) | null = null; // the joints' rates for lockDifferentials, from the last leastTiers
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
   private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
@@ -3673,6 +3680,7 @@ export class Kinematics {
   // that a search can be reused whether or not holds are being chosen (see jointMotionNearOrigin).
   private motionChoices(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[], tiers?: Tier[]): { motion: number[] | null; parked: number[] | null } {
     const basis = this.treeBasis();
+    if (tiers && this.options.lockedDiffs) all = this.lockDifferentials(all, rate);
     const smallest = (motions: number[][]) => (tiers ? leastTurning(motions, rate, tiers) : smallestTurning(motions, rate, size));
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
     const frameRows = dotsWith(basis.slice(0, 6), all);
@@ -3717,6 +3725,52 @@ export class Kinematics {
     return { motion: smallest(rest), parked };
   }
 
+  // An open differential turns as one where nothing makes its outputs differ (the `lockedDiffs`
+  // option): of the motions (orthonormal, in the tree basis's coordinates), those in which its
+  // satellites stand still in its casing, if any of them still turns the joint (`rate`), so its
+  // two outputs turn alike with the casing. A wheel held, or the list's gear held, or tyres on the
+  // ground in a corner, that leave no such motion make them differ as before. Each differential in
+  // turn, before the frame is kept where it is (see motionChoices): the 42129 Zetros, its front
+  // tyres built 2 LDU off the ground, stood on its rear tyres while its centre differential sent
+  // the whole of the motors' turn to the front wheels, spinning in the air.
+  private lockDifferentials(all: number[][], rate: (z: number[]) => number): number[][] {
+    const rateOf = this.lockRateOf;
+    if (!rateOf || all.length === 0) return all;
+    const turns = (motions: number[][]) => {
+      const most = Math.max(0, ...all.map((m) => Math.abs(rate(m))));
+      return most > 0 && motions.some((m) => Math.abs(rate(m)) > 1e-6 * most);
+    };
+    let motions = all;
+    for (const sats of this.satelliteJoints()) {
+      const rows = sats.map((j) => motions.map((m) => rateOf(m, j)));
+      if (rows.every((row) => row.every((x) => Math.abs(x) < 1e-12))) continue;
+      const locked = orthonormalize(mixes(motions, nullSpace(rows, motions.length)));
+      if (locked.length && turns(locked)) motions = locked;
+    }
+    return motions;
+  }
+
+  // Each differential's satellites (see lockDifferentials): the joints of its casing (a part whose
+  // role is `differential`) to a body with a gear, across the casing's own axis (that of the joint
+  // it turns on), as the satellites' posts cross the half shafts.
+  private satelliteJoints(): number[][] {
+    if (this.satellites) return this.satellites;
+    const casings = [...new Set(this.mech.roles.flatMap((r, i) => (r === 'differential' && this.mech.bodyOf[i] >= 0 ? [this.mech.bodyOf[i]] : [])))];
+    const axis = (j: Joint) => axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+    this.satellites = casings.flatMap((c) => {
+      const link = this.parentLink(c);
+      if (!link || this.mech.joints[link.joint].kind !== 'revolute') return [];
+      const own = axis(this.mech.joints[link.joint]);
+      const sats = this.mech.joints.flatMap((j, i) => {
+        if (j.kind !== 'revolute' || (j.bodyA !== c && j.bodyB !== c)) return [];
+        const other = j.bodyA === c ? j.bodyB : j.bodyA;
+        return this.mech.gears.some((g) => g.body === other) && Math.abs(axis(j).dot(own)) < 0.5 ? [i] : [];
+      });
+      return sats.length ? [sats] : [];
+    });
+    return this.satellites;
+  }
+
   // Least motion's tiers, most important first, each saying how much a motion (in the tree
   // basis's coordinates) moves what it's about. A drag moves the first tier's as little as it
   // can, then of the motions that do that, the next tier's, and so on (see leastTurning): just as
@@ -3741,6 +3795,7 @@ export class Kinematics {
   // gears that would turn instead, stays level); and the tyres scrubbing sideways or lifting,
   // SCRUB_WEIGHT as much.
   private leastTiers(joint: number, turning: (z: number[]) => Float64Array, rateOf: (z: number[], i: number) => number, size: (z: number[]) => number[], basis = this.treeBasis()): Tier[] {
+    this.lockRateOf = rateOf;
     const grabbed = this.drag.turning?.joint === joint ? this.drag.turning.grabbed : this.mech.joints[joint].bodyB;
     const dot = (row: number[], z: number[]) => {
       let sum = 0;
