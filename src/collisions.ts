@@ -18,7 +18,7 @@
 // face to face, don't count.
 
 import { Box3, BufferAttribute, BufferGeometry, Matrix4, Vector3 } from 'three';
-import type { Mechanism } from './mechanism.ts';
+import type { Joint, Mechanism } from './mechanism.ts';
 
 // How far each part's shape is pulled in at each face of its box for collision checks, in
 // LDU. Faces that merely touch (a beam sliding across the flush head of a pin) then don't
@@ -471,6 +471,61 @@ export class Collisions {
       }
     }
     this.groups = [...groups.values()].map(({ inA, inB, ...g }) => ({ ...g, onA: [...inA].sort((x, y) => x - y), onB: [...inB].sort((x, y) => x - y) }));
+  }
+
+  // The pairs of parts that turn face to face on one joint, as "a,b" (the lower first), so aren't
+  // tested (decision 371 of 2026-11-25): parts on two bodies whose only joint is one revolute, which
+  // can't slide along its axis. A turn about that axis leaves each part's extent along it as it was,
+  // so where the two parts' shrunk shapes overlap along the axis by no more than NEAR, turning can
+  // never press them further into each other along it than a pair built that close, which isn't
+  // tested either (see watch). The 42038 Arctic Truck's track units rock on their hubs: hub and
+  // block, face to face across the axis, overlap 0.5 LDU along it once shrunk; clear as built, they
+  // met once rocked, and stopped each unit at +0.30 / -0.06 rad. `matrices` place the parts as the
+  // mechanism was worked out from (its joints' axes are given there). Only pairs whose boxes come
+  // within NEAR of each other are listed: others can't meet. Each with its overlap along the axis.
+  faceToFace(mech: { joints: Joint[]; bodyOf: number[] }, matrices: Matrix4[]): Map<string, number> {
+    const bodyKey = (x: number, y: number) => (x < y ? `${x},${y}` : `${y},${x}`);
+    const between = new Map<string, Joint[]>();
+    for (const j of mech.joints) {
+      if (j.bodyA === j.bodyB) continue;
+      const key = bodyKey(j.bodyA, j.bodyB);
+      between.set(key, [...(between.get(key) ?? []), j]);
+    }
+    const one = new Map<string, Joint>();
+    for (const [key, list] of between) if (list.length === 1 && list[0].kind === 'revolute') one.set(key, list[0]);
+    const pairs = new Map<string, number>();
+    if (!one.size) return pairs;
+    // Each part's extent along a joint's axis, from its shrunk meshes.
+    const extents = new Map<string, [number, number]>();
+    const extent = (p: number, j: Joint): [number, number] => {
+      const key = `${p} ${j.from.x},${j.from.y},${j.from.z} ${j.to.x},${j.to.y},${j.to.z}`;
+      const known = extents.get(key);
+      if (known) return known;
+      const u = j.to.clone().sub(j.from).normalize();
+      let low = Infinity;
+      let high = -Infinity;
+      for (const m of this.shapes[p].meshes) {
+        const e = matrices[p].clone().multiply(m.matrix).elements;
+        const position = m.geometry.getAttribute('position');
+        for (let k = 0; k < position.count; k++) {
+          const x = position.getX(k), y = position.getY(k), z = position.getZ(k);
+          const d = (e[0] * x + e[4] * y + e[8] * z + e[12]) * u.x + (e[1] * x + e[5] * y + e[9] * z + e[13]) * u.y + (e[2] * x + e[6] * y + e[10] * z + e[14]) * u.z;
+          if (d < low) low = d;
+          if (d > high) high = d;
+        }
+      }
+      extents.set(key, [low, high]);
+      return [low, high];
+    };
+    const joint = (a: number, b: number) => one.get(bodyKey(mech.bodyOf[a], mech.bodyOf[b]));
+    for (const [a, b] of meetingPairs(this.shapeBoxes(), matrices, (a, b) => mech.bodyOf[a] !== mech.bodyOf[b] && joint(a, b) !== undefined)) {
+      const j = joint(a, b)!;
+      const [lowA, highA] = extent(a, j);
+      const [lowB, highB] = extent(b, j);
+      const overlap = Math.min(highA, highB) - Math.max(lowA, lowB);
+      if (overlap <= NEAR) pairs.set(`${a},${b}`, overlap);
+    }
+    return pairs;
   }
 
   // How many pairs of parts are being watched.

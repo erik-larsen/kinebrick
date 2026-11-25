@@ -820,6 +820,8 @@ async function start() {
     for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
     if (collisions) {
       collisions.ignored = new Set(mech.loose);
+      // Nor two parts that turn face to face on one joint (see Collisions.faceToFace).
+      for (const key of collisions.faceToFace(mech, partMatrices()).keys()) connected.add(key);
       collisions.watch(mech.bodyOf, connected, partMatrices());
     } else {
       // The pairs of parts that already touch as built are found beside the page (see
@@ -827,6 +829,7 @@ async function start() {
       // stop until they're known.
       const placedAt = partMatrices();
       collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true);
+      for (const key of collisions.faceToFace(mech, placedAt).keys()) connected.add(key);
       // A loose part never stops a motion (see Collisions.ignored).
       collisions.ignored = new Set(mech.loose);
       const tested = collisions.candidates(mech.bodyOf, connected, placedAt);
