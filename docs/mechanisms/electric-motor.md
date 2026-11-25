@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 40 works, 40 partly, 2 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 37 works, 38 partly, 2 no, 10 not checked.
 
 ## By decade
 
@@ -67,11 +67,11 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *PF:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (works)
-- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
-- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (works)
-- With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
-- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (partly)
+- *PF:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (not checked)
+- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (not checked)
+- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (not checked)
+- With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (not checked)
+- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (not checked)
 
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 

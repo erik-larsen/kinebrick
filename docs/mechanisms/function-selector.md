@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 45 works, 46 partly, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 42 works, 44 partly, 9 not checked.
 
 ## By decade
 
@@ -46,11 +46,11 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *4 functions:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (works)
-- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
-- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (works)
-- With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
-- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (partly)
+- *4 functions:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (not checked)
+- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (not checked)
+- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (not checked)
+- With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (not checked)
+- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (not checked)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 

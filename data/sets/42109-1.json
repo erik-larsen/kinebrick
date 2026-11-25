@@ -108,10 +108,9 @@
     ]
   },
   "generated": {
-    "commit": "61abedc1",
-    "uncommitted": true,
+    "commit": "85aa8904",
     "date": "2026-11-25",
-    "seconds": 10,
+    "seconds": 12,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -194,7 +193,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.7
       },
       {
         "result": "partly",
@@ -263,7 +262,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p351 32498",
-        "seconds": 1.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -367,7 +366,7 @@
           "rise": 0.32,
           "tyre": "p968 44309"
         },
-        "seconds": 1
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -433,7 +432,7 @@
           [],
           []
         ],
-        "seconds": 2.4
+        "seconds": 3.1
       },
       {
         "result": "not checked",
@@ -510,9 +509,9 @@
             "for": "p894 64391"
           }
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       }
     ],
-    "peak": 605
+    "peak": 573
   }
 }
