@@ -375,8 +375,15 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       // plainly: the 42082's cab door, welded to the cab by its two friction pins, "turned" by
       // slewing the whole superstructure, and its door never moved against the cab.
       if (shiftFirst && g.freed && (g.shiftPressed?.length || !(await turnsPlain(v, control)))) {
-        const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
-        shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
+        // Not where Shift would free no pins and the check freed some for this control: a press that
+        // finds none asks the part to slide on its axle, and turnPart then turned the 42053's,
+        // 42078's and 8835's knobs not at all, their pins freed or not (see askedPins below).
+        const forControl = (g.freedFor ?? []).some((f: { for: string }) => f.for.startsWith(`p${control} `));
+        const shiftFinds: number[] = forControl ? await v.page.evaluate(async (control) => (await (window as any).kinebrick.setup.pinsToShift(control)).pins, control) : [1];
+        if (shiftFinds.length) {
+          const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
+          shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
+        }
       }
       // Where the check freed pins for this control (freedFor) and Shift freed none, the pins a drag
       // asks for when it can't move (setup.pinsToFree, the same search as the check's), freed:
@@ -572,6 +579,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const parts = [...moves, ...stays].flatMap((m: Ref) => [m.part, m.against].filter((p) => p >= 0));
     const isMotor = await v.page.evaluate((p) => (window as any).kinebrick.mech.roles[p] === 'motor', control);
     let shift: string[] = [];
+    let pinsAskedB: number[] = [];
     // How far the control and each listed part went in B: the most over B's drags, each measured
     // from where the drag began (decision 329), as A's are.
     const watch = [control, ...parts];
@@ -612,7 +620,21 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       await measure(before);
       note(ref, 0, output);
     } else {
-      if (g.freed && (g.shiftPressed?.length || !(await turnsPlain(v, control)))) shift = (await v.press({ shift: true, release: true })).said;
+      // Where Shift would free no pins and the check freed some for this control, the pins a drag
+      // asks for when it can't move (setup.pinsToFree) are freed instead, as in A: a Shift press that
+      // finds no pins asks the part to slide on its axle, and the drag then pulled the 42078's
+      // steering knob 30 LDU off its axle while the wheels stood.
+      if (g.freed && (g.shiftPressed?.length || !(await turnsPlain(v, control)))) {
+        const forControl = (g.freedFor ?? []).some((f: { for: string }) => f.for.startsWith(`p${control} `));
+        const shiftFinds: number[] = forControl ? await v.page.evaluate(async (control) => (await (window as any).kinebrick.setup.pinsToShift(control)).pins, control) : [1];
+        if (shiftFinds.length) shift = (await v.press({ shift: true, release: true })).said;
+        else pinsAskedB = await v.page.evaluate(async (control) => {
+          const k = (window as any).kinebrick;
+          const pins: number[] = await k.setup.pinsToFree(control);
+          if (pins.length) await k.setup.freePins(pins);
+          return pins;
+        }, control);
+      }
       // As a person drags (decision 329): round the control's middle where it turns like a knob,
       // and straight along the way its fastest point goes as its joint turns (as the check aims a
       // push, wayOnJoint), each way; the four fixed pushes only where neither applies.
@@ -634,7 +656,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const controlMoved = c[0] >= MOVED || c[1] >= MOVED;
     moved.forEach((m: string) => movedByB.add(m));
     if (controlMoved) controlsMovedByB.add(ref);
-    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysWent: Object.fromEntries(stays.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysMoved, stops: await v.stops() });
+    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(pinsAskedB.length ? { pinsAsked: pinsAskedB } : {}), ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysWent: Object.fromEntries(stays.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysMoved, stops: await v.stops() });
     time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
