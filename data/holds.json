@@ -112,31 +112,10 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42110-1",
-    "function": 14,
-    "result": "partly",
-    "reason": "The viewer sweep does not show it: no view shows the lid p2475 of the roof case, so no drag can reach it, and a turn of it measured 0 (decisions 329 and 339). Marked before the offer of main, decision 341; to look at after 2026-11-23.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "42111-1",
-    "function": 10,
-    "result": "partly",
-    "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355).",
-    "date": "2026-11-25"
-  },
-  {
     "set": "42060-1",
     "function": 6,
     "result": "partly",
     "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
-    "date": "2026-11-25"
-  },
-  {
-    "set": "42106-1",
-    "function": 4,
-    "result": "partly",
-    "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
     "date": "2026-11-25"
   },
   {
@@ -179,6 +158,20 @@
     "function": 9,
     "result": "partly",
     "reason": "Under a hand the cylinder moves 31.6 LDU, but the axle p292, listed to stay, moves 14.8 LDU and turns 13.7 degrees with it. The viewer's own turn does not take the control p302. Full viewer sweep at ac22e339, decision 363.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8259-1",
+    "function": 1,
+    "result": "partly",
+    "reason": "The viewer's own turn of the knob goes 1.5 rad the way that lowers the blade, where the check stops at the floor after 0.2 rad, and on that turn the two gears p74 and p75, listed to stay, turn 2.96 degrees. By hand the drag does stop at the floor (part p142), but p75 turns 14.6 degrees where the least-moved listed part turns 56.7. The sweep at f3b86e27, decision 376.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8261-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "Under a hand the control p45 turns 0.63 degrees and no listed part moves 1: parts 3/198 stop it. The viewer's own turn goes 0.236 rad one way, the listed parts moving 31 LDU, and 0 the other, stopped by the same pair. The sweep at f3b86e27, decision 376.",
     "date": "2026-11-25"
   }
 ]

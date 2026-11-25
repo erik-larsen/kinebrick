@@ -213,14 +213,14 @@
     ]
   },
   "generated": {
-    "commit": "217f2925",
+    "commit": "3297457d",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 33,
+    "seconds": 24,
     "counts": {
-      "works": 7,
+      "works": 8,
       "no": 1,
       "skipped": 1,
-      "partly": 1,
       "not checked": 2
     },
     "loose": [
@@ -310,7 +310,7 @@
             "for": "p170 32270"
           }
         ],
-        "seconds": 3.9
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -400,7 +400,7 @@
             0.8
           ]
         ],
-        "seconds": 3.4
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -484,7 +484,7 @@
             "limit"
           ]
         ],
-        "seconds": 2.4
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -550,7 +550,7 @@
             0.5
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -600,7 +600,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -646,7 +646,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -762,14 +762,14 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 3.7
+        "seconds": 2.6
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -780,16 +780,16 @@
             -1.23
           ],
           [
-            0.17,
-            -0.03
+            1.5,
+            -1.5
           ],
           [
-            0.17,
-            -0.03
+            1.23,
+            -1.5
           ],
           [
-            0.03,
-            -0.17
+            1.5,
+            -1.5
           ],
           [
             1.5,
@@ -800,8 +800,8 @@
             -1.5
           ],
           [
-            0.03,
-            -0.17
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -988,16 +988,16 @@
             "limit"
           ],
           [
-            "limit",
-            "limit"
+            null,
+            null
           ],
           [
             "limit",
-            "limit"
+            null
           ],
           [
-            "limit",
-            "limit"
+            null,
+            null
           ],
           [
             null,
@@ -1008,8 +1008,8 @@
             null
           ],
           [
-            "limit",
-            "limit"
+            null,
+            null
           ]
         ],
         "movedBy": [
@@ -1022,8 +1022,6 @@
           [],
           []
         ],
-        "cause": "stopped-endless",
-        "detail": "p745 57519: p284 92909 against p741 92907",
         "collisionStops": [
           [
             1,
@@ -1034,71 +1032,15 @@
             1.23
           ],
           [
-            2,
-            1,
-            238,
-            716,
-            0.17,
-            0.17
-          ],
-          [
-            2,
-            -1,
-            238,
-            716,
-            0.03,
-            0.03
-          ],
-          [
             3,
             1,
-            284,
-            741,
-            0.17,
-            0.17
-          ],
-          [
-            3,
-            -1,
-            284,
-            741,
-            0.03,
-            0.03
-          ],
-          [
-            4,
-            1,
-            284,
-            741,
-            0.03,
-            0.03
-          ],
-          [
-            4,
-            -1,
-            284,
-            741,
-            0.17,
-            0.17
-          ],
-          [
-            7,
-            1,
-            238,
-            716,
-            0.03,
-            0.03
-          ],
-          [
-            7,
-            -1,
-            238,
-            716,
-            0.17,
-            0.17
+            616,
+            726,
+            1.23,
+            1.23
           ]
         ],
-        "seconds": 9.6
+        "seconds": 9.2
       },
       {
         "result": "not checked",
@@ -1139,13 +1081,13 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 763
+    "peak": 809
   }
 }

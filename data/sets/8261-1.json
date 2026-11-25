@@ -87,13 +87,14 @@
     ]
   },
   "generated": {
-    "commit": "df30d9e4",
+    "commit": "3297457d",
+    "uncommitted": true,
     "date": "2026-11-25",
     "seconds": 2,
     "counts": {
-      "partly": 1,
-      "works": 2,
-      "skipped": 1
+      "partly": 2,
+      "skipped": 1,
+      "works": 1
     },
     "loose": [
       "p199 41837"
@@ -215,80 +216,87 @@
         }
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.27,
-            0
-          ]
-        ],
-        "rates": [
-          {
-            "p45 32271": [
-              1,
-              0
-            ],
-            "p51 32271": [
-              1,
-              0
-            ],
-            "p43 59426": [
-              1,
-              133
-            ],
-            "p52 59426": [
-              1,
-              133
-            ],
-            "p194 56145": [
-              1,
-              133
-            ],
-            "p196 56145": [
-              1,
-              133
-            ],
-            "p55 44294": [
-              1,
-              0
-            ],
-            "p0 32526": [
-              0,
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the control p45 turns 0.63 degrees and no listed part moves 1: parts 3/198 stop it. The viewer's own turn goes 0.236 rad one way, the listed parts moving 31 LDU, and 0 the other, stopped by the same pair. The sweep at f3b86e27, decision 376.",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.27,
               0
             ]
-          }
-        ],
-        "back": [
-          [
+          ],
+          "rates": [
+            {
+              "p45 32271": [
+                1,
+                0
+              ],
+              "p51 32271": [
+                1,
+                0
+              ],
+              "p43 59426": [
+                1,
+                133
+              ],
+              "p52 59426": [
+                1,
+                133
+              ],
+              "p194 56145": [
+                1,
+                133
+              ],
+              "p196 56145": [
+                1,
+                133
+              ],
+              "p55 44294": [
+                1,
+                0
+              ],
+              "p0 32526": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
             [
-              0,
-              0
-            ],
-            [
-              0,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ]
-          ]
-        ],
-        "torn": [
-          [
+          ],
+          "torn": [
             [
-              0,
-              0
-            ],
-            [
-              0,
-              0
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
             ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "seconds": 0.1
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "seconds": 0.1
+        }
       },
       {
         "result": "skipped",
@@ -410,9 +418,9 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       }
     ],
-    "peak": 337
+    "peak": 310
   }
 }

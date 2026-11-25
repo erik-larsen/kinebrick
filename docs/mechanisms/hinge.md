@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 68 works, 22 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 70 works, 20 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -399,7 +399,7 @@ Each detail by the set it first appears in.
 - *bonnet:* The bonnet lifts, hinged at its back edge, showing the engine. (works)
 - *tailgate:* Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways. (works)
 - *lid:* The lid of the box on the roof rack lifts open. (works)
-- *lid:* The lid of the case on the right side of the roof swings open. (partly)
+- *lid:* The lid of the case on the right side of the roof swings open. (works)
 
 **2020, [42102 Mini CLAAS XERION](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42102-1)**
 
@@ -422,7 +422,7 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet opens: it lifts on hinges at the windscreen end to show the engine and supercharger. (works)
 - *boot lid:* The boot lid opens on its hinges at the back of the car. (works)
-- *wheelie bar:* The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film. (partly)
+- *wheelie bar:* The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film. (works)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
