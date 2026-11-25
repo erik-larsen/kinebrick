@@ -2182,7 +2182,25 @@ export class Kinematics {
     if (!z) return [];
     const c = Math.abs(rate(z));
     if (!(c > 0)) return [];
-    return cands.filter((j) => Math.abs(this.basisJointRate(z, j, basis, rateOf)) <= 1e-6 * c);
+    const rates = new Map(cands.map((j) => [j, Math.abs(this.basisJointRate(z, j, basis, rateOf)) / c]));
+    let held = cands.filter((j) => rates.get(j)! <= 1e-6);
+    // The choice is a least-squares answer, so a joint it leaves still to rounding may still have to turn a
+    // hair for the control to turn at all: held, it leaves no motion that turns it. Then the held joints that
+    // the choice turns most are let go, the most first, until a motion turns the control (the 8880 Super Car,
+    // rolled back from where it was rolled to: the choice kept its engine still to 2.6e-7 of the wheel's turn,
+    // and held so, the car could only roll on play, and stopped at once with the engine left turned).
+    const reach = Math.max(0, ...zs.map((m) => Math.abs(rate(m))));
+    const turnsControl = (js: number[]) => {
+      if (!js.length) return true;
+      const rows = js.map((j) => zs.map((m) => this.basisJointRate(m, j, basis, rateOf)));
+      const left = mixes(zs, nullSpace(rows, zs.length));
+      return left.some((m) => Math.abs(rate(m)) > 1e-6 * reach * Math.hypot(...m));
+    };
+    while (held.length && !turnsControl(held)) {
+      const most = Math.max(...held.map((j) => rates.get(j)!));
+      held = most > 0 ? held.filter((j) => rates.get(j)! < most / 10) : [];
+    }
+    return held;
   }
   private bodyParts: number[] | null = null;
 
