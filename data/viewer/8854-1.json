@@ -359,7 +359,7 @@
       "function": 4,
       "does": "Each stabiliser leg's foot, two pulley wheels on toothed toggle joints, tilts to sit flat on the ground.",
       "verdict": "shown",
-      "msOneCall": 28,
+      "msOneCall": 24,
       "msPerStep": 2,
       "time": {
         "open": 7,
@@ -367,7 +367,7 @@
         "first": 0,
         "reach": 17,
         "A": 0,
-        "B": 27
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -377,8 +377,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 94,
-          "msOneCall": 28,
+          "ms": 77,
+          "msOneCall": 24,
           "stops": [],
           "moved": {}
         },
@@ -387,8 +387,8 @@
           "way": -1,
           "asked": 1.1,
           "went": -1.1,
-          "ms": 55,
-          "msOneCall": 4,
+          "ms": 45,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -397,7 +397,7 @@
           "way": 1,
           "asked": 1.1,
           "went": 1.1,
-          "ms": 48,
+          "ms": 44,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -407,7 +407,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 65,
+          "ms": 58,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -427,14 +427,16 @@
             }
           ],
           "controlWent": [
-            27.5,
-            36.42
+            45.98,
+            63
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "44/170"
+          ]
         },
         {
           "control": "p178 4185",
@@ -461,8 +463,8 @@
             }
           ],
           "controlWent": [
-            73.4,
-            113.04
+            67.48,
+            100.14
           ],
           "moved": [],
           "went": {},
@@ -473,7 +475,9 @@
           ]
         }
       ],
-      "seconds": 52
+      "seconds": 54,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:36:59.332Z"
     },
     {
       "function": 10,

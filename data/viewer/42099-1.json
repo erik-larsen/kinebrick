@@ -600,49 +600,49 @@
       "function": 9,
       "does": "The small steering wheel on the dashboard turns freely; it isn't joined to the steering.",
       "verdict": "shown",
-      "msOneCall": 159,
-      "msPerStep": 27,
+      "msOneCall": 161,
+      "msPerStep": 26,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 47
+        "A": 2,
+        "B": 21
       },
       "stop": {
         "control": "p1452 2819",
-        "way": -1,
-        "went": -0.7,
+        "way": 1,
+        "went": 1.435,
         "asked": 1.47,
         "by": [
-          "1240/1452"
+          "1437/1452"
         ]
       },
       "stops": [
-        "1240/1452"
+        "1437/1452"
       ],
       "A": [
         {
           "control": "p1452 2819",
           "way": 1,
-          "asked": 0.7,
-          "went": 0.7,
-          "ms": 531,
-          "msOneCall": 159,
-          "stops": [],
+          "asked": 1.47,
+          "went": 1.435,
+          "ms": 1077,
+          "msOneCall": 161,
+          "stops": [
+            "1437/1452"
+          ],
           "moved": {}
         },
         {
           "control": "p1452 2819",
           "way": -1,
-          "asked": 1.47,
+          "asked": 0.7,
           "went": -0.7,
           "ms": 522,
-          "msOneCall": 77,
-          "stops": [
-            "1240/1452"
-          ],
+          "msOneCall": 76,
+          "stops": [],
           "moved": {}
         }
       ],
@@ -661,18 +661,27 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            112.65,
-            0
+            194.99,
+            180
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "1240/1452"
+            "1240/1452",
+            "1437/1452"
           ]
         }
       ],
@@ -680,14 +689,16 @@
         {
           "control": "p1452 2819",
           "judged": "stands",
-          "why": "stopped at -0.7 rad (1240/1452); kinds for-show: steering wheel"
+          "why": "stopped at +1.435 rad (1437/1452); kinds for-show: steering wheel"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 56
+      "seconds": 31,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:23:25.748Z"
     }
   ]
 }

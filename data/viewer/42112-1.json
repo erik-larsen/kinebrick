@@ -934,21 +934,21 @@
       "function": 6,
       "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
       "verdict": "shown",
-      "msOneCall": 103,
-      "msPerStep": 83,
+      "msOneCall": 101,
+      "msPerStep": 87,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 5,
         "reach": 0,
-        "A": 3,
-        "B": 27
+        "A": 5,
+        "B": 26
       },
       "stop": {
         "control": "p1039 42112 - 33299b",
         "way": -1,
-        "went": -0.523,
-        "asked": 1.5,
+        "went": -0.517,
+        "asked": 0.93,
         "by": [
           "592/1123"
         ]
@@ -960,35 +960,35 @@
         {
           "control": "p1039 42112 - 33299b",
           "way": 1,
-          "asked": 0.93,
-          "went": 0.93,
-          "ms": 1970,
-          "msOneCall": 103,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 3281,
+          "msOneCall": 101,
           "stops": [],
           "moved": {
             "p347 32270": [
               0,
-              53.29
+              85.94
             ],
             "p344 6589": [
               0,
-              53.29
+              85.94
             ],
             "p342 94925": [
               0,
-              53.29
+              85.94
             ],
             "p352 18946": [
               0,
-              53.29
+              85.94
             ],
             "p361 32270": [
               0,
-              53.29
+              85.94
             ],
             "p1118 42112 - 65421p01": [
               0,
-              15.99
+              25.78
             ],
             "p696 56145": [
               0,
@@ -1003,37 +1003,37 @@
         {
           "control": "p1039 42112 - 33299b",
           "way": -1,
-          "asked": 1.5,
-          "went": -0.523,
-          "ms": 1245,
-          "msOneCall": 86,
+          "asked": 0.93,
+          "went": -0.517,
+          "ms": 1288,
+          "msOneCall": 91,
           "stops": [
             "592/1123"
           ],
           "moved": {
             "p347 32270": [
               0,
-              29.98
+              29.6
             ],
             "p344 6589": [
               0,
-              29.98
+              29.6
             ],
             "p342 94925": [
               0,
-              29.98
+              29.6
             ],
             "p352 18946": [
               0,
-              29.98
+              29.6
             ],
             "p361 32270": [
               0,
-              29.98
+              29.6
             ],
             "p1118 42112 - 65421p01": [
               0,
-              8.99
+              8.88
             ],
             "p696 56145": [
               0,
@@ -1073,7 +1073,7 @@
           ],
           "controlWent": [
             0,
-            114.89
+            81.12
           ],
           "moved": [
             "p347 32270",
@@ -1086,27 +1086,27 @@
           "went": {
             "p347 32270": [
               0,
-              114.89
+              81.12
             ],
             "p344 6589": [
               0,
-              114.89
+              81.12
             ],
             "p342 94925": [
               0,
-              114.89
+              81.12
             ],
             "p352 18946": [
               0,
-              114.9
+              81.12
             ],
             "p361 32270": [
               0,
-              114.89
+              81.12
             ],
             "p1118 42112 - 65421p01": [
-              0.01,
-              34.46
+              0,
+              24.33
             ]
           },
           "staysWent": {
@@ -1130,21 +1130,23 @@
         {
           "control": "p1039 42112 - 33299b",
           "judged": "stands",
-          "why": "stopped at -0.523 rad (592/1123); kinds rotary-tool: mixer drum, function-selector"
+          "why": "stopped at -0.517 rad (592/1123); kinds rotary-tool: mixer drum, function-selector"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 44
+      "seconds": 44,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:40:46.737Z"
     },
     {
       "function": 7,
       "does": "The drum's back end rides on four small wheels on a rocking frame.",
       "verdict": "shown",
-      "msOneCall": 146,
-      "msPerStep": 18,
+      "msOneCall": 138,
+      "msPerStep": 16,
       "time": {
         "open": 8,
         "collisions": 0,
@@ -1161,8 +1163,8 @@
           "way": 1,
           "asked": 0.23,
           "went": 0.23,
-          "ms": 118,
-          "msOneCall": 146,
+          "ms": 105,
+          "msOneCall": 138,
           "stops": [],
           "moved": {
             "p589 42610": [
@@ -1180,8 +1182,8 @@
           "way": -1,
           "asked": 0.27,
           "went": -0.27,
-          "ms": 113,
-          "msOneCall": 34,
+          "ms": 101,
+          "msOneCall": 29,
           "stops": [],
           "moved": {
             "p589 42610": [
@@ -1241,26 +1243,28 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "410/596",
-            "503/594"
+            "503/594",
+            "410/596"
           ]
         }
       ],
-      "seconds": 22
+      "seconds": 22,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:40:46.737Z"
     },
     {
       "function": 8,
       "does": "The chute at the back swings down from its stowed position for pouring.",
       "verdict": "shown",
-      "msOneCall": 134,
-      "msPerStep": 9,
+      "msOneCall": 141,
+      "msPerStep": 10,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 1,
         "A": 1,
-        "B": 19
+        "B": 20
       },
       "stop": null,
       "stops": [],
@@ -1270,8 +1274,8 @@
           "way": 1,
           "asked": 0.77,
           "went": 0.77,
-          "ms": 201,
-          "msOneCall": 134,
+          "ms": 218,
+          "msOneCall": 141,
           "stops": [],
           "moved": {
             "p559 57585": [
@@ -1293,8 +1297,8 @@
           "way": -1,
           "asked": 0.83,
           "went": -0.83,
-          "ms": 201,
-          "msOneCall": 25,
+          "ms": 206,
+          "msOneCall": 27,
           "stops": [],
           "moved": {
             "p559 57585": [
@@ -1331,19 +1335,23 @@
             {
               "kind": "along",
               "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            87.19,
-            93.21
+            58.06,
+            57.89
           ],
           "moved": [
             "p559 57585"
           ],
           "went": {
             "p559 57585": [
-              41.11,
-              93.21
+              27.37,
+              57.89
             ]
           },
           "staysWent": {
@@ -1358,12 +1366,13 @@
           },
           "staysMoved": [],
           "stops": [
-            "572/676",
-            "577/610"
+            "572/676"
           ]
         }
       ],
-      "seconds": 29
+      "seconds": 31,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:40:46.737Z"
     }
   ]
 }

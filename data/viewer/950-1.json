@@ -11,7 +11,7 @@
       "function": 1,
       "does": "The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 41,
-          "msOneCall": 8,
+          "ms": 57,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -70,8 +70,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.326,
-          "ms": 31,
-          "msOneCall": 2,
+          "ms": 32,
+          "msOneCall": 3,
           "stops": [
             "184/189"
           ],
@@ -126,7 +126,7 @@
           ],
           "controlWent": [
             0,
-            118.49
+            118.5
           ],
           "moved": [
             "p199 3710",
@@ -174,7 +174,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:45:45.364Z"
     },
     {
       "function": 2,

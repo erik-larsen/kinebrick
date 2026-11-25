@@ -143,15 +143,15 @@
       "function": 2,
       "does": "The black gear at the top back of the upper works raises and lowers the boom: it turns a worm, which turns a small gear on a cross axle, whose cranks push the boom up on two links.",
       "verdict": "shown",
-      "msOneCall": 42,
-      "msPerStep": 9,
+      "msOneCall": 44,
+      "msPerStep": 11,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 0,
-        "B": 13
+        "A": 1,
+        "B": 14
       },
       "stop": {
         "control": "p45 32270",
@@ -171,8 +171,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.419,
-          "ms": 104,
-          "msOneCall": 42,
+          "ms": 136,
+          "msOneCall": 44,
           "stops": [
             "63/104"
           ],
@@ -204,8 +204,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 288,
-          "msOneCall": 11,
+          "ms": 357,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p38 4716": [
@@ -258,7 +258,7 @@
           ],
           "controlWent": [
             0,
-            97.76
+            97.33
           ],
           "moved": [
             "p38 4716",
@@ -269,19 +269,19 @@
           "went": {
             "p38 4716": [
               0,
-              97.76
+              97.33
             ],
             "p57 3647": [
               0,
-              12.22
+              12.17
             ],
             "p97 32525": [
-              8.83,
-              5.75
+              8.8,
+              5.72
             ],
             "p116 32062 against p78 32140": [
-              30.92,
-              5.37
+              30.8,
+              5.35
             ]
           },
           "staysWent": {
@@ -307,7 +307,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:42:49.244Z"
     },
     {
       "function": 3,

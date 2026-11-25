@@ -584,15 +584,15 @@
       "function": 8,
       "does": "The hook block hangs from the crane's boom tip, for lifting the submarine.",
       "verdict": "shown",
-      "msOneCall": 63,
-      "msPerStep": 8,
+      "msOneCall": 52,
+      "msPerStep": 6,
       "time": {
-        "open": 7,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 1,
-        "B": 15
+        "A": 0,
+        "B": 14
       },
       "stop": {
         "control": "p1122 32062",
@@ -612,8 +612,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 336,
-          "msOneCall": 63,
+          "ms": 264,
+          "msOneCall": 52,
           "stops": [],
           "moved": {}
         },
@@ -622,8 +622,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.453,
-          "ms": 104,
-          "msOneCall": 16,
+          "ms": 80,
+          "msOneCall": 13,
           "stops": [
             "1114/1123"
           ],
@@ -656,15 +656,15 @@
             }
           ],
           "controlWent": [
-            73.01,
-            131.73
+            66.71,
+            112.98
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "1114/1124"
+            "1114/1123"
           ]
         }
       ],
@@ -679,7 +679,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 23
+      "seconds": 21,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:53:09.537Z"
     }
   ]
 }

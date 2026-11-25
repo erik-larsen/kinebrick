@@ -11,10 +11,10 @@
       "function": 1,
       "does": "The black gear on top behind the cab is a steering knob: it turns an upright axle whose arm pushes a beam across under the front axle and steers the front wheels.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 16,
       "msPerStep": 2,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.488,
-          "ms": 22,
-          "msOneCall": 13,
+          "ms": 30,
+          "msOneCall": 16,
           "stops": [
             "490/491"
           ],
@@ -73,8 +73,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.349,
-          "ms": 12,
-          "msOneCall": 3,
+          "ms": 16,
+          "msOneCall": 4,
           "stops": [
             "495/514"
           ],
@@ -129,7 +129,7 @@
           ],
           "controlWent": [
             0,
-            48.24
+            48.51
           ],
           "moved": [
             "p491 32316",
@@ -138,16 +138,16 @@
           ],
           "went": {
             "p491 32316": [
-              16.35,
+              16.43,
               0
             ],
             "p505 55982": [
-              24.52,
-              60.74
+              24.65,
+              61.08
             ],
             "p515 55982": [
-              24.52,
-              60.74
+              24.65,
+              61.08
             ]
           },
           "staysWent": {
@@ -162,8 +162,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "490/491",
-            "495/514"
+            "495/514",
+            "490/491"
           ]
         }
       ],
@@ -178,7 +178,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:42:25.173Z"
     },
     {
       "function": 2,

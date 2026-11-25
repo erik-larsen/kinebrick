@@ -242,23 +242,16 @@
     {
       "function": 7,
       "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
-      "held": {
-        "result": "partly",
-        "reason": "In the viewer the control turns and these listed parts stay: p2535; a push by hand does not move it either. Viewer sweep, decision 279."
-      },
       "verdict": "shown",
-      "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2535 42055 - 55615 turned 0.15 degrees, 0.155 predicted (rate 0.0018, turn -1.5)"
-      ],
-      "msOneCall": 388,
-      "msPerStep": 211,
+      "msOneCall": 379,
+      "msPerStep": 227,
       "time": {
         "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 10,
-        "B": 88
+        "A": 18,
+        "B": 71
       },
       "stop": null,
       "stops": [],
@@ -266,10 +259,10 @@
         {
           "control": "p1809 32269",
           "way": 1,
-          "asked": 2.6,
+          "asked": 1.5,
           "went": 0,
-          "ms": 111,
-          "msOneCall": 138,
+          "ms": 110,
+          "msOneCall": 118,
           "stops": [],
           "moved": {
             "p1510 62274c01": [
@@ -297,27 +290,27 @@
         {
           "control": "p1809 32269",
           "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 9030,
-          "msOneCall": 388,
+          "asked": 2.6,
+          "went": -2.6,
+          "ms": 16830,
+          "msOneCall": 379,
           "stops": [],
           "moved": {
             "p1510 62274c01": [
-              1,
-              0.08
+              1.73,
+              0.14
             ],
             "p1513 62274c01": [
-              1,
-              0.08
+              1.73,
+              0.14
             ],
             "p2535 42055 - 55615": [
-              0.58,
-              0.15
+              1.01,
+              0.27
             ],
             "p3153 58121": [
-              1.59,
-              0.15
+              2.76,
+              0.27
             ],
             "p418 64178": [
               0,
@@ -353,29 +346,28 @@
           ],
           "controlWent": [
             0,
-            143.54
+            143.55
           ],
           "moved": [
             "p1510 62274c01",
             "p1513 62274c01",
-            "p2535 42055 - 55615",
             "p3153 58121"
           ],
           "went": {
             "p1510 62274c01": [
-              2.65,
+              1.66,
               0
             ],
             "p1513 62274c01": [
-              2.65,
+              1.66,
               0
             ],
             "p2535 42055 - 55615": [
-              1.55,
+              0.97,
               0
             ],
             "p3153 58121": [
-              4.24,
+              2.66,
               0
             ]
           },
@@ -386,10 +378,14 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "1510/1509"
+          ]
         }
       ],
-      "seconds": 111
+      "seconds": 103,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:46:07.922Z"
     },
     {
       "function": 8,
@@ -599,13 +595,13 @@
       },
       "verdict": "not shown",
       "why": "A: p263 18945, p264 18945 not moved; B: no listed part moved by hand",
-      "msOneCall": 24,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 23,
+        "reach": 26,
         "A": 0,
         "B": 14
       },
@@ -617,8 +613,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 24,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p263 18945": [
@@ -704,7 +700,9 @@
           ]
         }
       ],
-      "seconds": 49
+      "seconds": 54,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:46:07.922Z"
     },
     {
       "function": 10,

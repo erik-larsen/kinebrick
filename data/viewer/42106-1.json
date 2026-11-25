@@ -246,15 +246,15 @@
       "function": 3,
       "does": "The trailer hitches on a pin at the truck's back and swings behind it as the truck turns.",
       "verdict": "shown",
-      "msOneCall": 38,
-      "msPerStep": 7,
+      "msOneCall": 39,
+      "msPerStep": 8,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 5,
+        "reach": 6,
         "A": 0,
-        "B": 22
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -264,8 +264,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 272,
-          "msOneCall": 38,
+          "ms": 291,
+          "msOneCall": 39,
           "stops": [],
           "moved": {
             "p2060 64782": [
@@ -287,8 +287,8 @@
           "way": -1,
           "asked": 0.57,
           "went": -0.57,
-          "ms": 112,
-          "msOneCall": 11,
+          "ms": 122,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p2060 64782": [
@@ -321,15 +321,15 @@
           ],
           "controlWent": [
             0,
-            33.38
+            32.88
           ],
           "moved": [
             "p2060 64782"
           ],
           "went": {
             "p2060 64782": [
-              232.27,
-              33.38
+              228.92,
+              32.88
             ]
           },
           "staysWent": {
@@ -348,7 +348,9 @@
           ]
         }
       ],
-      "seconds": 34
+      "seconds": 36,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:29:47.782Z"
     },
     {
       "function": 4,
@@ -357,7 +359,7 @@
         "result": "partly",
         "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359)."
       },
-      "verdict": "not shown",
+      "verdict": "shown",
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
@@ -365,8 +367,8 @@
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 17
+        "A": 1,
+        "B": 8
       },
       "stop": null,
       "stops": [],
@@ -440,28 +442,25 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [],
+          "pinsAsked": [
+            2093
+          ],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
-              "kind": "push",
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            164.33,
-            34.5
+            0.9,
+            29.41
           ],
           "moved": [
             "p2084 40490",
@@ -470,26 +469,26 @@
           ],
           "went": {
             "p2084 40490": [
-              137.22,
-              33.37
+              26.86,
+              2.8
             ],
             "p2089 32524": [
-              94.68,
-              33.77
+              22.19,
+              21.31
             ],
             "p2095 32524": [
-              94.8,
-              33.77
+              22.18,
+              21.31
             ]
           },
           "staysWent": {
             "p2060 64782": [
-              232.12,
-              33.35
+              1.27,
+              0.57
             ],
             "p2136 55982": [
-              219.65,
-              33.35
+              1.2,
+              0.57
             ]
           },
           "staysMoved": [
@@ -498,17 +497,18 @@
           ],
           "stops": [
             "2074/2089",
-            "2066/2101",
-            "2055/2221",
-            "2074/2103"
+            "ground: p2103"
           ]
         }
       ],
-      "why": "by hand: p2060 64782, p2136 55982 listed to stay moved",
+      "decidedBy": [
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p2060 64782 moved 1.27, the least-moved listed part 22.18",
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p2136 55982 moved 1.2, the least-moved listed part 22.18"
+      ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 24,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:41:20.738Z"
+      "seconds": 15,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:29:47.782Z"
     },
     {
       "function": 6,
@@ -747,15 +747,15 @@
       "function": 10,
       "does": "The truck's doors swing open on their pins.",
       "verdict": "shown",
-      "msOneCall": 45,
-      "msPerStep": 4,
+      "msOneCall": 40,
+      "msPerStep": 3,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 26
+        "B": 28
       },
       "stop": {
         "control": "p380 24119",
@@ -776,8 +776,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 159,
-          "msOneCall": 45,
+          "ms": 145,
+          "msOneCall": 40,
           "stops": [],
           "moved": {
             "p195 32270": [
@@ -791,7 +791,7 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 7,
+          "ms": 5,
           "msOneCall": 6,
           "stops": [
             "109/380"
@@ -808,7 +808,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 6,
+          "ms": 5,
           "msOneCall": 6,
           "stops": [
             "109/402"
@@ -825,7 +825,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 141,
+          "ms": 128,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -862,8 +862,8 @@
             }
           ],
           "controlWent": [
-            87.66,
-            93.85
+            87.58,
+            93.75
           ],
           "moved": [],
           "went": {},
@@ -904,8 +904,8 @@
             }
           ],
           "controlWent": [
-            93.69,
-            102.65
+            98.07,
+            109.61
           ],
           "moved": [],
           "went": {},
@@ -937,7 +937,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 35
+      "seconds": 37,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:29:47.782Z"
     }
   ]
 }

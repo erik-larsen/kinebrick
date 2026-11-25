@@ -127,50 +127,41 @@
       "does": "Lever A, the lower grey lever on the fuel tank, turned up or down, rotates the whole cab one way or the other on its turntable (so it can face backwards to work the crane): through a 16 and a 20 tooth gear it tips a changeover catch that slides a driving ring up or down a vertical shaft between two clutch gears turning opposite ways, and the shaft's 12 tooth gear at the top turns the cab's turntable.",
       "verdict": "shown",
       "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p692 42054 - 18938 turned 0.89 degrees, 0.863 predicted (rate 0.008, turn -1.883)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p692 42054 - 18938 turned 0.8 degrees, 0.771 predicted (rate 0.008, turn -1.683)"
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p692 42054 - 18938 turned 0.9 degrees, 0.855 predicted (rate 0.008, turn -1.865)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p692 42054 - 18938 turned 0.81 degrees, 0.771 predicted (rate 0.008, turn -1.682)"
       ],
       "msOneCall": null,
-      "msPerStep": 58,
+      "msPerStep": 60,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 13,
         "reach": 0,
-        "A": 4,
-        "B": 10
+        "A": 5,
+        "B": 11
       },
-      "stop": {
-        "control": "p543 58120",
-        "way": 1,
-        "went": -1.883,
-        "asked": 1.43,
-        "by": [
-          "700/1318"
-        ]
-      },
-      "stops": [
-        "700/1318"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p543 58120",
           "way": 1,
           "asked": 1.43,
-          "went": -1.883,
-          "ms": 3147,
+          "went": -1.865,
+          "ms": 3176,
           "msOneCall": null,
-          "stops": [
+          "stops": [],
+          "passed": [
             "700/1318"
           ],
           "moved": {
             "p692 42054 - 18938": [
               0,
-              0.89
+              0.9
             ],
             "p1176 64782": [
               2.1,
-              0.89
+              0.9
             ],
             "p1659 42054 - 18938 against p1660 18939": [
               0,
@@ -182,18 +173,18 @@
           "control": "p543 58120",
           "way": -1,
           "asked": 1.5,
-          "went": -1.683,
-          "ms": 1113,
+          "went": -1.682,
+          "ms": 1125,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p692 42054 - 18938": [
               0,
-              0.8
+              0.81
             ],
             "p1176 64782": [
-              1.88,
-              0.8
+              1.9,
+              0.81
             ],
             "p1659 42054 - 18938 against p1660 18939": [
               0,
@@ -212,7 +203,7 @@
           "drags": [],
           "controlWent": [
             0,
-            0
+            546.912
           ],
           "moved": [
             "p692 42054 - 18938",
@@ -221,11 +212,11 @@
           "went": {
             "p692 42054 - 18938": [
               0,
-              4.36
+              4.38
             ],
             "p1176 64782": [
-              10.2,
-              4.36
+              10.24,
+              4.38
             ]
           },
           "staysWent": {
@@ -236,23 +227,15 @@
           },
           "staysMoved": [],
           "stops": [
+            "700/1310",
             "700/1318",
             "302/1354"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p543 58120",
-          "judged": "stands",
-          "why": "stopped at +1.883 rad (700/1318); kinds function-selector, turntable: cab"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 36
+      "seconds": 37,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:45:46.616Z"
     },
     {
       "function": 4,
@@ -935,15 +918,15 @@
       "function": 10,
       "does": "The crane's two legs fold down from its base to stand on the ground, and lock there.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 12,
+        "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 15,
-        "A": 47,
-        "B": 45
+        "reach": 17,
+        "A": 74,
+        "B": 55
       },
       "stop": null,
       "stops": [],
@@ -975,8 +958,8 @@
           },
           "asked": 1.42,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 13,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p1768 6558": [
@@ -1047,21 +1030,13 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": [
-              1764,
-              1775
-            ]
-          },
+          "pinsAsked": [
+            1779
+          ],
           "asked": 1.42,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 9,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p1768 6558": [
@@ -1091,17 +1066,9 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": [
-              1764,
-              1775
-            ]
-          },
+          "pinsAsked": [
+            1779
+          ],
           "asked": 1.51,
           "went": 0,
           "ms": 0,
@@ -1200,7 +1167,7 @@
             }
           ],
           "controlWent": [
-            104.22,
+            102.88,
             6.2
           ],
           "moved": [
@@ -1212,8 +1179,8 @@
               0
             ],
             "p1779 6558": [
-              154.57,
-              80.18
+              152.36,
+              78.81
             ]
           },
           "staysWent": {},
@@ -1224,7 +1191,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 144
+      "seconds": 187,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:45:46.616Z"
     },
     {
       "function": 12,

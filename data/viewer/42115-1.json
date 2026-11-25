@@ -494,15 +494,15 @@
       "function": 9,
       "does": "The front hood lifts, showing the luggage space and the set's bag.",
       "verdict": "shown",
-      "msOneCall": 436,
-      "msPerStep": 144,
+      "msOneCall": 411,
+      "msPerStep": 145,
       "time": {
-        "open": 12,
+        "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 17,
-        "B": 40
+        "A": 26,
+        "B": 49
       },
       "stop": {
         "control": "p3360 6632",
@@ -533,8 +533,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 225,
-          "msOneCall": 299,
+          "ms": 231,
+          "msOneCall": 322,
           "stops": [
             "3196/3371"
           ],
@@ -561,8 +561,8 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 6190,
-          "msOneCall": 436,
+          "ms": 6219,
+          "msOneCall": 411,
           "stops": [],
           "moved": {
             "p3361 6632": [
@@ -601,22 +601,23 @@
             }
           ],
           "controlWent": [
-            230.28,
-            57.35
+            260.43,
+            65.72
           ],
           "moved": [
             "p3361 6632"
           ],
           "went": {
             "p3361 6632": [
-              230.28,
-              57.35
+              260.43,
+              65.72
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "3196/3371"
+            "3196/3371",
+            "3183/3371"
           ]
         }
       ],
@@ -631,7 +632,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 70
+      "seconds": 88,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:44:45.518Z"
     }
   ]
 }

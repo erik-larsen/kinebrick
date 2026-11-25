@@ -113,15 +113,15 @@
       "function": 5,
       "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
       "verdict": "shown",
-      "msOneCall": 609,
-      "msPerStep": 397,
+      "msOneCall": 617,
+      "msPerStep": 408,
       "time": {
         "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 138,
-        "B": 114
+        "A": 142,
+        "B": 109
       },
       "stop": null,
       "stops": [],
@@ -129,10 +129,37 @@
         {
           "control": "p1718 32270",
           "way": 1,
+          "asked": 6.1,
+          "went": 6.1,
+          "ms": 71135,
+          "msOneCall": 617,
+          "stops": [],
+          "moved": {
+            "p2971 42003 against p1927 42003": [
+              1.01,
+              0.65
+            ],
+            "p1481 42100 - 62274c02 against p1480 42100 - u9487c01": [
+              2.12,
+              0.05
+            ],
+            "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
+              2.12,
+              0
+            ],
+            "p3322 42003 against p2971 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1718 32270",
+          "way": -1,
           "asked": 6,
-          "went": 6,
-          "ms": 68114,
-          "msOneCall": 609,
+          "went": -6,
+          "ms": 69840,
+          "msOneCall": 431,
           "stops": [],
           "moved": {
             "p2971 42003 against p1927 42003": [
@@ -145,33 +172,6 @@
             ],
             "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
               2.09,
-              0
-            ],
-            "p3322 42003 against p2971 42003": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p1718 32270",
-          "way": -1,
-          "asked": 6.1,
-          "went": -6.1,
-          "ms": 68470,
-          "msOneCall": 435,
-          "stops": [],
-          "moved": {
-            "p2971 42003 against p1927 42003": [
-              1.02,
-              0.65
-            ],
-            "p1481 42100 - 62274c02 against p1480 42100 - u9487c01": [
-              2.12,
-              0.05
-            ],
-            "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
-              2.12,
               0
             ],
             "p3322 42003 against p2971 42003": [
@@ -208,22 +208,22 @@
           ],
           "controlWent": [
             0,
-            160.63
+            135.8
           ],
           "moved": [
             "p2971 42003 against p1927 42003"
           ],
           "went": {
             "p2971 42003 against p1927 42003": [
-              0.47,
-              1.44
+              0.39,
+              1.43
             ],
             "p1481 42100 - 62274c02 against p1480 42100 - u9487c01": [
-              0.98,
+              0.82,
               0
             ],
             "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
-              0.98,
+              0.82,
               0
             ]
           },
@@ -239,7 +239,9 @@
           "stops": []
         }
       ],
-      "seconds": 266
+      "seconds": 265,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:24:06.046Z"
     },
     {
       "function": 6,
@@ -495,15 +497,15 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279."
       },
       "verdict": "not shown",
-      "msOneCall": 365,
-      "msPerStep": 74,
+      "msOneCall": 385,
+      "msPerStep": 73,
       "time": {
-        "open": 12,
+        "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 9,
-        "B": 38
+        "A": 13,
+        "B": 45
       },
       "stop": {
         "control": "p4660 40490",
@@ -533,8 +535,8 @@
           },
           "asked": 0.07,
           "went": 0.035,
-          "ms": 74,
-          "msOneCall": 365,
+          "ms": 73,
+          "msOneCall": 385,
           "stops": [
             "4244/4678"
           ],
@@ -559,8 +561,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 39,
-          "msOneCall": 41,
+          "ms": 44,
+          "msOneCall": 45,
           "stops": [
             "4678/4743"
           ],
@@ -600,25 +602,25 @@
             }
           ],
           "controlWent": [
-            7.24,
-            4.88
+            7.04,
+            4.72
           ],
           "moved": [
             "p4686 40490"
           ],
           "went": {
             "p4686 40490": [
-              29.44,
-              4.88
+              28.64,
+              4.72
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
             "4678/4743",
-            "4244/4678",
             "4242/4676",
-            "4242/4684"
+            "4242/4684",
+            "4244/4678"
           ]
         }
       ],
@@ -639,7 +641,9 @@
         "verdict": "shown"
       },
       "why": "a collision stops a control: p4660 40490: a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743) (the ladder swings up out of the way and down to the ground, far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307)",
-      "seconds": 59
+      "seconds": 72,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:24:06.046Z"
     }
   ]
 }

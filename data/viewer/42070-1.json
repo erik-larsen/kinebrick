@@ -426,48 +426,36 @@
       "function": 4,
       "does": "The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane.",
       "verdict": "shown",
-      "msOneCall": 308,
-      "msPerStep": 114,
+      "msOneCall": 311,
+      "msPerStep": 106,
       "time": {
         "open": 15,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 13,
-        "B": 33
+        "B": 32
       },
-      "stop": {
-        "control": "p1770 41669",
-        "way": 1,
-        "went": 0.464,
-        "asked": 0.53,
-        "by": [
-          "969/1055"
-        ]
-      },
-      "stops": [
-        "969/1055"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p1770 41669",
           "way": 1,
           "ringShifted": true,
-          "asked": 0.53,
-          "went": 0.464,
-          "ms": 1512,
-          "msOneCall": 308,
-          "stops": [
-            "969/1055"
-          ],
+          "asked": 0.47,
+          "went": 0.47,
+          "ms": 1426,
+          "msOneCall": 291,
+          "stops": [],
           "moved": {
             "p1055 6641": [
-              9.85,
-              28.22
+              10.01,
+              28.68
             ],
             "p1056 6641": [
-              9.85,
-              28.22
+              10.01,
+              28.68
             ],
             "p403 18947": [
               10,
@@ -483,19 +471,19 @@
           "control": "p1770 41669",
           "way": -1,
           "ringShifted": true,
-          "asked": 0.47,
-          "went": -0.47,
-          "ms": 1448,
-          "msOneCall": 300,
+          "asked": 0.53,
+          "went": -0.53,
+          "ms": 1440,
+          "msOneCall": 311,
           "stops": [],
           "moved": {
             "p1055 6641": [
-              8.92,
-              25.56
+              9.84,
+              28.18
             ],
             "p1056 6641": [
-              8.92,
-              25.56
+              9.84,
+              28.18
             ],
             "p403 18947": [
               10,
@@ -545,11 +533,11 @@
           ],
           "went": {
             "p1055 6641": [
-              19.58,
+              19.59,
               58.63
             ],
             "p1056 6641": [
-              19.58,
+              19.59,
               58.63
             ],
             "p403 18947": [
@@ -570,32 +558,23 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p1770 41669",
-          "judged": "stands",
-          "why": "stopped at +0.464 rad (969/1055); kinds function-selector: drive or crane"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 56
+      "seconds": 55,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:03:45.629Z"
     },
     {
       "function": 5,
       "does": "The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom.",
       "verdict": "shown",
-      "msOneCall": 304,
-      "msPerStep": 96,
+      "msOneCall": 277,
+      "msPerStep": 94,
       "time": {
         "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 53,
+        "reach": 63,
         "A": 13,
-        "B": 35
+        "B": 34
       },
       "stop": null,
       "stops": [],
@@ -606,8 +585,8 @@
           "ringShifted": true,
           "asked": 0.5,
           "went": 0.5,
-          "ms": 1369,
-          "msOneCall": 304,
+          "ms": 1349,
+          "msOneCall": 277,
           "stops": [],
           "moved": {
             "p1067 6641": [
@@ -634,7 +613,7 @@
           "ringShifted": true,
           "asked": 0.47,
           "went": -0.47,
-          "ms": 1265,
+          "ms": 1237,
           "msOneCall": 276,
           "stops": [],
           "moved": {
@@ -684,7 +663,7 @@
           ],
           "controlWent": [
             0,
-            56.59
+            57.03
           ],
           "moved": [
             "p1067 6641",
@@ -694,12 +673,12 @@
           ],
           "went": {
             "p1067 6641": [
-              18.88,
-              56.32
+              19.02,
+              56.8
             ],
             "p1068 6641": [
-              18.88,
-              56.32
+              19.02,
+              56.8
             ],
             "p135 18947": [
               20,
@@ -714,11 +693,13 @@
           "staysMoved": [],
           "stops": [
             "970/1067",
-            "978/1068"
+            "971/1067"
           ]
         }
       ],
-      "seconds": 111
+      "seconds": 119,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:03:45.629Z"
     },
     {
       "function": 6,

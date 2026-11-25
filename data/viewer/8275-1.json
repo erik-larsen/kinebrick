@@ -344,15 +344,15 @@
       "function": 5,
       "does": "One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame.",
       "verdict": "shown",
-      "msOneCall": 110,
-      "msPerStep": 31,
+      "msOneCall": 92,
+      "msPerStep": 28,
       "time": {
-        "open": 11,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 290,
-        "A": 21,
-        "B": 29
+        "reach": 272,
+        "A": 19,
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -366,8 +366,8 @@
           ],
           "asked": 6,
           "went": 6,
-          "ms": 5346,
-          "msOneCall": 110,
+          "ms": 4738,
+          "msOneCall": 92,
           "stops": [],
           "moved": {
             "p1449 4716": [
@@ -417,8 +417,8 @@
           ],
           "asked": 6.8,
           "went": -6.8,
-          "ms": 5923,
-          "msOneCall": 39,
+          "ms": 5381,
+          "msOneCall": 32,
           "stops": [],
           "moved": {
             "p1449 4716": [
@@ -470,7 +470,9 @@
             2760,
             2766
           ],
-          "shift": [],
+          "shift": [
+            "2 friction pins that held it can now turn: drag it again"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -538,9 +540,9 @@
           "stops": []
         }
       ],
-      "seconds": 350,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:48:51.570Z"
+      "seconds": 326,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:16:06.060Z"
     }
   ]
 }

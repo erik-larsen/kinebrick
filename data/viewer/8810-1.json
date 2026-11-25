@@ -259,10 +259,10 @@
       "function": 2,
       "does": "The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall.",
       "verdict": "shown",
-      "msOneCall": 2,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -278,7 +278,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 2,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p33 4262": [
@@ -442,7 +442,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 9
+      "seconds": 10,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:26:35.869Z"
     },
     {
       "function": 4,

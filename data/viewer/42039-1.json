@@ -825,15 +825,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p520 11949 turned 0.01 degrees, 0.006 predicted (rate 0.000759, turn -0.13)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p508 4254 turned 0.02 degrees, 0.02 predicted (rate 0.00262, turn -0.13)"
       ],
-      "msOneCall": 164,
-      "msPerStep": 77,
+      "msOneCall": 149,
+      "msPerStep": 71,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 11,
         "A": 2,
-        "B": 37
+        "B": 38
       },
       "stop": null,
       "stops": [],
@@ -843,8 +843,8 @@
           "way": 1,
           "asked": 0.13,
           "went": 0.13,
-          "ms": 287,
-          "msOneCall": 164,
+          "ms": 265,
+          "msOneCall": 149,
           "stops": [],
           "moved": {
             "p515 11949": [
@@ -870,8 +870,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 590,
-          "msOneCall": 105,
+          "ms": 530,
+          "msOneCall": 85,
           "stops": [],
           "moved": {
             "p515 11949": [
@@ -897,8 +897,8 @@
           "way": 1,
           "asked": 0.3,
           "went": 0.3,
-          "ms": 577,
-          "msOneCall": 96,
+          "ms": 532,
+          "msOneCall": 78,
           "stops": [],
           "moved": {
             "p515 11949": [
@@ -924,8 +924,8 @@
           "way": -1,
           "asked": 0.13,
           "went": -0.13,
-          "ms": 261,
-          "msOneCall": 94,
+          "ms": 247,
+          "msOneCall": 89,
           "stops": [],
           "moved": {
             "p515 11949": [
@@ -999,8 +999,8 @@
           "staysMoved": [],
           "stops": [
             "508/507",
-            "528/555",
-            "ground: p1293"
+            "ground: p1293",
+            "528/555"
           ]
         },
         {
@@ -1037,7 +1037,7 @@
           ],
           "went": {
             "p515 11949": [
-              10.44,
+              10.45,
               0.22
             ],
             "p520 11949": [
@@ -1045,8 +1045,8 @@
               0.01
             ],
             "p506 4254": [
-              6.92,
-              6.33
+              6.93,
+              6.34
             ],
             "p508 4254": [
               0.03,
@@ -1057,25 +1057,28 @@
           "staysMoved": [],
           "stops": [
             "506/505",
+            "1007/1297",
             "ground: p1297"
           ]
         }
       ],
-      "seconds": 61
+      "seconds": 62,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:18.331Z"
     },
     {
       "function": 6,
       "does": "The rear wheels each have independent suspension, as the front ones do: each hub rides between an upper and a lower pair of arms that pivot on the frame, the drive shafts reach the hubs through constant velocity joints, and two shock absorbers lying across the car, between an L-beam on each lower arm and the middle of the frame, spring them.",
       "verdict": "shown",
       "msOneCall": 70,
-      "msPerStep": 18,
+      "msPerStep": 17,
       "time": {
-        "open": 12,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 101,
-        "A": 101,
-        "B": 33
+        "reach": 91,
+        "A": 93,
+        "B": 30
       },
       "stop": {
         "control": "p61 32524",
@@ -1126,7 +1129,7 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 26,
+          "ms": 29,
           "msOneCall": 70,
           "stops": [
             "80/79"
@@ -1177,8 +1180,8 @@
           },
           "asked": 0.23,
           "went": -0.23,
-          "ms": 108,
-          "msOneCall": 31,
+          "ms": 111,
+          "msOneCall": 28,
           "stops": [],
           "moved": {
             "p80 4254": [
@@ -1217,8 +1220,8 @@
           ],
           "asked": 0.23,
           "went": 0.23,
-          "ms": 117,
-          "msOneCall": 62,
+          "ms": 98,
+          "msOneCall": 53,
           "stops": [],
           "moved": {
             "p80 4254": [
@@ -1257,8 +1260,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 21,
-          "msOneCall": 24,
+          "ms": 18,
+          "msOneCall": 20,
           "stops": [
             "82/81"
           ],
@@ -1423,9 +1426,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 281,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:22:59.598Z"
+      "seconds": 256,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:18.331Z"
     },
     {
       "function": 8,
@@ -1437,15 +1440,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p928 62531 turned 0.72 degrees, 0.694 predicted (rate 0.0868, turn 0.14)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p929 62531 turned 0.73 degrees, 0.704 predicted (rate 0.088, turn 0.14)"
       ],
-      "msOneCall": 68,
-      "msPerStep": 29,
+      "msOneCall": 80,
+      "msPerStep": 34,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 5,
-        "reach": 58,
+        "reach": 64,
         "A": 1,
-        "B": 16
+        "B": 17
       },
       "stop": {
         "control": "p813 32270",
@@ -1465,8 +1468,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.14,
-          "ms": 117,
-          "msOneCall": 68,
+          "ms": 137,
+          "msOneCall": 80,
           "stops": [
             "860/951"
           ],
@@ -1514,8 +1517,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 921,
-          "msOneCall": 42,
+          "ms": 1041,
+          "msOneCall": 40,
           "stops": [],
           "moved": {
             "p636 18947": [
@@ -1584,7 +1587,7 @@
           ],
           "controlWent": [
             0,
-            70.61
+            82.32
           ],
           "moved": [
             "p636 18947",
@@ -1598,31 +1601,31 @@
           "went": {
             "p636 18947": [
               0,
-              42.37
+              49.39
             ],
             "p670 18946": [
               0,
-              42.37
+              49.39
             ],
             "p653 4716": [
               0,
-              42.37
+              49.39
             ],
             "p870 32072": [
               0,
-              4.77
+              5.55
             ],
             "p857 32072": [
               0,
-              4.79
+              5.57
             ],
             "p928 62531": [
               0,
-              6.2
+              7.2
             ],
             "p929 62531": [
               0,
-              6.3
+              7.31
             ]
           },
           "staysWent": {
@@ -1653,7 +1656,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 87
+      "seconds": 94,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:18.331Z"
     },
     {
       "function": 9,
@@ -1662,14 +1667,14 @@
       "decidedBy": [
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p773 3648b turned 0.7 degrees, 0.7 predicted (rate 0.025, turn 0.488)"
       ],
-      "msOneCall": 66,
-      "msPerStep": 26,
+      "msOneCall": 77,
+      "msPerStep": 30,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
         "first": 5,
-        "reach": 56,
-        "A": 1,
+        "reach": 58,
+        "A": 2,
         "B": 16
       },
       "stop": {
@@ -1690,8 +1695,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.488,
-          "ms": 359,
-          "msOneCall": 66,
+          "ms": 414,
+          "msOneCall": 77,
           "stops": [
             "717/1230"
           ],
@@ -1739,8 +1744,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 996,
-          "msOneCall": 44,
+          "ms": 1123,
+          "msOneCall": 48,
           "stops": [],
           "moved": {
             "p636 18947": [
@@ -1809,7 +1814,7 @@
           ],
           "controlWent": [
             0,
-            90.01
+            98.8
           ],
           "moved": [
             "p636 18947",
@@ -1823,31 +1828,31 @@
           "went": {
             "p636 18947": [
               0,
-              54
+              59.28
             ],
             "p633 18946": [
               0,
-              54
+              59.28
             ],
             "p637 94925": [
               0,
-              54
+              59.28
             ],
             "p780 32270": [
               0,
-              54
+              59.28
             ],
             "p760 4716": [
               0,
-              54
+              59.28
             ],
             "p773 3648b": [
               0,
-              2.29
+              2.5
             ],
             "p1157 41239": [
-              4.05,
-              0.49
+              4.45,
+              0.5
             ]
           },
           "staysWent": {
@@ -1877,43 +1882,35 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 86
+      "seconds": 89,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:18.331Z"
     },
     {
       "function": 10,
       "does": "The red selector lever slides the driving ring between the two clutch gears: position 1 for the doors, position 2 for the engine cover.",
       "verdict": "shown",
-      "msOneCall": 80,
-      "msPerStep": 12,
+      "msOneCall": 91,
+      "msPerStep": 14,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 2,
         "A": 5,
-        "B": 35
+        "B": 39
       },
-      "stop": {
-        "control": "p716 32039",
-        "way": -1,
-        "went": -0.467,
-        "asked": 0.6,
-        "by": [
-          "716/725"
-        ]
-      },
-      "stops": [
-        "716/725"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p716 32039",
           "way": 1,
           "ringShifted": true,
-          "asked": 0.47,
-          "went": 0.47,
-          "ms": 153,
-          "msOneCall": 72,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 228,
+          "msOneCall": 91,
           "stops": [],
           "moved": {
             "p636 18947": [
@@ -1926,13 +1923,11 @@
           "control": "p716 32039",
           "way": -1,
           "ringShifted": true,
-          "asked": 0.6,
-          "went": -0.467,
-          "ms": 166,
-          "msOneCall": 80,
-          "stops": [
-            "716/725"
-          ],
+          "asked": 0.47,
+          "went": -0.47,
+          "ms": 183,
+          "msOneCall": 85,
+          "stops": [],
           "moved": {
             "p636 18947": [
               10,
@@ -1955,8 +1950,8 @@
             }
           ],
           "controlWent": [
-            34.98,
-            28.07
+            33.65,
+            26.98
           ],
           "moved": [
             "p636 18947"
@@ -1974,18 +1969,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p716 32039",
-          "judged": "stands",
-          "why": "stopped at -0.467 rad (716/725); kinds function-selector: 2 functions"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 48
+      "seconds": 53,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:18.331Z"
     }
   ]
 }

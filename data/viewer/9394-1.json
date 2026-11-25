@@ -11,14 +11,14 @@
       "function": 1,
       "does": "Turning the round exhaust nozzle at the tail sweeps both wings back and forward together: the nozzle's 24-tooth gear turns a small gear on an axle with a worm, the worm turns a 24-tooth gear whose two gears drive a pair of racks along the fuselage, and the racks' cross axle pushes a link to each wing, which pivots near the wing root.",
       "verdict": "shown",
-      "msOneCall": 64,
-      "msPerStep": 17,
+      "msOneCall": 72,
+      "msPerStep": 19,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
+        "A": 2,
         "B": 14
       },
       "stop": {
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.395,
-          "ms": 670,
-          "msOneCall": 64,
+          "ms": 758,
+          "msOneCall": 72,
           "stops": [
             "315/477"
           ],
@@ -84,8 +84,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 668,
-          "msOneCall": 27,
+          "ms": 735,
+          "msOneCall": 35,
           "stops": [],
           "moved": {
             "p79 3648b": [
@@ -150,7 +150,7 @@
           ],
           "controlWent": [
             0,
-            126.65
+            120.8
           ],
           "moved": [
             "p79 3648b",
@@ -164,31 +164,31 @@
           "went": {
             "p79 3648b": [
               0,
-              126.65
+              120.8
             ],
             "p85 4716": [
               0,
-              127.5
+              143.45
             ],
             "p281 3648b": [
               0,
-              15.83
+              15.1
             ],
             "p157 64781": [
-              4.14,
+              3.95,
               0
             ],
             "p383 32525": [
-              4.15,
+              3.96,
               0
             ],
             "p315 41239 against p72 32278": [
-              6.24,
-              2.98
+              5.95,
+              2.84
             ],
             "p325 41239 against p72 32278": [
-              6.24,
-              2.98
+              5.95,
+              2.84
             ]
           },
           "staysWent": {
@@ -198,9 +198,7 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "315/477"
-          ]
+          "stops": []
         }
       ],
       "stopsJudged": [
@@ -214,14 +212,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 20
+      "seconds": 21,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:43:46.957Z"
     },
     {
       "function": 2,
       "does": "The smooth grey axle joiner low on the fuselage's left side raises and lowers the landing gear: it turns a worm, which turns a small gear on a long axle along the belly, and knob gears at its ends swing the nose leg and, through a cross axle, the two main legs.",
       "verdict": "shown",
-      "msOneCall": 52,
-      "msPerStep": 12,
+      "msOneCall": 60,
+      "msPerStep": 13,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -238,8 +238,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 451,
-          "msOneCall": 52,
+          "ms": 478,
+          "msOneCall": 60,
           "stops": [],
           "moved": {
             "p28 4716": [
@@ -285,8 +285,8 @@
           "way": -1,
           "asked": 0.17,
           "went": -0.17,
-          "ms": 60,
-          "msOneCall": 22,
+          "ms": 65,
+          "msOneCall": 25,
           "stops": [],
           "moved": {
             "p28 4716": [
@@ -355,7 +355,7 @@
           ],
           "controlWent": [
             0,
-            149.41
+            119.34
           ],
           "moved": [
             "p28 4716",
@@ -370,35 +370,35 @@
           "went": {
             "p28 4716": [
               0,
-              149.41
+              119.34
             ],
             "p35 3647": [
               0,
-              18.68
+              14.92
             ],
             "p55 2825": [
               0,
-              18.68
+              14.92
             ],
             "p57 42610": [
-              19.47,
-              18.68
+              15.58,
+              14.92
             ],
             "p253 32072": [
               0,
-              18.68
+              14.92
             ],
             "p257 32072": [
               0,
-              18.68
+              14.92
             ],
             "p263 42610": [
-              20.52,
-              18.68
+              16.42,
+              14.92
             ],
             "p268 42610": [
-              20.52,
-              18.68
+              16.42,
+              14.92
             ]
           },
           "staysWent": {
@@ -409,12 +409,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "150/261",
-            "150/260"
+            "150/260",
+            "150/261"
           ]
         }
       ],
-      "seconds": 19
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:43:46.957Z"
     },
     {
       "function": 4,

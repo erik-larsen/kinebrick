@@ -11,10 +11,10 @@
       "function": 2,
       "does": "The gear low on the side of the bed, behind the cab, swings the hook arm back over the rear through a row of three 8 tooth gears: the hook at the arm's top lifts the container's front, tips it up and sets it down behind the truck, and swinging the arm forward pulls it back up onto the bed.",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 3,
-          "msOneCall": 8,
+          "ms": 5,
+          "msOneCall": 10,
           "stops": [
             "19/158"
           ],
@@ -76,8 +76,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 54,
-          "msOneCall": 4,
+          "ms": 62,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p81 32014": [
@@ -134,7 +134,7 @@
           ],
           "controlWent": [
             0,
-            165.96
+            81.71
           ],
           "moved": [
             "p81 32014",
@@ -144,19 +144,19 @@
           ],
           "went": {
             "p81 32014": [
-              198.5,
-              165.96
+              130.83,
+              81.71
             ],
             "p96 10928": [
               0,
-              165.95
+              81.71
             ],
             "p99 10928": [
               0,
-              165.96
+              81.71
             ],
             "p169 62531": [
-              266.32,
+              175.52,
               0
             ]
           },
@@ -172,11 +172,9 @@
           },
           "staysMoved": [],
           "stops": [
-            "ground: p152",
-            "19/158",
+            "135/170",
             "75/157",
-            "80/170",
-            "135/170"
+            "80/170"
           ]
         }
       ],
@@ -191,7 +189,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:17:31.931Z"
     },
     {
       "function": 3,

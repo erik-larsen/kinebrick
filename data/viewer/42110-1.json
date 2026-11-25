@@ -375,15 +375,15 @@
         "reason": "The booklet shows the knob turned about half a turn each way (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490), but in the viewer a collision stops p385 at 0.17 rad (parts 641/642) and 0.105 rad (parts 648/714); the check stops there too. Viewer sweep on today's code, decision 298."
       },
       "verdict": "not decided",
-      "msOneCall": 311,
-      "msPerStep": 87,
+      "msOneCall": 266,
+      "msPerStep": 79,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 165,
+        "reach": 207,
         "A": 1,
-        "B": 21
+        "B": 22
       },
       "stop": {
         "control": "p385 3706",
@@ -404,8 +404,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.174,
-          "ms": 387,
-          "msOneCall": 311,
+          "ms": 332,
+          "msOneCall": 266,
           "stops": [
             "641/642"
           ],
@@ -429,8 +429,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.105,
-          "ms": 261,
-          "msOneCall": 182,
+          "ms": 236,
+          "msOneCall": 158,
           "stops": [
             "648/714"
           ],
@@ -477,7 +477,7 @@
           ],
           "controlWent": [
             0,
-            18.76
+            18.77
           ],
           "moved": [
             "p723 32072",
@@ -487,7 +487,7 @@
           "went": {
             "p723 32072": [
               0,
-              18.76
+              18.77
             ],
             "p715 32072": [
               0,
@@ -523,7 +523,9 @@
         "verdict": "shown"
       },
       "why": "not decided: p385 3706: a travel of 0.2 rad or less each way, stopped at +0.174 rad (641/642); -0.105 rad (648/714)",
-      "seconds": 198
+      "seconds": 241,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:31:25.537Z"
     },
     {
       "function": 6,
@@ -810,15 +812,15 @@
       "function": 10,
       "does": "The two front doors open on their hinges.",
       "verdict": "shown",
-      "msOneCall": 18,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 16,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 32,
-        "B": 67
+        "A": 42,
+        "B": 75
       },
       "stop": null,
       "stops": [],
@@ -855,8 +857,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 18,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -916,23 +918,13 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "This part is held by more than friction pins"
-            ],
-            "freed": [
-              1055,
-              1079,
-              1891,
-              1977
-            ]
-          },
+          "pinsAsked": [
+            1898
+          ],
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 15,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -955,19 +947,9 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "This part is held by more than friction pins"
-            ],
-            "freed": [
-              1055,
-              1079,
-              1891,
-              1977
-            ]
-          },
+          "pinsAsked": [
+            1898
+          ],
           "asked": 1.5,
           "went": 0,
           "ms": 0,
@@ -1066,21 +1048,23 @@
           ]
         }
       ],
-      "seconds": 136
+      "seconds": 156,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:31:25.537Z"
     },
     {
       "function": 11,
       "does": "The bonnet lifts, hinged at its back edge, showing the engine.",
       "verdict": "shown",
       "msOneCall": 255,
-      "msPerStep": 46,
+      "msPerStep": 44,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 3,
-        "B": 23
+        "B": 24
       },
       "stop": {
         "control": "p2203 62531",
@@ -1100,8 +1084,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 171,
-          "msOneCall": 234,
+          "ms": 172,
+          "msOneCall": 225,
           "stops": [
             "2139/2207"
           ],
@@ -1112,7 +1096,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1981,
+          "ms": 1886,
           "msOneCall": 255,
           "stops": [],
           "moved": {}
@@ -1144,15 +1128,16 @@
             }
           ],
           "controlWent": [
-            206.4,
-            50.93
+            361.17,
+            97.6
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "2139/2207"
+            "2139/2207",
+            "995/2175"
           ]
         }
       ],
@@ -1167,13 +1152,15 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 37
+      "seconds": 37,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:31:25.537Z"
     },
     {
       "function": 12,
       "does": "Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 11,
@@ -1191,8 +1178,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 16,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p1504 32065": [
@@ -1206,7 +1193,7 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
+          "ms": 0,
           "msOneCall": 0,
           "stops": [],
           "moved": {
@@ -1255,21 +1242,23 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 23
+      "seconds": 23,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:31:25.537Z"
     },
     {
       "function": 13,
       "does": "The lid of the box on the roof rack lifts open.",
       "verdict": "shown",
       "msOneCall": 309,
-      "msPerStep": 178,
+      "msPerStep": 179,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 12,
-        "B": 33
+        "A": 17,
+        "B": 39
       },
       "stop": null,
       "stops": [],
@@ -1292,7 +1281,7 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1838,
+          "ms": 1754,
           "msOneCall": 309,
           "stops": [],
           "moved": {}
@@ -1315,8 +1304,8 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 178,
-          "msOneCall": 176,
+          "ms": 179,
+          "msOneCall": 194,
           "stops": [],
           "moved": {}
         }
@@ -1350,8 +1339,8 @@
             }
           ],
           "controlWent": [
-            50.16,
-            52.85
+            76.28,
+            85.18
           ],
           "moved": [],
           "went": {},
@@ -1362,7 +1351,9 @@
           ]
         }
       ],
-      "seconds": 56
+      "seconds": 67,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:31:25.537Z"
     },
     {
       "function": 14,
@@ -1371,65 +1362,109 @@
         "result": "partly",
         "reason": "The viewer sweep does not show it: no view shows the lid p2475 of the roof case, so no drag can reach it, and a turn of it measured 0 (decisions 329 and 339). Marked before the offer of main, decision 341; to look at after 2026-11-23."
       },
-      "verdict": "not shown",
-      "why": "B: the control could not be seen",
-      "msOneCall": 331,
-      "msPerStep": 125,
+      "verdict": "shown",
+      "msOneCall": 285,
+      "msPerStep": 92,
       "time": {
-        "open": 12,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 309,
-        "A": 330,
-        "B": 0
+        "reach": 25,
+        "A": 42,
+        "B": 29
       },
       "stop": null,
       "stops": [],
       "A": [
         {
-          "control": "p2475 3710",
+          "control": "p2473 11212",
           "way": 1,
           "shift": {
-            "seen": false
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              2498,
+              2499
+            ]
           },
-          "pinsAsked": [
-            2498,
-            2499
-          ],
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 250,
-          "msOneCall": 331,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1594,
+          "msOneCall": 285,
           "stops": [],
           "moved": {}
         },
         {
-          "control": "p2475 3710",
+          "control": "p2473 11212",
           "way": -1,
           "shift": {
-            "seen": false
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              2498,
+              2499
+            ]
           },
-          "pinsAsked": [
-            2498,
-            2499
-          ],
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 1883,
-          "msOneCall": 194,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 184,
+          "msOneCall": 168,
           "stops": [],
           "moved": {}
         }
       ],
       "B": [
         {
-          "control": "p2475 3710",
-          "seen": false
+          "control": "p2473 11212",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            39.32,
+            93.89
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": [
+            "2469/2491",
+            "2466/2492",
+            "2487/2501"
+          ]
         }
       ],
-      "seconds": 650,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:41:47.132Z"
+      "seconds": 107,
+      "commit": "f3b86e27",
+      "date": "2026-11-25T19:11:19.183Z"
     }
   ]
 }

@@ -276,15 +276,15 @@
       "function": 6,
       "does": "The orange beacon on the cab roof switches the hub on and off: turning it turns an upright axle down through the roof to a lever that presses the hub's button.",
       "verdict": "shown",
-      "msOneCall": 227,
-      "msPerStep": 47,
+      "msOneCall": 226,
+      "msPerStep": 53,
       "time": {
-        "open": 10,
+        "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 24
+        "B": 25
       },
       "stop": {
         "control": "p2535 3941",
@@ -304,8 +304,8 @@
           "way": 1,
           "asked": 0.13,
           "went": 0.13,
-          "ms": 173,
-          "msOneCall": 227,
+          "ms": 195,
+          "msOneCall": 226,
           "stops": [],
           "moved": {
             "p2471 41677": [
@@ -319,8 +319,8 @@
           "way": -1,
           "asked": 0.37,
           "went": -0.336,
-          "ms": 333,
-          "msOneCall": 54,
+          "ms": 315,
+          "msOneCall": 56,
           "stops": [
             "2405/2466"
           ],
@@ -359,22 +359,22 @@
           ],
           "controlWent": [
             0,
-            30.47
+            30.4
           ],
           "moved": [
             "p2471 41677"
           ],
           "went": {
             "p2471 41677": [
-              10.51,
-              30.47
+              10.49,
+              30.4
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "2405/2470",
-            "2405/2466"
+            "2405/2466",
+            "2405/2470"
           ]
         }
       ],
@@ -389,7 +389,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 35
+      "seconds": 37,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:43:57.108Z"
     }
   ]
 }

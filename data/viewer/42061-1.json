@@ -11,10 +11,10 @@
       "function": 1,
       "does": "The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other.",
       "verdict": "shown",
-      "msOneCall": 17,
-      "msPerStep": 4,
+      "msOneCall": 20,
+      "msPerStep": 5,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.453,
-          "ms": 58,
-          "msOneCall": 17,
+          "ms": 67,
+          "msOneCall": 20,
           "stops": [
             "24/28"
           ],
@@ -73,8 +73,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.593,
-          "ms": 56,
-          "msOneCall": 6,
+          "ms": 64,
+          "msOneCall": 7,
           "stops": [
             "36/40"
           ],
@@ -129,7 +129,7 @@
           ],
           "controlWent": [
             0,
-            61.62
+            60.9
           ],
           "moved": [
             "p28 48989",
@@ -139,20 +139,20 @@
           ],
           "went": {
             "p28 48989": [
-              17.03,
-              50.46
+              16.49,
+              48.74
             ],
             "p31 48989": [
-              17.03,
-              50.46
+              16.49,
+              48.74
             ],
             "p40 48989": [
-              17.06,
-              50.54
+              16.92,
+              50.12
             ],
             "p43 48989": [
-              17.06,
-              50.54
+              16.92,
+              50.12
             ]
           },
           "staysWent": {
@@ -163,8 +163,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "24/28",
             "36/40",
+            "24/28",
             "55/78",
             "72/80"
           ]
@@ -181,7 +181,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:50:52.847Z"
     },
     {
       "function": 2,

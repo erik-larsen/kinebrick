@@ -11,15 +11,15 @@
       "function": 10,
       "does": "The two doors swing up and out like gull wings: each is a black frame running from the roof edge down to the front fender, with green panels, hinged at the roof.",
       "verdict": "shown",
-      "msOneCall": 124,
-      "msPerStep": 40,
+      "msOneCall": 126,
+      "msPerStep": 38,
       "time": {
         "open": 18,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 4,
-        "B": 33
+        "B": 34
       },
       "stop": {
         "control": "p134 32009",
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1702,
-          "msOneCall": 124,
+          "ms": 1638,
+          "msOneCall": 126,
           "stops": [],
           "moved": {
             "p257 32188": [
@@ -59,8 +59,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 42,
-          "msOneCall": 44,
+          "ms": 41,
+          "msOneCall": 46,
           "stops": [
             "251/605"
           ],
@@ -80,8 +80,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 38,
-          "msOneCall": 39,
+          "ms": 40,
+          "msOneCall": 43,
           "stops": [
             "268/569"
           ],
@@ -101,8 +101,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1625,
-          "msOneCall": 56,
+          "ms": 1549,
+          "msOneCall": 60,
           "stops": [],
           "moved": {
             "p257 32188": [
@@ -142,8 +142,8 @@
             }
           ],
           "controlWent": [
-            185.87,
-            71.1
+            184.65,
+            70.57
           ],
           "moved": [
             "p257 32188",
@@ -151,8 +151,8 @@
           ],
           "went": {
             "p257 32188": [
-              254.7,
-              71.1
+              253.04,
+              70.57
             ],
             "p274 32189": [
               0,
@@ -190,8 +190,8 @@
             }
           ],
           "controlWent": [
-            195.92,
-            75.58
+            244.82,
+            99.88
           ],
           "moved": [
             "p257 32188",
@@ -203,13 +203,14 @@
               3.13
             ],
             "p274 32189": [
-              268.46,
-              75.58
+              335.45,
+              99.88
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "185/218",
             "268/569"
           ]
         }
@@ -230,7 +231,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 55
+      "seconds": 56,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:23:39.269Z"
     }
   ]
 }

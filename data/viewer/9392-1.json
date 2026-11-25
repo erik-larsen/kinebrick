@@ -410,23 +410,23 @@
       "function": 5,
       "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes.",
       "verdict": "shown",
-      "msOneCall": 42,
-      "msPerStep": 16,
+      "msOneCall": 53,
+      "msPerStep": 21,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 27
+        "B": 28
       },
       "stop": {
-        "control": "p99 6572",
+        "control": "p95 6572",
         "way": 1,
-        "went": 0.523,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "101/200"
+          "102/202"
         ]
       },
       "stops": [
@@ -439,8 +439,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 19,
-          "msOneCall": 42,
+          "ms": 23,
+          "msOneCall": 53,
           "stops": [
             "102/202"
           ],
@@ -468,8 +468,8 @@
           "way": -1,
           "asked": 0.53,
           "went": -0.53,
-          "ms": 240,
-          "msOneCall": 22,
+          "ms": 318,
+          "msOneCall": 27,
           "stops": [],
           "moved": {
             "p106 6572": [
@@ -493,39 +493,37 @@
         {
           "control": "p99 6572",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.523,
-          "ms": 232,
-          "msOneCall": 18,
-          "stops": [
-            "101/200"
-          ],
+          "asked": 0.53,
+          "went": 0.53,
+          "ms": 302,
+          "msOneCall": 19,
+          "stops": [],
           "moved": {
             "p106 6572": [
               0,
               0
             ],
             "p104 6572": [
-              20.93,
-              29.98
+              21.2,
+              30.37
             ],
             "p107 6571": [
               0,
               0
             ],
             "p109 6571": [
-              41.86,
-              2.77
+              42.4,
+              2.81
             ]
           }
         },
         {
           "control": "p99 6572",
           "way": -1,
-          "asked": 0.53,
+          "asked": 1.5,
           "went": 0,
-          "ms": 15,
-          "msOneCall": 17,
+          "ms": 17,
+          "msOneCall": 19,
           "stops": [
             "101/200"
           ],
@@ -575,8 +573,8 @@
             }
           ],
           "controlWent": [
-            22.11,
-            32.09
+            22.18,
+            32.19
           ],
           "moved": [
             "p106 6572",
@@ -584,16 +582,16 @@
           ],
           "went": {
             "p106 6572": [
-              22.11,
-              32.09
+              22.18,
+              32.19
             ],
             "p104 6572": [
               0,
               0.07
             ],
             "p107 6571": [
-              44.23,
-              1.92
+              44.36,
+              1.95
             ],
             "p109 6571": [
               0,
@@ -631,8 +629,8 @@
             }
           ],
           "controlWent": [
-            22.23,
-            32.27
+            22.25,
+            32.29
           ],
           "moved": [
             "p104 6572",
@@ -644,16 +642,16 @@
               0.01
             ],
             "p104 6572": [
-              22.23,
-              32.27
+              22.25,
+              32.29
             ],
             "p107 6571": [
               0,
               0.05
             ],
             "p109 6571": [
-              44.46,
-              2.51
+              44.5,
+              2.05
             ]
           },
           "staysWent": {},
@@ -672,14 +670,16 @@
         {
           "control": "p99 6572",
           "judged": "stands",
-          "why": "stopped at +0.523 rad (101/200); -0 rad (101/200); kinds double-wishbone"
+          "why": "stopped at -0 rad (101/200); kinds double-wishbone"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 33
+      "seconds": 36,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:43:09.823Z"
     }
   ]
 }

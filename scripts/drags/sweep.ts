@@ -620,20 +620,21 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       await measure(before);
       note(ref, 0, output);
     } else {
-      // Where Shift would free no pins and the check freed some for this control, the pins a drag
-      // asks for when it can't move (setup.pinsToFree) are freed instead, as in A: a Shift press that
-      // finds no pins asks the part to slide on its axle, and the drag then pulled the 42078's
-      // steering knob 30 LDU off its axle while the wheels stood.
+      // Where Shift would free no pins and the check freed some for this control, no Shift: a press
+      // that finds none asks the part to slide on its axle, and the drag then pulled the 42078's
+      // steering knob 30 LDU off its axle while the wheels stood. A plain press instead, as a user
+      // makes (decision 367): on a control that can't move it asks the viewer for the pins that
+      // hold it, and frees them; what it freed is recorded as pinsAsked. Nothing is freed through
+      // the page.
       if (g.freed && (g.shiftPressed?.length || !(await turnsPlain(v, control)))) {
         const forControl = (g.freedFor ?? []).some((f: { for: string }) => f.for.startsWith(`p${control} `));
         const shiftFinds: number[] = forControl ? await v.page.evaluate(async (control) => (await (window as any).kinebrick.setup.pinsToShift(control)).pins, control) : [1];
         if (shiftFinds.length) shift = (await v.press({ shift: true, release: true })).said;
-        else pinsAskedB = await v.page.evaluate(async (control) => {
-          const k = (window as any).kinebrick;
-          const pins: number[] = await k.setup.pinsToFree(control);
-          if (pins.length) await k.setup.freePins(pins);
-          return pins;
-        }, control);
+        else if (await v.aim(control)) {
+          const pressed = await v.press({ release: true });
+          pinsAskedB = pressed.freed;
+          shift = pressed.said;
+        }
       }
       // As a person drags (decision 329): round the control's middle where it turns like a knob,
       // and straight along the way its fastest point goes as its joint turns (as the check aims a

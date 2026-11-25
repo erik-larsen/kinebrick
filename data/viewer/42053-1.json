@@ -10,12 +10,8 @@
     {
       "function": 5,
       "does": "The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level.",
-      "held": {
-        "result": "partly",
-        "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p2196, p2201, p2222, p2407 (one of the four moves). Viewer sweep, decision 279."
-      },
       "verdict": "shown",
-      "msOneCall": 91,
+      "msOneCall": 84,
       "msPerStep": 20,
       "time": {
         "open": 6,
@@ -37,8 +33,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 862,
-          "msOneCall": 91,
+          "ms": 873,
+          "msOneCall": 84,
           "stops": [],
           "moved": {
             "p2196 4716": [
@@ -76,8 +72,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 814,
-          "msOneCall": 28,
+          "ms": 820,
+          "msOneCall": 29,
           "stops": [],
           "moved": {
             "p2196 4716": [
@@ -117,7 +113,10 @@
             2228,
             2235
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -178,9 +177,9 @@
           "stops": []
         }
       ],
-      "seconds": 31,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:24:21.882Z"
+      "seconds": 32,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:45:34.660Z"
     },
     {
       "function": 6,

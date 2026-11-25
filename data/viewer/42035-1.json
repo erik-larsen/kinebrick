@@ -546,7 +546,7 @@
       "function": 5,
       "does": "The black gear on the axle sticking out of the left side behind the cab tips the dump body: it turns cranks under the body, which push a link up and tip the body back on its hinge at the rear.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 15,
       "msPerStep": 4,
       "time": {
         "open": 4,
@@ -575,8 +575,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.221,
-          "ms": 143,
-          "msOneCall": 16,
+          "ms": 135,
+          "msOneCall": 15,
           "stops": [
             "249/264"
           ],
@@ -605,7 +605,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 3,
-          "msOneCall": 5,
+          "msOneCall": 4,
           "stops": [
             "121/277"
           ],
@@ -656,7 +656,7 @@
           ],
           "controlWent": [
             0,
-            71.12
+            71.88
           ],
           "moved": [
             "p262 11478 against p0 32525",
@@ -665,16 +665,16 @@
           ],
           "went": {
             "p262 11478 against p0 32525": [
-              46.52,
-              71.12
+              46.96,
+              71.88
             ],
             "p250 32523 against p0 32525": [
-              80.28,
+              80.44,
               87.62
             ],
             "p227 64782 against p0 32525": [
-              32.7,
-              42.89
+              32.51,
+              42.62
             ]
           },
           "staysWent": {
@@ -686,6 +686,7 @@
           "staysMoved": [],
           "stops": [
             "121/277",
+            "249/261",
             "249/264"
           ]
         }
@@ -701,7 +702,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:34:57.432Z"
     }
   ]
 }

@@ -10,20 +10,16 @@
     {
       "function": 1,
       "does": "The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links.",
-      "held": {
-        "result": "partly",
-        "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298."
-      },
       "verdict": "shown",
-      "msOneCall": 279,
-      "msPerStep": 106,
+      "msOneCall": 224,
+      "msPerStep": 98,
       "time": {
-        "open": 12,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 13,
-        "A": 42,
-        "B": 47
+        "reach": 15,
+        "A": 36,
+        "B": 39
       },
       "stop": {
         "control": "p1146 18575",
@@ -46,8 +42,8 @@
           ],
           "asked": 1.5,
           "went": 1.291,
-          "ms": 3926,
-          "msOneCall": 279,
+          "ms": 3608,
+          "msOneCall": 224,
           "stops": [
             "455/483"
           ],
@@ -78,8 +74,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3894,
-          "msOneCall": 130,
+          "ms": 3434,
+          "msOneCall": 123,
           "stops": [],
           "moved": {
             "p537 3648b": [
@@ -110,7 +106,9 @@
           "pinsAsked": [
             307
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -175,9 +173,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 115,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:28:36.415Z"
+      "seconds": 101,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:06:49.818Z"
     },
     {
       "function": 2,
@@ -492,15 +490,15 @@
       "function": 5,
       "does": "The cab doors swing open.",
       "verdict": "shown",
-      "msOneCall": 169,
-      "msPerStep": 42,
+      "msOneCall": 165,
+      "msPerStep": 39,
       "time": {
         "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 14,
-        "A": 110,
-        "B": 92
+        "reach": 18,
+        "A": 124,
+        "B": 97
       },
       "stop": {
         "control": "p851 32524",
@@ -543,8 +541,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 65,
-          "msOneCall": 85,
+          "ms": 62,
+          "msOneCall": 101,
           "stops": [
             "481/851"
           ],
@@ -577,8 +575,8 @@
           },
           "asked": 1.13,
           "went": -1.13,
-          "ms": 1354,
-          "msOneCall": 169,
+          "ms": 1275,
+          "msOneCall": 165,
           "stops": [],
           "moved": {}
         },
@@ -604,8 +602,8 @@
           ],
           "asked": 1.13,
           "went": 1.13,
-          "ms": 1270,
-          "msOneCall": 157,
+          "ms": 1208,
+          "msOneCall": 152,
           "stops": [],
           "moved": {}
         },
@@ -631,8 +629,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 54,
-          "msOneCall": 65,
+          "ms": 42,
+          "msOneCall": 41,
           "stops": [
             "481/889"
           ],
@@ -761,9 +759,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 286,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:28:36.415Z"
+      "seconds": 310,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:06:49.818Z"
     },
     {
       "function": 7,
@@ -1015,12 +1013,12 @@
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 17,
+        "open": 16,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 72,
-        "B": 108
+        "A": 65,
+        "B": 104
       },
       "stop": null,
       "stops": [],
@@ -1146,7 +1144,9 @@
               "freed": []
             }
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "along",
@@ -1188,7 +1188,9 @@
               "freed": []
             }
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "along",
@@ -1210,9 +1212,9 @@
           "stops": []
         }
       ],
-      "seconds": 242,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:28:36.415Z"
+      "seconds": 228,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:06:49.818Z"
     },
     {
       "function": 12,
@@ -1223,15 +1225,15 @@
       },
       "verdict": "not shown",
       "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of 25 LDU",
-      "msOneCall": 333,
-      "msPerStep": 165,
+      "msOneCall": 280,
+      "msPerStep": 140,
       "time": {
-        "open": 18,
+        "open": 16,
         "collisions": 0,
-        "first": 86,
+        "first": 79,
         "reach": 0,
-        "A": 93,
-        "B": 144
+        "A": 75,
+        "B": 85
       },
       "stop": {
         "control": "p2665 64782",
@@ -1266,8 +1268,8 @@
           ],
           "asked": 1.5,
           "went": 0.593,
-          "ms": 2582,
-          "msOneCall": 333,
+          "ms": 2189,
+          "msOneCall": 280,
           "stops": [
             "2618/2641",
             "186/1680"
@@ -1301,8 +1303,8 @@
           ],
           "asked": 0.2,
           "went": -0.2,
-          "ms": 940,
-          "msOneCall": 229,
+          "ms": 801,
+          "msOneCall": 205,
           "stops": [],
           "moved": {
             "p2631 64782 against p2619 32184": [
@@ -1335,8 +1337,8 @@
           ],
           "asked": 0.2,
           "went": 0.2,
-          "ms": 871,
-          "msOneCall": 268,
+          "ms": 790,
+          "msOneCall": 269,
           "stops": [],
           "moved": {
             "p2631 64782 against p2619 32184": [
@@ -1369,8 +1371,8 @@
           ],
           "asked": 1.5,
           "went": -0.628,
-          "ms": 2570,
-          "msOneCall": 210,
+          "ms": 2236,
+          "msOneCall": 198,
           "stops": [
             "185/1685"
           ],
@@ -1392,9 +1394,6 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "pinsAsked": [
-            2629
-          ],
           "shiftOthers": [
             {
               "part": 2665,
@@ -1452,9 +1451,6 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "pinsAsked": [
-            2663
-          ],
           "shiftOthers": [
             {
               "part": 2631,
@@ -1530,9 +1526,9 @@
         "verdict": "not shown",
         "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of 25 LDU"
       },
-      "seconds": 364,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:28:36.415Z"
+      "seconds": 279,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:06:49.818Z"
     },
     {
       "function": 13,

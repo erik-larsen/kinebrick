@@ -11,10 +11,10 @@
       "function": 2,
       "does": "Each rear wheel rides on its own trailing arm, which pivots on the cross axle ahead of it: pushed up, the arm swings up and the shock absorber between it and the frame shortens.",
       "verdict": "shown",
-      "msOneCall": 4,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 5,
@@ -30,7 +30,7 @@
           "asked": 0.18,
           "went": 0,
           "ms": 0,
-          "msOneCall": 4,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p172 3482": [
@@ -284,7 +284,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 22
+      "seconds": 23,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:34:33.357Z"
     },
     {
       "function": 4,

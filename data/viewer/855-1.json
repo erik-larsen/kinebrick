@@ -943,11 +943,11 @@
       "msOneCall": 15,
       "msPerStep": 6,
       "time": {
-        "open": 12,
+        "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 54,
-        "A": 143,
+        "reach": 60,
+        "A": 151,
         "B": 53
       },
       "stop": null,
@@ -1005,7 +1005,7 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 97,
+          "ms": 94,
           "msOneCall": 15,
           "stops": [],
           "moved": {}
@@ -1062,7 +1062,7 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 6,
+          "ms": 4,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -1117,7 +1117,7 @@
           "asked": 0.03,
           "went": 0.03,
           "ms": 4,
-          "msOneCall": 6,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -1171,7 +1171,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 75,
-          "msOneCall": 6,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -1224,8 +1224,8 @@
           ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 5,
-          "msOneCall": 6,
+          "ms": 4,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -1278,7 +1278,7 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 82,
+          "ms": 74,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -1332,8 +1332,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 75,
-          "msOneCall": 6,
+          "ms": 78,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -1386,8 +1386,8 @@
           ],
           "asked": 0.03,
           "went": -0.03,
-          "ms": 3,
-          "msOneCall": 4,
+          "ms": 6,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         }
@@ -1690,9 +1690,9 @@
           ]
         }
       ],
-      "seconds": 377,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:52:56.151Z"
+      "seconds": 402,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:24:53.600Z"
     }
   ]
 }

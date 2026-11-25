@@ -288,7 +288,7 @@
       "function": 3,
       "does": "The two doors swing open on hinges at their front edges.",
       "verdict": "shown",
-      "msOneCall": 87,
+      "msOneCall": 84,
       "msPerStep": 18,
       "time": {
         "open": 12,
@@ -296,31 +296,29 @@
         "first": 0,
         "reach": 1,
         "A": 2,
-        "B": 32
+        "B": 36
       },
       "stop": {
         "control": "p851 64682",
-        "way": -1,
-        "went": -1.151,
+        "way": 1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "809/851"
+          "286/851"
         ]
       },
       "stops": [
         "286/851",
-        "809/851",
-        "971/1013",
         "277/1013"
       ],
       "A": [
         {
           "control": "p851 64682",
           "way": 1,
-          "asked": 1.17,
+          "asked": 1.5,
           "went": 0,
-          "ms": 40,
-          "msOneCall": 55,
+          "ms": 37,
+          "msOneCall": 57,
           "stops": [
             "286/851"
           ],
@@ -334,13 +332,11 @@
         {
           "control": "p851 64682",
           "way": -1,
-          "asked": 1.5,
-          "went": -1.151,
-          "ms": 608,
-          "msOneCall": 87,
-          "stops": [
-            "809/851"
-          ],
+          "asked": 1.17,
+          "went": -1.17,
+          "ms": 599,
+          "msOneCall": 84,
+          "stops": [],
           "moved": {
             "p1529 41239": [
               0,
@@ -351,13 +347,11 @@
         {
           "control": "p1013 64392",
           "way": 1,
-          "asked": 1.5,
-          "went": 1.151,
-          "ms": 582,
-          "msOneCall": 44,
-          "stops": [
-            "971/1013"
-          ],
+          "asked": 1.17,
+          "went": 1.17,
+          "ms": 581,
+          "msOneCall": 45,
+          "stops": [],
           "moved": {
             "p1529 41239": [
               0,
@@ -368,10 +362,10 @@
         {
           "control": "p1013 64392",
           "way": -1,
-          "asked": 1.17,
+          "asked": 1.5,
           "went": 0,
-          "ms": 32,
-          "msOneCall": 27,
+          "ms": 28,
+          "msOneCall": 28,
           "stops": [
             "277/1013"
           ],
@@ -451,8 +445,8 @@
             }
           ],
           "controlWent": [
-            61.04,
-            68.92
+            59.95,
+            67.52
           ],
           "moved": [],
           "went": {},
@@ -473,33 +467,35 @@
         {
           "control": "p851 64682",
           "judged": "stands",
-          "why": "stopped at +0 rad (286/851); -1.151 rad (809/851); kinds hinge: doors"
+          "why": "stopped at +0 rad (286/851); kinds hinge: doors"
         },
         {
           "control": "p1013 64392",
           "judged": "stands",
-          "why": "stopped at +1.151 rad (971/1013); -0 rad (277/1013); kinds hinge: doors"
+          "why": "stopped at -0 rad (277/1013); kinds hinge: doors"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 46
+      "seconds": 52,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:22:18.734Z"
     },
     {
       "function": 4,
       "does": "The front wheels each have independent suspension: the hub rides between a lower and an upper suspension arm, and a shock absorber lets the wheel rise and fall.",
       "verdict": "shown",
-      "msOneCall": 7,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 28,
+        "reach": 35,
         "A": 0,
-        "B": 16
+        "B": 17
       },
       "stop": null,
       "stops": [],
@@ -510,7 +506,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 7,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -605,7 +601,9 @@
           ]
         }
       ],
-      "seconds": 56
+      "seconds": 64,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:22:18.734Z"
     },
     {
       "function": 5,
@@ -614,37 +612,27 @@
         "result": "partly",
         "reason": "The booklet's arrow shows the suspension swinging plainly (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=291), but in the viewer a collision stops p22 and p26 at 0.035 to 0.07 rad (parts 242/243 and 239/240). Viewer sweep on today's code, decision 298."
       },
-      "verdict": "not decided",
-      "msOneCall": 226,
-      "msPerStep": 193,
+      "verdict": "shown",
+      "msOneCall": 213,
+      "msPerStep": 150,
       "time": {
-        "open": 11,
+        "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 72,
-        "A": 1,
-        "B": 33
+        "reach": 86,
+        "A": 2,
+        "B": 39
       },
-      "stop": {
-        "control": "p26 32063",
-        "way": 1,
-        "went": 0.035,
-        "asked": 0.07,
-        "by": [
-          "242/243"
-        ]
-      },
-      "stops": [
-        "242/243"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p22 32063",
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 234,
-          "msOneCall": 226,
+          "ms": 233,
+          "msOneCall": 213,
           "stops": [],
           "moved": {}
         },
@@ -653,30 +641,28 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 153,
-          "msOneCall": 153,
+          "ms": 148,
+          "msOneCall": 150,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p26 32063",
           "way": 1,
-          "asked": 0.07,
-          "went": 0.035,
-          "ms": 193,
-          "msOneCall": 149,
-          "stops": [
-            "242/243"
-          ],
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 150,
+          "msOneCall": 158,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p26 32063",
           "way": -1,
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 139,
-          "msOneCall": 127,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 218,
+          "msOneCall": 136,
           "stops": [],
           "moved": {}
         }
@@ -695,15 +681,16 @@
             }
           ],
           "controlWent": [
-            3.25,
-            1.02
+            8.43,
+            8.98
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "242/243"
+            "242/243",
+            "161/517"
           ]
         },
         {
@@ -723,33 +710,24 @@
             }
           ],
           "controlWent": [
-            11.18,
-            12.33
+            10.5,
+            11.5
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "239/240",
             "60/59",
+            "242/243",
+            "239/240",
             "167/555"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p26 32063",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (242/243)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p26 32063: a travel of 0.2 rad or less each way, stopped at +0.035 rad (242/243)",
-      "seconds": 118
+      "seconds": 138,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:22:18.734Z"
     }
   ]
 }

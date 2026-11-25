@@ -8,6 +8,242 @@
   "seconds": 446,
   "functions": [
     {
+      "function": 1,
+      "does": "The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 26,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 21,
+        "A": 7,
+        "B": 22
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p20 22169",
+          "way": 1,
+          "asked": 1.5,
+          "went": 2.951,
+          "ms": 2189,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p468 6573": [
+              0,
+              176.66
+            ],
+            "p1309 65414": [
+              0,
+              75.71
+            ],
+            "p1032 65414": [
+              0,
+              75.71
+            ],
+            "p2930 42129 - 69912": [
+              0,
+              14.02
+            ],
+            "p2932 42129 - 69912": [
+              0,
+              14.02
+            ]
+          }
+        },
+        {
+          "control": "p20 22169",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.665,
+          "ms": 1175,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p468 6573": [
+              0,
+              102.26
+            ],
+            "p1309 65414": [
+              0,
+              43.82
+            ],
+            "p1032 65414": [
+              0,
+              43.82
+            ],
+            "p2930 42129 - 69912": [
+              0,
+              8.12
+            ],
+            "p2932 42129 - 69912": [
+              0,
+              8.12
+            ]
+          }
+        },
+        {
+          "control": "p236 22169",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.638,
+          "ms": 1167,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p468 6573": [
+              0,
+              100.91
+            ],
+            "p1309 65414": [
+              0,
+              43.25
+            ],
+            "p1032 65414": [
+              0,
+              43.25
+            ],
+            "p2930 42129 - 69912": [
+              0,
+              8.01
+            ],
+            "p2932 42129 - 69912": [
+              0,
+              8.01
+            ]
+          }
+        },
+        {
+          "control": "p236 22169",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.643,
+          "ms": 1186,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p468 6573": [
+              0,
+              102.92
+            ],
+            "p1309 65414": [
+              0,
+              44.11
+            ],
+            "p1032 65414": [
+              0,
+              44.11
+            ],
+            "p2930 42129 - 69912": [
+              0,
+              8.17
+            ],
+            "p2932 42129 - 69912": [
+              0,
+              8.17
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p20 22169",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": true,
+          "shift": [],
+          "drags": [],
+          "controlWent": [
+            0,
+            920.943
+          ],
+          "moved": [
+            "p468 6573",
+            "p1309 65414",
+            "p1032 65414",
+            "p2930 42129 - 69912",
+            "p2932 42129 - 69912"
+          ],
+          "went": {
+            "p468 6573": [
+              0,
+              158.97
+            ],
+            "p1309 65414": [
+              0,
+              34.69
+            ],
+            "p1032 65414": [
+              0,
+              34.69
+            ],
+            "p2930 42129 - 69912": [
+              0,
+              73.09
+            ],
+            "p2932 42129 - 69912": [
+              0,
+              73.09
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        },
+        {
+          "control": "p236 22169",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": true,
+          "shift": [],
+          "drags": [],
+          "controlWent": [
+            0,
+            925.416
+          ],
+          "moved": [
+            "p468 6573",
+            "p1309 65414",
+            "p1032 65414",
+            "p2930 42129 - 69912",
+            "p2932 42129 - 69912"
+          ],
+          "went": {
+            "p468 6573": [
+              0,
+              154.51
+            ],
+            "p1309 65414": [
+              0,
+              36.61
+            ],
+            "p1032 65414": [
+              0,
+              36.61
+            ],
+            "p2930 42129 - 69912": [
+              0,
+              73.45
+            ],
+            "p2932 42129 - 69912": [
+              0,
+              73.45
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 62,
+      "commit": "f3b86e27",
+      "date": "2026-11-25T19:11:19.218Z"
+    },
+    {
       "function": 2,
       "does": "The centre differential lets the front and rear axles turn at different speeds while it's unlocked: with the truck lifted, the motors still and one front wheel held, turning the other front wheel turns the rear axle's drive the opposite way.",
       "verdict": "shown",
@@ -327,46 +563,37 @@
       "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 101,
+      "msPerStep": 123,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
-        "reach": 64,
+        "reach": 84,
         "A": 5,
         "B": 11
       },
-      "stop": {
-        "control": "p550 21980",
-        "way": 1,
-        "went": -0.404,
-        "asked": 0.2,
-        "by": [
-          "20/519"
-        ]
-      },
-      "stops": [
-        "20/519"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p550 21980",
           "way": 1,
           "asked": 0.2,
-          "went": -0.404,
-          "ms": 1166,
+          "went": -0.335,
+          "ms": 1181,
           "msOneCall": null,
-          "stops": [
+          "stops": [],
+          "passed": [
             "20/519"
           ],
           "moved": {
             "p517 35188": [
               0,
-              7.73
+              7.04
             ],
             "p1064 35188": [
               0,
-              7.73
+              7.04
             ],
             "p513 18947 against p468 6573": [
               0,
@@ -382,18 +609,18 @@
           "control": "p550 21980",
           "way": -1,
           "asked": 3.5,
-          "went": -3.571,
-          "ms": 3273,
+          "went": -3.564,
+          "ms": 3433,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p517 35188": [
               0,
-              56.96
+              56.86
             ],
             "p1064 35188": [
               0,
-              56.96
+              56.86
             ],
             "p513 18947 against p468 6573": [
               10,
@@ -416,7 +643,7 @@
           "drags": [],
           "controlWent": [
             0,
-            0
+            17.278
           ],
           "moved": [
             "p517 35188",
@@ -426,11 +653,11 @@
           "went": {
             "p517 35188": [
               0,
-              10.43
+              4.61
             ],
             "p1064 35188": [
               0,
-              10.43
+              4.61
             ],
             "p513 18947 against p468 6573": [
               0,
@@ -444,24 +671,14 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "519/744",
             "1019/1078",
             "20/519"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p550 21980",
-          "judged": "stands",
-          "why": "stopped at +0.404 rad (20/519); kinds electric-motor: medium, differential-lock: centre and rear, slip-clutch"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 88
+      "seconds": 109,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:54:30.166Z"
     },
     {
       "function": 5,

@@ -209,19 +209,19 @@
       "does": "The rear wheel rides on a swing arm pivoted under the seat, with a yellow shock absorber from the frame to the swing arm, so the rear wheel moves up and down; the chain runs round the sprocket on the pivot axle, so the drive to the engine keeps working.",
       "verdict": "shown",
       "msOneCall": 20,
-      "msPerStep": 5,
+      "msPerStep": 4,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 8,
         "A": 0,
-        "B": 16
+        "B": 28
       },
       "stop": {
         "control": "p79 64290",
-        "way": 1,
-        "went": 0.279,
+        "way": -1,
+        "went": 0,
         "asked": 1.5,
         "by": [
           "455/454"
@@ -234,21 +234,19 @@
         {
           "control": "p79 64290",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.279,
-          "ms": 37,
+          "asked": 0.27,
+          "went": 0.27,
+          "ms": 29,
           "msOneCall": 20,
-          "stops": [
-            "455/454"
-          ],
+          "stops": [],
           "moved": {
             "p118 88517": [
-              55.81,
-              27.03
+              54,
+              26.15
             ],
             "p455 4254": [
-              20.12,
-              2.21
+              19.47,
+              2.07
             ],
             "p146 3705": [
               0,
@@ -259,10 +257,10 @@
         {
           "control": "p79 64290",
           "way": -1,
-          "asked": 0.27,
+          "asked": 1.5,
           "went": 0,
-          "ms": 3,
-          "msOneCall": 5,
+          "ms": 4,
+          "msOneCall": 4,
           "stops": [
             "455/454"
           ],
@@ -293,36 +291,23 @@
             {
               "kind": "round",
               "amount": 1.5
-            },
-            {
-              "kind": "round",
-              "amount": -1.5
-            },
-            {
-              "kind": "along",
-              "amount": 1
-            },
-            {
-              "kind": "along",
-              "amount": -1
             }
           ],
           "controlWent": [
-            31.47,
-            17.78
+            0,
+            0.92
           ],
           "moved": [
-            "p118 88517",
-            "p455 4254"
+            "p118 88517"
           ],
           "went": {
             "p118 88517": [
-              61.72,
-              30.03
+              0,
+              1.09
             ],
             "p455 4254": [
-              22.25,
-              2.56
+              0,
+              0.55
             ]
           },
           "staysWent": {
@@ -334,30 +319,30 @@
           "staysMoved": [
             "p146 3705"
           ],
-          "stops": [
-            "455/454"
-          ]
+          "stops": []
         }
       ],
       "stopsJudged": [
         {
           "control": "p79 64290",
           "judged": "stands",
-          "why": "stopped at +0.279 rad (455/454); -0 rad (455/454); kinds swing-arm"
+          "why": "stopped at -0 rad (455/454); kinds swing-arm"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 29
+      "seconds": 40,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:35:08.119Z"
     },
     {
       "function": 6,
       "does": "The kickstand under the right side swings down to hold the bike up, and folds back up.",
       "verdict": "shown",
-      "msOneCall": 19,
-      "msPerStep": 2,
+      "msOneCall": 20,
+      "msPerStep": 3,
       "time": {
         "open": 5,
         "collisions": 0,
@@ -381,8 +366,8 @@
           },
           "asked": 1.2,
           "went": 1.2,
-          "ms": 61,
-          "msOneCall": 19,
+          "ms": 74,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p291 4519": [
@@ -403,7 +388,7 @@
           },
           "asked": 0.2,
           "went": -0.2,
-          "ms": 13,
+          "ms": 18,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -440,16 +425,16 @@
             }
           ],
           "controlWent": [
-            79.88,
-            83.48
+            79.78,
+            83.34
           ],
           "moved": [
             "p291 4519"
           ],
           "went": {
             "p291 4519": [
-              117.54,
-              83.48
+              117.39,
+              83.34
             ]
           },
           "staysWent": {},
@@ -460,7 +445,9 @@
           ]
         }
       ],
-      "seconds": 18
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:35:08.119Z"
     },
     {
       "function": 7,

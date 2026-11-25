@@ -196,15 +196,15 @@
       "function": 3,
       "does": "The gear knob at the front bumper winds the winch, pulling in or paying out the hook on its string.",
       "verdict": "shown",
-      "msOneCall": 159,
-      "msPerStep": 90,
+      "msOneCall": 163,
+      "msPerStep": 94,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 8,
-        "B": 34
+        "B": 35
       },
       "stop": null,
       "stops": [],
@@ -214,8 +214,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3836,
-          "msOneCall": 159,
+          "ms": 4022,
+          "msOneCall": 163,
           "stops": [],
           "moved": {
             "p763 32012": [
@@ -233,8 +233,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.395,
-          "ms": 3544,
-          "msOneCall": 101,
+          "ms": 3764,
+          "msOneCall": 111,
           "stops": [],
           "moved": {
             "p763 32012": [
@@ -287,7 +287,7 @@
               128.71
             ],
             "p3954 30395": [
-              34.9,
+              38.02,
               0
             ]
           },
@@ -296,7 +296,9 @@
           "stops": []
         }
       ],
-      "seconds": 47
+      "seconds": 49,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:10:13.471Z"
     },
     {
       "function": 6,
@@ -436,15 +438,15 @@
       "function": 8,
       "does": "The gear knob low on the right side, behind the cab, tips the grey bed: its shaft's crank, an offset axle joiner in the middle of the frame, pushes the bed's front up through a lever and links, the bed pivoting at its back end.",
       "verdict": "shown",
-      "msOneCall": 134,
-      "msPerStep": 14,
+      "msOneCall": 146,
+      "msPerStep": 15,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 38,
+        "reach": 46,
         "A": 1,
-        "B": 18
+        "B": 19
       },
       "stop": {
         "control": "p96 32270",
@@ -464,8 +466,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 20,
-          "msOneCall": 30,
+          "ms": 22,
+          "msOneCall": 34,
           "stops": [
             "98/292"
           ],
@@ -497,8 +499,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 619,
-          "msOneCall": 134,
+          "ms": 653,
+          "msOneCall": 146,
           "stops": [],
           "moved": {
             "p114 6538b": [
@@ -551,7 +553,7 @@
           ],
           "controlWent": [
             0,
-            112.81
+            104.45
           ],
           "moved": [
             "p114 6538b",
@@ -561,15 +563,15 @@
           "went": {
             "p114 6538b": [
               0,
-              112.79
+              104.44
             ],
             "p296 40490": [
-              87.94,
-              35.5
+              78.12,
+              31.43
             ],
             "p370 40490": [
-              50.28,
-              35.5
+              44.67,
+              31.43
             ]
           },
           "staysWent": {
@@ -600,13 +602,19 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 62
+      "seconds": 72,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:10:13.471Z"
     },
     {
       "function": 9,
       "does": "The tailgate at the back of the bed swings open.",
+      "held": {
+        "result": "partly",
+        "reason": "Under a hand the tailgate swings 142 degrees, but the beam p370, listed to stay, moves 45 LDU and turns 32 degrees with it. The viewer's own turn does not take the control p345. Full viewer sweep at ac22e339, decision 363."
+      },
       "verdict": "not shown",
-      "msOneCall": 2,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 6,
@@ -614,7 +622,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 10
+        "B": 9
       },
       "stop": null,
       "stops": [],
@@ -625,7 +633,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 2,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p357 32316": [
@@ -704,21 +712,23 @@
       ],
       "why": "by hand: p370 40490 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 15
+      "seconds": 16,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:10:13.471Z"
     },
     {
       "function": 10,
       "does": "The four rear wheels are on a bogie that rocks on one cross axle through the frame, so both rear axles stay on the ground over bumps.",
       "verdict": "shown",
-      "msOneCall": 147,
-      "msPerStep": 14,
+      "msOneCall": 136,
+      "msPerStep": 12,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 11,
         "A": 0,
-        "B": 53
+        "B": 43
       },
       "stop": null,
       "stops": [],
@@ -728,8 +738,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 28,
-          "msOneCall": 147,
+          "ms": 24,
+          "msOneCall": 136,
           "stops": [],
           "moved": {
             "p4004 56145": [
@@ -751,8 +761,8 @@
           "way": -1,
           "asked": 0.2,
           "went": -0.2,
-          "ms": 51,
-          "msOneCall": 14,
+          "ms": 43,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p4004 56145": [
@@ -781,11 +791,15 @@
             {
               "kind": "round",
               "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
             }
           ],
           "controlWent": [
-            8.38,
-            12.03
+            11.25,
+            16.17
           ],
           "moved": [
             "p4004 56145",
@@ -793,12 +807,12 @@
           ],
           "went": {
             "p4004 56145": [
-              18.75,
-              12.03
+              25.15,
+              16.17
             ],
             "p4008 56145": [
-              18.75,
-              12.03
+              25.15,
+              16.17
             ]
           },
           "staysWent": {
@@ -810,11 +824,13 @@
           "staysMoved": [],
           "stops": [
             "77/233",
-            "83/232"
+            "156/239"
           ]
         }
       ],
-      "seconds": 71
+      "seconds": 59,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:10:13.471Z"
     },
     {
       "function": 11,

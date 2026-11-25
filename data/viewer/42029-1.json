@@ -598,7 +598,7 @@
       "function": 8,
       "does": "The bonnet hinges up at its back edge to show the engine.",
       "verdict": "shown",
-      "msOneCall": 71,
+      "msOneCall": 67,
       "msPerStep": 17,
       "time": {
         "open": 7,
@@ -606,7 +606,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 13
       },
       "stop": {
         "control": "p951 64392",
@@ -626,8 +626,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 41,
-          "msOneCall": 71,
+          "ms": 52,
+          "msOneCall": 67,
           "stops": [
             "187/886"
           ],
@@ -643,8 +643,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 721,
-          "msOneCall": 62,
+          "ms": 748,
+          "msOneCall": 67,
           "stops": [],
           "moved": {
             "p951 64392 against p0 32278": [
@@ -680,25 +680,24 @@
             }
           ],
           "controlWent": [
-            26.31,
-            82.27
+            22.29,
+            67.74
           ],
           "moved": [
             "p951 64392 against p0 32278"
           ],
           "went": {
             "p951 64392 against p0 32278": [
-              26.31,
-              82.27
+              22.29,
+              67.74
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
             "187/886",
-            "203/951",
-            "190/888",
-            "189/888"
+            "189/888",
+            "190/888"
           ]
         }
       ],
@@ -713,7 +712,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 22
+      "seconds": 21,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:34:06.103Z"
     }
   ]
 }

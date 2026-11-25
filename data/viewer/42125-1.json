@@ -600,15 +600,15 @@
       "function": 7,
       "does": "The two doors swing up and forward on hinges at their front edges (butterfly doors).",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 46,
+        "open": 50,
         "collisions": 0,
         "first": 0,
         "reach": 1,
         "A": 0,
-        "B": 24
+        "B": 27
       },
       "stop": null,
       "stops": [],
@@ -618,8 +618,8 @@
           "way": 1,
           "asked": 0.02,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 13,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -713,7 +713,9 @@
           ]
         }
       ],
-      "seconds": 71
+      "seconds": 78,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:52:43.992Z"
     },
     {
       "function": 8,

@@ -11,15 +11,15 @@
       "function": 1,
       "does": "The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer.",
       "verdict": "shown",
-      "msOneCall": 7477,
-      "msPerStep": 2152,
+      "msOneCall": 7458,
+      "msPerStep": 2195,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 118,
-        "B": 238
+        "A": 119,
+        "B": 174
       },
       "stop": {
         "control": "p1504 8110 - 32269",
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.802,
-          "ms": 49162,
-          "msOneCall": 7477,
+          "ms": 48953,
+          "msOneCall": 7456,
           "stops": [
             "954/1055"
           ],
@@ -89,8 +89,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.872,
-          "ms": 53624,
-          "msOneCall": 7322,
+          "ms": 54703,
+          "msOneCall": 7458,
           "stops": [
             "955/1053"
           ],
@@ -160,8 +160,8 @@
             }
           ],
           "controlWent": [
-            0.09,
-            46.95
+            0.03,
+            49.22
           ],
           "moved": [
             "p1498 32072",
@@ -174,42 +174,42 @@
           ],
           "went": {
             "p1498 32072": [
-              0.07,
-              46.97
+              0.02,
+              49.24
             ],
             "p1088 32270": [
-              0.17,
-              47.7
+              0.4,
+              49.61
             ],
             "p1080 87761": [
-              12.44,
-              1.97
+              12.96,
+              1.71
             ],
             "p1005 92909": [
-              29.77,
-              24.97
+              28.59,
+              24.35
             ],
             "p1028 92909": [
-              28.47,
-              24.58
+              28.06,
+              24.04
             ],
             "p1437 44772": [
-              34.59,
-              24.97
+              33.3,
+              24.35
             ],
             "p1440 44772": [
-              33.28,
-              24.58
+              32.78,
+              24.04
             ]
           },
           "staysWent": {
             "p1438 44772": [
-              0.2,
-              1.19
+              1.49,
+              1.25
             ],
             "p1439 44772": [
-              0.61,
-              1.22
+              1.67,
+              1.27
             ]
           },
           "staysMoved": [
@@ -217,7 +217,8 @@
             "p1439 44772"
           ],
           "stops": [
-            "954/1055"
+            "952/1057",
+            "955/1053"
           ]
         }
       ],
@@ -232,7 +233,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 367
+      "seconds": 304,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:03:12.561Z"
     },
     {
       "function": 2,
@@ -1557,7 +1560,7 @@
       "function": 14,
       "does": "The black gears at the two sides of the crane's subframe swing the striped stabiliser legs down to the ground or up for driving.",
       "verdict": "shown",
-      "msOneCall": 115,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 16,
@@ -1565,7 +1568,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 222
+        "B": 225
       },
       "stop": null,
       "stops": [],
@@ -1575,8 +1578,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 115,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -1605,7 +1608,7 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 0,
+          "ms": 1,
           "msOneCall": 0,
           "stops": [],
           "moved": {}
@@ -1630,7 +1633,7 @@
           ],
           "controlWent": [
             0,
-            12.2
+            16.52
           ],
           "moved": [],
           "went": {},
@@ -1670,7 +1673,9 @@
           ]
         }
       ],
-      "seconds": 239
+      "seconds": 242,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:03:12.561Z"
     }
   ]
 }

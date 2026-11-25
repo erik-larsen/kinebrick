@@ -11,37 +11,36 @@
       "function": 2,
       "does": "Pulling the purple striker's trigger, the yellow towball arm under the top of its handle, swings the block that the back end of the scissor arm is pinned to. The scissor arm (lazy tongs of purple and black thin beams) then shoots forward, with the rubber-tipped arrow at its tip, at the other striker's target.",
       "verdict": "shown",
-      "msOneCall": 53,
-      "msPerStep": 20,
+      "msOneCall": 64,
+      "msPerStep": 22,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 16
+        "B": 17
       },
       "stop": {
         "control": "p310 6572",
-        "way": -1,
-        "went": -1.326,
+        "way": 1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "301/328"
+          "322/570"
         ]
       },
       "stops": [
-        "322/570",
-        "301/328"
+        "322/570"
       ],
       "A": [
         {
           "control": "p310 6572",
           "way": 1,
-          "asked": 1.33,
+          "asked": 1.5,
           "went": 0,
-          "ms": 25,
-          "msOneCall": 53,
+          "ms": 27,
+          "msOneCall": 64,
           "stops": [
             "322/570"
           ],
@@ -67,21 +66,19 @@
         {
           "control": "p310 6572",
           "way": -1,
-          "asked": 1.5,
-          "went": -1.326,
-          "ms": 746,
-          "msOneCall": 43,
-          "stops": [
-            "301/328"
-          ],
+          "asked": 1.33,
+          "went": -1.33,
+          "ms": 854,
+          "msOneCall": 52,
+          "stops": [],
           "moved": {
             "p323 32133 against p550 32018": [
-              640.58,
-              27.53
+              644.75,
+              28.03
             ],
             "p567 32065 against p550 32018": [
-              91.52,
-              87.39
+              91.7,
+              87.57
             ],
             "p594 6629 against p550 32018": [
               0,
@@ -120,8 +117,8 @@
             }
           ],
           "controlWent": [
-            48.92,
-            75.4
+            49.56,
+            76.56
           ],
           "moved": [
             "p323 32133 against p550 32018",
@@ -129,12 +126,12 @@
           ],
           "went": {
             "p323 32133 against p550 32018": [
-              542.58,
-              30.42
+              540.43,
+              30.71
             ],
             "p567 32065 against p550 32018": [
-              80.63,
-              84.42
+              79.85,
+              83.41
             ]
           },
           "staysWent": {
@@ -149,8 +146,6 @@
           },
           "staysMoved": [],
           "stops": [
-            "322/570",
-            "326/332",
             "301/328"
           ]
         }
@@ -159,14 +154,16 @@
         {
           "control": "p310 6572",
           "judged": "stands",
-          "why": "stopped at +0 rad (322/570); -1.326 rad (301/328); kinds scissor-linkage: arrow"
+          "why": "stopped at +0 rad (322/570); kinds scissor-linkage: arrow"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 22
+      "seconds": 25,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:06:30.476Z"
     },
     {
       "function": 4,
@@ -467,15 +464,15 @@
       "function": 6,
       "does": "Pulling the teal striker's trigger, the yellow towball arm under the top of its handle, shoots its scissor arm out at the other striker, just as on the purple one. The arm is teal and black, with a rubber-tipped arrow at its tip.",
       "verdict": "shown",
-      "msOneCall": 74,
-      "msPerStep": 18,
+      "msOneCall": 89,
+      "msPerStep": 21,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 15
       },
       "stop": {
         "control": "p54 6572",
@@ -495,8 +492,8 @@
           "way": 1,
           "asked": 1.33,
           "went": 1.33,
-          "ms": 678,
-          "msOneCall": 74,
+          "ms": 791,
+          "msOneCall": 89,
           "stops": [],
           "moved": {
             "p67 32133 against p112 32018": [
@@ -522,8 +519,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 19,
-          "msOneCall": 20,
+          "ms": 21,
+          "msOneCall": 22,
           "stops": [
             "66/132"
           ],
@@ -573,8 +570,8 @@
             }
           ],
           "controlWent": [
-            49.67,
-            76.76
+            46.24,
+            70.61
           ],
           "moved": [
             "p67 32133 against p112 32018",
@@ -582,12 +579,12 @@
           ],
           "went": {
             "p67 32133 against p112 32018": [
-              540.23,
-              28.9
+              544.86,
+              19.5
             ],
             "p129 32065 against p112 32018": [
-              79.65,
-              83.16
+              81.58,
+              85.64
             ]
           },
           "staysWent": {
@@ -602,8 +599,7 @@
           },
           "staysMoved": [],
           "stops": [
-            "66/132",
-            "70/76"
+            "66/132"
           ]
         }
       ],
@@ -618,16 +614,18 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 21
+      "seconds": 22,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:06:30.476Z"
     },
     {
       "function": 8,
       "does": "Hitting the teal striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that teal lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward.",
       "verdict": "shown",
-      "msOneCall": 58,
+      "msOneCall": 57,
       "msPerStep": 10,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -642,8 +640,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 242,
-          "msOneCall": 58,
+          "ms": 266,
+          "msOneCall": 57,
           "stops": [],
           "moved": {
             "p164 2723 against p112 32018": [
@@ -702,16 +700,16 @@
             }
           ],
           "controlWent": [
-            144.55,
-            79.41
+            129.43,
+            69.78
           ],
           "moved": [
             "p164 2723 against p112 32018"
           ],
           "went": {
             "p164 2723 against p112 32018": [
-              149.55,
-              79.41
+              133.91,
+              69.78
             ]
           },
           "staysWent": {
@@ -726,7 +724,9 @@
           ]
         }
       ],
-      "seconds": 19
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:06:30.476Z"
     }
   ]
 }

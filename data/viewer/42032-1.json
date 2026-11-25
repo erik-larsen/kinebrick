@@ -169,7 +169,7 @@
       "function": 3,
       "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 4,
@@ -195,7 +195,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p107 87083 against p97 32278": [
@@ -304,7 +304,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 11
+      "seconds": 11,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:34:45.505Z"
     },
     {
       "function": 4,

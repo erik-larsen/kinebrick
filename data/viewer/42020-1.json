@@ -646,7 +646,7 @@
       "function": 4,
       "does": "The small bent liftarm with two half-beams under the tail hangs on a pin and swings.",
       "verdict": "shown",
-      "msOneCall": 10,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
         "open": 3,
@@ -664,8 +664,8 @@
           "way": 1,
           "asked": 0.67,
           "went": 0.67,
-          "ms": 20,
-          "msOneCall": 10,
+          "ms": 18,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -674,7 +674,7 @@
           "way": -1,
           "asked": 0.5,
           "went": -0.5,
-          "ms": 10,
+          "ms": 9,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -706,20 +706,22 @@
             }
           ],
           "controlWent": [
-            70.65,
-            67.91
+            70.63,
+            67.89
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "49/63",
-            "5/60"
+            "5/60",
+            "49/63"
           ]
         }
       ],
-      "seconds": 19
+      "seconds": 19,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:29.435Z"
     }
   ]
 }

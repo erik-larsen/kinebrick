@@ -393,15 +393,15 @@
       "function": 5,
       "does": "The two rear doors swing open sideways.",
       "verdict": "shown",
-      "msOneCall": 13,
-      "msPerStep": 1,
+      "msOneCall": 15,
+      "msPerStep": 2,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 8,
+        "reach": 9,
         "A": 0,
-        "B": 28
+        "B": 30
       },
       "stop": {
         "control": "p95 24116",
@@ -422,8 +422,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 59,
-          "msOneCall": 13,
+          "ms": 67,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -432,8 +432,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 1,
+          "ms": 2,
+          "msOneCall": 3,
           "stops": [
             "95/118"
           ],
@@ -445,7 +445,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 1,
-          "msOneCall": 1,
+          "msOneCall": 2,
           "stops": [
             "108/117"
           ],
@@ -456,7 +456,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 35,
+          "ms": 44,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -481,7 +481,7 @@
           ],
           "controlWent": [
             0,
-            91.03
+            91.4
           ],
           "moved": [],
           "went": {},
@@ -545,7 +545,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 42
+      "seconds": 46,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:17:49.948Z"
     }
   ]
 }

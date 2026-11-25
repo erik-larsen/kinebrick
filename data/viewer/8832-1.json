@@ -183,10 +183,10 @@
       "function": 2,
       "does": "The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -202,7 +202,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p59 3894": [
@@ -329,7 +329,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 9
+      "seconds": 10,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:27:58.540Z"
     },
     {
       "function": 4,

@@ -11,15 +11,15 @@
       "function": 1,
       "does": "The black gear on top of the frame behind the cab steers (hand of god steering): its vertical shaft turns, through 12 tooth bevel gears and two universal joints, a 12 tooth gear on the front axle's rack, which turns both front track units.",
       "verdict": "shown",
-      "msOneCall": 43,
-      "msPerStep": 7,
+      "msOneCall": 34,
+      "msPerStep": 6,
       "time": {
-        "open": 7,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -33,8 +33,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 307,
-          "msOneCall": 43,
+          "ms": 245,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p290 32270": [
@@ -72,7 +72,7 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 281,
+          "ms": 232,
           "msOneCall": 11,
           "stops": [],
           "moved": {
@@ -176,9 +176,9 @@
           ]
         }
       ],
-      "seconds": 22,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:22:35.882Z"
+      "seconds": 20,
+      "commit": "f3b86e27",
+      "date": "2026-11-25T19:12:58.937Z"
     },
     {
       "function": 2,
@@ -188,15 +188,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p112 92696 turned 0.06 degrees, 0.052 predicted (rate 0.00114, turn -0.8)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p323 64782 turned 0.95 degrees, 0.94 predicted (rate 0.0205, turn -0.8)"
       ],
-      "msOneCall": 42,
-      "msPerStep": 11,
+      "msOneCall": 32,
+      "msPerStep": 12,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 5,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -206,8 +206,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 488,
-          "msOneCall": 42,
+          "ms": 506,
+          "msOneCall": 32,
           "stops": [],
           "moved": {
             "p69 18947": [
@@ -253,8 +253,8 @@
           "way": -1,
           "asked": 0.8,
           "went": -0.8,
-          "ms": 261,
-          "msOneCall": 19,
+          "ms": 271,
+          "msOneCall": 18,
           "stops": [],
           "moved": {
             "p69 18947": [
@@ -323,7 +323,7 @@
           ],
           "controlWent": [
             0,
-            177.79
+            129.82
           ],
           "moved": [
             "p69 18947",
@@ -337,31 +337,31 @@
           "went": {
             "p69 18947": [
               0,
-              143.85
+              143.63
             ],
             "p67 18946": [
               0,
-              143.85
+              143.63
             ],
             "p6 94925": [
               0,
-              143.85
+              143.63
             ],
             "p111 62520": [
               0,
-              143.85
+              143.63
             ],
             "p113 92695": [
-              0.1,
-              143.85
+              0.08,
+              143.63
             ],
             "p112 92696": [
-              2.54,
-              0.83
+              1.86,
+              0.82
             ],
             "p323 64782": [
-              1.27,
-              3.64
+              0.93,
+              2.67
             ]
           },
           "staysWent": {
@@ -375,24 +375,28 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "102/323"
+          ]
         }
       ],
-      "seconds": 27
+      "seconds": 26,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:08.151Z"
     },
     {
       "function": 3,
       "does": "With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom.",
       "verdict": "shown",
-      "msOneCall": 45,
-      "msPerStep": 11,
+      "msOneCall": 36,
+      "msPerStep": 12,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 5,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -402,8 +406,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 485,
-          "msOneCall": 45,
+          "ms": 495,
+          "msOneCall": 36,
           "stops": [],
           "moved": {
             "p69 18947": [
@@ -453,8 +457,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 7,
-          "msOneCall": 5,
+          "ms": 6,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p69 18947": [
@@ -527,7 +531,7 @@
           ],
           "controlWent": [
             0,
-            177.79
+            81.23
           ],
           "moved": [
             "p69 18947",
@@ -542,35 +546,35 @@
           "went": {
             "p69 18947": [
               0,
-              144.73
+              135.39
             ],
             "p71 18946": [
               0,
-              144.73
+              135.39
             ],
             "p33 94925": [
               0,
-              144.73
+              135.39
             ],
             "p46 6589": [
               0,
-              144.73
+              135.39
             ],
             "p107 32269": [
               0,
-              177.79
+              81.23
             ],
             "p862 62520": [
               0,
-              177.79
+              81.23
             ],
             "p866 92696": [
-              3.03,
-              0.39
+              1.39,
+              0
             ],
             "p888 41239": [
-              2.6,
-              1.21
+              1.19,
+              0.5
             ]
           },
           "staysWent": {
@@ -584,49 +588,41 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "866/864"
+          ]
         }
       ],
-      "seconds": 26
+      "seconds": 25,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:08.151Z"
     },
     {
       "function": 4,
       "does": "The red selector lever beside the knob slides the driving ring between the two clutch gears: position 1 for the bed, position 2 for the crane.",
       "verdict": "shown",
-      "msOneCall": 46,
-      "msPerStep": 6,
+      "msOneCall": 42,
+      "msPerStep": 5,
       "time": {
-        "open": 10,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 4,
         "B": 14
       },
-      "stop": {
-        "control": "p84 2736",
-        "way": 1,
-        "went": 0.485,
-        "asked": 0.97,
-        "by": [
-          "62/82"
-        ]
-      },
-      "stops": [
-        "62/82"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p84 2736",
           "way": 1,
           "ringShifted": true,
-          "asked": 0.97,
-          "went": 0.485,
-          "ms": 72,
-          "msOneCall": 44,
-          "stops": [
-            "62/82"
-          ],
+          "asked": 0.5,
+          "went": 0.5,
+          "ms": 67,
+          "msOneCall": 42,
+          "stops": [],
           "moved": {
             "p69 18947": [
               10,
@@ -638,10 +634,10 @@
           "control": "p84 2736",
           "way": -1,
           "ringShifted": true,
-          "asked": 0.5,
-          "went": -0.5,
-          "ms": 83,
-          "msOneCall": 46,
+          "asked": 0.97,
+          "went": -0.97,
+          "ms": 117,
+          "msOneCall": 41,
           "stops": [],
           "moved": {
             "p69 18947": [
@@ -677,8 +673,8 @@
             }
           ],
           "controlWent": [
-            37.79,
-            84.89
+            37.72,
+            84.7
           ],
           "moved": [
             "p69 18947"
@@ -696,18 +692,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p84 2736",
-          "judged": "stands",
-          "why": "stopped at +0.485 rad (62/82); kinds function-selector: 2 functions"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 25
+      "seconds": 24,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:36:08.151Z"
     },
     {
       "function": 5,

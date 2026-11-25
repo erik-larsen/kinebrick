@@ -682,20 +682,16 @@
     {
       "function": 9,
       "does": "The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning.",
-      "held": {
-        "result": "partly",
-        "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p3789 against p2649. Viewer sweep, decision 279."
-      },
       "verdict": "shown",
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 24,
+        "open": 23,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 45,
-        "B": 85
+        "A": 42,
+        "B": 77
       },
       "stop": null,
       "stops": [],
@@ -716,7 +712,7 @@
           },
           "asked": 0.42,
           "went": 0,
-          "ms": 0,
+          "ms": 1,
           "msOneCall": 0,
           "stops": [],
           "moved": {
@@ -795,9 +791,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 155,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:38:58.984Z"
+      "seconds": 142,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:08:48.537Z"
     }
   ]
 }

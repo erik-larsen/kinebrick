@@ -145,7 +145,7 @@
       "function": 7,
       "does": "The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure).",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
@@ -153,7 +153,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 9
+        "B": 10
       },
       "stop": null,
       "stops": [],
@@ -164,7 +164,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 8,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p511 18942 against p510 18940": [
@@ -236,7 +236,7 @@
               0.6
             ],
             "p547 32524 against p510 18940": [
-              80.55,
+              80.56,
               10.33
             ]
           },
@@ -253,14 +253,16 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 14
+      "seconds": 15,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:51:11.361Z"
     },
     {
       "function": 8,
       "does": "The spreader turns on the boom's tip to line up with a container.",
       "verdict": "shown",
-      "msOneCall": 166,
-      "msPerStep": 26,
+      "msOneCall": 178,
+      "msPerStep": 30,
       "time": {
         "open": 5,
         "collisions": 0,
@@ -269,29 +271,17 @@
         "A": 1,
         "B": 15
       },
-      "stop": {
-        "control": "p547 32524",
-        "way": 1,
-        "went": 0.244,
-        "asked": 1.5,
-        "by": [
-          "511/591"
-        ]
-      },
-      "stops": [
-        "511/591"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p547 32524",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.244,
-          "ms": 176,
-          "msOneCall": 166,
-          "stops": [
-            "511/591"
-          ],
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 196,
+          "msOneCall": 178,
+          "stops": [],
           "moved": {
             "p511 18942": [
               0,
@@ -302,10 +292,10 @@
         {
           "control": "p547 32524",
           "way": -1,
-          "asked": 0.23,
-          "went": -0.23,
-          "ms": 174,
-          "msOneCall": 111,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 523,
+          "msOneCall": 117,
           "stops": [],
           "moved": {
             "p511 18942": [
@@ -341,8 +331,8 @@
             }
           ],
           "controlWent": [
-            95.35,
-            105.22
+            82.08,
+            86.31
           ],
           "moved": [],
           "went": {},
@@ -353,23 +343,12 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "511/591"
-          ]
+          "stops": []
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p547 32524",
-          "judged": "stands",
-          "why": "stopped at +0.244 rad (511/591); kinds hinge: spreader"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 20
+      "seconds": 21,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:51:11.361Z"
     },
     {
       "function": 10,

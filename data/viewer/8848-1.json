@@ -155,10 +155,10 @@
       "function": 4,
       "does": "The yellow lever on the right of the steering wheel tips the body: a link from it turns a 24 tooth gear like a crank, whose axle's other 24 tooth gear turns the 8 tooth gears on the cross axle under the body, and they push two racks that lift the body on struts about its hinge at the back.",
       "verdict": "shown",
-      "msOneCall": 24,
-      "msPerStep": 8,
+      "msOneCall": 27,
+      "msPerStep": 9,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -183,8 +183,8 @@
           "way": 1,
           "asked": 0.4,
           "went": 0.4,
-          "ms": 89,
-          "msOneCall": 24,
+          "ms": 106,
+          "msOneCall": 27,
           "stops": [],
           "moved": {
             "p328 3028": [
@@ -218,8 +218,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 7,
-          "msOneCall": 8,
+          "ms": 10,
+          "msOneCall": 11,
           "stops": [
             "171/328"
           ],
@@ -269,8 +269,8 @@
             }
           ],
           "controlWent": [
-            5.07,
-            29.71
+            5.03,
+            29.46
           ],
           "moved": [
             "p328 3028",
@@ -280,20 +280,20 @@
           ],
           "went": {
             "p328 3028": [
-              106.72,
-              49.63
+              105.51,
+              49.03
             ],
             "p114 3743": [
-              38.38,
-              0.17
+              37.94,
+              0.19
             ],
             "p121 3743": [
-              38.38,
-              0.17
+              37.93,
+              0.19
             ],
             "p127 3737": [
               0,
-              140.34
+              142.8
             ]
           },
           "staysWent": {
@@ -308,6 +308,7 @@
           },
           "staysMoved": [],
           "stops": [
+            "173/209",
             "171/328",
             "170/175"
           ]
@@ -324,7 +325,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 11
+      "seconds": 12,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:34:57.963Z"
     }
   ]
 }

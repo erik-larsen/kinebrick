@@ -39,7 +39,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 43,
+          "ms": 45,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -70,8 +70,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.326,
-          "ms": 30,
-          "msOneCall": 2,
+          "ms": 35,
+          "msOneCall": 3,
           "stops": [
             "184/189"
           ],
@@ -126,7 +126,7 @@
           ],
           "controlWent": [
             0,
-            118.49
+            118.5
           ],
           "moved": [
             "p199 3710",
@@ -174,7 +174,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:24:29.266Z"
     },
     {
       "function": 2,

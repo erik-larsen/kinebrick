@@ -132,43 +132,31 @@
       "function": 2,
       "does": "Pressing the round button on the back of the hips tips the lever it sits on, lifting the catch out of the 24-tooth gear so the folded droid can open.",
       "verdict": "shown",
-      "msOneCall": 27,
+      "msOneCall": 36,
       "msPerStep": 2,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
-      "stop": {
-        "control": "p18 2654",
-        "way": 1,
-        "went": 0.802,
-        "asked": 1.5,
-        "by": [
-          "11/113"
-        ]
-      },
-      "stops": [
-        "11/113"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p18 2654",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.802,
-          "ms": 46,
-          "msOneCall": 27,
-          "stops": [
-            "11/113"
-          ],
+          "asked": 0.83,
+          "went": 0.83,
+          "ms": 57,
+          "msOneCall": 36,
+          "stops": [],
           "moved": {
             "p9 32034 against p0 32140": [
               0,
-              45.97
+              47.56
             ],
             "p62 32177 against p0 32140": [
               0,
@@ -179,15 +167,15 @@
         {
           "control": "p18 2654",
           "way": -1,
-          "asked": 0.83,
-          "went": -0.83,
-          "ms": 37,
-          "msOneCall": 4,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 86,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p9 32034 against p0 32140": [
               0,
-              47.56
+              85.94
             ],
             "p62 32177 against p0 32140": [
               0,
@@ -207,11 +195,19 @@
             {
               "kind": "round",
               "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
             }
           ],
           "controlWent": [
-            55.02,
-            53.58
+            80.16,
+            82.16
           ],
           "moved": [
             "p9 32034 against p0 32140"
@@ -219,7 +215,7 @@
           "went": {
             "p9 32034 against p0 32140": [
               0,
-              53.58
+              82.16
             ]
           },
           "staysWent": {
@@ -232,27 +228,18 @@
           "stops": []
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p18 2654",
-          "judged": "stands",
-          "why": "stopped at +0.802 rad (11/113); kinds catch: release button"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 17
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:56:23.303Z"
     },
     {
       "function": 4,
       "does": "The head folds down onto the back for transport and swings back up, pivoting on an axle at the top of the torso.",
       "verdict": "shown",
-      "msOneCall": 33,
+      "msOneCall": 31,
       "msPerStep": 7,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -267,8 +254,8 @@
           "way": 1,
           "asked": 0.8,
           "went": 0.8,
-          "ms": 137,
-          "msOneCall": 33,
+          "ms": 158,
+          "msOneCall": 31,
           "stops": [],
           "moved": {
             "p165 32015 against p95 32184": [
@@ -286,8 +273,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 14,
-          "msOneCall": 10,
+          "ms": 13,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p165 32015 against p95 32184": [
@@ -328,14 +315,14 @@
           ],
           "controlWent": [
             0,
-            50.64
+            51.86
           ],
           "moved": [
             "p165 32015 against p95 32184"
           ],
           "went": {
             "p165 32015 against p95 32184": [
-              139.63,
+              142.76,
               0
             ]
           },
@@ -347,12 +334,15 @@
           },
           "staysMoved": [],
           "stops": [
-            "129/140",
-            "117/122"
+            "119/133",
+            "117/122",
+            "129/140"
           ]
         }
       ],
-      "seconds": 18
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:56:23.303Z"
     },
     {
       "function": 6,
@@ -481,7 +471,7 @@
       "function": 7,
       "does": "Each leg bends at the knee, and a rubber band across the knee pulls it straight again.",
       "verdict": "shown",
-      "msOneCall": 24,
+      "msOneCall": 29,
       "msPerStep": 2,
       "time": {
         "open": 7,
@@ -491,26 +481,16 @@
         "A": 0,
         "B": 25
       },
-      "stop": {
-        "control": "p71 32165",
-        "way": -1,
-        "went": -0.419,
-        "asked": 1.5,
-        "by": [
-          "80/91"
-        ]
-      },
-      "stops": [
-        "80/91"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p42 32165",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 69,
-          "msOneCall": 24,
+          "ms": 58,
+          "msOneCall": 29,
           "stops": [],
           "moved": {
             "p42 32165 against p62 32177": [
@@ -528,8 +508,8 @@
           "way": -1,
           "asked": 0.43,
           "went": -0.43,
-          "ms": 18,
-          "msOneCall": 3,
+          "ms": 21,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p42 32165 against p62 32177": [
@@ -545,10 +525,29 @@
         {
           "control": "p71 32165",
           "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 50,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p42 32165 against p62 32177": [
+              0,
+              0
+            ],
+            "p71 32165 against p91 32177": [
+              271.65,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p71 32165",
+          "way": -1,
           "asked": 0.43,
-          "went": 0.43,
-          "ms": 15,
-          "msOneCall": 4,
+          "went": -0.43,
+          "ms": 21,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p42 32165 against p62 32177": [
@@ -558,27 +557,6 @@
             "p71 32165 against p91 32177": [
               77.87,
               24.64
-            ]
-          }
-        },
-        {
-          "control": "p71 32165",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.419,
-          "ms": 18,
-          "msOneCall": 3,
-          "stops": [
-            "80/91"
-          ],
-          "moved": {
-            "p42 32165 against p62 32177": [
-              0,
-              0
-            ],
-            "p71 32165 against p91 32177": [
-              75.81,
-              23.98
             ]
           }
         }
@@ -609,16 +587,16 @@
             }
           ],
           "controlWent": [
-            247.21,
-            86.08
+            259.04,
+            91.31
           ],
           "moved": [
             "p42 32165 against p62 32177"
           ],
           "went": {
             "p42 32165 against p62 32177": [
-              247.21,
-              86.08
+              259.04,
+              91.31
             ],
             "p71 32165 against p91 32177": [
               0,
@@ -627,7 +605,9 @@
           },
           "staysWent": {},
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "51/62"
+          ]
         },
         {
           "control": "p71 32165",
@@ -654,8 +634,8 @@
             }
           ],
           "controlWent": [
-            269.18,
-            96
+            262.52,
+            92.9
           ],
           "moved": [
             "p71 32165 against p91 32177"
@@ -666,29 +646,21 @@
               0
             ],
             "p71 32165 against p91 32177": [
-              269.18,
-              96
+              262.52,
+              92.9
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "86/90",
             "80/91"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p71 32165",
-          "judged": "stands",
-          "why": "stopped at -0.419 rad (80/91); kinds hinge: knees, spring: knees"
-        }
-      ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 32
+      "seconds": 33,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:56:23.303Z"
     }
   ]
 }

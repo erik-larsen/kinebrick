@@ -580,15 +580,15 @@
       "function": 4,
       "does": "The lever on the right beside the seat raises and lowers the hitch: a short link from it swings the hitch's arms on the rear half axles, and the harrow, hung on the cross axle at the arms' ends and held upright by a top link pivoting behind the seat, rises and falls with them.",
       "verdict": "shown",
-      "msOneCall": 18,
-      "msPerStep": 6,
+      "msOneCall": 23,
+      "msPerStep": 8,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 14,
+        "reach": 15,
         "A": 0,
-        "B": 14
+        "B": 15
       },
       "stop": {
         "control": "p235 3702",
@@ -608,8 +608,8 @@
           "way": 1,
           "asked": 0.17,
           "went": 0.136,
-          "ms": 24,
-          "msOneCall": 18,
+          "ms": 32,
+          "msOneCall": 23,
           "stops": [
             "231/237"
           ],
@@ -641,8 +641,8 @@
           "way": -1,
           "asked": 1.4,
           "went": -1.4,
-          "ms": 121,
-          "msOneCall": 5,
+          "ms": 154,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p37 3702": [
@@ -686,8 +686,8 @@
             }
           ],
           "controlWent": [
-            29.21,
-            81.55
+            31.63,
+            90.04
           ],
           "moved": [
             "p37 3702",
@@ -696,16 +696,16 @@
           ],
           "went": {
             "p37 3702": [
-              21.52,
-              20.38
+              34.27,
+              32.72
             ],
             "p256 3709b": [
-              50.25,
-              6.09
+              79.85,
+              9.11
             ],
             "p102 3702": [
-              22.82,
-              21.62
+              35.68,
+              34.11
             ]
           },
           "staysWent": {
@@ -720,7 +720,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "231/237"
+            "231/237",
+            "38/231"
           ]
         }
       ],
@@ -735,7 +736,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 32
+      "seconds": 35,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:46:15.743Z"
     },
     {
       "function": 5,

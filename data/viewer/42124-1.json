@@ -223,15 +223,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p343 15460 turned 0.34 degrees, 0.322 predicted (rate 0.00884, turn 0.636)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p345 15460 turned 0.34 degrees, 0.322 predicted (rate 0.00884, turn -0.636)"
       ],
-      "msOneCall": 35,
-      "msPerStep": 8,
+      "msOneCall": 42,
+      "msPerStep": 10,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 26
+        "B": 29
       },
       "stop": {
         "control": "p325 42124 - 31794",
@@ -252,8 +252,8 @@
           "way": 1,
           "asked": 0.67,
           "went": 0.636,
-          "ms": 148,
-          "msOneCall": 35,
+          "ms": 175,
+          "msOneCall": 42,
           "stops": [
             "359/983"
           ],
@@ -273,7 +273,7 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 7,
+          "ms": 8,
           "msOneCall": 11,
           "stops": [],
           "moved": {
@@ -292,8 +292,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 8,
-          "msOneCall": 9,
+          "ms": 7,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p343 15460": [
@@ -311,8 +311,8 @@
           "way": -1,
           "asked": 0.67,
           "went": -0.636,
-          "ms": 124,
-          "msOneCall": 7,
+          "ms": 146,
+          "msOneCall": 11,
           "stops": [
             "361/985"
           ],
@@ -355,7 +355,7 @@
           ],
           "controlWent": [
             0,
-            39.95
+            39.71
           ],
           "moved": [
             "p345 15460"
@@ -366,7 +366,7 @@
               0
             ],
             "p345 15460": [
-              54.7,
+              54.38,
               0
             ]
           },
@@ -403,14 +403,14 @@
           ],
           "controlWent": [
             0,
-            40.58
+            40.21
           ],
           "moved": [
             "p343 15460"
           ],
           "went": {
             "p343 15460": [
-              55.53,
+              55.03,
               0
             ],
             "p345 15460": [
@@ -421,8 +421,8 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "304/322",
-            "361/985"
+            "361/985",
+            "304/322"
           ]
         }
       ],
@@ -442,26 +442,28 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 35
+      "seconds": 39,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:50:30.162Z"
     },
     {
       "function": 6,
       "does": "The rear unit (motor, gears, differential and rear wheels) swings up and down on a pivot at its front, sprung by two soft shock absorbers from the roll cage.",
       "verdict": "shown",
-      "msOneCall": 37,
-      "msPerStep": 9,
+      "msOneCall": 41,
+      "msPerStep": 10,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 12,
+        "reach": 15,
         "A": 0,
-        "B": 13
+        "B": 15
       },
       "stop": {
         "control": "p470 40490",
-        "way": 1,
-        "went": 0.244,
+        "way": -1,
+        "went": 0,
         "asked": 1.5,
         "by": [
           "423/987"
@@ -474,31 +476,29 @@
         {
           "control": "p470 40490",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.244,
-          "ms": 65,
-          "msOneCall": 37,
-          "stops": [
-            "423/987"
-          ],
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 67,
+          "msOneCall": 41,
+          "stops": [],
           "moved": {
             "p464 65414 against p270 14720": [
-              21.98,
-              13.99
+              20.7,
+              13.18
             ],
             "p501 22169 against p270 14720": [
-              29.4,
-              13.99
+              27.7,
+              13.18
             ]
           }
         },
         {
           "control": "p470 40490",
           "way": -1,
-          "asked": 0.23,
+          "asked": 1.5,
           "went": 0,
-          "ms": 7,
-          "msOneCall": 11,
+          "ms": 11,
+          "msOneCall": 13,
           "stops": [
             "423/987"
           ],
@@ -540,8 +540,8 @@
             }
           ],
           "controlWent": [
-            18.74,
-            14.58
+            18.61,
+            14.47
           ],
           "moved": [
             "p464 65414 against p270 14720",
@@ -549,12 +549,12 @@
           ],
           "went": {
             "p464 65414 against p270 14720": [
-              23.17,
-              14.58
+              23,
+              14.47
             ],
             "p501 22169 against p270 14720": [
-              31,
-              14.58
+              30.78,
+              14.47
             ]
           },
           "staysWent": {},
@@ -568,14 +568,16 @@
         {
           "control": "p470 40490",
           "judged": "stands",
-          "why": "stopped at +0.244 rad (423/987); -0 rad (423/987); kinds swing-arm: rear unit"
+          "why": "stopped at -0 rad (423/987); kinds swing-arm: rear unit"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 31
+      "seconds": 36,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:50:30.162Z"
     },
     {
       "function": 8,

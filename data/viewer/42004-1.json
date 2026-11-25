@@ -183,7 +183,7 @@
       "function": 2,
       "does": "Turning the exhaust stack raises and lowers the loader arm: the stack is the top of a vertical shaft with a worm at its foot, which turns an 8-tooth gear on the loader arm's pivot axle.",
       "verdict": "shown",
-      "msOneCall": 20,
+      "msOneCall": 17,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -211,8 +211,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 120,
-          "msOneCall": 20,
+          "ms": 123,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p50 44294": [
@@ -278,11 +278,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
             0,
-            64.17
+            117.93
           ],
           "moved": [
             "p50 44294",
@@ -292,14 +300,14 @@
           "went": {
             "p50 44294": [
               0,
-              8.04
+              14.75
             ],
             "p227 32270": [
-              16.31,
-              4.65
+              29.92,
+              7.41
             ],
             "p229 2951": [
-              22.56,
+              41.37,
               0
             ]
           },
@@ -326,13 +334,15 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 21
+      "seconds": 20,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:29.503Z"
     },
     {
       "function": 3,
       "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
       "verdict": "shown",
-      "msOneCall": 2,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 4,
@@ -351,7 +361,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 2,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p229 2951 against p50 44294": [
@@ -446,16 +456,18 @@
         "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p50 44294 moved 2.8, the least-moved listed part 40.31"
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 10
+      "seconds": 10,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:29.503Z"
     },
     {
       "function": 4,
       "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
       "verdict": "shown",
-      "msOneCall": 11,
-      "msPerStep": 4,
+      "msOneCall": 10,
+      "msPerStep": 3,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -473,8 +485,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 156,
-          "msOneCall": 11,
+          "ms": 138,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -499,8 +511,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 119,
-          "msOneCall": 5,
+          "ms": 98,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -575,17 +587,17 @@
         }
       ],
       "seconds": 17,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:21:59.605Z"
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:29.503Z"
     },
     {
       "function": 5,
       "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
       "verdict": "shown",
-      "msOneCall": 14,
-      "msPerStep": 4,
+      "msOneCall": 12,
+      "msPerStep": 3,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -621,8 +633,8 @@
           },
           "asked": 1.5,
           "went": 1.465,
-          "ms": 112,
-          "msOneCall": 14,
+          "ms": 85,
+          "msOneCall": 12,
           "stops": [
             "169/172"
           ],
@@ -652,8 +664,8 @@
           },
           "asked": 1.5,
           "went": -0.07,
-          "ms": 8,
-          "msOneCall": 5,
+          "ms": 6,
+          "msOneCall": 3,
           "stops": [
             "159/177"
           ],
@@ -698,15 +710,15 @@
           ],
           "controlWent": [
             0,
-            87.04
+            83.28
           ],
           "moved": [
             "p169 40490 against p159 32525"
           ],
           "went": {
             "p169 40490 against p159 32525": [
-              110.17,
-              87.04
+              106.3,
+              83.28
             ]
           },
           "staysWent": {
@@ -733,13 +745,15 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:29.503Z"
     },
     {
       "function": 6,
       "does": "The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand.",
       "verdict": "shown",
-      "msOneCall": 10,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -774,8 +788,8 @@
           },
           "asked": 1.5,
           "went": 1.256,
-          "ms": 42,
-          "msOneCall": 10,
+          "ms": 38,
+          "msOneCall": 9,
           "stops": [
             "ground: p177"
           ],
@@ -798,7 +812,7 @@
           },
           "asked": 0.33,
           "went": -0.33,
-          "ms": 14,
+          "ms": 13,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -836,7 +850,7 @@
           ],
           "controlWent": [
             0,
-            92.54
+            82.28
           ],
           "moved": [
             "p177 30394 against p169 40490"
@@ -844,7 +858,7 @@
           "went": {
             "p177 30394 against p169 40490": [
               0,
-              92.54
+              82.29
             ]
           },
           "staysWent": {},
@@ -866,7 +880,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:32:29.503Z"
     },
     {
       "function": 7,

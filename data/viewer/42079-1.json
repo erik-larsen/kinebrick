@@ -11,15 +11,15 @@
       "function": 2,
       "does": "The lever on the side of the body tilts the mast forward and back.",
       "verdict": "shown",
-      "msOneCall": 84,
-      "msPerStep": 31,
+      "msOneCall": 105,
+      "msPerStep": 34,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 17,
+        "reach": 19,
         "A": 1,
-        "B": 9
+        "B": 10
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.33,
           "went": 1.33,
-          "ms": 1004,
-          "msOneCall": 84,
+          "ms": 1174,
+          "msOneCall": 105,
           "stops": [],
           "moved": {
             "p13 6629": [
@@ -52,8 +52,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 61,
-          "msOneCall": 42,
+          "ms": 68,
+          "msOneCall": 55,
           "stops": [],
           "moved": {
             "p13 6629": [
@@ -90,7 +90,7 @@
           ],
           "controlWent": [
             0,
-            51.38
+            76.22
           ],
           "moved": [
             "p13 6629",
@@ -98,12 +98,12 @@
           ],
           "went": {
             "p13 6629": [
-              7.49,
-              0
+              23.14,
+              8.32
             ],
             "p471 18942": [
-              11.65,
-              0
+              35.97,
+              8.48
             ]
           },
           "staysWent": {
@@ -118,7 +118,9 @@
           ]
         }
       ],
-      "seconds": 33
+      "seconds": 37,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:06:53.415Z"
     },
     {
       "function": 3,

@@ -736,15 +736,15 @@
       "function": 4,
       "does": "The front wheels have independent suspension: each rides on a pair of suspension arms, sprung by its own shock absorber, and rises and falls on its own.",
       "verdict": "shown",
-      "msOneCall": 84,
-      "msPerStep": 35,
+      "msOneCall": 83,
+      "msPerStep": 39,
       "time": {
-        "open": 10,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 161,
+        "reach": 178,
         "A": 1,
-        "B": 36
+        "B": 35
       },
       "stop": null,
       "stops": [],
@@ -754,8 +754,8 @@
           "way": 1,
           "asked": 0.23,
           "went": 0.23,
-          "ms": 196,
-          "msOneCall": 84,
+          "ms": 197,
+          "msOneCall": 83,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -785,8 +785,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 35,
-          "msOneCall": 36,
+          "ms": 39,
+          "msOneCall": 42,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -816,8 +816,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 32,
-          "msOneCall": 34,
+          "ms": 37,
+          "msOneCall": 41,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -847,8 +847,8 @@
           "way": -1,
           "asked": 0.23,
           "went": -0.23,
-          "ms": 152,
-          "msOneCall": 32,
+          "ms": 177,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -901,7 +901,7 @@
           ],
           "controlWent": [
             0,
-            2.61
+            2.17
           ],
           "moved": [
             "p297 15460",
@@ -909,11 +909,11 @@
           ],
           "went": {
             "p297 15460": [
-              3.64,
-              0.05
+              3.03,
+              0.03
             ],
             "p318 15461": [
-              2.73,
+              2.27,
               0
             ],
             "p298 15460": [
@@ -934,7 +934,8 @@
           "staysMoved": [],
           "stops": [
             "337/430",
-            "305/428"
+            "305/428",
+            "305/337"
           ]
         },
         {
@@ -963,7 +964,7 @@
           ],
           "controlWent": [
             0,
-            16.11
+            16.04
           ],
           "moved": [
             "p298 15460",
@@ -979,11 +980,11 @@
               0
             ],
             "p298 15460": [
-              22.42,
-              1.28
+              22.33,
+              1.18
             ],
             "p319 15461": [
-              16.82,
+              16.75,
               0
             ]
           },
@@ -1000,7 +1001,9 @@
           ]
         }
       ],
-      "seconds": 208
+      "seconds": 225,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:35:51.473Z"
     },
     {
       "function": 8,
@@ -1118,7 +1121,7 @@
       "function": 9,
       "does": "The boot lid opens on its hinges at the back of the car.",
       "verdict": "shown",
-      "msOneCall": 6,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 7,
@@ -1137,7 +1140,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 6,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p964 26287": [
@@ -1239,7 +1242,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 16
+      "seconds": 17,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:35:51.473Z"
     },
     {
       "function": 10,
@@ -1248,29 +1253,28 @@
         "result": "partly",
         "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355)."
       },
-      "verdict": "not decided",
-      "msOneCall": 95,
-      "msPerStep": 79,
+      "verdict": "shown",
+      "msOneCall": 82,
+      "msPerStep": 35,
       "time": {
-        "open": 8,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 14,
+        "reach": 10,
         "A": 2,
-        "B": 20
+        "B": 17
       },
       "stop": {
         "control": "p328 2825",
-        "way": -1,
-        "went": -0.07,
-        "asked": 0.73,
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
         "by": [
-          "ground: p167"
+          "170/180"
         ]
       },
       "stops": [
-        "170/180",
-        "ground: p167"
+        "170/180"
       ],
       "A": [
         {
@@ -1282,8 +1286,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 70,
-          "msOneCall": 95,
+          "ms": 62,
+          "msOneCall": 77,
           "stops": [
             "170/180"
           ],
@@ -1318,24 +1322,22 @@
             177
           ],
           "asked": 0.73,
-          "went": -0.07,
-          "ms": 158,
-          "msOneCall": 78,
-          "stops": [
-            "ground: p167"
-          ],
+          "went": -0.73,
+          "ms": 721,
+          "msOneCall": 82,
+          "stops": [],
           "moved": {
             "p326 15462": [
               0,
-              3.98
+              41.83
             ],
             "p463 3749": [
-              6.22,
-              3.98
+              65.31,
+              41.83
             ],
             "p466 3749": [
-              6.22,
-              3.98
+              65.31,
+              41.83
             ],
             "p471 56908": [
               0,
@@ -1378,8 +1380,8 @@
             }
           ],
           "controlWent": [
-            4.51,
-            4.62
+            43.32,
+            42.35
           ],
           "moved": [
             "p326 15462",
@@ -1389,15 +1391,15 @@
           "went": {
             "p326 15462": [
               0,
-              4.62
+              42.35
             ],
             "p463 3749": [
-              6.73,
-              4.32
+              64.6,
+              42.33
             ],
             "p466 3749": [
-              6.73,
-              4.32
+              64.6,
+              42.33
             ]
           },
           "staysWent": {
@@ -1412,8 +1414,7 @@
           },
           "staysMoved": [],
           "stops": [
-            "ground: p169",
-            "ground: p167",
+            "207/327",
             "170/180"
           ]
         }
@@ -1421,18 +1422,17 @@
       "stopsJudged": [
         {
           "control": "p328 2825",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (170/180); -0.07 rad (ground: p167)"
+          "judged": "stands",
+          "why": "stopped at +0 rad (170/180); kinds hinge: wheelie bar"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p328 2825: a travel of 0.2 rad or less each way, stopped at +0 rad (170/180); -0.07 rad (ground: p167)",
-      "seconds": 44,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:41:58.703Z"
+      "seconds": 35,
+      "commit": "f3b86e27",
+      "date": "2026-11-25T19:12:22.512Z"
     }
   ]
 }

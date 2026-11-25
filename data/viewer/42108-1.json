@@ -865,15 +865,15 @@
       "function": 3,
       "does": "Each of the four outriggers swings out and down onto its foot: turning its black 12 tooth gear (at the back) or its liftarm handle (at the front) swings the leg out from the chassis side and down.",
       "verdict": "shown",
-      "msOneCall": 100,
-      "msPerStep": 42,
+      "msOneCall": 97,
+      "msPerStep": 38,
       "time": {
         "open": 18,
         "collisions": 0,
         "first": 0,
-        "reach": 88,
+        "reach": 93,
         "A": 4,
-        "B": 71
+        "B": 70
       },
       "stop": {
         "control": "p354 32270",
@@ -898,8 +898,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.174,
-          "ms": 209,
-          "msOneCall": 100,
+          "ms": 188,
+          "msOneCall": 97,
           "stops": [
             "345/349"
           ],
@@ -935,8 +935,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 780,
-          "msOneCall": 38,
+          "ms": 767,
+          "msOneCall": 42,
           "stops": [
             "ground: p343"
           ],
@@ -972,8 +972,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.116,
-          "ms": 750,
-          "msOneCall": 41,
+          "ms": 746,
+          "msOneCall": 40,
           "stops": [
             "ground: p356"
           ],
@@ -1009,8 +1009,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.174,
-          "ms": 167,
-          "msOneCall": 42,
+          "ms": 179,
+          "msOneCall": 39,
           "stops": [
             "358/362"
           ],
@@ -1046,8 +1046,8 @@
           "way": 1,
           "asked": 0.17,
           "went": 0.17,
-          "ms": 146,
-          "msOneCall": 39,
+          "ms": 145,
+          "msOneCall": 42,
           "stops": [],
           "moved": {
             "p342 32062": [
@@ -1081,8 +1081,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 703,
-          "msOneCall": 37,
+          "ms": 738,
+          "msOneCall": 39,
           "stops": [
             "ground: p249"
           ],
@@ -1118,8 +1118,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.116,
-          "ms": 649,
-          "msOneCall": 37,
+          "ms": 579,
+          "msOneCall": 45,
           "stops": [
             "ground: p257"
           ],
@@ -1155,8 +1155,8 @@
           "way": -1,
           "asked": 0.17,
           "went": -0.17,
-          "ms": 123,
-          "msOneCall": 34,
+          "ms": 116,
+          "msOneCall": 33,
           "stops": [],
           "moved": {
             "p342 32062": [
@@ -1213,14 +1213,14 @@
           ],
           "controlWent": [
             0,
-            74.2
+            74.33
           ],
           "moved": [
             "p342 32062"
           ],
           "went": {
             "p342 32062": [
-              53.63,
+              53.66,
               0
             ],
             "p355 32062": [
@@ -1248,9 +1248,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "345/349",
             "ground: p345",
-            "ground: p343"
+            "345/349"
           ]
         },
         {
@@ -1279,7 +1278,7 @@
           ],
           "controlWent": [
             0,
-            74.53
+            74.15
           ],
           "moved": [
             "p355 32062"
@@ -1290,7 +1289,7 @@
               0
             ],
             "p355 32062": [
-              53.83,
+              53.47,
               0
             ],
             "p248 32062": [
@@ -1314,10 +1313,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "ground: p356",
-            "361/366",
-            "358/362",
-            "ground: p358"
+            "ground: p358",
+            "358/362"
           ]
         },
         {
@@ -1346,7 +1343,7 @@
           ],
           "controlWent": [
             0,
-            51.16
+            74.47
           ],
           "moved": [
             "p248 32062"
@@ -1361,7 +1358,7 @@
               0
             ],
             "p248 32062": [
-              41,
+              53.79,
               0
             ],
             "p256 32062": [
@@ -1411,7 +1408,7 @@
           ],
           "controlWent": [
             0,
-            72.91
+            72.16
           ],
           "moved": [
             "p256 32062"
@@ -1430,7 +1427,7 @@
               0
             ],
             "p256 32062": [
-              52.95,
+              51.88,
               0
             ]
           },
@@ -1446,8 +1443,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "233/262",
-            "ground: p259"
+            "ground: p259",
+            "233/262"
           ]
         }
       ],
@@ -1477,14 +1474,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 182
+      "seconds": 185,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:30:16.388Z"
     },
     {
       "function": 5,
       "does": "The black knob nearer the cab on the superstructure's right side raises and lowers the boom: turned anticlockwise (seen from its own side) it raises it. Its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up.",
       "verdict": "shown",
-      "msOneCall": 94,
-      "msPerStep": 31,
+      "msOneCall": 89,
+      "msPerStep": 29,
       "time": {
         "open": 7,
         "collisions": 0,
@@ -1501,8 +1500,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 25,
-          "msOneCall": 36,
+          "ms": 24,
+          "msOneCall": 35,
           "stops": [],
           "moved": {
             "p1187 32270": [
@@ -1536,8 +1535,8 @@
           "way": -1,
           "asked": 1.8,
           "went": -1.8,
-          "ms": 1586,
-          "msOneCall": 94,
+          "ms": 1512,
+          "msOneCall": 89,
           "stops": [],
           "moved": {
             "p1187 32270": [
@@ -1594,7 +1593,7 @@
           ],
           "controlWent": [
             0,
-            85.73
+            85.59
           ],
           "moved": [
             "p1187 32270",
@@ -1604,11 +1603,11 @@
           "went": {
             "p1187 32270": [
               0,
-              85.73
+              85.59
             ],
             "p538 42108 - 18575": [
               0,
-              51.42
+              51.33
             ],
             "p528 61904": [
               0.74,
@@ -1637,21 +1636,23 @@
           ]
         }
       ],
-      "seconds": 29
+      "seconds": 29,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:30:16.388Z"
     },
     {
       "function": 6,
       "does": "The black knob at the back of the superstructure's right side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys: turned anticlockwise (seen from its own side) it lowers the hook, playing the string out.",
       "verdict": "shown",
-      "msOneCall": 127,
-      "msPerStep": 30,
+      "msOneCall": 117,
+      "msPerStep": 29,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 19
+        "B": 20
       },
       "stop": null,
       "stops": [],
@@ -1661,8 +1662,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1268,
-          "msOneCall": 127,
+          "ms": 1223,
+          "msOneCall": 117,
           "stops": [],
           "moved": {
             "p1182 3648b": [
@@ -1692,8 +1693,8 @@
           "way": -1,
           "asked": 0.8,
           "went": -0.8,
-          "ms": 685,
-          "msOneCall": 43,
+          "ms": 649,
+          "msOneCall": 46,
           "stops": [],
           "moved": {
             "p1182 3648b": [
@@ -1746,7 +1747,7 @@
           ],
           "controlWent": [
             0,
-            103.41
+            104.1
           ],
           "moved": [
             "p1182 3648b",
@@ -1756,11 +1757,11 @@
           "went": {
             "p1182 3648b": [
               0,
-              103.41
+              104.1
             ],
             "p542 3707": [
               0,
-              157.86
+              151.79
             ],
             "p1047 30395": [
               12.69,
@@ -1783,7 +1784,9 @@
           ]
         }
       ],
-      "seconds": 29
+      "seconds": 30,
+      "commit": "994fe940",
+      "date": "2026-11-25T17:30:16.388Z"
     }
   ]
 }

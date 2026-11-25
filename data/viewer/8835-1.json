@@ -166,20 +166,16 @@
     {
       "function": 2,
       "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
-      "held": {
-        "result": "partly",
-        "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355)."
-      },
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 9,
       "msPerStep": 2,
       "time": {
-        "open": 4,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p207 4185a",
@@ -202,8 +198,8 @@
           ],
           "asked": 1.5,
           "went": 1.081,
-          "ms": 68,
-          "msOneCall": 8,
+          "ms": 70,
+          "msOneCall": 9,
           "stops": [
             "179/208"
           ],
@@ -238,8 +234,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 81,
-          "msOneCall": 4,
+          "ms": 75,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p29 3703": [
@@ -341,9 +337,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17,
-      "commit": "2a66f499",
-      "date": "2026-11-25T15:53:19.505Z"
+      "seconds": 18,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:28:10.164Z"
     },
     {
       "function": 3,

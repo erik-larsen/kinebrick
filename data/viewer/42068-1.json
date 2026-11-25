@@ -428,15 +428,15 @@
       "decidedBy": [
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1002 10928 turned 0.5 degrees, 0.5 predicted (rate 0.125, turn -0.07)"
       ],
-      "msOneCall": 78,
+      "msOneCall": 77,
       "msPerStep": 16,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 28,
+        "reach": 25,
         "A": 1,
-        "B": 14
+        "B": 13
       },
       "stop": {
         "control": "p987 32270",
@@ -456,8 +456,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 451,
-          "msOneCall": 78,
+          "ms": 417,
+          "msOneCall": 77,
           "stops": [],
           "moved": {
             "p983 32270": [
@@ -488,7 +488,7 @@
           "asked": 1.5,
           "went": -0.07,
           "ms": 31,
-          "msOneCall": 21,
+          "msOneCall": 20,
           "stops": [
             "427/1061"
           ],
@@ -543,7 +543,7 @@
           ],
           "controlWent": [
             0,
-            119.46
+            83.5
           ],
           "moved": [
             "p983 32270",
@@ -553,15 +553,15 @@
           "went": {
             "p983 32270": [
               0,
-              119.46
+              83.5
             ],
             "p1000 4716": [
               0,
-              119.46
+              83.5
             ],
             "p1002 10928": [
               0,
-              30.07
+              10.44
             ]
           },
           "staysWent": {
@@ -575,7 +575,9 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "427/1061"
+          ]
         }
       ],
       "stopsJudged": [
@@ -589,7 +591,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 48
+      "seconds": 44,
+      "commit": "994fe940",
+      "date": "2026-11-25T16:53:31.389Z"
     },
     {
       "function": 8,

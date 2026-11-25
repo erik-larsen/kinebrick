@@ -490,15 +490,15 @@
       "function": 4,
       "does": "With the selector set for the winch, the black gear on the side behind the cab winds the winch: knob gears carry the turn to the gearbox shaft, its clutch gear drives a 16-tooth gear, bevel gears turn the 24-tooth gear on the reel, and the string over the boom tip raises or lowers the hook.",
       "verdict": "shown",
-      "msOneCall": 584,
-      "msPerStep": 561,
+      "msOneCall": 601,
+      "msPerStep": 574,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 8,
-        "reach": 30,
+        "reach": 32,
         "A": 27,
-        "B": 11
+        "B": 9
       },
       "stop": null,
       "stops": [],
@@ -508,8 +508,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 24036,
-          "msOneCall": 584,
+          "ms": 24579,
+          "msOneCall": 601,
           "stops": [],
           "moved": {
             "p76 32072": [
@@ -555,8 +555,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.314,
-          "ms": 1680,
-          "msOneCall": 318,
+          "ms": 1753,
+          "msOneCall": 352,
           "stops": [],
           "moved": {
             "p76 32072": [
@@ -617,7 +617,7 @@
           ],
           "controlWent": [
             0,
-            14.26
+            11.14
           ],
           "moved": [
             "p76 32072",
@@ -632,35 +632,35 @@
           "went": {
             "p76 32072": [
               0,
-              14.26
+              11.14
             ],
             "p55 32072": [
               0,
-              14.23
+              11.13
             ],
             "p58 6542b": [
               0,
-              14.23
+              11.13
             ],
             "p374 94925": [
               0,
-              14.23
+              11.13
             ],
             "p405 94925": [
               0,
-              14.23
+              11.13
             ],
             "p409 32270": [
               0,
-              14.23
+              11.13
             ],
             "p413 3648b": [
               0,
-              7.12
+              5.56
             ],
             "p414 61510": [
               0,
-              7.12
+              5.56
             ]
           },
           "staysWent": {
@@ -673,7 +673,9 @@
           "stops": []
         }
       ],
-      "seconds": 81
+      "seconds": 83,
+      "commit": "994fe940",
+      "date": "2026-11-25T18:44:16.789Z"
     },
     {
       "function": 7,
