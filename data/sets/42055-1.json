@@ -181,13 +181,14 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "e32f5816",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 512,
+    "seconds": 393,
     "counts": {
       "no": 1,
-      "partly": 5,
-      "works": 4,
+      "partly": 4,
+      "works": 5,
       "not back": 1,
       "moved whole": 1
     },
@@ -495,8 +496,8 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 9.3,
-        "peak": 932
+        "seconds": 8,
+        "peak": 972
       },
       {
         "result": "partly",
@@ -588,8 +589,8 @@
             0.5
           ]
         ],
-        "seconds": 16.9,
-        "peak": 963
+        "seconds": 14.2,
+        "peak": 991
       },
       {
         "result": "partly",
@@ -663,8 +664,8 @@
             0.5
           ]
         ],
-        "seconds": 17.5,
-        "peak": 986
+        "seconds": 13.9,
+        "peak": 962
       },
       {
         "result": "partly",
@@ -757,7 +758,7 @@
             0.5
           ]
         ],
-        "seconds": 24.8,
+        "seconds": 19.2,
         "peak": 882
       },
       {
@@ -812,8 +813,8 @@
             ]
           ]
         ],
-        "seconds": 34.6,
-        "peak": 957
+        "seconds": 26.8,
+        "peak": 963
       },
       {
         "result": "works",
@@ -879,80 +880,73 @@
             0.5
           ]
         ],
-        "seconds": 11.3,
-        "peak": 998
+        "seconds": 9.2,
+        "peak": 999
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "In the viewer the control turns and these listed parts stay: p2535; a push by hand does not move it either. Viewer sweep, decision 279.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
+        "result": "works",
+        "turned": [
+          [
+            2.6,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p1510 62274c01": [
+              0.000931,
+              0.664
+            ],
+            "p1513 62274c01": [
+              0.000931,
+              0.664
+            ],
+            "p2535 42055 - 55615": [
+              0.0018,
+              0.388
+            ],
+            "p3153 58121": [
+              0.0018,
+              1.06
+            ],
+            "p418 64178": [
+              0,
+              1.75e-54
+            ]
+          }
+        ],
+        "back": [
+          [
             [
-              2.6,
+              0,
+              0
+            ],
+            [
+              0,
               0
             ]
-          ],
-          "rates": [
-            {
-              "p1510 62274c01": [
-                0.000931,
-                0.664
-              ],
-              "p1513 62274c01": [
-                0.000931,
-                0.664
-              ],
-              "p2535 42055 - 55615": [
-                0.0018,
-                0.388
-              ],
-              "p3153 58121": [
-                0.0018,
-                1.06
-              ],
-              "p418 64178": [
-                0,
-                1.75e-54
-              ]
-            }
-          ],
-          "back": [
+          ]
+        ],
+        "torn": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
+              0,
+              0
+            ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
-          ],
-          "stop": [
-            [
-              null,
-              "limit"
-            ]
-          ],
-          "seconds": 110.8,
-          "peak": 990
-        }
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "seconds": 85.2,
+        "peak": 968
       },
       {
         "result": "works",
@@ -1042,8 +1036,8 @@
             0.93
           ]
         ],
-        "seconds": 14.3,
-        "peak": 969
+        "seconds": 11.2,
+        "peak": 993
       },
       {
         "result": "partly",
@@ -1126,8 +1120,8 @@
               1.2
             ]
           ],
-          "seconds": 23.5,
-          "peak": 938
+          "seconds": 17.1,
+          "peak": 975
         }
       },
       {
@@ -1255,8 +1249,8 @@
           [],
           []
         ],
-        "seconds": 171.5,
-        "peak": 993
+        "seconds": 129.2,
+        "peak": 992
       }
     ]
   }

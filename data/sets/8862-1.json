@@ -189,12 +189,13 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "e32f5816",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 24,
+    "seconds": 17,
     "counts": {
-      "works": 10,
-      "partly": 1,
+      "works": 8,
+      "partly": 3,
       "skipped": 1
     },
     "loose": [],
@@ -247,7 +248,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -317,7 +318,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 2.5
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -367,7 +368,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -417,7 +418,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -511,7 +512,7 @@
             0.97
           ]
         ],
-        "seconds": 2.3
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -566,7 +567,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "works",
@@ -624,145 +625,159 @@
             0.07
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.17,
-            -0.07
-          ]
-        ],
-        "rates": [
-          {
-            "p281 2796c01 against p280 2793c03": [
-              1,
-              60.2
-            ],
-            "p264 3702": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the cylinder moves 22.9 LDU, but the beam p264, listed to stay, moves 3.71 LDU with it, over a tenth of that. The viewer's own turn does not take the control p292. Full viewer sweep at ac22e339, decision 363.",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.17,
+              -0.07
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0.03,
-              0
-            ],
-            [
-              0.01,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0.03,
-              0
-            ],
-            [
-              0.01,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            264,
-            281,
-            0.17,
-            0.17
           ],
-          [
-            0,
-            -1,
-            306,
-            318,
-            0.07,
-            0.07
-          ]
-        ],
-        "seconds": 1
+          "rates": [
+            {
+              "p281 2796c01 against p280 2793c03": [
+                1,
+                60.2
+              ],
+              "p264 3702": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0.03,
+                0
+              ],
+              [
+                0.01,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0.03,
+                0
+              ],
+              [
+                0.01,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              264,
+              281,
+              0.17,
+              0.17
+            ],
+            [
+              0,
+              -1,
+              306,
+              318,
+              0.07,
+              0.07
+            ]
+          ],
+          "seconds": 0.7
+        }
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p319 2796c01 against p318 2793c03": [
-              0.826,
-              49.4
-            ],
-            "p292 3703": [
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the cylinder moves 31.6 LDU, but the axle p292, listed to stay, moves 14.8 LDU and turns 13.7 degrees with it. The viewer's own turn does not take the control p302. Full viewer sweep at ac22e339, decision 363.",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
               0,
-              8.09e-12
+              -1.5
             ]
-          }
-        ],
-        "back": [
-          [
+          ],
+          "rates": [
+            {
+              "p319 2796c01 against p318 2793c03": [
+                0.826,
+                49.4
+              ],
+              "p292 3703": [
+                0,
+                8.09e-12
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              null
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
             [
               0,
-              0
-            ],
-            [
+              1,
+              306,
+              318,
               0,
               0
             ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            306,
-            318,
-            0,
-            0
-          ]
-        ],
-        "seconds": 1.1
+          ],
+          "seconds": 0.7
+        }
       },
       {
         "result": "skipped",
@@ -827,7 +842,7 @@
             0.63
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -945,9 +960,9 @@
           [],
           []
         ],
-        "seconds": 5.7
+        "seconds": 4.1
       }
     ],
-    "peak": 442
+    "peak": 473
   }
 }

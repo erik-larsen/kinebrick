@@ -203,14 +203,14 @@
     ]
   },
   "generated": {
-    "commit": "55ee538d",
+    "commit": "e32f5816",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 146,
+    "seconds": 104,
     "counts": {
       "not checked": 3,
-      "works": 4,
-      "partly": 2
+      "works": 5,
+      "partly": 1
     },
     "loose": [
       "p285 8258 - ls70",
@@ -372,7 +372,7 @@
             ]
           ]
         ],
-        "seconds": 17.3
+        "seconds": 13.9
       },
       {
         "result": "works",
@@ -436,7 +436,7 @@
             null
           ]
         ],
-        "seconds": 53.3
+        "seconds": 39.5
       },
       {
         "result": "partly",
@@ -508,7 +508,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2027 48168",
-        "seconds": 6
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -558,7 +558,7 @@
             ]
           ]
         ],
-        "seconds": 43
+        "seconds": 29.9
       },
       {
         "result": "works",
@@ -637,86 +637,79 @@
             ]
           ]
         ],
-        "seconds": 6.8
+        "seconds": 3.6
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "In the viewer the control turns and these listed parts stay: p682, p6, p1351, p1366, p1367. Viewer sweep, decision 279.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              1.5,
-              -1.5
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p682 62821": [
+              1,
+              8.53e-14
+            ],
+            "p6 3708": [
+              1.4,
+              1.18e-14
+            ],
+            "p1351 2853": [
+              1.4,
+              0
+            ],
+            "p1366 2851 against p1375 2850a": [
+              0,
+              7.98
+            ],
+            "p1367 2851 against p1376 2850a": [
+              0,
+              7.98
+            ],
+            "p1375 2850a": [
+              0,
+              0
+            ],
+            "p1376 2850a": [
+              0,
+              0
             ]
-          ],
-          "rates": [
-            {
-              "p682 62821": [
-                1,
-                8.53e-14
-              ],
-              "p6 3708": [
-                1.4,
-                1.18e-14
-              ],
-              "p1351 2853": [
-                1.4,
-                0
-              ],
-              "p1366 2851 against p1375 2850a": [
-                0,
-                7.98
-              ],
-              "p1367 2851 against p1376 2850a": [
-                0,
-                7.98
-              ],
-              "p1375 2850a": [
-                0,
-                0
-              ],
-              "p1376 2850a": [
-                0,
-                0
-              ]
-            }
-          ],
-          "expected": [
-            {
-              "p1366 2851 against p1375 2850a": 7.98,
-              "p1367 2851 against p1376 2850a": 7.98
-            }
-          ],
-          "back": [
+          }
+        ],
+        "expected": [
+          {
+            "p1366 2851 against p1375 2850a": 7.98,
+            "p1367 2851 against p1376 2850a": 7.98
+          }
+        ],
+        "back": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
+              0,
+              0
+            ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
-          ],
-          "seconds": 14.3
-        }
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 7.8
       },
       {
         "result": "not checked",
@@ -727,6 +720,6 @@
         "seconds": 0
       }
     ],
-    "peak": 878
+    "peak": 1006
   }
 }
