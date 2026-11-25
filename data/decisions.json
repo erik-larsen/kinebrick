@@ -98,6 +98,25 @@
       ],
       "reply": "Sign the 42038's lift",
       "since": "2026-11-25"
+    },
+    {
+      "id": "42111-fn10-lifted",
+      "kind": "Sign-off",
+      "title": "42111 Dom's Dodge Charger, function 10 (the lever swings the wheelie bar down): work it with the car lifted?",
+      "what": "The red lever between the seats swings a bar down under the car. In the viewer the bar meets the floor after 0.07 rad and stops, which is right for a car on the floor: on the real car the bar then lifts the front, which Kinebrick does not show, since it has no weights and forces yet. The check turns the lever its full 0.73 rad, because its turn does not test the floor. So the function has been held at partly. The booklet's page 229 (bottom picture) draws the car held up with the bar swung down. Claude ran the check from a copy of the list with the car lifted: it works, the lever turns 0.73 rad and the wheels stay still.",
+      "effect": "With your yes function 10 gets the setting \"lifted\", as functions 6 and 8 of this set have. The worker then sweeps it in the viewer, and the hold is lifted when the sweep shows it. The function's words still say that the car rears up; that part waits for the dynamics stage.",
+      "links": [
+        {
+          "label": "42111 in the viewer, lifted, the lever and the bar marked",
+          "url": "http://localhost:5174/?file=omr/42111-1+Dom%27s+Dodge+Charger.mpd&show=328,326,463,466&autospin=328,paused&lifted=1&library=/ldraw/"
+        },
+        {
+          "label": "Booklet, page 229",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=229"
+        }
+      ],
+      "reply": "Sign the 42111's lift",
+      "since": "2026-11-25"
     }
   ],
   "coming": [
@@ -115,7 +134,7 @@
     },
     {
       "title": "The next offer of main",
-      "what": "After the free-parts rule and the track depth with the track reading, each when it loses no working function; the differentials need no further rule (364) and the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+      "what": "After the track depth with the track reading and the free-parts rule, each when it loses no working function. The track reading came to Claude's gate on 25 November and waits for one mend (368): each track stands on a single point today, so a track unit can tip and its nose goes under the floor, which stops the 42069's steering in the viewer. The differentials need no further rule (364) and the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     },
     {
       "title": "The new differential (part 65414c01): its wheels now turn against each other; the two drive lines wait for your signatures",
