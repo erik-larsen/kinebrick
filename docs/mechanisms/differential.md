@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 54 works, 20 partly, 1 no, 1 skipped, 2 not checked.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 57 works, 19 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -97,8 +97,8 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- Rolling the truck turns the four-cylinder engine: both axles' differentials are linked by shafts with universal joints (permanent four-wheel drive), and the drive turns the crankshaft, so the pistons pump up and down. (not checked)
-- Each axle's differential lets its two wheels turn at different speeds round corners. (not checked)
+- Rolling the truck turns the four-cylinder engine: both axles' differentials are linked by shafts with universal joints (permanent four-wheel drive), and the drive turns the crankshaft, so the pistons pump up and down. (works)
+- Each axle's differential lets its two wheels turn at different speeds round corners. (works)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
@@ -151,7 +151,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (partly)
+- Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (works)
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 

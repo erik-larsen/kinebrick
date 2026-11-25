@@ -56,13 +56,6 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42069-1",
-    "function": 5,
-    "result": "partly",
-    "reason": "In the viewer the control turns and these listed parts stay: p1333, p146, p162; a push by hand does not move them either. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
     "set": "8258-1",
     "function": 7,
     "result": "partly",
@@ -182,10 +175,24 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42004-1",
-    "function": 3,
+    "set": "42038-1",
+    "function": 1,
     "result": "partly",
-    "reason": "The viewer sweep does not show it: turning the gear p227 on the loader arm moves neither listed part of the bucket's tilt (p229 2951, p207 6632, each against p50 44294). The sweep of 2026-11-21 said the same and it was not held then; the sweep at 25b50532 confirms it (decision 354). The check turns the gear and judges the parts by their rates.",
-    "date": "2026-11-24"
+    "reason": "The viewer sweep does not show it: with Shift pressed on the steering gear p170 (no friction pin holds it), the viewer's turn of it goes 0 both ways and a pointer drag turns it 0; the listed parts move 0.1 at most (the sweep at 85aa8904, decision 355). The check turns it 1.5 rad each way.",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "42111-1",
+    "function": 10,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355).",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "8835-1",
+    "function": 2,
+    "result": "partly",
+    "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355).",
+    "date": "2026-11-25"
   }
 ]

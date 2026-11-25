@@ -4,7 +4,7 @@ Air let in by a valve pushes a cylinder out or in. (Moving and lifting.)
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): Pump with the red hand pump and push the valve at the left of the cab's back to the side, and the yellow cylinder at the front of the cab raises or lowers the boom, carrying the stick and bucket with it.
 
-Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 3 works, 7 partly, 9 no, 6 skipped, 4 not checked.
+Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 4 works, 8 partly, 11 no, 6 skipped.
 
 ## By decade
 
@@ -81,10 +81,10 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *main boom:* The first valve on the crane base works the cylinder that raises and lowers the crane's main boom. (not checked)
-- *outer arm:* The second valve works the cylinder that swings the crane's outer arm with the grab up and down. (not checked)
-- *grab:* The third valve works the small cylinder that opens and closes the grab's jaws. (not checked)
-- A fourth valve on the truck, by the gearbox, is part of the air system. (not checked)
+- *main boom:* The first valve on the crane base works the cylinder that raises and lowers the crane's main boom. (partly)
+- *outer arm:* The second valve works the cylinder that swings the crane's outer arm with the grab up and down. (no)
+- *grab:* The third valve works the small cylinder that opens and closes the grab's jaws. (works)
+- A fourth valve on the truck, by the gearbox, is part of the air system. (no)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
