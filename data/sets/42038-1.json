@@ -23,6 +23,7 @@
         ],
         "source": "book 1: steps 1-9 (the vertical shaft and bevel gears, pages 3-6), front axle steps 1-17 (the rack, pages 38-44), steps 47-53 (front axle fitted; step 53 on page 56 draws the gear turning and the front tracks swinging)",
         "control": "p170 32270",
+        "lifted": true,
         "moves": [
           "p290 32270",
           "p288 64781",
@@ -212,10 +213,9 @@
     ]
   },
   "generated": {
-    "commit": "098b0db7",
-    "uncommitted": true,
+    "commit": "217f2925",
     "date": "2026-11-25",
-    "seconds": 37,
+    "seconds": 33,
     "counts": {
       "works": 7,
       "no": 1,
@@ -310,7 +310,7 @@
             "for": "p170 32270"
           }
         ],
-        "seconds": 4.2
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -400,7 +400,7 @@
             0.8
           ]
         ],
-        "seconds": 3.9
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -550,7 +550,7 @@
             0.5
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -600,7 +600,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -646,7 +646,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.4
       },
       {
         "result": "no",
@@ -762,7 +762,7 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 4.4
+        "seconds": 3.7
       },
       {
         "result": "skipped",
@@ -1098,7 +1098,7 @@
             0.17
           ]
         ],
-        "seconds": 10.7
+        "seconds": 9.6
       },
       {
         "result": "not checked",
@@ -1139,13 +1139,13 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.4
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 787
+    "peak": 763
   }
 }

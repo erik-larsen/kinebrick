@@ -185,7 +185,7 @@
           "hinge: lid"
         ],
         "source": "book page 491 (middle left)",
-        "control": "p2475 3710"
+        "control": "p2473 11212"
       },
       {
         "does": "The roof rack, with its roof box, side case and ladder, lifts off; the white roof stays.",
@@ -204,10 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "55ee538d",
-    "uncommitted": true,
+    "commit": "217f2925",
     "date": "2026-11-25",
-    "seconds": 2008,
+    "seconds": 1594,
     "counts": {
       "works": 10,
       "partly": 3,
@@ -315,8 +314,8 @@
             ]
           ]
         ],
-        "seconds": 102.3,
-        "peak": 942
+        "seconds": 81.3,
+        "peak": 937
       },
       {
         "result": "works",
@@ -358,8 +357,8 @@
             ]
           ]
         ],
-        "seconds": 105.8,
-        "peak": 980
+        "seconds": 81.4,
+        "peak": 948
       },
       {
         "result": "partly",
@@ -417,8 +416,8 @@
         ],
         "cause": "too-little",
         "detail": "p211 4519",
-        "seconds": 1224,
-        "peak": 958
+        "seconds": 1033.8,
+        "peak": 976
       },
       {
         "result": "works",
@@ -468,8 +467,8 @@
             ]
           ]
         ],
-        "seconds": 15.9,
-        "peak": 947
+        "seconds": 11,
+        "peak": 970
       },
       {
         "result": "partly",
@@ -555,8 +554,8 @@
               0.17
             ]
           ],
-          "seconds": 5.5,
-          "peak": 975
+          "seconds": 4.5,
+          "peak": 981
         }
       },
       {
@@ -623,8 +622,8 @@
             0.5
           ]
         ],
-        "seconds": 8,
-        "peak": 956
+        "seconds": 7,
+        "peak": 983
       },
       {
         "result": "works",
@@ -690,8 +689,8 @@
             0.5
           ]
         ],
-        "seconds": 8.3,
-        "peak": 954
+        "seconds": 4.9,
+        "peak": 938
       },
       {
         "result": "works",
@@ -733,8 +732,8 @@
             ]
           ]
         ],
-        "seconds": 16.7,
-        "peak": 945
+        "seconds": 11.6,
+        "peak": 954
       },
       {
         "result": "skipped"
@@ -854,8 +853,8 @@
             "for": "p1902 64782"
           }
         ],
-        "seconds": 320.5,
-        "peak": 931
+        "seconds": 201.3,
+        "peak": 934
       },
       {
         "result": "works",
@@ -908,8 +907,8 @@
             0
           ]
         ],
-        "seconds": 10.7,
-        "peak": 944
+        "seconds": 6.6,
+        "peak": 1010
       },
       {
         "result": "works",
@@ -978,8 +977,8 @@
             0.1
           ]
         ],
-        "seconds": 4.8,
-        "peak": 940
+        "seconds": 3.7,
+        "peak": 941
       },
       {
         "result": "works",
@@ -1051,7 +1050,7 @@
             "for": "p2586 32739"
           }
         ],
-        "seconds": 26.9,
+        "seconds": 21.2,
         "peak": 957
       },
       {
@@ -1115,15 +1114,15 @@
           "freedFor": [
             {
               "pin": "p2498 2780",
-              "for": "p2475 3710"
+              "for": "p2473 11212"
             },
             {
               "pin": "p2499 2780",
-              "for": "p2475 3710"
+              "for": "p2473 11212"
             }
           ],
-          "seconds": 28.2,
-          "peak": 930
+          "seconds": 21,
+          "peak": 950
         }
       },
       {

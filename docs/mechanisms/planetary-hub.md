@@ -4,7 +4,7 @@ A planetary gear set in the wheel or sprocket hub slows its turn. (Drivetrain.)
 
 First appears in 2019, in [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1): The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs.
 
-Used in 3 of the 186 surveyed sets, by 5 functions. Kinebrick: 3 works, 2 partly.
+Used in 3 of the 186 surveyed sets, by 5 functions. Kinebrick: 4 works, 1 partly.
 
 ## By decade
 
@@ -22,7 +22,7 @@ Used in 3 of the 186 surveyed sets, by 5 functions. Kinebrick: 3 works, 2 partly
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
-- The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
+- The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 

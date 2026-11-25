@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 702,
-      "partly": 251,
+      "works": 703,
+      "partly": 250,
       "no": 91,
       "functions": 1223
     },
@@ -22,111 +22,19 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "42110-fn14-lid-control",
-      "kind": "Sign-off",
-      "title": "42110 Land Rover Defender, function 14 (the roof case's lid): name the lid's top plate as its control?",
-      "what": "The list says the lid of the case on the roof swings open, and names as its control a plate inside the lid (p2475) that no view shows, so no hand can grab it in the viewer. The function has been held at partly since 21 November for that reason. The lid is one piece of 26 parts. The worker tried it by hand in the viewer: Shift on the lid's visible 3x3 top plate (p2473) frees the lid's two friction pins, and a drag then opens the lid 97 degrees. Claude ran the check with that plate as the control: it frees the same two pins and says works. The booklet's page 491 (middle left picture) shows the lid lifted.",
-      "effect": "With your yes the function's control is p2473 in place of p2475; what the function is does not change. The check then says works, and the hold is lifted once the viewer sweep shows it.",
-      "links": [
-        {
-          "label": "42110 in the viewer, the lid's top plate and the old control marked",
-          "url": "http://localhost:5174/?file=omr/42110-1+Land+Rover+Defender.mpd&show=2473,2475&autospin=2473,paused"
-        },
-        {
-          "label": "Booklet, page 491",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=491"
-        }
-      ],
-      "reply": "Sign the 42110's lid control",
-      "since": "2026-11-24"
-    },
-    {
-      "id": "42114-front-shaft-axle",
-      "kind": "Sign-off",
-      "title": "42114 Volvo Articulated Hauler: one axle of the front drive shaft is a stud off in the file. Sign the erratum?",
-      "what": "The front axle's differential gets no drive in Kinebrick. The worker traced it to one part of the shaft that runs forward under the cab: an axle 4 with a stop in its middle (part 99008, p1030, in the cabin's sub-model). Claude checked it from the LDraw shapes alone. As the file has it, the axle's rear end only touches the connector that should drive it, without entering it, and its front half fills the next connector from end to end, in the same socket as another axle: the two overlap by 19 LDU. Moved one stud (20 LDU) back, the axle sits 20 LDU in each connector and overlaps nothing, and its stop sits in the round hole it is made for. The booklet's step 275 (page 172) does not show the shaft clearly enough to settle it.",
-      "effect": "With your yes the erratum moves that one axle 20 LDU. By the worker's trial the front differential and both front wheels then turn with the motor. Function 1 (the motor drives all six wheels) stays partly for now, because the middle axle's wheel still stands for another reason, which the solver owner has.",
-      "links": [
-        {
-          "label": "42114 in the viewer, the axle marked",
-          "url": "http://localhost:5174/?file=omr/42114-1+6x6+Volvo+Articulated+Hauler.mpd&show=1030&autospin=427,paused"
-        },
-        {
-          "label": "Booklet, page 172 (step 275)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=172"
-        }
-      ],
-      "reply": "Sign the 42114's axle erratum",
-      "since": "2026-11-25"
-    },
-    {
-      "id": "42129-fn1-lifted",
-      "kind": "Sign-off",
-      "title": "42129 Mercedes-Benz Zetros, function 1 (the motors drive all four wheels): work it with the truck lifted?",
-      "what": "In Kinebrick the two drive motors turn the front wheels only; the rear axle's differential and wheels stand still, so the function is partly. The solver owner found why, and Claude checked it from the LDraw shapes: the file draws the front tyres 2 LDU higher than the rear tyres, so on the ground only the rear tyres touch. The truck then rests on them, and the centre differential sends the whole turn to the front wheels, which are free in the air. An open differential does just that on a real truck with two wheels off the ground. With the truck held up, the check turns both axles' differentials alike (0.429 of the motor) and all wheels alike (0.0794); Claude ran that from a copy of the list. The list already works every wheel that is turned by hand with the model lifted, and function 3 of this set is one of them.",
-      "effect": "With your yes function 1 gets the setting \"lifted\": what the function is does not change. The check then says works, and the worker sweeps it in the viewer. The solver gets no new rule for differentials: it does not need one (364).",
-      "links": [
-        {
-          "label": "42129 in the viewer, lifted, the two axle differentials and one wheel of each axle marked",
-          "url": "http://localhost:5174/?file=omr/42129-1+4x4+Mercedes-Benz+Zetros+Trial+Truck.mpd&show=1309,1032,2930,2932&autospin=20,paused&lifted=1&library=/ldraw/"
-        },
-        {
-          "label": "Booklet, page 372",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=372"
-        }
-      ],
-      "reply": "Sign the 42129's lift",
-      "since": "2026-11-25"
-    },
-    {
-      "id": "42038-fn1-lifted",
-      "kind": "Sign-off",
-      "title": "42038 Arctic Truck, function 1 (the gear on top steers the front track units): work it with the truck lifted?",
-      "what": "The file draws the front axle hanging at full droop, 27.7 degrees, as the truck is when held up (362). With the tracks on the ground in that pose, steering would have to lift one front track unit and lower the other, so it hardly turns: 0.47 rad one way and 0.10 the other. With the truck held up it turns 1.5 rad each way and both hubs swing alike. The solver owner tried it on the branch that reads how deep the tracks stand; Claude ran both there and got the same figures. On preview today nothing changes, because there the front tracks do not yet reach the ground.",
-      "effect": "With your yes function 1 gets the setting \"lifted\". That lets the track depth and the track reading come to Claude's gate without losing this function. A correction to what stood here this morning: the function is no longer held. Claude had found that a drag turned the gear one way only and called it a fault of the viewer. It was a fault of the test scripts' pointer path; the viewer was right, and a pointer now steers it both ways (366).",
-      "links": [
-        {
-          "label": "42038 in the viewer, lifted, the hubs and their bearings marked",
-          "url": "http://localhost:5174/?file=omr/42038-1+Arctic+Truck.mpd&show=282,283,284,285&autospin=170,paused&lifted=1&library=/ldraw/"
-        },
-        {
-          "label": "Booklet, page 56 (step 53)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112236.pdf#page=56"
-        }
-      ],
-      "reply": "Sign the 42038's lift",
-      "since": "2026-11-25"
-    },
-    {
-      "id": "42111-fn10-lifted",
-      "kind": "Sign-off",
-      "title": "42111 Dom's Dodge Charger, function 10 (the lever swings the wheelie bar down): work it with the car lifted?",
-      "what": "The red lever between the seats swings a bar down under the car. In the viewer the bar meets the floor after 0.07 rad and stops, which is right for a car on the floor: on the real car the bar then lifts the front, which Kinebrick does not show, since it has no weights and forces yet. The check turns the lever its full 0.73 rad, because its turn does not test the floor. So the function has been held at partly. The booklet's page 229 (bottom picture) draws the car held up with the bar swung down. Claude ran the check from a copy of the list with the car lifted: it works, the lever turns 0.73 rad and the wheels stay still.",
-      "effect": "With your yes function 10 gets the setting \"lifted\", as functions 6 and 8 of this set have. The worker then sweeps it in the viewer, and the hold is lifted when the sweep shows it. The function's words still say that the car rears up; that part waits for the dynamics stage.",
-      "links": [
-        {
-          "label": "42111 in the viewer, lifted, the lever and the bar marked",
-          "url": "http://localhost:5174/?file=omr/42111-1+Dom%27s+Dodge+Charger.mpd&show=328,326,463,466&autospin=328,paused&lifted=1&library=/ldraw/"
-        },
-        {
-          "label": "Booklet, page 229",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=229"
-        }
-      ],
-      "reply": "Sign the 42111's lift",
-      "since": "2026-11-25"
-    }
-  ],
+  "waiting": [],
   "coming": [
+    {
+      "title": "Performance first; the set work is paused",
+      "what": "On 25 November you paused the work on the sets to make it faster first. The worker finishes four things (a sweep that is two thirds through, the Hauler's erratum, the proof of one collision rule, the sweep of the four signed functions); the solver owner's track work is parked unmerged with its cause written down (373); the train owner was idle. Claude gates what their closing reports bring and then works on performance with you. Where the time goes today: the function check sums to 8.2 hours of processor time, 81% of it in 12 of 187 sets; the viewer sweep to 17.5 hours, nearly half of it dragging by hand and a quarter finding a camera view of the control."
+    },
     {
       "title": "A sanity check of every working function in the viewer",
       "what": "You asked for it on 20 November: every function the check calls working is tried in the viewer, both by the viewer's own turn and by a pointer drag as a person makes it, and what the viewer does not show is held at partly. The second pass ran on 25 November over all 729 working functions and took six hours (363). The worker then traced what it did not show and found six faults in the sweep itself, none in the viewer (367): with those mended, 29 more functions are shown and none fewer. Claude read each hold by its figures and tried three by hand with a user's presses and drags only. Today 702 functions work and 27 are held. Still open: 172 functions that turn farther one way than the other are swept once more with the mended sweep, and three functions with a very short travel wait for a look at their booklets."
     },
     {
       "title": "System hinges, doors and clips",
-      "what": "On 24 November you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). It does not start yet (345). It starts when the worker's four tasks on the Technic sets are in or parked (the pistons of the 42078 and 42110, the 42129's drive line, the three functions held on 21 November, the tilted rods of the 42123's V8) and the next offer of main has gone to you. The order then: first doors on a stud pivot and the three single fittings, about 2.5 days, which touch no set that works today; then the bar in a clip and the glass; lids closed onto studs last and on a branch of their own, because that changes how every stud holds in every set and needs a full check. The winch and its string wait for a rule on strings."
+      "what": "On 24 November you left the start to Claude. It does not start during the pause for performance work (372). The order when it starts: first doors on a stud pivot and the three single fittings, about 2.5 days, which touch no set that works today; then the bar in a clip and the glass; lids closed onto studs last and on a branch of their own, because that changes how every stud holds in every set and needs a full check. The winch and its string wait for a rule on strings."
     },
     {
       "title": "A second worker: not proposed for now",
@@ -134,11 +42,11 @@
     },
     {
       "title": "The next offer of main",
-      "what": "After the track depth with the track reading and the free-parts rule, each when it loses no working function. The track reading came to Claude's gate on 25 November and waits for one mend (368): each track stands on a single point today, so a track unit can tip and its nose goes under the floor, which stops the 42069's steering in the viewer. The differentials need no further rule (364) and the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+      "what": "Not during the pause. When the work resumes: after the track depth with the track reading, which is parked on its branch with one open cause (373), and the free-parts rule, each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     },
     {
-      "title": "The new differential (part 65414c01): its wheels now turn against each other; the two drive lines wait for your signatures",
-      "what": "Read as its pieces since 24 November (348). On 25 November the worker mended how its three small gears are read (360): on the 42109 Top Gear Rally Car and the 42124 Off-Road Buggy, turning one rear wheel now turns the other the opposite way. The two drive lines that still stop need no new rule in the solver (364): the Zetros's rear axle stands because only its rear tyres touch the ground, and the Hauler's middle axle because one tyre does. The cure for the Zetros is to work the function with the truck lifted, which waits for your signature; the Hauler waits for your signature on the axle that is a stud off in the file, and is looked at again after it."
+      "title": "The new differential (part 65414c01): the Zetros drives all four wheels; the Hauler waits for its erratum to be added",
+      "what": "Read as its pieces since 24 November (348), its three small gears mended on 25 November (360). No new rule in the solver was needed (364). The Zetros's function 1 works since you signed \"lifted\" for it. The Hauler's front shaft gets its signed erratum from the worker; its middle axle is looked at again after that."
     }
   ],
   "done": [
@@ -589,6 +497,14 @@
     {
       "date": "2026-11-24",
       "what": "42112 Concrete Mixer Truck: the piston erratum of 21 November is withdrawn (\"Withdraw it\"). It was Kinebrick's measuring fault, not the file's. With the mend merged, the 42078 Mack Anthem's function 2 (pushing the truck drives the engine) works; the 42112 keeps its 7 working functions (349)."
+    },
+    {
+      "date": "2026-11-25",
+      "what": "Five signed at once (\"sign all five\"): the 42110 Land Rover Defender's lid control (function 14 now names the lid's top plate); \"lifted\" on the 42129 Zetros's function 1, the 42038 Arctic Truck's function 1 and the 42111 Dodge Charger's function 10; and the 42114 Volvo Hauler's axle erratum, which the worker adds. The Zetros's function 1 (the motors drive all four wheels) now works; the lid and the wheelie bar stay held until the sweep shows them (372)."
+    },
+    {
+      "date": "2026-11-25",
+      "what": "The set work is paused for performance work first (\"let's bring the work to a stop after the latest in progress tasks are done and tested\"). The sessions finish and test only what they have in hand and then stop; System hinges, a second worker and an offer of main wait until you say the pause is over (372)."
     }
   ]
 }
