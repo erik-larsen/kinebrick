@@ -331,7 +331,7 @@
     {
       "function": 3,
       "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
-      "verdict": "not shown",
+      "verdict": "shown",
       "msOneCall": 5,
       "msPerStep": null,
       "time": {
@@ -442,9 +442,11 @@
           ]
         }
       ],
-      "why": "by hand: p50 44294 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 9
+      "seconds": 9,
+      "decidedBy": [
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p50 44294 moved 2.8, the least-moved listed part 40.31"
+      ]
     },
     {
       "function": 4,

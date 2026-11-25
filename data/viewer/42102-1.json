@@ -349,7 +349,7 @@
     {
       "function": 3,
       "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
-      "verdict": "not shown",
+      "verdict": "shown",
       "msOneCall": 5,
       "msPerStep": null,
       "time": {
@@ -513,9 +513,12 @@
           ]
         }
       ],
-      "why": "by hand: p125 55982, p127 55982 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 15
+      "seconds": 15,
+      "decidedBy": [
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 28.91",
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 28.91"
+      ]
     },
     {
       "function": 4,
