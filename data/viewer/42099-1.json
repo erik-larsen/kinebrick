@@ -1,25 +1,25 @@
 {
   "set": "42099-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T15:04:48.437Z",
-  "load": 10.5,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:32:40.817Z",
+  "load": 7.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 931,
-  "seconds": 133,
+  "seconds": 203,
   "functions": [
     {
       "function": 2,
       "does": "The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs.",
       "verdict": "shown",
-      "msOneCall": 138,
-      "msPerStep": 40,
+      "msOneCall": 124,
+      "msPerStep": 37,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 4,
+        "reach": 20,
         "A": 3,
-        "B": 20
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1702,
-          "msOneCall": 138,
+          "ms": 1602,
+          "msOneCall": 124,
           "stops": [],
           "moved": {
             "p83 32270": [
@@ -72,8 +72,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1343,
-          "msOneCall": 50,
+          "ms": 1407,
+          "msOneCall": 54,
           "stops": [],
           "moved": {
             "p83 32270": [
@@ -118,27 +118,88 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
-          "moved": [
-            "p43 62821"
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
           ],
+          "controlWent": [
+            0,
+            0
+          ],
+          "moved": [
+            "p43 62821",
+            "p1864 23798",
+            "p1868 23798"
+          ],
+          "went": {
+            "p83 32270": [
+              0,
+              0
+            ],
+            "p59 42099 - 18575": [
+              0,
+              0
+            ],
+            "p20 32270": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              180
+            ],
+            "p1864 23798": [
+              0.2,
+              180
+            ],
+            "p1868 23798": [
+              0.2,
+              180
+            ]
+          },
+          "staysWent": {
+            "p1862 23798": [
+              0,
+              0
+            ],
+            "p1866 23798": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 35
+      "seconds": 57
     },
     {
       "function": 4,
       "does": "The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs.",
       "verdict": "shown",
-      "msOneCall": 186,
-      "msPerStep": 53,
+      "msOneCall": 180,
+      "msPerStep": 54,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 12
+        "B": 24
       },
       "stop": {
         "control": "p1096 32270",
@@ -159,8 +220,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.488,
-          "ms": 742,
-          "msOneCall": 186,
+          "ms": 751,
+          "msOneCall": 180,
           "stops": [
             "453/612"
           ],
@@ -192,8 +253,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.488,
-          "ms": 718,
-          "msOneCall": 93,
+          "ms": 712,
+          "msOneCall": 91,
           "stops": [
             "453/613"
           ],
@@ -228,12 +289,60 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            0
+          ],
           "moved": [
             "p595 87761",
             "p565 42099 - 46490c02",
             "p577 42099 - 46490c02"
           ],
+          "went": {
+            "p595 87761": [
+              15.52,
+              0
+            ],
+            "p565 42099 - 46490c02": [
+              14.94,
+              0
+            ],
+            "p577 42099 - 46490c02": [
+              14.94,
+              0
+            ]
+          },
+          "staysWent": {
+            "p102 42099 - 46490c02": [
+              0,
+              0
+            ],
+            "p121 42099 - 46490c02": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
+            "453/613",
             "453/612"
           ]
         }
@@ -249,14 +358,13 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 21
+      "seconds": 33
     },
     {
       "function": 5,
       "does": "The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way.",
-      "verdict": "not shown",
-      "why": "B: no listed part moved by hand",
-      "msOneCall": 102,
+      "verdict": "shown",
+      "msOneCall": 103,
       "msPerStep": 21,
       "time": {
         "open": 7,
@@ -264,7 +372,7 @@
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 16
+        "B": 19
       },
       "stop": null,
       "stops": [],
@@ -274,8 +382,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 907,
-          "msOneCall": 102,
+          "ms": 894,
+          "msOneCall": 103,
           "stops": [],
           "moved": {
             "p1862 23798": [
@@ -297,8 +405,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 847,
-          "msOneCall": 38,
+          "ms": 881,
+          "msOneCall": 40,
           "stops": [],
           "moved": {
             "p1862 23798": [
@@ -323,26 +431,66 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
-          "moved": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.33,
+            180
+          ],
+          "moved": [
+            "p1862 23798"
+          ],
+          "went": {
+            "p1862 23798": [
+              0.42,
+              180
+            ]
+          },
+          "staysWent": {
+            "p878 42099 - 18575": [
+              0,
+              0
+            ],
+            "p490 62821": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 26
+      "seconds": 28
     },
     {
       "function": 6,
       "does": "The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way.",
-      "verdict": "not shown",
-      "why": "B: no listed part moved by hand",
-      "msOneCall": 125,
-      "msPerStep": 32,
+      "verdict": "shown",
+      "msOneCall": 119,
+      "msPerStep": 31,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 3,
-        "B": 16
+        "B": 20
       },
       "stop": null,
       "stops": [],
@@ -352,8 +500,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1365,
-          "msOneCall": 125,
+          "ms": 1321,
+          "msOneCall": 119,
           "stops": [],
           "moved": {
             "p1864 23798": [
@@ -375,8 +523,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1315,
-          "msOneCall": 51,
+          "ms": 1230,
+          "msOneCall": 46,
           "stops": [],
           "moved": {
             "p1864 23798": [
@@ -401,17 +549,58 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
-          "moved": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.3,
+            63.59
+          ],
+          "moved": [
+            "p1864 23798"
+          ],
+          "went": {
+            "p1864 23798": [
+              0.24,
+              63.59
+            ]
+          },
+          "staysWent": {
+            "p363 42099 - 18575": [
+              0,
+              0
+            ],
+            "p43 62821": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 26
+      "seconds": 30
     },
     {
       "function": 9,
       "does": "The small steering wheel on the dashboard turns freely; it isn't joined to the steering.",
       "verdict": "shown",
-      "msOneCall": 175,
+      "msOneCall": 159,
       "msPerStep": 27,
       "time": {
         "open": 7,
@@ -419,7 +608,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 17
+        "B": 47
       },
       "stop": {
         "control": "p1452 2819",
@@ -439,8 +628,8 @@
           "way": 1,
           "asked": 0.7,
           "went": 0.7,
-          "ms": 533,
-          "msOneCall": 175,
+          "ms": 531,
+          "msOneCall": 159,
           "stops": [],
           "moved": {}
         },
@@ -449,8 +638,8 @@
           "way": -1,
           "asked": 1.47,
           "went": -0.7,
-          "ms": 507,
-          "msOneCall": 73,
+          "ms": 522,
+          "msOneCall": 77,
           "stops": [
             "1240/1452"
           ],
@@ -464,9 +653,26 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            }
+          ],
+          "controlWent": [
+            112.65,
+            0
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
-            "1437/1452"
+            "1240/1452"
           ]
         }
       ],
@@ -481,7 +687,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 26
+      "seconds": 56
     }
   ]
 }

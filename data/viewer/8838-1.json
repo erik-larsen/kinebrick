@@ -1,17 +1,16 @@
 {
   "set": "8838-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:09:40.304Z",
-  "load": 12,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:43:05.096Z",
+  "load": 6.6,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 233,
-  "seconds": 40,
+  "seconds": 43,
   "functions": [
     {
       "function": 2,
       "does": "The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.",
       "verdict": "not shown",
-      "why": "A: p227 2910, p219 3706, p220 8838 - 2903 not moved",
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
@@ -20,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 3
+        "B": 6
       },
       "stop": null,
       "stops": [],
@@ -103,23 +102,68 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "push",
+              "amount": 1
+            }
+          ],
+          "controlWent": [
+            63.84,
+            68.7
+          ],
           "moved": [
             "p227 2910",
             "p219 3706",
             "p220 8838 - 2903"
+          ],
+          "went": {
+            "p227 2910": [
+              63.82,
+              68.7
+            ],
+            "p219 3706": [
+              45.14,
+              70.58
+            ],
+            "p220 8838 - 2903": [
+              45.14,
+              70.58
+            ]
+          },
+          "staysWent": {
+            "p224 2909": [
+              63.82,
+              68.7
+            ],
+            "p226 2909": [
+              63.8,
+              68.7
+            ],
+            "p77 2905": [
+              45.14,
+              68.64
+            ]
+          },
+          "staysMoved": [
+            "p224 2909",
+            "p226 2909",
+            "p77 2905"
           ],
           "stops": [
             "81/113"
           ]
         }
       ],
-      "seconds": 7
+      "why": "by hand: p224 2909, p226 2909, p77 2905 listed to stay moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 10
     },
     {
       "function": 5,
       "does": "Turning the rear wheel works the two-cylinder engine: a 24-tooth gear on the rear wheel drives the chain to a 16-tooth gear on the swinging arm's pivot axle; a 24-tooth gear on that axle turns an 8-tooth gear on a 6-long axle, whose 14-tooth bevel gear turns the bevel gear on the crankshaft, so the two pistons go in and out of their cylinders on either side.",
       "verdict": "shown",
-      "msOneCall": 32,
+      "msOneCall": 29,
       "msPerStep": 5,
       "time": {
         "open": 4,
@@ -127,7 +171,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -137,8 +181,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 202,
-          "msOneCall": 32,
+          "ms": 195,
+          "msOneCall": 29,
           "stops": [],
           "moved": {
             "p176 3648a": [
@@ -184,7 +228,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 188,
+          "ms": 175,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -234,6 +278,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            113.9
+          ],
           "moved": [
             "p176 3648a",
             "p62 4019",
@@ -243,10 +309,51 @@
             "p5 2851",
             "p6 2851"
           ],
+          "went": {
+            "p176 3648a": [
+              0,
+              113.9
+            ],
+            "p62 4019": [
+              0,
+              171.32
+            ],
+            "p63 3648a": [
+              0,
+              171.32
+            ],
+            "p25 4143": [
+              0,
+              152.44
+            ],
+            "p1 2853": [
+              19.44,
+              152.44
+            ],
+            "p5 2851": [
+              17.11,
+              0
+            ],
+            "p6 2851": [
+              12.83,
+              0
+            ]
+          },
+          "staysWent": {
+            "p19 2850a": [
+              0,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 6,
@@ -270,7 +377,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 82,
+          "ms": 73,
           "msOneCall": 17,
           "stops": [],
           "moved": {}
@@ -280,7 +387,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 53,
+          "ms": 51,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -293,7 +400,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            121.32
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],

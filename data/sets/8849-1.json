@@ -125,11 +125,13 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "e32f5816",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 6,
+    "seconds": 4,
     "counts": {
-      "works": 6,
+      "works": 5,
+      "partly": 1,
       "not checked": 1
     },
     "loose": [],
@@ -199,7 +201,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -251,88 +253,95 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.56,
-            -0.56
-          ]
-        ],
-        "rates": [
-          {
-            "p100 4261": [
-              1.03,
-              76.2
-            ],
-            "p101 4261": [
-              1.03,
-              76.2
-            ],
-            "p114 3743": [
-              1,
-              3.15
-            ],
-            "p118 3707": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the front axle rocks 63 degrees, but the axle p118, listed to stay, turns 9.85 degrees with it. The viewer's own turn does not take the control p97. Full viewer sweep at ac22e339, decision 363.",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.56,
+              -0.56
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            116,
-            155,
-            0.56,
-            0.56
           ],
-          [
-            0,
-            -1,
-            117,
-            154,
-            0.56,
-            0.56
-          ]
-        ],
-        "seconds": 0.4
+          "rates": [
+            {
+              "p100 4261": [
+                1.03,
+                76.2
+              ],
+              "p101 4261": [
+                1.03,
+                76.2
+              ],
+              "p114 3743": [
+                1,
+                3.15
+              ],
+              "p118 3707": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              116,
+              155,
+              0.56,
+              0.56
+            ],
+            [
+              0,
+              -1,
+              117,
+              154,
+              0.56,
+              0.56
+            ]
+          ],
+          "seconds": 0.2
+        }
       },
       {
         "result": "works",
@@ -384,7 +393,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -463,7 +472,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "not checked",
@@ -585,9 +594,9 @@
           [],
           []
         ],
-        "seconds": 1.8
+        "seconds": 1
       }
     ],
-    "peak": 359
+    "peak": 356
   }
 }

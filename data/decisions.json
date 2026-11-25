@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 699,
-      "partly": 254,
+      "works": 696,
+      "partly": 257,
       "no": 91,
       "functions": 1223
     },
@@ -60,12 +60,50 @@
       ],
       "reply": "Sign the 42114's axle erratum",
       "since": "2026-11-25"
+    },
+    {
+      "id": "42129-fn1-lifted",
+      "kind": "Sign-off",
+      "title": "42129 Mercedes-Benz Zetros, function 1 (the motors drive all four wheels): work it with the truck lifted?",
+      "what": "In Kinebrick the two drive motors turn the front wheels only; the rear axle's differential and wheels stand still, so the function is partly. The solver owner found why, and Claude checked it from the LDraw shapes: the file draws the front tyres 2 LDU higher than the rear tyres, so on the ground only the rear tyres touch. The truck then rests on them, and the centre differential sends the whole turn to the front wheels, which are free in the air. An open differential does just that on a real truck with two wheels off the ground. With the truck held up, the check turns both axles' differentials alike (0.429 of the motor) and all wheels alike (0.0794); Claude ran that from a copy of the list. The list already works every wheel that is turned by hand with the model lifted, and function 3 of this set is one of them.",
+      "effect": "With your yes function 1 gets the setting \"lifted\": what the function is does not change. The check then says works, and the worker sweeps it in the viewer. The solver gets no new rule for differentials: it does not need one (364).",
+      "links": [
+        {
+          "label": "42129 in the viewer, lifted, the two axle differentials and one wheel of each axle marked",
+          "url": "http://localhost:5174/?file=omr/42129-1+4x4+Mercedes-Benz+Zetros+Trial+Truck.mpd&show=1309,1032,2930,2932&autospin=20,paused&lifted=1&library=/ldraw/"
+        },
+        {
+          "label": "Booklet, page 372",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6381993.pdf#page=372"
+        }
+      ],
+      "reply": "Sign the 42129's lift",
+      "since": "2026-11-25"
+    },
+    {
+      "id": "42038-fn1-lifted",
+      "kind": "Sign-off",
+      "title": "42038 Arctic Truck, function 1 (the gear on top steers the front track units): work it with the truck lifted?",
+      "what": "The file draws the front axle hanging at full droop, 27.7 degrees, as the truck is when held up (362). With the tracks on the ground in that pose, steering would have to lift one front track unit and lower the other, so it hardly turns: 0.47 rad one way and 0.10 the other. With the truck held up it turns 1.5 rad each way and both hubs swing alike. The solver owner tried it on the branch that reads how deep the tracks stand; Claude ran both there and got the same figures. On preview today nothing changes, because there the front tracks do not yet reach the ground.",
+      "effect": "With your yes function 1 gets the setting \"lifted\". That lets the track depth and the track reading come to Claude's gate without losing this function. The function stays held at partly for another reason: with the viewer's first camera a drag turns the gear one way only. That is a fault of the viewer's reading of the drag, which the solver owner traces next.",
+      "links": [
+        {
+          "label": "42038 in the viewer, lifted, the hubs and their bearings marked",
+          "url": "http://localhost:5174/?file=omr/42038-1+Arctic+Truck.mpd&show=282,283,284,285&autospin=170,paused&lifted=1&library=/ldraw/"
+        },
+        {
+          "label": "Booklet, page 56 (step 53)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112236.pdf#page=56"
+        }
+      ],
+      "reply": "Sign the 42038's lift",
+      "since": "2026-11-25"
     }
   ],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You asked for it on 20 November: every function the check calls working is tried in the viewer, both by the viewer's own turn and by a pointer drag as a person makes it, and what the viewer does not show is held at partly. The first pass ran on 20 and 21 November. Since then the sweep itself was mended in six ways and the viewer in four, so most of its records are out of date: on 25 November, 50 of 56 functions it names as not shown rest on records four days old (359). The worker now runs the second pass, every working function at preview's newest commit, beside its other work. Claude then sets the holds from those records, reading each by its figures. Until that is through, the count of working functions may be too high by some tens; Claude expects 10 to 30, since most of the old verdicts fail on the viewer's own turn refusing parts that are not knobs, which a hand's drag moves. 30 functions are held today."
+      "what": "You asked for it on 20 November: every function the check calls working is tried in the viewer, both by the viewer's own turn and by a pointer drag as a person makes it, and what the viewer does not show is held at partly. The second pass ran on 25 November over all 729 working functions at preview's newest code and took six hours (363). The viewer shows 671. Claude read each of the others by its figures: 4 holds are lifted, because the parts do move, and 7 are set, because a part that should stay moves with the function under a hand. So 696 functions work, 3 fewer than before the pass; 33 are held. Still open: 23 functions where the viewer's own turn stops at a collision after a few degrees while a pointer drag takes the same part far. One of the two is wrong, and the worker finds out which; none of the 23 is held, since a hand does move them. Four more wait for a trace (the 8063's power take-off, the 8419's stick, the 42113's motor, the 42056's seats); two of those are faults of the sweep, not of the viewer."
     },
     {
       "title": "System hinges, doors and clips",
@@ -77,11 +115,11 @@
     },
     {
       "title": "The next offer of main",
-      "what": "After the free-parts rule, the track depth with the tipping mend, and the differentials' second cause (348), each when it loses no working function; the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
+      "what": "After the free-parts rule and the track depth with the track reading, each when it loses no working function; the differentials need no further rule (364) and the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     },
     {
-      "title": "The new differential (part 65414c01): its wheels now turn against each other; two drive lines still stop",
-      "what": "Read as its pieces since 24 November (348). On 25 November the worker mended how its three small gears are read, which had locked each other after the first steps (360): on the 42109 Top Gear Rally Car and the 42124 Off-Road Buggy, turning one rear wheel now turns the other the opposite way. Still wrong: an open differential sends its whole turn to one side, so the Zetros's rear axle and the Hauler's middle axle get no drive; the solver owner mends that. The Hauler's front axle waits for your signature on an axle that is a stud off in the file."
+      "title": "The new differential (part 65414c01): its wheels now turn against each other; the two drive lines wait for your signatures",
+      "what": "Read as its pieces since 24 November (348). On 25 November the worker mended how its three small gears are read (360): on the 42109 Top Gear Rally Car and the 42124 Off-Road Buggy, turning one rear wheel now turns the other the opposite way. The two drive lines that still stop need no new rule in the solver (364): the Zetros's rear axle stands because only its rear tyres touch the ground, and the Hauler's middle axle because one tyre does. The cure for the Zetros is to work the function with the truck lifted, which waits for your signature; the Hauler waits for your signature on the axle that is a stud off in the file, and is looked at again after it."
     }
   ],
   "done": [

@@ -63,6 +63,14 @@ import { foundOf } from '../holds.ts';
 import { ENDLESS_WORDS, endlessKinds, endlessPart } from '../endless.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
+// Two rules of the sweep's judgement (ordered on 2026-11-25), each named in the record where it decided:
+// - RATE_RULE, in A: where the check's rate for a listed part predicts less than MOVED degrees for the
+//   turn made (a slow gearing, as the 42054's function 3 at 0.008), the part counts as moved when it
+//   turned at least half of that prediction.
+// - TENTH_RULE, by hand: a part listed to stay counts as moved by hand only if it moved at least a
+//   tenth as far as the least-moved listed part (each part's motion its larger figure, LDU or degrees).
+const RATE_RULE = 'rate: under 1 degree predicted by the check\'s rate, half of it counts as moved';
+const TENTH_RULE = 'tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part';
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
 const MOTOR_MOST_MS = 60_000;
 const PUSHES: [number, number][] = [[120, 0], [-120, 0], [0, 120], [0, -120]];
@@ -327,6 +335,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   const A: unknown[] = [];
   const movedByA = new Set<string>();
   const staysMovedByA = new Set<string>();
+  const decidedBy: string[] = [];
   const stopsA = new Set<string>();
   const msA: number[] = [];
   const oneCalls: number[] = [];
@@ -480,7 +489,16 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         if (Math.abs(went) > 1e-6) msA.push(ms / steps);
         const stops = await v.stops();
         stops.forEach((s) => stopsA.add(s));
-        moves.forEach((m: Ref, k: number) => { if (moved[k][0] >= MOVED || moved[k][1] >= MOVED) movedByA.add(m.ref); });
+        moves.forEach((m: Ref, k: number) => {
+          if (moved[k][0] >= MOVED || moved[k][1] >= MOVED) return void movedByA.add(m.ref);
+          // RATE_RULE: a slow part, judged against what the check's rate predicts for this turn.
+          const rate = g.rates?.[ci]?.[m.ref];
+          const predicted = rate ? (Math.abs(rate[0]) * Math.abs(went) * 180) / Math.PI : 0;
+          if (predicted > 0 && predicted < MOVED && moved[k][1] >= predicted / 2) {
+            movedByA.add(m.ref);
+            decidedBy.push(`${RATE_RULE}: ${m.ref} turned ${moved[k][1]} degrees, ${round(predicted)} predicted (rate ${rate[0]}, turn ${round(went)})`);
+          }
+        });
         stays.forEach((m: Ref, k: number) => { const x = moved[moves.length + k]; if (x[0] >= MOVED || x[1] >= MOVED) staysMovedByA.add(m.ref); });
         if (r.rebuilt && wi === 0) {
           // Worked out afresh (a ring shifted): opened afresh for the other way, Shift pressed again.
@@ -596,7 +614,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   // The farthest the control turned in a way that a collision stopped, and the pair that stopped it.
   const stopped = (A as any[]).filter((a) => a.stops.length).sort((a, b) => Math.abs(b.went) - Math.abs(a.went))[0];
   const stop = stopped ? { control: stopped.control, way: stopped.way, went: stopped.went, asked: stopped.asked, by: stopped.stops } : null;
-  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msOneCall: oneCalls.length ? Math.round(Math.max(...oneCalls)) : null, msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, time: Object.fromEntries(Object.entries(time).map(([k, s]) => [k, Math.round(s)])), stop, stops: [...stopsA], A, B };
+  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), ...(decidedBy.length ? { decidedBy } : {}), msOneCall: oneCalls.length ? Math.round(Math.max(...oneCalls)) : null, msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, time: Object.fromEntries(Object.entries(time).map(([k, s]) => [k, Math.round(s)])), stop, stops: [...stopsA], A, B };
 }
 
 // The list's first steps, as a user does them: a catch or lever turned by its joint's angle (turned
@@ -907,7 +925,18 @@ function judgedByHand(fn: any, line: Record<string, any>): Record<string, any> {
   const stays: string[] = (fn.stays ?? []).map((r: string) => refOf(r).ref);
   if (stays.length && Bs.some((b) => !Array.isArray(b.staysMoved))) return { ...line, byHandOpen: `${BY_HAND}, but the parts listed to stay were not measured by hand in this record: sweep it again` };
   const movedByB = new Set(Bs.flatMap((b) => b.moved as string[]));
-  const staysMovedByB = new Set(Bs.flatMap((b) => (b.staysMoved ?? []) as string[]));
+  // TENTH_RULE: a stay counts as moved by hand only at a tenth of the least-moved listed part.
+  const size = (x: number[] | undefined) => Math.max(x?.[0] ?? 0, x?.[1] ?? 0);
+  const mostOf = (key: 'went' | 'staysWent', ref: string) => Math.max(0, ...Bs.map((b) => size(b[key]?.[ref])));
+  const least = moves.length ? Math.min(...moves.map((m) => mostOf('went', m))) : 0;
+  const staysMovedByB = new Set<string>();
+  const decidedBy: string[] = (line.decidedBy ?? []).filter((d: string) => !d.startsWith(TENTH_RULE));
+  for (const s of stays) {
+    const went = mostOf('staysWent', s);
+    if (went < MOVED) continue;
+    if (moves.length && went < least / 10) decidedBy.push(`${TENTH_RULE}: ${s} moved ${went}, the least-moved listed part ${least}`);
+    else staysMovedByB.add(s);
+  }
   const notMoved = moves.filter((m) => !movedByB.has(m));
   const rest = String(line.why ?? '').split('; ').filter((w) => w && !w.startsWith('A: ') && !w.startsWith('by hand: ') && !w.endsWith('listed to stay moved'));
   const bFails = rest.some((w) => w.startsWith('B: '));
@@ -915,7 +944,8 @@ function judgedByHand(fn: any, line: Record<string, any>): Record<string, any> {
   const handWhy = [...(notMoved.length ? [`by hand: ${notMoved.join(', ')} not moved`] : []), ...(staysMovedByB.size ? [`by hand: ${[...staysMovedByB].join(', ')} listed to stay moved`] : [])];
   const why = [...handWhy, ...rest].join('; ');
   const { why: _, ...out } = line;
-  return { ...out, verdict: shown ? 'shown' : 'not shown', ...(why ? { why } : {}), judgedByHand: BY_HAND };
+  const { decidedBy: __, ...rest2 } = out;
+  return { ...rest2, verdict: shown ? 'shown' : 'not shown', ...(why ? { why } : {}), ...(decidedBy.length ? { decidedBy } : {}), judgedByHand: BY_HAND };
 }
 
 // The collision stops judged (decision 252): for each control a collision stopped, whether the real

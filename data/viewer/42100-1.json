@@ -1,18 +1,18 @@
 {
   "set": "42100-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T05:24:53.151Z",
-  "load": 14.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T13:25:31.056Z",
+  "load": 7.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 4079,
-  "seconds": 748,
+  "seconds": 714,
   "functions": [
     {
       "function": 4,
       "does": "The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 35,
+      "msPerStep": 36,
       "time": {
         "open": 13,
         "collisions": 0,
@@ -28,18 +28,18 @@
           "control": "p536 42100 - 22169",
           "way": 1,
           "asked": 1.5,
-          "went": -2.356,
-          "ms": 2325,
+          "went": -2.042,
+          "ms": 2129,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p1927 42003 against p87 42003": [
-              7.24,
-              1.78
+              6.33,
+              1.56
             ],
             "p516 18938 against p515 18939": [
               0,
-              1.78
+              1.56
             ],
             "p313 42100 - 42529 against p87 42003": [
               0,
@@ -51,18 +51,18 @@
           "control": "p536 42100 - 22169",
           "way": -1,
           "asked": 1.5,
-          "went": 2.827,
-          "ms": 2275,
+          "went": 2.67,
+          "ms": 2245,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p1927 42003 against p87 42003": [
-              8.59,
-              2.11
+              8.14,
+              2
             ],
             "p516 18938 against p515 18939": [
               0,
-              2.11
+              2
             ],
             "p313 42100 - 42529 against p87 42003": [
               0,
@@ -80,8 +80,8 @@
           "shift": [],
           "drags": [],
           "controlWent": [
-            12.15,
-            9.67
+            12.57,
+            10
           ],
           "moved": [
             "p1927 42003 against p87 42003",
@@ -89,14 +89,21 @@
           ],
           "went": {
             "p1927 42003 against p87 42003": [
-              39.3,
-              9.67
+              40.65,
+              10
             ],
             "p516 18938 against p515 18939": [
               0,
-              9.67
+              10
             ]
           },
+          "staysWent": {
+            "p313 42100 - 42529 against p87 42003": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -106,15 +113,15 @@
       "function": 5,
       "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
       "verdict": "shown",
-      "msOneCall": 568,
-      "msPerStep": 370,
+      "msOneCall": 609,
+      "msPerStep": 397,
       "time": {
         "open": 13,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 129,
-        "B": 121
+        "A": 138,
+        "B": 114
       },
       "stop": null,
       "stops": [],
@@ -124,8 +131,8 @@
           "way": 1,
           "asked": 6,
           "went": 6,
-          "ms": 63435,
-          "msOneCall": 568,
+          "ms": 68114,
+          "msOneCall": 609,
           "stops": [],
           "moved": {
             "p2971 42003 against p1927 42003": [
@@ -151,8 +158,8 @@
           "way": -1,
           "asked": 6.1,
           "went": -6.1,
-          "ms": 63928,
-          "msOneCall": 396,
+          "ms": 68470,
+          "msOneCall": 435,
           "stops": [],
           "moved": {
             "p2971 42003 against p1927 42003": [
@@ -220,24 +227,33 @@
               0
             ]
           },
+          "staysWent": {
+            "p3322 42003 against p2971 42003": [
+              0,
+              1.99
+            ]
+          },
+          "staysMoved": [
+            "p3322 42003 against p2971 42003"
+          ],
           "stops": []
         }
       ],
-      "seconds": 263
+      "seconds": 266
     },
     {
       "function": 6,
       "does": "Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step.",
       "verdict": "shown",
-      "msOneCall": 457,
-      "msPerStep": 223,
+      "msOneCall": 443,
+      "msPerStep": 196,
       "time": {
-        "open": 19,
+        "open": 18,
         "collisions": 0,
         "first": 0,
-        "reach": 125,
-        "A": 42,
-        "B": 207
+        "reach": 101,
+        "A": 38,
+        "B": 199
       },
       "stop": null,
       "stops": [],
@@ -247,8 +263,8 @@
           "way": 1,
           "asked": 1.9,
           "went": 1.9,
-          "ms": 11487,
-          "msOneCall": 457,
+          "ms": 10625,
+          "msOneCall": 443,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -274,8 +290,8 @@
           "way": -1,
           "asked": 1.9,
           "went": -1.9,
-          "ms": 8515,
-          "msOneCall": 168,
+          "ms": 7918,
+          "msOneCall": 160,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -301,8 +317,8 @@
           "way": 1,
           "asked": 1.9,
           "went": 1.9,
-          "ms": 12088,
-          "msOneCall": 167,
+          "ms": 10496,
+          "msOneCall": 176,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -328,8 +344,8 @@
           "way": -1,
           "asked": 1.9,
           "went": -1.9,
-          "ms": 8393,
-          "msOneCall": 179,
+          "ms": 7478,
+          "msOneCall": 153,
           "stops": [],
           "moved": {
             "p3322 42003 against p2971 42003": [
@@ -399,6 +415,15 @@
               1.66
             ]
           },
+          "staysWent": {
+            "p2971 42003 against p1927 42003": [
+              0,
+              1.41
+            ]
+          },
+          "staysMoved": [
+            "p2971 42003 against p1927 42003"
+          ],
           "stops": []
         },
         {
@@ -427,7 +452,7 @@
           ],
           "controlWent": [
             0,
-            121.29
+            125.3
           ],
           "moved": [
             "p3322 42003 against p2971 42003",
@@ -436,22 +461,31 @@
           ],
           "went": {
             "p3322 42003 against p2971 42003": [
-              4.54,
+              4.58,
               2.46
             ],
             "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              4.89,
+              4.93,
               1.66
             ],
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
-              4.89,
+              4.93,
               1.66
             ]
           },
+          "staysWent": {
+            "p2971 42003 against p1927 42003": [
+              0,
+              1.41
+            ]
+          },
+          "staysMoved": [
+            "p2971 42003 against p1927 42003"
+          ],
           "stops": []
         }
       ],
-      "seconds": 393
+      "seconds": 357
     },
     {
       "function": 9,
@@ -461,14 +495,14 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p4660 at 0.035 rad and at once (parts 4244/4678 and 4678/4743); the ladder should swing up and down. Viewer sweep, decision 279."
       },
       "verdict": "not shown",
-      "msOneCall": 357,
-      "msPerStep": 64,
+      "msOneCall": 365,
+      "msPerStep": 74,
       "time": {
         "open": 12,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 8,
+        "A": 9,
         "B": 38
       },
       "stop": {
@@ -499,8 +533,8 @@
           },
           "asked": 0.07,
           "went": 0.035,
-          "ms": 64,
-          "msOneCall": 357,
+          "ms": 74,
+          "msOneCall": 365,
           "stops": [
             "4244/4678"
           ],
@@ -526,7 +560,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 39,
-          "msOneCall": 35,
+          "msOneCall": 41,
           "stops": [
             "4678/4743"
           ],
@@ -578,6 +612,8 @@
               4.88
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "4678/4743",
             "4244/4678",
@@ -603,7 +639,7 @@
         "verdict": "shown"
       },
       "why": "a collision stops a control: p4660 40490: a travel of 0.2 rad or less each way, stopped at +0.035 rad (4244/4678); -0 rad (4678/4743) (the ladder swings up out of the way and down to the ground, far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=307)",
-      "seconds": 60
+      "seconds": 59
     }
   ]
 }

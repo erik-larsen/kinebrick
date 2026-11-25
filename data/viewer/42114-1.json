@@ -1,30 +1,30 @@
 {
   "set": "42114-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T16:09:24.225Z",
-  "load": 7.9,
+  "commit": "ac22e339",
+  "date": "2026-11-25T11:17:08.131Z",
+  "load": 5.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 2135,
-  "seconds": 129,
+  "seconds": 211,
   "functions": [
     {
       "function": 2,
       "does": "The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 232,
+      "msPerStep": 227,
       "time": {
-        "open": 11,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 14,
-        "A": 23,
+        "reach": 70,
+        "A": 24,
         "B": 11
       },
       "stop": {
         "control": "p602 22169",
         "way": 1,
-        "went": -2.255,
+        "went": -2.265,
         "asked": 1.5,
         "by": [
           "41/125"
@@ -38,8 +38,8 @@
           "control": "p602 22169",
           "way": 1,
           "asked": 1.5,
-          "went": -2.255,
-          "ms": 14953,
+          "went": -2.265,
+          "ms": 14685,
           "msOneCall": null,
           "stops": [
             "41/125"
@@ -47,7 +47,7 @@
           "moved": {
             "p129 35188": [
               0,
-              138.21
+              138.75
             ],
             "p120 18947": [
               20,
@@ -68,14 +68,52 @@
           "way": -1,
           "ringShifted": true,
           "asked": 1.5,
-          "went": -2.236,
-          "ms": 6368,
+          "went": -2.327,
+          "ms": 6182,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p129 35188": [
               0,
-              137.14
+              142.3
+            ],
+            "p120 18947": [
+              20,
+              0
+            ],
+            "p121 18947": [
+              20,
+              0
+            ],
+            "p122 18947": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p602 22169",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": true,
+          "shift": [],
+          "drags": [],
+          "controlWent": [
+            0,
+            0
+          ],
+          "moved": [
+            "p129 35188",
+            "p120 18947",
+            "p121 18947",
+            "p122 18947"
+          ],
+          "went": {
+            "p129 35188": [
+              0,
+              137.81
             ],
             "p120 18947": [
               20,
@@ -89,22 +127,9 @@
               10,
               0
             ]
-          }
-        }
-      ],
-      "B": [
-        {
-          "control": "p602 22169",
-          "seen": true,
-          "cameraTurns": 3,
-          "motor": true,
-          "shift": [],
-          "moved": [
-            "p129 35188",
-            "p120 18947",
-            "p121 18947",
-            "p122 18947"
-          ],
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "41/125"
           ]
@@ -114,28 +139,28 @@
         {
           "control": "p602 22169",
           "judged": "stands",
-          "why": "stopped at +2.255 rad (41/125); kinds electric-motor: L, sequential-gearbox: 3 speeds and reverse, function-selector: dump body"
+          "why": "stopped at +2.265 rad (41/125); kinds electric-motor: L, sequential-gearbox: 3 speeds and reverse, function-selector: dump body"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 60
+      "seconds": 116
     },
     {
       "function": 5,
       "does": "The rear half can roll against the front half on a turntable lying on its side in the hitch, so all six wheels stay on uneven ground.",
       "verdict": "shown",
-      "msOneCall": 263,
-      "msPerStep": 89,
+      "msOneCall": 277,
+      "msPerStep": 98,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 5,
+        "reach": 22,
         "A": 1,
-        "B": 22
+        "B": 26
       },
       "stop": {
         "control": "p995 99009",
@@ -155,8 +180,8 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 433,
-          "msOneCall": 263,
+          "ms": 461,
+          "msOneCall": 277,
           "stops": [],
           "moved": {
             "p0 64179": [
@@ -170,8 +195,8 @@
           "way": -1,
           "asked": 0.2,
           "went": -0.1,
-          "ms": 253,
-          "msOneCall": 94,
+          "ms": 279,
+          "msOneCall": 98,
           "stops": [
             "ground: p4621"
           ],
@@ -190,9 +215,39 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            19.75
+          ],
           "moved": [
             "p0 64179"
           ],
+          "went": {
+            "p0 64179": [
+              6.86,
+              19.75
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "411/2085",
             "ground: p4621"
@@ -215,21 +270,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 38
+      "seconds": 60
     },
     {
       "function": 6,
       "does": "The orange beacon on the cab roof switches the hub on and off: turning it turns an upright axle down through the roof to a lever that presses the hub's button.",
       "verdict": "shown",
-      "msOneCall": 221,
-      "msPerStep": 45,
+      "msOneCall": 227,
+      "msPerStep": 47,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 19
+        "B": 24
       },
       "stop": {
         "control": "p2535 3941",
@@ -249,8 +304,8 @@
           "way": 1,
           "asked": 0.13,
           "went": 0.13,
-          "ms": 169,
-          "msOneCall": 221,
+          "ms": 173,
+          "msOneCall": 227,
           "stops": [],
           "moved": {
             "p2471 41677": [
@@ -264,8 +319,8 @@
           "way": -1,
           "asked": 0.37,
           "went": -0.336,
-          "ms": 331,
-          "msOneCall": 51,
+          "ms": 333,
+          "msOneCall": 54,
           "stops": [
             "2405/2466"
           ],
@@ -284,9 +339,39 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            30.47
+          ],
           "moved": [
             "p2471 41677"
           ],
+          "went": {
+            "p2471 41677": [
+              10.51,
+              30.47
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "2405/2470",
             "2405/2466"
@@ -304,7 +389,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 31
+      "seconds": 35
     }
   ]
 }

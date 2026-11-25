@@ -95,7 +95,7 @@ Each detail by the set it first appears in.
 
 - *loader arms:* The handwheel low on the right, in front of the cab, raises and lowers the loader arms: a bevel pair and a worm turn a crown gear on a cross-shaft, whose cranks push the arms up through short links. The bucket stays roughly level. (partly)
 - *loader bucket:* The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket. (works)
-- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (works)
+- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (partly)
 
 **1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1)**
 
@@ -162,7 +162,7 @@ Each detail by the set it first appears in.
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
-- *blade:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (partly)
+- *blade:* One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame. (works)
 - *ripper:* The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down. (partly)
 
 **2012, [9391 Crawler Crane (Tracked Crane)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9391-1)**

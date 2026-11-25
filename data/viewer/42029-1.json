@@ -1,25 +1,25 @@
 {
   "set": "42029-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T15:19:20.824Z",
-  "load": 16.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:51:24.263Z",
+  "load": 9.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1053,
-  "seconds": 249,
+  "seconds": 209,
   "functions": [
     {
       "function": 1,
       "does": "The black gear on top of the upright axle behind the cab steers the front wheels: a bevel gear at the axle's foot turns a long shaft running forward under the cab, whose 12-tooth gear drives the steering rack and its two links to the front hubs.",
       "verdict": "shown",
-      "msOneCall": 302,
-      "msPerStep": 106,
+      "msOneCall": 219,
+      "msPerStep": 111,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 8,
-        "B": 19
+        "B": 22
       },
       "stop": {
         "control": "p656 32270",
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.186,
-          "ms": 3586,
-          "msOneCall": 302,
+          "ms": 3761,
+          "msOneCall": 219,
           "stops": [
             "804/821"
           ],
@@ -77,8 +77,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.186,
-          "ms": 3596,
-          "msOneCall": 134,
+          "ms": 3593,
+          "msOneCall": 145,
           "stops": [
             "800/822"
           ],
@@ -117,6 +117,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            97.58
+          ],
           "moved": [
             "p437 6589 against p674 2850a",
             "p415 32270 against p674 2850a",
@@ -124,8 +146,38 @@
             "p800 11949 against p674 2850a",
             "p804 11949 against p674 2850a"
           ],
+          "went": {
+            "p437 6589 against p674 2850a": [
+              0,
+              97.58
+            ],
+            "p415 32270 against p674 2850a": [
+              0,
+              97.58
+            ],
+            "p405 87761 against p674 2850a": [
+              25.54,
+              1.4
+            ],
+            "p800 11949 against p674 2850a": [
+              0,
+              37.51
+            ],
+            "p804 11949 against p674 2850a": [
+              0,
+              37.83
+            ]
+          },
+          "staysWent": {
+            "p1143 45982 against p674 2850a": [
+              0,
+              1.4
+            ]
+          },
+          "staysMoved": [
+            "p1143 45982 against p674 2850a"
+          ],
           "stops": [
-            "800/822",
             "804/821"
           ]
         }
@@ -141,21 +193,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 34
+      "seconds": 37
     },
     {
       "function": 2,
       "does": "The steering wheel in the cab turns, but isn't linked to the front wheels.",
       "verdict": "shown",
-      "msOneCall": 112,
-      "msPerStep": 20,
+      "msOneCall": 130,
+      "msPerStep": 21,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 13
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -165,8 +217,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 836,
-          "msOneCall": 112,
+          "ms": 897,
+          "msOneCall": 130,
           "stops": [],
           "moved": {
             "p405 87761 against p674 2850a": [
@@ -180,8 +232,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 788,
-          "msOneCall": 48,
+          "ms": 872,
+          "msOneCall": 53,
           "stops": [],
           "moved": {
             "p405 87761 against p674 2850a": [
@@ -198,25 +250,57 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            109.22
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {
+            "p405 87761 against p674 2850a": [
+              0,
+              1.4
+            ]
+          },
+          "staysMoved": [
+            "p405 87761 against p674 2850a"
+          ],
           "stops": []
         }
       ],
-      "seconds": 22
+      "seconds": 24
     },
     {
       "function": 3,
       "does": "As the truck rolls, the rear wheels drive the V6 engine: the rear differential's ring gear turns a long shaft forward, whose 16-tooth gears (one an idler riding loose on the steering shaft) pass the drive up to a shaft that turns the crankshaft, pumping the six pistons up and down.",
       "verdict": "shown",
-      "msOneCall": 233,
-      "msPerStep": 131,
+      "msOneCall": 138,
+      "msPerStep": 51,
       "time": {
-        "open": 11,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 4,
-        "A": 22,
-        "B": 69
+        "reach": 0,
+        "A": 5,
+        "B": 0
       },
       "stop": null,
       "stops": [],
@@ -226,36 +310,36 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 5608,
-          "msOneCall": 233,
+          "ms": 2166,
+          "msOneCall": 138,
           "stops": [],
           "moved": {
             "p457 62821 against p674 2850a": [
               0,
-              85.97
+              85.94
             ],
             "p356 94925 against p674 2850a": [
               0,
-              120.35
+              120.32
             ],
             "p367 6542b against p674 2850a": [
               0,
-              120.35
+              120.32
             ],
             "p828 94925 against p674 2850a": [
               0,
-              120.35
+              120.32
             ],
             "p690 2854 against p674 2850a": [
               0,
-              120.35
+              120.32
             ],
             "p698 2851 against p674 2850a": [
-              16.96,
+              12.57,
               0
             ],
             "p702 2851 against p674 2850a": [
-              12.57,
+              16.96,
               0
             ],
             "p674 2850a against p337 32525": [
@@ -269,122 +353,36 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 5364,
-          "msOneCall": 176,
+          "ms": 2177,
+          "msOneCall": 79,
           "stops": [],
           "moved": {
             "p457 62821 against p674 2850a": [
               0,
-              85.92
+              85.94
             ],
             "p356 94925 against p674 2850a": [
               0,
-              120.29
+              120.32
             ],
             "p367 6542b against p674 2850a": [
               0,
-              120.29
+              120.32
             ],
             "p828 94925 against p674 2850a": [
               0,
-              120.29
+              120.32
             ],
             "p690 2854 against p674 2850a": [
               0,
-              120.29
+              120.32
             ],
             "p698 2851 against p674 2850a": [
-              12.56,
-              0
-            ],
-            "p702 2851 against p674 2850a": [
               16.95,
-              0
-            ],
-            "p674 2850a against p337 32525": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p1144 45982",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 5144,
-          "msOneCall": 156,
-          "stops": [],
-          "moved": {
-            "p457 62821 against p674 2850a": [
-              0,
-              85.97
-            ],
-            "p356 94925 against p674 2850a": [
-              0,
-              120.35
-            ],
-            "p367 6542b against p674 2850a": [
-              0,
-              120.35
-            ],
-            "p828 94925 against p674 2850a": [
-              0,
-              120.35
-            ],
-            "p690 2854 against p674 2850a": [
-              0,
-              120.35
-            ],
-            "p698 2851 against p674 2850a": [
-              16.96,
               0
             ],
             "p702 2851 against p674 2850a": [
               12.57,
-              0
-            ],
-            "p674 2850a against p337 32525": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p1144 45982",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 5075,
-          "msOneCall": 163,
-          "stops": [],
-          "moved": {
-            "p457 62821 against p674 2850a": [
-              0,
-              85.92
-            ],
-            "p356 94925 against p674 2850a": [
-              0,
-              120.29
-            ],
-            "p367 6542b against p674 2850a": [
-              0,
-              120.29
-            ],
-            "p828 94925 against p674 2850a": [
-              0,
-              120.29
-            ],
-            "p690 2854 against p674 2850a": [
-              0,
-              120.29
-            ],
-            "p698 2851 against p674 2850a": [
-              12.56,
-              0
-            ],
-            "p702 2851 against p674 2850a": [
-              16.95,
               0
             ],
             "p674 2850a against p337 32525": [
@@ -396,55 +394,29 @@
       ],
       "B": [
         {
-          "control": "p1143 45982",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p457 62821 against p674 2850a",
-            "p356 94925 against p674 2850a",
-            "p367 6542b against p674 2850a",
-            "p828 94925 against p674 2850a",
-            "p690 2854 against p674 2850a",
-            "p698 2851 against p674 2850a",
-            "p702 2851 against p674 2850a"
+          "control": [
+            "p1143 45982",
+            "p1144 45982"
           ],
-          "stops": []
-        },
-        {
-          "control": "p1144 45982",
-          "seen": true,
-          "cameraTurns": 1,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p457 62821 against p674 2850a",
-            "p356 94925 against p674 2850a",
-            "p367 6542b against p674 2850a",
-            "p828 94925 against p674 2850a",
-            "p690 2854 against p674 2850a",
-            "p698 2851 against p674 2850a",
-            "p702 2851 against p674 2850a"
-          ],
-          "stops": []
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 106
+      "seconds": 8
     },
     {
       "function": 4,
       "does": "The rear differential lets the two rear wheels turn at different speeds on corners.",
       "verdict": "shown",
-      "msOneCall": 234,
-      "msPerStep": 116,
+      "msOneCall": 224,
+      "msPerStep": 126,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 10,
-        "B": 27
+        "A": 11,
+        "B": 46
       },
       "stop": null,
       "stops": [],
@@ -454,8 +426,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 4874,
-          "msOneCall": 234,
+          "ms": 5396,
+          "msOneCall": 224,
           "stops": [],
           "moved": {}
         },
@@ -464,8 +436,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 4962,
-          "msOneCall": 143,
+          "ms": 5267,
+          "msOneCall": 162,
           "stops": [],
           "moved": {}
         }
@@ -477,25 +449,50 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            163.28
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 45
+      "seconds": 64
     },
     {
       "function": 5,
       "does": "The yellow lever inside the cab, on the right behind the seat, works a gearbox under the cab: it slides the driving ring between two clutch gears, choosing whether the black gear low on the right side drives the winch at the front (position 1) or tips the bed (position 2).",
       "verdict": "shown",
-      "msOneCall": 138,
-      "msPerStep": 24,
+      "msOneCall": 125,
+      "msPerStep": 25,
       "time": {
-        "open": 10,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
+        "reach": 9,
         "A": 5,
-        "B": 8
+        "B": 31
       },
       "stop": null,
       "stops": [],
@@ -506,8 +503,8 @@
           "ringShifted": true,
           "asked": 0.6,
           "went": 0.6,
-          "ms": 396,
-          "msOneCall": 125,
+          "ms": 378,
+          "msOneCall": 118,
           "stops": [],
           "moved": {
             "p111 6641 against p0 32278": [
@@ -530,8 +527,8 @@
           "ringShifted": true,
           "asked": 0.6,
           "went": -0.6,
-          "ms": 410,
-          "msOneCall": 138,
+          "ms": 432,
+          "msOneCall": 125,
           "stops": [],
           "moved": {
             "p111 6641 against p0 32278": [
@@ -556,22 +553,52 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            }
+          ],
+          "controlWent": [
+            23.15,
+            33.67
+          ],
           "moved": [
             "p111 6641 against p0 32278",
             "p48 6539 against p47 3705"
           ],
+          "went": {
+            "p111 6641 against p0 32278": [
+              11.58,
+              33.67
+            ],
+            "p48 6539 against p47 3705": [
+              5,
+              1.4
+            ]
+          },
+          "staysWent": {
+            "p47 3705 against p0 32278": [
+              0,
+              1.4
+            ]
+          },
+          "staysMoved": [
+            "p47 3705 against p0 32278"
+          ],
           "stops": [
+            "104/111",
             "105/111"
           ]
         }
       ],
-      "seconds": 21
+      "seconds": 53
     },
     {
       "function": 8,
       "does": "The bonnet hinges up at its back edge to show the engine.",
       "verdict": "shown",
-      "msOneCall": 64,
+      "msOneCall": 71,
       "msPerStep": 17,
       "time": {
         "open": 7,
@@ -579,7 +606,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 12
+        "B": 14
       },
       "stop": {
         "control": "p951 64392",
@@ -599,8 +626,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 43,
-          "msOneCall": 64,
+          "ms": 41,
+          "msOneCall": 71,
           "stops": [
             "187/886"
           ],
@@ -616,8 +643,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 712,
-          "msOneCall": 61,
+          "ms": 721,
+          "msOneCall": 62,
           "stops": [],
           "moved": {
             "p951 64392 against p0 32278": [
@@ -634,13 +661,44 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            26.31,
+            82.27
+          ],
           "moved": [
             "p951 64392 against p0 32278"
           ],
+          "went": {
+            "p951 64392 against p0 32278": [
+              26.31,
+              82.27
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "187/886",
-            "189/888",
-            "190/888"
+            "203/951",
+            "190/888",
+            "189/888"
           ]
         }
       ],
@@ -655,7 +713,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 20
+      "seconds": 22
     }
   ]
 }

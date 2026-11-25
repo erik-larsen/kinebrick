@@ -1,11 +1,11 @@
 {
   "set": "42109-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:44:45.406Z",
-  "load": 18.8,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:09:52.669Z",
+  "load": 7.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 461,
-  "seconds": 198,
+  "seconds": 235,
   "functions": [
     {
       "function": 1,
@@ -28,26 +28,26 @@
           "control": "p40 22172",
           "way": 1,
           "asked": 1.5,
-          "went": 1.624,
-          "ms": 1036,
+          "went": 1.571,
+          "ms": 1018,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p351 32498": [
               0,
-              94.43
+              91.56
             ],
             "p16 42109 - 65414": [
               0,
-              121.41
+              117.72
             ],
             "p969 56145": [
               0,
-              121.41
+              117.72
             ],
             "p971 56145": [
               0,
-              121.41
+              117.72
             ],
             "p686 87761": [
               0,
@@ -59,26 +59,26 @@
           "control": "p40 22172",
           "way": -1,
           "asked": 1.5,
-          "went": -1.594,
-          "ms": 1028,
+          "went": -1.593,
+          "ms": 1015,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p351 32498": [
               0,
-              91.33
+              91.3
             ],
             "p16 42109 - 65414": [
               0,
-              117.43
+              117.38
             ],
             "p969 56145": [
               0,
-              117.43
+              117.38
             ],
             "p971 56145": [
               0,
-              117.43
+              117.38
             ],
             "p686 87761": [
               0,
@@ -108,21 +108,172 @@
           "went": {
             "p351 32498": [
               0,
-              171.74
+              173.44
             ],
             "p16 42109 - 65414": [
               0,
-              88.2
+              86.12
             ],
             "p969 56145": [
               0,
-              88.2
+              86.12
             ],
             "p971 56145": [
               0,
-              88.2
+              86.12
             ]
           },
+          "staysWent": {
+            "p686 87761": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 19
+    },
+    {
+      "function": 2,
+      "does": "With the XL motor still, turning one rear wheel turns the other the opposite way through the differential.",
+      "verdict": "shown",
+      "msOneCall": 21,
+      "msPerStep": 3,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 13
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p971 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 123,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p15 59426": [
+              0,
+              85.94
+            ],
+            "p27 3707": [
+              0,
+              85.94
+            ],
+            "p969 56145": [
+              0,
+              85.94
+            ],
+            "p351 32498": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p971 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 106,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p15 59426": [
+              0,
+              85.94
+            ],
+            "p27 3707": [
+              0,
+              85.94
+            ],
+            "p969 56145": [
+              0,
+              85.94
+            ],
+            "p351 32498": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p971 56145",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            135.15
+          ],
+          "moved": [
+            "p15 59426",
+            "p27 3707",
+            "p969 56145"
+          ],
+          "went": {
+            "p15 59426": [
+              0,
+              135.15
+            ],
+            "p27 3707": [
+              0,
+              135.15
+            ],
+            "p969 56145": [
+              0,
+              135.15
+            ]
+          },
+          "staysWent": {
+            "p351 32498": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -133,23 +284,23 @@
       "does": "The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 15714,
+      "msPerStep": 12965,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 103,
+        "A": 121,
         "B": 10
       },
       "stop": {
         "control": "p390 22169",
-        "way": 1,
-        "went": -1.106,
+        "way": -1,
+        "went": -0.292,
         "asked": 1.1,
         "by": [
-          "685/700",
-          "682/696"
+          "682/696",
+          "685/700"
         ]
       },
       "stops": [
@@ -161,8 +312,8 @@
           "control": "p390 22169",
           "way": 1,
           "asked": 1.1,
-          "went": -1.106,
-          "ms": 41770,
+          "went": -0.164,
+          "ms": 60746,
           "msOneCall": null,
           "stops": [
             "685/700",
@@ -171,27 +322,27 @@
           "moved": {
             "p692 32270": [
               0,
-              61.89
+              9.4
             ],
             "p686 87761": [
-              16.2,
+              2.46,
               0
             ],
             "p670 48989": [
-              8.36,
-              24.13
+              1.23,
+              3.53
             ],
             "p674 48989": [
-              8.21,
-              23.67
+              1.23,
+              3.52
             ],
             "p965 56145": [
-              16.72,
-              29.95
+              2.46,
+              4.39
             ],
             "p967 56145": [
-              16.4,
-              29.38
+              2.46,
+              4.39
             ],
             "p969 56145": [
               0,
@@ -207,8 +358,8 @@
           "control": "p390 22169",
           "way": -1,
           "asked": 1.1,
-          "went": 0.136,
-          "ms": 61005,
+          "went": -0.292,
+          "ms": 60638,
           "msOneCall": null,
           "stops": [
             "682/696",
@@ -217,27 +368,27 @@
           "moved": {
             "p692 32270": [
               0,
-              9.22
+              15.03
             ],
             "p686 87761": [
-              2.41,
+              3.93,
               0
             ],
             "p670 48989": [
-              1.21,
-              3.46
+              1.97,
+              5.64
             ],
             "p674 48989": [
-              1.21,
-              3.46
+              1.97,
+              5.64
             ],
             "p965 56145": [
-              2.41,
-              4.3
+              3.94,
+              7.02
             ],
             "p967 56145": [
-              2.41,
-              4.3
+              3.94,
+              7.02
             ],
             "p969 56145": [
               0,
@@ -273,29 +424,40 @@
           "went": {
             "p692 32270": [
               0,
-              21.68
+              13.63
             ],
             "p686 87761": [
-              5.71,
+              3.62,
               0
             ],
             "p670 48989": [
-              2.86,
-              7.85
+              1.81,
+              4.61
             ],
             "p674 48989": [
-              2.86,
-              7.84
+              1.81,
+              4.61
             ],
             "p965 56145": [
-              5.73,
-              9.92
+              3.63,
+              6
             ],
             "p967 56145": [
-              5.72,
-              9.92
+              3.63,
+              6
             ]
           },
+          "staysWent": {
+            "p969 56145": [
+              0,
+              0
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "685/700",
             "682/696"
@@ -306,21 +468,21 @@
         {
           "control": "p390 22169",
           "judged": "stands",
-          "why": "stopped at +1.106 rad (685/700, 682/696); -0.136 rad (682/696, 685/700); kinds electric-motor: Control+ L, rack-steering"
+          "why": "stopped at +0.164 rad (685/700, 682/696); -0.292 rad (682/696, 685/700); kinds electric-motor: Control+ L, rack-steering"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 119
+      "seconds": 138
     },
     {
       "function": 4,
       "does": "The front wheels roll freely, each on its own axle in its steering knuckle.",
       "verdict": "shown",
       "msOneCall": 28,
-      "msPerStep": 5,
+      "msPerStep": 6,
       "time": {
         "open": 9,
         "collisions": 0,
@@ -337,7 +499,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 218,
+          "ms": 255,
           "msOneCall": 28,
           "stops": [],
           "moved": {}
@@ -347,8 +509,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 197,
-          "msOneCall": 6,
+          "ms": 229,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -357,7 +519,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 204,
+          "ms": 217,
           "msOneCall": 6,
           "stops": [],
           "moved": {}
@@ -367,7 +529,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 202,
+          "ms": 216,
           "msOneCall": 6,
           "stops": [],
           "moved": {}
@@ -404,6 +566,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -436,6 +600,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -445,7 +611,7 @@
       "function": 6,
       "does": "The bonnet lifts by hand.",
       "verdict": "not decided",
-      "msOneCall": 25,
+      "msOneCall": 22,
       "msPerStep": 7,
       "time": {
         "open": 6,
@@ -453,7 +619,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 14
+        "B": 13
       },
       "stop": {
         "control": "p894 64391",
@@ -484,7 +650,7 @@
           "asked": 1.5,
           "went": 0.035,
           "ms": 7,
-          "msOneCall": 25,
+          "msOneCall": 22,
           "stops": [
             "387/893"
           ],
@@ -514,8 +680,8 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 5,
-          "msOneCall": 7,
+          "ms": 6,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p893 64683": [
@@ -574,6 +740,8 @@
               86.19
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "387/893",
             "729/893"
@@ -592,7 +760,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p894 64391: a travel of 0.2 rad or less each way, stopped at +0.035 rad (387/893)",
-      "seconds": 21
+      "seconds": 20
     }
   ]
 }

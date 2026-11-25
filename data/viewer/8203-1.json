@@ -1,17 +1,17 @@
 {
   "set": "8203-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:16:02.118Z",
-  "load": 3.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:44:18.185Z",
+  "load": 7.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 31,
-  "seconds": 68,
+  "seconds": 71,
   "functions": [
     {
       "function": 1,
       "does": "The four wheels roll freely, each on its own pin in the yellow chassis; there's no steering.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 7,
       "msPerStep": 0,
       "time": {
         "open": 7,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 46
+        "B": 49
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 14,
-          "msOneCall": 9,
+          "ms": 12,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -39,7 +39,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 8,
+          "ms": 9,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -49,7 +49,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 9,
+          "ms": 8,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -59,8 +59,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 13,
-          "msOneCall": 0,
+          "ms": 11,
+          "msOneCall": 1,
           "stops": [],
           "moved": {}
         },
@@ -79,8 +79,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 9,
-          "msOneCall": 1,
+          "ms": 8,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -112,7 +112,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            120.71
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -121,7 +146,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            128.53
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -130,7 +180,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            137.7
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -139,11 +214,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            97.16
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 54
+      "seconds": 56
     },
     {
       "function": 2,
@@ -223,7 +323,7 @@
           "asked": 0.03,
           "went": -0.03,
           "ms": 1,
-          "msOneCall": 1,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p31 32015": [
@@ -268,15 +368,75 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            27.43,
+            26.45
+          ],
           "moved": [
             "p31 32015",
             "p32 32015",
             "p25 6536",
             "p26 6536"
           ],
+          "went": {
+            "p31 32015": [
+              47.68,
+              26.6
+            ],
+            "p32 32015": [
+              47.68,
+              26.6
+            ],
+            "p25 6536": [
+              41.09,
+              26.45
+            ],
+            "p26 6536": [
+              41.09,
+              26.45
+            ]
+          },
+          "staysWent": {
+            "p3 6629": [
+              0,
+              0
+            ],
+            "p4 6629": [
+              0,
+              0
+            ],
+            "p10 6118": [
+              0,
+              0
+            ],
+            "p14 6118": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "4/22",
-            "0/21"
+            "0/21",
+            "3/25"
           ]
         }
       ],
@@ -292,7 +452,7 @@
         "verdict": "shown"
       },
       "why": "not decided: p21 6629: a travel of 0.2 rad or less each way, stopped at +0.033 rad (4/22)",
-      "seconds": 14
+      "seconds": 15
     }
   ]
 }

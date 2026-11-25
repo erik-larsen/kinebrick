@@ -1,17 +1,17 @@
 {
   "set": "42092-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:21:22.479Z",
-  "load": 18.9,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:55:00.237Z",
+  "load": 7.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 322,
-  "seconds": 81,
+  "seconds": 92,
   "functions": [
     {
       "function": 1,
       "does": "The 12 tooth gear under the belly spins the main rotor on its upright shaft, and a 20 tooth bevel gear on that shaft drives a long shaft down the tail to bevel gears at its end, which spin the tail rotor.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 16,
       "msPerStep": 2,
       "time": {
         "open": 4,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 73,
-          "msOneCall": 13,
+          "ms": 80,
+          "msOneCall": 16,
           "stops": [],
           "moved": {
             "p314 62743": [
@@ -64,7 +64,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
+          "ms": 51,
           "msOneCall": 2,
           "stops": [],
           "moved": {
@@ -102,23 +102,74 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            122.75
+          ],
           "moved": [
             "p314 62743",
             "p225 3708",
             "p275 6589",
             "p277 92842"
           ],
+          "went": {
+            "p314 62743": [
+              55.52,
+              122.75
+            ],
+            "p225 3708": [
+              0,
+              155.41
+            ],
+            "p275 6589": [
+              0,
+              155.41
+            ],
+            "p277 92842": [
+              0,
+              155.44
+            ]
+          },
+          "staysWent": {
+            "p309 61510": [
+              0,
+              0
+            ],
+            "p95 24116": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 2,
       "does": "The tan gear beside the winch drum, high on the left side behind the cockpit, winds the winch, raising and lowering the stretcher on its string over the pulley at the end of the winch's arm.",
       "verdict": "shown",
-      "msOneCall": 14,
-      "msPerStep": 2,
+      "msOneCall": 13,
+      "msPerStep": 1,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -135,8 +186,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 65,
-          "msOneCall": 14,
+          "ms": 56,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p309 61510": [
@@ -154,7 +205,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 39,
+          "ms": 30,
           "msOneCall": 2,
           "stops": [],
           "moved": {
@@ -176,20 +227,55 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            139.71
+          ],
           "moved": [
             "p309 61510"
           ],
+          "went": {
+            "p309 61510": [
+              0,
+              139.71
+            ]
+          },
+          "staysWent": {
+            "p198 32270": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 3,
       "does": "The 12 tooth gear high on the right side turns the winch too: it is on a cross axle whose other end's 12 tooth gear meshes with the tan gear on the drum.",
       "verdict": "shown",
       "msOneCall": 13,
-      "msPerStep": 2,
+      "msPerStep": 1,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -206,7 +292,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 65,
+          "ms": 56,
           "msOneCall": 13,
           "stops": [],
           "moved": {
@@ -229,8 +315,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 35,
-          "msOneCall": 2,
+          "ms": 32,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p309 61510": [
@@ -255,28 +341,67 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            122.36
+          ],
           "moved": [
             "p309 61510",
             "p312 6589"
           ],
+          "went": {
+            "p309 61510": [
+              0,
+              122.36
+            ],
+            "p312 6589": [
+              0,
+              122.36
+            ]
+          },
+          "staysWent": {
+            "p198 32270": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 5,
       "does": "The two rear doors swing open sideways.",
       "verdict": "shown",
-      "msOneCall": 15,
-      "msPerStep": 2,
+      "msOneCall": 13,
+      "msPerStep": 1,
       "time": {
-        "open": 7,
+        "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 3,
+        "reach": 8,
         "A": 0,
-        "B": 23
+        "B": 28
       },
       "stop": {
         "control": "p95 24116",
@@ -297,8 +422,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 67,
-          "msOneCall": 15,
+          "ms": 59,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         },
@@ -307,8 +432,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 2,
+          "ms": 1,
+          "msOneCall": 1,
           "stops": [
             "95/118"
           ],
@@ -320,7 +445,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 1,
-          "msOneCall": 2,
+          "msOneCall": 1,
           "stops": [
             "108/117"
           ],
@@ -331,7 +456,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 40,
+          "ms": 35,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -341,10 +466,27 @@
         {
           "control": "p95 24116",
           "seen": true,
-          "cameraTurns": 2,
+          "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            91.03
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "95/118",
             "88/95"
@@ -356,10 +498,34 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            87.07
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
-            "108/117",
-            "101/108"
+            "108/117"
           ]
         }
       ],
@@ -379,7 +545,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 33
+      "seconds": 42
     }
   ]
 }

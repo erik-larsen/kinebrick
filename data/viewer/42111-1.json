@@ -1,18 +1,18 @@
 {
   "set": "42111-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T07:14:40.283Z",
-  "load": 16.6,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:54:09.902Z",
+  "load": 8.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1055,
-  "seconds": 427,
+  "seconds": 437,
   "functions": [
     {
       "function": 1,
       "does": "The black gear on the rear shelf behind the roof steers the front wheels (hand of God steering): its upright shaft turns, through bevel gears, a shaft running forward through the car to the steering rack between the front wheels.",
       "verdict": "shown",
       "msOneCall": 87,
-      "msPerStep": 29,
+      "msPerStep": 30,
       "time": {
         "open": 7,
         "collisions": 0,
@@ -40,7 +40,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.628,
-          "ms": 525,
+          "ms": 532,
           "msOneCall": 87,
           "stops": [
             "286/294"
@@ -93,8 +93,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.628,
-          "ms": 490,
-          "msOneCall": 44,
+          "ms": 524,
+          "msOneCall": 42,
           "stops": [
             "285/293"
           ],
@@ -241,21 +241,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 35
+      "seconds": 36
     },
     {
       "function": 2,
       "does": "Rolling the car turns the V8 engine: the rear wheels drive the differential, whose ring gear turns a drive shaft running forward under the car through a universal joint; at the front a 16 tooth gear on it drives a 16 tooth idler, which drives the crankshaft, pumping the eight pistons, and a chain from the crankshaft turns the supercharger's pulley on top of the engine.",
       "verdict": "shown",
-      "msOneCall": 112,
-      "msPerStep": 30,
+      "msOneCall": 108,
+      "msPerStep": 31,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 37,
+        "reach": 38,
         "A": 5,
-        "B": 41
+        "B": 42
       },
       "stop": null,
       "stops": [],
@@ -265,8 +265,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1306,
-          "msOneCall": 112,
+          "ms": 1246,
+          "msOneCall": 108,
           "stops": [],
           "moved": {
             "p8 62821": [
@@ -316,8 +316,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1232,
-          "msOneCall": 49,
+          "ms": 1318,
+          "msOneCall": 52,
           "stops": [],
           "moved": {
             "p8 62821": [
@@ -367,8 +367,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1265,
-          "msOneCall": 65,
+          "ms": 1329,
+          "msOneCall": 52,
           "stops": [],
           "moved": {
             "p8 62821": [
@@ -418,8 +418,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1265,
-          "msOneCall": 49,
+          "ms": 1220,
+          "msOneCall": 53,
           "stops": [],
           "moved": {
             "p8 62821": [
@@ -637,14 +637,14 @@
           "stops": []
         }
       ],
-      "seconds": 93
+      "seconds": 96
     },
     {
       "function": 3,
       "does": "The rear differential lets the rear wheels turn at different speeds in a bend.",
       "verdict": "shown",
-      "msOneCall": 61,
-      "msPerStep": 8,
+      "msOneCall": 68,
+      "msPerStep": 9,
       "time": {
         "open": 7,
         "collisions": 0,
@@ -661,8 +661,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 352,
-          "msOneCall": 61,
+          "ms": 370,
+          "msOneCall": 68,
           "stops": [],
           "moved": {
             "p473 56908": [
@@ -676,8 +676,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 340,
-          "msOneCall": 20,
+          "ms": 398,
+          "msOneCall": 26,
           "stops": [],
           "moved": {
             "p473 56908": [
@@ -736,15 +736,15 @@
       "function": 4,
       "does": "The front wheels have independent suspension: each rides on a pair of suspension arms, sprung by its own shock absorber, and rises and falls on its own.",
       "verdict": "shown",
-      "msOneCall": 80,
+      "msOneCall": 84,
       "msPerStep": 35,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 156,
+        "reach": 161,
         "A": 1,
-        "B": 35
+        "B": 36
       },
       "stop": null,
       "stops": [],
@@ -754,8 +754,8 @@
           "way": 1,
           "asked": 0.23,
           "went": 0.23,
-          "ms": 182,
-          "msOneCall": 80,
+          "ms": 196,
+          "msOneCall": 84,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -786,7 +786,7 @@
           "asked": 0.03,
           "went": -0.03,
           "ms": 35,
-          "msOneCall": 43,
+          "msOneCall": 36,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -816,8 +816,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 35,
-          "msOneCall": 38,
+          "ms": 32,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -847,8 +847,8 @@
           "way": -1,
           "asked": 0.23,
           "went": -0.23,
-          "ms": 172,
-          "msOneCall": 35,
+          "ms": 152,
+          "msOneCall": 32,
           "stops": [],
           "moved": {
             "p297 15460": [
@@ -934,8 +934,7 @@
           "staysMoved": [],
           "stops": [
             "337/430",
-            "305/428",
-            "305/337"
+            "305/428"
           ]
         },
         {
@@ -1001,14 +1000,14 @@
           ]
         }
       ],
-      "seconds": 202
+      "seconds": 208
     },
     {
       "function": 8,
       "does": "The bonnet opens: it lifts on hinges at the windscreen end to show the engine and supercharger.",
       "verdict": "not decided",
-      "msOneCall": 98,
-      "msPerStep": 51,
+      "msOneCall": 101,
+      "msPerStep": 60,
       "time": {
         "open": 7,
         "collisions": 0,
@@ -1035,8 +1034,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.035,
-          "ms": 51,
-          "msOneCall": 98,
+          "ms": 60,
+          "msOneCall": 101,
           "stops": [
             "557/708"
           ],
@@ -1056,8 +1055,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 37,
-          "msOneCall": 38,
+          "ms": 38,
+          "msOneCall": 42,
           "stops": [],
           "moved": {
             "p721 15458": [
@@ -1139,7 +1138,7 @@
       "function": 9,
       "does": "The boot lid opens on its hinges at the back of the car.",
       "verdict": "shown",
-      "msOneCall": 4,
+      "msOneCall": 6,
       "msPerStep": null,
       "time": {
         "open": 7,
@@ -1158,7 +1157,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 4,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p964 26287": [
@@ -1260,7 +1259,7 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 15
+      "seconds": 16
     },
     {
       "function": 10,
@@ -1270,13 +1269,13 @@
         "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355)."
       },
       "verdict": "not shown",
-      "msOneCall": 75,
+      "msOneCall": 76,
       "msPerStep": null,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 11,
+        "reach": 12,
         "A": 13,
         "B": 10
       },
@@ -1296,8 +1295,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 20,
-          "msOneCall": 75,
+          "ms": 21,
+          "msOneCall": 76,
           "stops": [],
           "moved": {
             "p326 15462": [
@@ -1336,7 +1335,7 @@
           "asked": 0.73,
           "went": 0,
           "ms": 19,
-          "msOneCall": 63,
+          "msOneCall": 64,
           "stops": [],
           "moved": {
             "p326 15462": [
@@ -1421,7 +1420,7 @@
       ],
       "why": "by hand: p463 3749, p466 3749 not moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 40
+      "seconds": 41
     }
   ]
 }

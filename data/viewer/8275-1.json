@@ -1,24 +1,24 @@
 {
   "set": "8275-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:58:56.778Z",
-  "load": 18.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T10:19:28.090Z",
+  "load": 7.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1366,
-  "seconds": 821,
+  "seconds": 859,
   "functions": [
     {
       "function": 3,
       "does": "With both tracks driven the same way the bulldozer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
       "verdict": "shown",
-      "msOneCall": 112,
-      "msPerStep": 18,
+      "msOneCall": 113,
+      "msPerStep": 19,
       "time": {
-        "open": 14,
+        "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 102,
-        "A": 2,
+        "reach": 103,
+        "A": 3,
         "B": 39
       },
       "stop": null,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 760,
-          "msOneCall": 112,
+          "ms": 813,
+          "msOneCall": 113,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -48,8 +48,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 730,
-          "msOneCall": 27,
+          "ms": 770,
+          "msOneCall": 30,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -67,8 +67,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 277,
-          "msOneCall": 18,
+          "ms": 275,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -86,8 +86,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 289,
-          "msOneCall": 10,
+          "ms": 269,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p2611 57519": [
@@ -143,6 +143,8 @@
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -186,24 +188,26 @@
               82.36
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 158
+      "seconds": 159
     },
     {
       "function": 4,
       "does": "The six pistons of the V6 engine in the middle of the bulldozer pump in their cylinders as it drives: the left track's drive turns the crankshaft through 12 and 20 tooth double bevel gears.",
       "verdict": "shown",
-      "msOneCall": 107,
-      "msPerStep": 18,
+      "msOneCall": 115,
+      "msPerStep": 19,
       "time": {
-        "open": 9,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 75,
+        "reach": 85,
         "A": 2,
-        "B": 20
+        "B": 21
       },
       "stop": null,
       "stops": [],
@@ -213,8 +217,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 751,
-          "msOneCall": 107,
+          "ms": 835,
+          "msOneCall": 115,
           "stops": [],
           "moved": {
             "p1397 2853": [
@@ -244,8 +248,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 715,
-          "msOneCall": 22,
+          "ms": 770,
+          "msOneCall": 23,
           "stops": [],
           "moved": {
             "p1397 2853": [
@@ -324,10 +328,17 @@
               19.57
             ]
           },
+          "staysWent": {
+            "p1386 2850a": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 107
+      "seconds": 118
     },
     {
       "function": 5,
@@ -336,17 +347,23 @@
         "result": "partly",
         "reason": "In the viewer the control turns and these listed parts stay: p2715, p2731. Viewer sweep, decision 279."
       },
-      "verdict": "not shown",
-      "why": "A: p2715 3703, p2731 3703 not moved",
-      "msOneCall": 107,
-      "msPerStep": 43,
+      "verdict": "shown",
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2715 3703 turned 0.11 degrees, 0.128 predicted (rate 0.00123, turn 1.814)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2731 3703 turned 0.11 degrees, 0.128 predicted (rate 0.00123, turn 1.814)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2901 6178 turned 0.1 degrees, 0.125 predicted (rate 0.00123, turn -1.778)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2715 3703 turned 0.1 degrees, 0.125 predicted (rate 0.00123, turn -1.778)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2731 3703 turned 0.1 degrees, 0.125 predicted (rate 0.00123, turn -1.778)"
+      ],
+      "msOneCall": 114,
+      "msPerStep": 48,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 255,
-        "A": 269,
-        "B": 22
+        "reach": 266,
+        "A": 281,
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -364,8 +381,8 @@
           },
           "asked": 6,
           "went": 1.814,
-          "ms": 2232,
-          "msOneCall": 107,
+          "ms": 2478,
+          "msOneCall": 114,
           "stops": [],
           "moved": {
             "p1449 4716": [
@@ -419,8 +436,8 @@
           },
           "asked": 6.8,
           "went": -1.778,
-          "ms": 2207,
-          "msOneCall": 48,
+          "ms": 2330,
+          "msOneCall": 54,
           "stops": [],
           "moved": {
             "p1449 4716": [
@@ -484,47 +501,62 @@
           ],
           "controlWent": [
             0,
-            74.69
+            159.03
           ],
           "moved": [
             "p1449 4716",
+            "p1465 3648b",
             "p2780 32140",
-            "p2805 32140"
+            "p2805 32140",
+            "p2901 6178",
+            "p2715 3703",
+            "p2731 3703"
           ],
           "went": {
             "p1449 4716": [
               0,
-              24.9
+              173.01
             ],
             "p1465 3648b": [
               0,
-              0
+              7.47
             ],
             "p2780 32140": [
               0,
-              1.08
+              7.8
             ],
             "p2805 32140": [
               0,
-              1.08
+              7.8
             ],
             "p2901 6178": [
-              0.71,
-              0
+              7.47,
+              0.58
             ],
             "p2715 3703": [
-              0.16,
-              0.08
+              1.71,
+              0.81
             ],
             "p2731 3703": [
-              0.16,
-              0.08
+              1.71,
+              0.81
             ]
           },
+          "staysWent": {
+            "p2983 32278": [
+              0,
+              0
+            ],
+            "p2611 57519": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 556
+      "seconds": 582
     }
   ]
 }

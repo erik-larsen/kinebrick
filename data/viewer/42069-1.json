@@ -1,25 +1,25 @@
 {
   "set": "42069-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:11:23.349Z",
-  "load": 17.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T11:20:25.858Z",
+  "load": 6.7,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 2357,
-  "seconds": 678,
+  "seconds": 626,
   "functions": [
     {
       "function": 1,
       "does": "The knob on the roof, behind the windscreen, steers the front track units: an upright shaft with a universal joint comes down to bevel gears and a long shaft forward to a 12 tooth bevel gear on the steering rack, which swings both front track units on their turntables.",
       "verdict": "shown",
-      "msOneCall": 225,
-      "msPerStep": 73,
+      "msOneCall": 246,
+      "msPerStep": 80,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 7,
-        "B": 27
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3115,
-          "msOneCall": 225,
+          "ms": 3432,
+          "msOneCall": 246,
           "stops": [],
           "moved": {
             "p4 32270": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2902,
-          "msOneCall": 115,
+          "ms": 3268,
+          "msOneCall": 126,
           "stops": [],
           "moved": {
             "p4 32270": [
@@ -153,6 +153,13 @@
               16.73
             ]
           },
+          "staysWent": {
+            "p1490 57519": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "1708/1880"
           ]
@@ -164,15 +171,15 @@
       "function": 2,
       "does": "The knob on the right side of the body (the side with the right door) winds the winch in the front bumper: through bevel gears, an upright shaft and a shaft forward with universal joints, it turns a 20 tooth bevel gear that turns the reel, pulling the hook in or letting it out.",
       "verdict": "shown",
-      "msOneCall": 152,
-      "msPerStep": 20,
+      "msOneCall": 160,
+      "msPerStep": 23,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 61,
+        "reach": 52,
         "A": 2,
-        "B": 22
+        "B": 21
       },
       "stop": null,
       "stops": [],
@@ -182,8 +189,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 863,
-          "msOneCall": 152,
+          "ms": 991,
+          "msOneCall": 160,
           "stops": [],
           "moved": {
             "p531 32270": [
@@ -213,8 +220,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 795,
-          "msOneCall": 49,
+          "ms": 876,
+          "msOneCall": 57,
           "stops": [],
           "moved": {
             "p531 32270": [
@@ -293,27 +300,30 @@
               141.65
             ]
           },
+          "staysWent": {
+            "p639 18575": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 95
+      "seconds": 85
     },
     {
       "function": 5,
       "does": "Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft.",
-      "held": {
-        "result": "partly",
-        "reason": "In the viewer the control turns and these listed parts stay: p1333, p146, p162; a push by hand does not move them either. Viewer sweep, decision 279."
-      },
       "verdict": "shown",
-      "msOneCall": 234,
-      "msPerStep": 79,
+      "msOneCall": 242,
+      "msPerStep": 84,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 7,
+        "A": 8,
         "B": 0
       },
       "stop": null,
@@ -324,8 +334,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3372,
-          "msOneCall": 234,
+          "ms": 3603,
+          "msOneCall": 242,
           "stops": [],
           "moved": {
             "p1333 62821": [
@@ -347,8 +357,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3217,
-          "msOneCall": 102,
+          "ms": 3569,
+          "msOneCall": 120,
           "stops": [],
           "moved": {
             "p1333 62821": [
@@ -376,21 +386,21 @@
           "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 12
+      "seconds": 13
     },
     {
       "function": 6,
       "does": "The four track units roll; each pivots on its axle to follow the ground.",
       "verdict": "shown",
-      "msOneCall": 187,
-      "msPerStep": 31,
+      "msOneCall": 195,
+      "msPerStep": 33,
       "time": {
         "open": 24,
         "collisions": 0,
         "first": 0,
-        "reach": 119,
+        "reach": 105,
         "A": 8,
-        "B": 91
+        "B": 87
       },
       "stop": {
         "control": "p1490 57519",
@@ -413,8 +423,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 866,
-          "msOneCall": 187,
+          "ms": 915,
+          "msOneCall": 195,
           "stops": [
             "1365/1426"
           ],
@@ -425,8 +435,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.977,
-          "ms": 761,
-          "msOneCall": 72,
+          "ms": 822,
+          "msOneCall": 76,
           "stops": [
             "1366/1406"
           ],
@@ -437,8 +447,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 807,
-          "msOneCall": 66,
+          "ms": 867,
+          "msOneCall": 72,
           "stops": [
             "1366/1406"
           ],
@@ -449,8 +459,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.977,
-          "ms": 774,
-          "msOneCall": 65,
+          "ms": 820,
+          "msOneCall": 69,
           "stops": [
             "1365/1426"
           ],
@@ -461,8 +471,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1125,
-          "msOneCall": 71,
+          "ms": 1223,
+          "msOneCall": 74,
           "stops": [],
           "moved": {}
         },
@@ -471,8 +481,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1181,
-          "msOneCall": 65,
+          "ms": 1240,
+          "msOneCall": 69,
           "stops": [],
           "moved": {}
         },
@@ -481,8 +491,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.767,
-          "ms": 637,
-          "msOneCall": 70,
+          "ms": 676,
+          "msOneCall": 68,
           "stops": [
             "1788/1811"
           ],
@@ -493,8 +503,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.733,
-          "ms": 576,
-          "msOneCall": 65,
+          "ms": 672,
+          "msOneCall": 69,
           "stops": [
             "1789/1811"
           ],
@@ -532,6 +542,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "1366/1406"
           ]
@@ -566,6 +578,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "1365/1426"
           ]
@@ -600,6 +614,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -628,10 +644,12 @@
           ],
           "controlWent": [
             0,
-            86.55
+            87.81
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "1788/1811",
             "1789/1811"
@@ -659,7 +677,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 242
+      "seconds": 226
     },
     {
       "function": 7,
@@ -669,14 +687,14 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the controls p1172 and p1055 at once and at 0.07 rad (parts 231/462, 106/458, 628/2405); the door should swing up and the step lower. Viewer sweep, decision 279."
       },
       "verdict": "not shown",
-      "msOneCall": 246,
-      "msPerStep": 139,
+      "msOneCall": 264,
+      "msPerStep": 163,
       "time": {
         "open": 15,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 1,
+        "A": 2,
         "B": 55
       },
       "stop": {
@@ -699,8 +717,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 210,
-          "msOneCall": 246,
+          "ms": 236,
+          "msOneCall": 264,
           "stops": [],
           "moved": {
             "p1150 62531": [
@@ -718,8 +736,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 105,
-          "msOneCall": 101,
+          "ms": 117,
+          "msOneCall": 117,
           "stops": [
             "231/462"
           ],
@@ -739,8 +757,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0,
-          "ms": 100,
-          "msOneCall": 99,
+          "ms": 111,
+          "msOneCall": 110,
           "stops": [
             "106/458"
           ],
@@ -760,8 +778,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.07,
-          "ms": 276,
-          "msOneCall": 123,
+          "ms": 326,
+          "msOneCall": 142,
           "stops": [
             "628/2405"
           ],
@@ -819,6 +837,8 @@
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "625/2407",
             "506/1172",
@@ -868,6 +888,8 @@
               2.92
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "106/458",
             "628/2405",
@@ -900,21 +922,21 @@
         "verdict": "shown"
       },
       "why": "a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405) (the door swings up and the step lowers (the picture), far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388)",
-      "seconds": 73
+      "seconds": 72
     },
     {
       "function": 9,
       "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
       "verdict": "shown",
-      "msOneCall": 167,
-      "msPerStep": 53,
+      "msOneCall": 188,
+      "msPerStep": 58,
       "time": {
-        "open": 14,
+        "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 44,
-        "A": 55,
-        "B": 45
+        "reach": 38,
+        "A": 47,
+        "B": 43
       },
       "stop": null,
       "stops": [],
@@ -951,8 +973,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 106,
-          "msOneCall": 167,
+          "ms": 116,
+          "msOneCall": 188,
           "stops": [],
           "moved": {}
         },
@@ -988,8 +1010,8 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 843,
-          "msOneCall": 77,
+          "ms": 990,
+          "msOneCall": 76,
           "stops": [],
           "moved": {}
         },
@@ -1013,8 +1035,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 920,
-          "msOneCall": 72,
+          "ms": 1063,
+          "msOneCall": 71,
           "stops": [],
           "moved": {}
         },
@@ -1038,8 +1060,8 @@
           ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 88,
-          "msOneCall": 72,
+          "ms": 98,
+          "msOneCall": 81,
           "stops": [],
           "moved": {}
         }
@@ -1092,6 +1114,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "876/884",
             "868/884",
@@ -1145,13 +1169,15 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "874/896",
             "659/896"
           ]
         }
       ],
-      "seconds": 212
+      "seconds": 188
     }
   ]
 }

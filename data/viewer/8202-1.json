@@ -1,8 +1,8 @@
 {
   "set": "8202-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:47:15.579Z",
-  "load": 12.9,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:28:40.814Z",
+  "load": 7.5,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 67,
   "seconds": 16,
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 18,
+          "ms": 19,
           "msOneCall": 10,
           "stops": [],
           "moved": {
@@ -52,7 +52,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 12,
+          "ms": 14,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -78,11 +78,49 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            114.97
+          ],
           "moved": [
             "p62 4185",
             "p63 2815",
             "p64 2815"
           ],
+          "went": {
+            "p62 4185": [
+              0,
+              114.97
+            ],
+            "p63 2815": [
+              0,
+              114.97
+            ],
+            "p64 2815": [
+              0,
+              114.97
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],

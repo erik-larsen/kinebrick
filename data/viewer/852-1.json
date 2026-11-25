@@ -1,25 +1,25 @@
 {
   "set": "852-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:24:26.574Z",
-  "load": 12,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:56:49.447Z",
+  "load": 7.6,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 339,
-  "seconds": 16,
+  "seconds": 17,
   "functions": [
     {
       "function": 1,
       "does": "The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.",
       "verdict": "shown",
-      "msOneCall": 14,
-      "msPerStep": 2,
+      "msOneCall": 13,
+      "msPerStep": 1,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 66,
-          "msOneCall": 14,
+          "ms": 58,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p253 3708": [
@@ -68,7 +68,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 47,
+          "ms": 43,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -110,16 +110,71 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            141.25
+          ],
           "moved": [
             "p253 3708",
             "p282 3034",
             "p229 3650a",
             "p230 3706"
           ],
+          "went": {
+            "p253 3708": [
+              0,
+              77.28
+            ],
+            "p282 3034": [
+              349.68,
+              77.28
+            ],
+            "p229 3650a": [
+              0,
+              141.25
+            ],
+            "p230 3706": [
+              0,
+              141.25
+            ]
+          },
+          "staysWent": {
+            "p184 3709b": [
+              0,
+              0
+            ],
+            "p37 3707": [
+              0,
+              0.05
+            ],
+            "p193 3703": [
+              0,
+              0.03
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 17
     }
   ]
 }

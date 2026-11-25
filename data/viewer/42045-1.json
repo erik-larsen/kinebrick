@@ -1,25 +1,25 @@
 {
   "set": "42045-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:01:50.651Z",
-  "load": 8.3,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:37:08.680Z",
+  "load": 7.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 170,
-  "seconds": 30,
+  "seconds": 31,
   "functions": [
     {
       "function": 1,
       "does": "Pushing the hydroplane along on the two small wheels under its nose runs the inline four-cylinder engine: the wheels' axle carries a 20-tooth bevel gear that turns a 12-tooth bevel gear on the front of the crankshaft, so the four pistons go up and down.",
       "verdict": "shown",
-      "msOneCall": 18,
-      "msPerStep": 3,
+      "msOneCall": 14,
+      "msPerStep": 2,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 24
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 115,
-          "msOneCall": 18,
+          "ms": 97,
+          "msOneCall": 14,
           "stops": [],
           "moved": {
             "p55 32270": [
@@ -64,7 +64,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 94,
+          "ms": 90,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -99,8 +99,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 90,
-          "msOneCall": 3,
+          "ms": 84,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p55 32270": [
@@ -134,8 +134,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 88,
-          "msOneCall": 4,
+          "ms": 85,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p55 32270": [
@@ -172,6 +172,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            135.49
+          ],
           "moved": [
             "p55 32270",
             "p27 2854",
@@ -180,6 +202,34 @@
             "p36 2851",
             "p38 2851"
           ],
+          "went": {
+            "p55 32270": [
+              0.22,
+              162.71
+            ],
+            "p27 2854": [
+              0.06,
+              162.71
+            ],
+            "p26 2851": [
+              17.96,
+              0
+            ],
+            "p34 2851": [
+              17.19,
+              0
+            ],
+            "p36 2851": [
+              17.96,
+              0
+            ],
+            "p38 2851": [
+              17.19,
+              0
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -188,6 +238,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            120.24
+          ],
           "moved": [
             "p55 32270",
             "p27 2854",
@@ -196,10 +268,38 @@
             "p36 2851",
             "p38 2851"
           ],
+          "went": {
+            "p55 32270": [
+              0.23,
+              175.15
+            ],
+            "p27 2854": [
+              0.06,
+              175.15
+            ],
+            "p26 2851": [
+              16.65,
+              0
+            ],
+            "p34 2851": [
+              17.09,
+              0
+            ],
+            "p36 2851": [
+              16.65,
+              0
+            ],
+            "p38 2851": [
+              17.09,
+              0
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 30
+      "seconds": 31
     }
   ]
 }

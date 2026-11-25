@@ -1,17 +1,17 @@
 {
   "set": "8217-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:16:02.086Z",
-  "load": 3.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:44:18.185Z",
+  "load": 7.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 56,
-  "seconds": 43,
+  "seconds": 45,
   "functions": [
     {
       "function": 1,
       "does": "Pushed along, the two wheels turn together on one long axle, and a 12-tooth bevel gear on that axle turns another on the bottom of the upright rotor mast, so the main rotor spins as fast as the wheels; turning the rotor by hand turns the wheels too.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 4,
       "msPerStep": 0,
       "time": {
         "open": 5,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -30,7 +30,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 12,
-          "msOneCall": 3,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -61,7 +61,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 6,
-          "msOneCall": 0,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -91,8 +91,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 6,
-          "msOneCall": 0,
+          "ms": 5,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -122,7 +122,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 5,
+          "ms": 7,
           "msOneCall": 0,
           "stops": [],
           "moved": {
@@ -156,11 +156,60 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            122.26
+          ],
           "moved": [
             "p17 3706",
             "p27 4519",
             "p54 3737",
             "p57 3737"
+          ],
+          "went": {
+            "p17 3706": [
+              0,
+              122.26
+            ],
+            "p27 4519": [
+              0,
+              122.26
+            ],
+            "p54 3737": [
+              227.68,
+              122.26
+            ],
+            "p57 3737": [
+              227.68,
+              122.26
+            ]
+          },
+          "staysWent": {
+            "p50 32017": [
+              0,
+              1.41
+            ]
+          },
+          "staysMoved": [
+            "p50 32017"
           ],
           "stops": []
         },
@@ -170,20 +219,71 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            123.2
+          ],
           "moved": [
+            "p17 3706",
+            "p27 4519",
             "p54 3737",
             "p57 3737"
+          ],
+          "went": {
+            "p17 3706": [
+              0,
+              123.2
+            ],
+            "p27 4519": [
+              0,
+              123.2
+            ],
+            "p54 3737": [
+              228.71,
+              123.2
+            ],
+            "p57 3737": [
+              228.71,
+              123.2
+            ]
+          },
+          "staysWent": {
+            "p50 32017": [
+              0,
+              1.41
+            ]
+          },
+          "staysMoved": [
+            "p50 32017"
           ],
           "stops": []
         }
       ],
-      "seconds": 28
+      "seconds": 30
     },
     {
       "function": 2,
       "does": "The tail rotor, a dark 5-hole beam with yellow round plates at its ends, spins freely on its pin at the end of the tail boom.",
       "verdict": "shown",
-      "msOneCall": 3,
+      "msOneCall": 4,
       "msPerStep": 0,
       "time": {
         "open": 3,
@@ -191,7 +291,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 11
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -202,7 +302,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 9,
-          "msOneCall": 3,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -221,7 +321,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 4,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p17 3706": [
@@ -242,7 +342,41 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            159.79
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {
+            "p17 3706": [
+              0,
+              0
+            ],
+            "p0 3707": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],

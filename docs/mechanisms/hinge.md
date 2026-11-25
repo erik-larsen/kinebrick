@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 69 works, 21 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 68 works, 22 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -172,7 +172,7 @@ Each detail by the set it first appears in.
 
 - *shell:* The droid changes from its standing attack shape into a wheel: the curved brown shell, hinged to the top of the back, swings forward and down round the body, while the arms, head and legs fold in, until it is a ball that can be rolled along the floor. (works)
 - *head:* The head on the front end of the shell, with its red-tipped sensors, folds down against the body. (works)
-- *arms:* Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim. (works)
+- *arms:* Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim. (partly)
 - *elbows:* Each twin blaster bends at the elbow of its arm. (partly)
 - *front legs:* The two front legs fold back under the body for rolling and swing down to stand on. (partly)
 - *back leg:* The single back leg swings up over the back to close the wheel, and down again to stand on. (works)
@@ -192,7 +192,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (partly)
+- *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (works)
 - *wheel-lift arm:* The wheel-lift arm hinges at the back of the deck, so it swings up and down as the cylinder works it, carrying the grey wheel forks. (no)
 - *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (no)
 - *locker doors:* The two side lockers behind the cab open: each door, with a handle, hinges up at its top edge. (no)
@@ -208,7 +208,7 @@ Each detail by the set it first appears in.
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
 - *cab:* The cab tilts forward on its pivot at the front of the chassis, taking the roof gear's shaft out of mesh with the steering. (no)
-- *tailgate:* The tailgate at the back of the bed swings open. (works)
+- *tailgate:* The tailgate at the back of the bed swings open. (partly)
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 

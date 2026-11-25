@@ -1,25 +1,25 @@
 {
   "set": "42095-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:18:28.634Z",
-  "load": 15,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:53:29.374Z",
+  "load": 7.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 318,
-  "seconds": 70,
+  "seconds": 90,
   "functions": [
     {
       "function": 1,
       "does": "The left track: a Power Functions L motor, worked by one lever on the remote through the IR receiver, turns a 16 tooth gear on its shaft, which drives the 16 tooth gear on the big yellow sprocket at the back of the left track, running the track forward or back.",
       "verdict": "shown",
-      "msOneCall": 20,
+      "msOneCall": 22,
       "msPerStep": 3,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
+        "reach": 9,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 118,
-          "msOneCall": 20,
+          "ms": 120,
+          "msOneCall": 22,
           "stops": [],
           "moved": {
             "p232 94925": [
@@ -60,8 +60,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 88,
-          "msOneCall": 4,
+          "ms": 89,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p232 94925": [
@@ -94,29 +94,79 @@
           "cameraTurns": 2,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            92.64
+          ],
           "moved": [
             "p232 94925",
             "p335 42095 - 42529",
             "p306 57519"
           ],
+          "went": {
+            "p232 94925": [
+              0,
+              92.64
+            ],
+            "p335 42095 - 42529": [
+              0,
+              92.64
+            ],
+            "p306 57519": [
+              0,
+              125.81
+            ]
+          },
+          "staysWent": {
+            "p334 42095 - 42529": [
+              0,
+              2.76
+            ],
+            "p287 57519": [
+              0,
+              2.76
+            ]
+          },
+          "staysMoved": [
+            "p334 42095 - 42529",
+            "p287 57519"
+          ],
           "stops": []
         }
       ],
-      "seconds": 19
+      "seconds": 27
     },
     {
       "function": 2,
       "does": "The right track: the other L motor, worked by the remote's other lever, drives the right track's big yellow sprocket the same way.",
       "verdict": "shown",
-      "msOneCall": 19,
+      "msOneCall": 20,
       "msPerStep": 2,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
+        "reach": 7,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -126,8 +176,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 100,
-          "msOneCall": 19,
+          "ms": 92,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p272 94925": [
@@ -157,7 +207,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 79,
+          "ms": 69,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -191,29 +241,79 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            146.35
+          ],
           "moved": [
             "p272 94925",
             "p334 42095 - 42529",
             "p287 57519"
           ],
+          "went": {
+            "p272 94925": [
+              0,
+              146.33
+            ],
+            "p334 42095 - 42529": [
+              0,
+              146.35
+            ],
+            "p287 57519": [
+              0,
+              160.85
+            ]
+          },
+          "staysWent": {
+            "p335 42095 - 42529": [
+              0,
+              3.04
+            ],
+            "p306 57519": [
+              0,
+              2.76
+            ]
+          },
+          "staysMoved": [
+            "p335 42095 - 42529",
+            "p306 57519"
+          ],
           "stops": []
         }
       ],
-      "seconds": 19
+      "seconds": 25
     },
     {
       "function": 5,
       "does": "The two small yellow wheels on the tail, behind and above the tracks, roll freely, so the racer can run on them when it rears up.",
       "verdict": "shown",
-      "msOneCall": 18,
+      "msOneCall": 22,
       "msPerStep": 1,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
+        "reach": 6,
         "A": 0,
-        "B": 23
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -223,8 +323,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 56,
-          "msOneCall": 18,
+          "ms": 64,
+          "msOneCall": 22,
           "stops": [],
           "moved": {}
         },
@@ -233,8 +333,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 42,
-          "msOneCall": 3,
+          "ms": 47,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -243,8 +343,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 37,
-          "msOneCall": 2,
+          "ms": 50,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -253,8 +353,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 38,
-          "msOneCall": 2,
+          "ms": 49,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         }
@@ -266,7 +366,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            127.44
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -275,11 +400,36 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            156.75
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 32
+      "seconds": 38
     }
   ]
 }

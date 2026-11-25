@@ -211,13 +211,14 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "e32f5816",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 74,
+    "seconds": 59,
     "counts": {
-      "works": 7,
+      "works": 6,
       "no": 1,
-      "partly": 2,
+      "partly": 3,
       "not checked": 1,
       "skipped": 1
     },
@@ -306,7 +307,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 2.8
       },
       {
         "result": "no",
@@ -388,7 +389,7 @@
             null
           ]
         ],
-        "seconds": 25.5
+        "seconds": 22.4
       },
       {
         "result": "partly",
@@ -456,7 +457,7 @@
         ],
         "cause": "not-driven",
         "detail": "p212 48168",
-        "seconds": 3
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -526,7 +527,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 2.8
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -580,7 +581,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 2.7
       },
       {
         "result": "not checked",
@@ -658,72 +659,79 @@
             0
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.2
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p357 32316": [
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the tailgate swings 142 degrees, but the beam p370, listed to stay, moves 45 LDU and turns 32 degrees with it. The viewer's own turn does not take the control p345. Full viewer sweep at ac22e339, decision 363.",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0,
+              -1.5
+            ]
+          ],
+          "rates": [
+            {
+              "p357 32316": [
+                1,
+                40
+              ],
+              "p370 40490": [
+                0,
+                1.66e-74
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              null
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "collisionStops": [
+            [
+              0,
               1,
-              40
-            ],
-            "p370 40490": [
-              0,
-              1.66e-74
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
+              331,
+              348,
               0,
               0
             ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            null
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            331,
-            348,
-            0,
-            0
-          ]
-        ],
-        "seconds": 3.1
+          ],
+          "seconds": 2.3
+        }
       },
       {
         "result": "works",
@@ -797,7 +805,7 @@
             0.2
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -967,13 +975,13 @@
           [],
           []
         ],
-        "seconds": 24.6
+        "seconds": 18.3
       },
       {
         "result": "skipped",
         "seconds": 0
       }
     ],
-    "peak": 710
+    "peak": 808
   }
 }
