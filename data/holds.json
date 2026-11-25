@@ -178,7 +178,7 @@
     "set": "42038-1",
     "function": 1,
     "result": "partly",
-    "reason": "The viewer sweep does not show it: with Shift pressed on the steering gear p170 (no friction pin holds it), the viewer's turn of it goes 0 both ways and a pointer drag turns it 0; the listed parts move 0.1 at most (the sweep at 85aa8904, decision 355). The check turns it 1.5 rad each way.",
+    "reason": "Under a hand the steering goes one way only: since the press handler's mend (decision 358) a plain press on the gear p170 frees its two friction pins p278 and p279 and a drag turns it 105 degrees until p205 meets p288, the track units' hubs moving 27 to 43 LDU; the other way it creeps about 1.2 degrees for each drag. The check turns it 1.5 rad each way. The sweep at 5a5eace2.",
     "date": "2026-11-25"
   },
   {
