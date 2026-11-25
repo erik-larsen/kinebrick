@@ -245,6 +245,25 @@
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 10] [pos=0 -20 0] [ori=1 0 0 0 -1 0 0 0 -1]
 0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=8] [spur=false] [bevel=-] [apex=34] [center=true] [pos=0 0 24] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 65414c01.dat
+0 // Technic Differential with Red 28 Tooth Drive Gear and Tan Satellites, read as its pieces (role "pieces"): the casing 65414 (at z -20), the 28 tooth ring 65413 clipped onto it (at z 20), and five 12 tooth bevels 6589: two side gears on the output axles (at z -17 and 17) and three satellites round the middle (at radius 17), all their cones' tips at its middle. Read whole, it had only its two end holes, with no gear, and both output axles were fixed in one body (the 42129's, 42114's, 42124's and 42109's drive lines)
+
+0 FILE 65414.dat
+0 // Technic Differential Casing for 5 Internal Gears (a piece of 65414c01): its end hole, from the shadow library; three posts the satellites turn on, along the lines from its middle to them (65414c01's placing, 20 LDU out to 10, as the 62821's post); and the keyed fit of the ring's clip, at 21 LDU from the axis. The shadow library joins the ring to it by a ball (diffHouse, sph 25), which would let the ring swing on it: left out
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 8 2   R 6 18] [pos=0 0 -10] [ori=0 0 -1 1 0 0 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 10] [pos=0 -20 20] [ori=1 0 0 0 -1 0 0 0 -1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 10] [pos=17.3205 10 20] [ori=0.5 0.86603 0 -0.86603 0.5 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 10] [pos=-17.3205 10 20] [ori=0.5 -0.86603 0 0.86603 0.5 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 4] [center=true] [pos=0 21 46] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 65413.dat
+0 // Technic Gear 28 Tooth Double Bevel with Peghole: 35 LDU pitch radius, a 28 tooth gear's at LEGO's tooth size, its teeth 20 LDU wide (z -10 to 10) and reaching 36.8 out (measured from its tooth primitive, toothb28d), its axis along z, and its bevel's cone tip 5 LDU beyond its pitch radius, as the other double bevels'; its peghole from the shadow library; and the keyed fit of its clip onto the differential casing 65414 (its pegs at 21 LDU from the axis), where the shadow library gives a ball (diffHouse), left out
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 12 2   R 8 3   R 6 6   R 8 2] [pos=0 0 -3] [ori=0 0 1 -1 0 0 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 4] [center=true] [pos=0 21 6] [ori=1 0 0 0 0 1 0 -1 0]
+0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=20] [bevel=both] [apex=40] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 // Worm gears. A worm's thread is a single right-handed helix; each turn moves a meshing gear
 0 // on by one tooth, so its lead (how far the thread advances per turn) is one gear tooth:
 0 // 2 x pi x 1.25 = 7.853982 LDU. Measured from the LDraw shape. It meshes like an 8 tooth gear

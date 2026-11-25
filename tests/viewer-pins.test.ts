@@ -34,6 +34,23 @@ describe("the viewer's friction pins for a drag", () => {
     expect(pins).toEqual([20]);
     expect(after).toBe(true);
   });
+  // A drag that went on play and stopped short asks only for pins that give it an exact motion
+  // (the viewer's turnOwed, decision 331). The 42004 Mini Backhoe's knob, which a pin in the boom
+  // holds to play, gets that pin; the 8272 Snowmobile's ski arm on the ground, which moves only on
+  // play with its hinge pin free too, gets none, and keeps what it turned.
+  const exactly = async (model: string, part: number) => {
+    const loaded = await loadModel(model, true);
+    const build = (freed: Set<number>) => loaded.read(loaded.parts, freed).mech;
+    const at = new Vector3().setFromMatrixPosition(loaded.parts[part].matrix);
+    return pinsForDrag(build, loaded.allFree(loaded.parts), part, at, new Set(), true, false, true);
+  };
+  const backhoe = 'omr/42004-1 Mini Backhoe.mpd';
+  it.skipIf(!existsSync(backhoe))("frees the boom's pin for the 42004 Mini Backhoe's knob stopped on play, as it then turns exactly", async () => {
+    expect(await exactly(backhoe, 147)).toEqual([153]);
+  });
+  it.skipIf(!existsSync(snowmobile))("frees no pin for the 8272 Snowmobile's right ski arm stopped on play, as it would still move only on play", async () => {
+    expect(await exactly(snowmobile, 9)).toEqual([]);
+  });
   // Its knobs sit in the frame even with every friction pin free. The trial search would free
   // p348, which joins the machine's two halves, so that each knob swings a half (decision 166).
   const forest = 'omr/42080-1 Forest Machine.mpd';

@@ -576,13 +576,13 @@ async function start() {
     };
     pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
   }
-  const pinsToFree = (part: number, search = true, at?: Vector3) =>
+  const pinsToFree = (part: number, search = true, at?: Vector3, exact = false) =>
     new Promise<number[]>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve([]);
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
-      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined });
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined, exact });
     });
   // The pins a press with Shift frees (see pinsForShift), and if none, why. Once a part asked to
   // slide has moved (see afterSlide), the helper's model, as loaded, is not the one in view: the

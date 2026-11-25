@@ -193,9 +193,10 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 84,
+    "commit": "92d6a509",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 94,
     "counts": {
       "works": 7,
       "partly": 1,
@@ -323,16 +324,7 @@
     ],
     "errata": {
       "applied": [
-        "drive-shaft-bevel-on-the-shaft",
-        "piston-first-axle-on-the-plate",
-        "piston-first-half-bush-on-the-plate",
-        "piston-first-bush-on-the-plate",
-        "piston-second-axle-on-the-plate",
-        "piston-second-half-bush-on-the-plate",
-        "piston-second-bush-on-the-plate",
-        "piston-fourth-axle-on-the-plate",
-        "piston-fourth-half-bush-on-the-plate",
-        "piston-fourth-bush-on-the-plate"
+        "drive-shaft-bevel-on-the-shaft"
       ],
       "refused": []
     },
@@ -445,7 +437,7 @@
             0.7
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -667,7 +659,7 @@
           [],
           []
         ],
-        "seconds": 46.9
+        "seconds": 52.8
       },
       {
         "result": "works",
@@ -681,27 +673,27 @@
           {
             "p249 62821": [
               1,
-              4.78e-13
+              4.43e-13
             ],
             "p245 18575": [
               1.4,
-              1.77e-14
+              2.33e-14
             ],
             "p17 60485": [
               1.4,
-              1.52e-14
+              2.33e-14
             ],
             "p160 94925": [
               1.4,
-              1.52e-14
+              2.33e-14
             ],
             "p139 94925": [
               1.4,
-              7.48e-14
+              4.74e-14
             ],
             "p176 4519": [
               0,
-              8
+              6.67
             ],
             "p1006 32270": [
               0,
@@ -742,7 +734,7 @@
             ]
           ]
         ],
-        "seconds": 5.8
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -808,7 +800,7 @@
             0.5
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -825,27 +817,27 @@
           {
             "p231 94925": [
               1.4,
-              1.81e-14
+              2.13e-14
             ],
             "p356 42112 - 35185": [
               1.12,
-              1.42e-14
+              1.89e-14
             ],
             "p361 32270": [
               1.12,
-              1.42e-14
+              1.89e-14
             ],
             "p390 3648b": [
               0.56,
-              2.84e-14
+              3.58e-14
             ],
             "p436 32498": [
               0.56,
-              1.84e-13
+              1.78e-13
             ],
             "p448 18938": [
               0.336,
-              1.92e-13
+              2.52e-13
             ],
             "p1118 42112 - 65421p01": [
               0.336,
@@ -853,7 +845,7 @@
             ],
             "p1039 42112 - 33299b": [
               0.373,
-              2.37e-14
+              2.84e-14
             ]
           }
         ],
@@ -909,7 +901,7 @@
             0.47
           ]
         ],
-        "seconds": 12.3
+        "seconds": 12.8
       },
       {
         "result": "works",
@@ -1006,7 +998,7 @@
             0.93
           ]
         ],
-        "seconds": 10.3
+        "seconds": 11.4
       },
       {
         "result": "works",
@@ -1076,7 +1068,7 @@
             0.27
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "works",
@@ -1150,9 +1142,9 @@
             0.83
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.8
       }
     ],
-    "peak": 1026
+    "peak": 942
   }
 }
