@@ -42,6 +42,7 @@
 //      nothing else there.
 //   … --shift  where the check freed friction pins for a function (its record's `freed`), part A
 //      presses Shift on the control first, as a user does (the viewer's pinsToShift and freePins),
+//      and first on each other part its record's freedFor names (decision 304; part B too),
 //      then turns it; what it freed is in the record (decision 267's sorting).
 //   … --listed  the list's settings as a user makes them (decision 267's sorting): the model opened
 //      lifted where the list says `lifted` (the viewer's "Lift off the ground", ?lifted=1), the parts
@@ -343,7 +344,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   {
     let v = await prepare(controls[0], true);
     const tA = Date.now();
-    for (const [ci, ref] of controls.entries()) {
+    // Controls worked together (`together`, a vehicle pushed along by its wheels): the first is
+    // worked and the others turn with it (Kinematics.turnTogether), as the check works them.
+    const withIt = fn.together ? controls.slice(1).map((r) => refOf(r).part) : [];
+    for (const [ci, ref] of (fn.together ? controls.slice(0, 1) : controls).entries()) {
       const control = refOf(ref).part;
       if (ci > 0 && listed && fn.held && !Array.isArray(fn.held)) {
         if (!viewerFor) await v.close();
@@ -353,6 +357,8 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       // The camera turned till the control is in view, the pointer on it, and Shift pressed and let
       // go (no drag): what the viewer said, and the pins freed.
       let shifted: { seen: boolean; said?: string[]; freed?: number[] } | null = null;
+      const others = shiftFirst && g.freed ? freedForOthers(g, control) : [];
+      const shiftedOthers = others.length ? await shiftOthers(v, others) : [];
       if (shiftFirst && g.freed && !(await turnsPlain(v, control))) {
         const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
         shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
@@ -368,7 +374,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         // stops whatever the check turned (decision 297: the booklet's functions swept again).
         const asked = process.env.KB_SWEEP_FULL === '1' || endlessPart(ref.split(' ').slice(1).join(' ')) ? Math.max(1.5, checkTurned) : checkTurned;
         const r = (await v.page.evaluate(
-          ({ control, asked, way, step, parts, dragEnd }) => {
+          ({ control, asked, way, step, parts, dragEnd, withIt }) => {
             const k = (window as any).kinebrick;
             const snap = k.kin.snapshot();
             const mechBefore = k.mech;
@@ -379,9 +385,25 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
             // One call of one step from the start pose, as a drag makes them (decision 258): what
             // the user waits for each time the pointer moves.
             let oneCall: number | null = null;
+            // Controls worked together are turned as the check turns them (its turn in
+            // check-functions.ts): the others set to turn with this one, the drag's holds, its joint
+            // turned. Not turnPart, which turns only a part that turns like a knob: a car's wheel on
+            // its hub, in the loop of its suspension, is pushed by a drag (the 42077's).
+            const turnTogether = (amount: number) => {
+              const body = k.mech.bodyOf[control];
+              const link = k.kin.parentLink(body);
+              if (!link) return 0;
+              k.kin.turnTogether(body, withIt.map((p: number) => k.mech.bodyOf[p]));
+              k.kin.holdWhatTheDragDoesntNeed(body, () => k.kin.jointMotion(link.joint) !== null, link.joint);
+              const turned = k.kin.turnJoint(link.joint, amount, () => k.setup.blockedBy() === null);
+              k.kin.letGoAfterDrag();
+              k.setup.onMoved?.();
+              return turned;
+            };
+            const turn = (amount: number) => (withIt.length ? turnTogether(amount) : k.interaction.turnPart(control, amount, k.setup.camera.position));
             if (k.mech.roles[control] !== 'motor') {
               const t1 = performance.now();
-              k.interaction.turnPart(control, way * step, k.setup.camera.position);
+              turn(way * step);
               oneCall = performance.now() - t1;
               k.kin.restore(snap);
             }
@@ -413,7 +435,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
             if (k.mech.roles[control] === 'motor') how = 'motor';
             else {
               try {
-                went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
+                went = turn(way * asked);
               } finally {
                 k.setup.blockedBy = blockedBy;
               }
@@ -445,7 +467,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
             if (!rebuilt) k.kin.restore(snap);
             return { went, ms, how, moved, oneCall, shiftedRing, rebuilt };
           },
-          { control, asked, way, step: MAX_STEP, parts: [...moves, ...stays].map((m: Ref) => [m.part, m.against]), dragEnd: listed },
+          { control, asked, way, step: MAX_STEP, parts: [...moves, ...stays].map((m: Ref) => [m.part, m.against]), dragEnd: listed, withIt },
         )) as { went: number; ms: number; how: string; moved: [number, number][]; oneCall: number | null; shiftedRing: boolean; rebuilt: boolean };
         if (r.oneCall !== null) oneCalls.push(r.oneCall);
         let { went, ms } = r;
@@ -461,9 +483,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
           // Worked out afresh (a ring shifted): opened afresh for the other way, Shift pressed again.
           if (!viewerFor) await v.close();
           v = await prepare(ref, false);
+          if (others.length) await shiftOthers(v, others);
           if (shifted?.seen && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
         }
-        A.push({ control: ref, way, ...(shifted ? { shift: shifted } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
+        A.push({ control: ref, way, ...(shiftedOthers.length ? { shiftOthers: shiftedOthers } : {}), ...(shifted ? { shift: shifted } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
     }
     time.A += (Date.now() - tA) / 1000;
@@ -474,7 +497,10 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   const B: unknown[] = [];
   const movedByB = new Set<string>();
   const controlsMovedByB = new Set<string>();
-  for (const ref of viewerFor ? [] : controls) {
+  // Controls worked together: no one drag of the pointer turns them all, so B is left out and A,
+  // which turns them as the check does, decides; the record says so.
+  if (fn.together && !viewerFor) B.push({ control: controls, together: true, left: 'worked together: no one drag turns them all; A turns them as the check does' });
+  for (const ref of viewerFor || fn.together ? [] : controls) {
     const control = refOf(ref).part;
     const v = await timed('open', open(file, settings));
     await timed('collisions', collisionsReady(v));
@@ -482,6 +508,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const freeAskedB = process.env.KB_FREE_PINS ? (JSON.parse(process.env.KB_FREE_PINS) as Record<string, number[]>)[fnKey] : undefined;
     if (freeAskedB?.length) await v.page.evaluate((pins) => (window as any).kinebrick.setup.freePins(pins), freeAskedB);
     if (listed) await hold(v, Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []));
+    const shiftedOthersB = g.freed ? await shiftOthers(v, freedForOthers(g, control)) : [];
     const turns = await timed('reach', v.reach(control));
     const tB = Date.now();
     if (turns < 0) {
@@ -542,7 +569,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const controlMoved = c[0] >= MOVED || c[1] >= MOVED;
     moved.forEach((m: string) => movedByB.add(m));
     if (controlMoved) controlsMovedByB.add(ref);
-    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), stops: await v.stops() });
+    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), stops: await v.stops() });
     time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
@@ -551,10 +578,11 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   // that lists no part to move (the 8840's function 5, whose wheels all turned 0, was shown).
   // A turn of 0 by turnPart on a part the hand moves is no verdict (decision 329): a control
   // counts as worked if A turned it or B moved it.
-  const turnedEach = controls.every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01) || controlsMovedByB.has(ref));
+  // Controls worked together are worked by the first, the others turning with it.
+  const turnedEach = (fn.together ? controls.slice(0, 1) : controls).every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01) || controlsMovedByB.has(ref));
   const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0 && turnedEach;
   // Where the function lists no part to move, B shows it if it moved every control (decision 329).
-  const bShows = !!viewerFor || (moves.length === 0 ? controls.every((ref) => controlsMovedByB.has(ref)) : movedByB.size > 0);
+  const bShows = !!viewerFor || !!fn.together || (moves.length === 0 ? controls.every((ref) => controlsMovedByB.has(ref)) : movedByB.size > 0);
   const why = [
     ...(aShows ? [] : [`A: ${moves.filter((m: Ref) => !movedByA.has(m.ref)).map((m: Ref) => m.ref).join(', ') || 'none'} not moved${staysMovedByA.size ? `; ${[...staysMovedByA].join(', ')} listed to stay moved` : ''}`]),
     ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : moves.length === 0 ? 'the control not moved by hand' : 'no listed part moved by hand'}`]),
@@ -585,6 +613,21 @@ async function hold(v: Viewer, refs: string[]) {
 // presses no Shift on it. Shift on a part no friction pins hold asks for it to slide on its axle
 // (slidesOnAxle in interaction.ts), and a wheel asked so turns no more: the 8840's p210, which the
 // sweep pressed because the check's record had freed pins elsewhere, then turned 0 both ways.
+// The parts the check freed pins for other than the control (its record's freedFor, decision
+// 304): the 8272's skis, freed for a wishbone arm the control p9 does not hold. A user who sees
+// such a part stuck presses Shift on it, so the sweep does, before it works the control.
+function freedForOthers(g: { freedFor?: { for: string }[] }, control: number): number[] {
+  return [...new Set((g.freedFor ?? []).map((f) => refOf(f.for).part))].filter((p) => p !== control);
+}
+async function shiftOthers(v: Viewer, parts: number[]): Promise<{ part: number; seen: boolean; said?: string[]; freed?: number[] }[]> {
+  const out: { part: number; seen: boolean; said?: string[]; freed?: number[] }[] = [];
+  for (const part of parts) {
+    const seen = (await v.reach(part)) >= 0 && (await v.aim(part));
+    out.push(seen ? { part, seen, ...(await v.press({ shift: true, release: true })) } : { part, seen });
+  }
+  return out;
+}
+
 async function turnsPlain(v: Viewer, control: number): Promise<boolean> {
   return v.page.evaluate((control) => {
     const k = (window as any).kinebrick;

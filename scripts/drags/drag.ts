@@ -119,6 +119,25 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
     }
   };
 
+  // Where the check grabs `part` besides its middle (grabOf in scripts/check-functions.ts): GRAB
+  // LDU from it along each of the part's own axes, each way, drawn in pixels. Aimed at where the
+  // middle is covered (the 42110's roof box lid, whose middle no view shows).
+  const GRAB = 10;
+  const grabPoints = (part: number) =>
+    page.evaluate(({ p, grab }) => {
+      const k = (window as any).kinebrick;
+      const camera = k.setup.camera;
+      const m = k.matrices()[p];
+      const r = k.setup.renderer.domElement.getBoundingClientRect();
+      const out: [number, number][] = [];
+      for (const c of [0, 1, 2]) for (const way of [1, -1]) {
+        const axis = camera.position.clone().setFromMatrixColumn(m, c).normalize().multiplyScalar(way * grab);
+        const v = camera.position.clone().setFromMatrixPosition(m).add(axis).applyMatrix4(k.setup.ldrawSpace.matrixWorld).project(camera);
+        out.push([r.left + ((v.x + 1) / 2) * r.width, r.top + ((1 - v.y) / 2) * r.height]);
+      }
+      return out;
+    }, { p: part, grab: GRAB });
+
   const viewer: Viewer = {
     page,
     browser,
@@ -127,7 +146,8 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
       // the pointer, appearance.hoveredPart); then the pointer itself goes where it was found.
       const [x, y] = await middle(part);
       const kept = found.get(part) ?? null;
-      const hit: [number, number] | null = await page.evaluate(
+      // Rings round the middle; where none finds the part, rings round each grab point.
+      const ringsAt = (cx: number, cy: number, keep: [number, number] | null) => page.evaluate(
         ({ p, x, y, kept }) => {
           const k = (window as any).kinebrick;
           const canvas = k.setup.renderer.domElement as HTMLCanvasElement;
@@ -142,8 +162,15 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
           }
           return null;
         },
-        { p: part, x, y, kept },
+        { p: part, x: cx, y: cy, kept: keep },
       );
+      let hit: [number, number] | null = await ringsAt(x, y, kept);
+      if (!hit) {
+        for (const [gx, gy] of await grabPoints(part)) {
+          const h = await ringsAt(gx, gy, null);
+          if (h) { hit = [gx - x + h[0], gy - y + h[1]]; break; }
+        }
+      }
       if (!hit) return false;
       at = [x + hit[0], y + hit[1]];
       await page.mouse.move(at[0], at[1]);
