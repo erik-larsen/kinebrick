@@ -1,11 +1,11 @@
 {
   "set": "42093-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T06:00:03.342Z",
-  "load": 10.8,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:10:20.287Z",
+  "load": 8.7,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 565,
-  "seconds": 81,
+  "seconds": 80,
   "functions": [
     {
       "function": 3,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 22,
         "A": 3,
-        "B": 31
+        "B": 30
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 697,
+          "ms": 686,
           "msOneCall": 51,
           "stops": [],
           "moved": {}
@@ -40,7 +40,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 670,
-          "msOneCall": 18,
+          "msOneCall": 17,
           "stops": [],
           "moved": {}
         },
@@ -49,8 +49,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 667,
-          "msOneCall": 17,
+          "ms": 648,
+          "msOneCall": 18,
           "stops": [],
           "moved": {}
         },
@@ -59,7 +59,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 666,
+          "ms": 642,
           "msOneCall": 17,
           "stops": [],
           "moved": {}
@@ -92,7 +92,7 @@
           ],
           "controlWent": [
             0,
-            169.28
+            169.03
           ],
           "moved": [],
           "went": {},
@@ -128,7 +128,7 @@
           ],
           "controlWent": [
             0,
-            179.13
+            179.36
           ],
           "moved": [],
           "went": {},
@@ -139,7 +139,7 @@
           ]
         }
       ],
-      "seconds": 63
+      "seconds": 62
     },
     {
       "function": 4,
@@ -163,7 +163,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 163,
+          "ms": 164,
           "msOneCall": 39,
           "stops": [],
           "moved": {}
@@ -173,8 +173,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 137,
-          "msOneCall": 10,
+          "ms": 140,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         }

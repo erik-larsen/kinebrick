@@ -1,11 +1,11 @@
 {
   "set": "851-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:33:24.998Z",
-  "load": 9.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:02:59.328Z",
+  "load": 6.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 276,
-  "seconds": 87,
+  "seconds": 107,
   "functions": [
     {
       "function": 1,
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 67,
+          "ms": 69,
           "msOneCall": 10,
           "stops": [],
           "moved": {
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 45,
-          "msOneCall": 2,
+          "ms": 46,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p55 3706": [
@@ -102,32 +102,83 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            112.85
+          ],
           "moved": [
             "p55 3706",
             "p165 3743",
             "p152 3706",
             "p151 3706"
           ],
+          "went": {
+            "p55 3706": [
+              0,
+              112.85
+            ],
+            "p165 3743": [
+              59.85,
+              0
+            ],
+            "p152 3706": [
+              9.97,
+              82.06
+            ],
+            "p151 3706": [
+              9.97,
+              82.06
+            ]
+          },
+          "staysWent": {
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p232 3702": [
+              0,
+              0.06
+            ]
+          },
+          "staysMoved": [],
           "stops": [
-            "159/167"
+            "157/167"
           ]
         }
       ],
-      "seconds": 15
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "The two big rear wheels roll and drive the rotary harrow: the crown gear on the rear half-axle with wheel p239 turns an 8-tooth gear on a short lengthwise axle, whose crown gear at the back drives the harrow's flat 40-tooth gear; that turns an 8-tooth gear on the middle rotor, and the middle rotor's 40-tooth gear turns the two outer rotors, so all three sets of yellow tines spin as the tractor rolls.",
       "verdict": "shown",
-      "msOneCall": 12,
+      "msOneCall": 13,
       "msPerStep": 2,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
+        "reach": 7,
         "A": 0,
-        "B": 23
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -137,8 +188,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 90,
-          "msOneCall": 12,
+          "ms": 85,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p22 3705 against p0 3710": [
@@ -176,7 +227,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 54,
+          "ms": 56,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -254,8 +305,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 49,
-          "msOneCall": 2,
+          "ms": 50,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p22 3705 against p0 3710": [
@@ -296,6 +347,28 @@
           "cameraTurns": 2,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            158.07
+          ],
           "moved": [
             "p22 3705 against p0 3710",
             "p287 3649 against p260 3709b",
@@ -303,6 +376,39 @@
             "p315 3649 against p260 3709b",
             "p321 3649 against p260 3709b"
           ],
+          "went": {
+            "p22 3705 against p0 3710": [
+              0,
+              114.2
+            ],
+            "p287 3649 against p260 3709b": [
+              0,
+              168.59
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              166.76
+            ],
+            "p315 3649 against p260 3709b": [
+              0,
+              166.76
+            ],
+            "p321 3649 against p260 3709b": [
+              0.01,
+              166.76
+            ]
+          },
+          "staysWent": {
+            "p39 3702 against p0 3710": [
+              0,
+              0.03
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              0.06
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -311,6 +417,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            84.97
+          ],
           "moved": [
             "p22 3705 against p0 3710",
             "p287 3649 against p260 3709b",
@@ -318,16 +446,49 @@
             "p315 3649 against p260 3709b",
             "p321 3649 against p260 3709b"
           ],
+          "went": {
+            "p22 3705 against p0 3710": [
+              0,
+              125.62
+            ],
+            "p287 3649 against p260 3709b": [
+              0,
+              152.95
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              154.26
+            ],
+            "p315 3649 against p260 3709b": [
+              0,
+              154.26
+            ],
+            "p321 3649 against p260 3709b": [
+              0.01,
+              154.26
+            ]
+          },
+          "staysWent": {
+            "p39 3702 against p0 3710": [
+              0,
+              0.03
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              0.06
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 31
+      "seconds": 38
     },
     {
       "function": 3,
       "does": "The two small front wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 12,
+      "msOneCall": 11,
       "msPerStep": 2,
       "time": {
         "open": 5,
@@ -335,7 +496,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -345,8 +506,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 78,
-          "msOneCall": 12,
+          "ms": 84,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -355,7 +516,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 53,
+          "ms": 55,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -365,7 +526,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 50,
+          "ms": 54,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -376,7 +537,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 51,
-          "msOneCall": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
@@ -388,7 +549,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            122.01
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -397,17 +583,42 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            163.48
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 29
+      "seconds": 31
     },
     {
       "function": 4,
       "does": "The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.",
       "verdict": "shown",
-      "msOneCall": 20,
+      "msOneCall": 16,
       "msPerStep": 4,
       "time": {
         "open": 4,
@@ -415,7 +626,7 @@
         "first": 0,
         "reach": 1,
         "A": 0,
-        "B": 7
+        "B": 16
       },
       "stop": null,
       "stops": [],
@@ -425,8 +636,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 111,
-          "msOneCall": 20,
+          "ms": 122,
+          "msOneCall": 16,
           "stops": [],
           "moved": {
             "p39 3702": [
@@ -490,15 +701,61 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            }
+          ],
+          "controlWent": [
+            26.55,
+            73.45
+          ],
           "moved": [
             "p39 3702",
             "p102 3702",
             "p260 3709b"
           ],
-          "stops": []
+          "went": {
+            "p39 3702": [
+              49.97,
+              48.31
+            ],
+            "p102 3702": [
+              51.78,
+              50.91
+            ],
+            "p260 3709b": [
+              118.58,
+              14.08
+            ]
+          },
+          "staysWent": {
+            "p245 3739 against p0 3710": [
+              0,
+              0
+            ],
+            "p309 3649 against p260 3709b": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
+          "stops": [
+            "22/287",
+            "45/232"
+          ]
         }
       ],
-      "seconds": 12
+      "seconds": 21
     }
   ]
 }

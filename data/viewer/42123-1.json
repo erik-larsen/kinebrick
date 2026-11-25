@@ -1,23 +1,23 @@
 {
   "set": "42123-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T05:55:48.846Z",
-  "load": 2.3,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:13:49.116Z",
+  "load": 8.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 819,
-  "seconds": 247,
+  "seconds": 261,
   "functions": [
     {
       "function": 1,
       "does": "The 12 tooth gear on top of the roof steers the front wheels: its upright shaft drives a pair of 12 tooth bevel gears under the cockpit, and a long shaft forward to a 12 tooth gear at the front slides the steering rack across, turning both front hubs.",
       "verdict": "shown",
-      "msOneCall": 34,
-      "msPerStep": 5,
+      "msOneCall": 42,
+      "msPerStep": 6,
       "time": {
-        "open": 15,
+        "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 34,
+        "reach": 41,
         "A": 0,
         "B": 13
       },
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.698,
-          "ms": 102,
-          "msOneCall": 34,
+          "ms": 121,
+          "msOneCall": 42,
           "stops": [
             "110/117"
           ],
@@ -68,8 +68,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.698,
-          "ms": 90,
-          "msOneCall": 11,
+          "ms": 103,
+          "msOneCall": 14,
           "stops": [
             "110/117"
           ],
@@ -164,16 +164,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 62
+      "seconds": 72
     },
     {
       "function": 2,
       "does": "Rolling the car turns the V8 engine behind the seats: the right rear wheel's axle turns the crankshaft through two 12 tooth bevel gears, and the crankshaft pushes the eight yellow pistons up and down in their two tilted banks.",
       "verdict": "shown",
-      "msOneCall": 40,
-      "msPerStep": 9,
+      "msOneCall": 47,
+      "msPerStep": 12,
       "time": {
-        "open": 16,
+        "open": 17,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -188,8 +188,8 @@
           "way": 1,
           "asked": 2.9,
           "went": 2.9,
-          "ms": 750,
-          "msOneCall": 40,
+          "ms": 907,
+          "msOneCall": 47,
           "stops": [],
           "moved": {
             "p162 55013": [
@@ -219,8 +219,8 @@
           "way": -1,
           "asked": 2.9,
           "went": -2.9,
-          "ms": 731,
-          "msOneCall": 12,
+          "ms": 1010,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p162 55013": [
@@ -273,7 +273,7 @@
           ],
           "controlWent": [
             0,
-            177.92
+            180
           ],
           "moved": [
             "p162 55013",
@@ -283,14 +283,14 @@
           "went": {
             "p162 55013": [
               0,
-              176.59
+              177.63
             ],
             "p253 32123b against p251 32524": [
-              6.12,
+              5.98,
               0
             ],
             "p264 32123b against p262 32524": [
-              5.02,
+              5.22,
               0
             ]
           },
@@ -308,14 +308,14 @@
           "stops": []
         }
       ],
-      "seconds": 34
+      "seconds": 36
     },
     {
       "function": 3,
       "does": "The two doors swing up and forward on hinges at their front corners (dihedral doors).",
       "verdict": "shown",
-      "msOneCall": 39,
-      "msPerStep": 12,
+      "msOneCall": 40,
+      "msPerStep": 14,
       "time": {
         "open": 26,
         "collisions": 0,
@@ -354,8 +354,8 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 207,
-          "msOneCall": 39,
+          "ms": 223,
+          "msOneCall": 40,
           "stops": [],
           "moved": {}
         },
@@ -386,8 +386,8 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 12,
-          "msOneCall": 13,
+          "ms": 14,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -409,8 +409,8 @@
           ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 11,
-          "msOneCall": 12,
+          "ms": 14,
+          "msOneCall": 14,
           "stops": [],
           "moved": {}
         },
@@ -432,8 +432,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 181,
-          "msOneCall": 11,
+          "ms": 197,
+          "msOneCall": 14,
           "stops": [],
           "moved": {}
         }
@@ -456,7 +456,9 @@
               ]
             }
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -505,7 +507,9 @@
               ]
             }
           ],
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…"
+          ],
           "drags": [
             {
               "kind": "round",
@@ -538,13 +542,13 @@
           ]
         }
       ],
-      "seconds": 58
+      "seconds": 59
     },
     {
       "function": 4,
       "does": "The front wheels and the left rear wheel roll freely.",
       "verdict": "shown",
-      "msOneCall": 42,
+      "msOneCall": 45,
       "msPerStep": 11,
       "time": {
         "open": 34,
@@ -552,7 +556,7 @@
         "first": 0,
         "reach": 15,
         "A": 2,
-        "B": 42
+        "B": 43
       },
       "stop": null,
       "stops": [],
@@ -562,8 +566,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 174,
-          "msOneCall": 42,
+          "ms": 172,
+          "msOneCall": 45,
           "stops": [],
           "moved": {}
         },
@@ -572,8 +576,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 152,
-          "msOneCall": 10,
+          "ms": 167,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         },
@@ -582,28 +586,28 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 162,
-          "msOneCall": 10,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p1074 30699",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 161,
+          "ms": 168,
           "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
         {
+          "control": "p1074 30699",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 152,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
           "control": "p1075 42123 - 56145",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 470,
-          "msOneCall": 17,
+          "ms": 459,
+          "msOneCall": 16,
           "stops": [],
           "moved": {}
         },
@@ -612,8 +616,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 485,
-          "msOneCall": 15,
+          "ms": 478,
+          "msOneCall": 14,
           "stops": [],
           "moved": {}
         }
@@ -713,7 +717,7 @@
           ],
           "controlWent": [
             0,
-            106.01
+            106.36
           ],
           "moved": [],
           "went": {},
@@ -722,7 +726,7 @@
           "stops": []
         }
       ],
-      "seconds": 92
+      "seconds": 93
     }
   ]
 }

@@ -1,17 +1,17 @@
 {
   "set": "42058-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:24:03.903Z",
-  "load": 16.3,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:53:09.436Z",
+  "load": 6,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 138,
-  "seconds": 31,
+  "seconds": 37,
   "functions": [
     {
       "function": 1,
       "does": "Pull the bike back and let go: the pull-back motor drives the rear wheel through three 16 tooth gears, the middle one an idler, and the bike races forward.",
       "verdict": "shown",
-      "msOneCall": 11,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 16
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 33,
-          "msOneCall": 11,
+          "ms": 30,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p18 94925": [
@@ -52,7 +52,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 27,
+          "ms": 25,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -78,15 +78,45 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            61.15
+          ],
           "moved": [
             "p18 94925",
             "p21 18946",
             "p17 94925"
           ],
+          "went": {
+            "p18 94925": [
+              0,
+              61.15
+            ],
+            "p21 18946": [
+              0,
+              61.15
+            ],
+            "p17 94925": [
+              0,
+              61.15
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 20
     },
     {
       "function": 3,
@@ -110,7 +140,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 27,
+          "ms": 29,
           "msOneCall": 9,
           "stops": [],
           "moved": {}
@@ -120,7 +150,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -133,11 +163,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            124.47
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 15
+      "seconds": 16
     }
   ]
 }

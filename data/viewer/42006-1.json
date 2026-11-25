@@ -1,25 +1,25 @@
 {
   "set": "42006-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:55:29.856Z",
-  "load": 11,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:22:24.241Z",
+  "load": 7.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 686,
-  "seconds": 86,
+  "seconds": 106,
   "functions": [
     {
       "function": 1,
       "does": "The black knob at the back of the superstructure drives a gearbox; two red change-over levers on the superstructure's side choose which function it works (boom, stick or grab), each by sliding a driving ring between two clutch gears.",
       "verdict": "shown",
-      "msOneCall": 42,
-      "msPerStep": 6,
+      "msOneCall": 38,
+      "msPerStep": 5,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 12
+        "A": 0,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 251,
-          "msOneCall": 42,
+          "ms": 207,
+          "msOneCall": 38,
           "stops": [],
           "moved": {
             "p237 6590": [
@@ -44,8 +44,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 216,
-          "msOneCall": 10,
+          "ms": 184,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p237 6590": [
@@ -62,27 +62,57 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            162.15
+          ],
           "moved": [
             "p237 6590"
           ],
+          "went": {
+            "p237 6590": [
+              0,
+              162.15
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 18
+      "seconds": 19
     },
     {
       "function": 6,
       "does": "The tracks run freely round their sprockets; nothing drives them.",
       "verdict": "shown",
-      "msOneCall": 34,
+      "msOneCall": 33,
       "msPerStep": 5,
       "time": {
         "open": 14,
         "collisions": 0,
         "first": 0,
-        "reach": 4,
+        "reach": 21,
         "A": 2,
-        "B": 48
+        "B": 51
       },
       "stop": null,
       "stops": [],
@@ -92,8 +122,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 204,
-          "msOneCall": 34,
+          "ms": 194,
+          "msOneCall": 33,
           "stops": [],
           "moved": {}
         },
@@ -102,8 +132,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 183,
-          "msOneCall": 9,
+          "ms": 181,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -112,7 +142,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 182,
+          "ms": 179,
           "msOneCall": 8,
           "stops": [],
           "moved": {}
@@ -122,7 +152,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 180,
+          "ms": 171,
           "msOneCall": 8,
           "stops": [],
           "moved": {}
@@ -132,8 +162,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 190,
-          "msOneCall": 8,
+          "ms": 166,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -142,7 +172,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 181,
+          "ms": 176,
           "msOneCall": 8,
           "stops": [],
           "moved": {}
@@ -152,8 +182,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 181,
-          "msOneCall": 10,
+          "ms": 176,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         },
@@ -162,8 +192,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 204,
-          "msOneCall": 9,
+          "ms": 172,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         }
@@ -175,7 +205,32 @@
           "cameraTurns": 2,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            174.87
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -184,7 +239,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            137.26
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -193,7 +273,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            114
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -202,11 +307,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            117.14
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 68
+      "seconds": 88
     }
   ]
 }

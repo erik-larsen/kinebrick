@@ -1,18 +1,18 @@
 {
   "set": "42037-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T03:40:33.429Z",
-  "load": 11.9,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:10:57.857Z",
+  "load": 8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 482,
-  "seconds": 166,
+  "seconds": 168,
   "functions": [
     {
       "function": 1,
       "does": "Pushed along, the rear wheels run the inline four-cylinder engine in front of the seat: the rear differential's 28 tooth crown drives a 20 tooth bevel gear on a shaft running forward under the seat, and a 16 tooth gear on it drives the crankshaft's 16 tooth gear through a 16 tooth idler, so the four pistons pump up and down, about 1.4 times per turn of the wheels.",
       "verdict": "shown",
-      "msOneCall": 86,
-      "msPerStep": 61,
+      "msOneCall": 91,
+      "msPerStep": 64,
       "time": {
         "open": 3,
         "collisions": 0,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2357,
-          "msOneCall": 86,
+          "ms": 2534,
+          "msOneCall": 91,
           "stops": [],
           "moved": {
             "p225 62821": [
@@ -80,8 +80,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2635,
-          "msOneCall": 49,
+          "ms": 2724,
+          "msOneCall": 53,
           "stops": [],
           "moved": {
             "p225 62821": [
@@ -161,7 +161,7 @@
           "way": 1,
           "asked": 1.6,
           "went": 0,
-          "ms": 1,
+          "ms": 0,
           "msOneCall": 6,
           "stops": [],
           "moved": {
@@ -213,8 +213,8 @@
             }
           ],
           "controlWent": [
-            27.58,
-            70.42
+            26.95,
+            69.2
           ],
           "moved": [
             "p493 45982",
@@ -222,28 +222,30 @@
           ],
           "went": {
             "p493 45982": [
-              3.91,
-              17.25
+              3.85,
+              16.98
             ],
             "p225 62821": [
               0,
-              26.64
+              26.16
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "249/257"
           ]
         }
       ],
-      "seconds": 15,
-      "judgedByHand": "judged by hand: the viewer's turn does not turn this control"
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 16
     },
     {
       "function": 3,
       "does": "The black gear on top of the roll cage behind the seat steers the front wheels (hand of god steering): its vertical shaft turns, through bevel gears, a long shaft running forward under the car to a 12 tooth gear on the front steering rack, and the rack's links turn both front hubs.",
       "verdict": "shown",
-      "msOneCall": 102,
-      "msPerStep": 44,
+      "msOneCall": 126,
+      "msPerStep": 51,
       "time": {
         "open": 5,
         "collisions": 0,
@@ -271,8 +273,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.151,
-          "ms": 1416,
-          "msOneCall": 102,
+          "ms": 1685,
+          "msOneCall": 126,
           "stops": [
             "76/85"
           ],
@@ -316,8 +318,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.081,
-          "ms": 1353,
-          "msOneCall": 57,
+          "ms": 1562,
+          "msOneCall": 55,
           "stops": [
             "76/84"
           ],
@@ -420,6 +422,20 @@
               48.32
             ]
           },
+          "staysWent": {
+            "p489 45982": [
+              0,
+              1.14
+            ],
+            "p493 45982": [
+              0,
+              1.14
+            ]
+          },
+          "staysMoved": [
+            "p489 45982",
+            "p493 45982"
+          ],
           "stops": [
             "76/84"
           ]
@@ -436,14 +452,19 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 26
+      "seconds": 27
     },
     {
       "function": 4,
       "does": "The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes.",
       "verdict": "not decided",
-      "msOneCall": 76,
-      "msPerStep": 97,
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.06 degrees, 0.052 predicted (rate 0.0304, turn 0.03)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.07 degrees, 0.061 predicted (rate 0.0304, turn -0.035)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p96 4254 turned 0.06 degrees, 0.064 predicted (rate 0.0372, turn 0.03)"
+      ],
+      "msOneCall": 90,
+      "msPerStep": 112,
       "time": {
         "open": 8,
         "collisions": 0,
@@ -477,8 +498,8 @@
           },
           "asked": 0.03,
           "went": 0.03,
-          "ms": 69,
-          "msOneCall": 76,
+          "ms": 79,
+          "msOneCall": 90,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -511,8 +532,8 @@
           },
           "asked": 0.63,
           "went": -0.035,
-          "ms": 97,
-          "msOneCall": 67,
+          "ms": 112,
+          "msOneCall": 74,
           "stops": [
             "96/496"
           ],
@@ -557,8 +578,8 @@
           },
           "asked": 0.03,
           "went": 0.03,
-          "ms": 67,
-          "msOneCall": 74,
+          "ms": 72,
+          "msOneCall": 83,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -601,8 +622,8 @@
           },
           "asked": 0.63,
           "went": -0.63,
-          "ms": 805,
-          "msOneCall": 70,
+          "ms": 879,
+          "msOneCall": 76,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -671,6 +692,8 @@
               1.81
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "96/496"
           ]
@@ -731,6 +754,8 @@
               1.53
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "97/498"
           ]
@@ -748,14 +773,14 @@
         "verdict": "shown"
       },
       "why": "not decided: p58 57515: a travel of 0.2 rad or less each way, stopped at -0.035 rad (96/496)",
-      "seconds": 34
+      "seconds": 35
     },
     {
       "function": 5,
       "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
       "verdict": "not decided",
-      "msOneCall": 104,
-      "msPerStep": 62,
+      "msOneCall": 118,
+      "msPerStep": 78,
       "time": {
         "open": 8,
         "collisions": 0,
@@ -782,8 +807,8 @@
           "way": 1,
           "asked": 0.43,
           "went": 0.43,
-          "ms": 520,
-          "msOneCall": 104,
+          "ms": 592,
+          "msOneCall": 118,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -809,8 +834,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 46,
-          "msOneCall": 35,
+          "ms": 51,
+          "msOneCall": 33,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -836,8 +861,8 @@
           "way": 1,
           "asked": 0.43,
           "went": 0.066,
-          "ms": 118,
-          "msOneCall": 60,
+          "ms": 147,
+          "msOneCall": 63,
           "stops": [
             "250/262"
           ],
@@ -865,8 +890,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 103,
-          "msOneCall": 59,
+          "ms": 108,
+          "msOneCall": 67,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -940,6 +965,8 @@
               0.61
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "249/257",
             "290/289"
@@ -996,6 +1023,8 @@
               7.6
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "250/262",
             "292/291"
@@ -1021,7 +1050,7 @@
       "does": "The steering wheel in front of the seat turns freely; it isn't linked to the steering.",
       "verdict": "shown",
       "msOneCall": 66,
-      "msPerStep": 8,
+      "msPerStep": 9,
       "time": {
         "open": 5,
         "collisions": 0,
@@ -1038,7 +1067,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 364,
+          "ms": 367,
           "msOneCall": 66,
           "stops": [],
           "moved": {}
@@ -1048,8 +1077,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 350,
-          "msOneCall": 25,
+          "ms": 326,
+          "msOneCall": 24,
           "stops": [],
           "moved": {}
         }
@@ -1085,6 +1114,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],

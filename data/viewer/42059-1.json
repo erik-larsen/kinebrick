@@ -1,25 +1,25 @@
 {
   "set": "42059-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:25:24.431Z",
-  "load": 9.5,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:54:36.686Z",
+  "load": 5.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 141,
-  "seconds": 59,
+  "seconds": 70,
   "functions": [
     {
       "function": 1,
       "does": "Pull the truck back and let go: the pull-back motor at the back turns the rear axle, a 12 long axle straight through it carrying both rear wheels, and the truck races forward.",
       "verdict": "shown",
-      "msOneCall": 6,
+      "msOneCall": 7,
       "msPerStep": 1,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 3,
+        "reach": 12,
         "A": 0,
-        "B": 23
+        "B": 22
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 22,
-          "msOneCall": 6,
+          "ms": 24,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p30 3708": [
@@ -44,21 +44,6 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 17,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {
-            "p30 3708": [
-              0,
-              85.94
-            ]
-          }
-        },
-        {
-          "control": "p128 56145",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
           "ms": 18,
           "msOneCall": 1,
           "stops": [],
@@ -71,10 +56,25 @@
         },
         {
           "control": "p128 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p30 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p128 56145",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 14,
+          "ms": 16,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -92,9 +92,39 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            107.22
+          ],
           "moved": [
             "p30 3708"
           ],
+          "went": {
+            "p30 3708": [
+              0,
+              107.22
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -103,13 +133,39 @@
           "cameraTurns": 2,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            180
+          ],
           "moved": [
             "p30 3708"
           ],
+          "went": {
+            "p30 3708": [
+              0,
+              180
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 31
+      "seconds": 40
     },
     {
       "function": 3,
@@ -123,7 +179,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -133,7 +189,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 22,
+          "ms": 23,
           "msOneCall": 6,
           "stops": [],
           "moved": {}
@@ -143,7 +199,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 17,
+          "ms": 18,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -153,7 +209,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 16,
+          "ms": 17,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -176,7 +232,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            145.02
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -185,11 +266,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            130.74
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 28
+      "seconds": 30
     }
   ]
 }

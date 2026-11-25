@@ -1,24 +1,24 @@
 {
   "set": "8258-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T15:48:16.886Z",
-  "load": 13.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T10:44:40.468Z",
+  "load": 10.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1629,
-  "seconds": 359,
+  "seconds": 123,
   "functions": [
     {
       "function": 2,
       "does": "The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 24,
+      "msPerStep": 23,
       "time": {
         "open": 8,
         "collisions": 0,
-        "first": 5,
+        "first": 6,
         "reach": 0,
-        "A": 2,
+        "A": 3,
         "B": 11
       },
       "stop": null,
@@ -28,41 +28,41 @@
           "control": "p767 58121",
           "way": 1,
           "asked": 1.6,
-          "went": 1.621,
-          "ms": 1111,
+          "went": 3.23,
+          "ms": 2136,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p531 64781": [
-              1.05,
+              2.06,
               0
             ],
             "p557 64781": [
-              1.05,
+              2.06,
               0
             ],
             "p1203 64781": [
-              1.05,
+              2.06,
               0
             ],
             "p1234 64781": [
-              1.05,
+              2.06,
               0
             ],
             "p524 32524": [
-              1.05,
+              2.06,
               0
             ],
             "p550 32524": [
-              1.05,
+              2.06,
               0
             ],
             "p1196 32524": [
-              1.05,
+              2.06,
               0
             ],
             "p1227 32524": [
-              1.05,
+              2.06,
               0
             ],
             "p0 64179": [
@@ -79,8 +79,8 @@
           "control": "p767 58121",
           "way": -1,
           "asked": 1.6,
-          "went": -1.633,
-          "ms": 1071,
+          "went": -1.627,
+          "ms": 1073,
           "msOneCall": null,
           "stops": [],
           "moved": {
@@ -134,6 +134,11 @@
           "cameraTurns": 0,
           "motor": true,
           "shift": [],
+          "drags": [],
+          "controlWent": [
+            0,
+            0
+          ],
           "moved": [
             "p531 64781",
             "p557 64781",
@@ -144,29 +149,79 @@
             "p1196 32524",
             "p1227 32524"
           ],
+          "went": {
+            "p531 64781": [
+              10.04,
+              0
+            ],
+            "p557 64781": [
+              10.04,
+              0
+            ],
+            "p1203 64781": [
+              10.04,
+              0
+            ],
+            "p1234 64781": [
+              10.04,
+              0
+            ],
+            "p524 32524": [
+              10.04,
+              0
+            ],
+            "p550 32524": [
+              10.04,
+              0
+            ],
+            "p1196 32524": [
+              10.04,
+              0
+            ],
+            "p1227 32524": [
+              10.04,
+              0
+            ]
+          },
+          "staysWent": {
+            "p0 64179": [
+              0,
+              0
+            ],
+            "p2123 32526": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 26
+      "seconds": 28
     },
     {
       "function": 3,
       "does": "The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up.",
       "verdict": "shown",
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2097 62274c01 turned 0.02 degrees, 0.006 predicted (rate 0.00156, turn -0.072)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2123 32526 against p2046 40490 turned 0.14 degrees, 0.044 predicted (rate 0.0106, turn -0.072)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2180 32524 against p2046 40490 turned 0.08 degrees, 0.025 predicted (rate 0.00612, turn -0.072)"
+      ],
       "msOneCall": null,
-      "msPerStep": 168,
+      "msPerStep": 567,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
-        "first": 5,
+        "first": 6,
         "reach": 0,
-        "A": 3,
+        "A": 4,
         "B": 11
       },
       "stop": {
         "control": "p767 58121",
         "way": 1,
-        "went": -0.233,
+        "went": -0.072,
         "asked": 0.07,
         "by": [
           "2097/2096"
@@ -180,24 +235,24 @@
           "control": "p767 58121",
           "way": 1,
           "asked": 0.07,
-          "went": -0.233,
-          "ms": 1117,
+          "went": -0.072,
+          "ms": 1166,
           "msOneCall": null,
           "stops": [
             "2097/2096"
           ],
           "moved": {
             "p2097 62274c01": [
-              0.22,
-              0.03
+              0.14,
+              0.02
             ],
             "p2123 32526 against p2046 40490": [
-              0.15,
-              0.22
+              0.1,
+              0.14
             ],
             "p2180 32524 against p2046 40490": [
-              1.43,
-              0.12
+              0.93,
+              0.08
             ],
             "p2046 40490": [
               0,
@@ -213,22 +268,22 @@
           "control": "p767 58121",
           "way": -1,
           "asked": 1.7,
-          "went": -2.958,
-          "ms": 2129,
+          "went": -2.976,
+          "ms": 2188,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p2097 62274c01": [
-              1.87,
+              1.88,
               0.27
             ],
             "p2123 32526 against p2046 40490": [
-              1.3,
-              1.86
+              1.31,
+              1.87
             ],
             "p2180 32524 against p2046 40490": [
-              12.28,
-              1.08
+              12.37,
+              1.09
             ],
             "p2046 40490": [
               0,
@@ -248,11 +303,41 @@
           "cameraTurns": 0,
           "motor": true,
           "shift": [],
+          "drags": [],
+          "controlWent": [
+            0,
+            0
+          ],
           "moved": [
             "p2097 62274c01",
             "p2123 32526 against p2046 40490",
             "p2180 32524 against p2046 40490"
           ],
+          "went": {
+            "p2097 62274c01": [
+              8.98,
+              1.77
+            ],
+            "p2123 32526 against p2046 40490": [
+              6.22,
+              8.91
+            ],
+            "p2180 32524 against p2046 40490": [
+              59.35,
+              5.32
+            ]
+          },
+          "staysWent": {
+            "p2046 40490": [
+              0,
+              0
+            ],
+            "p524 32524": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "2097/2096"
           ]
@@ -262,7 +347,7 @@
         {
           "control": "p767 58121",
           "judged": "stands",
-          "why": "stopped at +0.233 rad (2097/2096); kinds electric-motor, function-selector, linear-actuator: lower boom"
+          "why": "stopped at +0.072 rad (2097/2096); kinds electric-motor, function-selector, linear-actuator: lower boom"
         }
       ],
       "stopVerdict": "shown",
@@ -278,9 +363,9 @@
       "msOneCall": null,
       "msPerStep": 23,
       "time": {
-        "open": 7,
+        "open": 8,
         "collisions": 0,
-        "first": 5,
+        "first": 6,
         "reach": 0,
         "A": 8,
         "B": 10
@@ -292,18 +377,18 @@
           "control": "p767 58121",
           "way": 1,
           "asked": 5.1,
-          "went": 6.442,
-          "ms": 4165,
+          "went": 6.381,
+          "ms": 4149,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p2167 62274c01 against p2166 62271c01": [
-              1.29,
+              1.27,
               0
             ],
             "p2180 32524 against p2123 32526": [
-              1.69,
-              1.61
+              1.67,
+              1.6
             ],
             "p2123 32526 against p2046 40490": [
               0,
@@ -315,18 +400,18 @@
           "control": "p767 58121",
           "way": -1,
           "asked": 5.1,
-          "went": -6.439,
-          "ms": 4130,
+          "went": -6.403,
+          "ms": 4112,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p2167 62274c01 against p2166 62271c01": [
-              1.29,
+              1.28,
               0
             ],
             "p2180 32524 against p2123 32526": [
-              1.58,
-              1.51
+              1.57,
+              1.5
             ],
             "p2123 32526 against p2046 40490": [
               0,
@@ -342,10 +427,32 @@
           "cameraTurns": 0,
           "motor": true,
           "shift": [],
+          "drags": [],
+          "controlWent": [
+            0,
+            0
+          ],
           "moved": [
             "p2167 62274c01 against p2166 62271c01",
             "p2180 32524 against p2123 32526"
           ],
+          "went": {
+            "p2167 62274c01 against p2166 62271c01": [
+              3.17,
+              2.19
+            ],
+            "p2180 32524 against p2123 32526": [
+              4.34,
+              3.42
+            ]
+          },
+          "staysWent": {
+            "p2123 32526 against p2046 40490": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -355,15 +462,15 @@
       "function": 6,
       "does": "The round knob on top behind the cab steers the front two axles: a long vertical shaft takes it down to a knob gear that turns the knob gear on the steering shaft along the chassis, whose bevel gears drive the two steering racks; the front axle's wheels turn further than the second's.",
       "verdict": "shown",
-      "msOneCall": 138,
-      "msPerStep": 19,
+      "msOneCall": 132,
+      "msPerStep": 17,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 15
+        "B": 18
       },
       "stop": null,
       "stops": [],
@@ -373,8 +480,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 805,
-          "msOneCall": 138,
+          "ms": 702,
+          "msOneCall": 132,
           "stops": [],
           "moved": {
             "p608 32072": [
@@ -420,8 +527,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 772,
-          "msOneCall": 39,
+          "ms": 720,
+          "msOneCall": 33,
           "stops": [],
           "moved": {
             "p608 32072": [
@@ -470,6 +577,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            90.24
+          ],
           "moved": [
             "p608 32072",
             "p473 32072",
@@ -480,12 +609,53 @@
             "p458 48989",
             "p463 48989"
           ],
+          "went": {
+            "p608 32072": [
+              0,
+              90.24
+            ],
+            "p473 32072": [
+              0,
+              90.24
+            ],
+            "p418 64781": [
+              14.41,
+              0
+            ],
+            "p469 64781": [
+              24.83,
+              0
+            ],
+            "p407 48989": [
+              7.2,
+              20.75
+            ],
+            "p412 48989": [
+              7.2,
+              20.75
+            ],
+            "p458 48989": [
+              12.41,
+              36.16
+            ],
+            "p463 48989": [
+              12.41,
+              36.16
+            ]
+          },
+          "staysWent": {
+            "p0 64179": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "453/463"
           ]
         }
       ],
-      "seconds": 25
+      "seconds": 27
     },
     {
       "function": 7,
@@ -494,17 +664,16 @@
         "result": "partly",
         "reason": "In the viewer the control turns and these listed parts stay: p682, p6, p1351, p1366, p1367. Viewer sweep, decision 279."
       },
-      "verdict": "not shown",
-      "why": "A: p682 62821, p6 3708, p1351 2853, p1366 2851 against p1375 2850a, p1367 2851 against p1376 2850a not moved; B: no listed part moved by hand",
-      "msOneCall": 133,
-      "msPerStep": 15,
+      "verdict": "shown",
+      "msOneCall": 152,
+      "msPerStep": 47,
       "time": {
-        "open": 11,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 201,
-        "A": 3,
-        "B": 35
+        "reach": 0,
+        "A": 4,
+        "B": 0
       },
       "stop": null,
       "stops": [],
@@ -514,28 +683,28 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 643,
-          "msOneCall": 133,
+          "ms": 2018,
+          "msOneCall": 152,
           "stops": [],
           "moved": {
             "p682 62821": [
               0,
-              0
+              85.94
             ],
             "p6 3708": [
               0,
-              0
+              120.32
             ],
             "p1351 2853": [
               0,
-              0
+              120.32
             ],
             "p1366 2851 against p1375 2850a": [
-              0,
+              12.01,
               0
             ],
             "p1367 2851 against p1376 2850a": [
-              0,
+              12.01,
               0
             ],
             "p1375 2850a": [
@@ -553,106 +722,28 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 571,
-          "msOneCall": 34,
+          "ms": 1992,
+          "msOneCall": 63,
           "stops": [],
           "moved": {
             "p682 62821": [
               0,
-              0
+              85.94
             ],
             "p6 3708": [
               0,
-              0
+              120.32
             ],
             "p1351 2853": [
               0,
-              0
+              120.32
             ],
             "p1366 2851 against p1375 2850a": [
-              0,
+              15.14,
               0
             ],
             "p1367 2851 against p1376 2850a": [
-              0,
-              0
-            ],
-            "p1375 2850a": [
-              0,
-              0
-            ],
-            "p1376 2850a": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p687 4519",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 547,
-          "msOneCall": 34,
-          "stops": [],
-          "moved": {
-            "p682 62821": [
-              0,
-              0
-            ],
-            "p6 3708": [
-              0,
-              0
-            ],
-            "p1351 2853": [
-              0,
-              0
-            ],
-            "p1366 2851 against p1375 2850a": [
-              0,
-              0
-            ],
-            "p1367 2851 against p1376 2850a": [
-              0,
-              0
-            ],
-            "p1375 2850a": [
-              0,
-              0
-            ],
-            "p1376 2850a": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p687 4519",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 542,
-          "msOneCall": 34,
-          "stops": [],
-          "moved": {
-            "p682 62821": [
-              0,
-              0
-            ],
-            "p6 3708": [
-              0,
-              0
-            ],
-            "p1351 2853": [
-              0,
-              0
-            ],
-            "p1366 2851 against p1375 2850a": [
-              0,
-              0
-            ],
-            "p1367 2851 against p1376 2850a": [
-              0,
+              15.14,
               0
             ],
             "p1375 2850a": [
@@ -668,25 +759,15 @@
       ],
       "B": [
         {
-          "control": "p686 4519",
-          "seen": true,
-          "cameraTurns": 49,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
-        },
-        {
-          "control": "p687 4519",
-          "seen": true,
-          "cameraTurns": 49,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
+          "control": [
+            "p686 4519",
+            "p687 4519"
+          ],
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 249
+      "seconds": 8
     }
   ]
 }

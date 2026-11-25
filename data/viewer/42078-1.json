@@ -1,11 +1,11 @@
 {
   "set": "42078-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T06:12:47.216Z",
-  "load": 16.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T12:12:17.656Z",
+  "load": 6.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 2651,
-  "seconds": 3459,
+  "seconds": 3300,
   "functions": [
     {
       "function": 1,
@@ -21,9 +21,9 @@
         "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 12,
-        "A": 25,
-        "B": 49
+        "reach": 10,
+        "A": 22,
+        "B": 47
       },
       "stop": null,
       "stops": [],
@@ -158,20 +158,20 @@
       ],
       "why": "by hand: p537 3648b, p502 56145, p512 56145 not moved; B: no listed part moved by hand",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 97
+      "seconds": 90
     },
     {
       "function": 2,
       "does": "Pushed along, the tractor's two rear axles drive the six cylinder engine under the bonnet: each axle has a differential, a shaft through universal joints runs forward to the crankshaft, and the six pistons run up and down.",
       "verdict": "shown",
-      "msOneCall": 619,
-      "msPerStep": 486,
+      "msOneCall": 679,
+      "msPerStep": 501,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 42,
+        "A": 44,
         "B": 0
       },
       "stop": null,
@@ -182,8 +182,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 20836,
-          "msOneCall": 619,
+          "ms": 21480,
+          "msOneCall": 679,
           "stops": [],
           "moved": {
             "p36 62821": [
@@ -217,8 +217,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 20363,
-          "msOneCall": 514,
+          "ms": 20881,
+          "msOneCall": 561,
           "stops": [],
           "moved": {
             "p36 62821": [
@@ -260,21 +260,21 @@
           "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 48
+      "seconds": 49
     },
     {
       "function": 3,
       "does": "The front wheels roll freely; they aren't driven.",
       "verdict": "shown",
-      "msOneCall": 645,
-      "msPerStep": 528,
+      "msOneCall": 685,
+      "msPerStep": 536,
       "time": {
         "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 56,
-        "A": 92,
-        "B": 296
+        "reach": 44,
+        "A": 94,
+        "B": 303
       },
       "stop": null,
       "stops": [],
@@ -284,8 +284,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 22372,
-          "msOneCall": 645,
+          "ms": 22833,
+          "msOneCall": 685,
           "stops": [],
           "moved": {}
         },
@@ -294,8 +294,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 22155,
-          "msOneCall": 540,
+          "ms": 22533,
+          "msOneCall": 556,
           "stops": [],
           "moved": {}
         },
@@ -304,8 +304,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 22623,
-          "msOneCall": 545,
+          "ms": 22958,
+          "msOneCall": 553,
           "stops": [],
           "moved": {}
         },
@@ -314,8 +314,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 22297,
-          "msOneCall": 556,
+          "ms": 22684,
+          "msOneCall": 554,
           "stops": [],
           "moved": {}
         }
@@ -390,7 +390,7 @@
           "stops": []
         }
       ],
-      "seconds": 460
+      "seconds": 457
     },
     {
       "function": 4,
@@ -401,13 +401,13 @@
       },
       "verdict": "not shown",
       "why": "A: p1358 44294, p1423 40490 not moved; B: the control could not be seen",
-      "msOneCall": 15,
+      "msOneCall": 19,
       "msPerStep": null,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 1098,
+        "reach": 939,
         "A": 0,
         "B": 0
       },
@@ -420,7 +420,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 1,
-          "msOneCall": 15,
+          "msOneCall": 19,
           "stops": [],
           "moved": {
             "p1358 44294": [
@@ -467,20 +467,20 @@
           "seen": false
         }
       ],
-      "seconds": 1109
+      "seconds": 951
     },
     {
       "function": 5,
       "does": "The cab doors swing open.",
       "verdict": "shown",
-      "msOneCall": 155,
-      "msPerStep": 42,
+      "msOneCall": 167,
+      "msPerStep": 40,
       "time": {
-        "open": 17,
+        "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 15,
-        "A": 64,
+        "reach": 12,
+        "A": 61,
         "B": 72
       },
       "stop": {
@@ -524,8 +524,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 54,
-          "msOneCall": 74,
+          "ms": 60,
+          "msOneCall": 79,
           "stops": [
             "481/851"
           ],
@@ -558,8 +558,8 @@
           },
           "asked": 1.13,
           "went": -1.13,
-          "ms": 1172,
-          "msOneCall": 155,
+          "ms": 1279,
+          "msOneCall": 167,
           "stops": [],
           "moved": {}
         },
@@ -582,8 +582,8 @@
           ],
           "asked": 1.13,
           "went": 1.13,
-          "ms": 1357,
-          "msOneCall": 76,
+          "ms": 1231,
+          "msOneCall": 75,
           "stops": [],
           "moved": {}
         },
@@ -606,8 +606,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 49,
-          "msOneCall": 51,
+          "ms": 46,
+          "msOneCall": 46,
           "stops": [
             "481/889"
           ],
@@ -736,21 +736,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 218
+      "seconds": 206
     },
     {
       "function": 7,
       "does": "The trailer swings on its king pin behind the tractor.",
       "verdict": "shown",
-      "msOneCall": 243,
-      "msPerStep": 118,
+      "msOneCall": 271,
+      "msPerStep": 138,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 4,
-        "B": 30
+        "A": 5,
+        "B": 31
       },
       "stop": null,
       "stops": [],
@@ -760,8 +760,8 @@
           "way": 1,
           "asked": 0.6,
           "went": 0.6,
-          "ms": 2023,
-          "msOneCall": 243,
+          "ms": 2368,
+          "msOneCall": 271,
           "stops": [],
           "moved": {
             "p1890 56145": [
@@ -779,8 +779,8 @@
           "way": -1,
           "asked": 0.6,
           "went": -0.6,
-          "ms": 1950,
-          "msOneCall": 150,
+          "ms": 2315,
+          "msOneCall": 165,
           "stops": [],
           "moved": {
             "p1890 56145": [
@@ -844,21 +844,21 @@
           ]
         }
       ],
-      "seconds": 47
+      "seconds": 49
     },
     {
       "function": 8,
       "does": "The black gear low on the side of the trailer's front winds the landing gear's two legs, with their little wheels, down to the ground and back up.",
       "verdict": "shown",
-      "msOneCall": 254,
-      "msPerStep": 119,
+      "msOneCall": 285,
+      "msPerStep": 136,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 5,
-        "B": 28
+        "B": 29
       },
       "stop": {
         "control": "p1706 18575",
@@ -879,8 +879,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.593,
-          "ms": 2020,
-          "msOneCall": 254,
+          "ms": 2301,
+          "msOneCall": 285,
           "stops": [
             "186/1680"
           ],
@@ -900,8 +900,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.628,
-          "ms": 2043,
-          "msOneCall": 150,
+          "ms": 2328,
+          "msOneCall": 176,
           "stops": [
             "185/1685"
           ],
@@ -979,21 +979,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 43
+      "seconds": 45
     },
     {
       "function": 11,
       "does": "Each crane leg is a rack in a housing that telescopes, so the leg can reach the ground as it swings out.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 17,
       "msPerStep": null,
       "time": {
         "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
-        "A": 60,
-        "B": 138
+        "reach": 0,
+        "A": 62,
+        "B": 147
       },
       "stop": null,
       "stops": [],
@@ -1022,8 +1022,8 @@
           },
           "asked": 0.01,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 16,
+          "ms": 0,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -1081,7 +1081,7 @@
           "asked": 1.05,
           "went": 0,
           "ms": 0,
-          "msOneCall": 11,
+          "msOneCall": 17,
           "stops": [],
           "moved": {}
         },
@@ -1217,7 +1217,7 @@
           ]
         }
       ],
-      "seconds": 256
+      "seconds": 267
     },
     {
       "function": 12,
@@ -1228,15 +1228,15 @@
       },
       "verdict": "not shown",
       "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of 25 LDU",
-      "msOneCall": 199,
-      "msPerStep": 137,
+      "msOneCall": 219,
+      "msPerStep": 152,
       "time": {
-        "open": 16,
+        "open": 17,
         "collisions": 0,
-        "first": 77,
+        "first": 84,
         "reach": 0,
         "A": 30,
-        "B": 72
+        "B": 75
       },
       "stop": {
         "control": "p2665 64782",
@@ -1268,8 +1268,8 @@
           ],
           "asked": 1.5,
           "went": 0.593,
-          "ms": 2038,
-          "msOneCall": 195,
+          "ms": 2352,
+          "msOneCall": 218,
           "stops": [
             "2618/2641",
             "186/1680"
@@ -1300,8 +1300,8 @@
           ],
           "asked": 0.2,
           "went": -0.2,
-          "ms": 768,
-          "msOneCall": 199,
+          "ms": 857,
+          "msOneCall": 219,
           "stops": [],
           "moved": {
             "p2631 64782 against p2619 32184": [
@@ -1329,8 +1329,8 @@
           ],
           "asked": 0.2,
           "went": 0.2,
-          "ms": 786,
-          "msOneCall": 195,
+          "ms": 868,
+          "msOneCall": 218,
           "stops": [],
           "moved": {
             "p2631 64782 against p2619 32184": [
@@ -1358,8 +1358,8 @@
           ],
           "asked": 1.5,
           "went": -0.628,
-          "ms": 2158,
-          "msOneCall": 190,
+          "ms": 2484,
+          "msOneCall": 215,
           "stops": [
             "185/1685"
           ],
@@ -1512,21 +1512,21 @@
         "verdict": "not shown",
         "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of 25 LDU"
       },
-      "seconds": 218
+      "seconds": 228
     },
     {
       "function": 13,
       "does": "The trailer's four wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 673,
-      "msPerStep": 509,
+      "msOneCall": 723,
+      "msPerStep": 533,
       "time": {
         "open": 27,
         "collisions": 0,
         "first": 0,
-        "reach": 108,
-        "A": 177,
-        "B": 649
+        "reach": 92,
+        "A": 186,
+        "B": 653
       },
       "stop": null,
       "stops": [],
@@ -1536,8 +1536,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 21511,
-          "msOneCall": 673,
+          "ms": 22572,
+          "msOneCall": 723,
           "stops": [],
           "moved": {}
         },
@@ -1546,8 +1546,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21829,
-          "msOneCall": 560,
+          "ms": 22710,
+          "msOneCall": 580,
           "stops": [],
           "moved": {}
         },
@@ -1556,8 +1556,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 21507,
-          "msOneCall": 533,
+          "ms": 22303,
+          "msOneCall": 587,
           "stops": [],
           "moved": {}
         },
@@ -1566,8 +1566,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21697,
-          "msOneCall": 537,
+          "ms": 22585,
+          "msOneCall": 573,
           "stops": [],
           "moved": {}
         },
@@ -1576,8 +1576,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 21575,
-          "msOneCall": 544,
+          "ms": 22452,
+          "msOneCall": 564,
           "stops": [],
           "moved": {}
         },
@@ -1586,8 +1586,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21535,
-          "msOneCall": 551,
+          "ms": 22612,
+          "msOneCall": 562,
           "stops": [],
           "moved": {}
         },
@@ -1596,8 +1596,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 21668,
-          "msOneCall": 536,
+          "ms": 22841,
+          "msOneCall": 575,
           "stops": [],
           "moved": {}
         },
@@ -1606,8 +1606,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21148,
-          "msOneCall": 540,
+          "ms": 22711,
+          "msOneCall": 566,
           "stops": [],
           "moved": {}
         }
@@ -1674,8 +1674,8 @@
             }
           ],
           "controlWent": [
-            777.55,
-            157.3
+            776.2,
+            157.14
           ],
           "moved": [],
           "went": {},
@@ -1754,7 +1754,7 @@
           "stops": []
         }
       ],
-      "seconds": 962
+      "seconds": 958
     }
   ]
 }

@@ -1,18 +1,18 @@
 {
   "set": "42129-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:48:04.945Z",
-  "load": 16.3,
+  "commit": "ac22e339",
+  "date": "2026-11-25T11:12:58.811Z",
+  "load": 9.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 2117,
-  "seconds": 492,
+  "seconds": 446,
   "functions": [
     {
       "function": 2,
       "does": "The centre differential lets the front and rear axles turn at different speeds while it's unlocked: with the truck lifted, the motors still and one front wheel held, turning the other front wheel turns the rear axle's drive the opposite way.",
       "verdict": "shown",
-      "msOneCall": 245,
-      "msPerStep": 50,
+      "msOneCall": 247,
+      "msPerStep": 53,
       "time": {
         "open": 8,
         "collisions": 0,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2122,
-          "msOneCall": 245,
+          "ms": 2291,
+          "msOneCall": 247,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -52,8 +52,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2072,
-          "msOneCall": 90,
+          "ms": 2260,
+          "msOneCall": 93,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -119,6 +119,8 @@
               129.25
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -128,15 +130,21 @@
       "function": 3,
       "does": "The front and rear axle differentials let each axle's wheels turn at different speeds in a corner.",
       "verdict": "shown",
-      "msOneCall": 239,
-      "msPerStep": 49,
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2934 42129 - 69912 against p1032 65414 turned 0.37 degrees, 0.367 predicted (rate 0.00427, turn 1.5)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2934 42129 - 69912 against p1032 65414 turned 0.37 degrees, 0.367 predicted (rate 0.00427, turn -1.5)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2936 42129 - 69912 against p1309 65414 turned 0.54 degrees, 0.542 predicted (rate 0.00631, turn 1.5)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2936 42129 - 69912 against p1309 65414 turned 0.54 degrees, 0.542 predicted (rate 0.00631, turn -1.5)"
+      ],
+      "msOneCall": 256,
+      "msPerStep": 45,
       "time": {
         "open": 12,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 9,
-        "B": 56
+        "A": 8,
+        "B": 59
       },
       "stop": null,
       "stops": [],
@@ -146,17 +154,17 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2076,
-          "msOneCall": 239,
+          "ms": 1933,
+          "msOneCall": 256,
           "stops": [],
           "moved": {
             "p2936 42129 - 69912 against p1309 65414": [
               0,
-              117.73
+              85.31
             ],
             "p2934 42129 - 69912 against p1032 65414": [
               0,
-              26.73
+              0.37
             ]
           }
         },
@@ -165,17 +173,17 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1975,
-          "msOneCall": 102,
+          "ms": 1825,
+          "msOneCall": 104,
           "stops": [],
           "moved": {
             "p2936 42129 - 69912 against p1309 65414": [
               0,
-              117.73
+              85.31
             ],
             "p2934 42129 - 69912 against p1032 65414": [
               0,
-              26.72
+              0.37
             ]
           }
         },
@@ -184,17 +192,17 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2091,
-          "msOneCall": 79,
+          "ms": 1764,
+          "msOneCall": 86,
           "stops": [],
           "moved": {
             "p2936 42129 - 69912 against p1309 65414": [
-              0.01,
-              486.13
+              0,
+              0.54
             ],
             "p2934 42129 - 69912 against p1032 65414": [
               0,
-              344.21
+              86.23
             ]
           }
         },
@@ -203,17 +211,17 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2095,
-          "msOneCall": 78,
+          "ms": 1742,
+          "msOneCall": 82,
           "stops": [],
           "moved": {
             "p2936 42129 - 69912 against p1309 65414": [
-              0.01,
-              486.16
+              0,
+              0.54
             ],
             "p2934 42129 - 69912 against p1032 65414": [
               0,
-              344.21
+              86.23
             ]
           }
         }
@@ -245,7 +253,7 @@
           ],
           "controlWent": [
             0,
-            113.75
+            118.8
           ],
           "moved": [
             "p2936 42129 - 69912 against p1309 65414",
@@ -254,13 +262,15 @@
           "went": {
             "p2936 42129 - 69912 against p1309 65414": [
               0,
-              100.38
+              117.92
             ],
             "p2934 42129 - 69912 against p1032 65414": [
               0,
-              59.23
+              1.09
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -298,36 +308,38 @@
           "went": {
             "p2936 42129 - 69912 against p1309 65414": [
               0,
-              170.79
+              1.6
             ],
             "p2934 42129 - 69912 against p1032 65414": [
               0,
-              171.19
+              139.65
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 79
+      "seconds": 80
     },
     {
       "function": 4,
       "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 84,
+      "msPerStep": 101,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 78,
+        "reach": 64,
         "A": 5,
         "B": 11
       },
       "stop": {
         "control": "p550 21980",
         "way": 1,
-        "went": -0.473,
+        "went": -0.404,
         "asked": 0.2,
         "by": [
           "20/519"
@@ -341,8 +353,8 @@
           "control": "p550 21980",
           "way": 1,
           "asked": 0.2,
-          "went": -0.473,
-          "ms": 1139,
+          "went": -0.404,
+          "ms": 1166,
           "msOneCall": null,
           "stops": [
             "20/519"
@@ -350,11 +362,11 @@
           "moved": {
             "p517 35188": [
               0,
-              8.72
+              7.73
             ],
             "p1064 35188": [
               0,
-              8.72
+              7.73
             ],
             "p513 18947 against p468 6573": [
               0,
@@ -370,18 +382,18 @@
           "control": "p550 21980",
           "way": -1,
           "asked": 3.5,
-          "went": -3.661,
-          "ms": 3274,
+          "went": -3.571,
+          "ms": 3273,
           "msOneCall": null,
           "stops": [],
           "moved": {
             "p517 35188": [
               0,
-              58.33
+              56.96
             ],
             "p1064 35188": [
               0,
-              58.33
+              56.96
             ],
             "p513 18947 against p468 6573": [
               10,
@@ -414,11 +426,11 @@
           "went": {
             "p517 35188": [
               0,
-              10.63
+              10.43
             ],
             "p1064 35188": [
               0,
-              10.63
+              10.43
             ],
             "p513 18947 against p468 6573": [
               0,
@@ -429,6 +441,8 @@
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "519/744",
             "1019/1078",
@@ -440,37 +454,37 @@
         {
           "control": "p550 21980",
           "judged": "stands",
-          "why": "stopped at +0.473 rad (20/519); kinds electric-motor: medium, differential-lock: centre and rear, slip-clutch"
+          "why": "stopped at +0.404 rad (20/519); kinds electric-motor: medium, differential-lock: centre and rear, slip-clutch"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 102
+      "seconds": 88
     },
     {
       "function": 5,
       "does": "The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs.",
       "verdict": "shown",
       "msOneCall": null,
-      "msPerStep": 379,
+      "msPerStep": 279,
       "time": {
-        "open": 9,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 94,
-        "A": 6,
+        "reach": 77,
+        "A": 5,
         "B": 11
       },
       "stop": {
         "control": "p1478 22169",
-        "way": -1,
-        "went": 0.408,
+        "way": 1,
+        "went": 0.414,
         "asked": 0.4,
         "by": [
-          "1348/1367",
-          "1351/1366"
+          "1351/1366",
+          "1348/1367"
         ]
       },
       "stops": [
@@ -482,8 +496,8 @@
           "control": "p1478 22169",
           "way": 1,
           "asked": 0.4,
-          "went": 0.403,
-          "ms": 4371,
+          "went": 0.414,
+          "ms": 3304,
           "msOneCall": null,
           "stops": [
             "1351/1366",
@@ -491,15 +505,15 @@
           ],
           "moved": {
             "p1402 87761": [
-              6.05,
+              3.86,
               0
             ],
             "p1348 46490c02": [
-              6.05,
+              3.86,
               0
             ],
             "p1351 46490c02": [
-              6.05,
+              3.86,
               0
             ]
           }
@@ -508,8 +522,8 @@
           "control": "p1478 22169",
           "way": -1,
           "asked": 0.4,
-          "went": 0.408,
-          "ms": 1145,
+          "went": 0.414,
+          "ms": 1155,
           "msOneCall": null,
           "stops": [
             "1348/1367",
@@ -517,15 +531,15 @@
           ],
           "moved": {
             "p1402 87761": [
-              4.09,
+              3.86,
               0
             ],
             "p1348 46490c02": [
-              4.09,
+              3.86,
               0
             ],
             "p1351 46490c02": [
-              4.09,
+              3.86,
               0
             ]
           }
@@ -550,18 +564,20 @@
           ],
           "went": {
             "p1402 87761": [
-              3.96,
+              1.6,
               0
             ],
             "p1348 46490c02": [
-              3.96,
+              1.6,
               0
             ],
             "p1351 46490c02": [
-              3.96,
+              1.6,
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "1351/1366",
             "1348/1367"
@@ -572,27 +588,33 @@
         {
           "control": "p1478 22169",
           "judged": "stands",
-          "why": "stopped at +0.403 rad (1351/1366, 1348/1367); -0.408 rad (1348/1367, 1351/1366); kinds electric-motor: L, rack-steering"
+          "why": "stopped at +0.414 rad (1351/1366, 1348/1367); -0.414 rad (1348/1367, 1351/1366); kinds electric-motor: L, rack-steering"
         }
       ],
       "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 120
+      "seconds": 101
     },
     {
       "function": 6,
       "does": "Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers.",
       "verdict": "not decided",
-      "msOneCall": 296,
-      "msPerStep": 268,
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1032 65414 turned 0.01 degrees, 0.006 predicted (rate 0.00375, turn 0.03)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1032 65414 turned 0.03 degrees, 0.028 predicted (rate 0.00375, turn -0.13)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.01 degrees, 0.008 predicted (rate 0.00485, turn 0.03)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.01 degrees, 0.009 predicted (rate 0.00485, turn -0.033)"
+      ],
+      "msOneCall": 323,
+      "msPerStep": 296,
       "time": {
         "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 63,
-        "A": 2,
+        "reach": 46,
+        "A": 3,
         "B": 36
       },
       "stop": {
@@ -613,8 +635,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 219,
-          "msOneCall": 296,
+          "ms": 250,
+          "msOneCall": 323,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -640,8 +662,8 @@
           "way": -1,
           "asked": 0.13,
           "went": -0.13,
-          "ms": 589,
-          "msOneCall": 190,
+          "ms": 659,
+          "msOneCall": 213,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -667,8 +689,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 181,
-          "msOneCall": 182,
+          "ms": 205,
+          "msOneCall": 220,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -694,8 +716,8 @@
           "way": -1,
           "asked": 0.1,
           "went": -0.033,
-          "ms": 268,
-          "msOneCall": 184,
+          "ms": 296,
+          "msOneCall": 199,
           "stops": [
             "830/1303"
           ],
@@ -762,6 +784,8 @@
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "1715/1820"
           ]
@@ -808,6 +832,8 @@
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "830/1303",
             "1215/1216"
@@ -831,16 +857,16 @@
         "verdict": "shown"
       },
       "why": "not decided: p1198 42129 - 31794: a travel of 0.2 rad or less each way, stopped at -0.033 rad (830/1303)",
-      "seconds": 114
+      "seconds": 98
     },
     {
       "function": 8,
       "does": "The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle.",
       "verdict": "not decided",
-      "msOneCall": 208,
-      "msPerStep": 45,
+      "msOneCall": 238,
+      "msPerStep": 49,
       "time": {
-        "open": 8,
+        "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -865,8 +891,8 @@
           "way": 1,
           "asked": 0.53,
           "went": 0.133,
-          "ms": 163,
-          "msOneCall": 208,
+          "ms": 186,
+          "msOneCall": 238,
           "stops": [
             "1935/2287"
           ],
@@ -882,8 +908,8 @@
           "way": -1,
           "asked": 0.13,
           "went": -0.13,
-          "ms": 166,
-          "msOneCall": 82,
+          "ms": 176,
+          "msOneCall": 118,
           "stops": [],
           "moved": {
             "p1402 87761": [
@@ -924,6 +950,13 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p1402 87761": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "1935/2287",
             "1879/1935",

@@ -1,23 +1,23 @@
 {
   "set": "42044-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:20:57.874Z",
-  "load": 5,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:50:01.158Z",
+  "load": 5.6,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 110,
-  "seconds": 77,
+  "seconds": 98,
   "functions": [
     {
       "function": 1,
       "does": "The 12-tooth bevel gear on the fuselage's right side is a knob that raises and lowers the landing gear: it turns the nose gear's leg up into the fuselage, and a steering link from the nose gear swings the main gear's axle, so the two main wheels fold up too.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 11,
       "msPerStep": 2,
       "time": {
         "open": 3,
         "collisions": 0,
         "first": 0,
-        "reach": 3,
+        "reach": 10,
         "A": 0,
         "B": 12
       },
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 46,
-          "msOneCall": 13,
+          "ms": 43,
+          "msOneCall": 11,
           "stops": [
             "ground: p109"
           ],
@@ -74,7 +74,7 @@
           "asked": 1.5,
           "went": -0.907,
           "ms": 33,
-          "msOneCall": 2,
+          "msOneCall": 3,
           "stops": [
             "0/9"
           ],
@@ -109,6 +109,28 @@
           "cameraTurns": 3,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            57.7
+          ],
           "moved": [
             "p106 42610",
             "p34 32293",
@@ -116,6 +138,30 @@
             "p104 42610",
             "p105 42610"
           ],
+          "went": {
+            "p106 42610": [
+              38.62,
+              57.72
+            ],
+            "p34 32293": [
+              41.65,
+              13.48
+            ],
+            "p25 32073": [
+              0,
+              62.76
+            ],
+            "p104 42610": [
+              41.65,
+              62.76
+            ],
+            "p105 42610": [
+              41.65,
+              62.76
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "ground: p109",
             "0/9"
@@ -133,13 +179,13 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 26
     },
     {
       "function": 2,
       "does": "The canopy, made of two flexible axles over the cockpit, hinges up at its front to open the cockpit.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 8,
       "msPerStep": 1,
       "time": {
         "open": 3,
@@ -157,8 +203,8 @@
           "way": 1,
           "asked": 0.67,
           "went": 0.67,
-          "ms": 14,
-          "msOneCall": 9,
+          "ms": 15,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p43 6536": [
@@ -180,7 +226,7 @@
           "way": -1,
           "asked": 1.33,
           "went": -1.33,
-          "ms": 22,
+          "ms": 24,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -206,32 +252,69 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            96.34
+          ],
           "moved": [
             "p43 6536",
             "p82 4274",
             "p83 4274"
           ],
+          "went": {
+            "p43 6536": [
+              0,
+              96.34
+            ],
+            "p82 4274": [
+              33.32,
+              96.34
+            ],
+            "p83 4274": [
+              33.32,
+              96.34
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
-            "82/86",
             "0/43"
           ]
         }
       ],
-      "seconds": 15
+      "seconds": 16
     },
     {
       "function": 3,
       "does": "The three landing gear wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 14,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
-        "reach": 3,
+        "reach": 6,
         "A": 0,
-        "B": 35
+        "B": 42
       },
       "stop": null,
       "stops": [],
@@ -241,8 +324,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 42,
-          "msOneCall": 14,
+          "ms": 39,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -251,7 +334,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 35,
+          "ms": 34,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -261,17 +344,17 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p105 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
           "ms": 29,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p105 42610",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 28,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -281,7 +364,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 20,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -291,7 +374,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 20,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -301,10 +384,35 @@
         {
           "control": "p104 42610",
           "seen": true,
-          "cameraTurns": 3,
+          "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            83.03
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -313,7 +421,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            138.19
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -322,11 +455,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            103.93
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 44
+      "seconds": 55
     }
   ]
 }

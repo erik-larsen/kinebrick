@@ -1,25 +1,25 @@
 {
   "set": "42082-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:22:43.427Z",
-  "load": 18.9,
+  "commit": "ac22e339",
+  "date": "2026-11-25T13:27:00.218Z",
+  "load": 6.7,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 4113,
-  "seconds": 811,
+  "seconds": 733,
   "functions": [
     {
       "function": 2,
       "does": "Pushing the crane along runs the V8 engine at the back of the chassis: the axles' differentials drive the crankshaft, so the eight pistons go up and down and the engine's fan spins.",
       "verdict": "shown",
-      "msOneCall": 917,
-      "msPerStep": 251,
+      "msOneCall": 974,
+      "msPerStep": 267,
       "time": {
-        "open": 54,
+        "open": 53,
         "collisions": 0,
         "first": 0,
-        "reach": 71,
-        "A": 92,
-        "B": 370
+        "reach": 51,
+        "A": 96,
+        "B": 327
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 10777,
-          "msOneCall": 890,
+          "ms": 10961,
+          "msOneCall": 974,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 10509,
-          "msOneCall": 784,
+          "ms": 10990,
+          "msOneCall": 706,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -99,8 +99,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 10553,
-          "msOneCall": 694,
+          "ms": 10911,
+          "msOneCall": 776,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -134,8 +134,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 10384,
-          "msOneCall": 701,
+          "ms": 11011,
+          "msOneCall": 720,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -169,8 +169,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 10687,
-          "msOneCall": 917,
+          "ms": 10986,
+          "msOneCall": 885,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -204,8 +204,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 10680,
-          "msOneCall": 852,
+          "ms": 11443,
+          "msOneCall": 868,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -239,8 +239,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 10662,
-          "msOneCall": 780,
+          "ms": 11175,
+          "msOneCall": 789,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -274,8 +274,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 10527,
-          "msOneCall": 755,
+          "ms": 11431,
+          "msOneCall": 879,
           "stops": [],
           "moved": {
             "p1223 2854": [
@@ -368,6 +368,8 @@
               161.5
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -432,6 +434,8 @@
               128.17
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -496,6 +500,8 @@
               80.59
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -537,47 +543,49 @@
           "went": {
             "p1223 2854": [
               0,
-              146.21
+              143.45
             ],
             "p1235 2851": [
-              18.82,
+              18.64,
               0
             ],
             "p1236 2851": [
-              11.99,
+              11.56,
               0
             ],
             "p1237 2851": [
-              10.64,
+              10.13,
               0
             ],
             "p1238 2851": [
-              18.15,
+              17.84,
               0
             ],
             "p1286 41530": [
               0,
-              146.23
+              143.47
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 588
+      "seconds": 527
     },
     {
       "function": 3,
       "does": "Each axle has a differential: with the engine held, turning one wheel turns the other wheel on that axle the opposite way.",
       "verdict": "shown",
-      "msOneCall": 434,
-      "msPerStep": 66,
+      "msOneCall": 422,
+      "msPerStep": 60,
       "time": {
-        "open": 22,
+        "open": 20,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 6,
-        "B": 35
+        "B": 31
       },
       "stop": null,
       "stops": [],
@@ -587,8 +595,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2704,
-          "msOneCall": 434,
+          "ms": 2560,
+          "msOneCall": 422,
           "stops": [],
           "moved": {
             "p2284 92912": [
@@ -606,8 +614,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2819,
-          "msOneCall": 238,
+          "ms": 2380,
+          "msOneCall": 222,
           "stops": [],
           "moved": {
             "p2284 92912": [
@@ -659,10 +667,17 @@
               144.69
             ]
           },
+          "staysWent": {
+            "p1223 2854": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 64
+      "seconds": 58
     },
     {
       "function": 9,
@@ -673,15 +688,15 @@
       },
       "verdict": "not shown",
       "why": "A: p3789 32524 against p2649 64179 not moved; B: no listed part moved by hand",
-      "msOneCall": 1080,
-      "msPerStep": 869,
+      "msOneCall": 1063,
+      "msPerStep": 820,
       "time": {
-        "open": 32,
+        "open": 30,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 28,
-        "B": 109
+        "A": 27,
+        "B": 100
       },
       "stop": null,
       "stops": [],
@@ -692,8 +707,8 @@
           "ringShifted": true,
           "asked": 0.42,
           "went": 0.42,
-          "ms": 4230,
-          "msOneCall": 851,
+          "ms": 3995,
+          "msOneCall": 835,
           "stops": [],
           "moved": {
             "p3789 32524 against p2649 64179": [
@@ -707,8 +722,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 869,
-          "msOneCall": 1080,
+          "ms": 820,
+          "msOneCall": 1063,
           "stops": [],
           "moved": {
             "p3789 32524 against p2649 64179": [
@@ -754,13 +769,15 @@
               0
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "1624/1682",
             "2501/2534"
           ]
         }
       ],
-      "seconds": 159
+      "seconds": 148
     }
   ]
 }
