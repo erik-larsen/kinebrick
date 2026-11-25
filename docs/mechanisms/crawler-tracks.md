@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 17 works, 12 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 18 works, 11 partly.
 
 ## By decade
 
@@ -62,7 +62,7 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 17 works, 12 pa
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks. (partly)
+- Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks. (works)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 

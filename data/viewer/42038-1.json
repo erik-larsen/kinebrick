@@ -935,6 +935,469 @@
       "seconds": 20
     },
     {
+      "function": 9,
+      "does": "Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks.",
+      "verdict": "shown",
+      "msOneCall": 47,
+      "msPerStep": 5,
+      "time": {
+        "open": 31,
+        "collisions": 0,
+        "first": 0,
+        "reach": 72,
+        "A": 3,
+        "B": 108
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p646 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 225,
+          "msOneCall": 47,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p646 41239",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 211,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p671 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 206,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p671 41239",
+          "way": -1,
+          "asked": 1.23,
+          "went": -1.23,
+          "ms": 163,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p696 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 190,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p696 41239",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 195,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p721 41239",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 195,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p721 41239",
+          "way": -1,
+          "asked": 1.23,
+          "went": -1.23,
+          "ms": 171,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p745 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 183,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p745 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 183,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p695 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 190,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p695 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 186,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p670 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 193,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p670 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 193,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p720 57519",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 188,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p720 57519",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 184,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [
+        {
+          "control": "p646 41239",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            120.57,
+            138.36
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        },
+        {
+          "control": "p671 41239",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            101.64,
+            103.99
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": [
+            "604/677",
+            "606/676"
+          ]
+        },
+        {
+          "control": "p696 41239",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            116.12,
+            128.36
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        },
+        {
+          "control": "p721 41239",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            120.33,
+            137.77
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": [
+            "616/726"
+          ]
+        },
+        {
+          "control": "p745 57519",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            114.01
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        },
+        {
+          "control": "p695 57519",
+          "seen": true,
+          "cameraTurns": 3,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            95.87
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": [
+            "604/677"
+          ]
+        },
+        {
+          "control": "p670 57519",
+          "seen": true,
+          "cameraTurns": 1,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            107.44
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        },
+        {
+          "control": "p720 57519",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            119.24
+          ],
+          "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
+        }
+      ],
+      "seconds": 215,
+      "commit": "a0d04d7f",
+      "date": "2026-11-25T18:38:08.568Z"
+    },
+    {
       "function": 11,
       "does": "The steering wheel in the cab turns freely; it isn't linked to the steering.",
       "verdict": "shown",

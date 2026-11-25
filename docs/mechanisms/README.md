@@ -130,7 +130,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 3 works, 3 partly |
 | [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 9 works, 2 partly |
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 9 works, 3 partly |
-| [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 17 works, 12 partly |
+| [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 18 works, 11 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
 | [Worm drive](worm-drive.md) | 53 | 1986 |  | 4 | 4 | 13 | 29 | 3 | 51 works, 30 partly, 2 skipped |
 | [Slip clutch](slip-clutch.md) | 10 | 1989 |  | 1 |  | 1 | 7 | 1 | 6 works, 4 partly, 4 skipped |
