@@ -1285,7 +1285,9 @@ export class Kinematics {
     const d = axisOf(own.from, own.to);
     return this.mech.joints.every((j) => {
       if (j.bodyA !== body && j.bodyB !== body) return true;
-      if (j.kind !== 'revolute' || new Vector3().crossVectors(d, axisOf(j.from, j.to)).length() > 0.01) return false;
+      // A slide along the knob's own axis (a knob's shaft that may also slide in its hole) counts as a
+      // revolute on that axis does.
+      if ((j.kind !== 'revolute' && j.kind !== 'slide') || new Vector3().crossVectors(d, axisOf(j.from, j.to)).length() > 0.01) return false;
       const off = new Vector3().subVectors(j.from, own.from);
       return off.addScaledVector(d, -off.dot(d)).length() < 1;
     });

@@ -198,13 +198,15 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 39,
+    "commit": "55ee538d",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 51,
     "counts": {
-      "works": 7,
+      "works": 6,
       "skipped": 2,
-      "no": 1
+      "no": 1,
+      "partly": 1
     },
     "loose": [
       "p54 90370",
@@ -321,7 +323,7 @@
             0.63
           ]
         ],
-        "seconds": 3.2
+        "seconds": 4.2
       },
       {
         "result": "works",
@@ -495,7 +497,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 17.4
+        "seconds": 22.5
       },
       {
         "result": "works",
@@ -537,7 +539,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -695,7 +697,7 @@
             0.23
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.3
       },
       {
         "result": "skipped",
@@ -778,7 +780,7 @@
             "for": "p0 92910"
           }
         ],
-        "seconds": 1.7
+        "seconds": 2.1
       },
       {
         "result": "skipped",
@@ -844,7 +846,7 @@
             0.03
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -917,102 +919,109 @@
             0
           ]
         ],
-        "seconds": 5.8
+        "seconds": 8
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0,
-            -0.73
-          ]
-        ],
-        "rates": [
-          {
-            "p326 15462": [
-              1,
-              9.69e-15
-            ],
-            "p463 3749": [
-              1,
-              89.4
-            ],
-            "p466 3749": [
-              1,
-              89.4
-            ],
-            "p471 56908": [
+        "result": "partly",
+        "hold": {
+          "reason": "The viewer sweep does not show it: the viewer's turn of the red lever goes 0, and a pointer drag moves it 1.6 degrees and the wheelie bar's parts 0.3 at most (the sweep at 85aa8904, decision 355).",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
               0,
-              6.49e-20
-            ],
-            "p475 56908": [
-              0,
-              0
+              -0.73
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "freed": 2,
-        "collisionStops": [
-          [
-            0,
-            1,
-            170,
-            180,
-            0,
-            0
           ],
-          [
-            0,
-            -1,
-            207,
-            327,
-            0.73,
-            0.73
-          ]
-        ],
-        "freedFor": [
-          {
-            "pin": "p176 2780",
-            "for": "p328 2825"
-          },
-          {
-            "pin": "p177 2780",
-            "for": "p328 2825"
-          }
-        ],
-        "seconds": 3.4
+          "rates": [
+            {
+              "p326 15462": [
+                1,
+                9.69e-15
+              ],
+              "p463 3749": [
+                1,
+                89.4
+              ],
+              "p466 3749": [
+                1,
+                89.4
+              ],
+              "p471 56908": [
+                0,
+                6.49e-20
+              ],
+              "p475 56908": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "freed": 2,
+          "collisionStops": [
+            [
+              0,
+              1,
+              170,
+              180,
+              0,
+              0
+            ],
+            [
+              0,
+              -1,
+              207,
+              327,
+              0.73,
+              0.73
+            ]
+          ],
+          "freedFor": [
+            {
+              "pin": "p176 2780",
+              "for": "p328 2825"
+            },
+            {
+              "pin": "p177 2780",
+              "for": "p328 2825"
+            }
+          ],
+          "seconds": 4.6
+        }
       }
     ],
-    "peak": 739
+    "peak": 732
   }
 }

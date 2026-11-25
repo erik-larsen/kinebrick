@@ -84,10 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "25b50532",
-    "uncommitted": true,
+    "commit": "85aa8904",
     "date": "2026-11-25",
-    "seconds": 5,
+    "seconds": 6,
     "counts": {
       "works": 3,
       "partly": 1
@@ -162,7 +161,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -265,7 +264,7 @@
             "for": "p129 87083 against p120 32278"
           }
         ],
-        "seconds": 1.9
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -353,7 +352,7 @@
             "for": "p107 87083 against p97 32278"
           }
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -419,9 +418,9 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       }
     ],
-    "peak": 370
+    "peak": 361
   }
 }

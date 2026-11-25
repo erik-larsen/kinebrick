@@ -250,9 +250,10 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 135,
+    "commit": "55ee538d",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 183,
     "counts": {
       "works": 6,
       "partly": 3,
@@ -399,7 +400,7 @@
             "p732 2851"
           ]
         ],
-        "seconds": 29.9
+        "seconds": 39.5
       },
       {
         "result": "works",
@@ -491,7 +492,7 @@
           [],
           []
         ],
-        "seconds": 45.9
+        "seconds": 62.1
       },
       {
         "result": "works",
@@ -549,7 +550,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 6
       },
       {
         "result": "works",
@@ -591,7 +592,7 @@
             ]
           ]
         ],
-        "seconds": 5.5
+        "seconds": 6.7
       },
       {
         "result": "partly",
@@ -670,7 +671,7 @@
               0
             ]
           ],
-          "seconds": 2.4
+          "seconds": 2.9
         }
       },
       {
@@ -740,7 +741,7 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 4.4
+        "seconds": 6.2
       },
       {
         "result": "partly",
@@ -802,7 +803,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 4.1
+        "seconds": 5.6
       },
       {
         "result": "skipped",
@@ -871,7 +872,7 @@
             "for": "p1719 2654"
           }
         ],
-        "seconds": 9.1
+        "seconds": 13.7
       },
       {
         "result": "works",
@@ -921,7 +922,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 6.4
       },
       {
         "result": "skipped",
@@ -989,7 +990,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 4.9
+        "seconds": 6.8
       },
       {
         "result": "no",
@@ -1048,7 +1049,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 5
+        "seconds": 7.2
       },
       {
         "result": "no",
@@ -1133,9 +1134,9 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 10.8
+        "seconds": 15
       }
     ],
-    "peak": 995
+    "peak": 999
   }
 }

@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 697,
-      "partly": 256,
+      "works": 699,
+      "partly": 254,
       "no": 91,
       "functions": 1223
     },
@@ -41,12 +41,31 @@
       ],
       "reply": "Sign the 42110's lid control",
       "since": "2026-11-24"
+    },
+    {
+      "id": "42114-front-shaft-axle",
+      "kind": "Sign-off",
+      "title": "42114 Volvo Articulated Hauler: one axle of the front drive shaft is a stud off in the file. Sign the erratum?",
+      "what": "The front axle's differential gets no drive in Kinebrick. The worker traced it to one part of the shaft that runs forward under the cab: an axle 4 with a stop in its middle (part 99008, p1030, in the cabin's sub-model). Claude checked it from the LDraw shapes alone. As the file has it, the axle's rear end only touches the connector that should drive it, without entering it, and its front half fills the next connector from end to end, in the same socket as another axle: the two overlap by 19 LDU. Moved one stud (20 LDU) back, the axle sits 20 LDU in each connector and overlaps nothing, and its stop sits in the round hole it is made for. The booklet's step 275 (page 172) does not show the shaft clearly enough to settle it.",
+      "effect": "With your yes the erratum moves that one axle 20 LDU. By the worker's trial the front differential and both front wheels then turn with the motor. Function 1 (the motor drives all six wheels) stays partly for now, because the middle axle's wheel still stands for another reason, which the solver owner has.",
+      "links": [
+        {
+          "label": "42114 in the viewer, the axle marked",
+          "url": "http://localhost:5174/?file=omr/42114-1+6x6+Volvo+Articulated+Hauler.mpd&show=1030&autospin=427,paused"
+        },
+        {
+          "label": "Booklet, page 172 (step 275)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=172"
+        }
+      ],
+      "reply": "Sign the 42114's axle erratum",
+      "since": "2026-11-25"
     }
   ],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. All times so far, yours and Claude's, were taken while every core was busy with checks, so they are too high by a factor not known (261). The slowest functions are timed again on a quiet computer when the run is through, and you test on another machine. No function is held for speed until you have judged there where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all. On 20 November the sweep's first pass went through all 740 working functions (267): the turn shows 566, does not show 144, and 30 wait for a look at the booklet. Of the 57 sets with every function working, 32 have every function shown. The 144 are not all real: in 28 the sweep did not free pins that the check frees, and in about 45 more it could not turn the control at all, which the pointer pass will try. Claude expects 30 to 70 real ones; the worker sorts them before anything is marked down. On the evening of 20 November the solver's working set was merged into preview and turned on (272): a drag that turns a part now works only on the pieces the drag moves. In the viewer on this machine the 9397's steering takes 15 ms for each step of a drag against 120 ms before, both measured one after the other under the same load; the first move of a drag still takes about 240 ms. The proof is a sample of 19 sets in which no function changed its result. In the night to 21 November three more things went in: big models open quickly again (274: the 42078 Mack Anthem in 5 s against 33 s, a fault Claude's own merge of 20 November had made), the first move of a drag no longer searches twice (275: the 9397's steering starts in 384 ms against 644 ms), and the day's full check of preview ran (278): the counts are the same, 740 work, and the check took 18% less time. The check found three functions in which the working set leaves one freely turning part out of place after the drag, with the result unchanged: the 42020 Twin-rotor Helicopter's rolling wheels (two thin beams, parts 125 and 126) and the 8274 Combine Harvester when pushed (a toothed half bush, part 1081). This was mended the same morning (285): the working set had thrown away a motion kept for the next step; with the mend all three come back whole. On 21 November the worker finished sorting the 144 (279). 100 are shown after all, once the sweep did what a user does: lift the model, press Shift, do the first steps, drag by pointer. On 21 November the check learned to mark a wheel, track or shaft that a collision stops by itself (311), which replaced 22 of the day's holds; 25 functions are still held at partly by hand, and the count of working functions is 698. Six of them are functions the booklet shows moving far and the viewer stops short (298). Of the others: in 29 a collision stops a wheel, track, fan or other part that should turn without end, or a bonnet or mast that the booklet shows moving far (the check stopped at the same place and still said works, which is the check's fault; 279, 288); in 12 the control turns or is pushed and the listed parts do not all move (279, 286); in 2 the drive seemed to slip in one long drag (286), which proved to be a fault of the sweep's own measure, so these two holds were wrong and are lifted, with a third of the same kind, the 42129's function 4 (293); and one is from 19 November. Two holds on the 8063 proved wrong and were lifted (282). About 8 more are doubtful and stay at works until tried properly. The sets with every checked function working are 52, were 57. The worker now sorts each of the 16 contacts into false or true and makes the check judge such a stop itself. Pull preview at the newest commit before you test on the quiet machines on 21 November."
+      "what": "You asked for it on 20 November: every function the check calls working is tried in the viewer, both by the viewer's own turn and by a pointer drag as a person makes it, and what the viewer does not show is held at partly. The first pass ran on 20 and 21 November. Since then the sweep itself was mended in six ways and the viewer in four, so most of its records are out of date: on 25 November, 50 of 56 functions it names as not shown rest on records four days old (359). The worker now runs the second pass, every working function at preview's newest commit, beside its other work. Claude then sets the holds from those records, reading each by its figures. Until that is through, the count of working functions may be too high by some tens; Claude expects 10 to 30, since most of the old verdicts fail on the viewer's own turn refusing parts that are not knobs, which a hand's drag moves. 30 functions are held today."
     },
     {
       "title": "System hinges, doors and clips",
@@ -61,8 +80,8 @@
       "what": "After the free-parts rule, the track depth with the tipping mend, and the differentials' second cause (348), each when it loses no working function; the piston branch is in (349). The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     },
     {
-      "title": "The new differential (part 65414c01): read as its pieces now; its wheels do not yet turn against each other",
-      "what": "Merged on 24 November (348). Kinebrick had no gears and no differential role for this part, so both wheels of an axle were one rigid piece. It is in 4 sets: the 42114 Volvo Hauler, the 42129 Zetros, the 42124 Off-Road Buggy and the 42109 Top Gear Rally Car. Now the Zetros's centre differential works (function 2), and the motors of the 42124 and the 42109 drive their rear wheels. One function left the working count: the 42109's function 2, turning one rear wheel turns the other the opposite way. It had passed falsely: the two wheels were one piece and turned the same way, and the check measures how far a part turns, not which way. Still wrong: with the motor's gear held, one wheel turns the other only a little and then stops. The worker traces that next. Nothing for you to sign yet."
+      "title": "The new differential (part 65414c01): its wheels now turn against each other; two drive lines still stop",
+      "what": "Read as its pieces since 24 November (348). On 25 November the worker mended how its three small gears are read, which had locked each other after the first steps (360): on the 42109 Top Gear Rally Car and the 42124 Off-Road Buggy, turning one rear wheel now turns the other the opposite way. Still wrong: an open differential sends its whole turn to one side, so the Zetros's rear axle and the Hauler's middle axle get no drive; the solver owner mends that. The Hauler's front axle waits for your signature on an axle that is a stud off in the file."
     }
   ],
   "done": [

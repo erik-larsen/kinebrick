@@ -1,17 +1,17 @@
 {
   "set": "8419-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:13:50.864Z",
-  "load": 13.5,
+  "commit": "85aa8904",
+  "date": "2026-11-25T05:12:39.310Z",
+  "load": 16.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 280,
-  "seconds": 33,
+  "seconds": 29,
   "functions": [
     {
       "function": 2,
       "does": "The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams.",
       "verdict": "shown",
-      "msOneCall": 21,
+      "msOneCall": 23,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 137,
-          "msOneCall": 21,
+          "ms": 121,
+          "msOneCall": 23,
           "stops": [],
           "moved": {
             "p180 4716 against p212 32009": [
@@ -72,7 +72,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 109,
+          "ms": 106,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -118,6 +118,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            132.91
+          ],
           "moved": [
             "p180 4716 against p212 32009",
             "p172 3648b against p212 32009",
@@ -126,25 +148,51 @@
             "p115 32140 against p212 32009",
             "p284 2950 against p212 32009"
           ],
+          "went": {
+            "p180 4716 against p212 32009": [
+              0,
+              132.91
+            ],
+            "p172 3648b against p212 32009": [
+              0,
+              5.54
+            ],
+            "p144 32449 against p212 32009": [
+              2.34,
+              4.51
+            ],
+            "p148 32063 against p212 32009": [
+              4.98,
+              2.73
+            ],
+            "p115 32140 against p212 32009": [
+              2.81,
+              2.91
+            ],
+            "p284 2950 against p212 32009": [
+              16.11,
+              4.21
+            ]
+          },
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 3,
       "does": "The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip.",
       "verdict": "not shown",
       "why": "A: p284 2950 against p115 32140 not moved",
-      "msOneCall": 12,
+      "msOneCall": 14,
       "msPerStep": 7,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 0,
-        "B": 12
+        "A": 1,
+        "B": 7
       },
       "stop": null,
       "stops": [],
@@ -152,10 +200,17 @@
         {
           "control": "p204 32269",
           "way": 1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 1.5,
           "went": 0.244,
-          "ms": 49,
-          "msOneCall": 12,
+          "ms": 48,
+          "msOneCall": 14,
           "stops": [],
           "moved": {
             "p188 32269 against p212 32009": [
@@ -203,10 +258,17 @@
         {
           "control": "p204 32269",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "No friction pins hold this part: drag it"
+            ],
+            "freed": []
+          },
           "asked": 1.5,
           "went": -0.244,
           "ms": 48,
-          "msOneCall": 7,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p188 32269 against p212 32009": [
@@ -258,7 +320,23 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [],
+          "shift": [
+            "No friction pins hold this part: drag it"
+          ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            106.29
+          ],
           "moved": [
             "p188 32269 against p212 32009",
             "p176 4019 against p212 32009",
@@ -269,10 +347,44 @@
             "p279 32525 against p115 32140",
             "p284 2950 against p115 32140"
           ],
+          "went": {
+            "p188 32269 against p212 32009": [
+              0,
+              106.29
+            ],
+            "p176 4019 against p212 32009": [
+              0,
+              132.87
+            ],
+            "p98 32198 against p212 32009": [
+              0,
+              132.85
+            ],
+            "p102 3326b against p212 32009": [
+              0.01,
+              132.87
+            ],
+            "p129 4716 against p115 32140": [
+              0,
+              132.87
+            ],
+            "p135 3647 against p115 32140": [
+              0,
+              16.74
+            ],
+            "p279 32525 against p115 32140": [
+              31.03,
+              30.1
+            ],
+            "p284 2950 against p115 32140": [
+              82.67,
+              62.65
+            ]
+          },
           "stops": []
         }
       ],
-      "seconds": 16
+      "seconds": 12
     }
   ]
 }

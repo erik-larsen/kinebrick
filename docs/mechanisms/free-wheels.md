@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 137 works, 13 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 139 works, 11 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -520,7 +520,7 @@ Each detail by the set it first appears in.
 
 **2019, [42093 Chevrolet Corvette ZR1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42093-1)**
 
-- The front wheels roll freely and turn with the steering. (partly)
+- The front wheels roll freely and turn with the steering. (works)
 
 **2019, [42095 Remote-Controlled Stunt Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42095-1)**
 
@@ -575,7 +575,7 @@ Each detail by the set it first appears in.
 
 **2021, [42123 McLaren Senna GTR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42123-1)**
 
-- The front wheels and the left rear wheel roll freely. (partly)
+- The front wheels and the left rear wheel roll freely. (works)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 

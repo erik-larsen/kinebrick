@@ -231,9 +231,9 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 359,
+    "commit": "85aa8904",
+    "date": "2026-11-25",
+    "seconds": 529,
     "counts": {
       "works": 12,
       "partly": 2
@@ -313,8 +313,8 @@
             ]
           ]
         ],
-        "seconds": 5.7,
-        "peak": 953
+        "seconds": 7.8,
+        "peak": 932
       },
       {
         "result": "partly",
@@ -362,8 +362,8 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 3.1,
-        "peak": 919
+        "seconds": 4.5,
+        "peak": 895
       },
       {
         "result": "works",
@@ -434,8 +434,8 @@
             1.43
           ]
         ],
-        "seconds": 12,
-        "peak": 986
+        "seconds": 15.7,
+        "peak": 1100
       },
       {
         "result": "works",
@@ -485,8 +485,8 @@
             ]
           ]
         ],
-        "seconds": 83.9,
-        "peak": 949
+        "seconds": 130.8,
+        "peak": 876
       },
       {
         "result": "works",
@@ -532,7 +532,7 @@
             ]
           ]
         ],
-        "seconds": 22.4,
+        "seconds": 30.8,
         "peak": 956
       },
       {
@@ -575,8 +575,8 @@
             ]
           ]
         ],
-        "seconds": 4.8,
-        "peak": 910
+        "seconds": 7.4,
+        "peak": 907
       },
       {
         "result": "works",
@@ -630,8 +630,8 @@
             ]
           ]
         ],
-        "seconds": 6.7,
-        "peak": 936
+        "seconds": 10.3,
+        "peak": 884
       },
       {
         "result": "works",
@@ -697,8 +697,8 @@
             0.4
           ]
         ],
-        "seconds": 2.8,
-        "peak": 945
+        "seconds": 4.1,
+        "peak": 943
       },
       {
         "result": "works",
@@ -778,8 +778,8 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 17.9,
-        "peak": 932
+        "seconds": 27.4,
+        "peak": 983
       },
       {
         "result": "works",
@@ -910,8 +910,8 @@
             "for": "p1776 32524"
           }
         ],
-        "seconds": 97.4,
-        "peak": 1032
+        "seconds": 148,
+        "peak": 1036
       },
       {
         "result": "partly",
@@ -1008,8 +1008,8 @@
             0.07
           ]
         ],
-        "seconds": 1.8,
-        "peak": 909
+        "seconds": 2.6,
+        "peak": 905
       },
       {
         "result": "works",
@@ -1046,8 +1046,8 @@
             ]
           ]
         ],
-        "seconds": 7.4,
-        "peak": 904
+        "seconds": 10.3,
+        "peak": 945
       },
       {
         "result": "works",
@@ -1165,8 +1165,8 @@
           [],
           []
         ],
-        "seconds": 35,
-        "peak": 873
+        "seconds": 51.3,
+        "peak": 903
       },
       {
         "result": "works",
@@ -1227,8 +1227,8 @@
             0.03
           ]
         ],
-        "seconds": 1.5,
-        "peak": 903
+        "seconds": 2.2,
+        "peak": 883
       }
     ]
   }

@@ -224,9 +224,10 @@
     ]
   },
   "generated": {
-    "commit": "4929054b",
-    "date": "2026-11-22",
-    "seconds": 135,
+    "commit": "55ee538d",
+    "uncommitted": true,
+    "date": "2026-11-25",
+    "seconds": 194,
     "counts": {
       "works": 7,
       "no": 4,
@@ -450,7 +451,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 33.9
+        "seconds": 47.9
       },
       {
         "result": "works",
@@ -674,7 +675,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 42.8
+        "seconds": 61.5
       },
       {
         "result": "no",
@@ -730,7 +731,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 2.7
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -796,7 +797,7 @@
             ]
           ]
         ],
-        "seconds": 10.7
+        "seconds": 15.4
       },
       {
         "result": "works",
@@ -855,7 +856,7 @@
             ]
           ]
         ],
-        "seconds": 10.6
+        "seconds": 16.4
       },
       {
         "result": "works",
@@ -934,7 +935,7 @@
             1.2
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3.4
       },
       {
         "result": "no",
@@ -1049,7 +1050,7 @@
             0
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.6
       },
       {
         "result": "no",
@@ -1164,7 +1165,7 @@
             0
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.9
       },
       {
         "result": "skipped",
@@ -1243,7 +1244,7 @@
             "for": "p1238 3702"
           }
         ],
-        "seconds": 16
+        "seconds": 23.9
       },
       {
         "result": "skipped",
@@ -1392,7 +1393,7 @@
             "for": "p1126 3031"
           }
         ],
-        "seconds": 4.7
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -1452,9 +1453,9 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 8.1
       }
     ],
-    "peak": 562
+    "peak": 616
   }
 }

@@ -1,25 +1,25 @@
 {
   "set": "42069-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T16:11:34.311Z",
-  "load": 7.1,
+  "commit": "85aa8904",
+  "date": "2026-11-25T04:11:23.349Z",
+  "load": 17.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 2357,
-  "seconds": 404,
+  "seconds": 678,
   "functions": [
     {
       "function": 1,
       "does": "The knob on the roof, behind the windscreen, steers the front track units: an upright shaft with a universal joint comes down to bevel gears and a long shaft forward to a 12 tooth bevel gear on the steering rack, which swings both front track units on their turntables.",
       "verdict": "shown",
-      "msOneCall": 245,
-      "msPerStep": 79,
+      "msOneCall": 225,
+      "msPerStep": 73,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 7,
-        "B": 20
+        "B": 27
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3394,
-          "msOneCall": 245,
+          "ms": 3115,
+          "msOneCall": 225,
           "stops": [],
           "moved": {
             "p4 32270": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3214,
-          "msOneCall": 119,
+          "ms": 2902,
+          "msOneCall": 115,
           "stops": [],
           "moved": {
             "p4 32270": [
@@ -102,6 +102,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            125.17
+          ],
           "moved": [
             "p4 32270",
             "p1894 32270",
@@ -109,24 +131,48 @@
             "p1780 99010",
             "p1815 99010"
           ],
-          "stops": []
+          "went": {
+            "p4 32270": [
+              0,
+              125.17
+            ],
+            "p1894 32270": [
+              0,
+              125.17
+            ],
+            "p1879 64781": [
+              25.15,
+              2.28
+            ],
+            "p1780 99010": [
+              6.39,
+              18.37
+            ],
+            "p1815 99010": [
+              5.82,
+              16.73
+            ]
+          },
+          "stops": [
+            "1708/1880"
+          ]
         }
       ],
-      "seconds": 38
+      "seconds": 43
     },
     {
       "function": 2,
       "does": "The knob on the right side of the body (the side with the right door) winds the winch in the front bumper: through bevel gears, an upright shaft and a shaft forward with universal joints, it turns a 20 tooth bevel gear that turns the reel, pulling the hook in or letting it out.",
       "verdict": "shown",
-      "msOneCall": 159,
-      "msPerStep": 23,
+      "msOneCall": 152,
+      "msPerStep": 20,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 11,
+        "reach": 61,
         "A": 2,
-        "B": 18
+        "B": 22
       },
       "stop": null,
       "stops": [],
@@ -136,8 +182,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 981,
-          "msOneCall": 159,
+          "ms": 863,
+          "msOneCall": 152,
           "stops": [],
           "moved": {
             "p531 32270": [
@@ -167,8 +213,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 904,
-          "msOneCall": 58,
+          "ms": 795,
+          "msOneCall": 49,
           "stops": [],
           "moved": {
             "p531 32270": [
@@ -201,16 +247,56 @@
           "cameraTurns": 3,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            141.67
+          ],
           "moved": [
             "p531 32270",
             "p534 6589",
             "p299 32270",
             "p316 32012"
           ],
+          "went": {
+            "p531 32270": [
+              0,
+              141.67
+            ],
+            "p534 6589": [
+              0,
+              141.67
+            ],
+            "p299 32270": [
+              0,
+              141.67
+            ],
+            "p316 32012": [
+              0,
+              141.65
+            ]
+          },
           "stops": []
         }
       ],
-      "seconds": 41
+      "seconds": 95
     },
     {
       "function": 5,
@@ -219,53 +305,39 @@
         "result": "partly",
         "reason": "In the viewer the control turns and these listed parts stay: p1333, p146, p162; a push by hand does not move them either. Viewer sweep, decision 279."
       },
-      "verdict": "not shown",
-      "why": "A: p1333 62821, p146 2853, p162 2851 not moved; B: no listed part moved by hand",
-      "msOneCall": 212,
-      "msPerStep": 34,
+      "verdict": "shown",
+      "msOneCall": 234,
+      "msPerStep": 79,
       "time": {
-        "open": 15,
+        "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 9,
-        "A": 4,
-        "B": 27
+        "reach": 0,
+        "A": 7,
+        "B": 0
       },
-      "stop": {
-        "control": "p1490 57519",
-        "way": 1,
-        "went": 0.977,
-        "asked": 1.5,
-        "by": [
-          "1365/1426"
-        ]
-      },
-      "stops": [
-        "1365/1426",
-        "1366/1406"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p1490 57519",
           "way": 1,
           "asked": 1.5,
-          "went": 0.977,
-          "ms": 953,
-          "msOneCall": 212,
-          "stops": [
-            "1365/1426"
-          ],
+          "went": 1.5,
+          "ms": 3372,
+          "msOneCall": 234,
+          "stops": [],
           "moved": {
             "p1333 62821": [
               0,
-              0
+              85.94
             ],
             "p146 2853": [
               0,
-              0
+              200.54
             ],
             "p162 2851": [
-              0,
+              23.95,
               0
             ]
           }
@@ -274,73 +346,21 @@
           "control": "p1490 57519",
           "way": -1,
           "asked": 1.5,
-          "went": -0.977,
-          "ms": 868,
-          "msOneCall": 75,
-          "stops": [
-            "1366/1406"
-          ],
+          "went": -1.5,
+          "ms": 3217,
+          "msOneCall": 102,
+          "stops": [],
           "moved": {
             "p1333 62821": [
               0,
-              0
+              85.94
             ],
             "p146 2853": [
               0,
-              0
+              200.54
             ],
             "p162 2851": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p1492 57519",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.977,
-          "ms": 881,
-          "msOneCall": 83,
-          "stops": [
-            "1366/1406"
-          ],
-          "moved": {
-            "p1333 62821": [
-              0,
-              0
-            ],
-            "p146 2853": [
-              0,
-              0
-            ],
-            "p162 2851": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p1492 57519",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.977,
-          "ms": 852,
-          "msOneCall": 73,
-          "stops": [
-            "1365/1426"
-          ],
-          "moved": {
-            "p1333 62821": [
-              0,
-              0
-            ],
-            "p146 2853": [
-              0,
-              0
-            ],
-            "p162 2851": [
-              0,
+              21.04,
               0
             ]
           }
@@ -348,58 +368,29 @@
       ],
       "B": [
         {
-          "control": "p1490 57519",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "1365/1426"
-          ]
-        },
-        {
-          "control": "p1492 57519",
-          "seen": true,
-          "cameraTurns": 2,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
+          "control": [
+            "p1490 57519",
+            "p1492 57519"
+          ],
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p1490 57519",
-          "judged": "not shown",
-          "why": "turns without end (kinds piston-engine, differential; the text says: engine, pistons), but a collision stops it at +0.977 rad (1365/1426); -0.977 rad (1366/1406)"
-        },
-        {
-          "control": "p1492 57519",
-          "judged": "not shown",
-          "why": "turns without end (kinds piston-engine, differential; the text says: engine, pistons), but a collision stops it at +0.977 rad (1366/1406); -0.977 rad (1365/1426)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "not shown",
-        "why": "A: p1333 62821, p146 2853, p162 2851 not moved; B: no listed part moved by hand"
-      },
-      "seconds": 55
+      "seconds": 12
     },
     {
       "function": 6,
       "does": "The four track units roll; each pivots on its axle to follow the ground.",
       "verdict": "shown",
-      "msOneCall": 181,
-      "msPerStep": 33,
+      "msOneCall": 187,
+      "msPerStep": 31,
       "time": {
-        "open": 25,
+        "open": 24,
         "collisions": 0,
         "first": 0,
-        "reach": 20,
+        "reach": 119,
         "A": 8,
-        "B": 65
+        "B": 91
       },
       "stop": {
         "control": "p1490 57519",
@@ -422,8 +413,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 908,
-          "msOneCall": 181,
+          "ms": 866,
+          "msOneCall": 187,
           "stops": [
             "1365/1426"
           ],
@@ -434,7 +425,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.977,
-          "ms": 859,
+          "ms": 761,
           "msOneCall": 72,
           "stops": [
             "1366/1406"
@@ -446,8 +437,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.977,
-          "ms": 881,
-          "msOneCall": 78,
+          "ms": 807,
+          "msOneCall": 66,
           "stops": [
             "1366/1406"
           ],
@@ -458,8 +449,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.977,
-          "ms": 847,
-          "msOneCall": 78,
+          "ms": 774,
+          "msOneCall": 65,
           "stops": [
             "1365/1426"
           ],
@@ -470,8 +461,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1271,
-          "msOneCall": 77,
+          "ms": 1125,
+          "msOneCall": 71,
           "stops": [],
           "moved": {}
         },
@@ -480,8 +471,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1261,
-          "msOneCall": 63,
+          "ms": 1181,
+          "msOneCall": 65,
           "stops": [],
           "moved": {}
         },
@@ -490,8 +481,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.767,
-          "ms": 642,
-          "msOneCall": 69,
+          "ms": 637,
+          "msOneCall": 70,
           "stops": [
             "1788/1811"
           ],
@@ -502,8 +493,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.733,
-          "ms": 654,
-          "msOneCall": 67,
+          "ms": 576,
+          "msOneCall": 65,
           "stops": [
             "1789/1811"
           ],
@@ -517,9 +508,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            92.96
+          ],
           "moved": [],
+          "went": {},
           "stops": [
-            "1365/1426"
+            "1366/1406"
           ]
         },
         {
@@ -528,8 +542,33 @@
           "cameraTurns": 2,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            69.14
+          ],
           "moved": [],
-          "stops": []
+          "went": {},
+          "stops": [
+            "1365/1426"
+          ]
         },
         {
           "control": "p1871 57519",
@@ -537,7 +576,30 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            94.31
+          ],
           "moved": [],
+          "went": {},
           "stops": []
         },
         {
@@ -546,7 +608,30 @@
           "cameraTurns": 3,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            86.55
+          ],
           "moved": [],
+          "went": {},
           "stops": [
             "1788/1811",
             "1789/1811"
@@ -574,7 +659,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 119
+      "seconds": 242
     },
     {
       "function": 7,
@@ -584,15 +669,15 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the controls p1172 and p1055 at once and at 0.07 rad (parts 231/462, 106/458, 628/2405); the door should swing up and the step lower. Viewer sweep, decision 279."
       },
       "verdict": "not shown",
-      "msOneCall": 273,
-      "msPerStep": 158,
+      "msOneCall": 246,
+      "msPerStep": 139,
       "time": {
-        "open": 14,
+        "open": 15,
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 2,
-        "B": 43
+        "A": 1,
+        "B": 55
       },
       "stop": {
         "control": "p1055 32525",
@@ -614,8 +699,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 237,
-          "msOneCall": 273,
+          "ms": 210,
+          "msOneCall": 246,
           "stops": [],
           "moved": {
             "p1150 62531": [
@@ -633,8 +718,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 110,
-          "msOneCall": 109,
+          "ms": 105,
+          "msOneCall": 101,
           "stops": [
             "231/462"
           ],
@@ -654,8 +739,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0,
-          "ms": 111,
-          "msOneCall": 108,
+          "ms": 100,
+          "msOneCall": 99,
           "stops": [
             "106/458"
           ],
@@ -675,8 +760,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.07,
-          "ms": 315,
-          "msOneCall": 140,
+          "ms": 276,
+          "msOneCall": 123,
           "stops": [
             "628/2405"
           ],
@@ -699,15 +784,47 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            12.55,
+            4.81
+          ],
           "moved": [
             "p1150 62531"
           ],
+          "went": {
+            "p1150 62531": [
+              2.27,
+              2.91
+            ],
+            "p1033 62531": [
+              0,
+              0
+            ]
+          },
           "stops": [
             "625/2407",
-            "231/462",
-            "113/522",
             "506/1172",
-            "605/1180"
+            "605/1180",
+            "231/462",
+            "113/522"
           ]
         },
         {
@@ -716,13 +833,48 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
-          "moved": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            12.6,
+            4.83
+          ],
+          "moved": [
+            "p1033 62531"
+          ],
+          "went": {
+            "p1150 62531": [
+              0,
+              0
+            ],
+            "p1033 62531": [
+              2.28,
+              2.92
+            ]
+          },
           "stops": [
             "106/458",
-            "89/521",
-            "506/1055",
             "628/2405",
-            "611/1063"
+            "506/1055",
+            "611/1063",
+            "616/1063",
+            "89/521"
           ]
         }
       ],
@@ -748,38 +900,42 @@
         "verdict": "shown"
       },
       "why": "a collision stops a control: p1172 32525: a travel of 0.2 rad or less each way, stopped at -0 rad (231/462); p1055 32525: a travel of 0.2 rad or less each way, stopped at +0 rad (106/458); -0.07 rad (628/2405) (the door swings up and the step lowers (the picture), far past 0.07 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208467.pdf#page=388)",
-      "seconds": 60
+      "seconds": 73
     },
     {
       "function": 9,
       "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
-      "verdict": "not decided",
-      "msOneCall": 214,
-      "msPerStep": 66,
+      "verdict": "shown",
+      "msOneCall": 167,
+      "msPerStep": 53,
       "time": {
-        "open": 15,
+        "open": 14,
         "collisions": 0,
         "first": 0,
-        "reach": 10,
-        "A": 20,
-        "B": 46
+        "reach": 44,
+        "A": 55,
+        "B": 45
       },
-      "stop": {
-        "control": "p884 64782",
-        "way": -1,
-        "went": -0.07,
-        "asked": 1.5,
-        "by": [
-          "876/884"
-        ]
-      },
-      "stops": [
-        "876/884"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p884 64782",
           "way": 1,
+          "shiftOthers": [
+            {
+              "part": 896,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "2 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                699,
+                925
+              ]
+            }
+          ],
           "shift": {
             "seen": true,
             "said": [
@@ -788,42 +944,35 @@
             ],
             "freed": [
               692,
-              916
+              699,
+              916,
+              925
             ]
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 132,
-          "msOneCall": 214,
+          "ms": 106,
+          "msOneCall": 167,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p884 64782",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "2 friction pins that held it can now turn: drag it again"
-            ],
-            "freed": [
-              692,
-              916
-            ]
-          },
-          "asked": 1.5,
-          "went": -0.07,
-          "ms": 120,
-          "msOneCall": 94,
-          "stops": [
-            "876/884"
+          "shiftOthers": [
+            {
+              "part": 896,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "2 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                699,
+                925
+              ]
+            }
           ],
-          "moved": {}
-        },
-        {
-          "control": "p896 64782",
-          "way": 1,
           "shift": {
             "seen": true,
             "said": [
@@ -838,32 +987,59 @@
             ]
           },
           "asked": 1.5,
+          "went": -1.5,
+          "ms": 843,
+          "msOneCall": 77,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p896 64782",
+          "way": 1,
+          "shiftOthers": [
+            {
+              "part": 884,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…"
+              ],
+              "freed": [
+                692,
+                699,
+                916,
+                925
+              ]
+            }
+          ],
+          "asked": 1.5,
           "went": 1.5,
-          "ms": 988,
-          "msOneCall": 147,
+          "ms": 920,
+          "msOneCall": 72,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p896 64782",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "2 friction pins that held it can now turn: drag it again"
-            ],
-            "freed": [
-              692,
-              699,
-              916,
-              925
-            ]
-          },
+          "shiftOthers": [
+            {
+              "part": 884,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…"
+              ],
+              "freed": [
+                692,
+                699,
+                916,
+                925
+              ]
+            }
+          ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 89,
-          "msOneCall": 69,
+          "ms": 88,
+          "msOneCall": 72,
           "stops": [],
           "moved": {}
         }
@@ -874,15 +1050,52 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "shiftOthers": [
+            {
+              "part": 896,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "2 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                699,
+                925
+              ]
+            }
+          ],
           "shift": [
             "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
           ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            46.22,
+            70.63
+          ],
           "moved": [],
+          "went": {},
           "stops": [
-            "868/884",
             "876/884",
-            "649/884"
+            "868/884",
+            "875/884"
           ]
         },
         {
@@ -890,30 +1103,55 @@
           "seen": true,
           "cameraTurns": 2,
           "motor": false,
+          "shiftOthers": [
+            {
+              "part": 884,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "2 friction pins that held it can now turn: drag it again"
+              ],
+              "freed": [
+                692,
+                916
+              ]
+            }
+          ],
           "shift": [
             "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
           ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            63.22,
+            104.46
+          ],
           "moved": [],
+          "went": {},
           "stops": [
             "874/896",
-            "870/896"
+            "659/896"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p884 64782",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.07 rad (876/884)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p884 64782: a travel of 0.2 rad or less each way, stopped at -0.07 rad (876/884)",
-      "seconds": 92
+      "seconds": 212
     }
   ]
 }
