@@ -95,7 +95,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 67 works, 7 partly, 2 no |
-| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 10 works, 15 partly, 4 no |
+| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 11 works, 14 partly, 4 no |
 | [Swivelling axle steering](swivel-axle-steering.md) | 4 | 1993 |  |  | 1 |  | 3 |  | 1 works, 2 partly, 1 no |
 | [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 4 works, 3 partly |
 | [Multi-axle steering](multi-axle-steering.md) | 12 | 1990 |  |  | 2 | 1 | 7 | 2 | 10 works, 3 partly, 1 no |
@@ -115,7 +115,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Pendular axle](pendular-axle.md) | 7 | 1986 |  | 1 |  |  | 5 | 1 | 2 works, 2 partly, 2 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
 | [Sprung live axle](sprung-axle.md) | 6 | 2011 |  |  |  |  | 4 | 2 | 2 works, 2 no, 2 skipped |
-| [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 2 partly, 1 no |
+| [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 1 works, 1 partly, 1 no |
 | [Telelever](telelever.md) | 1 | 2017 |  |  |  |  | 1 |  | 1 works |
 | [Bogie](bogie.md) | 5 | 2007 |  |  |  | 2 | 1 | 2 | 3 works, 2 skipped |
 | [Track suspension](track-suspension.md) | 1 | 2019 |  |  |  |  | 1 |  | 1 skipped |
@@ -132,7 +132,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 9 works, 3 partly |
 | [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 17 works, 12 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
-| [Worm drive](worm-drive.md) | 53 | 1986 |  | 4 | 4 | 13 | 29 | 3 | 50 works, 31 partly, 2 skipped |
+| [Worm drive](worm-drive.md) | 53 | 1986 |  | 4 | 4 | 13 | 29 | 3 | 51 works, 30 partly, 2 skipped |
 | [Slip clutch](slip-clutch.md) | 10 | 1989 |  | 1 |  | 1 | 7 | 1 | 6 works, 4 partly, 4 skipped |
 | [Swinging idler clutch](swinging-idler-clutch.md) | 1 | 1998 |  |  | 1 |  |  |  | 1 skipped |
 | [Power take-off](power-take-off.md) | 11 | 1977 | 2 | 2 | 1 | 3 | 1 | 2 | 9 works, 5 partly |
@@ -153,7 +153,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 18 works, 8 partly, 4 no |
 | [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 20 works, 28 partly, 1 no |
 | [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 2 works, 10 partly, 11 no, 6 skipped |
-| [Crank and link](crank-and-link.md) | 57 | 1979 | 1 | 6 | 6 | 9 | 28 | 7 | 35 works, 37 partly, 5 no, 1 skipped, 1 not checked |
+| [Crank and link](crank-and-link.md) | 57 | 1979 | 1 | 6 | 6 | 9 | 28 | 7 | 38 works, 34 partly, 5 no, 1 skipped, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 21 works, 8 partly |

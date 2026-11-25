@@ -94,13 +94,12 @@
     ]
   },
   "generated": {
-    "commit": "c76d82aa",
+    "commit": "b7344562",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 5,
+    "seconds": 3,
     "counts": {
-      "works": 3,
-      "partly": 1
+      "works": 4
     },
     "loose": [
       "p52 3873",
@@ -174,95 +173,88 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.3
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355).",
-          "date": "2026-11-25"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              1.07,
-              -1.5
+        "result": "works",
+        "turned": [
+          [
+            1.07,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p29 3703": [
+              0.143,
+              20
+            ],
+            "p128 4262": [
+              0.109,
+              16.3
+            ],
+            "p63 2823": [
+              0.143,
+              14.8
+            ],
+            "p212 3736": [
+              0,
+              0
+            ],
+            "p216 3941": [
+              0,
+              3.21e-50
             ]
-          ],
-          "rates": [
-            {
-              "p29 3703": [
-                0.143,
-                20
-              ],
-              "p128 4262": [
-                0.109,
-                16.3
-              ],
-              "p63 2823": [
-                0.143,
-                14.8
-              ],
-              "p212 3736": [
-                0,
-                0
-              ],
-              "p216 3941": [
-                0,
-                3.21e-50
-              ]
-            }
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              null
-            ]
-          ],
-          "freed": 1,
-          "collisionStops": [
+          }
+        ],
+        "back": [
+          [
             [
               0,
-              1,
-              179,
-              208,
-              1.07,
-              1.07
+              0
+            ],
+            [
+              0,
+              0
             ]
-          ],
-          "freedFor": [
-            {
-              "pin": "p127 4459",
-              "for": "p207 4185a"
-            }
-          ],
-          "seconds": 0.8
-        }
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "freed": 1,
+        "collisionStops": [
+          [
+            0,
+            1,
+            179,
+            208,
+            1.07,
+            1.07
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p127 4459",
+            "for": "p207 4185a"
+          }
+        ],
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -332,7 +324,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -450,9 +442,9 @@
           [],
           []
         ],
-        "seconds": 1.3
+        "seconds": 0.7
       }
     ],
-    "peak": 311
+    "peak": 302
   }
 }

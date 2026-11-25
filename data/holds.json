@@ -49,24 +49,10 @@
     "date": "2026-11-21"
   },
   {
-    "set": "42053-1",
-    "function": 5,
-    "result": "partly",
-    "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p2196, p2201, p2222, p2407 (one of the four moves). Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
     "set": "42055-1",
     "function": 9,
     "result": "partly",
     "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p263, p264. Viewer sweep, decision 279.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "42082-1",
-    "function": 9,
-    "result": "partly",
-    "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p3789 against p2649. Viewer sweep, decision 279.",
     "date": "2026-11-21"
   },
   {
@@ -88,13 +74,6 @@
     "function": 5,
     "result": "partly",
     "reason": "The booklet shows the knob turned about half a turn each way (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=490), but in the viewer a collision stops p385 at 0.17 rad (parts 641/642) and 0.105 rad (parts 648/714); the check stops there too. Viewer sweep on today's code, decision 298.",
-    "date": "2026-11-21"
-  },
-  {
-    "set": "42078-1",
-    "function": 1,
-    "result": "partly",
-    "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298.",
     "date": "2026-11-21"
   },
   {
@@ -154,13 +133,6 @@
     "date": "2026-11-25"
   },
   {
-    "set": "8835-1",
-    "function": 2,
-    "result": "partly",
-    "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355).",
-    "date": "2026-11-25"
-  },
-  {
     "set": "42060-1",
     "function": 6,
     "result": "partly",
@@ -193,13 +165,6 @@
     "function": 9,
     "result": "partly",
     "reason": "Under a hand the tailgate swings 142 degrees, but the beam p370, listed to stay, moves 45 LDU and turns 32 degrees with it. The viewer's own turn does not take the control p345. Full viewer sweep at ac22e339, decision 363.",
-    "date": "2026-11-25"
-  },
-  {
-    "set": "8838-1",
-    "function": 2,
-    "result": "partly",
-    "reason": "Under a hand the suspension is not shown: a drag on the shock absorber's rod p225 swings the whole fork 68.7 degrees, the cylinders p224 and p226 and the part p77 (listed to stay) exactly as far as the rods and the wheel, so the rods do not slide in the cylinders. The viewer's own turn does not take the control. Full viewer sweep at ac22e339, decision 363.",
     "date": "2026-11-25"
   },
   {

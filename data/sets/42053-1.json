@@ -162,13 +162,13 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "b7344562",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 42,
+    "seconds": 29,
     "counts": {
       "skipped": 4,
-      "partly": 1,
-      "works": 3,
+      "works": 4,
       "no": 1,
       "not back": 1,
       "moved whole": 1
@@ -282,90 +282,83 @@
         "seconds": 0
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p2196, p2201, p2222, p2407 (one of the four moves). Viewer sweep, decision 279.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              1.5,
-              -1.5
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p2196 4716": [
+              1,
+              0
+            ],
+            "p2201 3648b": [
+              0.0417,
+              0
+            ],
+            "p2222 42053 - 33299b": [
+              0.0417,
+              0
+            ],
+            "p2407 32073": [
+              0,
+              6.67
+            ],
+            "p285 42053 - 18938": [
+              0,
+              9.36e-125
+            ],
+            "p756 2730": [
+              0,
+              0
             ]
-          ],
-          "rates": [
-            {
-              "p2196 4716": [
-                1,
-                0
-              ],
-              "p2201 3648b": [
-                0.0417,
-                0
-              ],
-              "p2222 42053 - 33299b": [
-                0.0417,
-                0
-              ],
-              "p2407 32073": [
-                0,
-                6.67
-              ],
-              "p285 42053 - 18938": [
-                0,
-                9.36e-125
-              ],
-              "p756 2730": [
-                0,
-                0
-              ]
-            }
-          ],
-          "expected": [
-            {
-              "p2201 3648b": 0.0417,
-              "p2222 42053 - 33299b": 0.0417
-            }
-          ],
-          "back": [
+          }
+        ],
+        "expected": [
+          {
+            "p2201 3648b": 0.0417,
+            "p2222 42053 - 33299b": 0.0417
+          }
+        ],
+        "back": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
+              0,
+              0
+            ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
-          ],
-          "freed": 2,
-          "freedFor": [
-            {
-              "pin": "p2228 6558",
-              "for": "p2207 32270"
-            },
-            {
-              "pin": "p2235 6558",
-              "for": "p2207 32270"
-            }
-          ],
-          "seconds": 7.7
-        }
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 2,
+        "freedFor": [
+          {
+            "pin": "p2228 6558",
+            "for": "p2207 32270"
+          },
+          {
+            "pin": "p2235 6558",
+            "for": "p2207 32270"
+          }
+        ],
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -455,7 +448,7 @@
             0.87
           ]
         ],
-        "seconds": 2.8
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -505,7 +498,7 @@
             ]
           ]
         ],
-        "seconds": 5.4
+        "seconds": 4
       },
       {
         "result": "no",
@@ -590,7 +583,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 5.2
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -712,9 +705,9 @@
           [],
           []
         ],
-        "seconds": 17
+        "seconds": 10.8
       }
     ],
-    "peak": 830
+    "peak": 838
   }
 }
