@@ -1,25 +1,25 @@
 {
   "set": "42077-1",
-  "commit": "b2985c9d",
-  "date": "2026-11-25T01:42:54.308Z",
-  "load": 8.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:36:05.255Z",
+  "load": 8.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 980,
-  "seconds": 209,
+  "seconds": 227,
   "functions": [
     {
       "function": 1,
       "does": "The black gear on the roof steers the front wheels: its upright shaft and a pair of bevel gears turn a long shaft forward under the cabin to the pinion on the front steering rack.",
       "verdict": "shown",
-      "msOneCall": 88,
-      "msPerStep": 18,
+      "msOneCall": 103,
+      "msPerStep": 24,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 15
+        "B": 16
       },
       "stop": {
         "control": "p838 18575",
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.465,
-          "ms": 744,
-          "msOneCall": 88,
+          "ms": 1011,
+          "msOneCall": 103,
           "stops": [
             "528/570"
           ],
@@ -69,8 +69,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.465,
-          "ms": 693,
-          "msOneCall": 29,
+          "ms": 976,
+          "msOneCall": 41,
           "stops": [
             "528/571"
           ],
@@ -138,10 +138,17 @@
               28.81
             ],
             "p1081 15038": [
-              26.57,
-              28.88
+              26.58,
+              28.89
             ]
           },
+          "staysWent": {
+            "p59 62821": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "528/570"
           ]
@@ -158,24 +165,20 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 22
+      "seconds": 25
     },
     {
       "function": 2,
       "does": "Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints.",
-      "held": {
-        "result": "partly",
-        "reason": "The viewer sweep does not show it: with the mended pointer (decision 339), pushing the rear wheels p1076 and p1080 moved none of the engine's listed parts (p59, p139, p142, p143). Marked before the offer of main, decision 341; to look at after 2026-11-23."
-      },
       "verdict": "shown",
-      "msOneCall": 85,
-      "msPerStep": 25,
+      "msOneCall": 108,
+      "msPerStep": 33,
       "time": {
         "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
+        "A": 3,
         "B": 0
       },
       "stop": null,
@@ -186,8 +189,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1083,
-          "msOneCall": 85,
+          "ms": 1384,
+          "msOneCall": 108,
           "stops": [],
           "moved": {
             "p59 62821": [
@@ -221,8 +224,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1091,
-          "msOneCall": 35,
+          "ms": 1406,
+          "msOneCall": 45,
           "stops": [],
           "moved": {
             "p59 62821": [
@@ -262,16 +265,16 @@
           "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 5
+      "seconds": 6
     },
     {
       "function": 3,
       "does": "The front wheels roll freely; only the rear ones are driven.",
       "verdict": "shown",
-      "msOneCall": 62,
-      "msPerStep": 6,
+      "msOneCall": 74,
+      "msPerStep": 8,
       "time": {
-        "open": 9,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 1,
@@ -286,8 +289,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 243,
-          "msOneCall": 62,
+          "ms": 348,
+          "msOneCall": 74,
           "stops": [],
           "moved": {
             "p139 2853": [
@@ -301,8 +304,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 214,
-          "msOneCall": 15,
+          "ms": 271,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p139 2853": [
@@ -316,8 +319,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 212,
-          "msOneCall": 15,
+          "ms": 296,
+          "msOneCall": 18,
           "stops": [],
           "moved": {
             "p139 2853": [
@@ -331,8 +334,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 228,
-          "msOneCall": 14,
+          "ms": 286,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p139 2853": [
@@ -373,6 +376,13 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p139 2853": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -405,24 +415,31 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p139 2853": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 37
+      "seconds": 39
     },
     {
       "function": 4,
       "does": "All four wheels have independent suspension: each hub rides on a pair of arms with a stiff yellow shock absorber, so each wheel can rise and fall on its own.",
       "verdict": "shown",
-      "msOneCall": 69,
+      "msOneCall": 72,
       "msPerStep": 7,
       "time": {
-        "open": 16,
+        "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 21,
+        "reach": 24,
         "A": 1,
-        "B": 43
+        "B": 45
       },
       "stop": null,
       "stops": [],
@@ -433,7 +450,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 6,
+          "msOneCall": 9,
           "stops": [],
           "moved": {}
         },
@@ -472,8 +489,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 282,
-          "msOneCall": 69,
+          "ms": 311,
+          "msOneCall": 72,
           "stops": [],
           "moved": {}
         },
@@ -482,8 +499,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 260,
-          "msOneCall": 17,
+          "ms": 313,
+          "msOneCall": 18,
           "stops": [],
           "moved": {}
         },
@@ -492,8 +509,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 257,
-          "msOneCall": 19,
+          "ms": 302,
+          "msOneCall": 21,
           "stops": [],
           "moved": {}
         },
@@ -502,8 +519,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 273,
-          "msOneCall": 16,
+          "ms": 315,
+          "msOneCall": 17,
           "stops": [],
           "moved": {}
         }
@@ -531,6 +548,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "93/1084"
           ]
@@ -552,11 +571,13 @@
             }
           ],
           "controlWent": [
-            29.21,
+            29.17,
             0
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "104/1086"
           ]
@@ -591,6 +612,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -623,19 +646,21 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 81
+      "seconds": 87
     },
     {
       "function": 6,
       "does": "The two doors swing open.",
       "verdict": "shown",
-      "msOneCall": 61,
-      "msPerStep": 22,
+      "msOneCall": 64,
+      "msPerStep": 26,
       "time": {
-        "open": 9,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -672,8 +697,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 32,
-          "msOneCall": 61,
+          "ms": 33,
+          "msOneCall": 64,
           "stops": [],
           "moved": {}
         },
@@ -704,7 +729,7 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 22,
+          "ms": 26,
           "msOneCall": 23,
           "stops": [],
           "moved": {}
@@ -728,8 +753,8 @@
           ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 21,
-          "msOneCall": 22,
+          "ms": 23,
+          "msOneCall": 24,
           "stops": [],
           "moved": {}
         },
@@ -752,8 +777,8 @@
           ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 28,
-          "msOneCall": 22,
+          "ms": 36,
+          "msOneCall": 23,
           "stops": [],
           "moved": {}
         }
@@ -803,6 +828,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "448/891",
             "503/888"
@@ -852,27 +879,29 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "511/901",
             "437/904"
           ]
         }
       ],
-      "seconds": 40
+      "seconds": 42
     },
     {
       "function": 7,
       "does": "The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis.",
       "verdict": "shown",
-      "msOneCall": 87,
-      "msPerStep": 28,
+      "msOneCall": 96,
+      "msPerStep": 32,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 15
+        "B": 17
       },
       "stop": {
         "control": "p912 64782",
@@ -907,8 +936,8 @@
           },
           "asked": 1.33,
           "went": 1.33,
-          "ms": 1066,
-          "msOneCall": 87,
+          "ms": 1204,
+          "msOneCall": 96,
           "stops": [],
           "moved": {
             "p922 62531": [
@@ -949,8 +978,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 30,
-          "msOneCall": 29,
+          "ms": 32,
+          "msOneCall": 33,
           "stops": [
             "231/971"
           ],
@@ -1020,6 +1049,17 @@
               70.73
             ]
           },
+          "staysWent": {
+            "p139 2853": [
+              0,
+              0
+            ],
+            "p59 62821": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "231/971",
             "237/970",
@@ -1039,7 +1079,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 24
+      "seconds": 26
     }
   ]
 }

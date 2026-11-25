@@ -1,11 +1,11 @@
 {
   "set": "8259-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:01:36.110Z",
-  "load": 6.9,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:36:49.513Z",
+  "load": 7.3,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 165,
-  "seconds": 30,
+  "seconds": 37,
   "functions": [
     {
       "function": 2,
@@ -17,9 +17,9 @@
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
+        "reach": 5,
         "A": 0,
-        "B": 23
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 31,
+          "ms": 35,
           "msOneCall": 11,
           "stops": [],
           "moved": {}
@@ -39,8 +39,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 24,
-          "msOneCall": 2,
+          "ms": 34,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -49,7 +49,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 20,
+          "ms": 25,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -72,7 +72,32 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            75.77
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -81,11 +106,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            }
+          ],
+          "controlWent": [
+            0,
+            47.47
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 30
+      "seconds": 36
     }
   ]
 }

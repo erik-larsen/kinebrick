@@ -1,23 +1,23 @@
 {
   "set": "8464-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:41:59.126Z",
-  "load": 9.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:09:40.315Z",
+  "load": 7.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 544,
-  "seconds": 38,
+  "seconds": 39,
   "functions": [
     {
       "function": 4,
       "does": "The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
       "verdict": "shown",
-      "msOneCall": 26,
+      "msOneCall": 24,
       "msPerStep": 2,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 3,
+        "reach": 4,
         "A": 0,
         "B": 12
       },
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 104,
-          "msOneCall": 26,
+          "ms": 102,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p567 2995": [
@@ -56,7 +56,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 91,
+          "ms": 94,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -83,24 +83,66 @@
         {
           "control": "p565 2995",
           "seen": true,
-          "cameraTurns": 2,
+          "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            117.12
+          ],
           "moved": [
             "p567 2995",
             "p17 6589"
           ],
+          "went": {
+            "p567 2995": [
+              0,
+              16.73
+            ],
+            "p17 6589": [
+              0,
+              16.73
+            ]
+          },
+          "staysWent": {
+            "p31 3650a": [
+              0,
+              0
+            ],
+            "p427 2854": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 20
+      "seconds": 21
     },
     {
       "function": 5,
       "does": "The front differential does the same for the front wheels.",
-      "verdict": "not shown",
-      "why": "B: no listed part moved by hand",
-      "msOneCall": 25,
+      "verdict": "shown",
+      "msOneCall": 24,
       "msPerStep": 2,
       "time": {
         "open": 5,
@@ -108,7 +150,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -118,8 +160,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 104,
-          "msOneCall": 25,
+          "ms": 96,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p571 2995": [
@@ -145,7 +187,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 92,
+          "ms": 84,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -175,11 +217,57 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
-          "moved": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            116.99
+          ],
+          "moved": [
+            "p571 2995",
+            "p99 6589"
+          ],
+          "went": {
+            "p571 2995": [
+              0,
+              116.99
+            ],
+            "p99 6589": [
+              0,
+              116.99
+            ]
+          },
+          "staysWent": {
+            "p132 3650a": [
+              0,
+              0
+            ],
+            "p427 2854": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 17
+      "seconds": 18
     }
   ]
 }

@@ -1,25 +1,25 @@
 {
   "set": "8218-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:17:10.844Z",
-  "load": 4.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:45:30.711Z",
+  "load": 5.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 66,
-  "seconds": 72,
+  "seconds": 49,
   "functions": [
     {
       "function": 1,
       "does": "Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
-        "open": 4,
+        "open": 1,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 0
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 50,
-          "msOneCall": 9,
+          "ms": 49,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p4 2853 against p8 32009": [
@@ -56,61 +56,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 44,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {
-            "p4 2853 against p8 32009": [
-              0,
-              85.94
-            ],
-            "p22 2852 against p8 32009": [
-              15,
-              14.44
-            ],
-            "p46 2851 against p8 32009": [
-              10.56,
-              0
-            ],
-            "p44 2850 against p8 32009": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p0 2994",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 40,
-          "msOneCall": 1,
-          "stops": [],
-          "moved": {
-            "p4 2853 against p8 32009": [
-              0,
-              85.94
-            ],
-            "p22 2852 against p8 32009": [
-              15,
-              14.44
-            ],
-            "p46 2851 against p8 32009": [
-              10.56,
-              0
-            ],
-            "p44 2850 against p8 32009": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p0 2994",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 38,
+          "ms": 43,
           "msOneCall": 2,
           "stops": [],
           "moved": {
@@ -135,33 +81,15 @@
       ],
       "B": [
         {
-          "control": "p1 2994",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p4 2853 against p8 32009",
-            "p22 2852 against p8 32009",
-            "p46 2851 against p8 32009"
+          "control": [
+            "p1 2994",
+            "p0 2994"
           ],
-          "stops": []
-        },
-        {
-          "control": "p0 2994",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p4 2853 against p8 32009",
-            "p22 2852 against p8 32009",
-            "p46 2851 against p8 32009"
-          ],
-          "stops": []
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 28
+      "seconds": 2
     },
     {
       "function": 3,
@@ -175,7 +103,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 11
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -208,7 +136,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            144.72
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -225,7 +178,7 @@
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
+        "A": 3,
         "B": 24
       },
       "stop": {
@@ -317,9 +270,21 @@
         {
           "control": "p61 32062",
           "way": 1,
+          "shiftOthers": [
+            {
+              "part": 60,
+              "seen": true,
+              "said": [
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                45
+              ]
+            }
+          ],
           "asked": 1.5,
           "went": 1.291,
-          "ms": 11,
+          "ms": 10,
           "msOneCall": 1,
           "stops": [
             "29/50"
@@ -346,6 +311,18 @@
         {
           "control": "p61 32062",
           "way": -1,
+          "shiftOthers": [
+            {
+              "part": 60,
+              "seen": true,
+              "said": [
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                45
+              ]
+            }
+          ],
           "asked": 1.5,
           "went": -1.291,
           "ms": 10,
@@ -380,28 +357,111 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            93.82,
+            121.17
+          ],
           "moved": [
             "p49 4519 against p8 32009",
             "p66 2994 against p8 32009"
           ],
-          "stops": [
-            "30/55"
-          ]
+          "went": {
+            "p49 4519 against p8 32009": [
+              34.83,
+              121.17
+            ],
+            "p66 2994 against p8 32009": [
+              34.83,
+              121.17
+            ]
+          },
+          "staysWent": {
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
+          "stops": []
         },
         {
           "control": "p61 32062",
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "shiftOthers": [
+            {
+              "part": 60,
+              "seen": true,
+              "said": [],
+              "freed": [
+                45
+              ]
+            }
+          ],
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            }
+          ],
+          "controlWent": [
+            35.84,
+            38.84
+          ],
           "moved": [
             "p49 4519 against p8 32009",
             "p66 2994 against p8 32009"
           ],
-          "stops": [
-            "30/55",
-            "29/50"
-          ]
+          "went": {
+            "p49 4519 against p8 32009": [
+              13.31,
+              38.84
+            ],
+            "p66 2994 against p8 32009": [
+              13.31,
+              38.84
+            ]
+          },
+          "staysWent": {
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
+          "stops": []
         }
       ],
       "stopsJudged": [
@@ -420,7 +480,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 29
+      "seconds": 32
     }
   ]
 }

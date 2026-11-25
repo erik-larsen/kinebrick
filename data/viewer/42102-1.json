@@ -1,25 +1,25 @@
 {
   "set": "42102-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T07:10:27.457Z",
-  "load": 17.1,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:51:08.968Z",
+  "load": 6.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 128,
-  "seconds": 102,
+  "seconds": 99,
   "functions": [
     {
       "function": 1,
       "does": "The black 12 tooth gear on top of the cab steers the front wheels: its shaft runs down to a 16 tooth gear, which drives a second 16 tooth gear and then a third on the steering post between the front wheels; that post's arm swings the two steering knuckles.",
       "verdict": "shown",
-      "msOneCall": 11,
+      "msOneCall": 10,
       "msPerStep": 2,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 12
       },
       "stop": {
         "control": "p120 32270",
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.384,
-          "ms": 22,
-          "msOneCall": 11,
+          "ms": 23,
+          "msOneCall": 10,
           "stops": [
             "0/8"
           ],
@@ -92,8 +92,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.384,
-          "ms": 21,
-          "msOneCall": 3,
+          "ms": 17,
+          "msOneCall": 2,
           "stops": [
             "0/8"
           ],
@@ -250,8 +250,8 @@
       "function": 2,
       "does": "Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way.",
       "verdict": "shown",
-      "msOneCall": 12,
-      "msPerStep": 1,
+      "msOneCall": 11,
+      "msPerStep": 2,
       "time": {
         "open": 2,
         "collisions": 0,
@@ -268,8 +268,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 62,
-          "msOneCall": 12,
+          "ms": 66,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p112 44294": [
@@ -303,8 +303,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 56,
-          "msOneCall": 4,
+          "ms": 53,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p112 44294": [
@@ -350,10 +350,10 @@
       "function": 3,
       "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
       "verdict": "shown",
-      "msOneCall": 5,
+      "msOneCall": 6,
       "msPerStep": null,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 1,
@@ -375,8 +375,8 @@
           },
           "asked": 0.16,
           "went": 0,
-          "ms": 6,
-          "msOneCall": 5,
+          "ms": 2,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -479,7 +479,7 @@
           "went": {
             "p103 32524": [
               28.91,
-              16.72
+              16.73
             ],
             "p107 32498": [
               29.48,
@@ -513,19 +513,19 @@
           ]
         }
       ],
-      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 15,
       "decidedBy": [
         "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 28.91",
         "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 28.91"
-      ]
+      ],
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 14
     },
     {
       "function": 4,
       "does": "The four wheels roll freely: each front wheel on its own short axle in its steering knuckle, the two rear wheels together on the 7-long rear axle that drives the rake.",
       "verdict": "shown",
-      "msOneCall": 12,
-      "msPerStep": 2,
+      "msOneCall": 11,
+      "msPerStep": 1,
       "time": {
         "open": 9,
         "collisions": 0,
@@ -542,8 +542,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 67,
-          "msOneCall": 12,
+          "ms": 64,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -552,7 +552,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 54,
+          "ms": 53,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -562,7 +562,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 51,
+          "ms": 49,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -572,27 +572,27 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 48,
+          "ms": 47,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p125 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 47,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p125 55982",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 49,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p125 55982",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 49,
+          "ms": 47,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -602,7 +602,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 48,
+          "ms": 45,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -612,7 +612,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 48,
+          "ms": 46,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -744,7 +744,7 @@
           "stops": []
         }
       ],
-      "seconds": 68
+      "seconds": 67
     }
   ]
 }

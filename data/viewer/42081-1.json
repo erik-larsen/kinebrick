@@ -1,25 +1,25 @@
 {
   "set": "42081-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T15:26:30.705Z",
-  "load": 7.6,
+  "commit": "ac22e339",
+  "date": "2026-11-25T10:07:17.046Z",
+  "load": 7.7,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 1155,
-  "seconds": 409,
+  "seconds": 450,
   "functions": [
     {
       "function": 2,
       "does": "Either of the middle pair of knobs low on the chassis sides, just behind the front wheels, raises and lowers the loader arm: the knob turns the screw of a linear actuator lying along the chassis, which pushes the arm up about its pivot, carrying the bucket with it.",
       "verdict": "shown",
-      "msOneCall": 207,
-      "msPerStep": 96,
+      "msOneCall": 201,
+      "msPerStep": 94,
       "time": {
         "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 7,
-        "A": 19,
-        "B": 44
+        "reach": 5,
+        "A": 18,
+        "B": 61
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.7,
           "went": 1.7,
-          "ms": 4606,
-          "msOneCall": 207,
+          "ms": 4584,
+          "msOneCall": 201,
           "stops": [],
           "moved": {
             "p464 32271 against p0 64179": [
@@ -60,8 +60,8 @@
           "way": -1,
           "asked": 1.7,
           "went": -1.7,
-          "ms": 4664,
-          "msOneCall": 111,
+          "ms": 4485,
+          "msOneCall": 107,
           "stops": [],
           "moved": {
             "p464 32271 against p0 64179": [
@@ -91,8 +91,8 @@
           "way": 1,
           "asked": 1.7,
           "went": 1.7,
-          "ms": 4517,
-          "msOneCall": 121,
+          "ms": 4401,
+          "msOneCall": 101,
           "stops": [],
           "moved": {
             "p464 32271 against p0 64179": [
@@ -122,8 +122,8 @@
           "way": -1,
           "asked": 1.7,
           "went": -1.7,
-          "ms": 4515,
-          "msOneCall": 112,
+          "ms": 4371,
+          "msOneCall": 105,
           "stops": [],
           "moved": {
             "p464 32271 against p0 64179": [
@@ -156,40 +156,140 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.54,
+            178.42
+          ],
           "moved": [
             "p464 32271 against p0 64179",
+            "p442 62274c01 against p441 62271c01",
             "p1136 15265 against p0 64179"
+          ],
+          "went": {
+            "p464 32271 against p0 64179": [
+              8.1,
+              0
+            ],
+            "p442 62274c01 against p441 62271c01": [
+              2.42,
+              0
+            ],
+            "p1136 15265 against p0 64179": [
+              16.23,
+              0
+            ]
+          },
+          "staysWent": {
+            "p621 18940 against p0 64179": [
+              0,
+              0
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              0,
+              1.86
+            ]
+          },
+          "staysMoved": [
+            "p506 62274c01 against p505 62271c01"
           ],
           "stops": []
         },
         {
           "control": "p463 32270",
           "seen": true,
-          "cameraTurns": 3,
+          "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.21,
+            110.35
+          ],
           "moved": [
             "p464 32271 against p0 64179",
+            "p442 62274c01 against p441 62271c01",
             "p1136 15265 against p0 64179"
+          ],
+          "went": {
+            "p464 32271 against p0 64179": [
+              3.87,
+              0
+            ],
+            "p442 62274c01 against p441 62271c01": [
+              1.15,
+              0
+            ],
+            "p1136 15265 against p0 64179": [
+              7.77,
+              0
+            ]
+          },
+          "staysWent": {
+            "p621 18940 against p0 64179": [
+              0,
+              0
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              0,
+              1.86
+            ]
+          },
+          "staysMoved": [
+            "p506 62274c01 against p505 62271c01"
           ],
           "stops": []
         }
       ],
-      "seconds": 80
+      "seconds": 95
     },
     {
       "function": 3,
       "does": "Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip.",
       "verdict": "shown",
-      "msOneCall": 173,
-      "msPerStep": 85,
+      "msOneCall": 208,
+      "msPerStep": 94,
       "time": {
-        "open": 9,
+        "open": 10,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
-        "A": 14,
-        "B": 42
+        "reach": 11,
+        "A": 16,
+        "B": 62
       },
       "stop": null,
       "stops": [],
@@ -199,8 +299,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3626,
-          "msOneCall": 173,
+          "ms": 4009,
+          "msOneCall": 208,
           "stops": [],
           "moved": {
             "p1136 15265 against p464 32271": [
@@ -222,8 +322,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3329,
-          "msOneCall": 106,
+          "ms": 3840,
+          "msOneCall": 107,
           "stops": [],
           "moved": {
             "p1136 15265 against p464 32271": [
@@ -245,8 +345,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3371,
-          "msOneCall": 90,
+          "ms": 3951,
+          "msOneCall": 103,
           "stops": [],
           "moved": {
             "p1136 15265 against p464 32271": [
@@ -268,8 +368,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3488,
-          "msOneCall": 98,
+          "ms": 3789,
+          "msOneCall": 105,
           "stops": [],
           "moved": {
             "p1136 15265 against p464 32271": [
@@ -294,9 +394,49 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.19,
+            118.66
+          ],
           "moved": [
+            "p1136 15265 against p464 32271",
             "p506 62274c01 against p505 62271c01"
           ],
+          "went": {
+            "p1136 15265 against p464 32271": [
+              2.94,
+              3.82
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              2.05,
+              1.86
+            ]
+          },
+          "staysWent": {
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -305,28 +445,67 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.22,
+            180
+          ],
           "moved": [
             "p1136 15265 against p464 32271",
             "p506 62274c01 against p505 62271c01"
           ],
+          "went": {
+            "p1136 15265 against p464 32271": [
+              5.6,
+              7.82
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              4.07,
+              1.86
+            ]
+          },
+          "staysWent": {
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 68
+      "seconds": 98
     },
     {
       "function": 5,
       "does": "The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis.",
       "verdict": "shown",
-      "msOneCall": 130,
+      "msOneCall": 146,
       "msPerStep": 23,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 2,
+        "reach": 8,
         "A": 2,
-        "B": 20
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -336,8 +515,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 945,
-          "msOneCall": 130,
+          "ms": 992,
+          "msOneCall": 146,
           "stops": [],
           "moved": {
             "p621 18940 against p0 64179": [
@@ -359,8 +538,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1000,
-          "msOneCall": 64,
+          "ms": 988,
+          "msOneCall": 65,
           "stops": [],
           "moved": {
             "p621 18940 against p0 64179": [
@@ -385,27 +564,66 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            147.03
+          ],
           "moved": [
             "p621 18940 against p0 64179"
           ],
+          "went": {
+            "p621 18940 against p0 64179": [
+              12.51,
+              0
+            ]
+          },
+          "staysWent": {
+            "p610 18942 against p0 64179": [
+              0,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 30
+      "seconds": 42
     },
     {
       "function": 6,
       "does": "The four wheels roll freely; there's no drive to them.",
       "verdict": "shown",
-      "msOneCall": 106,
-      "msPerStep": 20,
+      "msOneCall": 100,
+      "msPerStep": 21,
       "time": {
-        "open": 15,
+        "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 3,
+        "reach": 21,
         "A": 7,
-        "B": 58
+        "B": 73
       },
       "stop": null,
       "stops": [],
@@ -415,8 +633,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 850,
-          "msOneCall": 106,
+          "ms": 795,
+          "msOneCall": 100,
           "stops": [],
           "moved": {}
         },
@@ -425,8 +643,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 802,
-          "msOneCall": 38,
+          "ms": 869,
+          "msOneCall": 41,
           "stops": [],
           "moved": {}
         },
@@ -435,8 +653,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 749,
-          "msOneCall": 40,
+          "ms": 878,
+          "msOneCall": 42,
           "stops": [],
           "moved": {}
         },
@@ -445,8 +663,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 750,
-          "msOneCall": 39,
+          "ms": 828,
+          "msOneCall": 58,
           "stops": [],
           "moved": {}
         },
@@ -455,8 +673,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 763,
-          "msOneCall": 39,
+          "ms": 841,
+          "msOneCall": 44,
           "stops": [],
           "moved": {}
         },
@@ -465,8 +683,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 816,
-          "msOneCall": 44,
+          "ms": 891,
+          "msOneCall": 43,
           "stops": [],
           "moved": {}
         },
@@ -475,18 +693,18 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 864,
-          "msOneCall": 44,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p1115 15038",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 784,
+          "ms": 823,
           "msOneCall": 45,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1115 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 810,
+          "msOneCall": 44,
           "stops": [],
           "moved": {}
         }
@@ -498,7 +716,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            61.33
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -507,7 +750,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            180
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -516,7 +784,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            180
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -525,25 +818,50 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            89.19
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 84
+      "seconds": 117
     },
     {
       "function": 7,
       "does": "The drone's four three-bladed propellers spin, and the drone lifts off its pad on top of the rear body to be played with on its own.",
       "verdict": "shown",
-      "msOneCall": 152,
-      "msPerStep": 17,
+      "msOneCall": 149,
+      "msPerStep": 19,
       "time": {
-        "open": 15,
+        "open": 16,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 6,
-        "B": 65
+        "A": 7,
+        "B": 76
       },
       "stop": null,
       "stops": [],
@@ -553,8 +871,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 713,
-          "msOneCall": 152,
+          "ms": 807,
+          "msOneCall": 149,
           "stops": [],
           "moved": {}
         },
@@ -563,8 +881,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 667,
-          "msOneCall": 56,
+          "ms": 773,
+          "msOneCall": 68,
           "stops": [],
           "moved": {}
         },
@@ -573,38 +891,38 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 676,
-          "msOneCall": 53,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p1161 92842",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 725,
-          "msOneCall": 61,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p1163 92842",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 674,
+          "ms": 732,
           "msOneCall": 60,
           "stops": [],
           "moved": {}
         },
         {
+          "control": "p1161 92842",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 710,
+          "msOneCall": 53,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1163 92842",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 715,
+          "msOneCall": 55,
+          "stops": [],
+          "moved": {}
+        },
+        {
           "control": "p1163 92842",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 670,
-          "msOneCall": 53,
+          "ms": 716,
+          "msOneCall": 56,
           "stops": [],
           "moved": {}
         },
@@ -613,8 +931,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 670,
-          "msOneCall": 55,
+          "ms": 733,
+          "msOneCall": 59,
           "stops": [],
           "moved": {}
         },
@@ -623,7 +941,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 680,
+          "ms": 733,
           "msOneCall": 58,
           "stops": [],
           "moved": {}
@@ -636,7 +954,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            175.36
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -645,7 +988,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            176.01
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -654,7 +1022,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            176.62
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -663,135 +1056,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            175.98
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 87
-    },
-    {
-      "function": 8,
-      "does": "The two seven-bladed fans set into the top of the rear body spin.",
-      "held": {
-        "result": "partly",
-        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the fan p694 at 0.07 and 0.73 rad (parts 694/720) and the fan p695 at 0.14 and 0.31 rad (parts 694/695). Viewer sweep with a full turn asked, decision 288."
-      },
-      "verdict": "not shown",
-      "msOneCall": 92,
-      "msPerStep": 26,
-      "time": {
-        "open": 9,
-        "collisions": 0,
-        "first": 0,
-        "reach": 25,
-        "A": 1,
-        "B": 25
-      },
-      "stop": {
-        "control": "p694 87751",
-        "way": -1,
-        "went": -0.733,
-        "asked": 1.5,
-        "by": [
-          "694/720"
-        ]
-      },
-      "stops": [
-        "694/720",
-        "694/695"
-      ],
-      "A": [
-        {
-          "control": "p694 87751",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.07,
-          "ms": 51,
-          "msOneCall": 92,
-          "stops": [
-            "694/720"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p694 87751",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.733,
-          "ms": 230,
-          "msOneCall": 33,
-          "stops": [
-            "694/720"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p695 87751",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.314,
-          "ms": 106,
-          "msOneCall": 31,
-          "stops": [
-            "694/695"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p695 87751",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.14,
-          "ms": 58,
-          "msOneCall": 26,
-          "stops": [
-            "694/695"
-          ],
-          "moved": {}
-        }
-      ],
-      "B": [
-        {
-          "control": "p694 87751",
-          "seen": true,
-          "cameraTurns": 4,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "694/720"
-          ]
-        },
-        {
-          "control": "p695 87751",
-          "seen": true,
-          "cameraTurns": 5,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "694/695"
-          ]
-        }
-      ],
-      "stopsJudged": [
-        {
-          "control": "p694 87751",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.07 rad (694/720); -0.733 rad (694/720)"
-        },
-        {
-          "control": "p695 87751",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.314 rad (694/695); -0.14 rad (694/695)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p694 87751: turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.07 rad (694/720); -0.733 rad (694/720); p695 87751: turns without end (kinds free-wheels; the text says: fans, spin), but a collision stops it at +0.314 rad (694/695); -0.14 rad (694/695)",
-      "seconds": 61
+      "seconds": 99
     }
   ]
 }

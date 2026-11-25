@@ -1,20 +1,20 @@
 {
   "set": "42121-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:45:57.676Z",
-  "load": 16.6,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:11:41.260Z",
+  "load": 7.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 567,
-  "seconds": 76,
+  "seconds": 114,
   "functions": [
     {
       "function": 3,
       "does": "The whole superstructure, with cab, boom and stick, slews all the way round on the turntable above the tracks, by hand.",
       "verdict": "shown",
-      "msOneCall": 25,
+      "msOneCall": 26,
       "msPerStep": 3,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 1,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 131,
-          "msOneCall": 25,
+          "ms": 143,
+          "msOneCall": 26,
           "stops": [],
           "moved": {
             "p271 32063": [
@@ -52,8 +52,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 108,
-          "msOneCall": 6,
+          "ms": 124,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p271 32063": [
@@ -78,8 +78,50 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            103.34
+          ],
           "moved": [
             "p271 32063"
+          ],
+          "went": {
+            "p271 32063": [
+              7.84,
+              103.34
+            ]
+          },
+          "staysWent": {
+            "p84 32271": [
+              0,
+              1.54
+            ],
+            "p147 24120 against p84 32271": [
+              0,
+              1.53
+            ]
+          },
+          "staysMoved": [
+            "p84 32271",
+            "p147 24120 against p84 32271"
           ],
           "stops": []
         }
@@ -90,15 +132,15 @@
       "function": 4,
       "does": "The two tracks roll freely round their sprockets and rollers; nothing drives them.",
       "verdict": "shown",
-      "msOneCall": 32,
+      "msOneCall": 28,
       "msPerStep": 3,
       "time": {
-        "open": 12,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 5,
+        "reach": 23,
         "A": 1,
-        "B": 39
+        "B": 62
       },
       "stop": null,
       "stops": [],
@@ -108,8 +150,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 139,
-          "msOneCall": 32,
+          "ms": 124,
+          "msOneCall": 28,
           "stops": [],
           "moved": {}
         },
@@ -118,67 +160,67 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 115,
-          "msOneCall": 7,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p325 94925",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 107,
+          "ms": 108,
           "msOneCall": 6,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p325 94925",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 109,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p396 94925",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 111,
+          "ms": 99,
           "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
         {
-          "control": "p396 94925",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 110,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p397 94925",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 104,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p397 94925",
+          "control": "p325 94925",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
           "ms": 106,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p396 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 100,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p396 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 101,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p397 94925",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 94,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p397 94925",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 100,
           "msOneCall": 5,
           "stops": [],
           "moved": {}
@@ -191,7 +233,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            133.27
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -200,16 +267,42 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            124.09
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
           "control": "p396 94925",
           "seen": true,
-          "cameraTurns": 3,
+          "cameraTurns": 2,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            }
+          ],
+          "controlWent": [
+            0,
+            83.04
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -218,11 +311,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            146.11
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 58
+      "seconds": 97
     }
   ]
 }

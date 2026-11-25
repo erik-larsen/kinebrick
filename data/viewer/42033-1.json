@@ -1,11 +1,11 @@
 {
   "set": "42033-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:54:06.619Z",
-  "load": 16.3,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:31:23.907Z",
+  "load": 7.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 122,
-  "seconds": 63,
+  "seconds": 68,
   "functions": [
     {
       "function": 1,
@@ -17,9 +17,9 @@
         "open": 6,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
+        "reach": 5,
         "A": 0,
-        "B": 24
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 31,
+          "ms": 26,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -52,7 +52,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 21,
+          "ms": 18,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -75,7 +75,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 27,
+          "ms": 19,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -98,7 +98,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 19,
+          "ms": 17,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -124,9 +124,50 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            97.18
+          ],
           "moved": [
             "p118 56145 against p12 12799",
             "p120 56145 against p12 12799"
+          ],
+          "went": {
+            "p118 56145 against p12 12799": [
+              0,
+              97.18
+            ],
+            "p120 56145 against p12 12799": [
+              0,
+              97.18
+            ]
+          },
+          "staysWent": {
+            "p12 12799 against p0 32278": [
+              0,
+              1.11
+            ]
+          },
+          "staysMoved": [
+            "p12 12799 against p0 32278"
           ],
           "stops": []
         },
@@ -136,20 +177,61 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            99.74
+          ],
           "moved": [
             "p118 56145 against p12 12799",
             "p120 56145 against p12 12799"
           ],
+          "went": {
+            "p118 56145 against p12 12799": [
+              0,
+              99.74
+            ],
+            "p120 56145 against p12 12799": [
+              0,
+              99.74
+            ]
+          },
+          "staysWent": {
+            "p12 12799 against p0 32278": [
+              0,
+              1.11
+            ]
+          },
+          "staysMoved": [
+            "p12 12799 against p0 32278"
+          ],
           "stops": []
         }
       ],
-      "seconds": 31
+      "seconds": 36
     },
     {
       "function": 4,
       "does": "The clear canopy over the cockpit swings up to open.",
       "verdict": "not decided",
-      "msOneCall": 8,
+      "msOneCall": 6,
       "msPerStep": 2,
       "time": {
         "open": 4,
@@ -177,8 +259,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 4,
-          "msOneCall": 8,
+          "ms": 3,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p110 92279 against p0 32278": [
@@ -197,7 +279,7 @@
           "asked": 1.5,
           "went": -0.035,
           "ms": 2,
-          "msOneCall": 4,
+          "msOneCall": 3,
           "stops": [
             "89/110"
           ],
@@ -220,8 +302,45 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            54.65,
+            85.36
+          ],
           "moved": [
             "p110 92279 against p0 32278"
+          ],
+          "went": {
+            "p110 92279 against p0 32278": [
+              54.65,
+              85.36
+            ]
+          },
+          "staysWent": {
+            "p93 40001 against p0 32278": [
+              0,
+              1.11
+            ]
+          },
+          "staysMoved": [
+            "p93 40001 against p0 32278"
           ],
           "stops": [
             "89/110",
@@ -247,7 +366,7 @@
       "function": 5,
       "does": "The steering wheel in the cockpit turns, but steers nothing: the front wheels are on a fixed axle.",
       "verdict": "shown",
-      "msOneCall": 7,
+      "msOneCall": 8,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -265,8 +384,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 28,
-          "msOneCall": 7,
+          "ms": 26,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p111 3706 against p0 32278": [
@@ -280,7 +399,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 24,
+          "ms": 22,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -298,7 +417,39 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            136.82
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {
+            "p111 3706 against p0 32278": [
+              0,
+              1.11
+            ]
+          },
+          "staysMoved": [
+            "p111 3706 against p0 32278"
+          ],
           "stops": []
         }
       ],

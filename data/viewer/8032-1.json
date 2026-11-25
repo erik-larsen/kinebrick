@@ -1,11 +1,11 @@
 {
   "set": "8032-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:16:45.613Z",
-  "load": 3.8,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:45:03.788Z",
+  "load": 5.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 61,
-  "seconds": 29,
+  "seconds": 31,
   "functions": [
     {
       "function": 1,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 11
+        "B": 12
       },
       "stop": {
         "control": "p28 3736",
@@ -39,7 +39,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.663,
-          "ms": 14,
+          "ms": 13,
           "msOneCall": 6,
           "stops": [
             "57/64"
@@ -90,10 +90,49 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            100.12
+          ],
           "moved": [
             "p37 3743",
             "p42 3709b"
           ],
+          "went": {
+            "p37 3743": [
+              20.09,
+              6.04
+            ],
+            "p42 3709b": [
+              24.42,
+              17.16
+            ]
+          },
+          "staysWent": {
+            "p0 3795": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "57/64"
           ]
@@ -124,7 +163,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 11
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -134,7 +173,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 14,
+          "ms": 12,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -167,7 +206,37 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0.02,
+            169.2
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {
+            "p42 3709b": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],

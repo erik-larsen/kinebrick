@@ -1,8 +1,8 @@
 {
   "set": "8419-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T05:12:39.310Z",
-  "load": 16.8,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:49:45.577Z",
+  "load": 7.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 280,
   "seconds": 29,
@@ -11,7 +11,7 @@
       "function": 2,
       "does": "The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams.",
       "verdict": "shown",
-      "msOneCall": 23,
+      "msOneCall": 21,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 121,
-          "msOneCall": 23,
+          "ms": 115,
+          "msOneCall": 21,
           "stops": [],
           "moved": {
             "p180 4716 against p212 32009": [
@@ -72,8 +72,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 106,
-          "msOneCall": 4,
+          "ms": 100,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p180 4716 against p212 32009": [
@@ -174,6 +174,17 @@
               4.21
             ]
           },
+          "staysWent": {
+            "p204 32269 against p212 32009": [
+              0,
+              0
+            ],
+            "p57 48168 against p0 41239": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -184,7 +195,7 @@
       "does": "The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip.",
       "verdict": "not shown",
       "why": "A: p284 2950 against p115 32140 not moved",
-      "msOneCall": 14,
+      "msOneCall": 15,
       "msPerStep": 7,
       "time": {
         "open": 4,
@@ -210,7 +221,7 @@
           "asked": 1.5,
           "went": 0.244,
           "ms": 48,
-          "msOneCall": 14,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p188 32269 against p212 32009": [
@@ -267,8 +278,8 @@
           },
           "asked": 1.5,
           "went": -0.244,
-          "ms": 48,
-          "msOneCall": 8,
+          "ms": 45,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p188 32269 against p212 32009": [
@@ -381,6 +392,19 @@
               62.65
             ]
           },
+          "staysWent": {
+            "p115 32140 against p212 32009": [
+              0,
+              1.41
+            ],
+            "p205 32269 against p212 32009": [
+              0,
+              0.08
+            ]
+          },
+          "staysMoved": [
+            "p115 32140 against p212 32009"
+          ],
           "stops": []
         }
       ],

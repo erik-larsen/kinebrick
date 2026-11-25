@@ -1,11 +1,11 @@
 {
   "set": "8840-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T07:21:48.483Z",
-  "load": 15.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:42:49.468Z",
+  "load": 6.8,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 206,
-  "seconds": 15,
+  "seconds": 14,
   "functions": [
     {
       "function": 3,
@@ -157,7 +157,7 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 15
+      "seconds": 14
     }
   ]
 }
