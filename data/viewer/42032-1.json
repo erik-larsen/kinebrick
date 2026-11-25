@@ -1,11 +1,11 @@
 {
   "set": "42032-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T03:39:13.277Z",
-  "load": 7.2,
+  "commit": "55ee538d",
+  "date": "2026-11-25T05:59:59.460Z",
+  "load": 11,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 245,
-  "seconds": 79,
+  "seconds": 78,
   "functions": [
     {
       "function": 1,
@@ -29,7 +29,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 97,
+          "ms": 99,
           "msOneCall": 15,
           "stops": [],
           "moved": {
@@ -64,7 +64,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 65,
+          "ms": 69,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -158,6 +158,8 @@
               2.17
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -166,8 +168,7 @@
     {
       "function": 3,
       "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
-      "verdict": "not shown",
-      "why": "A: p107 87083 against p97 32278, p139 59443 against p97 32278 not moved",
+      "verdict": "shown",
       "msOneCall": 1,
       "msPerStep": null,
       "time": {
@@ -285,19 +286,31 @@
               68.03
             ]
           },
+          "staysWent": {
+            "p97 32278 against p0 32009": [
+              0,
+              0
+            ],
+            "p114 42032 - 33299b against p97 32278": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "97/149",
             "117/145"
           ]
         }
       ],
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
       "seconds": 11
     },
     {
       "function": 4,
       "does": "The two tracks run round their wheels, so the loader rolls along.",
       "verdict": "shown",
-      "msOneCall": 14,
+      "msOneCall": 13,
       "msPerStep": 2,
       "time": {
         "open": 6,
@@ -315,8 +328,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 80,
-          "msOneCall": 14,
+          "ms": 77,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         },
@@ -325,7 +338,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 48,
+          "ms": 46,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -335,7 +348,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 47,
+          "ms": 45,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -370,6 +383,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -402,10 +417,12 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 51
+      "seconds": 50
     }
   ]
 }

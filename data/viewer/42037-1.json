@@ -142,8 +142,7 @@
     {
       "function": 2,
       "does": "The rear differential lets the two rear wheels turn at different speeds; with the car lifted, turning one rear wheel turns the other the opposite way.",
-      "verdict": "not shown",
-      "why": "A: p493 45982, p225 62821 not moved",
+      "verdict": "shown",
       "msOneCall": 6,
       "msPerStep": null,
       "time": {
@@ -236,7 +235,8 @@
           ]
         }
       ],
-      "seconds": 15
+      "seconds": 15,
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control"
     },
     {
       "function": 3,

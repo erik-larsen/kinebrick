@@ -265,8 +265,7 @@
     {
       "function": 7,
       "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
-      "verdict": "not shown",
-      "why": "A: p371 2739a, p330 2736, p338 18945 not moved",
+      "verdict": "shown",
       "msOneCall": 2,
       "msPerStep": null,
       "time": {
@@ -396,7 +395,8 @@
           ]
         }
       ],
-      "seconds": 36
+      "seconds": 36,
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control"
     },
     {
       "function": 9,
