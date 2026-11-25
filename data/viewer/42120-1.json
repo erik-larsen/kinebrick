@@ -1,25 +1,25 @@
 {
   "set": "42120-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:32:21.149Z",
-  "load": 12.5,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:03:01.273Z",
+  "load": 7.6,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 441,
-  "seconds": 224,
+  "seconds": 171,
   "functions": [
     {
       "function": 1,
       "does": "Pushing the hovercraft along spins the two big fans at the back: two hidden rubber-tyred wheels under the hull turn a bevel gear, a shaft running back, two cross shafts and two upright shafts that come up inside the fans' mounts and drive each fan through bevel gears.",
       "verdict": "shown",
-      "msOneCall": 33,
+      "msOneCall": 30,
       "msPerStep": 5,
       "time": {
-        "open": 8,
+        "open": 3,
         "collisions": 0,
         "first": 0,
-        "reach": 38,
-        "A": 1,
-        "B": 25
+        "reach": 0,
+        "A": 0,
+        "B": 0
       },
       "stop": null,
       "stops": [],
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 226,
-          "msOneCall": 33,
+          "ms": 197,
+          "msOneCall": 30,
           "stops": [],
           "moved": {
             "p580 42120 - 92842": [
@@ -60,69 +60,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 203,
-          "msOneCall": 8,
-          "stops": [],
-          "moved": {
-            "p580 42120 - 92842": [
-              0,
-              143.24
-            ],
-            "p581 42120 - 92842": [
-              0,
-              143.24
-            ],
-            "p554 87408": [
-              0,
-              0
-            ],
-            "p559 87408": [
-              0,
-              0
-            ],
-            "p461 32270": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p52 4185a",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 189,
-          "msOneCall": 7,
-          "stops": [],
-          "moved": {
-            "p580 42120 - 92842": [
-              0,
-              143.24
-            ],
-            "p581 42120 - 92842": [
-              0,
-              143.24
-            ],
-            "p554 87408": [
-              0,
-              0
-            ],
-            "p559 87408": [
-              0,
-              0
-            ],
-            "p461 32270": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p52 4185a",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 191,
+          "ms": 188,
           "msOneCall": 7,
           "stops": [],
           "moved": {
@@ -151,45 +89,29 @@
       ],
       "B": [
         {
-          "control": "p51 4185a",
-          "seen": true,
-          "cameraTurns": 3,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p580 42120 - 92842",
-            "p581 42120 - 92842"
+          "control": [
+            "p51 4185a",
+            "p52 4185a"
           ],
-          "stops": []
-        },
-        {
-          "control": "p52 4185a",
-          "seen": true,
-          "cameraTurns": 24,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p580 42120 - 92842",
-            "p581 42120 - 92842"
-          ],
-          "stops": []
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 72
+      "seconds": 3
     },
     {
       "function": 2,
       "does": "Pushing it along also spins the beacon on the tall post in the middle of the deck, the two blue lights going round: a bevel gear on the post's shaft is driven by the hidden wheels' 20 tooth bevel gear.",
       "verdict": "shown",
-      "msOneCall": 34,
+      "msOneCall": 31,
       "msPerStep": 5,
       "time": {
-        "open": 9,
+        "open": 3,
         "collisions": 0,
         "first": 0,
-        "reach": 39,
-        "A": 1,
-        "B": 25
+        "reach": 0,
+        "A": 0,
+        "B": 0
       },
       "stop": null,
       "stops": [],
@@ -199,8 +121,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 224,
-          "msOneCall": 34,
+          "ms": 203,
+          "msOneCall": 31,
           "stops": [],
           "moved": {
             "p549 27940": [
@@ -222,54 +144,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 195,
-          "msOneCall": 7,
-          "stops": [],
-          "moved": {
-            "p549 27940": [
-              0,
-              143.24
-            ],
-            "p550 59900": [
-              94.99,
-              143.24
-            ],
-            "p551 59900": [
-              94.99,
-              143.24
-            ]
-          }
-        },
-        {
-          "control": "p52 4185a",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 208,
+          "ms": 182,
           "msOneCall": 8,
-          "stops": [],
-          "moved": {
-            "p549 27940": [
-              0,
-              143.24
-            ],
-            "p550 59900": [
-              94.99,
-              143.24
-            ],
-            "p551 59900": [
-              94.99,
-              143.24
-            ]
-          }
-        },
-        {
-          "control": "p52 4185a",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 194,
-          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p549 27940": [
@@ -289,47 +165,29 @@
       ],
       "B": [
         {
-          "control": "p51 4185a",
-          "seen": true,
-          "cameraTurns": 3,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p549 27940",
-            "p550 59900",
-            "p551 59900"
+          "control": [
+            "p51 4185a",
+            "p52 4185a"
           ],
-          "stops": []
-        },
-        {
-          "control": "p52 4185a",
-          "seen": true,
-          "cameraTurns": 24,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p549 27940",
-            "p550 59900",
-            "p551 59900"
-          ],
-          "stops": []
+          "together": true,
+          "left": "worked together: no one drag turns them all; A turns them as the check does"
         }
       ],
-      "seconds": 74
+      "seconds": 3
     },
     {
       "function": 4,
       "does": "The two small front wheels under the bow roll freely.",
       "verdict": "shown",
-      "msOneCall": 35,
+      "msOneCall": 34,
       "msPerStep": 4,
       "time": {
-        "open": 9,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 24,
+        "reach": 107,
         "A": 1,
-        "B": 27
+        "B": 30
       },
       "stop": null,
       "stops": [],
@@ -339,8 +197,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 159,
-          "msOneCall": 35,
+          "ms": 151,
+          "msOneCall": 34,
           "stops": [],
           "moved": {}
         },
@@ -349,7 +207,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 139,
+          "ms": 136,
           "msOneCall": 7,
           "stops": [],
           "moved": {}
@@ -359,8 +217,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 132,
-          "msOneCall": 7,
+          "ms": 134,
+          "msOneCall": 6,
           "stops": [],
           "moved": {}
         },
@@ -369,7 +227,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 137,
+          "ms": 132,
           "msOneCall": 6,
           "stops": [],
           "moved": {}
@@ -382,7 +240,32 @@
           "cameraTurns": 6,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            160.55
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -391,25 +274,50 @@
           "cameraTurns": 12,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            147.04
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 60
+      "seconds": 146
     },
     {
       "function": 5,
       "does": "The small fan on the front deck spins freely on its pin.",
       "verdict": "shown",
-      "msOneCall": 35,
+      "msOneCall": 33,
       "msPerStep": 3,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -419,8 +327,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 119,
-          "msOneCall": 35,
+          "ms": 110,
+          "msOneCall": 33,
           "stops": [],
           "moved": {}
         },
@@ -429,8 +337,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 108,
-          "msOneCall": 7,
+          "ms": 87,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         }
@@ -442,11 +350,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            174.56
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 18
+      "seconds": 19
     }
   ]
 }

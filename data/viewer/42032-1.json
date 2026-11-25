@@ -1,8 +1,8 @@
 {
   "set": "42032-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T05:59:59.460Z",
-  "load": 11,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:48:26.552Z",
+  "load": 7.5,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 245,
   "seconds": 78,
@@ -11,7 +11,7 @@
       "function": 1,
       "does": "The gear-wheel knob at the back turns a worm, which turns a 24-tooth gear behind the cab; cranks on the gear's axle push links that raise and lower the two loader arms, carrying the bucket and the fork with them. The worm holds the arms wherever they're left.",
       "verdict": "shown",
-      "msOneCall": 15,
+      "msOneCall": 14,
       "msPerStep": 2,
       "time": {
         "open": 4,
@@ -30,7 +30,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 99,
-          "msOneCall": 15,
+          "msOneCall": 14,
           "stops": [],
           "moved": {
             "p15 4716 against p0 32009": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 69,
-          "msOneCall": 3,
+          "ms": 68,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p15 4716 against p0 32009": [
@@ -163,7 +163,7 @@
           "stops": []
         }
       ],
-      "seconds": 17
+      "seconds": 16
     },
     {
       "function": 3,
@@ -310,7 +310,7 @@
       "function": 4,
       "does": "The two tracks run round their wheels, so the loader rolls along.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 15,
       "msPerStep": 2,
       "time": {
         "open": 6,
@@ -328,8 +328,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 77,
-          "msOneCall": 13,
+          "ms": 81,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -338,7 +338,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
+          "ms": 44,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -348,7 +348,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 45,
+          "ms": 48,
           "msOneCall": 3,
           "stops": [],
           "moved": {}

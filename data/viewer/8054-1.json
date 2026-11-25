@@ -1,17 +1,17 @@
 {
   "set": "8054-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:18:13.389Z",
-  "load": 6.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:46:20.929Z",
+  "load": 5.5,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 74,
-  "seconds": 43,
+  "seconds": 45,
   "functions": [
     {
       "function": 1,
       "does": "The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 7,
       "msPerStep": 1,
       "time": {
         "open": 3,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 25,
-          "msOneCall": 8,
+          "ms": 27,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p50 4185": [
@@ -56,7 +56,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 20,
+          "ms": 21,
           "msOneCall": 2,
           "stops": [],
           "moved": {
@@ -86,13 +86,58 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
-          "moved": [
-            "p50 4185"
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
           ],
+          "controlWent": [
+            0,
+            103.53
+          ],
+          "moved": [
+            "p50 4185",
+            "p55 4185",
+            "p53 3708",
+            "p86 3482"
+          ],
+          "went": {
+            "p50 4185": [
+              0,
+              72.67
+            ],
+            "p55 4185": [
+              0,
+              20.59
+            ],
+            "p53 3708": [
+              0,
+              20.59
+            ],
+            "p86 3482": [
+              0,
+              20.59
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 15
+      "seconds": 16
     },
     {
       "function": 2,
@@ -106,7 +151,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -116,7 +161,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 49,
+          "ms": 51,
           "msOneCall": 7,
           "stops": [],
           "moved": {}
@@ -126,7 +171,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 43,
+          "ms": 44,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -136,7 +181,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 40,
+          "ms": 41,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -146,7 +191,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 38,
+          "ms": 39,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -159,7 +204,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            170.25
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -168,11 +238,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            175.95
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 28
+      "seconds": 30
     }
   ]
 }

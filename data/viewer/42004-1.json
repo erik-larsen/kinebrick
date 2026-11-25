@@ -1,25 +1,25 @@
 {
   "set": "42004-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T05:54:49.007Z",
-  "load": 2.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:45:37.243Z",
+  "load": 8.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 244,
-  "seconds": 173,
+  "seconds": 178,
   "functions": [
     {
       "function": 1,
       "does": "The knob on the cab roof steers: its vertical shaft drives a 20-tooth gear that turns the turntable between the front and rear halves, so the machine bends in the middle (articulated steering).",
       "verdict": "shown",
-      "msOneCall": 26,
+      "msOneCall": 16,
       "msPerStep": 2,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 12
       },
       "stop": {
         "control": "p108 32270",
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.116,
-          "ms": 66,
-          "msOneCall": 26,
+          "ms": 70,
+          "msOneCall": 16,
           "stops": [
             "56/81"
           ],
@@ -73,7 +73,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 50,
+          "ms": 61,
           "msOneCall": 3,
           "stops": [
             "59/85"
@@ -177,21 +177,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 2,
       "does": "Turning the exhaust stack raises and lowers the loader arm: the stack is the top of a vertical shaft with a worm at its foot, which turns an 8-tooth gear on the loader arm's pivot axle.",
       "verdict": "shown",
-      "msOneCall": 37,
+      "msOneCall": 20,
       "msPerStep": 3,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 15
+        "B": 16
       },
       "stop": {
         "control": "p40 55013",
@@ -211,8 +211,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 113,
-          "msOneCall": 37,
+          "ms": 120,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p50 44294": [
@@ -238,7 +238,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.116,
-          "ms": 73,
+          "ms": 86,
           "msOneCall": 4,
           "stops": [
             "29/201"
@@ -326,16 +326,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 19
+      "seconds": 21
     },
     {
       "function": 3,
       "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
-      "verdict": "not shown",
-      "msOneCall": 5,
+      "verdict": "shown",
+      "msOneCall": 2,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -351,7 +351,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 5,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p229 2951 against p50 44294": [
@@ -442,18 +442,20 @@
           ]
         }
       ],
-      "why": "by hand: p50 44294 listed to stay moved",
+      "decidedBy": [
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p50 44294 moved 2.8, the least-moved listed part 40.31"
+      ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 9
+      "seconds": 10
     },
     {
       "function": 4,
       "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
       "verdict": "shown",
-      "msOneCall": 13,
-      "msPerStep": 5,
+      "msOneCall": 20,
+      "msPerStep": 7,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -475,8 +477,8 @@
           },
           "asked": 1.5,
           "went": 0.279,
-          "ms": 43,
-          "msOneCall": 13,
+          "ms": 53,
+          "msOneCall": 20,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -505,8 +507,8 @@
           },
           "asked": 1.5,
           "went": -0.314,
-          "ms": 43,
-          "msOneCall": 8,
+          "ms": 59,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -577,10 +579,10 @@
       "function": 5,
       "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
       "verdict": "shown",
-      "msOneCall": 21,
-      "msPerStep": 3,
+      "msOneCall": 14,
+      "msPerStep": 4,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -616,8 +618,8 @@
           },
           "asked": 1.5,
           "went": 1.465,
-          "ms": 88,
-          "msOneCall": 21,
+          "ms": 112,
+          "msOneCall": 14,
           "stops": [
             "169/172"
           ],
@@ -647,8 +649,8 @@
           },
           "asked": 1.5,
           "went": -0.07,
-          "ms": 6,
-          "msOneCall": 3,
+          "ms": 8,
+          "msOneCall": 5,
           "stops": [
             "159/177"
           ],
@@ -734,7 +736,7 @@
       "function": 6,
       "does": "The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -769,8 +771,8 @@
           },
           "asked": 1.5,
           "went": 1.256,
-          "ms": 37,
-          "msOneCall": 9,
+          "ms": 42,
+          "msOneCall": 10,
           "stops": [
             "ground: p177"
           ],
@@ -793,7 +795,7 @@
           },
           "asked": 0.33,
           "went": -0.33,
-          "ms": 13,
+          "ms": 14,
           "msOneCall": 3,
           "stops": [],
           "moved": {
@@ -867,7 +869,7 @@
       "function": 7,
       "does": "The four wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 17,
       "msPerStep": 3,
       "time": {
         "open": 9,
@@ -885,8 +887,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 111,
-          "msOneCall": 16,
+          "ms": 114,
+          "msOneCall": 17,
           "stops": [],
           "moved": {}
         },
@@ -895,7 +897,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 93,
+          "ms": 103,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -905,8 +907,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 90,
-          "msOneCall": 3,
+          "ms": 100,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -915,8 +917,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 89,
-          "msOneCall": 3,
+          "ms": 98,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -925,8 +927,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 89,
-          "msOneCall": 3,
+          "ms": 98,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -935,7 +937,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 92,
+          "ms": 98,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -945,8 +947,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 89,
-          "msOneCall": 3,
+          "ms": 98,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -955,7 +957,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 89,
+          "ms": 96,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -1099,13 +1101,13 @@
           "stops": []
         }
       ],
-      "seconds": 66
+      "seconds": 68
     },
     {
       "function": 8,
       "does": "The steering wheel in the cab turns on its pin; it isn't connected to anything.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 15,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -1113,7 +1115,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -1124,7 +1126,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 53,
-          "msOneCall": 16,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -1133,8 +1135,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
-          "msOneCall": 4,
+          "ms": 39,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         }
@@ -1175,7 +1177,7 @@
           "stops": []
         }
       ],
-      "seconds": 17
+      "seconds": 16
     }
   ]
 }

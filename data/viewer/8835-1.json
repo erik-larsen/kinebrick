@@ -1,8 +1,8 @@
 {
   "set": "8835-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T05:13:09.917Z",
-  "load": 15.5,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:43:49.531Z",
+  "load": 6.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 235,
   "seconds": 107,
@@ -11,7 +11,7 @@
       "function": 1,
       "does": "The crank handle on the big grey wheel on the cab's right side raises and lowers the forks: its worm turns a 24-tooth gear on a shaft under the cab, which through two 16-tooth gears and the crown gear on the front axle turns an 8-tooth gear on the mast's bottom axle, and that axle's sprocket drives the chain that carries the forks up the mast.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 10,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 49,
-          "msOneCall": 9,
+          "ms": 52,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p63 2823 against p29 3703": [
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 37,
-          "msOneCall": 3,
+          "ms": 35,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p63 2823 against p29 3703": [
@@ -143,6 +143,21 @@
               8.39
             ]
           },
+          "staysWent": {
+            "p29 3703": [
+              0,
+              0
+            ],
+            "p231 2695c01": [
+              0,
+              0
+            ],
+            "p232 2695c01": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -151,8 +166,18 @@
     {
       "function": 2,
       "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
+      "held": {
+        "result": "partly",
+        "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355)."
+      },
       "verdict": "not shown",
-      "why": "A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand; not decided: p207 4185a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)",
+      "why": "A: p63 2823 not moved; not decided: p207 4185a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)",
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p29 3703 turned 0.21 degrees, 0.286 predicted (rate 0.143, turn 0.035)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p128 4262 turned 0.21 degrees, 0.218 predicted (rate 0.109, turn 0.035)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p29 3703 turned 0.21 degrees, 0.286 predicted (rate 0.143, turn -0.035)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p128 4262 turned 0.21 degrees, 0.218 predicted (rate 0.109, turn -0.035)"
+      ],
       "msOneCall": 14,
       "msPerStep": 11,
       "time": {
@@ -224,8 +249,8 @@
           },
           "asked": 1.5,
           "went": -0.035,
-          "ms": 9,
-          "msOneCall": 7,
+          "ms": 10,
+          "msOneCall": 10,
           "stops": [
             "71/123"
           ],
@@ -271,27 +296,40 @@
             }
           ],
           "controlWent": [
-            0.32,
-            2.2
+            0.49,
+            3.51
           ],
-          "moved": [],
+          "moved": [
+            "p29 3703",
+            "p128 4262"
+          ],
           "went": {
             "p29 3703": [
-              0.6,
-              0.21
+              1.71,
+              0.7
             ],
             "p128 4262": [
-              0.53,
-              0.21
+              1.22,
+              0.02
             ],
             "p63 2823": [
               0,
               0
             ]
           },
+          "staysWent": {
+            "p212 3736": [
+              0,
+              0
+            ],
+            "p216 3941": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
-            "71/123",
-            "75/123"
+            "31/61"
           ]
         }
       ],
@@ -305,7 +343,7 @@
       "stopVerdict": "not decided",
       "moved": {
         "verdict": "not shown",
-        "why": "A: p29 3703, p128 4262, p63 2823 not moved; B: no listed part moved by hand"
+        "why": "A: p63 2823 not moved"
       },
       "seconds": 12
     },
@@ -331,7 +369,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 40,
+          "ms": 42,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -374,7 +412,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 33,
+          "ms": 32,
           "msOneCall": 2,
           "stops": [],
           "moved": {
@@ -471,16 +509,31 @@
               34.04
             ]
           },
+          "staysWent": {
+            "p231 2695c01": [
+              0,
+              0
+            ],
+            "p232 2695c01": [
+              0,
+              0
+            ],
+            "p29 3703": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 17
+      "seconds": 16
     },
     {
       "function": 4,
       "does": "The four wheels roll freely; there's no drive to them.",
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 11,
       "msPerStep": 1,
       "time": {
         "open": 10,
@@ -498,8 +551,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 46,
-          "msOneCall": 9,
+          "ms": 42,
+          "msOneCall": 11,
           "stops": [],
           "moved": {}
         },
@@ -508,16 +561,6 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 37,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p232 2695c01",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
           "ms": 35,
           "msOneCall": 3,
           "stops": [],
@@ -525,6 +568,16 @@
         },
         {
           "control": "p232 2695c01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 34,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p232 2695c01",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
@@ -538,7 +591,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 32,
+          "ms": 31,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -548,8 +601,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 31,
-          "msOneCall": 2,
+          "ms": 30,
+          "msOneCall": 3,
           "stops": [],
           "moved": {}
         },
@@ -558,7 +611,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 31,
+          "ms": 30,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -568,7 +621,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 31,
+          "ms": 30,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -605,6 +658,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -637,6 +692,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -669,6 +726,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -701,6 +760,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],

@@ -1,17 +1,17 @@
 {
   "set": "8825-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:51:31.795Z",
-  "load": 12.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:30:02.487Z",
+  "load": 7.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 105,
-  "seconds": 31,
+  "seconds": 32,
   "functions": [
     {
       "function": 1,
       "does": "The handwheel on the right side turns the main rotor: the crown gear on its cross axle drives the 8 tooth gear at the foot of the rotor mast.",
       "verdict": "shown",
-      "msOneCall": 8,
+      "msOneCall": 9,
       "msPerStep": 1,
       "time": {
         "open": 4,
@@ -29,8 +29,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 27,
-          "msOneCall": 8,
+          "ms": 25,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p57 3706 against p0 2825": [
@@ -56,7 +56,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 25,
+          "ms": 16,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -86,11 +86,54 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            126.66
+          ],
           "moved": [
             "p57 3706 against p0 2825",
             "p82 4477 against p0 2825",
             "p83 4477 against p0 2825"
           ],
+          "went": {
+            "p57 3706 against p0 2825": [
+              0,
+              125.95
+            ],
+            "p82 4477 against p0 2825": [
+              195.98,
+              125.95
+            ],
+            "p83 4477 against p0 2825": [
+              195.98,
+              125.95
+            ]
+          },
+          "staysWent": {
+            "p96 3895 against p0 2825": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -103,7 +146,7 @@
       "msOneCall": 9,
       "msPerStep": 0,
       "time": {
-        "open": 4,
+        "open": 3,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -118,7 +161,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 18,
+          "ms": 17,
           "msOneCall": 9,
           "stops": [],
           "moved": {}
@@ -128,7 +171,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 11,
+          "ms": 10,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -141,7 +184,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            103.52
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],

@@ -1,17 +1,17 @@
 {
   "set": "42060-1",
-  "commit": "55ee538d",
-  "date": "2026-11-25T06:09:38.198Z",
-  "load": 22.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:57:54.269Z",
+  "load": 7.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 357,
-  "seconds": 187,
+  "seconds": 182,
   "functions": [
     {
       "function": 2,
       "does": "Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it.",
       "verdict": "shown",
-      "msOneCall": 17,
+      "msOneCall": 15,
       "msPerStep": 11,
       "time": {
         "open": 4,
@@ -36,8 +36,8 @@
           },
           "asked": 1.5,
           "went": 0.035,
-          "ms": 10,
-          "msOneCall": 17,
+          "ms": 11,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -70,8 +70,8 @@
           },
           "asked": 1.5,
           "went": -0.035,
-          "ms": 11,
-          "msOneCall": 10,
+          "ms": 9,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p159 32525": [
@@ -114,7 +114,7 @@
           ],
           "controlWent": [
             0,
-            3.41
+            16.62
           ],
           "moved": [
             "p159 32525",
@@ -123,16 +123,16 @@
           ],
           "went": {
             "p159 32525": [
-              1.13,
-              0.35
+              15.47,
+              9.92
             ],
             "p173 32525": [
-              1.13,
-              0.35
+              15.47,
+              9.92
             ],
             "p172 15458": [
-              1.03,
-              0.35
+              14.26,
+              9.92
             ]
           },
           "staysWent": {
@@ -142,7 +142,9 @@
             ]
           },
           "staysMoved": [],
-          "stops": []
+          "stops": [
+            "13/31"
+          ]
         }
       ],
       "seconds": 12
@@ -151,15 +153,15 @@
       "function": 3,
       "does": "The truck's four wheels roll freely.",
       "verdict": "shown",
-      "msOneCall": 17,
+      "msOneCall": 15,
       "msPerStep": 1,
       "time": {
-        "open": 11,
+        "open": 10,
         "collisions": 0,
         "first": 0,
         "reach": 37,
         "A": 0,
-        "B": 51
+        "B": 50
       },
       "stop": null,
       "stops": [],
@@ -169,8 +171,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 62,
-          "msOneCall": 17,
+          "ms": 58,
+          "msOneCall": 15,
           "stops": [],
           "moved": {}
         },
@@ -179,7 +181,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 48,
+          "ms": 47,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -200,7 +202,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 47,
-          "msOneCall": 2,
+          "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
@@ -209,7 +211,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 44,
+          "ms": 43,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -219,7 +221,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 46,
+          "ms": 43,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -230,7 +232,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 44,
-          "msOneCall": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         },
@@ -239,8 +241,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 45,
-          "msOneCall": 3,
+          "ms": 43,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
@@ -383,13 +385,13 @@
           "stops": []
         }
       ],
-      "seconds": 99
+      "seconds": 97
     },
     {
       "function": 4,
       "does": "The trailer hangs on a hitch behind the truck and swings from side to side as it is towed; its two small wheels roll.",
       "verdict": "shown",
-      "msOneCall": 19,
+      "msOneCall": 15,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -397,7 +399,7 @@
         "first": 0,
         "reach": 5,
         "A": 0,
-        "B": 13
+        "B": 12
       },
       "stop": {
         "control": "p216 32062",
@@ -418,8 +420,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.314,
-          "ms": 26,
-          "msOneCall": 19,
+          "ms": 25,
+          "msOneCall": 15,
           "stops": [
             "159/294"
           ],
@@ -435,7 +437,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.314,
-          "ms": 19,
+          "ms": 18,
           "msOneCall": 3,
           "stops": [
             "173/294"
@@ -505,21 +507,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 22
+      "seconds": 21
     },
     {
       "function": 5,
       "does": "The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down.",
       "verdict": "shown",
-      "msOneCall": 23,
+      "msOneCall": 21,
       "msPerStep": 3,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 12
       },
       "stop": {
         "control": "p270 32270",
@@ -539,8 +541,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.012,
-          "ms": 92,
-          "msOneCall": 23,
+          "ms": 76,
+          "msOneCall": 21,
           "stops": [
             "259/277"
           ],
@@ -564,7 +566,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 92,
+          "ms": 88,
           "msOneCall": 5,
           "stops": [],
           "moved": {
@@ -649,11 +651,15 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 18
+      "seconds": 17
     },
     {
       "function": 6,
       "does": "Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom.",
+      "held": {
+        "result": "partly",
+        "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359)."
+      },
       "verdict": "not shown",
       "msOneCall": 1,
       "msPerStep": null,
@@ -663,7 +669,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 13
+        "B": 12
       },
       "stop": null,
       "stops": [],
@@ -791,13 +797,13 @@
       ],
       "why": "by hand: p277 32316 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 18
+      "seconds": 17
     },
     {
       "function": 8,
       "does": "The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand.",
       "verdict": "shown",
-      "msOneCall": 16,
+      "msOneCall": 14,
       "msPerStep": 2,
       "time": {
         "open": 4,
@@ -833,7 +839,7 @@
           "asked": 0.57,
           "went": 0.235,
           "ms": 15,
-          "msOneCall": 16,
+          "msOneCall": 14,
           "stops": [
             "294/308"
           ],
@@ -851,7 +857,7 @@
           },
           "asked": 0.23,
           "went": -0.23,
-          "ms": 10,
+          "ms": 11,
           "msOneCall": 3,
           "stops": [],
           "moved": {}

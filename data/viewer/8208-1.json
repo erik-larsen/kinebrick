@@ -1,11 +1,11 @@
 {
   "set": "8208-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:16:02.109Z",
-  "load": 3.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T07:44:18.179Z",
+  "load": 7.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 49,
-  "seconds": 43,
+  "seconds": 45,
   "functions": [
     {
       "function": 1,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p36 32073",
@@ -47,7 +47,7 @@
           },
           "asked": 1.5,
           "went": 0.767,
-          "ms": 8,
+          "ms": 9,
           "msOneCall": 4,
           "stops": [
             "32/34"
@@ -131,14 +131,66 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            28.57,
+            91.16
+          ],
           "moved": [
             "p42 3706",
             "p43 3706",
             "p47 3705",
             "p49 2994"
           ],
+          "went": {
+            "p42 3706": [
+              51.5,
+              91.16
+            ],
+            "p43 3706": [
+              51.5,
+              91.16
+            ],
+            "p47 3705": [
+              28.57,
+              91.16
+            ],
+            "p49 2994": [
+              30,
+              91.16
+            ]
+          },
+          "staysWent": {
+            "p26 2994": [
+              0,
+              0.76
+            ],
+            "p0 6575": [
+              0,
+              0.76
+            ]
+          },
+          "staysMoved": [],
           "stops": [
-            "3/41"
+            "3/41",
+            "32/34"
           ]
         }
       ],
@@ -153,7 +205,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 16
+      "seconds": 17
     },
     {
       "function": 2,
@@ -167,7 +219,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -188,7 +240,7 @@
           "asked": 1.5,
           "went": -1.5,
           "ms": 5,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {}
         },
@@ -197,7 +249,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 8,
+          "ms": 9,
           "msOneCall": 1,
           "stops": [],
           "moved": {}
@@ -220,7 +272,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            1.62,
+            108.67
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -229,11 +306,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            1.91,
+            145.57
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 27
+      "seconds": 29
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "set": "8204-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T13:44:38.325Z",
-  "load": 13.6,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:27:26.014Z",
+  "load": 8.9,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 36,
   "seconds": 15,
@@ -11,7 +11,7 @@
       "function": 2,
       "does": "The propeller spins by hand, turning the two bevel gears and, through the band, the wheels.",
       "verdict": "shown",
-      "msOneCall": 7,
+      "msOneCall": 8,
       "msPerStep": 0,
       "time": {
         "open": 3,
@@ -30,7 +30,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 13,
-          "msOneCall": 7,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p25 6589": [
@@ -52,7 +52,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 9,
+          "ms": 11,
           "msOneCall": 1,
           "stops": [],
           "moved": {
@@ -78,10 +78,49 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            87.85
+          ],
           "moved": [
             "p25 6589",
             "p10 6589"
           ],
+          "went": {
+            "p25 6589": [
+              0,
+              87.85
+            ],
+            "p10 6589": [
+              0,
+              87.85
+            ]
+          },
+          "staysWent": {
+            "p5 6629": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],

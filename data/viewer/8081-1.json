@@ -1,24 +1,24 @@
 {
   "set": "8081-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:54:55.241Z",
-  "load": 19.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:13:36.892Z",
+  "load": 7.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 580,
-  "seconds": 240,
+  "seconds": 236,
   "functions": [
     {
       "function": 1,
       "does": "The black gear on the roof steers the front wheels: its upright axle comes down behind the seats to a knob gear, which turns a long axle running forward under the seats to a small gear that slides the steering rack across the front axle, and steering links push the front hubs.",
       "verdict": "shown",
-      "msOneCall": 61,
+      "msOneCall": 56,
       "msPerStep": 20,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
+        "A": 1,
         "B": 16
       },
       "stop": {
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.221,
-          "ms": 714,
-          "msOneCall": 61,
+          "ms": 695,
+          "msOneCall": 56,
           "stops": [
             "202/217"
           ],
@@ -93,7 +93,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.221,
-          "ms": 694,
+          "ms": 682,
           "msOneCall": 25,
           "stops": [
             "199/218"
@@ -215,6 +215,17 @@
               39.79
             ]
           },
+          "staysWent": {
+            "p584 56908": [
+              0,
+              0
+            ],
+            "p586 56908": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "202/217"
           ]
@@ -237,7 +248,7 @@
       "function": 2,
       "does": "Rolling the car turns the V4 engine: the rear wheels drive the differential, a shaft with a universal joint carries the drive forward under the seats, and its gear turns the crankshaft through an idler gear, so the four yellow pistons pump up and down.",
       "verdict": "shown",
-      "msOneCall": 47,
+      "msOneCall": 45,
       "msPerStep": 11,
       "time": {
         "open": 8,
@@ -245,7 +256,7 @@
         "first": 0,
         "reach": 11,
         "A": 2,
-        "B": 31
+        "B": 30
       },
       "stop": null,
       "stops": [],
@@ -255,8 +266,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 452,
-          "msOneCall": 47,
+          "ms": 457,
+          "msOneCall": 45,
           "stops": [],
           "moved": {
             "p94 62821": [
@@ -302,7 +313,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 428,
+          "ms": 415,
           "msOneCall": 17,
           "stops": [],
           "moved": {
@@ -349,8 +360,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 421,
-          "msOneCall": 16,
+          "ms": 423,
+          "msOneCall": 17,
           "stops": [],
           "moved": {
             "p94 62821": [
@@ -396,8 +407,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 425,
-          "msOneCall": 19,
+          "ms": 411,
+          "msOneCall": 16,
           "stops": [],
           "moved": {
             "p94 62821": [
@@ -466,7 +477,7 @@
           ],
           "controlWent": [
             0,
-            120.49
+            119.46
           ],
           "moved": [
             "p94 62821",
@@ -481,37 +492,44 @@
           "went": {
             "p94 62821": [
               0,
-              120.49
+              119.46
             ],
             "p81 32269": [
               0,
-              168.67
+              167.23
             ],
             "p8 94925": [
               0,
-              168.67
+              167.23
             ],
             "p60 6542a": [
               0,
-              168.78
+              167.33
             ],
             "p183 94925": [
               0,
-              168.67
+              167.23
             ],
             "p154 2853": [
               0,
-              168.67
+              167.23
             ],
             "p161 2851": [
-              14.92,
+              14.76,
               0
             ],
             "p164 2851": [
-              16.81,
+              16.89,
               0
             ]
           },
+          "staysWent": {
+            "p0 64179": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -586,19 +604,26 @@
               0
             ]
           },
+          "staysWent": {
+            "p0 64179": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 53
+      "seconds": 51
     },
     {
       "function": 3,
       "does": "The rear differential lets the two rear wheels turn at different speeds round corners.",
       "verdict": "shown",
-      "msOneCall": 33,
+      "msOneCall": 34,
       "msPerStep": 3,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -613,8 +638,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 133,
-          "msOneCall": 33,
+          "ms": 130,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p95 6589": [
@@ -628,7 +653,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 116,
+          "ms": 126,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -677,6 +702,8 @@
               176.31
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -715,6 +742,7 @@
           "shift": {
             "seen": true,
             "said": [
+              "Finding the pins that hold it…",
               "2 friction pins that held it can now turn: drag it again"
             ],
             "freed": [
@@ -724,7 +752,7 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 7,
+          "ms": 8,
           "msOneCall": 16,
           "stops": [
             "274/520"
@@ -746,6 +774,7 @@
           "shift": {
             "seen": true,
             "said": [
+              "Finding the pins that hold it…",
               "2 friction pins that held it can now turn: drag it again"
             ],
             "freed": [
@@ -777,6 +806,7 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [
+            "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
           ],
           "drags": [
@@ -810,6 +840,13 @@
               61.47
             ]
           },
+          "staysWent": {
+            "p415 32278": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "274/520",
             "520/551"
@@ -827,13 +864,13 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 20
+      "seconds": 19
     },
     {
       "function": 5,
       "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
       "verdict": "not decided",
-      "msOneCall": 32,
+      "msOneCall": 34,
       "msPerStep": 9,
       "time": {
         "open": 8,
@@ -864,7 +901,9 @@
             {
               "part": 507,
               "seen": true,
-              "said": [],
+              "said": [
+                "Finding the pins that hold it…"
+              ],
               "freed": [
                 505
               ]
@@ -880,8 +919,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 15,
-          "msOneCall": 32,
+          "ms": 18,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -905,7 +944,9 @@
             {
               "part": 507,
               "seen": true,
-              "said": [],
+              "said": [
+                "Finding the pins that hold it…"
+              ],
               "freed": [
                 505
               ]
@@ -921,8 +962,8 @@
           },
           "asked": 1.5,
           "went": -0.07,
-          "ms": 16,
-          "msOneCall": 10,
+          "ms": 19,
+          "msOneCall": 11,
           "stops": [
             "378/478"
           ],
@@ -959,8 +1000,8 @@
           ],
           "asked": 1.5,
           "went": 0.07,
-          "ms": 18,
-          "msOneCall": 10,
+          "ms": 14,
+          "msOneCall": 9,
           "stops": [
             "368/510"
           ],
@@ -997,8 +1038,8 @@
           ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 13,
-          "msOneCall": 10,
+          "ms": 12,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p472 41239": [
@@ -1049,6 +1090,21 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "378/478"
           ]
@@ -1093,6 +1149,21 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
+            "p415 32278": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "488/510",
             "368/510"
@@ -1130,7 +1201,7 @@
         "first": 0,
         "reach": 27,
         "A": 0,
-        "B": 27
+        "B": 26
       },
       "stop": {
         "control": "p199 6572",
@@ -1151,7 +1222,7 @@
           "way": 1,
           "asked": 0.27,
           "went": 0.236,
-          "ms": 80,
+          "ms": 79,
           "msOneCall": 38,
           "stops": [
             "202/214"
@@ -1172,7 +1243,7 @@
           "way": -1,
           "asked": 0.23,
           "went": -0.23,
-          "ms": 66,
+          "ms": 62,
           "msOneCall": 14,
           "stops": [],
           "moved": {
@@ -1191,8 +1262,8 @@
           "way": 1,
           "asked": 0.23,
           "went": 0.23,
-          "ms": 64,
-          "msOneCall": 14,
+          "ms": 62,
+          "msOneCall": 13,
           "stops": [],
           "moved": {
             "p210 6571": [
@@ -1210,8 +1281,8 @@
           "way": -1,
           "asked": 0.27,
           "went": -0.236,
-          "ms": 71,
-          "msOneCall": 14,
+          "ms": 69,
+          "msOneCall": 13,
           "stops": [
             "199/211"
           ],
@@ -1270,6 +1341,8 @@
               5.55
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "199/211",
             "202/214"
@@ -1317,6 +1390,8 @@
               5.53
             ]
           },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "199/211",
             "202/214"
@@ -1339,13 +1414,13 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 63
+      "seconds": 62
     },
     {
       "function": 9,
       "does": "The small steering wheel in the cab turns on its own; it doesn't steer.",
       "verdict": "shown",
-      "msOneCall": 33,
+      "msOneCall": 32,
       "msPerStep": 3,
       "time": {
         "open": 5,
@@ -1363,8 +1438,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 145,
-          "msOneCall": 33,
+          "ms": 148,
+          "msOneCall": 32,
           "stops": [],
           "moved": {
             "p216 6574": [
@@ -1378,8 +1453,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 133,
-          "msOneCall": 8,
+          "ms": 129,
+          "msOneCall": 9,
           "stops": [],
           "moved": {
             "p216 6574": [
@@ -1420,6 +1495,13 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p216 6574": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],

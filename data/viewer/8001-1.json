@@ -1,20 +1,20 @@
 {
   "set": "8001-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:14:55.273Z",
-  "load": 12.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:50:15.796Z",
+  "load": 7.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 300,
-  "seconds": 90,
+  "seconds": 100,
   "functions": [
     {
       "function": 1,
       "does": "The droid folds up for transport: the legs swing up against the body at the hips, turning round the axle of the 24-tooth gear in the hips, and a catch clicks into the gear to hold them folded.",
       "verdict": "not decided",
-      "msOneCall": 28,
-      "msPerStep": 8,
+      "msOneCall": 25,
+      "msPerStep": 7,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.035,
-          "ms": 8,
-          "msOneCall": 28,
+          "ms": 7,
+          "msOneCall": 25,
           "stops": [
             "23/27"
           ],
@@ -64,8 +64,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 6,
-          "msOneCall": 5,
+          "ms": 5,
+          "msOneCall": 6,
           "stops": [],
           "moved": {
             "p42 32165 against p95 32184": [
@@ -90,13 +90,51 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            133.88,
+            76.86
+          ],
           "moved": [
             "p42 32165 against p95 32184",
             "p71 32165 against p95 32184"
           ],
+          "went": {
+            "p42 32165 against p95 32184": [
+              253.54,
+              0
+            ],
+            "p71 32165 against p95 32184": [
+              253.54,
+              0
+            ]
+          },
+          "staysWent": {
+            "p0 32140 against p95 32184": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
-            "23/27",
-            "94/854"
+            "23/27"
           ]
         }
       ],
@@ -121,12 +159,12 @@
       "msOneCall": 27,
       "msPerStep": 2,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 4
+        "B": 12
       },
       "stop": {
         "control": "p18 2654",
@@ -167,7 +205,7 @@
           "way": -1,
           "asked": 0.83,
           "went": -0.83,
-          "ms": 38,
+          "ms": 37,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -189,9 +227,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            }
+          ],
+          "controlWent": [
+            55.02,
+            53.58
+          ],
           "moved": [
             "p9 32034 against p0 32140"
           ],
+          "went": {
+            "p9 32034 against p0 32140": [
+              0,
+              53.58
+            ]
+          },
+          "staysWent": {
+            "p62 32177 against p0 32140": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
@@ -206,7 +267,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 9
+      "seconds": 17
     },
     {
       "function": 4,
@@ -220,7 +281,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -230,7 +291,7 @@
           "way": 1,
           "asked": 0.8,
           "went": 0.8,
-          "ms": 141,
+          "ms": 137,
           "msOneCall": 33,
           "stops": [],
           "moved": {
@@ -249,8 +310,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 13,
-          "msOneCall": 9,
+          "ms": 14,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p165 32015 against p95 32184": [
@@ -271,26 +332,60 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            50.64
+          ],
           "moved": [
             "p165 32015 against p95 32184"
           ],
+          "went": {
+            "p165 32015 against p95 32184": [
+              139.63,
+              0
+            ]
+          },
+          "staysWent": {
+            "p95 32184": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "129/140",
-            "117/122",
-            "119/133"
+            "117/122"
           ]
         }
       ],
-      "seconds": 17
+      "seconds": 18
     },
     {
       "function": 6,
       "does": "The left arm swings at the shoulder and bends at the elbow, so it can be posed.",
       "verdict": "not decided",
-      "msOneCall": 27,
+      "msOneCall": 25,
       "msPerStep": 3,
       "time": {
-        "open": 5,
+        "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -316,7 +411,7 @@
           "asked": 0.17,
           "went": 0.17,
           "ms": 16,
-          "msOneCall": 27,
+          "msOneCall": 25,
           "stops": [],
           "moved": {
             "p825 32177 against p95 32184": [
@@ -338,7 +433,7 @@
           "way": -1,
           "asked": 0.8,
           "went": -0.174,
-          "ms": 16,
+          "ms": 15,
           "msOneCall": 5,
           "stops": [
             "825/830"
@@ -366,10 +461,49 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            56.95,
+            56.72
+          ],
           "moved": [
             "p825 32177 against p95 32184",
             "p815 6536 against p95 32184"
           ],
+          "went": {
+            "p825 32177 against p95 32184": [
+              94.96,
+              0
+            ],
+            "p815 6536 against p95 32184": [
+              94.96,
+              0
+            ]
+          },
+          "staysWent": {
+            "p848 32177 against p95 32184": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "825/830"
           ]
@@ -393,7 +527,7 @@
       "function": 7,
       "does": "Each leg bends at the knee, and a rubber band across the knee pulls it straight again.",
       "verdict": "shown",
-      "msOneCall": 25,
+      "msOneCall": 24,
       "msPerStep": 2,
       "time": {
         "open": 7,
@@ -401,7 +535,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 23
+        "B": 25
       },
       "stop": {
         "control": "p71 32165",
@@ -421,8 +555,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 56,
-          "msOneCall": 25,
+          "ms": 69,
+          "msOneCall": 24,
           "stops": [],
           "moved": {
             "p42 32165 against p62 32177": [
@@ -440,8 +574,8 @@
           "way": -1,
           "asked": 0.43,
           "went": -0.43,
-          "ms": 19,
-          "msOneCall": 4,
+          "ms": 18,
+          "msOneCall": 3,
           "stops": [],
           "moved": {
             "p42 32165 against p62 32177": [
@@ -459,7 +593,7 @@
           "way": 1,
           "asked": 0.43,
           "went": 0.43,
-          "ms": 17,
+          "ms": 15,
           "msOneCall": 4,
           "stops": [],
           "moved": {
@@ -502,12 +636,44 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            247.21,
+            86.08
+          ],
           "moved": [
             "p42 32165 against p62 32177"
           ],
-          "stops": [
-            "51/62"
-          ]
+          "went": {
+            "p42 32165 against p62 32177": [
+              247.21,
+              86.08
+            ],
+            "p71 32165 against p91 32177": [
+              0,
+              0
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
+          "stops": []
         },
         {
           "control": "p71 32165",
@@ -515,9 +681,43 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            269.18,
+            96
+          ],
           "moved": [
             "p71 32165 against p91 32177"
           ],
+          "went": {
+            "p42 32165 against p62 32177": [
+              0,
+              0
+            ],
+            "p71 32165 against p91 32177": [
+              269.18,
+              96
+            ]
+          },
+          "staysWent": {},
+          "staysMoved": [],
           "stops": [
             "80/91"
           ]
@@ -534,7 +734,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 31
+      "seconds": 32
     }
   ]
 }

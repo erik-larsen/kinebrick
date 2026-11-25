@@ -1,25 +1,29 @@
 {
   "set": "8856-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:39:23.265Z",
-  "load": 16,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:07:12.073Z",
+  "load": 7.7,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 480,
-  "seconds": 92,
+  "seconds": 20,
   "functions": [
     {
       "function": 2,
       "does": "The small crank low on the right side retracts and lowers the landing gear: a worm turns the long shaft under the floor, which swings the nose wheel's leg through a bevel pair at the front and the two main wheels' legs through a crown gear on the rear axle.",
       "verdict": "shown",
-      "msOneCall": 20,
-      "msPerStep": 5,
+      "decidedBy": [
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p79 4263 turned 0.82 degrees, 0.825 predicted (rate 0.0295, turn 0.488)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p82 4263 turned 0.82 degrees, 0.825 predicted (rate 0.0295, turn 0.488)"
+      ],
+      "msOneCall": 19,
+      "msPerStep": 4,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p390 8856 - 4185a",
@@ -39,8 +43,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.488,
-          "ms": 66,
-          "msOneCall": 20,
+          "ms": 58,
+          "msOneCall": 19,
           "stops": [
             "93/105"
           ],
@@ -92,8 +96,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 129,
-          "msOneCall": 8,
+          "ms": 120,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p17 3708": [
@@ -146,13 +150,84 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            140.96
+          ],
           "moved": [
+            "p17 3708",
+            "p79 4263",
+            "p82 4263",
+            "p87 3482",
+            "p103 4519",
+            "p109 4519",
             "p129 3482",
             "p131 3482"
           ],
-          "stops": [
-            "93/105"
-          ]
+          "went": {
+            "p17 3708": [
+              0,
+              9.53
+            ],
+            "p79 4263": [
+              3.64,
+              6.7
+            ],
+            "p82 4263": [
+              3.64,
+              6.7
+            ],
+            "p87 3482": [
+              7.27,
+              11.58
+            ],
+            "p103 4519": [
+              3.38,
+              9.59
+            ],
+            "p109 4519": [
+              3.38,
+              9.59
+            ],
+            "p129 3482": [
+              10.15,
+              7.16
+            ],
+            "p131 3482": [
+              10.15,
+              7.16
+            ]
+          },
+          "staysWent": {
+            "p193 3706": [
+              0,
+              0
+            ],
+            "p408 2738": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
+          "stops": []
         }
       ],
       "stopsJudged": [
@@ -167,183 +242,6 @@
         "verdict": "shown"
       },
       "seconds": 20
-    },
-    {
-      "function": 8,
-      "does": "The three landing gear wheels roll freely.",
-      "held": {
-        "result": "partly",
-        "reason": "The real part turns without end, but in the viewer a collision stops it: the wheel p131 at 0.56 rad (parts 43/79). Viewer sweep, decision 279."
-      },
-      "verdict": "not shown",
-      "msOneCall": 21,
-      "msPerStep": 3,
-      "time": {
-        "open": 17,
-        "collisions": 0,
-        "first": 0,
-        "reach": 6,
-        "A": 1,
-        "B": 49
-      },
-      "stop": {
-        "control": "p129 3482",
-        "way": 1,
-        "went": 0.558,
-        "asked": 1.5,
-        "by": [
-          "43/79"
-        ]
-      },
-      "stops": [
-        "43/79"
-      ],
-      "A": [
-        {
-          "control": "p87 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 120,
-          "msOneCall": 21,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p87 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 97,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p89 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 108,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p89 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 97,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p129 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.558,
-          "ms": 38,
-          "msOneCall": 6,
-          "stops": [
-            "43/79"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p129 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 95,
-          "msOneCall": 5,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p131 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.558,
-          "ms": 36,
-          "msOneCall": 5,
-          "stops": [
-            "43/79"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p131 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 95,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        }
-      ],
-      "B": [
-        {
-          "control": "p87 3482",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
-        },
-        {
-          "control": "p89 3482",
-          "seen": true,
-          "cameraTurns": 3,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
-        },
-        {
-          "control": "p129 3482",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "43/79"
-          ]
-        },
-        {
-          "control": "p131 3482",
-          "seen": true,
-          "cameraTurns": 1,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "43/79"
-          ]
-        }
-      ],
-      "stopsJudged": [
-        {
-          "control": "p129 3482",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)"
-        },
-        {
-          "control": "p131 3482",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p129 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79); p131 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)",
-      "seconds": 72
     }
   ]
 }

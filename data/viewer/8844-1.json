@@ -1,11 +1,11 @@
 {
   "set": "8844-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:15:19.025Z",
-  "load": 12.2,
+  "commit": "ac22e339",
+  "date": "2026-11-25T08:50:28.433Z",
+  "load": 7,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 300,
-  "seconds": 96,
+  "seconds": 54,
   "functions": [
     {
       "function": 1,
@@ -16,7 +16,7 @@
       },
       "verdict": "not shown",
       "why": "A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved",
-      "msOneCall": 23,
+      "msOneCall": 21,
       "msPerStep": 10,
       "time": {
         "open": 4,
@@ -24,7 +24,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 5
+        "B": 18
       },
       "stop": {
         "control": "p69 3705",
@@ -45,8 +45,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.07,
-          "ms": 15,
-          "msOneCall": 23,
+          "ms": 11,
+          "msOneCall": 21,
           "stops": [
             "78/274"
           ],
@@ -82,8 +82,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.419,
-          "ms": 120,
-          "msOneCall": 5,
+          "ms": 118,
+          "msOneCall": 8,
           "stops": [
             "70/94"
           ],
@@ -122,13 +122,71 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            2.04,
+            32.34
+          ],
           "moved": [
             "p270 3482 against p0 3034",
             "p279 3482 against p0 3034",
             "p284 3482 against p0 3034"
           ],
+          "went": {
+            "p270 3482 against p0 3034": [
+              80.15,
+              54.69
+            ],
+            "p279 3482 against p0 3034": [
+              80.37,
+              54.66
+            ],
+            "p284 3482 against p0 3034": [
+              120.63,
+              78.11
+            ]
+          },
+          "staysWent": {
+            "p14 3895 against p0 3034": [
+              4.98,
+              3.96
+            ],
+            "p65 3673 against p0 3034": [
+              9.94,
+              3.24
+            ],
+            "p172 3648a against p65 3673": [
+              0,
+              2.76
+            ]
+          },
+          "staysMoved": [
+            "p14 3895 against p0 3034",
+            "p65 3673 against p0 3034",
+            "p172 3648a against p65 3673"
+          ],
           "stops": [
-            "70/94"
+            "70/94",
+            "78/274",
+            "76/265",
+            "90/107"
           ]
         }
       ],
@@ -148,287 +206,13 @@
         "verdict": "not shown",
         "why": "A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved"
       },
-      "seconds": 9
-    },
-    {
-      "function": 2,
-      "does": "The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast.",
-      "held": {
-        "result": "partly",
-        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the pulley p128 at 0.38 rad each way (parts 202/207 and 202/206). Viewer sweep with a full turn asked, decision 288."
-      },
-      "verdict": "not shown",
-      "msOneCall": 18,
-      "msPerStep": 3,
-      "time": {
-        "open": 4,
-        "collisions": 0,
-        "first": 0,
-        "reach": 0,
-        "A": 0,
-        "B": 12
-      },
-      "stop": {
-        "control": "p128 3736",
-        "way": 1,
-        "went": 0.384,
-        "asked": 1.5,
-        "by": [
-          "202/207"
-        ]
-      },
-      "stops": [
-        "202/207",
-        "202/206"
-      ],
-      "A": [
-        {
-          "control": "p128 3736",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.384,
-          "ms": 36,
-          "msOneCall": 18,
-          "stops": [
-            "202/207"
-          ],
-          "moved": {
-            "p172 3648a against p65 3673": [
-              0,
-              21.99
-            ],
-            "p206 4262 against p65 3673": [
-              7.67,
-              0
-            ],
-            "p207 4262 against p65 3673": [
-              7.67,
-              0
-            ],
-            "p270 3482": [
-              0,
-              0
-            ],
-            "p69 3705": [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "control": "p128 3736",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.384,
-          "ms": 27,
-          "msOneCall": 4,
-          "stops": [
-            "202/206"
-          ],
-          "moved": {
-            "p172 3648a against p65 3673": [
-              0,
-              21.99
-            ],
-            "p206 4262 against p65 3673": [
-              7.67,
-              0
-            ],
-            "p207 4262 against p65 3673": [
-              7.67,
-              0
-            ],
-            "p270 3482": [
-              0,
-              0
-            ],
-            "p69 3705": [
-              0,
-              0
-            ]
-          }
-        }
-      ],
-      "B": [
-        {
-          "control": "p128 3736",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [
-            "p172 3648a against p65 3673",
-            "p206 4262 against p65 3673",
-            "p207 4262 against p65 3673"
-          ],
-          "stops": [
-            "202/206",
-            "202/207",
-            "198/202"
-          ]
-        }
-      ],
-      "stopsJudged": [
-        {
-          "control": "p128 3736",
-          "judged": "not shown",
-          "why": "turns without end (kinds driven-rotor; the text says: rotor), but a collision stops it at +0.384 rad (202/207); -0.384 rad (202/206)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p128 3736: turns without end (kinds driven-rotor; the text says: rotor), but a collision stops it at +0.384 rad (202/207); -0.384 rad (202/206)",
-      "seconds": 16
-    },
-    {
-      "function": 4,
-      "does": "Pushed along, the three wheels roll freely on their axle pins.",
-      "held": {
-        "result": "partly",
-        "reason": "The real part turns without end, but in the viewer a collision stops it: the wheel p284 at 0.2 rad (parts 36/215). Viewer sweep, decision 279."
-      },
-      "verdict": "not shown",
-      "msOneCall": 22,
-      "msPerStep": 13,
-      "time": {
-        "open": 8,
-        "collisions": 0,
-        "first": 0,
-        "reach": 2,
-        "A": 1,
-        "B": 30
-      },
-      "stop": {
-        "control": "p284 3482",
-        "way": -1,
-        "went": -0.244,
-        "asked": 1.5,
-        "by": [
-          "90/107"
-        ]
-      },
-      "stops": [
-        "36/215",
-        "90/107"
-      ],
-      "A": [
-        {
-          "control": "p270 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 99,
-          "msOneCall": 22,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p270 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 88,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p279 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 87,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p279 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 90,
-          "msOneCall": 4,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p284 3482",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 81,
-          "msOneCall": 17,
-          "stops": [
-            "36/215"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p284 3482",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.244,
-          "ms": 86,
-          "msOneCall": 14,
-          "stops": [
-            "90/107"
-          ],
-          "moved": {}
-        }
-      ],
-      "B": [
-        {
-          "control": "p270 3482",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
-        },
-        {
-          "control": "p279 3482",
-          "seen": true,
-          "cameraTurns": 2,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": []
-        },
-        {
-          "control": "p284 3482",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "90/107"
-          ]
-        }
-      ],
-      "stopsJudged": [
-        {
-          "control": "p284 3482",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (36/215); -0.244 rad (90/107)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p284 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (36/215); -0.244 rad (90/107)",
-      "seconds": 40
+      "seconds": 22
     },
     {
       "function": 5,
       "does": "The two yellow engines either side of the rotor housing turn freely on their axles.",
       "verdict": "shown",
-      "msOneCall": 20,
+      "msOneCall": 25,
       "msPerStep": 2,
       "time": {
         "open": 6,
@@ -436,7 +220,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 24
+        "B": 25
       },
       "stop": null,
       "stops": [],
@@ -446,8 +230,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 93,
-          "msOneCall": 20,
+          "ms": 95,
+          "msOneCall": 25,
           "stops": [],
           "moved": {}
         },
@@ -456,7 +240,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 87,
+          "ms": 78,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -466,8 +250,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 72,
-          "msOneCall": 4,
+          "ms": 69,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -476,7 +260,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 75,
+          "ms": 79,
           "msOneCall": 5,
           "stops": [],
           "moved": {}
@@ -489,7 +273,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            128.76
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -498,11 +307,36 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            140.82
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 31
+      "seconds": 32
     }
   ]
 }

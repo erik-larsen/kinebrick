@@ -1,11 +1,11 @@
 {
   "set": "42107-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T14:50:55.239Z",
-  "load": 11.4,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:17:33.813Z",
+  "load": 7.4,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 631,
-  "seconds": 82,
+  "seconds": 85,
   "functions": [
     {
       "function": 1,
@@ -19,7 +19,7 @@
         "first": 0,
         "reach": 0,
         "A": 3,
-        "B": 12
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -30,8 +30,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 140,
-          "msOneCall": 34,
+          "ms": 135,
+          "msOneCall": 33,
           "stops": [],
           "moved": {
             "p137 35188": [
@@ -58,8 +58,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 140,
-          "msOneCall": 32,
+          "ms": 146,
+          "msOneCall": 34,
           "stops": [],
           "moved": {
             "p137 35188": [
@@ -88,20 +88,67 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            133.6
+          ],
           "moved": [
             "p137 35188",
             "p127 18947"
           ],
-          "stops": []
+          "went": {
+            "p137 35188": [
+              0,
+              133.6
+            ],
+            "p127 18947": [
+              10,
+              2.96
+            ]
+          },
+          "staysWent": {
+            "p185 2854": [
+              0,
+              2.96
+            ],
+            "p247 35189": [
+              0,
+              2.5
+            ]
+          },
+          "staysMoved": [
+            "p185 2854",
+            "p247 35189"
+          ],
+          "stops": [
+            "131/289"
+          ]
         }
       ],
-      "seconds": 20
+      "seconds": 21
     },
     {
       "function": 3,
       "does": "The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall.",
       "verdict": "not shown",
-      "why": "A: p247 35189, p284 4254 not moved",
       "msOneCall": 3,
       "msPerStep": null,
       "time": {
@@ -110,7 +157,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 6
       },
       "stop": null,
       "stops": [],
@@ -177,30 +224,70 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            25.62,
+            18.06
+          ],
           "moved": [
             "p247 35189",
             "p284 4254"
+          ],
+          "went": {
+            "p247 35189": [
+              62.49,
+              16.51
+            ],
+            "p284 4254": [
+              22.43,
+              5.29
+            ]
+          },
+          "staysWent": {
+            "p379 88516": [
+              0,
+              2.96
+            ],
+            "p185 2854": [
+              0,
+              2.96
+            ]
+          },
+          "staysMoved": [
+            "p379 88516",
+            "p185 2854"
           ],
           "stops": [
             "284/640"
           ]
         }
       ],
-      "seconds": 19
+      "why": "by hand: p379 88516, p185 2854 listed to stay moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 12
     },
     {
       "function": 5,
       "does": "The handlebars steer: they turn the front fork with the front wheel on the steering head.",
       "verdict": "shown",
-      "msOneCall": 33,
+      "msOneCall": 31,
       "msPerStep": 4,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
-        "A": 2,
-        "B": 12
+        "reach": 5,
+        "A": 6,
+        "B": 13
       },
       "stop": {
         "control": "p340 15462",
@@ -232,8 +319,8 @@
           },
           "asked": 1.5,
           "went": 0.488,
-          "ms": 57,
-          "msOneCall": 33,
+          "ms": 56,
+          "msOneCall": 31,
           "stops": [
             "356/420"
           ],
@@ -276,8 +363,8 @@
           },
           "asked": 1.5,
           "went": -0.488,
-          "ms": 59,
-          "msOneCall": 14,
+          "ms": 52,
+          "msOneCall": 11,
           "stops": [
             "355/454"
           ],
@@ -312,18 +399,67 @@
           "cameraTurns": 1,
           "motor": false,
           "shift": [
-            "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
+          ],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            42.29,
+            56.52
           ],
           "moved": [
             "p351 15462",
             "p372 44294",
             "p379 88516"
           ],
+          "went": {
+            "p351 15462": [
+              42.29,
+              56.52
+            ],
+            "p372 44294": [
+              0,
+              56.52
+            ],
+            "p379 88516": [
+              0.95,
+              56.52
+            ]
+          },
+          "staysWent": {
+            "p247 35189": [
+              0,
+              2.5
+            ],
+            "p129 33299a": [
+              0,
+              2.96
+            ]
+          },
+          "staysMoved": [
+            "p247 35189",
+            "p129 33299a"
+          ],
           "stops": [
             "376/414",
-            "371/410",
-            "356/420"
+            "356/420",
+            "371/410"
           ]
         }
       ],
@@ -338,21 +474,21 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 21
+      "seconds": 30
     },
     {
       "function": 7,
       "does": "The front wheel rolls freely on its axle between the fork legs.",
       "verdict": "shown",
-      "msOneCall": 46,
+      "msOneCall": 45,
       "msPerStep": 8,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
-        "B": 12
+        "A": 3,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -363,8 +499,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 340,
-          "msOneCall": 46,
+          "ms": 325,
+          "msOneCall": 41,
           "stops": [],
           "moved": {}
         },
@@ -374,8 +510,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 335,
-          "msOneCall": 43,
+          "ms": 334,
+          "msOneCall": 45,
           "stops": [],
           "moved": {}
         }
@@ -387,7 +523,32 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            57.39
+          ],
           "moved": [],
+          "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],

@@ -1,25 +1,25 @@
 {
   "set": "42024-1",
-  "commit": "b55a79f6",
-  "date": "2026-11-21T15:06:54.445Z",
-  "load": 10.7,
+  "commit": "ac22e339",
+  "date": "2026-11-25T09:34:44.272Z",
+  "load": 7.2,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 950,
-  "seconds": 120,
+  "seconds": 20,
   "functions": [
     {
       "function": 1,
       "does": "The black gear on top of the upright axle behind the cab steers the front wheels: knob gears at the axle's foot turn a lengthwise axle whose 12-tooth gear drives the steering rack between the front wheels.",
       "verdict": "shown",
-      "msOneCall": 60,
+      "msOneCall": 64,
       "msPerStep": 9,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 12
+        "B": 13
       },
       "stop": {
         "control": "p468 32269",
@@ -40,8 +40,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.256,
-          "ms": 333,
-          "msOneCall": 60,
+          "ms": 330,
+          "msOneCall": 64,
           "stops": [
             "1/224"
           ],
@@ -81,8 +81,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.256,
-          "ms": 331,
-          "msOneCall": 23,
+          "ms": 318,
+          "msOneCall": 20,
           "stops": [
             "13/223"
           ],
@@ -125,6 +125,28 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [],
+          "drags": [
+            {
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
+            }
+          ],
+          "controlWent": [
+            0,
+            71.93
+          ],
           "moved": [
             "p462 32072 against p0 4519",
             "p439 32072 against p0 4519",
@@ -132,6 +154,41 @@
             "p249 87761 against p0 4519",
             "p223 48989 against p0 4519",
             "p224 48989 against p0 4519"
+          ],
+          "went": {
+            "p462 32072 against p0 4519": [
+              0,
+              71.93
+            ],
+            "p439 32072 against p0 4519": [
+              0,
+              71.93
+            ],
+            "p436 32270 against p0 4519": [
+              0,
+              71.93
+            ],
+            "p249 87761 against p0 4519": [
+              19.38,
+              0
+            ],
+            "p223 48989 against p0 4519": [
+              9.69,
+              28.05
+            ],
+            "p224 48989 against p0 4519": [
+              9.69,
+              28.05
+            ]
+          },
+          "staysWent": {
+            "p610 62271c01 against p0 4519": [
+              0,
+              2.23
+            ]
+          },
+          "staysMoved": [
+            "p610 62271c01 against p0 4519"
           ],
           "stops": [
             "1/224"
@@ -149,290 +206,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 19
-    },
-    {
-      "function": 5,
-      "does": "The front wheels and the four wheels on the two rear axles roll freely; nothing is driven from them.",
-      "held": {
-        "result": "partly",
-        "reason": "The real part turns without end, but in the viewer a collision stops it, where the check stops too and took the stop for an end of travel: the tyres p237 to p242 at 0.21 rad each way (parts 2/279). Viewer sweep with a full turn asked, decision 288."
-      },
-      "verdict": "not shown",
-      "msOneCall": 70,
-      "msPerStep": 13,
-      "time": {
-        "open": 19,
-        "collisions": 0,
-        "first": 0,
-        "reach": 6,
-        "A": 1,
-        "B": 74
-      },
-      "stop": {
-        "control": "p241 15413",
-        "way": 1,
-        "went": 0.209,
-        "asked": 1.5,
-        "by": [
-          "2/279"
-        ]
-      },
-      "stops": [
-        "2/279"
-      ],
-      "A": [
-        {
-          "control": "p241 15413",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 80,
-          "msOneCall": 70,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p241 15413",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.209,
-          "ms": 69,
-          "msOneCall": 25,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p242 15413",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 67,
-          "msOneCall": 22,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p242 15413",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.209,
-          "ms": 70,
-          "msOneCall": 26,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p239 15413",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 68,
-          "msOneCall": 22,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p239 15413",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.209,
-          "ms": 70,
-          "msOneCall": 23,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p240 15413",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 74,
-          "msOneCall": 22,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p240 15413",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.209,
-          "ms": 70,
-          "msOneCall": 22,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p237 15413",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 76,
-          "msOneCall": 25,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p237 15413",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.209,
-          "ms": 77,
-          "msOneCall": 22,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p238 15413",
-          "way": 1,
-          "asked": 1.5,
-          "went": 0.209,
-          "ms": 69,
-          "msOneCall": 23,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        },
-        {
-          "control": "p238 15413",
-          "way": -1,
-          "asked": 1.5,
-          "went": -0.209,
-          "ms": 66,
-          "msOneCall": 23,
-          "stops": [
-            "2/279"
-          ],
-          "moved": {}
-        }
-      ],
-      "B": [
-        {
-          "control": "p241 15413",
-          "seen": true,
-          "cameraTurns": 1,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "2/279"
-          ]
-        },
-        {
-          "control": "p242 15413",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "2/279"
-          ]
-        },
-        {
-          "control": "p239 15413",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "2/279"
-          ]
-        },
-        {
-          "control": "p240 15413",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "2/279"
-          ]
-        },
-        {
-          "control": "p237 15413",
-          "seen": true,
-          "cameraTurns": 1,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "2/279"
-          ]
-        },
-        {
-          "control": "p238 15413",
-          "seen": true,
-          "cameraTurns": 0,
-          "motor": false,
-          "shift": [],
-          "moved": [],
-          "stops": [
-            "2/279"
-          ]
-        }
-      ],
-      "stopsJudged": [
-        {
-          "control": "p241 15413",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
-        },
-        {
-          "control": "p242 15413",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
-        },
-        {
-          "control": "p239 15413",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
-        },
-        {
-          "control": "p240 15413",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
-        },
-        {
-          "control": "p237 15413",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
-        },
-        {
-          "control": "p238 15413",
-          "judged": "not shown",
-          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p241 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p242 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p239 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p240 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p237 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279); p238 15413: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.209 rad (2/279); -0.209 rad (2/279)",
-      "seconds": 101
+      "seconds": 20
     }
   ]
 }
