@@ -27,7 +27,9 @@ describe('856 Bulldozer', () => {
   });
 
   it('stands on its tracks: their links reach 8 LDU below the path round the gears', () => {
-    expect(kin.groundY).toBeCloseTo(-14 + 51.2 + 8, 6); // the gears' axles, the path's radius, the links' depth
+    // The gears' axles, the path's radius, the links' depth: read from the links' pins under the gears,
+    // as the file places them (to its rounding, 5e-6 LDU here).
+    expect(kin.groundY).toBeCloseTo(-14 + 51.2 + 8, 4);
   });
 
   it("a turn of one track's gear moves that track 51.2 LDU round per radian, turning its other gear alike, and the bulldozer turns, its tracks skidding", () => {

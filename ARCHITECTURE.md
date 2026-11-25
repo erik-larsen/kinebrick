@@ -325,7 +325,7 @@ A looped path (a chain, a track, a rubber band) goes round wheels:
 - **What it turns in.** It turns in the joint's other body. Of its joints on that axis, it's the one in what's nearest the frame: a gearbox's output shaft turns in the frame and in the clutch gears freewheeling on it, and it's how it turns in the frame that drives its chain.
 - **A circle on nothing that turns** (a peg a rubber band is hooked round) is left out: the band slides round it.
 - **A rubber band** is drawn afresh round where its circles are now. One whose circles don't lie in one plane keeps the pieces LDCad drew it with, and they move with the first thing it's hooked round (the 855 Mobile Crane's, on its cab, slews with it).
-- **A track's links** (those [the corrections](#the-connection-table) give a depth) reach a little beyond the path, so under each of its wheels it touches the ground like a tyre that reaches as far.
+- **A track's links** (those [the corrections](#the-connection-table) give a depth) reach a little beyond the path, so under each of its wheels it touches the ground like a tyre that reaches as far. How far below a wheel's axle the track runs is read from its links' pins there (the lowest within a pitch either way of the point below the axle), where that is within half a pitch of the path's circle round the wheel: the circle is how far the track moves for a radian of the wheel, and where the links leave a wheel along a slant before they wrap it, it reaches further down than the run (the 42021 Snowmobile's rear wheel by 1.84 LDU, which held its front wheel off the ground).
 
 ### 5. Check
 
