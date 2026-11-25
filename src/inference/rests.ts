@@ -74,7 +74,7 @@ const HALF_BUSHES = new Set(['32123a.dat', '32123b.dat']);
 // Parts resting on others under gravity, which Kinebrick has no forces for, so keeps touching
 // what they rest on (see Rest). Two kinds, both in the 858 inline engine's valve train:
 //
-//   push rods  an upright axle with bushes on it and nothing else, turning in round holes in one
+//   push rods  an upright (or leaning, see TILT) axle with bushes on it and nothing else, turning in round holes in one
 //              other body, that stands by its bottom bush on a shaft turning across it below (the
 //              pins on an engine's camshaft, or the camshaft itself between them), or by a bush
 //              higher up on the hole under it. It rests on whichever is higher, so pins lift it as
@@ -139,7 +139,10 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
   };
   const isBush = (i: number) => roles[i] === 'bush' || HALF_BUSHES.has(parts[i].name.replace(/^.* - /, '').toLowerCase());
   const rests: Rest[] = [];
-  for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle' && Math.abs(c.dir.y) > 1 - ANGLE_TOLERANCE)) {
+  // A push rod stands upright, or leans up to TILT from upright: the 42123's V8 has its pistons
+  // in a V, 26 degrees each side. It rises and falls along its own line, which is its "up" below.
+  const TILT = Math.cos(Math.PI / 6);
+  for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle' && Math.abs(c.dir.y) >= TILT)) {
     const rod = bodyOf[axle.part];
     const own = parts.flatMap((_, i) => (bodyOf[i] === rod ? [i] : []));
     if (rod === 0 || own.some((i) => i !== axle.part && !isBush(i))) continue;
@@ -269,10 +272,16 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
   // A part built a little into a flat thing it rests on rests where it's built: that's taken
   // as much lower (the 858 inline engine's rockers sink 1.6 LDU into the studs under them).
   // Not a pin coming round under a push rod: it turns, so it's that far in at only one turn.
+  // But a rod built standing on what turns under it, a little into it, stands on it there: its
+  // cylinder is taken that much thinner, all the way round (two of the 42123's V8 pistons, built
+  // lifted on throws that point up, sink 0.62 LDU into them, their feet square to the leaning rod
+  // and the throws' ends round). Otherwise the first move pushes the rod out by that much.
   for (const rest of rests) {
     for (const c of rest.on) {
       const into = -clearance(c);
-      if (c.shape.kind !== 'cylinder' && into > 0 && into <= LOOSE_ALIGN_TOLERANCE) c.shape.point.addScaledVector(c.face.normal, into);
+      if (!(into > 0 && into <= LOOSE_ALIGN_TOLERANCE)) continue;
+      if (c.shape.kind !== 'cylinder') c.shape.point.addScaledVector(c.face.normal, into);
+      else c.shape.radius -= into;
     }
   }
   return rests;
