@@ -578,7 +578,8 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
   // that lists no part to move (the 8840's function 5, whose wheels all turned 0, was shown).
   // A turn of 0 by turnPart on a part the hand moves is no verdict (decision 329): a control
   // counts as worked if A turned it or B moved it.
-  const turnedEach = controls.every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01) || controlsMovedByB.has(ref));
+  // Controls worked together are worked by the first, the others turning with it.
+  const turnedEach = (fn.together ? controls.slice(0, 1) : controls).every((ref) => (A as any[]).some((a) => a.control === ref && Math.abs(a.went) >= 0.01) || controlsMovedByB.has(ref));
   const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0 && turnedEach;
   // Where the function lists no part to move, B shows it if it moved every control (decision 329).
   const bShows = !!viewerFor || !!fn.together || (moves.length === 0 ? controls.every((ref) => controlsMovedByB.has(ref)) : movedByB.size > 0);
