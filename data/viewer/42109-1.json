@@ -610,9 +610,9 @@
     {
       "function": 6,
       "does": "The bonnet lifts by hand.",
-      "verdict": "not decided",
-      "msOneCall": 22,
-      "msPerStep": 7,
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 8,
       "time": {
         "open": 6,
         "collisions": 0,
@@ -621,18 +621,8 @@
         "A": 1,
         "B": 13
       },
-      "stop": {
-        "control": "p894 64391",
-        "way": 1,
-        "went": 0.035,
-        "asked": 1.5,
-        "by": [
-          "387/893"
-        ]
-      },
-      "stops": [
-        "387/893"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p894 64391",
@@ -647,21 +637,19 @@
               761
             ]
           },
-          "asked": 1.5,
-          "went": 0.035,
-          "ms": 7,
-          "msOneCall": 22,
-          "stops": [
-            "387/893"
-          ],
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 8,
+          "msOneCall": 25,
+          "stops": [],
           "moved": {
             "p893 64683": [
-              0.99,
-              2
+              0.85,
+              1.72
             ],
             "p890 32524": [
-              2.88,
-              2
+              2.47,
+              1.72
             ]
           }
         },
@@ -678,19 +666,19 @@
               761
             ]
           },
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 6,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 89,
           "msOneCall": 6,
           "stops": [],
           "moved": {
             "p893 64683": [
-              0.85,
-              1.72
+              42.43,
+              85.94
             ],
             "p890 32524": [
-              2.47,
-              1.72
+              123.69,
+              85.94
             ]
           }
         }
@@ -702,6 +690,7 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [
+            "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
           ],
           "drags": [
@@ -748,19 +737,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p894 64391",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (387/893)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p894 64391: a travel of 0.2 rad or less each way, stopped at +0.035 rad (387/893)",
-      "seconds": 20
+      "seconds": 21,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:42:19.940Z"
     }
   ]
 }

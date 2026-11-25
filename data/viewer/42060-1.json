@@ -11,8 +11,8 @@
       "function": 2,
       "does": "Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it.",
       "verdict": "shown",
-      "msOneCall": 15,
-      "msPerStep": 11,
+      "msOneCall": 10,
+      "msPerStep": 3,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -21,8 +21,18 @@
         "A": 1,
         "B": 7
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p30 59443",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "26/172"
+        ]
+      },
+      "stops": [
+        "26/172"
+      ],
       "A": [
         {
           "control": "p30 59443",
@@ -34,23 +44,28 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            32
+          ],
           "asked": 1.5,
-          "went": 0.035,
-          "ms": 11,
-          "msOneCall": 15,
-          "stops": [],
+          "went": 0,
+          "ms": 3,
+          "msOneCall": 6,
+          "stops": [
+            "26/172"
+          ],
           "moved": {
             "p159 32525": [
-              1.1,
-              0.35
+              0,
+              0
             ],
             "p173 32525": [
-              1.1,
-              0.35
+              0,
+              0
             ],
             "p172 15458": [
-              1,
-              0.35
+              0,
+              0
             ],
             "p156 32270": [
               0,
@@ -68,23 +83,26 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            32
+          ],
           "asked": 1.5,
-          "went": -0.035,
-          "ms": 9,
-          "msOneCall": 7,
+          "went": -1.5,
+          "ms": 124,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p159 32525": [
-              1.12,
-              0.35
+              50.23,
+              32.18
             ],
             "p173 32525": [
-              1.12,
-              0.35
+              50.23,
+              32.18
             ],
             "p172 15458": [
-              1.02,
-              0.35
+              46.31,
+              32.18
             ],
             "p156 32270": [
               0,
@@ -147,7 +165,20 @@
           ]
         }
       ],
-      "seconds": 12
+      "stopsJudged": [
+        {
+          "control": "p30 59443",
+          "judged": "stands",
+          "why": "stopped at +0 rad (26/172); kinds crank-and-link: tipper"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 12,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:33:45.508Z"
     },
     {
       "function": 3,
@@ -661,7 +692,7 @@
         "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359)."
       },
       "verdict": "not shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 4,
@@ -687,7 +718,7 @@
           "asked": 0.1,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p288 42060 - 33299b": [
@@ -797,7 +828,9 @@
       ],
       "why": "by hand: p277 32316 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 17
+      "seconds": 17,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:33:45.508Z"
     },
     {
       "function": 8,

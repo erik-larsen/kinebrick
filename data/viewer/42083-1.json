@@ -430,75 +430,60 @@
     {
       "function": 7,
       "does": "The two doors swing open on hinges at their front edges.",
-      "verdict": "not decided",
-      "msOneCall": 403,
-      "msPerStep": 127,
+      "verdict": "shown",
+      "msOneCall": 416,
+      "msPerStep": 129,
       "time": {
-        "open": 23,
+        "open": 25,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 11,
-        "B": 54
+        "A": 17,
+        "B": 57
       },
-      "stop": {
-        "control": "p2924 62531",
-        "way": 1,
-        "went": 0.07,
-        "asked": 1.5,
-        "by": [
-          "2786/2943"
-        ]
-      },
-      "stops": [
-        "2786/2943",
-        "2837/2883"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p2924 62531",
           "way": 1,
           "ringShifted": true,
-          "asked": 1.5,
+          "asked": 0.07,
           "went": 0.07,
-          "ms": 254,
-          "msOneCall": 403,
-          "stops": [
-            "2786/2943"
-          ],
+          "ms": 258,
+          "msOneCall": 416,
+          "stops": [],
           "moved": {}
         },
         {
           "control": "p2924 62531",
           "way": -1,
           "ringShifted": true,
-          "asked": 0.07,
-          "went": -0.07,
-          "ms": 235,
-          "msOneCall": 368,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 2656,
+          "msOneCall": 396,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p2876 62531",
           "way": 1,
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 220,
-          "msOneCall": 362,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 2554,
+          "msOneCall": 346,
           "stops": [],
           "moved": {}
         },
         {
           "control": "p2876 62531",
           "way": -1,
-          "asked": 1.5,
+          "asked": 0.07,
           "went": -0.07,
-          "ms": 242,
-          "msOneCall": 165,
-          "stops": [
-            "2837/2883"
-          ],
+          "ms": 225,
+          "msOneCall": 166,
+          "stops": [],
           "moved": {}
         }
       ],
@@ -578,24 +563,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p2924 62531",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943)"
-        },
-        {
-          "control": "p2876 62531",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p2924 62531: a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943); p2876 62531: a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)",
-      "seconds": 83
+      "seconds": 94,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:39:39.116Z"
     }
   ]
 }

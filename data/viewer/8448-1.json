@@ -414,39 +414,36 @@
       "function": 5,
       "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
       "verdict": "not decided",
-      "msOneCall": 62,
-      "msPerStep": 44,
+      "msOneCall": 71,
+      "msPerStep": 33,
       "time": {
-        "open": 15,
+        "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
+        "reach": 2,
         "A": 0,
-        "B": 31
+        "B": 32
       },
       "stop": {
         "control": "p364 32195a",
-        "way": -1,
-        "went": -0.035,
+        "way": 1,
+        "went": 0,
         "asked": 1.5,
         "by": [
-          "53/345"
+          "345/396"
         ]
       },
       "stops": [
-        "345/396",
-        "53/345",
-        "14/345",
-        "345/397"
+        "345/396"
       ],
       "A": [
         {
           "control": "p364 32195a",
           "way": 1,
-          "asked": 0.03,
+          "asked": 1.5,
           "went": 0,
-          "ms": 21,
-          "msOneCall": 62,
+          "ms": 31,
+          "msOneCall": 71,
           "stops": [
             "345/396"
           ],
@@ -472,16 +469,14 @@
         {
           "control": "p364 32195a",
           "way": -1,
-          "asked": 1.5,
-          "went": -0.035,
-          "ms": 44,
-          "msOneCall": 39,
-          "stops": [
-            "53/345"
-          ],
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 33,
+          "msOneCall": 44,
+          "stops": [],
           "moved": {
             "p370 32184": [
-              1.4,
+              1.2,
               0
             ],
             "p384 32184": [
@@ -489,8 +484,8 @@
               0
             ],
             "p475 32196": [
-              3.84,
-              0.07
+              3.3,
+              0.05
             ],
             "p484 32196": [
               0,
@@ -501,20 +496,18 @@
         {
           "control": "p380 32195a",
           "way": 1,
-          "asked": 1.5,
-          "went": 0.035,
-          "ms": 40,
-          "msOneCall": 28,
-          "stops": [
-            "14/345"
-          ],
+          "asked": 0.03,
+          "went": 0.03,
+          "ms": 30,
+          "msOneCall": 36,
+          "stops": [],
           "moved": {
             "p370 32184": [
               0,
               0
             ],
             "p384 32184": [
-              1.4,
+              1.2,
               0
             ],
             "p475 32196": [
@@ -522,21 +515,20 @@
               0
             ],
             "p484 32196": [
-              3.84,
-              0.07
+              3.3,
+              0.05
             ]
           }
         },
         {
           "control": "p380 32195a",
           "way": -1,
-          "asked": 0.03,
+          "asked": 1.5,
           "went": 0,
-          "ms": 19,
-          "msOneCall": 19,
+          "ms": 25,
+          "msOneCall": 21,
           "stops": [
-            "345/396",
-            "345/397"
+            "345/396"
           ],
           "moved": {
             "p370 32184": [
@@ -683,12 +675,12 @@
         {
           "control": "p364 32195a",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (53/345)"
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (345/396)"
         },
         {
           "control": "p380 32195a",
           "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396, 345/397)"
+          "why": "a travel of 0.2 rad or less each way, stopped at -0 rad (345/396)"
         }
       ],
       "stopVerdict": "not decided",
@@ -699,8 +691,10 @@
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); -0.035 rad (53/345); p380 32195a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (14/345); -0 rad (345/396, 345/397)",
-      "seconds": 48
+      "why": "not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); p380 32195a: a travel of 0.2 rad or less each way, stopped at -0 rad (345/396)",
+      "seconds": 50,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:55:28.607Z"
     }
   ]
 }

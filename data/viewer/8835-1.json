@@ -171,15 +171,8 @@
         "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355)."
       },
       "verdict": "not shown",
-      "why": "A: p63 2823 not moved; not decided: p207 4185a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)",
-      "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p29 3703 turned 0.21 degrees, 0.286 predicted (rate 0.143, turn 0.035)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p128 4262 turned 0.21 degrees, 0.218 predicted (rate 0.109, turn 0.035)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p29 3703 turned 0.21 degrees, 0.286 predicted (rate 0.143, turn -0.035)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p128 4262 turned 0.21 degrees, 0.218 predicted (rate 0.109, turn -0.035)"
-      ],
-      "msOneCall": 14,
-      "msPerStep": 11,
+      "msOneCall": 0,
+      "msPerStep": null,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -188,18 +181,8 @@
         "A": 1,
         "B": 7
       },
-      "stop": {
-        "control": "p207 4185a",
-        "way": 1,
-        "went": 0.035,
-        "asked": 1.5,
-        "by": [
-          "71/123"
-        ]
-      },
-      "stops": [
-        "71/123"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p207 4185a",
@@ -209,21 +192,22 @@
             "said": [],
             "freed": []
           },
-          "asked": 1.5,
-          "went": 0.035,
-          "ms": 11,
-          "msOneCall": 14,
-          "stops": [
-            "71/123"
+          "pinsAsked": [
+            127
           ],
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
           "moved": {
             "p29 3703": [
-              0.6,
-              0.21
+              0,
+              0
             ],
             "p128 4262": [
-              0.52,
-              0.21
+              0,
+              0
             ],
             "p63 2823": [
               0,
@@ -247,21 +231,22 @@
             "said": [],
             "freed": []
           },
-          "asked": 1.5,
-          "went": -0.035,
-          "ms": 10,
-          "msOneCall": 10,
-          "stops": [
-            "71/123"
+          "pinsAsked": [
+            127
           ],
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
           "moved": {
             "p29 3703": [
-              0.6,
-              0.21
+              0,
+              0
             ],
             "p128 4262": [
-              0.52,
-              0.21
+              0,
+              0
             ],
             "p63 2823": [
               0,
@@ -333,19 +318,11 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p207 4185a",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "not shown",
-        "why": "A: p63 2823 not moved"
-      },
-      "seconds": 12
+      "why": "by hand: p63 2823 not moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 13,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:58:56.760Z"
     },
     {
       "function": 3,

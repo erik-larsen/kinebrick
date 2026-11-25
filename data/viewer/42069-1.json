@@ -928,15 +928,15 @@
       "function": 9,
       "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
       "verdict": "shown",
-      "msOneCall": 188,
-      "msPerStep": 58,
+      "msOneCall": 161,
+      "msPerStep": 53,
       "time": {
         "open": 15,
         "collisions": 0,
         "first": 0,
-        "reach": 38,
-        "A": 47,
-        "B": 43
+        "reach": 43,
+        "A": 55,
+        "B": 44
       },
       "stop": null,
       "stops": [],
@@ -973,8 +973,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 116,
-          "msOneCall": 188,
+          "ms": 103,
+          "msOneCall": 161,
           "stops": [],
           "moved": {}
         },
@@ -1010,8 +1010,8 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 990,
-          "msOneCall": 76,
+          "ms": 828,
+          "msOneCall": 74,
           "stops": [],
           "moved": {}
         },
@@ -1033,10 +1033,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            897
+          ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1063,
-          "msOneCall": 71,
+          "ms": 1022,
+          "msOneCall": 125,
           "stops": [],
           "moved": {}
         },
@@ -1058,9 +1061,12 @@
               ]
             }
           ],
+          "pinsAsked": [
+            897
+          ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 98,
+          "ms": 106,
           "msOneCall": 81,
           "stops": [],
           "moved": {}
@@ -1177,7 +1183,9 @@
           ]
         }
       ],
-      "seconds": 188
+      "seconds": 209,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:34:16.468Z"
     }
   ]
 }

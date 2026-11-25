@@ -1372,15 +1372,15 @@
         "reason": "The viewer sweep does not show it: no view shows the lid p2475 of the roof case, so no drag can reach it, and a turn of it measured 0 (decisions 329 and 339). Marked before the offer of main, decision 341; to look at after 2026-11-23."
       },
       "verdict": "not shown",
-      "why": "A: none not moved; B: the control could not be seen",
-      "msOneCall": 0,
-      "msPerStep": null,
+      "why": "B: the control could not be seen",
+      "msOneCall": 312,
+      "msPerStep": 109,
       "time": {
-        "open": 11,
+        "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 861,
-        "A": 882,
+        "reach": 312,
+        "A": 311,
         "B": 0
       },
       "stop": null,
@@ -1392,10 +1392,14 @@
           "shift": {
             "seen": false
           },
+          "pinsAsked": [
+            2498,
+            2499
+          ],
           "asked": 0.07,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": 0.07,
+          "ms": 218,
+          "msOneCall": 312,
           "stops": [],
           "moved": {}
         },
@@ -1405,10 +1409,14 @@
           "shift": {
             "seen": false
           },
+          "pinsAsked": [
+            2498,
+            2499
+          ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": -1.5,
+          "ms": 1749,
+          "msOneCall": 174,
           "stops": [],
           "moved": {}
         }
@@ -1419,7 +1427,9 @@
           "seen": false
         }
       ],
-      "seconds": 1754
+      "seconds": 634,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:42:42.289Z"
     }
   ]
 }

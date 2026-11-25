@@ -248,8 +248,8 @@
     {
       "function": 2,
       "does": "The black arm carrying the hose roll cage tilts on the 4-long axle through the middle of the yellow chassis: pressing the cage's nose down lifts the arm's back end, with its yellow hose connectors, off the chassis.",
-      "verdict": "not decided",
-      "msOneCall": 8,
+      "verdict": "shown",
+      "msOneCall": 10,
       "msPerStep": 3,
       "time": {
         "open": 3,
@@ -259,45 +259,33 @@
         "A": 0,
         "B": 12
       },
-      "stop": {
-        "control": "p21 6629",
-        "way": 1,
-        "went": 0.033,
-        "asked": 0.43,
-        "by": [
-          "4/22"
-        ]
-      },
-      "stops": [
-        "4/22"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p21 6629",
           "way": 1,
-          "asked": 0.43,
-          "went": 0.033,
+          "asked": 0.03,
+          "went": 0.03,
           "ms": 3,
-          "msOneCall": 8,
-          "stops": [
-            "4/22"
-          ],
+          "msOneCall": 10,
+          "stops": [],
           "moved": {
             "p31 32015": [
-              3.45,
-              1.9
+              3.13,
+              1.72
             ],
             "p32 32015": [
-              3.45,
-              1.9
+              3.13,
+              1.72
             ],
             "p25 6536": [
-              2.97,
-              1.9
+              2.7,
+              1.72
             ],
             "p26 6536": [
-              2.97,
-              1.9
+              2.7,
+              1.72
             ],
             "p3 6629": [
               0,
@@ -320,27 +308,27 @@
         {
           "control": "p21 6629",
           "way": -1,
-          "asked": 0.03,
-          "went": -0.03,
-          "ms": 1,
+          "asked": 0.43,
+          "went": -0.43,
+          "ms": 14,
           "msOneCall": 2,
           "stops": [],
           "moved": {
             "p31 32015": [
-              3.13,
-              1.72
+              44.84,
+              24.64
             ],
             "p32 32015": [
-              3.13,
-              1.72
+              44.84,
+              24.64
             ],
             "p25 6536": [
-              2.7,
-              1.72
+              38.64,
+              24.64
             ],
             "p26 6536": [
-              2.7,
-              1.72
+              38.64,
+              24.64
             ],
             "p3 6629": [
               0,
@@ -440,19 +428,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p21 6629",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.033 rad (4/22)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p21 6629: a travel of 0.2 rad or less each way, stopped at +0.033 rad (4/22)",
-      "seconds": 15
+      "seconds": 15,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:54:11.859Z"
     }
   ]
 }

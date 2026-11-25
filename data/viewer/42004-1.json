@@ -452,8 +452,8 @@
       "function": 4,
       "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
       "verdict": "shown",
-      "msOneCall": 20,
-      "msPerStep": 7,
+      "msOneCall": 12,
+      "msPerStep": 4,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -475,19 +475,22 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            153
+          ],
           "asked": 1.5,
-          "went": 0.279,
-          "ms": 53,
-          "msOneCall": 20,
+          "went": 1.5,
+          "ms": 154,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p159 32525": [
-              1.17,
-              0.6
+              20.55,
+              11.77
             ],
             "p158 10928": [
-              0.42,
-              2.02
+              0,
+              10.74
             ],
             "p25 40490": [
               0,
@@ -505,19 +508,22 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            153
+          ],
           "asked": 1.5,
-          "went": -0.314,
-          "ms": 59,
-          "msOneCall": 12,
+          "went": -1.5,
+          "ms": 113,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p159 32525": [
-              1.25,
-              0.64
+              19.68,
+              11.28
             ],
             "p158 10928": [
-              0.45,
-              2.22
+              0,
+              10.74
             ],
             "p25 40490": [
               0,
@@ -573,7 +579,9 @@
           "stops": []
         }
       ],
-      "seconds": 12
+      "seconds": 12,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:30:48.577Z"
     },
     {
       "function": 5,

@@ -175,9 +175,9 @@
         "result": "partly",
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p101 at 0.03 rad each way (parts 92/130 and 91/124); the check stops at the same angle and judges by rates. Viewer sweep, decision 279."
       },
-      "verdict": "not shown",
-      "msOneCall": 10,
-      "msPerStep": 4,
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 3,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -186,28 +186,18 @@
         "A": 0,
         "B": 13
       },
-      "stop": {
-        "control": "p101 6632",
-        "way": 1,
-        "went": 0.03,
-        "asked": 0.03,
-        "by": [
-          "92/130"
-        ]
-      },
-      "stops": [
-        "92/130",
-        "91/124"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p101 6632",
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 4,
-          "msOneCall": 10,
-          "stops": [
+          "ms": 3,
+          "msOneCall": 9,
+          "stops": [],
+          "passed": [
             "92/130"
           ],
           "moved": {
@@ -232,7 +222,8 @@
           "went": -0.03,
           "ms": 2,
           "msOneCall": 2,
-          "stops": [
+          "stops": [],
+          "passed": [
             "91/124"
           ],
           "moved": {
@@ -309,24 +300,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p101 6632",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "byHand": {
-        "stop": "not shown",
-        "why": "the boom turns round on a single pin, far past 0.03 rad",
-        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36"
-      },
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p101 6632: a travel of 0.2 rad or less each way, stopped at +0.03 rad (92/130); -0.03 rad (91/124) (the boom turns round on a single pin, far past 0.03 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112210.pdf#page=36)",
-      "seconds": 21
+      "seconds": 21,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:30:48.571Z"
     },
     {
       "function": 3,

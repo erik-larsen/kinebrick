@@ -795,15 +795,15 @@
       "function": 9,
       "does": "The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom.",
       "verdict": "shown",
-      "msOneCall": 205,
-      "msPerStep": 99,
+      "msOneCall": 129,
+      "msPerStep": 36,
       "time": {
-        "open": 9,
+        "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 88,
-        "A": 113,
-        "B": 12
+        "reach": 95,
+        "A": 105,
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -819,31 +819,34 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            1739
+          ],
           "asked": 1.5,
-          "went": 1.291,
-          "ms": 3637,
-          "msOneCall": 205,
+          "went": 1.5,
+          "ms": 1557,
+          "msOneCall": 129,
           "stops": [],
           "moved": {
             "p1646 4716": [
               0,
-              73.03
+              85.94
             ],
             "p1648 3648b": [
-              0.2,
-              2.76
+              0,
+              3.58
             ],
             "p1740 32278": [
-              1.43,
-              0.39
+              3.97,
+              0.26
             ],
             "p1733 32278": [
-              2.99,
-              0.39
+              7.51,
+              0.97
             ],
             "p1703 32012": [
               0,
-              0.35
+              0
             ]
           }
         },
@@ -858,31 +861,34 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            1739
+          ],
           "asked": 1.5,
-          "went": -1.256,
-          "ms": 3550,
-          "msOneCall": 170,
+          "went": -1.5,
+          "ms": 1542,
+          "msOneCall": 78,
           "stops": [],
           "moved": {
             "p1646 4716": [
               0,
-              71.02
+              85.94
             ],
             "p1648 3648b": [
-              0.2,
-              2.67
+              0,
+              3.58
             ],
             "p1740 32278": [
-              1.32,
-              0.35
+              3.96,
+              0.22
             ],
             "p1733 32278": [
-              2.75,
-              0.35
+              7.43,
+              0.96
             ],
             "p1703 32012": [
               0,
-              0.36
+              0
             ]
           }
         }
@@ -947,7 +953,9 @@
           "stops": []
         }
       ],
-      "seconds": 222
+      "seconds": 221,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:55:13.849Z"
     },
     {
       "function": 10,

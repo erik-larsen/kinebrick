@@ -314,15 +314,15 @@
       "function": 3,
       "does": "The two doors swing up and forward on hinges at their front corners (dihedral doors).",
       "verdict": "shown",
-      "msOneCall": 40,
-      "msPerStep": 14,
+      "msOneCall": 43,
+      "msPerStep": 13,
       "time": {
-        "open": 26,
+        "open": 28,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 28
+        "A": 4,
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -354,8 +354,8 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 223,
-          "msOneCall": 40,
+          "ms": 242,
+          "msOneCall": 43,
           "stops": [],
           "moved": {}
         },
@@ -386,8 +386,8 @@
           },
           "asked": 0.03,
           "went": -0.03,
-          "ms": 14,
-          "msOneCall": 15,
+          "ms": 13,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         },
@@ -407,10 +407,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            914
+          ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 14,
-          "msOneCall": 14,
+          "ms": 13,
+          "msOneCall": 28,
           "stops": [],
           "moved": {}
         },
@@ -430,10 +433,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            914
+          ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 197,
-          "msOneCall": 14,
+          "ms": 210,
+          "msOneCall": 13,
           "stops": [],
           "moved": {}
         }
@@ -542,7 +548,9 @@
           ]
         }
       ],
-      "seconds": 59
+      "seconds": 63,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:50:27.304Z"
     },
     {
       "function": 4,

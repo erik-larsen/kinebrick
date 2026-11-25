@@ -22,8 +22,8 @@
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 23
+        "A": 2,
+        "B": 24
       },
       "stop": null,
       "stops": [],
@@ -38,6 +38,10 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            2228,
+            2235
+          ],
           "asked": 1.5,
           "went": 0,
           "ms": 0,
@@ -80,6 +84,10 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            2228,
+            2235
+          ],
           "asked": 1.5,
           "went": 0,
           "ms": 0,
@@ -141,16 +149,16 @@
             }
           ],
           "controlWent": [
-            2.25,
-            103.32
+            2.13,
+            97.74
           ],
           "moved": [
             "p2196 4716"
           ],
           "went": {
             "p2196 4716": [
-              2.25,
-              103.32
+              2.13,
+              97.74
             ],
             "p2201 3648b": [
               0,
@@ -183,7 +191,9 @@
       ],
       "why": "by hand: p2201 3648b, p2222 42053 - 33299b, p2407 32073 not moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 31
+      "seconds": 32,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:33:11.976Z"
     },
     {
       "function": 6,

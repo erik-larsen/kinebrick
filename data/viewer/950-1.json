@@ -563,41 +563,28 @@
     {
       "function": 4,
       "does": "The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.",
-      "verdict": "not decided",
-      "msOneCall": 10,
+      "verdict": "shown",
+      "msOneCall": 8,
       "msPerStep": 2,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 7,
+        "reach": 8,
         "A": 0,
         "B": 25
       },
-      "stop": {
-        "control": "p152 3651",
-        "way": 1,
-        "went": 0.067,
-        "asked": 0.6,
-        "by": [
-          "127/152"
-        ]
-      },
-      "stops": [
-        "127/152",
-        "127/155"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p152 3651",
           "way": 1,
-          "asked": 0.6,
-          "went": 0.067,
-          "ms": 5,
-          "msOneCall": 10,
-          "stops": [
-            "127/152"
-          ],
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 4,
+          "msOneCall": 8,
+          "stops": [],
           "moved": {
             "p199 3710": [
               0,
@@ -612,10 +599,10 @@
         {
           "control": "p152 3651",
           "way": -1,
-          "asked": 0.07,
-          "went": -0.07,
-          "ms": 4,
-          "msOneCall": 4,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 13,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -631,10 +618,10 @@
         {
           "control": "p155 3651",
           "way": 1,
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 3,
-          "msOneCall": 3,
+          "asked": 0.6,
+          "went": 0.6,
+          "ms": 11,
+          "msOneCall": 1,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -650,13 +637,11 @@
         {
           "control": "p155 3651",
           "way": -1,
-          "asked": 0.6,
-          "went": -0.067,
-          "ms": 4,
-          "msOneCall": 3,
-          "stops": [
-            "127/155"
-          ],
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 2,
+          "msOneCall": 1,
+          "stops": [],
           "moved": {
             "p199 3710": [
               0,
@@ -761,24 +746,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p152 3651",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152)"
-        },
-        {
-          "control": "p155 3651",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p152 3651: a travel of 0.2 rad or less each way, stopped at +0.067 rad (127/152); p155 3651: a travel of 0.2 rad or less each way, stopped at -0.067 rad (127/155)",
-      "seconds": 37
+      "seconds": 38,
+      "commit": "485a283d",
+      "date": "2026-11-25T15:00:51.518Z"
     }
   ]
 }

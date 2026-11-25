@@ -457,34 +457,23 @@
     {
       "function": 4,
       "does": "The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes.",
-      "verdict": "not decided",
+      "verdict": "shown",
       "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.06 degrees, 0.052 predicted (rate 0.0304, turn 0.03)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.07 degrees, 0.061 predicted (rate 0.0304, turn -0.035)",
+        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.06 degrees, 0.052 predicted (rate 0.0304, turn -0.03)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p96 4254 turned 0.06 degrees, 0.064 predicted (rate 0.0372, turn 0.03)"
       ],
-      "msOneCall": 90,
-      "msPerStep": 112,
+      "msOneCall": 96,
+      "msPerStep": 84,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 4,
+        "A": 6,
         "B": 21
       },
-      "stop": {
-        "control": "p58 57515",
-        "way": -1,
-        "went": -0.035,
-        "asked": 0.63,
-        "by": [
-          "96/496"
-        ]
-      },
-      "stops": [
-        "96/496"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p58 57515",
@@ -496,27 +485,42 @@
             ],
             "freed": []
           },
-          "asked": 0.03,
-          "went": 0.03,
-          "ms": 79,
-          "msOneCall": 90,
+          "pinsAsked": [
+            64,
+            111,
+            208,
+            262,
+            276,
+            351,
+            356,
+            360,
+            361,
+            373,
+            388,
+            396,
+            417
+          ],
+          "asked": 0.63,
+          "went": 0.63,
+          "ms": 1016,
+          "msOneCall": 96,
           "stops": [],
           "moved": {
             "p66 11949": [
-              3,
+              63,
               0
             ],
             "p76 11949": [
-              0.42,
+              7.16,
               0
             ],
             "p96 4254": [
-              1.2,
-              0.46
+              25.2,
+              8.04
             ],
             "p97 4254": [
-              0.17,
-              0.06
+              2.87,
+              1.1
             ]
           }
         },
@@ -530,29 +534,42 @@
             ],
             "freed": []
           },
-          "asked": 0.63,
-          "went": -0.035,
-          "ms": 112,
-          "msOneCall": 74,
-          "stops": [
-            "96/496"
+          "pinsAsked": [
+            64,
+            111,
+            208,
+            262,
+            276,
+            351,
+            356,
+            360,
+            361,
+            373,
+            388,
+            396,
+            417
           ],
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 84,
+          "msOneCall": 86,
+          "stops": [],
           "moved": {
             "p66 11949": [
-              3.5,
+              3,
               0
             ],
             "p76 11949": [
-              0.48,
+              0.37,
               0
             ],
             "p96 4254": [
-              1.4,
-              0.55
+              1.2,
+              0.47
             ],
             "p97 4254": [
-              0.19,
-              0.07
+              0.15,
+              0.06
             ]
           }
         },
@@ -566,7 +583,21 @@
               "said": [
                 "No friction pins hold this part: drag it"
               ],
-              "freed": []
+              "freed": [
+                64,
+                111,
+                208,
+                262,
+                276,
+                351,
+                356,
+                360,
+                361,
+                373,
+                388,
+                396,
+                417
+              ]
             }
           ],
           "shift": {
@@ -574,12 +605,26 @@
             "said": [
               "No friction pins hold this part: drag it"
             ],
-            "freed": []
+            "freed": [
+              64,
+              111,
+              208,
+              262,
+              276,
+              351,
+              356,
+              360,
+              361,
+              373,
+              388,
+              396,
+              417
+            ]
           },
           "asked": 0.03,
           "went": 0.03,
-          "ms": 72,
-          "msOneCall": 83,
+          "ms": 83,
+          "msOneCall": 88,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -610,7 +655,21 @@
               "said": [
                 "No friction pins hold this part: drag it"
               ],
-              "freed": []
+              "freed": [
+                64,
+                111,
+                208,
+                262,
+                276,
+                351,
+                356,
+                360,
+                361,
+                373,
+                388,
+                396,
+                417
+              ]
             }
           ],
           "shift": {
@@ -618,25 +677,39 @@
             "said": [
               "No friction pins hold this part: drag it"
             ],
-            "freed": []
+            "freed": [
+              64,
+              111,
+              208,
+              262,
+              276,
+              351,
+              356,
+              360,
+              361,
+              373,
+              388,
+              396,
+              417
+            ]
           },
           "asked": 0.63,
           "went": -0.63,
-          "ms": 879,
-          "msOneCall": 76,
+          "ms": 952,
+          "msOneCall": 84,
           "stops": [],
           "moved": {
             "p66 11949": [
-              8.95,
-              0.02
+              8.79,
+              0.06
             ],
             "p76 11949": [
               63,
-              0.03
+              0.07
             ],
             "p96 4254": [
-              3.58,
-              1.37
+              3.52,
+              1.34
             ],
             "p97 4254": [
               25.2,
@@ -761,54 +834,34 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p58 57515",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.035 rad (96/496)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p58 57515: a travel of 0.2 rad or less each way, stopped at -0.035 rad (96/496)",
-      "seconds": 35
+      "seconds": 35,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:31:10.376Z"
     },
     {
       "function": 5,
       "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
-      "verdict": "not decided",
-      "msOneCall": 118,
-      "msPerStep": 78,
+      "verdict": "shown",
+      "msOneCall": 109,
+      "msPerStep": 60,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
-        "reach": 20,
-        "A": 1,
-        "B": 33
+        "reach": 21,
+        "A": 2,
+        "B": 34
       },
-      "stop": {
-        "control": "p241 32063",
-        "way": 1,
-        "went": 0.066,
-        "asked": 0.43,
-        "by": [
-          "250/262"
-        ]
-      },
-      "stops": [
-        "250/262"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p229 32063",
           "way": 1,
           "asked": 0.43,
           "went": 0.43,
-          "ms": 592,
-          "msOneCall": 118,
+          "ms": 594,
+          "msOneCall": 109,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -834,7 +887,7 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 51,
+          "ms": 49,
           "msOneCall": 33,
           "stops": [],
           "moved": {
@@ -859,39 +912,10 @@
         {
           "control": "p241 32063",
           "way": 1,
-          "asked": 0.43,
-          "went": 0.066,
-          "ms": 147,
-          "msOneCall": 63,
-          "stops": [
-            "250/262"
-          ],
-          "moved": {
-            "p235 11950": [
-              0,
-              0
-            ],
-            "p236 11950": [
-              6.62,
-              0
-            ],
-            "p290 4254": [
-              0,
-              0
-            ],
-            "p292 4254": [
-              2.65,
-              1.06
-            ]
-          }
-        },
-        {
-          "control": "p241 32063",
-          "way": -1,
           "asked": 0.07,
-          "went": -0.07,
-          "ms": 108,
-          "msOneCall": 67,
+          "went": 0.07,
+          "ms": 121,
+          "msOneCall": 75,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -908,7 +932,34 @@
             ],
             "p292 4254": [
               2.8,
-              1.08
+              1.12
+            ]
+          }
+        },
+        {
+          "control": "p241 32063",
+          "way": -1,
+          "asked": 0.43,
+          "went": -0.43,
+          "ms": 549,
+          "msOneCall": 63,
+          "stops": [],
+          "moved": {
+            "p235 11950": [
+              0,
+              0
+            ],
+            "p236 11950": [
+              43,
+              0
+            ],
+            "p290 4254": [
+              0,
+              0
+            ],
+            "p292 4254": [
+              17.2,
+              5.95
             ]
           }
         }
@@ -1031,19 +1082,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p241 32063",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.066 rad (250/262)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p241 32063: a travel of 0.2 rad or less each way, stopped at +0.066 rad (250/262)",
-      "seconds": 62
+      "seconds": 65,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:31:10.376Z"
     },
     {
       "function": 7,

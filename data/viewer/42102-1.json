@@ -350,13 +350,13 @@
       "function": 3,
       "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
       "verdict": "shown",
-      "msOneCall": 6,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 3,
+        "open": 4,
         "collisions": 0,
         "first": 0,
-        "reach": 1,
+        "reach": 2,
         "A": 2,
         "B": 8
       },
@@ -373,10 +373,13 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            18
+          ],
           "asked": 0.16,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 6,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -415,10 +418,13 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            18
+          ],
           "asked": 0.69,
           "went": 0,
-          "ms": 1,
-          "msOneCall": 4,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -478,15 +484,15 @@
           ],
           "went": {
             "p103 32524": [
-              28.91,
+              28.92,
               16.73
             ],
             "p107 32498": [
-              29.48,
+              29.49,
               19.09
             ],
             "p108 32498": [
-              29.48,
+              29.49,
               19.09
             ]
           },
@@ -514,11 +520,13 @@
         }
       ],
       "decidedBy": [
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 28.91",
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 28.91"
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 28.92",
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 28.92"
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 14
+      "seconds": 16,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:41:35.516Z"
     },
     {
       "function": 4,

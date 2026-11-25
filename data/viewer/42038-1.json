@@ -15,14 +15,14 @@
         "reason": "The viewer sweep does not show it: with Shift pressed on the steering gear p170 (no friction pin holds it), the viewer's turn of it goes 0 both ways and a pointer drag turns it 0; the listed parts move 0.1 at most (the sweep at 85aa8904, decision 355). The check turns it 1.5 rad each way."
       },
       "verdict": "shown",
-      "msOneCall": 46,
-      "msPerStep": null,
+      "msOneCall": 35,
+      "msPerStep": 6,
       "time": {
-        "open": 7,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
+        "A": 2,
         "B": 8
       },
       "stop": null,
@@ -39,27 +39,31 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            278,
+            279
+          ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 21,
-          "msOneCall": 46,
+          "went": 1.5,
+          "ms": 263,
+          "msOneCall": 35,
           "stops": [],
           "moved": {
             "p290 32270": [
-              0,
-              0
+              0.01,
+              85.94
             ],
             "p288 64781": [
-              0,
+              23.84,
               0
             ],
             "p284 92909": [
-              0,
-              0
+              21.49,
+              34.15
             ],
             "p285 92909": [
-              0,
-              0
+              21.49,
+              34.15
             ],
             "p237 92909": [
               0,
@@ -82,27 +86,31 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            278,
+            279
+          ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 16,
-          "msOneCall": 16,
+          "went": -1.5,
+          "ms": 246,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p290 32270": [
-              0,
-              0
+              0.01,
+              85.94
             ],
             "p288 64781": [
-              0,
+              23.84,
               0
             ],
             "p284 92909": [
-              0,
-              0
+              21.49,
+              34.15
             ],
             "p285 92909": [
-              0,
-              0
+              21.49,
+              34.15
             ],
             "p237 92909": [
               0,
@@ -179,8 +187,9 @@
           ]
         }
       ],
-      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 16
+      "seconds": 17,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:31:19.655Z"
     },
     {
       "function": 2,

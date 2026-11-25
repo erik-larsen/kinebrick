@@ -195,37 +195,27 @@
     {
       "function": 5,
       "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
-      "verdict": "not decided",
-      "msOneCall": 202,
-      "msPerStep": 85,
+      "verdict": "shown",
+      "msOneCall": 198,
+      "msPerStep": 78,
       "time": {
         "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 105,
+        "reach": 115,
         "A": 2,
-        "B": 49
+        "B": 50
       },
-      "stop": {
-        "control": "p543 57515",
-        "way": -1,
-        "went": -0.067,
-        "asked": 0.27,
-        "by": [
-          "547/546"
-        ]
-      },
-      "stops": [
-        "547/546"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p535 57515",
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 167,
-          "msOneCall": 202,
+          "ms": 145,
+          "msOneCall": 198,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -243,8 +233,8 @@
           "way": -1,
           "asked": 0.27,
           "went": -0.27,
-          "ms": 443,
-          "msOneCall": 88,
+          "ms": 393,
+          "msOneCall": 82,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -260,10 +250,29 @@
         {
           "control": "p543 57515",
           "way": 1,
+          "asked": 0.27,
+          "went": 0.27,
+          "ms": 397,
+          "msOneCall": 77,
+          "stops": [],
+          "moved": {
+            "p2731 23800": [
+              0,
+              0
+            ],
+            "p2734 23800": [
+              16.2,
+              0.63
+            ]
+          }
+        },
+        {
+          "control": "p543 57515",
+          "way": -1,
           "asked": 0.07,
-          "went": 0.07,
-          "ms": 124,
-          "msOneCall": 83,
+          "went": -0.07,
+          "ms": 156,
+          "msOneCall": 69,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -272,28 +281,7 @@
             ],
             "p2734 23800": [
               4.2,
-              0.22
-            ]
-          }
-        },
-        {
-          "control": "p543 57515",
-          "way": -1,
-          "asked": 0.27,
-          "went": -0.067,
-          "ms": 165,
-          "msOneCall": 80,
-          "stops": [
-            "547/546"
-          ],
-          "moved": {
-            "p2731 23800": [
-              0,
-              0
-            ],
-            "p2734 23800": [
-              4.05,
-              0.37
+              0.39
             ]
           }
         }
@@ -385,7 +373,7 @@
             ],
             "p2734 23800": [
               20.89,
-              0.36
+              0.31
             ]
           },
           "staysWent": {},
@@ -396,19 +384,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p543 57515",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p543 57515: a travel of 0.2 rad or less each way, stopped at -0.067 rad (547/546)",
-      "seconds": 171
+      "seconds": 183,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:33:31.349Z"
     },
     {
       "function": 6,
@@ -1118,13 +1096,13 @@
       "does": "The seats sit on their own pins and can be tipped or slid by hand.",
       "verdict": "not shown",
       "why": "B: the control could not be seen",
-      "msOneCall": 213,
-      "msPerStep": 27,
+      "msOneCall": 206,
+      "msPerStep": 26,
       "time": {
-        "open": 16,
+        "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 2208,
+        "reach": 639,
         "A": 5,
         "B": 0
       },
@@ -1136,8 +1114,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1166,
-          "msOneCall": 213,
+          "ms": 1121,
+          "msOneCall": 206,
           "stops": [],
           "moved": {}
         },
@@ -1146,8 +1124,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1166,
-          "msOneCall": 72,
+          "ms": 1062,
+          "msOneCall": 87,
           "stops": [],
           "moved": {}
         },
@@ -1156,8 +1134,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1126,
-          "msOneCall": 69,
+          "ms": 1048,
+          "msOneCall": 61,
           "stops": [],
           "moved": {}
         },
@@ -1166,8 +1144,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1148,
-          "msOneCall": 71,
+          "ms": 1059,
+          "msOneCall": 65,
           "stops": [],
           "moved": {}
         }
@@ -1182,7 +1160,9 @@
           "seen": false
         }
       ],
-      "seconds": 2229
+      "seconds": 661,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:33:31.349Z"
     }
   ]
 }

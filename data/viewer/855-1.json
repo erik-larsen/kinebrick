@@ -965,11 +965,11 @@
       "msOneCall": 14,
       "msPerStep": 6,
       "time": {
-        "open": 12,
+        "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 56,
-        "A": 152,
+        "reach": 57,
+        "A": 162,
         "B": 53
       },
       "stop": null,
@@ -1027,7 +1027,7 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 105,
+          "ms": 115,
           "msOneCall": 14,
           "stops": [],
           "moved": {}
@@ -1084,120 +1084,120 @@
           },
           "asked": 0.03,
           "went": -0.03,
+          "ms": 6,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p158 3582",
+          "way": 1,
+          "shiftOthers": [
+            {
+              "part": 157,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                157,
+                158,
+                159,
+                160
+              ]
+            },
+            {
+              "part": 159,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                157,
+                158,
+                159,
+                160
+              ]
+            },
+            {
+              "part": 160,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                157,
+                158,
+                159,
+                160
+              ]
+            }
+          ],
+          "asked": 0.03,
+          "went": 0.03,
           "ms": 5,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p158 3582",
+          "way": -1,
+          "shiftOthers": [
+            {
+              "part": 157,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                157,
+                158,
+                159,
+                160
+              ]
+            },
+            {
+              "part": 159,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                157,
+                158,
+                159,
+                160
+              ]
+            },
+            {
+              "part": 160,
+              "seen": true,
+              "said": [
+                "Finding the pins that hold it…",
+                "No friction pins hold this part: drag it"
+              ],
+              "freed": [
+                157,
+                158,
+                159,
+                160
+              ]
+            }
+          ],
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 79,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
         },
         {
-          "control": "p158 3582",
-          "way": 1,
-          "shiftOthers": [
-            {
-              "part": 157,
-              "seen": true,
-              "said": [
-                "Finding the pins that hold it…",
-                "No friction pins hold this part: drag it"
-              ],
-              "freed": [
-                157,
-                158,
-                159,
-                160
-              ]
-            },
-            {
-              "part": 159,
-              "seen": true,
-              "said": [
-                "Finding the pins that hold it…",
-                "No friction pins hold this part: drag it"
-              ],
-              "freed": [
-                157,
-                158,
-                159,
-                160
-              ]
-            },
-            {
-              "part": 160,
-              "seen": true,
-              "said": [
-                "Finding the pins that hold it…",
-                "No friction pins hold this part: drag it"
-              ],
-              "freed": [
-                157,
-                158,
-                159,
-                160
-              ]
-            }
-          ],
-          "asked": 0.03,
-          "went": 0.03,
-          "ms": 6,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p158 3582",
-          "way": -1,
-          "shiftOthers": [
-            {
-              "part": 157,
-              "seen": true,
-              "said": [
-                "Finding the pins that hold it…",
-                "No friction pins hold this part: drag it"
-              ],
-              "freed": [
-                157,
-                158,
-                159,
-                160
-              ]
-            },
-            {
-              "part": 159,
-              "seen": true,
-              "said": [
-                "Finding the pins that hold it…",
-                "No friction pins hold this part: drag it"
-              ],
-              "freed": [
-                157,
-                158,
-                159,
-                160
-              ]
-            },
-            {
-              "part": 160,
-              "seen": true,
-              "said": [
-                "Finding the pins that hold it…",
-                "No friction pins hold this part: drag it"
-              ],
-              "freed": [
-                157,
-                158,
-                159,
-                160
-              ]
-            }
-          ],
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 81,
-          "msOneCall": 6,
-          "stops": [],
-          "moved": {}
-        },
-        {
           "control": "p159 3582",
           "way": 1,
           "shiftOthers": [
@@ -1246,8 +1246,8 @@
           ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 6,
-          "msOneCall": 7,
+          "ms": 4,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -1300,8 +1300,8 @@
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 91,
-          "msOneCall": 6,
+          "ms": 72,
+          "msOneCall": 5,
           "stops": [],
           "moved": {}
         },
@@ -1354,8 +1354,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 87,
-          "msOneCall": 6,
+          "ms": 88,
+          "msOneCall": 7,
           "stops": [],
           "moved": {}
         },
@@ -1408,7 +1408,7 @@
           ],
           "asked": 0.03,
           "went": -0.03,
-          "ms": 4,
+          "ms": 5,
           "msOneCall": 4,
           "stops": [],
           "moved": {}
@@ -1708,7 +1708,9 @@
           ]
         }
       ],
-      "seconds": 392
+      "seconds": 402,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:57:00.400Z"
     }
   ]
 }

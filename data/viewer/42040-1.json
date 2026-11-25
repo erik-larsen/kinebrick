@@ -270,15 +270,15 @@
       "function": 7,
       "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
       "verdict": "shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 8,
-        "A": 8,
-        "B": 14
+        "A": 9,
+        "B": 15
       },
       "stop": null,
       "stops": [],
@@ -293,10 +293,13 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            331
+          ],
           "asked": 0.4,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p371 2739a": [
@@ -323,6 +326,9 @@
             ],
             "freed": []
           },
+          "pinsAsked": [
+            331
+          ],
           "asked": 0.3,
           "went": 0,
           "ms": 0,
@@ -402,7 +408,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 35
+      "seconds": 38,
+      "commit": "485a283d",
+      "date": "2026-11-25T14:32:52.092Z"
     },
     {
       "function": 9,
