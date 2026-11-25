@@ -136,6 +136,15 @@ const BALL = 0.05 * PLAY_SCALE;
 const TIE_BREAK = 0.1;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
+// Setting a model down on its tyres (see Kinematics.seat): a tyre up to SEAT_REACH LDU above the
+// lowest of its model's is one it should stand on, and is set down to within SEAT_FIT of the
+// ground; by no joint turning more than SEAT_TURN radians, in at most SEAT_ROUNDS steps, each
+// turning a joint at most SEAT_STEP.
+const SEAT_REACH = 6;
+const SEAT_FIT = 0.05;
+const SEAT_TURN = 0.1;
+const SEAT_ROUNDS = 30;
+const SEAT_STEP = 0.05;
 // How far off its axle's axis a gear's or tyre's centre may be and still be taken on it (see
 // onAxis), in LDU: a part placed a hair off, not one on another axle.
 const ON_AXIS = 1;
@@ -209,6 +218,9 @@ export interface Options {
   // time, and would otherwise work out that motion again. On; KINEBRICK_KEEP_AHEAD=0 turns it off,
   // for comparing (decision 174 of 2026-11-17).
   keepAhead: boolean;
+  // A model that stands a little off its tyres as built is set down on them at the start (see
+  // Kinematics.seat). Off by default while it is proved; KINEBRICK_SEAT=1 turns it on.
+  seat: boolean;
   // A drag's steps after its first are worked on its working set, the tree's columns its first
   // step turned and those rows tie to them, every other column fixed (decision 266 of 2026-11-20;
   // see Kinematics.turnJoint). On by default (decision 272); KINEBRICK_WORKING_SET=0 turns it off. The audit: after this many
@@ -248,6 +260,7 @@ export const experiments: Options = {
   pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
   keepAhead: setting('KINEBRICK_KEEP_AHEAD') !== '0',
+  seat: setting('KINEBRICK_SEAT') === '1',
   workingSet: setting('KINEBRICK_WORKING_SET') !== '0',
   workingSetAudit: Number(setting('KINEBRICK_WORKING_SET_AUDIT') ?? 0),
   workingSetCompare: setting('KINEBRICK_WORKING_SET_COMPARE') === '1',
@@ -477,6 +490,7 @@ export class Kinematics {
     }));
     this.built = true;
     this.setOnRails();
+    this.seat();
   }
 
   // A train layout's cars set on the rails, coupled: a layout places them by hand, a few LDU off
@@ -591,7 +605,150 @@ export class Kinematics {
     this.treadScrubRate = this.mech.treads.map(() => 0);
     for (const root of this.rootPoses.keys()) this.rootPoses.set(root, new Matrix4());
     this.updatePoses();
+    if (this.seated) {
+      for (const [root, pose] of this.seated.roots) this.rootPoses.set(root, pose.clone());
+      this.jointAngles = this.seated.jointAngles.slice();
+      this.updatePoses();
+    }
     if (this.built) this.setOnRails();
+  }
+
+  // Where the model stands set down on its tyres at the start (see seat), which reset() puts it
+  // back to; null where it stands as built.
+  private seated: KinematicsState | null = null;
+
+  // Sets the model down on its tyres where some stand a little above the ground as built (the
+  // lowest of its model's: see findGround), as it would stand under its own weight. A model is
+  // often built so: the 42123 McLaren Senna GTR's front tyres 1.37 LDU above its rear ones, so
+  // that it stood on two; the 42060 Roadwork Crew's truck 4 LDU above its trailer's tyres; the
+  // 42038 Arctic Truck's track units, which rock on their hubs, each on one of its two lower
+  // wheels. A tyre up to SEAT_REACH above the ground is set down on it: first by tipping the model
+  // as one (as settle does), and where that can't put them all down, by turning its joints too,
+  // the least that does (a hitch, a bogie), the springs held. Kept only where every such tyre ends
+  // on the ground, none below it, and no joint turned more than SEAT_TURN; else the model stands
+  // as built. Then the ground and the tyres on it are found afresh where it stands.
+  private seat() {
+    if (!this.options.seat || this.options.lifted || this.mech.rails?.length || !this.mech.treads.length) return;
+    const contacts = this.contactTreads;
+    this.contactTreads = []; // no tyre rows, and no settling, while it is set down
+    let moved = false;
+    try {
+      for (const f of this.frames) moved = this.seatFrame(f) || moved;
+    } finally {
+      this.contactTreads = contacts;
+    }
+    if (!moved) return;
+    this.seated = this.snapshot();
+    this.treadTravel = this.mech.treads.map(() => 0);
+    this.groundAfresh();
+  }
+
+  // One model's part of seat: whether it was set down.
+  private seatFrame(f: number): boolean {
+    if (this.fixedBody === f || this.stillFrames.has(f)) return false;
+    const mine = this.mech.treads.flatMap((t, i) => (this.frameOf[t.body] === f ? [i] : []));
+    const height = (i: number) => this.contactPoint(i)?.y ?? -Infinity;
+    const ground = Math.max(...mine.map(height));
+    const near = mine.filter((i) => ground - height(i) <= SEAT_REACH);
+    if (!near.some((i) => ground - height(i) >= GROUND_TOLERANCE)) return false;
+    const start = this.snapshot();
+    const off = () => Math.max(...near.map((i) => Math.abs(ground - height(i))), ...mine.map((i) => height(i) - ground));
+    // As one: down, and tipped about x and z, by least squares (see settleFrame).
+    for (let round = 0; round < 5 && off() >= SEAT_FIT; round++) {
+      const rows = near.map((i) => {
+        const p = this.contactPoint(i)!;
+        return [1, -p.z, p.x];
+      });
+      const wanted = near.map((i) => ground - height(i));
+      const gram = [0, 1, 2].map((a) => [0, 1, 2].map((b) => rows.reduce((sum, r) => sum + r[a] * r[b], 0)));
+      const [down, tipX, tipZ] = solveSymmetric(gram, [0, 1, 2].map((a) => rows.reduce((sum, r, k) => sum + r[a] * wanted[k], 0)), EPSILON);
+      const tip = screwMotion(new Vector3(tipX, 0, tipZ), new Vector3(0, down, 0));
+      for (const [root, pose] of this.rootPoses) if (this.frameOf[root] === f) pose.premultiply(tip);
+      this.updatePoses();
+    }
+    if (off() < SEAT_FIT) return true;
+    this.restore(start);
+    // With its joints: a step at a time, the least motion that sets each such tyre down by how far
+    // it stands off the ground (and those on it not at all), the loops closed after each.
+    // A step that leaves it further off is taken back and tried at half the length, a few times.
+    let best = { state: this.snapshot(), off: off() };
+    let share = 1;
+    for (let round = 0; round < SEAT_ROUNDS && best.off >= SEAT_FIT && share > 1 / 16; round++) {
+      const motion = this.seatMotion(near, ground);
+      if (!motion) break;
+      const fastest = Math.max(0, ...this.mech.joints.map((j, k) => (j.kind === 'revolute' ? Math.abs(this.jointRate(motion, k)) : 0)));
+      this.advance(motion, share * Math.min(1, SEAT_STEP / Math.max(fastest, EPSILON)));
+      if (off() < best.off) best = { state: this.snapshot(), off: off() };
+      else {
+        this.restore(best.state);
+        share /= 2;
+      }
+    }
+    this.restore(best.state);
+    const turned = Math.max(0, ...this.jointAngles.map((a, j) => Math.abs(a - start.jointAngles[j])));
+    if (off() < SEAT_FIT && turned <= SEAT_TURN) return true;
+    this.restore(start);
+    return false;
+  }
+
+  // The least motion (in the tree basis's coordinates, as a motion vector) by which the tyres
+  // `near` go down by how far each stands above `ground`, the loops kept and the springs held;
+  // null if none moves them.
+  private seatMotion(near: number[], ground: number): number[] | null {
+    const basis = this.treeBasis();
+    const q = basis[0]?.length ?? 0;
+    if (q === 0) return null;
+    const rows = inBasis([...this.buildEquations(null, null, true), ...this.springRows()], basis);
+    const motions = orthonormalize(nullSpace(rows, q));
+    if (!motions.length) return null;
+    const down = inBasis(
+      near.map((i) => {
+        const t = this.mech.treads[i];
+        const row = new BodyRow(6 * this.bodyCount);
+        const p = this.contactPoint(i)!;
+        for (let k = 0; k < 3; k++) addPointVelocity(row, t.body, p, k, DOWN.getComponent(k));
+        return row;
+      }),
+      basis,
+    );
+    const a = down.map((row) => motions.map((m) => dot(row, m)));
+    const wanted = near.map((i) => ground - (this.contactPoint(i)?.y ?? ground));
+    const k = motions.length;
+    // The least motion by its joints' turning: a model's own going down and tipping (its frame's
+    // turning about x and z and moving along y) costs next to nothing, so it is set down as one
+    // first, and only the joints that must turn do (a trailer on its hitch). Its sliding and
+    // turning on the ground cost as a joint's turning does: settling doesn't move a model across it.
+    const weight = new Array(q).fill(1);
+    for (const f of this.frames) {
+      const first = this.rootColumn.get(f);
+      if (first !== undefined) for (const c of [first, first + 2, first + 4]) if (c < q) weight[c] = 1e-6;
+    }
+    const fit = Array.from({ length: k }, (_, x) => Array.from({ length: k }, (_, y) => a.reduce((sum, r) => sum + r[x] * r[y], 0)));
+    const scale = Math.max(EPSILON, ...fit.map((row, x) => row[x]));
+    const gram = fit.map((row, x) => row.map((v, y) => v + 1e-8 * scale * motions[x].reduce((sum, m, c) => sum + weight[c] * m * motions[y][c], 0)));
+    const amounts = solveSymmetric(gram, Array.from({ length: k }, (_, x) => a.reduce((sum, r, n) => sum + r[x] * wanted[n], 0)), EPSILON);
+    const z = combine(motions, amounts);
+    if (!z.some((x) => Math.abs(x) > EPSILON)) return null;
+    return fromBasis(z, basis);
+  }
+
+  // The ground and the tyres on it, found again where the model now stands (see seat and findGround).
+  private groundAfresh() {
+    const at = this.mech.treads.map((_, i) => this.contactPoint(i));
+    const lowest = new Map<number, number>();
+    this.mech.treads.forEach((t, i) => {
+      const f = this.frameOf[t.body];
+      const p = at[i];
+      if (p && this.fixedBody !== f && !this.stillFrames.has(f)) lowest.set(f, Math.max(lowest.get(f) ?? -Infinity, p.y));
+    });
+    if (!lowest.size) return;
+    this.groundY = lowest.get(0) ?? Math.max(...lowest.values());
+    this.contactTreads = [];
+    at.forEach((p, i) => {
+      this.contactHeights[i] = p ? p.y : 0;
+      const g = lowest.get(this.frameOf[this.mech.treads[i].body]);
+      if (p && g !== undefined && Math.abs(p.y - g) < GROUND_TOLERANCE) this.contactTreads.push(i);
+    });
   }
 
   // Moves the whole model as one by `pose`, opening no joint: a model worked out afresh where its
