@@ -309,6 +309,21 @@ export function setUpInteraction(s: InteractionSetup) {
     }
   }
 
+  // Whether a worm the drag's holds keep still (see Kinematics.holdWhatTheDragDoesntNeed) is what
+  // stops a part that can't move: it could move by `moves` without the drag's holds. A worm held is
+  // not always the cause: the 42038 Arctic Truck's steering gear, which friction pins hold, has its
+  // crane's two linear actuators held too, and a press of it said nothing, freed nothing and turned
+  // nothing, a held worm having counted as a motion. The holds are kept as they were.
+  function wormIsWhy(moves: () => boolean): boolean {
+    const holds = s.kin.drag;
+    s.kin.letGoAfterDrag();
+    try {
+      return moves();
+    } finally {
+      s.kin.drag = holds;
+    }
+  }
+
   // Where a part is on the screen, in client coordinates.
   function onScreen(part: number): { x: number; y: number } {
     const p = new Vector3().setFromMatrixPosition(s.model.children[part].matrixWorld).project(s.camera);
@@ -670,17 +685,20 @@ export function setUpInteraction(s: InteractionSetup) {
     if (!link || !s.kin.turnsLikeAKnob(body)) return startPush(part, seenFrom, clockwise);
     const at = onScreen(part);
     let wormLocked = false;
-    const canTurn = possibleWithScrub(
+    let canTurn = false;
+    // A worm held stops raising the scrub, which wouldn't free it, but isn't a motion.
+    possibleWithScrub(
       () => {
         wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
-        const can = s.kin.jointMotion(link.joint) !== null;
+        canTurn = s.kin.jointMotion(link.joint) !== null;
         s.kin.letGoAfterDrag();
-        return can || wormLocked;
+        return canTurn || wormLocked;
       },
       at.x,
       at.y,
     );
     if (!canTurn) {
+      wormLocked &&= s.kin.jointMotion(link.joint) !== null;
       const why = `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
       // An electric motor's output held still, perhaps by friction pins: the motor's drive forces
       // them as a hand would, so they're freed (see freeIfHeld), once, as the motor starts, and
@@ -726,7 +744,7 @@ export function setUpInteraction(s: InteractionSetup) {
       },
       at.x,
       at.y,
-    );
+    ) && directions > 0 && speeds.some((v) => v.length() >= 1e-9);
     if (!canMove) {
       const why = wormLocked ? lockedWhy(body) : s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck();
       return `This part can't move: ${why}`;
@@ -1102,7 +1120,11 @@ export function setUpInteraction(s: InteractionSetup) {
       // A part that hangs on a hinge whose hinge has no exact motion can't start a push where it
       // hangs: it's held, perhaps by friction pins, as the check has it (see Kinematics.hingeStuck).
       const hingeStuck = d.joint < 0 && s.kin.hingeStuck(body, [grabStart]);
-      const canMove = !hingeStuck && possibleWithScrub(
+      // An exact motion only: play is the last resort, after friction pins (see below).
+      const moves = () => (d.joint >= 0 ? s.kin.jointMotion(d.joint, false) !== null : grabDirections(d) > 0);
+      let canMove = false;
+      // A worm held stops raising the scrub, which wouldn't free it, but isn't a motion.
+      if (!hingeStuck) possibleWithScrub(
         () => {
           if (d.joint >= 0) {
             wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null, d.joint);
@@ -1110,12 +1132,15 @@ export function setUpInteraction(s: InteractionSetup) {
             const directions = grabDirections(d);
             if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
           }
-          // An exact motion only: play is the last resort, after friction pins (see below).
-          return wormLocked || (d.joint >= 0 ? s.kin.jointMotion(d.joint, false) !== null : grabDirections(d) > 0);
+          canMove = moves();
+          return canMove || wormLocked;
         },
         e.clientX,
         e.clientY,
       );
+      // Held still by a worm only where, without the drag's holds, it would move: else it may be
+      // friction pins that hold it, asked for below.
+      if (!canMove && wormLocked) wormLocked = wormIsWhy(moves);
 
       // The arc a turning drag shows, from the hub to where the part was grabbed.
       const showArc = () => {
