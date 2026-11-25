@@ -592,10 +592,27 @@
 0 // (its -y), which is the path a track of them runs round its wheels along.
 0 !KINEBRICK TRACK [depth=8]
 
+0 FILE 15379.dat
+0 // Technic Chain Tread 2.5 Wide, the 42021 Snowmobile's: LDraw marks it an alias of 3873 (its
+0 // title begins "="), and its geometry is the same, so it reaches the same 8 LDU out beyond the
+0 // line through its pins (its -y) (decision 325).
+0 !KINEBRICK TRACK [depth=8]
+
 0 FILE 69910.dat
 0 // Technic Chain Tread 7 Wide with Cleat (the 42131 Cat D11's): its cleats reach 22 LDU out
 0 // beyond the line through its pins (its -y), measured from its shape.
 0 !KINEBRICK TRACK [depth=22]
+
+0 FILE 57518.dat
+0 // Technic Chain Tread 5 Wide: its tread reaches 14 LDU out beyond the line through its pins (its
+0 // -y), measured from its shape: the lowest y of its faces, through all its subfiles, is -14, as
+0 // 3873's is -8 and 69910's -22 (decision 325).
+0 !KINEBRICK TRACK [depth=14]
+
+0 FILE 88323.dat
+0 // Technic Chain Tread 5 Wide Reinforced: the same reach as 57518, 14 LDU beyond the line
+0 // through its pins (its -y), measured from its shape the same way.
+0 !KINEBRICK TRACK [depth=14]
 
 0 // Grooves.
 
