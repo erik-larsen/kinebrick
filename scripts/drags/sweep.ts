@@ -122,7 +122,10 @@ if (args[0] === '--judge') {
       const { stopsJudged, stopVerdict, byHand, moved, ...rest } = line;
       const base = moved ? { ...rest, verdict: moved.verdict, why: moved.why } : rest;
       if (!base.why) delete base.why;
-      return judge(`${rec.set} ${line.function}`, fns[line.function - 1], base);
+      const out = judge(`${rec.set} ${line.function}`, fns[line.function - 1], judgedByHand(fns[line.function - 1], base));
+      // The keys in the order the record had them, new ones after, so that a judgment that changes
+      // nothing leaves the record as it was.
+      return Object.fromEntries([...Object.keys(line).filter((k) => k in out), ...Object.keys(out).filter((k) => !(k in line))].map((k) => [k, out[k]]));
     });
     writeFileSync(`data/viewer/${f}`, JSON.stringify(rec, null, 2) + '\n');
   }
@@ -271,7 +274,7 @@ async function sweepSet(set: string) {
     const file: string = fn.model ?? model;
     try {
       if (fails.get(file)) throw new Error('known');
-      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null, `${set} ${i + 1}`));
+      line = judge(`${set} ${i + 1}`, fn, judgedByHand(fn, await sweepFunction(file, fn, g, aOnly ? (f) => viewerFor(f, listed && fn.lifted ? 'lifted=1' : '') : null, `${set} ${i + 1}`)));
       if (aOnly) {
         const why = await untrusted(file, listed && fn.lifted ? 'lifted=1' : '');
         if (why) line.reopened = why;
@@ -517,7 +520,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       await v.close();
       continue;
     }
-    const parts = moves.flatMap((m: Ref) => [m.part, m.against].filter((p) => p >= 0));
+    const parts = [...moves, ...stays].flatMap((m: Ref) => [m.part, m.against].filter((p) => p >= 0));
     const isMotor = await v.page.evaluate((p) => (window as any).kinebrick.mech.roles[p] === 'motor', control);
     let shift: string[] = [];
     // How far the control and each listed part went in B: the most over B's drags, each measured
@@ -534,7 +537,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const measure = async (before: number[][]) => {
       const [c] = await v.moved([control], [before[0], before[before.length - 1]]);
       note(ref, c.ldu, c.degrees);
-      for (const m of moves) {
+      for (const m of [...moves, ...stays]) {
         const [r] = await v.moved([m.part, ...(m.against >= 0 ? [m.against] : [])], await pick(v, before, watch, [m.part, ...(m.against >= 0 ? [m.against] : [])]), m.against);
         note(m.ref, r.ldu, r.degrees);
       }
@@ -565,11 +568,13 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       }
     }
     const moved = moves.filter((m: Ref) => { const x = most.get(m.ref); return !!x && (x[0] >= MOVED || x[1] >= MOVED); }).map((m: Ref) => m.ref);
+    // The parts listed to stay, measured by hand too, for a function judged by hand (see judgedByHand).
+    const staysMoved = stays.filter((m: Ref) => { const x = most.get(m.ref); return !!x && (x[0] >= MOVED || x[1] >= MOVED); }).map((m: Ref) => m.ref);
     const c = most.get(ref) ?? [0, 0];
     const controlMoved = c[0] >= MOVED || c[1] >= MOVED;
     moved.forEach((m: string) => movedByB.add(m));
     if (controlMoved) controlsMovedByB.add(ref);
-    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), stops: await v.stops() });
+    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysWent: Object.fromEntries(stays.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysMoved, stops: await v.stops() });
     time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
@@ -877,6 +882,40 @@ async function opens(file: string): Promise<string | null> {
   } finally {
     await browser.close();
   }
+}
+
+// A control the viewer's turn does not turn (decision 329, and the orchestrator's of 2026-11-25):
+// turnPart turns only a part that turns like a knob, so a lid, a lever, a backrest or a crank goes 0
+// each way in A with no collision stopping it, though the hand (B) moves it. Where every control
+// worked is such, A, which cannot turn it, does not judge the listed parts: the hand does. The
+// function is shown if B moved every listed part and none listed to stay; the record says so. A
+// function whose A turned a control is judged as before. Records swept before B measured the parts
+// listed to stay (staysMoved) can't be judged so where the list has stays: they keep their verdict
+// and say why (byHandOpen), for a new sweep.
+function judgedByHand(fn: any, line: Record<string, any>): Record<string, any> {
+  const BY_HAND = "judged by hand: the viewer's turn does not turn this control";
+  if (line.verdict !== 'not shown' || !Array.isArray(line.A) || !Array.isArray(line.B) || fn.together) return line;
+  const controls: string[] = [fn.control].flat();
+  const Bs = controls.map((ref) => (line.B as any[]).find((b) => b.control === ref && b.seen));
+  const byHand = controls.every((ref, k) => {
+    const As = (line.A as any[]).filter((a) => a.control === ref);
+    const c = Bs[k]?.controlWent ?? [0, 0];
+    return As.length > 0 && As.every((a) => Math.abs(a.went) < 0.01 && !a.stops.length) && (c[0] >= MOVED || c[1] >= MOVED);
+  });
+  if (!byHand) return line;
+  const moves: string[] = (fn.moves ?? []).map((r: string) => refOf(r).ref);
+  const stays: string[] = (fn.stays ?? []).map((r: string) => refOf(r).ref);
+  if (stays.length && Bs.some((b) => !Array.isArray(b.staysMoved))) return { ...line, byHandOpen: `${BY_HAND}, but the parts listed to stay were not measured by hand in this record: sweep it again` };
+  const movedByB = new Set(Bs.flatMap((b) => b.moved as string[]));
+  const staysMovedByB = new Set(Bs.flatMap((b) => (b.staysMoved ?? []) as string[]));
+  const notMoved = moves.filter((m) => !movedByB.has(m));
+  const rest = String(line.why ?? '').split('; ').filter((w) => w && !w.startsWith('A: ') && !w.startsWith('by hand: ') && !w.endsWith('listed to stay moved'));
+  const bFails = rest.some((w) => w.startsWith('B: '));
+  const shown = !bFails && notMoved.length === 0 && staysMovedByB.size === 0;
+  const handWhy = [...(notMoved.length ? [`by hand: ${notMoved.join(', ')} not moved`] : []), ...(staysMovedByB.size ? [`by hand: ${[...staysMovedByB].join(', ')} listed to stay moved`] : [])];
+  const why = [...handWhy, ...rest].join('; ');
+  const { why: _, ...out } = line;
+  return { ...out, verdict: shown ? 'shown' : 'not shown', ...(why ? { why } : {}), judgedByHand: BY_HAND };
 }
 
 // The collision stops judged (decision 252): for each control a collision stopped, whether the real

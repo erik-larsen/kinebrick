@@ -1,20 +1,20 @@
 {
   "set": "42106-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:41:23.415Z",
-  "load": 20,
+  "commit": "55ee538d",
+  "date": "2026-11-25T07:12:10.585Z",
+  "load": 15.3,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 620,
-  "seconds": 153,
+  "seconds": 148,
   "functions": [
     {
       "function": 1,
       "does": "The black 12 tooth gear on the truck's cab roof steers the front wheels: its upright shaft drives a bevel gear on a long shaft running forward under the bonnet, whose 12 tooth gear slides the steering rack joining the two steering knuckles.",
       "verdict": "shown",
-      "msOneCall": 37,
+      "msOneCall": 36,
       "msPerStep": 4,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.012,
-          "ms": 120,
-          "msOneCall": 37,
+          "ms": 121,
+          "msOneCall": 36,
           "stops": [
             "23/89"
           ],
@@ -92,8 +92,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.012,
-          "ms": 110,
-          "msOneCall": 11,
+          "ms": 111,
+          "msOneCall": 10,
           "stops": [
             "23/89"
           ],
@@ -168,7 +168,7 @@
           ],
           "controlWent": [
             0,
-            68.18
+            72.19
           ],
           "moved": [
             "p84 6589",
@@ -182,33 +182,48 @@
           "went": {
             "p84 6589": [
               0,
-              68.18
+              72.19
             ],
             "p98 32270": [
               0,
-              68.18
+              72.19
             ],
             "p95 87761": [
-              18.05,
+              19.08,
               0
             ],
             "p89 48989": [
-              9.03,
-              26.08
+              9.54,
+              27.59
             ],
             "p92 48989": [
-              9.03,
-              26.08
+              9.54,
+              27.59
             ],
             "p326 56904": [
-              13.54,
-              29.71
+              14.31,
+              31.43
             ],
             "p324 56904": [
-              13.54,
-              29.71
+              14.31,
+              31.43
             ]
           },
+          "staysWent": {
+            "p322 56904": [
+              0,
+              0
+            ],
+            "p328 56904": [
+              0,
+              0
+            ],
+            "p2085 32270": [
+              0,
+              0.84
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "23/89"
           ]
@@ -225,16 +240,16 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 20
+      "seconds": 19
     },
     {
       "function": 3,
       "does": "The trailer hitches on a pin at the truck's back and swings behind it as the truck turns.",
       "verdict": "shown",
-      "msOneCall": 40,
-      "msPerStep": 8,
+      "msOneCall": 38,
+      "msPerStep": 7,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 5,
@@ -249,8 +264,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 285,
-          "msOneCall": 40,
+          "ms": 281,
+          "msOneCall": 38,
           "stops": [],
           "moved": {
             "p2060 64782": [
@@ -272,8 +287,8 @@
           "way": -1,
           "asked": 0.57,
           "went": -0.57,
-          "ms": 123,
-          "msOneCall": 11,
+          "ms": 120,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p2060 64782": [
@@ -317,27 +332,37 @@
               33.38
             ]
           },
+          "staysWent": {
+            "p322 56904": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "314/2057"
           ]
         }
       ],
-      "seconds": 34
+      "seconds": 33
     },
     {
       "function": 4,
       "does": "The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end.",
       "verdict": "not shown",
-      "why": "A: p2084 40490, p2089 32524, p2095 32524 not moved",
       "msOneCall": 1,
       "msPerStep": null,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 16
+        "B": 15
       },
       "stop": null,
       "stops": [],
@@ -348,7 +373,6 @@
           "shift": {
             "seen": true,
             "said": [
-              "Finding the pins that hold it…",
               "No friction pins hold this part: drag it"
             ],
             "freed": []
@@ -387,7 +411,6 @@
           "shift": {
             "seen": true,
             "said": [
-              "Finding the pins that hold it…",
               "No friction pins hold this part: drag it"
             ],
             "freed": []
@@ -428,7 +451,6 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [
-            "Finding the pins that hold it…",
             "No friction pins hold this part: drag it"
           ],
           "drags": [
@@ -451,7 +473,7 @@
           ],
           "controlWent": [
             164.7,
-            37.71
+            37.69
           ],
           "moved": [
             "p2084 40490",
@@ -465,13 +487,27 @@
             ],
             "p2089 32524": [
               95.02,
-              35.46
+              35.44
             ],
             "p2095 32524": [
               95.62,
-              35.46
+              35.44
             ]
           },
+          "staysWent": {
+            "p2060 64782": [
+              232.64,
+              33.43
+            ],
+            "p2136 55982": [
+              220.15,
+              33.43
+            ]
+          },
+          "staysMoved": [
+            "p2060 64782",
+            "p2136 55982"
+          ],
           "stops": [
             "2074/2089",
             "2066/2101",
@@ -480,13 +516,15 @@
           ]
         }
       ],
-      "seconds": 23
+      "why": "by hand: p2060 64782, p2136 55982 listed to stay moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 22
     },
     {
       "function": 6,
       "does": "The bike's rear wheel winds its pull-back motor: a 16 tooth gear on the rear wheel's axle drives a 16 tooth idler, which drives the 16 tooth gear on the motor's shaft.",
       "verdict": "shown",
-      "msOneCall": 38,
+      "msOneCall": 35,
       "msPerStep": 3,
       "time": {
         "open": 6,
@@ -494,7 +532,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 14
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -504,8 +542,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 131,
-          "msOneCall": 38,
+          "ms": 132,
+          "msOneCall": 35,
           "stops": [],
           "moved": {
             "p2190 94925": [
@@ -539,8 +577,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 120,
-          "msOneCall": 7,
+          "ms": 115,
+          "msOneCall": 8,
           "stops": [],
           "moved": {
             "p2190 94925": [
@@ -623,19 +661,30 @@
               147.85
             ]
           },
+          "staysWent": {
+            "p2178 12799": [
+              0,
+              0
+            ],
+            "p2222 56145": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 20
+      "seconds": 19
     },
     {
       "function": 8,
       "does": "The bike's front wheel rolls freely on its axle in the fork.",
       "verdict": "shown",
-      "msOneCall": 38,
+      "msOneCall": 35,
       "msPerStep": 3,
       "time": {
-        "open": 6,
+        "open": 5,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -651,7 +700,7 @@
           "asked": 1.5,
           "went": 1.5,
           "ms": 149,
-          "msOneCall": 38,
+          "msOneCall": 35,
           "stops": [],
           "moved": {}
         },
@@ -660,8 +709,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 137,
-          "msOneCall": 9,
+          "ms": 135,
+          "msOneCall": 8,
           "stops": [],
           "moved": {}
         }
@@ -697,10 +746,12 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 21
+      "seconds": 19
     },
     {
       "function": 10,
@@ -714,7 +765,7 @@
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 27
+        "B": 26
       },
       "stop": {
         "control": "p380 24119",
@@ -735,7 +786,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 140,
+          "ms": 134,
           "msOneCall": 37,
           "stops": [],
           "moved": {
@@ -768,7 +819,7 @@
           "asked": 1.5,
           "went": 0,
           "ms": 6,
-          "msOneCall": 6,
+          "msOneCall": 5,
           "stops": [
             "109/402"
           ],
@@ -784,7 +835,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 123,
+          "ms": 119,
           "msOneCall": 8,
           "stops": [],
           "moved": {
@@ -826,6 +877,13 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p195 32270": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "109/380",
             "156/380"
@@ -861,6 +919,13 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {
+            "p195 32270": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [],
           "stops": [
             "109/402"
           ]
@@ -882,7 +947,7 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 36
+      "seconds": 35
     }
   ]
 }

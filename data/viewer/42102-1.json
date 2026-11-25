@@ -1,17 +1,17 @@
 {
   "set": "42102-1",
-  "commit": "85aa8904",
-  "date": "2026-11-25T04:39:38.180Z",
-  "load": 19.5,
+  "commit": "55ee538d",
+  "date": "2026-11-25T07:10:27.457Z",
+  "load": 17.1,
   "part": "A and B, Shift where the check freed pins, the list's lifted and held, each turn ended as a drag",
   "parts": 128,
-  "seconds": 104,
+  "seconds": 102,
   "functions": [
     {
       "function": 1,
       "does": "The black 12 tooth gear on top of the cab steers the front wheels: its shaft runs down to a 16 tooth gear, which drives a second 16 tooth gear and then a third on the steering post between the front wheels; that post's arm swings the two steering knuckles.",
       "verdict": "shown",
-      "msOneCall": 12,
+      "msOneCall": 11,
       "msPerStep": 2,
       "time": {
         "open": 4,
@@ -39,8 +39,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0.384,
-          "ms": 25,
-          "msOneCall": 12,
+          "ms": 22,
+          "msOneCall": 11,
           "stops": [
             "0/8"
           ],
@@ -92,8 +92,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -0.384,
-          "ms": 18,
-          "msOneCall": 2,
+          "ms": 21,
+          "msOneCall": 3,
           "stops": [
             "0/8"
           ],
@@ -209,6 +209,25 @@
               63.85
             ]
           },
+          "staysWent": {
+            "p125 55982": [
+              0,
+              2.33
+            ],
+            "p127 55982": [
+              0,
+              2.33
+            ],
+            "p103 32524": [
+              0,
+              1.84
+            ]
+          },
+          "staysMoved": [
+            "p125 55982",
+            "p127 55982",
+            "p103 32524"
+          ],
           "stops": [
             "0/8"
           ]
@@ -225,13 +244,13 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 17
+      "seconds": 16
     },
     {
       "function": 2,
       "does": "Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 12,
       "msPerStep": 1,
       "time": {
         "open": 2,
@@ -249,8 +268,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 63,
-          "msOneCall": 13,
+          "ms": 62,
+          "msOneCall": 12,
           "stops": [],
           "moved": {
             "p112 44294": [
@@ -284,8 +303,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 52,
-          "msOneCall": 2,
+          "ms": 56,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p112 44294": [
@@ -331,8 +350,7 @@
       "function": 3,
       "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
       "verdict": "not shown",
-      "why": "A: p103 32524, p107 32498, p108 32498 not moved",
-      "msOneCall": 7,
+      "msOneCall": 5,
       "msPerStep": null,
       "time": {
         "open": 4,
@@ -357,8 +375,8 @@
           },
           "asked": 0.16,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 7,
+          "ms": 6,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -399,8 +417,8 @@
           },
           "asked": 0.69,
           "went": 0,
-          "ms": 2,
-          "msOneCall": 5,
+          "ms": 1,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p103 32524": [
@@ -460,30 +478,50 @@
           ],
           "went": {
             "p103 32524": [
-              28.92,
-              16.73
+              28.91,
+              16.72
             ],
             "p107 32498": [
-              29.49,
+              29.48,
               19.09
             ],
             "p108 32498": [
-              29.49,
+              29.48,
               19.09
             ]
           },
+          "staysWent": {
+            "p125 55982": [
+              0,
+              2.33
+            ],
+            "p127 55982": [
+              0,
+              2.33
+            ],
+            "p120 32270": [
+              0,
+              0
+            ]
+          },
+          "staysMoved": [
+            "p125 55982",
+            "p127 55982"
+          ],
           "stops": [
             "16/87"
           ]
         }
       ],
+      "why": "by hand: p125 55982, p127 55982 listed to stay moved",
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
       "seconds": 15
     },
     {
       "function": 4,
       "does": "The four wheels roll freely: each front wheel on its own short axle in its steering knuckle, the two rear wheels together on the 7-long rear axle that drives the rake.",
       "verdict": "shown",
-      "msOneCall": 13,
+      "msOneCall": 12,
       "msPerStep": 2,
       "time": {
         "open": 9,
@@ -491,7 +529,7 @@
         "first": 0,
         "reach": 9,
         "A": 0,
-        "B": 50
+        "B": 49
       },
       "stop": null,
       "stops": [],
@@ -501,8 +539,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 65,
-          "msOneCall": 13,
+          "ms": 67,
+          "msOneCall": 12,
           "stops": [],
           "moved": {}
         },
@@ -511,7 +549,7 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 52,
+          "ms": 54,
           "msOneCall": 3,
           "stops": [],
           "moved": {}
@@ -521,7 +559,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 49,
+          "ms": 51,
           "msOneCall": 2,
           "stops": [],
           "moved": {}
@@ -531,6 +569,16 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
+          "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p125 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
           "ms": 49,
           "msOneCall": 2,
           "stops": [],
@@ -538,6 +586,16 @@
         },
         {
           "control": "p125 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 49,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55982",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
@@ -547,32 +605,12 @@
           "moved": {}
         },
         {
-          "control": "p125 55982",
-          "way": -1,
-          "asked": 1.5,
-          "went": -1.5,
-          "ms": 47,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
-          "control": "p127 55982",
-          "way": 1,
-          "asked": 1.5,
-          "went": 1.5,
-          "ms": 47,
-          "msOneCall": 2,
-          "stops": [],
-          "moved": {}
-        },
-        {
           "control": "p127 55982",
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 47,
-          "msOneCall": 1,
+          "ms": 48,
+          "msOneCall": 2,
           "stops": [],
           "moved": {}
         }
@@ -608,6 +646,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -640,6 +680,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -672,6 +714,8 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         },
         {
@@ -692,10 +736,12 @@
           ],
           "moved": [],
           "went": {},
+          "staysWent": {},
+          "staysMoved": [],
           "stops": []
         }
       ],
-      "seconds": 70
+      "seconds": 68
     }
   ]
 }

@@ -903,8 +903,7 @@
     {
       "function": 10,
       "does": "The crane's two legs fold down from its base to stand on the ground, and lock there.",
-      "verdict": "not shown",
-      "why": "A: p1768 6558, p1779 6558 not moved",
+      "verdict": "shown",
       "msOneCall": 10,
       "msPerStep": null,
       "time": {
@@ -1189,7 +1188,8 @@
           ]
         }
       ],
-      "seconds": 165
+      "seconds": 165,
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control"
     },
     {
       "function": 12,

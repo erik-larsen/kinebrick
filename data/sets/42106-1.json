@@ -157,12 +157,13 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "a0509fa9",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 28,
+    "seconds": 18,
     "counts": {
-      "works": 6,
-      "partly": 2,
+      "works": 5,
+      "partly": 3,
       "not back": 2,
       "torn": 2,
       "skipped": 1,
@@ -275,7 +276,7 @@
             1
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -450,7 +451,7 @@
             0.5
           ]
         ],
-        "seconds": 10
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -516,91 +517,98 @@
             0.57
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.3
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            0
-          ]
-        ],
-        "rates": [
-          {
-            "p2084 40490": [
-              0.0383,
-              57.4
-            ],
-            "p2089 32524": [
-              0.868,
-              52
-            ],
-            "p2095 32524": [
-              0.868,
-              52
-            ],
-            "p2060 64782": [
-              0,
-              3.28e-12
-            ],
-            "p2136 55982": [
-              0,
-              3.08e-12
-            ]
-          }
-        ],
-        "back": [
-          [
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
             [
-              0,
-              0
-            ],
-            [
-              0,
+              1.5,
               0
             ]
-          ]
-        ],
-        "torn": [
-          [
+          ],
+          "rates": [
+            {
+              "p2084 40490": [
+                0.0383,
+                57.4
+              ],
+              "p2089 32524": [
+                0.868,
+                52
+              ],
+              "p2095 32524": [
+                0.868,
+                52
+              ],
+              "p2060 64782": [
+                0,
+                3.28e-12
+              ],
+              "p2136 55982": [
+                0,
+                3.08e-12
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              null,
+              "limit"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "freed": 1,
+          "collisionStops": [
             [
               0,
-              0
-            ],
-            [
+              -1,
+              2066,
+              2101,
               0,
               0
             ]
-          ]
-        ],
-        "stop": [
-          [
-            null,
-            "limit"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "freed": 1,
-        "collisionStops": [
-          [
-            0,
-            -1,
-            2066,
-            2101,
-            0,
-            0
-          ]
-        ],
-        "freedFor": [
-          {
-            "pin": "p2093 6558",
-            "for": "p2085 32270"
-          }
-        ],
-        "seconds": 1.7
+          ],
+          "freedFor": [
+            {
+              "pin": "p2093 6558",
+              "for": "p2085 32270"
+            }
+          ],
+          "seconds": 1
+        }
       },
       {
         "result": "partly",
@@ -700,7 +708,7 @@
             0.73
           ]
         ],
-        "seconds": 5.7
+        "seconds": 3.6
       },
       {
         "result": "works",
@@ -762,7 +770,7 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -803,7 +811,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 0.9
       },
       {
         "result": "not checked",
@@ -911,9 +919,9 @@
             0
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.1
       }
     ],
-    "peak": 742
+    "peak": 745
   }
 }

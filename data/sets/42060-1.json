@@ -131,14 +131,15 @@
     ]
   },
   "generated": {
-    "commit": "85aa8904",
+    "commit": "a0509fa9",
+    "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 6,
+    "seconds": 4,
     "counts": {
-      "partly": 2,
+      "partly": 3,
       "not back": 1,
       "torn": 1,
-      "works": 6
+      "works": 5
     },
     "loose": [
       "p192 3837",
@@ -221,7 +222,7 @@
         ],
         "cause": "one-link-too-many",
         "onPlay": 0.33,
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -298,7 +299,7 @@
             "for": "p30 59443"
           }
         ],
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -416,7 +417,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -548,91 +549,98 @@
             1
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.3
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            0.1,
-            -0.2
-          ]
-        ],
-        "rates": [
-          {
-            "p288 42060 - 33299b": [
-              1,
-              0
-            ],
-            "p295 32524 against p277 32316": [
-              1,
-              20
-            ],
-            "p277 32316": [
-              0,
-              0
+        "result": "partly",
+        "hold": {
+          "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+          "date": "2026-11-25"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.1,
+              -0.2
             ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "freed": 1,
-        "collisionStops": [
-          [
-            0,
-            1,
-            280,
-            297,
-            0.1,
-            0.1
           ],
-          [
-            0,
-            -1,
-            159,
-            294,
-            0.2,
-            0.2
-          ]
-        ],
-        "freedFor": [
-          {
-            "pin": "p281 2780",
-            "for": "p287 59443"
-          }
-        ],
-        "seconds": 0.2
+          "rates": [
+            {
+              "p288 42060 - 33299b": [
+                1,
+                0
+              ],
+              "p295 32524 against p277 32316": [
+                1,
+                20
+              ],
+              "p277 32316": [
+                0,
+                0
+              ]
+            }
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "pushed": [
+            true
+          ],
+          "freed": 1,
+          "collisionStops": [
+            [
+              0,
+              1,
+              280,
+              297,
+              0.1,
+              0.1
+            ],
+            [
+              0,
+              -1,
+              159,
+              294,
+              0.2,
+              0.2
+            ]
+          ],
+          "freedFor": [
+            {
+              "pin": "p281 2780",
+              "for": "p287 59443"
+            }
+          ],
+          "seconds": 0.1
+        }
       },
       {
         "result": "partly",
@@ -758,7 +766,7 @@
             0
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -829,9 +837,9 @@
             "for": "p294 30394"
           }
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       }
     ],
-    "peak": 366
+    "peak": 371
   }
 }

@@ -194,5 +194,19 @@
     "result": "partly",
     "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355).",
     "date": "2026-11-25"
+  },
+  {
+    "set": "42060-1",
+    "function": 6,
+    "result": "partly",
+    "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+    "date": "2026-11-25"
+  },
+  {
+    "set": "42106-1",
+    "function": 4,
+    "result": "partly",
+    "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359).",
+    "date": "2026-11-25"
   }
 ]
