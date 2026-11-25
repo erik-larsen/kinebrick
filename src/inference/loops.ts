@@ -135,12 +135,6 @@ export function findWheel(point: PathPoint, index: number, parts: PlacedPart[], 
   if (!best) return null;
   const wheel: LoopWheel = best;
   const steps = stepsFromFrame(joints);
-  // A wheel turns in its mount, the nearer the frame of the two: where the part nearest the middle
-  // is in the nearer (an axle fixed in the frame, a roller turning on it either side of the
-  // middle), the roller is the wheel. Read the other way, the 42100 Liebherr's top rollers (bevel
-  // gears on an axle fixed in the undercarriage) had the undercarriage, 1,084 parts, as their
-  // wheel, so its tipping drove the tracks.
-  if ((steps[wheel.mount] ?? Infinity) > (steps[wheel.body] ?? Infinity)) [wheel.body, wheel.mount] = [wheel.mount, wheel.body];
   // Of the joints it turns on along the circle's axis, the one in what's nearest the frame:
   // a gearbox's output shaft turns in the frame, and in the clutch gears freewheeling on it,
   // and it's how it turns in the frame that drives the chain.
@@ -153,6 +147,13 @@ export function findWheel(point: PathPoint, index: number, parts: PlacedPart[], 
     const mount = joint.bodyA === wheel.body ? joint.bodyB : joint.bodyA;
     if (steps[mount] < steps[wheel.mount]) [wheel.joint, wheel.mount] = [j, mount];
   });
+  // A wheel turns in its mount, the nearer the frame of the two: where even that is farther from
+  // the frame than the body found (an axle fixed in the frame, a roller turning on it either side
+  // of the middle, nearest which the axle is), the roller is the wheel. Read the other way, the
+  // 42100 Liebherr's top rollers (bevel gears on an axle fixed in the undercarriage) had the
+  // undercarriage, 1,084 parts, as their wheel. (Not before the mount nearest the frame is found:
+  // a gearbox's output shaft is a chain's wheel, though the clutch gear on it is farther out.)
+  if ((steps[wheel.mount] ?? Infinity) > (steps[wheel.body] ?? Infinity)) [wheel.body, wheel.mount] = [wheel.mount, wheel.body];
   return wheel;
 }
 
