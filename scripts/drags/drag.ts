@@ -46,6 +46,9 @@ export type Viewer = {
 // nothing between runs, so every model opened fetched each of its parts again, and on 2026-11-20
 // a day of sweeps brought the web copy to answer 429, too many requests, for everyone. Set
 // KINEBRICK_WEB_LIBRARY=1 to test with the web copy all the same.
+// How long reach() may look for a view of a part before it gives up, in ms (KB_REACH_S seconds).
+export const REACH_MS = Number(process.env.KB_REACH_S ?? 300) * 1000;
+
 export const LIBRARY = process.env.KINEBRICK_WEB_LIBRARY ? '' : '&library=/ldraw/';
 
 // How the browser under test is launched. Without a window, Chromium draws WebGL in software
@@ -253,20 +256,26 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
       // Round the model at the height the camera starts at, then from above and from below
       // (decision 279, item 4: the 8285's, 42078's and 42080's controls were seen from no point of
       // the first circle), each a turn of 12 steps; and from each, closer in (the mouse wheel).
+      // At most REACH_MS in all: a part hidden from every side (the 42056's seat axles, inside
+      // the seats' pin holes) took 37 minutes of rings round 72 views on a big model.
+      const until = Date.now() + REACH_MS;
       let turns = 0;
       for (const tilt of [0, -150, 300]) {
         if (tilt && !(await viewer.orbit(0, tilt))) return -1;
         for (let i = 0; i < 12; i++, turns++) {
+          if (Date.now() > until) return -1;
           if (await viewer.aim(part)) return turns;
           if (!(await viewer.orbit(120))) return -1;
         }
       }
       for (let zoom = 0; zoom < 3; zoom++) {
+        if (Date.now() > until) return -1;
         const [x, y] = await middle(part);
         await page.mouse.move(x, y);
         await page.mouse.wheel(0, -400);
         await page.waitForTimeout(300);
         for (let i = 0; i < 12; i++, turns++) {
+          if (Date.now() > until) return -1;
           if (await viewer.aim(part)) return turns;
           if (!(await viewer.orbit(120))) return -1;
         }
