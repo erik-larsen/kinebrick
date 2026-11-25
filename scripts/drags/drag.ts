@@ -46,8 +46,8 @@ export type Viewer = {
 // nothing between runs, so every model opened fetched each of its parts again, and on 2026-11-20
 // a day of sweeps brought the web copy to answer 429, too many requests, for everyone. Set
 // KINEBRICK_WEB_LIBRARY=1 to test with the web copy all the same.
-// How long reach() may look for a view of a part before it gives up, in ms (KB_REACH_S seconds).
-export const REACH_MS = Number(process.env.KB_REACH_S ?? 300) * 1000;
+// How long reach() may look for a view of a part before it gives up, in ms (KB_REACH_S seconds): every control the full sweep of 2026-11-25 found took 416 s or less (the 42110's fn8), and the three it never found 861 to 1,104 s.
+export const REACH_MS = Number(process.env.KB_REACH_S ?? 600) * 1000;
 
 export const LIBRARY = process.env.KINEBRICK_WEB_LIBRARY ? '' : '&library=/ldraw/';
 
