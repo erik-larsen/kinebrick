@@ -5,8 +5,8 @@
       "moved": "2026-11-21"
     },
     "preview": {
-      "works": 696,
-      "partly": 257,
+      "works": 697,
+      "partly": 256,
       "no": 91,
       "functions": 1223
     },
@@ -22,7 +22,27 @@
       }
     ]
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "42110-fn14-lid-control",
+      "kind": "Sign-off",
+      "title": "42110 Land Rover Defender, function 14 (the roof case's lid): name the lid's top plate as its control?",
+      "what": "The list says the lid of the case on the roof swings open, and names as its control a plate inside the lid (p2475) that no view shows, so no hand can grab it in the viewer. The function has been held at partly since 21 November for that reason. The lid is one piece of 26 parts. The worker tried it by hand in the viewer: Shift on the lid's visible 3x3 top plate (p2473) frees the lid's two friction pins, and a drag then opens the lid 97 degrees. Claude ran the check with that plate as the control: it frees the same two pins and says works. The booklet's page 491 (middle left picture) shows the lid lifted.",
+      "effect": "With your yes the function's control is p2473 in place of p2475; what the function is does not change. The check then says works, and the hold is lifted once the viewer sweep shows it.",
+      "links": [
+        {
+          "label": "42110 in the viewer, the lid's top plate and the old control marked",
+          "url": "http://localhost:5174/?file=omr/42110-1+Land+Rover+Defender.mpd&show=2473,2475&autospin=2473,paused"
+        },
+        {
+          "label": "Booklet, page 491",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=491"
+        }
+      ],
+      "reply": "Sign the 42110's lid control",
+      "since": "2026-11-24"
+    }
+  ],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
