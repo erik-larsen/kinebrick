@@ -1,13 +1,13 @@
 {
   "state": {
     "main": {
-      "works": 701,
-      "moved": "2026-11-18"
+      "works": 693,
+      "moved": "2026-11-21"
     },
     "preview": {
-      "works": 697,
-      "partly": 257,
-      "no": 91,
+      "works": 693,
+      "partly": 259,
+      "no": 92,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -22,94 +22,23 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "system-hinges-build",
-      "kind": "Decision",
-      "title": "System hinges, doors and clips: the look is done. Build any of it?",
-      "what": "The worker looked at the 12 functions that failed in the blind trial for this reason (321). In 7 the connection points are already in our data and Kinebrick's reading does not use them; in 4 the data is missing; 1 is not settled. By kind: (A) a hinged lid closed onto studs, 3 of the 12: the hinge is read, but the studs under the closed lid hold it shut; a stud that the hinge's own turn pulls apart should let go. About 3 days, and it touches how every stud holds in every set, so every set is checked. (B) A door that pivots on a stud, 2. (C) A bar in a clip, 1. (D) Glass with no slot in its frame, 1. (E) Three single fittings. (F) is withdrawn: the turntable that seemed to be this kind is a third single fitting, a socket missing from the data. (G) A winch and its string, 1. All of it: about 11 days of the worker's time. The quick wins, B and E, are about 2.5 days for 4 of the 12. How many of the 124 non-Technic candidates each kind could open, by their descriptions and as upper bounds: lids 71, doors 47, turntables 31, strings and winches 27, arms and claws 15, sticks and clips 8.",
-      "effect": "Three choices. Not now: the worker stays on the 186 Technic sets. Quick wins: doors on stud pivots and the two fittings, about 2 days, which opens the door functions and little else. All of it: about 11 days, the worker off the Technic sets for that time, and lids on studs is a change in every set. Claude advises not now: the rolling rule, the second sweep's findings and the first move's speed are open on the 186, and lids on studs is the largest and riskiest part of the gain.",
-      "reply": "Not now",
-      "since": "2026-11-21"
-    },
-    {
-      "id": "motors-as-controls",
-      "kind": "Sign-off",
-      "title": "Five functions: name the motor as the control, in place of a shaft buried at the motor",
-      "what": "In the second sweep the pointer could not see the control of these functions from any view (329). The worker tested each: the control is a shaft or gear buried at the motor that works the function on the real set, where no hand reaches. The check turns that shaft; a user of the viewer runs the motor. The change names the motor as the control, as the 42080's function 1 does since your signature today. 42100 Liebherr, function 4 (the L motor slews the superstructure): the control p707, a gear on the motor's shaft, becomes the motor p536. 42131 Cat D11, function 1 (the right track): the shaft p2686 becomes the motor p13. Function 2 (the left track): the shaft p2688 becomes the motor p1319. Functions 3 (driving and turning) and 4 (the V12 pumps as it drives): both shafts become both motors. Each motor's output is joined to the shaft named before, so the check turns the same parts as now, started from the motor. Not in this sign-off: the 42070's two functions on its XL motor, because that motor's output is joined to nothing in the model as read, which the worker looks at first.",
-      "effect": "The check and the sweep then work these five as the real set is worked, from its motor. The results may change, since a motor runs on and a turned shaft does not; today all five are works.",
-      "links": [
-        {
-          "label": "42100 booklet 2, page 365: the app's controls",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324716.pdf#page=365"
-        },
-        {
-          "label": "42131 booklet 1, page 15: the app's driving page",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=15"
-        },
-        {
-          "label": "42100 in the viewer, the motor marked",
-          "url": "http://localhost:5174/?file=omr%2F42100-1%20Liebherr%20R%209800.mpd&show=536"
-        },
-        {
-          "label": "42131 in the viewer, the two motors marked",
-          "url": "http://localhost:5174/?file=omr%2F42131-1%20Cat%20D11%20Bulldozer.mpd&show=13,1319"
-        }
-      ],
-      "reply": "Sign the five motor controls",
-      "since": "2026-11-21"
-    },
-    {
-      "id": "two-functions-no-hand",
-      "kind": "Decision",
-      "title": "Two functions that no hand can work on the real set: keep, rewrite or skip?",
-      "what": "Two more of the buried controls are not at a motor. 42129 Zetros, function 2 (the centre differential): the list says to hold the motors and turn the front drive shaft, and names an axle inside the differential as the control. On the real truck that axle is enclosed; one sees the differential work only when the truck is driven or its wheels are turned. The worker proposes a control a hand can reach: with the motors held, turning the front wheels turns the rear ones through the shafts and the differential. 42131 Cat D11, function 10 (the red lever that switches the Control+ hub on): booklet 1, steps 169 to 174, builds the lever onto the hub's button inside the chassis, under the engine. It switches the electronics on; nothing mechanical follows from it, and Kinebrick has no hub button to press. The worker proposes to skip it, with the reason that it is a switch and not a mechanism, as the 42110's roof rack was skipped on 14 November as taken off by hand.",
-      "effect": "Both are works today, by the check turning a part no user can reach. With the changes, the 42129's function 2 is tested from the front wheels and may change its result, and the 42131's function 10 is skipped and leaves the count of working functions.",
-      "links": [
-        {
-          "label": "42131 booklet 1, page 154: the lever on the hub's button",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=154"
-        }
-      ],
-      "reply": "Rewrite the 42129's and skip the 42131's",
-      "since": "2026-11-21"
-    },
-    {
-      "id": "42112-fn3-piston",
-      "kind": "Sign-off",
-      "title": "42112 Concrete Mixer Truck, function 3: name a piston that the check's turn lifts",
-      "what": "Function 3 is rolling the truck turning the small engine under the cab, whose camshaft lifts four pistons. Since today's merge the camshaft does lift them (332). The list names the piston p170 as the part that must move. That is the one piston whose cam points away as built: its cam needs about 2 radian of camshaft before it lifts, more than the check's turn of 1.5 radian each way gives, so the function stays partly though the engine runs. The worker tried each piston on today's preview: p176 is the one a turn of 1.5 radian moves both ways (it drops 12 LDU off the top of its cam onto its plate); p173 and p179 move one way only; p170 not at all. The change: in the list of parts that must move, p176 4519 in place of p170 4519. Nothing else in the function changes.",
-      "effect": "The function is then judged by a piston that the turn does move. It should go from partly to works; Claude checks the set after the change and says.",
-      "links": [
-        {
-          "label": "Booklet 1, page 38, step 50: the four pistons put in over the camshaft",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=38"
-        },
-        {
-          "label": "42112 in the viewer, the piston p176 marked",
-          "url": "http://localhost:5174/?file=omr%2F42112-1%20Concrete%20Mixer%20Truck.mpd&show=176"
-        }
-      ],
-      "reply": "Sign the 42112's piston change",
-      "since": "2026-11-21"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. All times so far, yours and Claude's, were taken while every core was busy with checks, so they are too high by a factor not known (261). The slowest functions are timed again on a quiet computer when the run is through, and you test on another machine. No function is held for speed until you have judged there where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all. On 20 November the sweep's first pass went through all 740 working functions (267): the turn shows 566, does not show 144, and 30 wait for a look at the booklet. Of the 57 sets with every function working, 32 have every function shown. The 144 are not all real: in 28 the sweep did not free pins that the check frees, and in about 45 more it could not turn the control at all, which the pointer pass will try. Claude expects 30 to 70 real ones; the worker sorts them before anything is marked down. On the evening of 20 November the solver's working set was merged into preview and turned on (272): a drag that turns a part now works only on the pieces the drag moves. In the viewer on this machine the 9397's steering takes 15 ms for each step of a drag against 120 ms before, both measured one after the other under the same load; the first move of a drag still takes about 240 ms. The proof is a sample of 19 sets in which no function changed its result. In the night to 21 November three more things went in: big models open quickly again (274: the 42078 Mack Anthem in 5 s against 33 s, a fault Claude's own merge of 20 November had made), the first move of a drag no longer searches twice (275: the 9397's steering starts in 384 ms against 644 ms), and the day's full check of preview ran (278): the counts are the same, 740 work, and the check took 18% less time. The check found three functions in which the working set leaves one freely turning part out of place after the drag, with the result unchanged: the 42020 Twin-rotor Helicopter's rolling wheels (two thin beams, parts 125 and 126) and the 8274 Combine Harvester when pushed (a toothed half bush, part 1081). This was mended the same morning (285): the working set had thrown away a motion kept for the next step; with the mend all three come back whole. On 21 November the worker finished sorting the 144 (279). 100 are shown after all, once the sweep did what a user does: lift the model, press Shift, do the first steps, drag by pointer. On 21 November the check learned to mark a wheel, track or shaft that a collision stops by itself (311), which replaced 22 of the day's holds; 25 functions are still held at partly by hand, and the count of working functions is 697. Six of them are functions the booklet shows moving far and the viewer stops short (298). Of the others: in 29 a collision stops a wheel, track, fan or other part that should turn without end, or a bonnet or mast that the booklet shows moving far (the check stopped at the same place and still said works, which is the check's fault; 279, 288); in 12 the control turns or is pushed and the listed parts do not all move (279, 286); in 2 the drive seemed to slip in one long drag (286), which proved to be a fault of the sweep's own measure, so these two holds were wrong and are lifted, with a third of the same kind, the 42129's function 4 (293); and one is from 19 November. Two holds on the 8063 proved wrong and were lifted (282). About 8 more are doubtful and stay at works until tried properly. The sets with every checked function working are 52, were 57. The worker now sorts each of the 16 contacts into false or true and makes the check judge such a stop itself. Pull preview at the newest commit before you test on the quiet machines on 21 November."
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. All times so far, yours and Claude's, were taken while every core was busy with checks, so they are too high by a factor not known (261). The slowest functions are timed again on a quiet computer when the run is through, and you test on another machine. No function is held for speed until you have judged there where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all. On 20 November the sweep's first pass went through all 740 working functions (267): the turn shows 566, does not show 144, and 30 wait for a look at the booklet. Of the 57 sets with every function working, 32 have every function shown. The 144 are not all real: in 28 the sweep did not free pins that the check frees, and in about 45 more it could not turn the control at all, which the pointer pass will try. Claude expects 30 to 70 real ones; the worker sorts them before anything is marked down. On the evening of 20 November the solver's working set was merged into preview and turned on (272): a drag that turns a part now works only on the pieces the drag moves. In the viewer on this machine the 9397's steering takes 15 ms for each step of a drag against 120 ms before, both measured one after the other under the same load; the first move of a drag still takes about 240 ms. The proof is a sample of 19 sets in which no function changed its result. In the night to 21 November three more things went in: big models open quickly again (274: the 42078 Mack Anthem in 5 s against 33 s, a fault Claude's own merge of 20 November had made), the first move of a drag no longer searches twice (275: the 9397's steering starts in 384 ms against 644 ms), and the day's full check of preview ran (278): the counts are the same, 740 work, and the check took 18% less time. The check found three functions in which the working set leaves one freely turning part out of place after the drag, with the result unchanged: the 42020 Twin-rotor Helicopter's rolling wheels (two thin beams, parts 125 and 126) and the 8274 Combine Harvester when pushed (a toothed half bush, part 1081). This was mended the same morning (285): the working set had thrown away a motion kept for the next step; with the mend all three come back whole. On 21 November the worker finished sorting the 144 (279). 100 are shown after all, once the sweep did what a user does: lift the model, press Shift, do the first steps, drag by pointer. On 21 November the check learned to mark a wheel, track or shaft that a collision stops by itself (311), which replaced 22 of the day's holds; 25 functions are still held at partly by hand, and the count of working functions is 698. Six of them are functions the booklet shows moving far and the viewer stops short (298). Of the others: in 29 a collision stops a wheel, track, fan or other part that should turn without end, or a bonnet or mast that the booklet shows moving far (the check stopped at the same place and still said works, which is the check's fault; 279, 288); in 12 the control turns or is pushed and the listed parts do not all move (279, 286); in 2 the drive seemed to slip in one long drag (286), which proved to be a fault of the sweep's own measure, so these two holds were wrong and are lifted, with a third of the same kind, the 42129's function 4 (293); and one is from 19 November. Two holds on the 8063 proved wrong and were lifted (282). About 8 more are doubtful and stay at works until tried properly. The sets with every checked function working are 52, were 57. The worker now sorts each of the 16 contacts into false or true and makes the check judge such a stop itself. Pull preview at the newest commit before you test on the quiet machines on 21 November."
     },
     {
       "title": "System hinges, doors and clips",
-      "what": "The look you chose is done (321, corrected in 323) and the choice of building any of it waits for you, above."
+      "what": "On 24 November you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). It does not start yet (345). It starts when the worker's four tasks on the Technic sets are in or parked (the pistons of the 42078 and 42110, the 42129's drive line, the three functions held on 21 November, the tilted rods of the 42123's V8) and the next offer of main has gone to you. The order then: first doors on a stud pivot and the three single fittings, about 2.5 days, which touch no set that works today; then the bar in a clip and the glass; lids closed onto studs last and on a branch of their own, because that changes how every stud holds in every set and needs a full check. The winch and its string wait for a rule on strings."
+    },
+    {
+      "title": "A second worker: not proposed for now",
+      "what": "Last week reached 91% of the account's week two days before the reset, with the solver owner, the worker and the train owner at work. So there is no room for a fourth session. Each session now sends one report per task, which is the first saving; Claude looks at the week's use on Thursday 26 November and proposes a second worker only if the week then has room. It starts only on your word."
     },
     {
       "title": "The next offer of main",
-      "what": "preview has 697 working functions after the sweep's holds of 21 November (740 before them) and main 701, counted before any hold. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
-    },
-    {
-      "title": "A second worker, looked at again after 23 November",
-      "what": "You said not yet on 16 November, and Claude was to ask again about 19 November. Claude does not ask: on 20 November the account's week stands at 63% used with 60% of the week gone, so the three sessions alone are on course to reach the weekly limit some hours before it resets on 23 November. A fourth session would bring that forward. Working functions went from 701 to 740 in five days. Claude looks again after the reset with a full week measured. If the week reaches 80% by 21 November, the worker pauses first."
+      "what": "After the sessions restart on 23 November: the free-parts rule, the track depth with the tipping mend, the locked balls (338) and the 42129's drive line (340), each when it loses no working function. The same gates as on 21 November: sweep findings mended or marked, a full check of preview, a slow check of the 8110, the tests."
     }
   ],
   "done": [
@@ -508,6 +437,54 @@
     {
       "date": "2026-11-21",
       "what": "The cam reading is merged, with your signed erratum for the 42112's pistons (332): the 42112's eight wheels now turn the whole way, where a cam ran into a piston after 0.53 radian. 697 functions work. It took three proofs and a mend in the solver to get there."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "42070 6x6 All Terrain Tow Truck, the XL motor one stud too low and the motor as the control of functions 1 and 6 (\"Sign it\", your answer to that question): the worker writes the erratum; Claude then names the motor as the control and checks the set."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The five motor controls (\"Sign the five motor controls\") and the 42112's piston (\"Sign the 42112's piston change\"): both applied to the lists; the three sets are being checked."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Weekly usage at 91% (your note): the worker is paused and the solver owner holds after one last report, until the reset on 23 November or your word. Claude keeps to closing what is in flight."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your signed changes checked: the 42112's function 3 now works with the piston p176 named, and the five functions with a motor as their control (42100, 42131) work as before, turning the full way. 698 functions work. The mend for the 42078's drive is right but waits (337): with the engine driven, its pistons stop the truck rolling."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "At the pause (338): the rule for parts that nothing drives has five gains and five losses for rolling a model, one loss serious (the 8880), so it stays off. Against a model tipping as it rolls, the gentler of two mends is taken; it brings the track sets back exactly. Three branches wait, each right in itself, for a further mend. Work starts again there after the reset on 23 November."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The worker's last work before the pause is merged (339): the viewer now offers to free friction pins also when a drag stops short on slack (the 42004's knob then turns); the 42070's XL motor is on its axle by your signed erratum and is the control of functions 1 and 6, which both work from it. The sweep's mended pointer shows 28 of the 29 functions it had failed on. 698 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Your three answers are applied (340). The function lists document every function. The 42131's hub power switch stays in the list with its parts and is marked not checked, with a reason that begins \"electrical:\", until electrical functions are in Kinebrick's scope. The 42129's centre differential is now worked as a hand works it: a front wheel turned with the other front wheel held and the motors still. Worked so it does not work, which is the true state: the drive does not pass between the centre differential and the axles in Kinebrick's reading of the truck (the same fault keeps function 1 partly); the old control, an axle inside the differential, had hidden it. The 42070's functions 2 and 7 have the motor as their control; both stay partly. 696 functions work."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The offer of main is prepared (341): three last sweep findings held, the full check of preview and the slow check of the 8110 pass with no other change, the tests pass. 693 functions work on preview."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "The status pages go to GitHub with the site (342): after main is pushed, the Technic status page is at erik-larsen.github.io/kinebrick/status.html (main) and /preview/status.html, this decisions page at /preview/decisions.html, and the train status page at /preview-train/trains.html once the train branch has merged preview. They are public, as docs/plan.md is. Your shorter README is merged into preview."
+    },
+    {
+      "date": "2026-11-21",
+      "what": "Main moved (343): on your word the whole of preview is committed and pushed as a31db83e. Main and preview now hold the same files: 693 functions work on both, counted as the viewer shows them."
+    },
+    {
+      "date": "2026-11-23",
+      "what": "The work is started again after the usage reset (344). The solver owner: the 8880 under the free-parts rule, then the tipping mend with the track depth. The worker: the pistons of the 42078 and 42110, then the 42129's drive line, then the three functions held on 21 November. The train owner: merge preview so that the train status page appears on the site. Each sends one report per task."
+    },
+    {
+      "date": "2026-11-24",
+      "what": "System hinges, doors and clips: you left the start to Claude (\"start system hinges, etc., whenever you feel it is appropriate\"). Not started yet; the order and the condition are in decision 345."
     }
   ]
 }

@@ -8,6 +8,10 @@
 # whichever was pushed. A preview that fails to build doesn't stop the others: the site goes out
 # without it.
 #
+# Beside each viewer go that branch's status pages, written from its data at the build
+# (scripts/site-pages.ts): status.html (the Technic sets), decisions.html, and on a branch with
+# train results trains.html. So /status.html is main's and /preview/status.html is preview's.
+#
 # The site can only be published from main (the github-pages environment allows no other branch),
 # so a push to a preview branch doesn't build: it runs this workflow on main (the rebuild job), and
 # that run builds them all. So it's main's copy of this file that says how the site is built.
@@ -51,6 +55,11 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Write main's status and decisions pages beside the viewer
+        # dist/status.html and dist/decisions.html (scripts/site-pages.ts). If they fail, the site
+        # goes out without them.
+        continue-on-error: true
+        run: npm run --if-present site-pages -- dist
       - name: Build each preview branch into dist/<its name>
         continue-on-error: true
         # Their tests aren't run here, so a failing test doesn't hold up the site: test.yml runs
@@ -67,6 +76,9 @@ jobs:
               export VITE_PREVIEW="$branch @ $(git rev-parse --short HEAD), $(date -u +%Y-%m-%d)"
               npx vite build --outDir "$GITHUB_WORKSPACE/dist/$branch"
               sed -i "s|<title>Kinebrick Play</title>|<title>Kinebrick Play · $branch</title>|" "$GITHUB_WORKSPACE/dist/$branch/index.html"
+              # The branch's own status pages beside its viewer (its scripts/site-pages.ts, if it
+              # has one): /$branch/status.html, decisions.html, and trains.html where it has trains.
+              npm run --if-present site-pages -- "$GITHUB_WORKSPACE/dist/$branch" || echo "::warning::The $branch branch's status pages didn't all build: its viewer goes out without them"
               echo "::notice::Built /$branch/ from $VITE_PREVIEW"
             ) || {
               rm -rf "dist/$branch"

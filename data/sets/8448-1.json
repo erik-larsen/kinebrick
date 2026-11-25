@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "1ed861da",
-    "date": "2026-11-21",
-    "seconds": 33,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 25,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -314,7 +314,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 3.2
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -391,7 +391,7 @@
             ]
           ]
         ],
-        "seconds": 11.1
+        "seconds": 8
       },
       {
         "result": "works",
@@ -469,7 +469,7 @@
             0.47
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "works",
@@ -523,7 +523,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -661,7 +661,7 @@
             0
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "no",
@@ -707,7 +707,25 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 2.7
+        "freedFor": [
+          {
+            "pin": "p258 6558",
+            "for": "p259 32184"
+          },
+          {
+            "pin": "p263 6558",
+            "for": "p259 32184"
+          },
+          {
+            "pin": "p269 6558",
+            "for": "p270 32184"
+          },
+          {
+            "pin": "p274 6558",
+            "for": "p270 32184"
+          }
+        ],
+        "seconds": 2.3
       },
       {
         "result": "skipped",
@@ -845,7 +863,7 @@
             0.43
           ]
         ],
-        "seconds": 3.9
+        "seconds": 3.4
       },
       {
         "result": "partly",
@@ -931,7 +949,7 @@
             1.17
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.4
       },
       {
         "result": "skipped",
@@ -977,6 +995,6 @@
         "seconds": 0
       }
     ],
-    "peak": 1170
+    "peak": 1133
   }
 }

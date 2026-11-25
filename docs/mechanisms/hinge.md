@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 71 works, 19 partly, 33 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 70 works, 20 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -399,7 +399,7 @@ Each detail by the set it first appears in.
 - *bonnet:* The bonnet lifts, hinged at its back edge, showing the engine. (works)
 - *tailgate:* Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways. (works)
 - *lid:* The lid of the box on the roof rack lifts open. (works)
-- *lid:* The lid of the case on the right side of the roof swings open. (works)
+- *lid:* The lid of the case on the right side of the roof swings open. (partly)
 
 **2020, [42102 Mini CLAAS XERION](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42102-1)**
 

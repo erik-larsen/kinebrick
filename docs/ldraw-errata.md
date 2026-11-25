@@ -504,6 +504,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
 | [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
+| [42070-1](#42070-1-xl-motor-on-its-axle) | xl-motor-on-its-axle | moves `42070 - powerFuncMotorXL-LQ-1.ldr` to 0 -256 -390 | Signed off by Erik, 2026-11-21 |
 | [42077-1](#42077-1-rear-half-shaft-inner-ball-level) | rear-half-shaft-inner-ball-level | moves `32494.dat` (in `42077 - rearaxle.ldr`) to -60 0 0, turned | Signed off by Erik, 2026-11-17 |
 | [42078-1](#42078-1-rear-crane-actuator-axle-to-its-connectors) | rear-crane-actuator-axle-to-its-connectors | moves `60485.dat` (in `42078 - craneactu.ldr` as placed in `42078 - crane1.ldr` only) to -0.012 -20 49.983 | Signed off by Erik, 2026-11-17 |
 | [42078-1](#42078-1-door-2-has-no-13L-beam) | door-2-has-no-13L-beam | removes `41239.dat` (in `42078 - containerdoor2.ldr`) | Signed off by Erik, 2026-11-19 |
@@ -1342,6 +1343,20 @@ In `42070 - axle3.ldr` (p848 6589), the line
 ```
 
 is read with its part at 0 0 -17, turned to -0.259 0.966 0 -0.966 -0.259 0 0 0 1.
+
+### 42070-1: xl-motor-on-its-axle
+
+Signed off by Erik, 2026-11-21.
+
+Step 116 (book 1, PDF page 73, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=73) slides the XL motor (58121), with its cable, onto the gearbox's axle by its output. The file places the motor's submodel (42070 - powerFuncMotorXL-LQ-1.ldr, the motor p593 and its cable) with its output at y -236, but the axle it should drive, p402 (axle 5, z -410 to -310), runs at y -256, through the motor's round housing hole one stud above the output, and its line is fixed by the gearbox parts it runs through (p405 18946, p445 41239); the long pin p444 (6558) sits in the output instead. So the motor's output is joined to nothing and it drives nothing (functions 1 and 6). Moved 20 LDU up, to y -256, the axle sits in the output and the pin in the housing hole below it, as the step shows; the motor and its cable move together, nothing else moves.
+
+In the main model, the line
+
+```
+1 4 0 -236 -390 -1 0 0 0 1 0 0 0 -1 42070 - powerFuncMotorXL-LQ-1.ldr
+```
+
+is read with its part at 0 -256 -390.
 
 ### 42077-1: rear-half-shaft-inner-ball-level
 

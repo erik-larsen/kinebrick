@@ -62,9 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "aa3523c8",
-    "date": "2026-11-21",
-    "seconds": 6,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -164,7 +164,7 @@
         ],
         "cause": "too-little",
         "detail": "p39 3647 against p0 32523",
-        "seconds": 4.7
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -237,6 +237,6 @@
         "seconds": 0
       }
     ],
-    "peak": 312
+    "peak": 386
   }
 }

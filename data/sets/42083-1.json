@@ -173,9 +173,9 @@
     ]
   },
   "generated": {
-    "commit": "662fde41",
-    "date": "2026-11-21",
-    "seconds": 1434,
+    "commit": "4929054b",
+    "date": "2026-11-22",
+    "seconds": 1000,
     "counts": {
       "works": 3,
       "partly": 4,
@@ -373,8 +373,8 @@
             1.47
           ]
         ],
-        "seconds": 98.1,
-        "peak": 947
+        "seconds": 65.3,
+        "peak": 1369
       },
       {
         "result": "partly",
@@ -529,8 +529,8 @@
             0.03
           ]
         ],
-        "seconds": 12.8,
-        "peak": 934
+        "seconds": 9.7,
+        "peak": 970
       },
       {
         "result": "skipped"
@@ -624,8 +624,8 @@
         ],
         "cause": "too-little",
         "detail": "p682 2851",
-        "seconds": 894.7,
-        "peak": 1006
+        "seconds": 627.1,
+        "peak": 1815
       },
       {
         "result": "works",
@@ -691,8 +691,8 @@
           [],
           []
         ],
-        "seconds": 235.7,
-        "peak": 944
+        "seconds": 157.8,
+        "peak": 1428
       },
       {
         "result": "partly",
@@ -768,8 +768,8 @@
               0.17
             ]
           ],
-          "seconds": 5.7,
-          "peak": 937
+          "seconds": 3.9,
+          "peak": 1006
         }
       },
       {
@@ -864,8 +864,8 @@
             0.07
           ]
         ],
-        "seconds": 23.7,
-        "peak": 951
+        "seconds": 16.1,
+        "peak": 1012
       },
       {
         "result": "partly",
@@ -978,8 +978,26 @@
             0.07
           ]
         ],
-        "seconds": 60.3,
-        "peak": 952
+        "freedFor": [
+          {
+            "pin": "p1045 6558",
+            "for": "p1044 15459"
+          },
+          {
+            "pin": "p1052 6558",
+            "for": "p1051 15459"
+          },
+          {
+            "pin": "p1055 6558",
+            "for": "p1044 15459"
+          },
+          {
+            "pin": "p1056 6558",
+            "for": "p1051 15459"
+          }
+        ],
+        "seconds": 44.5,
+        "peak": 971
       },
       {
         "result": "no",
@@ -1078,8 +1096,8 @@
         ],
         "cause": "not-driven",
         "detail": "p3525 42083 - 37383p01",
-        "seconds": 39.4,
-        "peak": 937
+        "seconds": 28.4,
+        "peak": 955
       },
       {
         "result": "skipped"
