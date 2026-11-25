@@ -343,27 +343,16 @@
     {
       "function": 5,
       "does": "One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame.",
-      "held": {
-        "result": "partly",
-        "reason": "In the viewer the control turns and these listed parts stay: p2715, p2731. Viewer sweep, decision 279."
-      },
       "verdict": "shown",
-      "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2715 3703 turned 0.11 degrees, 0.128 predicted (rate 0.00123, turn 1.814)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2731 3703 turned 0.11 degrees, 0.128 predicted (rate 0.00123, turn 1.814)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2901 6178 turned 0.1 degrees, 0.125 predicted (rate 0.00123, turn -1.778)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2715 3703 turned 0.1 degrees, 0.125 predicted (rate 0.00123, turn -1.778)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p2731 3703 turned 0.1 degrees, 0.125 predicted (rate 0.00123, turn -1.778)"
-      ],
-      "msOneCall": 114,
-      "msPerStep": 48,
+      "msOneCall": 110,
+      "msPerStep": 31,
       "time": {
-        "open": 10,
+        "open": 11,
         "collisions": 0,
         "first": 0,
-        "reach": 266,
-        "A": 281,
-        "B": 24
+        "reach": 290,
+        "A": 21,
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -371,47 +360,43 @@
         {
           "control": "p125 3647",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            2760,
+            2766
+          ],
           "asked": 6,
-          "went": 1.814,
-          "ms": 2478,
-          "msOneCall": 114,
+          "went": 6,
+          "ms": 5346,
+          "msOneCall": 110,
           "stops": [],
           "moved": {
             "p1449 4716": [
               0,
-              34.64
+              114.59
             ],
             "p1465 3648b": [
               0,
-              1.44
+              4.77
             ],
             "p2780 32140": [
               0,
-              1.44
+              4.77
             ],
             "p2805 32140": [
               0,
-              1.44
+              4.77
             ],
             "p2901 6178": [
-              1,
-              0.11
+              4.43,
+              0.48
             ],
             "p2715 3703": [
-              0.23,
-              0.11
+              1.02,
+              0.48
             ],
             "p2731 3703": [
-              0.23,
-              0.11
+              1.02,
+              0.48
             ],
             "p2983 32278": [
               0,
@@ -426,47 +411,43 @@
         {
           "control": "p125 3647",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            2760,
+            2766
+          ],
           "asked": 6.8,
-          "went": -1.778,
-          "ms": 2330,
-          "msOneCall": 54,
+          "went": -6.8,
+          "ms": 5923,
+          "msOneCall": 39,
           "stops": [],
           "moved": {
             "p1449 4716": [
               0,
-              33.97
+              129.87
             ],
             "p1465 3648b": [
               0,
-              1.42
+              5.41
             ],
             "p2780 32140": [
               0,
-              1.42
+              5.41
             ],
             "p2805 32140": [
               0,
-              1.42
+              5.41
             ],
             "p2901 6178": [
-              0.94,
-              0.1
+              4.39,
+              0.48
             ],
             "p2715 3703": [
-              0.22,
-              0.1
+              1.01,
+              0.48
             ],
             "p2731 3703": [
-              0.22,
-              0.1
+              1.01,
+              0.48
             ],
             "p2983 32278": [
               0,
@@ -485,10 +466,11 @@
           "seen": true,
           "cameraTurns": 12,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…",
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            2760,
+            2766
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -501,7 +483,7 @@
           ],
           "controlWent": [
             0,
-            159.03
+            43.41
           ],
           "moved": [
             "p1449 4716",
@@ -515,31 +497,31 @@
           "went": {
             "p1449 4716": [
               0,
-              173.01
+              134.47
             ],
             "p1465 3648b": [
               0,
-              7.47
+              5.14
             ],
             "p2780 32140": [
               0,
-              7.8
+              5.61
             ],
             "p2805 32140": [
               0,
-              7.8
+              5.61
             ],
             "p2901 6178": [
-              7.47,
-              0.58
+              5.59,
+              0.22
             ],
             "p2715 3703": [
-              1.71,
-              0.81
+              1.28,
+              0.61
             ],
             "p2731 3703": [
-              1.71,
-              0.81
+              1.28,
+              0.61
             ]
           },
           "staysWent": {
@@ -556,7 +538,9 @@
           "stops": []
         }
       ],
-      "seconds": 582
+      "seconds": 350,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:48:51.570Z"
     }
   ]
 }

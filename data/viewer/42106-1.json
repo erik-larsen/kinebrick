@@ -358,15 +358,15 @@
         "reason": "Under a hand the function is not shown apart from the trailer: a push on the gear p2085 rolls the whole trailer (the wheel p2136, listed to stay, turns 220 and p2060 moves 233) while the legs move 95 to 137; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359)."
       },
       "verdict": "not shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 15
+        "A": 2,
+        "B": 17
       },
       "stop": null,
       "stops": [],
@@ -374,17 +374,10 @@
         {
           "control": "p2085 32270",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "asked": 1.5,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p2084 40490": [
@@ -412,13 +405,6 @@
         {
           "control": "p2085 32270",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "asked": 1.5,
           "went": 0,
           "ms": 0,
@@ -454,9 +440,7 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
-          ],
+          "shift": [],
           "drags": [
             {
               "kind": "push",
@@ -476,8 +460,8 @@
             }
           ],
           "controlWent": [
-            163.9,
-            39.14
+            164.33,
+            34.5
           ],
           "moved": [
             "p2084 40490",
@@ -486,26 +470,26 @@
           ],
           "went": {
             "p2084 40490": [
-              136.58,
-              33.33
+              137.22,
+              33.37
             ],
             "p2089 32524": [
-              94.64,
-              36.26
+              94.68,
+              33.77
             ],
             "p2095 32524": [
-              95.54,
-              36.26
+              94.8,
+              33.77
             ]
           },
           "staysWent": {
             "p2060 64782": [
-              231.51,
-              33.26
+              232.12,
+              33.35
             ],
             "p2136 55982": [
-              219.07,
-              33.26
+              219.65,
+              33.35
             ]
           },
           "staysMoved": [
@@ -522,7 +506,9 @@
       ],
       "why": "by hand: p2060 64782, p2136 55982 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 22
+      "seconds": 24,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:20.738Z"
     },
     {
       "function": 6,

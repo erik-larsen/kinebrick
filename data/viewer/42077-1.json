@@ -657,15 +657,15 @@
       "function": 6,
       "does": "The two doors swing open.",
       "verdict": "shown",
-      "msOneCall": 64,
-      "msPerStep": 26,
+      "msOneCall": 77,
+      "msPerStep": 30,
       "time": {
-        "open": 10,
+        "open": 12,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 3,
-        "B": 27
+        "A": 7,
+        "B": 31
       },
       "stop": null,
       "stops": [],
@@ -697,8 +697,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 33,
-          "msOneCall": 64,
+          "ms": 46,
+          "msOneCall": 77,
           "stops": [],
           "moved": {}
         },
@@ -730,7 +730,7 @@
           "asked": 0.03,
           "went": -0.03,
           "ms": 26,
-          "msOneCall": 23,
+          "msOneCall": 31,
           "stops": [],
           "moved": {}
         },
@@ -751,10 +751,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            902
+          ],
           "asked": 0.03,
           "went": 0.03,
-          "ms": 23,
-          "msOneCall": 24,
+          "ms": 30,
+          "msOneCall": 51,
           "stops": [],
           "moved": {}
         },
@@ -775,10 +778,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            902
+          ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 36,
-          "msOneCall": 23,
+          "ms": 35,
+          "msOneCall": 29,
           "stops": [],
           "moved": {}
         }
@@ -874,8 +880,8 @@
             }
           ],
           "controlWent": [
-            7.45,
-            6.49
+            7.74,
+            6.8
           ],
           "moved": [],
           "went": {},
@@ -887,7 +893,9 @@
           ]
         }
       ],
-      "seconds": 42
+      "seconds": 53,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:27:42.366Z"
     },
     {
       "function": 7,

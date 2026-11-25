@@ -230,9 +230,9 @@
     {
       "function": 4,
       "does": "The clear canopy over the cockpit swings up to open.",
-      "verdict": "not decided",
+      "verdict": "shown",
       "msOneCall": 6,
-      "msPerStep": 2,
+      "msPerStep": 1,
       "time": {
         "open": 4,
         "collisions": 0,
@@ -245,7 +245,7 @@
         "control": "p110 92279",
         "way": -1,
         "went": -0.035,
-        "asked": 1.5,
+        "asked": 0.07,
         "by": [
           "89/110"
         ]
@@ -257,15 +257,15 @@
         {
           "control": "p110 92279",
           "way": 1,
-          "asked": 0.07,
-          "went": 0.07,
-          "ms": 3,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 24,
           "msOneCall": 6,
           "stops": [],
           "moved": {
             "p110 92279 against p0 32278": [
-              2.82,
-              4.01
+              60.46,
+              85.94
             ],
             "p93 40001 against p0 32278": [
               0,
@@ -276,17 +276,17 @@
         {
           "control": "p110 92279",
           "way": -1,
-          "asked": 1.5,
+          "asked": 0.07,
           "went": -0.035,
-          "ms": 2,
-          "msOneCall": 3,
+          "ms": 1,
+          "msOneCall": 2,
           "stops": [
             "89/110"
           ],
           "moved": {
             "p110 92279 against p0 32278": [
               1.41,
-              2
+              2.01
             ],
             "p93 40001 against p0 32278": [
               0,
@@ -321,16 +321,16 @@
             }
           ],
           "controlWent": [
-            54.65,
-            85.36
+            60.04,
+            96.28
           ],
           "moved": [
             "p110 92279 against p0 32278"
           ],
           "went": {
             "p110 92279 against p0 32278": [
-              54.65,
-              85.36
+              60.04,
+              96.28
             ]
           },
           "staysWent": {
@@ -351,16 +351,17 @@
       "stopsJudged": [
         {
           "control": "p110 92279",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.035 rad (89/110)"
+          "judged": "stands",
+          "why": "stopped at -0.035 rad (89/110); kinds hinge: canopy"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "shown",
       "moved": {
         "verdict": "shown"
       },
-      "why": "not decided: p110 92279: a travel of 0.2 rad or less each way, stopped at -0.035 rad (89/110)",
-      "seconds": 16
+      "seconds": 16,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:22:17.855Z"
     },
     {
       "function": 5,

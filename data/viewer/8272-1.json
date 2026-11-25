@@ -630,40 +630,28 @@
     {
       "function": 6,
       "does": "Each ski rocks nose up and nose down on the pin that holds it under its spindle, following the ground.",
-      "verdict": "not decided",
-      "msOneCall": 23,
+      "verdict": "shown",
+      "msOneCall": 29,
       "msPerStep": 4,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
         "B": 25
       },
-      "stop": {
-        "control": "p615 32271",
-        "way": 1,
-        "went": 0.2,
-        "asked": 0.3,
-        "by": [
-          "52/614"
-        ]
-      },
-      "stops": [
-        "52/614"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p615 32271",
           "way": 1,
-          "asked": 0.3,
+          "asked": 0.2,
           "went": 0.2,
-          "ms": 23,
-          "msOneCall": 23,
-          "stops": [
-            "52/614"
-          ],
+          "ms": 22,
+          "msOneCall": 29,
+          "stops": [],
           "moved": {
             "p53 2736": [
               0,
@@ -678,10 +666,10 @@
         {
           "control": "p615 32271",
           "way": -1,
-          "asked": 0.2,
-          "went": -0.2,
-          "ms": 14,
-          "msOneCall": 4,
+          "asked": 0.3,
+          "went": -0.3,
+          "ms": 20,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -699,8 +687,8 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 12,
-          "msOneCall": 6,
+          "ms": 13,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -718,8 +706,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 17,
-          "msOneCall": 4,
+          "ms": 15,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -759,8 +747,8 @@
             }
           ],
           "controlWent": [
-            36.33,
-            29.18
+            36.35,
+            29.2
           ],
           "moved": [],
           "went": {},
@@ -776,8 +764,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "52/614",
-            "14/614"
+            "14/614",
+            "52/614"
           ]
         },
         {
@@ -805,8 +793,8 @@
             }
           ],
           "controlWent": [
-            36.11,
-            29
+            35.72,
+            28.68
           ],
           "moved": [],
           "went": {},
@@ -822,24 +810,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "50/631",
-            "11/631"
+            "11/631",
+            "50/631"
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p615 32271",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.2 rad (52/614)"
-        }
-      ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p615 32271: a travel of 0.2 rad or less each way, stopped at +0.2 rad (52/614)",
-      "seconds": 31
+      "seconds": 32,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:48:48.848Z"
     }
   ]
 }

@@ -223,16 +223,16 @@
     ]
   },
   "generated": {
-    "commit": "55ee538d",
+    "commit": "b7344562",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 2447,
+    "seconds": 1614,
     "counts": {
-      "partly": 6,
-      "works": 7,
+      "works": 8,
       "not back": 3,
       "moved whole": 1,
-      "torn": 2
+      "torn": 2,
+      "partly": 5
     },
     "loose": [
       "p1258 3710",
@@ -276,94 +276,87 @@
     },
     "functions": [
       {
-        "result": "partly",
-        "hold": {
-          "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298.",
-          "date": "2026-11-21"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              1.27,
-              -1.5
+        "result": "works",
+        "turned": [
+          [
+            1.27,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p537 3648b": [
+              0.333,
+              0
+            ],
+            "p502 56145": [
+              0.419,
+              14.1
+            ],
+            "p512 56145": [
+              0.419,
+              14.1
+            ],
+            "p324 3708": [
+              0,
+              0
             ]
-          ],
-          "rates": [
-            {
-              "p537 3648b": [
-                0.333,
-                0
-              ],
-              "p502 56145": [
-                0.419,
-                14.1
-              ],
-              "p512 56145": [
-                0.419,
-                14.1
-              ],
-              "p324 3708": [
-                0,
-                0
-              ]
-            }
-          ],
-          "expected": [
-            {
-              "p537 3648b": 0.333
-            }
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              null
-            ]
-          ],
-          "freed": 1,
-          "collisionStops": [
+          }
+        ],
+        "expected": [
+          {
+            "p537 3648b": 0.333
+          }
+        ],
+        "back": [
+          [
             [
               0,
-              1,
-              455,
-              483,
-              1.27,
-              1.27
+              0
+            ],
+            [
+              0,
+              0
             ]
-          ],
-          "freedFor": [
-            {
-              "pin": "p307 2780",
-              "for": "p1146 18575"
-            }
-          ],
-          "seconds": 57.2,
-          "peak": 1070
-        }
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "freed": 1,
+        "collisionStops": [
+          [
+            0,
+            1,
+            455,
+            483,
+            1.27,
+            1.27
+          ]
+        ],
+        "freedFor": [
+          {
+            "pin": "p307 2780",
+            "for": "p1146 18575"
+          }
+        ],
+        "seconds": 37.2,
+        "peak": 1044
       },
       {
         "result": "works",
@@ -436,8 +429,8 @@
           "p2161 62520",
           "p2085 32123b"
         ],
-        "seconds": 159.4,
-        "peak": 906
+        "seconds": 112.6,
+        "peak": 853
       },
       {
         "result": "works",
@@ -508,8 +501,8 @@
           []
         ],
         "onPlay": 0.07,
-        "seconds": 375,
-        "peak": 861
+        "seconds": 245.1,
+        "peak": 852
       },
       {
         "result": "partly",
@@ -592,8 +585,8 @@
               0.03
             ]
           ],
-          "seconds": 5.7,
-          "peak": 863
+          "seconds": 3.7,
+          "peak": 884
         }
       },
       {
@@ -715,8 +708,8 @@
             "for": "p889 32524"
           }
         ],
-        "seconds": 71.1,
-        "peak": 1100
+        "seconds": 50.5,
+        "peak": 941
       },
       {
         "result": "partly",
@@ -764,8 +757,8 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 10.2,
-        "peak": 901
+        "seconds": 6.4,
+        "peak": 838
       },
       {
         "result": "works",
@@ -835,8 +828,8 @@
             0.6
           ]
         ],
-        "seconds": 20.7,
-        "peak": 872
+        "seconds": 13.3,
+        "peak": 889
       },
       {
         "result": "works",
@@ -906,8 +899,8 @@
             0.6
           ]
         ],
-        "seconds": 20.9,
-        "peak": 872
+        "seconds": 12.4,
+        "peak": 939
       },
       {
         "result": "partly",
@@ -980,8 +973,8 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 17.3,
-        "peak": 866
+        "seconds": 10.7,
+        "peak": 933
       },
       {
         "result": "partly",
@@ -1054,8 +1047,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 17.1,
-        "peak": 862
+        "seconds": 10.1,
+        "peak": 881
       },
       {
         "result": "works",
@@ -1164,8 +1157,8 @@
             "for": "p2270 18942"
           }
         ],
-        "seconds": 256.3,
-        "peak": 1066
+        "seconds": 154.7,
+        "peak": 960
       },
       {
         "result": "partly",
@@ -1332,8 +1325,8 @@
               "for": "p2665 64782"
             }
           ],
-          "seconds": 708.7,
-          "peak": 1444
+          "seconds": 429.6,
+          "peak": 1300
         }
       },
       {
@@ -1456,8 +1449,8 @@
           [],
           []
         ],
-        "seconds": 607.5,
-        "peak": 835
+        "seconds": 448.1,
+        "peak": 875
       }
     ]
   }

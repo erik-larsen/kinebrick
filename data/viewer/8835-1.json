@@ -170,64 +170,55 @@
         "result": "partly",
         "reason": "The viewer sweep does not show it: the viewer's turn of the wedge-belt wheel goes 0.035 rad each way and leaves p63 2823 still, and a pointer drag moves no listed part more than 0.6 (the sweep at 85aa8904, decision 355)."
       },
-      "verdict": "not shown",
-      "why": "A: p63 2823 not moved; not decided: p207 4185a: a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)",
-      "decidedBy": [
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p29 3703 turned 0.21 degrees, 0.286 predicted (rate 0.143, turn 0.035)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p128 4262 turned 0.21 degrees, 0.218 predicted (rate 0.109, turn 0.035)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p29 3703 turned 0.21 degrees, 0.286 predicted (rate 0.143, turn -0.035)",
-        "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p128 4262 turned 0.21 degrees, 0.218 predicted (rate 0.109, turn -0.035)"
-      ],
-      "msOneCall": 14,
-      "msPerStep": 11,
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 2,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 7
+        "A": 0,
+        "B": 12
       },
       "stop": {
         "control": "p207 4185a",
         "way": 1,
-        "went": 0.035,
+        "went": 1.081,
         "asked": 1.5,
         "by": [
-          "71/123"
+          "179/208"
         ]
       },
       "stops": [
-        "71/123"
+        "179/208"
       ],
       "A": [
         {
           "control": "p207 4185a",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [],
-            "freed": []
-          },
+          "pinsAsked": [
+            127
+          ],
           "asked": 1.5,
-          "went": 0.035,
-          "ms": 11,
-          "msOneCall": 14,
+          "went": 1.081,
+          "ms": 68,
+          "msOneCall": 8,
           "stops": [
-            "71/123"
+            "179/208"
           ],
           "moved": {
             "p29 3703": [
-              0.6,
-              0.21
+              24.3,
+              9.92
             ],
             "p128 4262": [
-              0.52,
-              0.21
+              18.92,
+              5.21
             ],
             "p63 2823": [
-              0,
-              0
+              17.96,
+              9.92
             ],
             "p212 3736": [
               0,
@@ -242,30 +233,26 @@
         {
           "control": "p207 4185a",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [],
-            "freed": []
-          },
-          "asked": 1.5,
-          "went": -0.035,
-          "ms": 10,
-          "msOneCall": 10,
-          "stops": [
-            "71/123"
+          "pinsAsked": [
+            127
           ],
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 81,
+          "msOneCall": 4,
+          "stops": [],
           "moved": {
             "p29 3703": [
-              0.6,
-              0.21
+              30.07,
+              12.28
             ],
             "p128 4262": [
-              0.52,
-              0.21
+              24.47,
+              9.38
             ],
             "p63 2823": [
-              0,
-              0
+              22.23,
+              12.28
             ],
             "p212 3736": [
               0,
@@ -284,6 +271,9 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            127
+          ],
           "shift": [],
           "drags": [
             {
@@ -293,28 +283,37 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            0.49,
-            3.51
+            0,
+            102.35
           ],
           "moved": [
             "p29 3703",
-            "p128 4262"
+            "p128 4262",
+            "p63 2823"
           ],
           "went": {
             "p29 3703": [
-              1.71,
-              0.7
+              30.96,
+              12.66
             ],
             "p128 4262": [
-              1.22,
-              0.02
+              24.65,
+              12.61
             ],
             "p63 2823": [
-              0,
-              0
+              22.89,
+              12.66
             ]
           },
           "staysWent": {
@@ -328,24 +327,23 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "31/61"
-          ]
+          "stops": []
         }
       ],
       "stopsJudged": [
         {
           "control": "p207 4185a",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at +0.035 rad (71/123); -0.035 rad (71/123)"
+          "judged": "stands",
+          "why": "stopped at +1.081 rad (179/208); kinds crank-and-link: mast tilt"
         }
       ],
-      "stopVerdict": "not decided",
+      "stopVerdict": "shown",
       "moved": {
-        "verdict": "not shown",
-        "why": "A: p63 2823 not moved"
+        "verdict": "shown"
       },
-      "seconds": 12
+      "seconds": 17,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:53:19.505Z"
     },
     {
       "function": 3,

@@ -396,15 +396,15 @@
       "function": 7,
       "does": "The two doors swing open.",
       "verdict": "shown",
-      "msOneCall": 36,
-      "msPerStep": 3,
+      "msOneCall": 45,
+      "msPerStep": 4,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 5,
-        "A": 7,
-        "B": 34
+        "A": 8,
+        "B": 28
       },
       "stop": {
         "control": "p378 32524",
@@ -428,6 +428,7 @@
               "part": 421,
               "seen": true,
               "said": [
+                "Finding the pins that hold it…",
                 "2 friction pins that held it can now turn: drag it again"
               ],
               "freed": [
@@ -450,8 +451,8 @@
           },
           "asked": 1.5,
           "went": 1.5,
-          "ms": 143,
-          "msOneCall": 36,
+          "ms": 181,
+          "msOneCall": 45,
           "stops": [],
           "moved": {}
         },
@@ -463,6 +464,7 @@
               "part": 421,
               "seen": true,
               "said": [
+                "Finding the pins that hold it…",
                 "2 friction pins that held it can now turn: drag it again"
               ],
               "freed": [
@@ -485,8 +487,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 9,
-          "msOneCall": 8,
+          "ms": 7,
+          "msOneCall": 9,
           "stops": [
             "121/378"
           ],
@@ -510,10 +512,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            422
+          ],
           "asked": 1.5,
           "went": 0,
-          "ms": 6,
-          "msOneCall": 6,
+          "ms": 5,
+          "msOneCall": 9,
           "stops": [
             "120/421"
           ],
@@ -537,10 +542,13 @@
               ]
             }
           ],
+          "pinsAsked": [
+            422
+          ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 140,
-          "msOneCall": 8,
+          "ms": 144,
+          "msOneCall": 21,
           "stops": [],
           "moved": {}
         }
@@ -576,11 +584,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            44.3,
-            41
+            66.97,
+            63.93
           ],
           "moved": [],
           "went": {},
@@ -600,6 +616,7 @@
               "part": 378,
               "seen": true,
               "said": [
+                "Finding the pins that hold it…",
                 "2 friction pins that held it can now turn: drag it again"
               ],
               "freed": [
@@ -630,15 +647,15 @@
             }
           ],
           "controlWent": [
-            114.7,
-            130.13
+            112.62,
+            125.84
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "421/603"
+            "120/421"
           ]
         }
       ],
@@ -658,7 +675,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 58
+      "seconds": 56,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:43:43.134Z"
     },
     {
       "function": 8,

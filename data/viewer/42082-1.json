@@ -686,17 +686,16 @@
         "result": "partly",
         "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p3789 against p2649. Viewer sweep, decision 279."
       },
-      "verdict": "not shown",
-      "why": "A: p3789 32524 against p2649 64179 not moved; B: no listed part moved by hand",
-      "msOneCall": 1063,
-      "msPerStep": 820,
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
       "time": {
-        "open": 30,
+        "open": 24,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 27,
-        "B": 100
+        "A": 45,
+        "B": 85
       },
       "stop": null,
       "stops": [],
@@ -704,11 +703,21 @@
         {
           "control": "p3789 32524",
           "way": 1,
-          "ringShifted": true,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              3792,
+              3793
+            ]
+          },
           "asked": 0.42,
-          "went": 0.42,
-          "ms": 3995,
-          "msOneCall": 835,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p3789 32524 against p2649 64179": [
@@ -720,10 +729,21 @@
         {
           "control": "p3789 32524",
           "way": -1,
+          "shift": {
+            "seen": true,
+            "said": [
+              "Finding the pins that hold it…",
+              "2 friction pins that held it can now turn: drag it again"
+            ],
+            "freed": [
+              3792,
+              3793
+            ]
+          },
           "asked": 0.03,
-          "went": -0.03,
-          "ms": 820,
-          "msOneCall": 1063,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p3789 32524 against p2649 64179": [
@@ -739,16 +759,11 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [],
+          "shift": [
+            "Finding the pins that hold it…",
+            "2 friction pins that held it can now turn: drag it again"
+          ],
           "drags": [
-            {
-              "kind": "round",
-              "amount": 1.5
-            },
-            {
-              "kind": "round",
-              "amount": -1.5
-            },
             {
               "kind": "along",
               "amount": 1
@@ -759,25 +774,30 @@
             }
           ],
           "controlWent": [
-            112.64,
-            27.33
+            44.05,
+            6.85
           ],
-          "moved": [],
+          "moved": [
+            "p3789 32524 against p2649 64179"
+          ],
           "went": {
             "p3789 32524 against p2649 64179": [
-              0,
+              19.57,
               0
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "1624/1682",
-            "2501/2534"
+            "3725/3789",
+            "3802/3838"
           ]
         }
       ],
-      "seconds": 148
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 155,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:38:58.984Z"
     }
   ]
 }

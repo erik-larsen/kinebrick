@@ -906,38 +906,29 @@
     {
       "function": 6,
       "does": "With the lever engaged, the rear power take-off turns as the tractor rolls: the clutch gear drives a 16 tooth gear above it, whose shaft runs back to the PTO at the rear.",
-      "verdict": "not shown",
-      "msOneCall": 104,
-      "msPerStep": 77,
+      "verdict": "shown",
+      "msOneCall": 109,
+      "msPerStep": 81,
       "time": {
-        "open": 10,
+        "open": 11,
         "collisions": 0,
         "first": 6,
-        "reach": 11,
-        "A": 13,
-        "B": 62
+        "reach": 12,
+        "A": 14,
+        "B": 64
       },
-      "stop": {
-        "control": "p701 44772",
-        "way": 1,
-        "went": 1.5,
-        "asked": 1.5,
-        "by": [
-          "60/106"
-        ]
-      },
-      "stops": [
-        "60/106"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p701 44772",
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3284,
-          "msOneCall": 104,
-          "stops": [
+          "ms": 3491,
+          "msOneCall": 109,
+          "stops": [],
+          "passed": [
             "60/106"
           ],
           "moved": {
@@ -960,8 +951,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 3187,
-          "msOneCall": 87,
+          "ms": 3407,
+          "msOneCall": 89,
           "stops": [],
           "moved": {
             "p31 6542a": [
@@ -983,8 +974,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 3053,
-          "msOneCall": 77,
+          "ms": 3447,
+          "msOneCall": 101,
           "stops": [],
           "moved": {
             "p31 6542a": [
@@ -1006,8 +997,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2983,
-          "msOneCall": 43,
+          "ms": 3422,
+          "msOneCall": 41,
           "stops": [],
           "moved": {
             "p31 6542a": [
@@ -1052,7 +1043,7 @@
           ],
           "controlWent": [
             0,
-            153.16
+            103.09
           ],
           "moved": [
             "p31 6542a",
@@ -1062,15 +1053,15 @@
           "went": {
             "p31 6542a": [
               0,
-              176.16
+              171.02
             ],
             "p61 4019": [
               0,
-              176.16
+              171.02
             ],
             "p65 3706": [
               0,
-              176.16
+              171.02
             ]
           },
           "staysWent": {},
@@ -1105,7 +1096,7 @@
           ],
           "controlWent": [
             0,
-            165.97
+            165.83
           ],
           "moved": [
             "p31 6542a",
@@ -1115,15 +1106,15 @@
           "went": {
             "p31 6542a": [
               0,
-              99.65
+              103.33
             ],
             "p61 4019": [
               0,
-              99.65
+              103.33
             ],
             "p65 3706": [
               0,
-              99.65
+              103.33
             ]
           },
           "staysWent": {},
@@ -1133,19 +1124,9 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p701 44772",
-          "judged": "not shown",
-          "why": "turns without end (kinds power-take-off; the text says: power take-off, rolls), but a collision stops it at +1.5 rad (60/106)"
-        }
-      ],
-      "stopVerdict": "not shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "a collision stops a control: p701 44772: turns without end (kinds power-take-off; the text says: power take-off, rolls), but a collision stops it at +1.5 rad (60/106)",
-      "seconds": 103
+      "seconds": 108,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:46:20.779Z"
     },
     {
       "function": 8,

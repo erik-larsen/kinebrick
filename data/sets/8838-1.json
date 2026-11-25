@@ -160,14 +160,14 @@
     ]
   },
   "generated": {
-    "commit": "e32f5816",
+    "commit": "b7344562",
     "uncommitted": true,
     "date": "2026-11-25",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
-      "partly": 3,
+      "partly": 2,
+      "works": 3,
       "skipped": 2,
-      "works": 2,
       "no": 1
     },
     "loose": [
@@ -271,82 +271,75 @@
         ],
         "cause": "not-driven",
         "detail": "p73 3705",
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
-        "result": "partly",
-        "hold": {
-          "reason": "Under a hand the suspension is not shown: a drag on the shock absorber's rod p225 swings the whole fork 68.7 degrees, the cylinders p224 and p226 and the part p77 (listed to stay) exactly as far as the rods and the wheel, so the rods do not slide in the cylinders. The viewer's own turn does not take the control. Full viewer sweep at ac22e339, decision 363.",
-          "date": "2026-11-25"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              20,
-              -1
+        "result": "works",
+        "turned": [
+          [
+            20,
+            -1
+          ]
+        ],
+        "rates": [
+          {
+            "p227 2910": [
+              6.32e-9,
+              1
+            ],
+            "p219 3706": [
+              0.00357,
+              1
+            ],
+            "p220 8838 - 2903": [
+              0.00357,
+              1
+            ],
+            "p224 2909": [
+              2.11e-9,
+              4.44e-7
+            ],
+            "p226 2909": [
+              2.11e-9,
+              4.44e-7
+            ],
+            "p77 2905": [
+              2.11e-9,
+              3.14e-7
             ]
-          ],
-          "rates": [
-            {
-              "p227 2910": [
-                6.32e-9,
-                1
-              ],
-              "p219 3706": [
-                0.00357,
-                1
-              ],
-              "p220 8838 - 2903": [
-                0.00357,
-                1
-              ],
-              "p224 2909": [
-                2.11e-9,
-                4.44e-7
-              ],
-              "p226 2909": [
-                2.11e-9,
-                4.44e-7
-              ],
-              "p77 2905": [
-                2.11e-9,
-                3.14e-7
-              ]
-            }
-          ],
-          "back": [
+          }
+        ],
+        "back": [
+          [
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "torn": [
+              0,
+              0
+            ],
             [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+              0,
+              0
             ]
-          ],
-          "stop": [
+          ]
+        ],
+        "torn": [
+          [
             [
-              null,
-              "limit"
+              0,
+              0
+            ],
+            [
+              0,
+              0
             ]
-          ],
-          "seconds": 0.2
-        }
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -441,7 +434,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p141 3706",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -525,7 +518,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "works",
@@ -562,7 +555,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -657,6 +650,6 @@
         "seconds": 0
       }
     ],
-    "peak": 525
+    "peak": 361
   }
 }

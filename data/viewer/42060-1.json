@@ -11,46 +11,54 @@
       "function": 2,
       "does": "Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it.",
       "verdict": "shown",
-      "msOneCall": 15,
-      "msPerStep": 11,
+      "msOneCall": 11,
+      "msPerStep": 3,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
-        "B": 7
+        "A": 0,
+        "B": 13
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p30 59443",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "26/172"
+        ]
+      },
+      "stops": [
+        "26/172"
+      ],
       "A": [
         {
           "control": "p30 59443",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            32
+          ],
           "asked": 1.5,
-          "went": 0.035,
-          "ms": 11,
-          "msOneCall": 15,
-          "stops": [],
+          "went": 0,
+          "ms": 5,
+          "msOneCall": 8,
+          "stops": [
+            "26/172"
+          ],
           "moved": {
             "p159 32525": [
-              1.1,
-              0.35
+              0,
+              0
             ],
             "p173 32525": [
-              1.1,
-              0.35
+              0,
+              0
             ],
             "p172 15458": [
-              1,
-              0.35
+              0,
+              0
             ],
             "p156 32270": [
               0,
@@ -61,30 +69,26 @@
         {
           "control": "p30 59443",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
+          "pinsAsked": [
+            32
+          ],
           "asked": 1.5,
-          "went": -0.035,
-          "ms": 9,
-          "msOneCall": 7,
+          "went": -1.5,
+          "ms": 131,
+          "msOneCall": 11,
           "stops": [],
           "moved": {
             "p159 32525": [
-              1.12,
-              0.35
+              50.23,
+              32.18
             ],
             "p173 32525": [
-              1.12,
-              0.35
+              50.23,
+              32.18
             ],
             "p172 15458": [
-              1.02,
-              0.35
+              46.31,
+              32.18
             ],
             "p156 32270": [
               0,
@@ -99,9 +103,10 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            32
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -110,11 +115,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
             0,
-            16.62
+            132.89
           ],
           "moved": [
             "p159 32525",
@@ -123,16 +136,16 @@
           ],
           "went": {
             "p159 32525": [
-              15.47,
-              9.92
+              49.17,
+              31.91
             ],
             "p173 32525": [
-              15.47,
-              9.92
+              49.17,
+              31.91
             ],
             "p172 15458": [
-              14.26,
-              9.92
+              45.34,
+              31.91
             ]
           },
           "staysWent": {
@@ -147,7 +160,20 @@
           ]
         }
       ],
-      "seconds": 12
+      "stopsJudged": [
+        {
+          "control": "p30 59443",
+          "judged": "stands",
+          "why": "stopped at +0 rad (26/172); kinds crank-and-link: tipper"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 18,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:54.663Z"
     },
     {
       "function": 3,
@@ -661,14 +687,14 @@
         "reason": "Under a hand the function is not shown apart from the boom: a push on the elbow's axle p287 moves the boom part p277, listed to stay, 39 and 18, while the arm's link p295 moves only 2.8 and 8.0 against it; the viewer's own turn does not turn this control (the sweep at 55ee538d, judged by hand, decision 359)."
       },
       "verdict": "not shown",
-      "msOneCall": 1,
+      "msOneCall": 0,
       "msPerStep": null,
       "time": {
         "open": 4,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 1,
+        "A": 0,
         "B": 12
       },
       "stop": null,
@@ -677,17 +703,10 @@
         {
           "control": "p287 59443",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "asked": 0.1,
           "went": 0,
           "ms": 0,
-          "msOneCall": 1,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p288 42060 - 33299b": [
@@ -707,13 +726,6 @@
         {
           "control": "p287 59443",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "asked": 0.2,
           "went": 0,
           "ms": 0,
@@ -741,9 +753,7 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
-          ],
+          "shift": [],
           "drags": [
             {
               "kind": "push",
@@ -797,7 +807,9 @@
       ],
       "why": "by hand: p277 32316 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 17
+      "seconds": 17,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:54.663Z"
     },
     {
       "function": 8,

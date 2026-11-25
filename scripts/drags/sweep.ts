@@ -371,11 +371,42 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
       let shifted: { seen: boolean; said?: string[]; freed?: number[] } | null = null;
       const others = shiftFirst && g.freed ? freedForOthers(g, control) : [];
       const shiftedOthers = others.length ? await shiftOthers(v, others) : [];
-      if (shiftFirst && g.freed && !(await turnsPlain(v, control))) {
-        const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
-        shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
+      // Shift is pressed where the check pressed it (shiftPressed), even on a control that turns
+      // plainly: the 42082's cab door, welded to the cab by its two friction pins, "turned" by
+      // slewing the whole superstructure, and its door never moved against the cab.
+      if (shiftFirst && g.freed && (g.shiftPressed?.length || !(await turnsPlain(v, control)))) {
+        // Not where Shift would free no pins and the check freed some for this control: a press that
+        // finds none asks the part to slide on its axle, and turnPart then turned the 42053's,
+        // 42078's and 8835's knobs not at all, their pins freed or not (see askedPins below).
+        const forControl = (g.freedFor ?? []).some((f: { for: string }) => f.for.startsWith(`p${control} `));
+        const shiftFinds: number[] = forControl ? await v.page.evaluate(async (control) => (await (window as any).kinebrick.setup.pinsToShift(control)).pins, control) : [1];
+        if (shiftFinds.length) {
+          const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
+          shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
+        }
       }
-      for (const [wi, way] of [1, -1].entries()) {
+      // Where the check freed pins for this control (freedFor) and Shift freed none, the pins a drag
+      // asks for when it can't move (setup.pinsToFree, the same search as the check's), freed:
+      // turnPart doesn't ask for them as a drag does, and Shift's own search (pinsForShift) finds
+      // none on a control with joints. The 8835's mast wheel and the 42053's cab knob stood still
+      // so, on play; with the check's pins freed they turn their full way.
+      let askedPins: number[] = [];
+      if (shiftFirst && (g.freedFor ?? []).some((f: { for: string }) => f.for.startsWith(`p${control} `)) && !shifted?.freed?.length) {
+        askedPins = await v.page.evaluate(async (control) => {
+          const k = (window as any).kinebrick;
+          const pins: number[] = await k.setup.pinsToFree(control);
+          if (pins.length) await k.setup.freePins(pins);
+          return pins;
+        }, control);
+      }
+      // Which way of the joint each of A's ways is. turnPart turns a knob counter-clockwise as seen
+      // from the camera, so its way 1 is the joint's + way only where turnSense says 1; the check's
+      // record (turned) is by the joint's way. Read by A's own way, a canopy was asked to open only
+      // as far as the check found it could close (0.07 rad), and stopped closed at 0.035 the other
+      // way: 17 of the 23 "not decided" of 2026-11-25 (42033 fn4, 42083 fn7, 8001 fn1 ...).
+      const sense = withIt.length ? 1 : ((await v.page.evaluate((control) => (window as any).kinebrick.interaction.turnSense(control, (window as any).kinebrick.setup.camera.position), control)) ?? 1);
+      for (const way of [1, -1]) {
+        const wi = way * sense > 0 ? 0 : 1;
         // As far as the check turned it, but a part that turns without end (endlessPart) the full
         // turn each way, whatever the check's record turned (ordered after decision 284): where the check stopped
         // at a collision, asking only that far never shows whether the viewer stops there too.
@@ -487,7 +518,13 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         if (r.how === 'motor') ({ went, ms, moved } = await runMotor(v, control, way, asked, [...moves, ...stays]));
         const steps = Math.max(1, Math.abs(went) / MAX_STEP);
         if (Math.abs(went) > 1e-6) msA.push(ms / steps);
-        const stops = await v.stops();
+        // A collision counts as a stop only where the turn fell short of what it asked: the solver
+        // meets one on a long step and gets past it in shorter ones (the 8063's power take-off
+        // went its full 1.5 rad, and its 60/106 was judged a stop of a part that turns without end).
+        const seen = await v.stops();
+        const fellShort = Math.abs(went) < asked - 1e-3;
+        const stops = fellShort ? seen : [];
+        const passed = fellShort ? [] : seen;
         stops.forEach((s) => stopsA.add(s));
         moves.forEach((m: Ref, k: number) => {
           if (moved[k][0] >= MOVED || moved[k][1] >= MOVED) return void movedByA.add(m.ref);
@@ -500,14 +537,15 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
           }
         });
         stays.forEach((m: Ref, k: number) => { const x = moved[moves.length + k]; if (x[0] >= MOVED || x[1] >= MOVED) staysMovedByA.add(m.ref); });
-        if (r.rebuilt && wi === 0) {
+        if (r.rebuilt && way === 1) {
           // Worked out afresh (a ring shifted): opened afresh for the other way, Shift pressed again.
           if (!viewerFor) await v.close();
           v = await prepare(ref, false);
           if (others.length) await shiftOthers(v, others);
           if (shifted?.seen && (await v.reach(control)) >= 0 && (await v.aim(control))) await v.press({ shift: true, release: true });
+          if (askedPins.length) await v.page.evaluate((pins) => (window as any).kinebrick.setup.freePins(pins), askedPins);
         }
-        A.push({ control: ref, way, ...(shiftedOthers.length ? { shiftOthers: shiftedOthers } : {}), ...(shifted ? { shift: shifted } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
+        A.push({ control: ref, way, ...(shiftedOthers.length ? { shiftOthers: shiftedOthers } : {}), ...(shifted ? { shift: shifted } : {}), ...(askedPins.length ? { pinsAsked: askedPins } : {}), ...(r.shiftedRing ? { ringShifted: true } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, ...(passed.length ? { passed } : {}), moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
     }
     time.A += (Date.now() - tA) / 1000;
@@ -541,6 +579,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const parts = [...moves, ...stays].flatMap((m: Ref) => [m.part, m.against].filter((p) => p >= 0));
     const isMotor = await v.page.evaluate((p) => (window as any).kinebrick.mech.roles[p] === 'motor', control);
     let shift: string[] = [];
+    let pinsAskedB: number[] = [];
     // How far the control and each listed part went in B: the most over B's drags, each measured
     // from where the drag began (decision 329), as A's are.
     const watch = [control, ...parts];
@@ -562,15 +601,40 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     };
     if (isMotor) {
       const before = await v.where(watch);
+      await v.page.evaluate(() => { (window as any).sweepAngles = [...(window as any).kinebrick.kin.jointAngles]; });
       await v.page.keyboard.down('Control');
       await v.page.mouse.down();
       await v.page.mouse.up();
       await v.page.keyboard.up('Control');
       await v.page.waitForTimeout(10_000);
-      await v.page.evaluate(() => (window as any).kinebrick.interaction.pauseMotor(true));
+      // The motor's output, as part A's runMotor measures it: its body never moves, but the part
+      // it drives turns on its joint (the 42113's motor, which read 0 so).
+      const output = await v.page.evaluate(() => {
+        const k = (window as any).kinebrick;
+        const part = k.interaction.motorPart();
+        const link = part >= 0 ? k.kin.parentLink(k.mech.bodyOf[part]) : null;
+        const turned = link ? Math.abs(k.kin.jointAngles[link.joint] - (window as any).sweepAngles[link.joint]) : 0;
+        k.interaction.pauseMotor(true);
+        return (turned * 180) / Math.PI;
+      });
       await measure(before);
+      note(ref, 0, output);
     } else {
-      if (g.freed && !(await turnsPlain(v, control))) shift = (await v.press({ shift: true, release: true })).said;
+      // Where Shift would free no pins and the check freed some for this control, the pins a drag
+      // asks for when it can't move (setup.pinsToFree) are freed instead, as in A: a Shift press that
+      // finds no pins asks the part to slide on its axle, and the drag then pulled the 42078's
+      // steering knob 30 LDU off its axle while the wheels stood.
+      if (g.freed && (g.shiftPressed?.length || !(await turnsPlain(v, control)))) {
+        const forControl = (g.freedFor ?? []).some((f: { for: string }) => f.for.startsWith(`p${control} `));
+        const shiftFinds: number[] = forControl ? await v.page.evaluate(async (control) => (await (window as any).kinebrick.setup.pinsToShift(control)).pins, control) : [1];
+        if (shiftFinds.length) shift = (await v.press({ shift: true, release: true })).said;
+        else pinsAskedB = await v.page.evaluate(async (control) => {
+          const k = (window as any).kinebrick;
+          const pins: number[] = await k.setup.pinsToFree(control);
+          if (pins.length) await k.setup.freePins(pins);
+          return pins;
+        }, control);
+      }
       // As a person drags (decision 329): round the control's middle where it turns like a knob,
       // and straight along the way its fastest point goes as its joint turns (as the check aims a
       // push, wayOnJoint), each way; the four fixed pushes only where neither applies.
@@ -592,7 +656,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const controlMoved = c[0] >= MOVED || c[1] >= MOVED;
     moved.forEach((m: string) => movedByB.add(m));
     if (controlMoved) controlsMovedByB.add(ref);
-    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysWent: Object.fromEntries(stays.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysMoved, stops: await v.stops() });
+    B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, ...(pinsAskedB.length ? { pinsAsked: pinsAskedB } : {}), ...(shiftedOthersB.length ? { shiftOthers: shiftedOthersB } : {}), shift, drags, controlWent: c, moved, went: Object.fromEntries(moves.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysWent: Object.fromEntries(stays.map((m: Ref) => [m.ref, most.get(m.ref) ?? [0, 0]])), staysMoved, stops: await v.stops() });
     time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
@@ -861,6 +925,26 @@ async function handWays(v: Viewer, control: number): Promise<({ kind: 'round'; a
         const r = k.setup.renderer.domElement.getBoundingClientRect();
         const px = (p: any) => { const q = world(p).project(k.setup.camera); return [r.left + ((q.x + 1) / 2) * r.width, r.top + ((1 - q.y) / 2) * r.height]; };
         const a = px(best.g), b = px(best.g.clone().addScaledVector(best.vel.normalize(), 30));
+        const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (len > 1) along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
+      }
+    }
+    // A control that slides (as the check's slideOf has it: no parent link, one slide and only
+    // hinges besides): along its slide's way on the screen, as the check pushes it along the slide
+    // (decision 365). Pushed only the four fixed ways, the 8838's fork rod steered the fork.
+    if (!along && !link && !kin.frames.includes(body)) {
+      const own = k.mech.joints.filter((j: any) => j.bodyA === body || j.bodyB === body);
+      const slides = own.filter((j: any) => j.kind === 'slide');
+      if (slides.length === 1 && own.every((j: any) => j === slides[0] || j.kind === 'revolute')) {
+        const j = slides[0];
+        const other = j.bodyA === body ? j.bodyB : j.bodyA;
+        const dir = j.to.clone().sub(j.from).normalize().transformDirection(kin.poses[other]);
+        const V = k.setup.camera.position.constructor;
+        const mid = new V().setFromMatrixPosition(k.matrices()[control]);
+        const world = (p: any) => p.clone().applyMatrix4(k.setup.ldrawSpace.matrixWorld);
+        const r = k.setup.renderer.domElement.getBoundingClientRect();
+        const px = (p: any) => { const q = world(p).project(k.setup.camera); return [r.left + ((q.x + 1) / 2) * r.width, r.top + ((1 - q.y) / 2) * r.height]; };
+        const a = px(mid), b = px(mid.clone().addScaledVector(dir, 30));
         const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
         if (len > 1) along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
       }

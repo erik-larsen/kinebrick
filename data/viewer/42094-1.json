@@ -449,77 +449,61 @@
     {
       "function": 5,
       "does": "The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines.",
-      "verdict": "not decided",
-      "msOneCall": 85,
-      "msPerStep": 44,
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
         "B": 9
       },
-      "stop": {
-        "control": "p1064 32270",
-        "way": -1,
-        "went": -0.069,
-        "asked": 1.52,
-        "by": [
-          "1073/1078"
-        ]
-      },
-      "stops": [
-        "1073/1078"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p1064 32270",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [],
-            "freed": []
-          },
+          "pinsAsked": [
+            1116
+          ],
           "asked": 1.5,
-          "went": 0.14,
-          "ms": 144,
-          "msOneCall": 85,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p1061 60485": [
-              13.18,
-              8.01
+              0,
+              0
             ],
             "p1094 32278": [
-              0.14,
-              0.06
+              0,
+              0
             ]
           }
         },
         {
           "control": "p1064 32270",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [],
-            "freed": []
-          },
-          "asked": 1.52,
-          "went": -0.069,
-          "ms": 88,
-          "msOneCall": 39,
-          "stops": [
-            "1073/1078"
+          "pinsAsked": [
+            1116
           ],
+          "asked": 1.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
           "moved": {
             "p1061 60485": [
-              6.97,
-              3.97
+              0,
+              0
             ],
             "p1094 32278": [
-              0.07,
-              0.03
+              0,
+              0
             ]
           }
         }
@@ -530,28 +514,31 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            1116
+          ],
           "shift": [],
           "drags": [
             {
-              "kind": "round",
-              "amount": 1.5
+              "kind": "along",
+              "amount": 1
             },
             {
-              "kind": "round",
-              "amount": -1.5
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            4.37,
-            16.69
+            33.28,
+            131.14
           ],
           "moved": [
             "p1061 60485"
           ],
           "went": {
             "p1061 60485": [
-              4.37,
-              16.69
+              33.28,
+              131.14
             ]
           },
           "staysWent": {
@@ -568,19 +555,13 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p1064 32270",
-          "judged": "to compare with the booklet",
-          "why": "a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)"
-        }
+      "decidedBy": [
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p1094 32278 moved 1.52, the least-moved listed part 131.14"
       ],
-      "stopVerdict": "not decided",
-      "moved": {
-        "verdict": "shown"
-      },
-      "why": "not decided: p1064 32270: a travel of 0.2 rad or less each way, stopped at -0.069 rad (1073/1078)",
-      "seconds": 17
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 17,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:40:48.178Z"
     },
     {
       "function": 6,
