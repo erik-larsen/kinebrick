@@ -238,6 +238,23 @@ export function setUpInteraction(s: InteractionSetup) {
     return d.grabStart.clone().applyMatrix4(s.kin.poses[d.body]);
   }
 
+  // Where on screen (pixels) a drag that starts at this pixel turns its part about, if the part
+  // there turns like a knob: its axle level with the point grabbed, where turnTowards measures
+  // the pointer's sweep from. The part's middle is not that, seen at a slant: a hand (or a test)
+  // that circles the middle, having grabbed the part off it, first sweeps an angle about this
+  // point the same way whichever way it then goes round (the 42038's steering gear p170, grabbed
+  // on its top face, turned one way only). Null where no such part is there.
+  function turnCentre(clientX: number, clientY: number): [number, number] | null {
+    const hit = hitAt(clientX, clientY);
+    if (!hit) return null;
+    const body = s.mech.bodyOf[hit.part];
+    const link = body >= 0 ? s.kin.parentLink(body) : null;
+    if (!link || !s.kin.turnsLikeAKnob(body)) return null;
+    const { point, dir } = s.kin.jointAxisNow(link.joint);
+    const hub = toScreen(point.addScaledVector(dir, new Vector3().subVectors(hit.point, point).dot(dir)));
+    return [hub.x, hub.y];
+  }
+
   // For a turn: the axle's direction (the way the body turns positive about it, relative to
   // its parent) and the point on the axle level with the grabbed point.
   function turnAxis(d: Drag): { hub: Vector3; dir: Vector3 } {
@@ -1276,6 +1293,7 @@ export function setUpInteraction(s: InteractionSetup) {
       motorHeldIn = null;
     },
     motorRunning: () => motorPart >= 0,
+    turnCentre, // (clientX, clientY): see turnCentre
   };
 }
 
