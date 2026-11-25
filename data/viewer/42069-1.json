@@ -928,15 +928,15 @@
       "function": 9,
       "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
       "verdict": "shown",
-      "msOneCall": 161,
-      "msPerStep": 53,
+      "msOneCall": 202,
+      "msPerStep": 57,
       "time": {
-        "open": 15,
+        "open": 16,
         "collisions": 0,
         "first": 0,
-        "reach": 43,
-        "A": 55,
-        "B": 44
+        "reach": 51,
+        "A": 66,
+        "B": 50
       },
       "stop": null,
       "stops": [],
@@ -973,8 +973,8 @@
           },
           "asked": 0.07,
           "went": 0.07,
-          "ms": 103,
-          "msOneCall": 161,
+          "ms": 115,
+          "msOneCall": 202,
           "stops": [],
           "moved": {}
         },
@@ -1010,8 +1010,8 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 828,
-          "msOneCall": 74,
+          "ms": 987,
+          "msOneCall": 81,
           "stops": [],
           "moved": {}
         },
@@ -1038,8 +1038,8 @@
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1022,
-          "msOneCall": 125,
+          "ms": 1062,
+          "msOneCall": 138,
           "stops": [],
           "moved": {}
         },
@@ -1066,8 +1066,8 @@
           ],
           "asked": 0.07,
           "went": -0.07,
-          "ms": 106,
-          "msOneCall": 81,
+          "ms": 103,
+          "msOneCall": 79,
           "stops": [],
           "moved": {}
         }
@@ -1115,17 +1115,17 @@
             }
           ],
           "controlWent": [
-            46.22,
-            70.63
+            59.16,
+            95.42
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "875/884",
             "876/884",
-            "868/884",
-            "875/884"
+            "868/884"
           ]
         },
         {
@@ -1170,22 +1170,21 @@
             }
           ],
           "controlWent": [
-            63.22,
-            104.46
+            47.66,
+            73.17
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "874/896",
-            "659/896"
+            "874/896"
           ]
         }
       ],
-      "seconds": 209,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:34:16.468Z"
+      "seconds": 244,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:25:30.507Z"
     }
   ]
 }

@@ -462,15 +462,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p97 4254 turned 0.06 degrees, 0.052 predicted (rate 0.0304, turn -0.03)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p96 4254 turned 0.06 degrees, 0.064 predicted (rate 0.0372, turn 0.03)"
       ],
-      "msOneCall": 96,
-      "msPerStep": 84,
+      "msOneCall": 98,
+      "msPerStep": 91,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 6,
-        "B": 21
+        "A": 5,
+        "B": 23
       },
       "stop": null,
       "stops": [],
@@ -478,13 +478,6 @@
         {
           "control": "p58 57515",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             64,
             111,
@@ -502,8 +495,8 @@
           ],
           "asked": 0.63,
           "went": 0.63,
-          "ms": 1016,
-          "msOneCall": 96,
+          "ms": 1036,
+          "msOneCall": 98,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -527,13 +520,6 @@
         {
           "control": "p58 57515",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             64,
             111,
@@ -551,8 +537,8 @@
           ],
           "asked": 0.03,
           "went": -0.03,
-          "ms": 84,
-          "msOneCall": 86,
+          "ms": 86,
+          "msOneCall": 88,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -581,6 +567,7 @@
               "part": 58,
               "seen": true,
               "said": [
+                "Finding the pins that hold it…",
                 "No friction pins hold this part: drag it"
               ],
               "freed": [
@@ -623,8 +610,8 @@
           },
           "asked": 0.03,
           "went": 0.03,
-          "ms": 83,
-          "msOneCall": 88,
+          "ms": 91,
+          "msOneCall": 93,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -653,6 +640,7 @@
               "part": 58,
               "seen": true,
               "said": [
+                "Finding the pins that hold it…",
                 "No friction pins hold this part: drag it"
               ],
               "freed": [
@@ -695,8 +683,8 @@
           },
           "asked": 0.63,
           "went": -0.63,
-          "ms": 952,
-          "msOneCall": 84,
+          "ms": 1124,
+          "msOneCall": 93,
           "stops": [],
           "moved": {
             "p66 11949": [
@@ -724,9 +712,22 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            64,
+            111,
+            208,
+            262,
+            276,
+            351,
+            356,
+            360,
+            361,
+            373,
+            388,
+            396,
+            417
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -739,7 +740,7 @@
           ],
           "controlWent": [
             0,
-            36.48
+            37.06
           ],
           "moved": [
             "p66 11949",
@@ -749,20 +750,20 @@
           ],
           "went": {
             "p66 11949": [
-              62.58,
+              63.54,
               1.14
             ],
             "p76 11949": [
-              7.23,
+              7.38,
               1.14
             ],
             "p96 4254": [
-              25.03,
-              8.23
+              25.41,
+              8.45
             ],
             "p97 4254": [
-              2.89,
-              1.81
+              2.95,
+              1.82
             ]
           },
           "staysWent": {},
@@ -801,7 +802,7 @@
           ],
           "controlWent": [
             0,
-            2.16
+            1.4
           ],
           "moved": [
             "p66 11949",
@@ -811,20 +812,20 @@
           ],
           "went": {
             "p66 11949": [
-              0.48,
+              0.27,
               1.14
             ],
             "p76 11949": [
-              3.5,
+              2,
               1.14
             ],
             "p96 4254": [
-              0.19,
+              0.11,
               1.43
             ],
             "p97 4254": [
-              1.4,
-              1.53
+              0.8,
+              1.46
             ]
           },
           "staysWent": {},
@@ -834,23 +835,23 @@
           ]
         }
       ],
-      "seconds": 35,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:31:10.376Z"
+      "seconds": 37,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:22:21.373Z"
     },
     {
       "function": 5,
       "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
       "verdict": "shown",
       "msOneCall": 109,
-      "msPerStep": 60,
+      "msPerStep": 57,
       "time": {
         "open": 8,
         "collisions": 0,
         "first": 0,
         "reach": 21,
         "A": 2,
-        "B": 34
+        "B": 38
       },
       "stop": null,
       "stops": [],
@@ -860,7 +861,7 @@
           "way": 1,
           "asked": 0.43,
           "went": 0.43,
-          "ms": 594,
+          "ms": 580,
           "msOneCall": 109,
           "stops": [],
           "moved": {
@@ -887,8 +888,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 49,
-          "msOneCall": 33,
+          "ms": 46,
+          "msOneCall": 30,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -914,8 +915,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 121,
-          "msOneCall": 75,
+          "ms": 113,
+          "msOneCall": 76,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -941,8 +942,8 @@
           "way": -1,
           "asked": 0.43,
           "went": -0.43,
-          "ms": 549,
-          "msOneCall": 63,
+          "ms": 486,
+          "msOneCall": 60,
           "stops": [],
           "moved": {
             "p235 11950": [
@@ -990,8 +991,8 @@
             }
           ],
           "controlWent": [
-            26.1,
-            30.29
+            27.32,
+            31.73
           ],
           "moved": [
             "p235 11950",
@@ -1000,7 +1001,7 @@
           ],
           "went": {
             "p235 11950": [
-              52.21,
+              54.64,
               1.14
             ],
             "p236 11950": [
@@ -1008,8 +1009,8 @@
               1.14
             ],
             "p290 4254": [
-              20.88,
-              7.53
+              21.14,
+              7.61
             ],
             "p292 4254": [
               0,
@@ -1048,8 +1049,8 @@
             }
           ],
           "controlWent": [
-            26.35,
-            30.58
+            26.49,
+            30.74
           ],
           "moved": [
             "p235 11950",
@@ -1062,7 +1063,7 @@
               1.14
             ],
             "p236 11950": [
-              52.71,
+              52.97,
               1.14
             ],
             "p290 4254": [
@@ -1070,8 +1071,8 @@
               0.61
             ],
             "p292 4254": [
-              21.08,
-              7.6
+              21.19,
+              7.64
             ]
           },
           "staysWent": {},
@@ -1082,9 +1083,9 @@
           ]
         }
       ],
-      "seconds": 65,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:31:10.376Z"
+      "seconds": 68,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:22:21.373Z"
     },
     {
       "function": 7,

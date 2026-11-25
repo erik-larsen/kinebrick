@@ -196,15 +196,15 @@
       "function": 5,
       "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
       "verdict": "shown",
-      "msOneCall": 198,
-      "msPerStep": 78,
+      "msOneCall": 210,
+      "msPerStep": 80,
       "time": {
-        "open": 16,
+        "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 115,
+        "reach": 129,
         "A": 2,
-        "B": 50
+        "B": 56
       },
       "stop": null,
       "stops": [],
@@ -214,8 +214,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 145,
-          "msOneCall": 198,
+          "ms": 159,
+          "msOneCall": 210,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -233,8 +233,8 @@
           "way": -1,
           "asked": 0.27,
           "went": -0.27,
-          "ms": 393,
-          "msOneCall": 82,
+          "ms": 427,
+          "msOneCall": 77,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -252,8 +252,8 @@
           "way": 1,
           "asked": 0.27,
           "went": 0.27,
-          "ms": 397,
-          "msOneCall": 77,
+          "ms": 442,
+          "msOneCall": 75,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -271,8 +271,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 156,
-          "msOneCall": 69,
+          "ms": 159,
+          "msOneCall": 81,
           "stops": [],
           "moved": {
             "p2731 23800": [
@@ -321,7 +321,7 @@
           "went": {
             "p2731 23800": [
               21.26,
-              0.21
+              0.3
             ],
             "p2734 23800": [
               0,
@@ -331,8 +331,7 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "2657/2732",
-            "540/539"
+            "2657/2732"
           ]
         },
         {
@@ -373,20 +372,20 @@
             ],
             "p2734 23800": [
               20.89,
-              0.31
+              0.29
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "2383/2735",
-            "547/546"
+            "547/546",
+            "2383/2735"
           ]
         }
       ],
-      "seconds": 183,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:33:31.349Z"
+      "seconds": 205,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:31.282Z"
     },
     {
       "function": 6,
@@ -1096,14 +1095,14 @@
       "does": "The seats sit on their own pins and can be tipped or slid by hand.",
       "verdict": "not shown",
       "why": "B: the control could not be seen",
-      "msOneCall": 206,
-      "msPerStep": 26,
+      "msOneCall": 268,
+      "msPerStep": 32,
       "time": {
-        "open": 17,
+        "open": 18,
         "collisions": 0,
         "first": 0,
-        "reach": 639,
-        "A": 5,
+        "reach": 646,
+        "A": 6,
         "B": 0
       },
       "stop": null,
@@ -1114,8 +1113,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1121,
-          "msOneCall": 206,
+          "ms": 1353,
+          "msOneCall": 268,
           "stops": [],
           "moved": {}
         },
@@ -1124,8 +1123,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1062,
-          "msOneCall": 87,
+          "ms": 1270,
+          "msOneCall": 81,
           "stops": [],
           "moved": {}
         },
@@ -1134,8 +1133,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 1048,
-          "msOneCall": 61,
+          "ms": 1257,
+          "msOneCall": 76,
           "stops": [],
           "moved": {}
         },
@@ -1144,8 +1143,8 @@
           "way": -1,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 1059,
-          "msOneCall": 65,
+          "ms": 1269,
+          "msOneCall": 76,
           "stops": [],
           "moved": {}
         }
@@ -1160,9 +1159,9 @@
           "seen": false
         }
       ],
-      "seconds": 661,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:33:31.349Z"
+      "seconds": 670,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:31.282Z"
     }
   ]
 }

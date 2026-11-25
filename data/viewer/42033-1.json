@@ -259,7 +259,7 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 23,
+          "ms": 24,
           "msOneCall": 6,
           "stops": [],
           "moved": {
@@ -321,16 +321,16 @@
             }
           ],
           "controlWent": [
-            54.65,
-            85.36
+            60.04,
+            96.28
           ],
           "moved": [
             "p110 92279 against p0 32278"
           ],
           "went": {
             "p110 92279 against p0 32278": [
-              54.65,
-              85.36
+              60.04,
+              96.28
             ]
           },
           "staysWent": {
@@ -360,8 +360,8 @@
         "verdict": "shown"
       },
       "seconds": 16,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:31:02.049Z"
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:22:17.855Z"
     },
     {
       "function": 5,

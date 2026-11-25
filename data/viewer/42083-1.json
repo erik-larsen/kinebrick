@@ -431,15 +431,15 @@
       "function": 7,
       "does": "The two doors swing open on hinges at their front edges.",
       "verdict": "shown",
-      "msOneCall": 416,
-      "msPerStep": 129,
+      "msOneCall": 413,
+      "msPerStep": 122,
       "time": {
-        "open": 25,
+        "open": 27,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 17,
-        "B": 57
+        "A": 18,
+        "B": 60
       },
       "stop": null,
       "stops": [],
@@ -450,8 +450,8 @@
           "ringShifted": true,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 258,
-          "msOneCall": 416,
+          "ms": 245,
+          "msOneCall": 413,
           "stops": [],
           "moved": {}
         },
@@ -461,8 +461,8 @@
           "ringShifted": true,
           "asked": 1.5,
           "went": -1.5,
-          "ms": 2656,
-          "msOneCall": 396,
+          "ms": 2709,
+          "msOneCall": 410,
           "stops": [],
           "moved": {}
         },
@@ -471,8 +471,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 1.5,
-          "ms": 2554,
-          "msOneCall": 346,
+          "ms": 2665,
+          "msOneCall": 355,
           "stops": [],
           "moved": {}
         },
@@ -481,8 +481,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 225,
-          "msOneCall": 166,
+          "ms": 221,
+          "msOneCall": 178,
           "stops": [],
           "moved": {}
         }
@@ -513,14 +513,15 @@
             }
           ],
           "controlWent": [
-            180.95,
-            97.87
+            186.82,
+            102.23
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "2807/2934",
             "2807/2924",
             "2786/2943"
           ]
@@ -550,7 +551,7 @@
             }
           ],
           "controlWent": [
-            172.72,
+            172.73,
             92.06
           ],
           "moved": [],
@@ -563,9 +564,9 @@
           ]
         }
       ],
-      "seconds": 94,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:39:39.116Z"
+      "seconds": 99,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:39:07.192Z"
     }
   ]
 }

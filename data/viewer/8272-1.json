@@ -631,10 +631,10 @@
       "function": 6,
       "does": "Each ski rocks nose up and nose down on the pin that holds it under its spindle, following the ground.",
       "verdict": "shown",
-      "msOneCall": 27,
+      "msOneCall": 29,
       "msPerStep": 4,
       "time": {
-        "open": 6,
+        "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
@@ -649,8 +649,8 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 23,
-          "msOneCall": 27,
+          "ms": 22,
+          "msOneCall": 29,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -669,7 +669,7 @@
           "asked": 0.3,
           "went": -0.3,
           "ms": 20,
-          "msOneCall": 4,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -687,8 +687,8 @@
           "way": 1,
           "asked": 0.2,
           "went": 0.2,
-          "ms": 11,
-          "msOneCall": 4,
+          "ms": 13,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -706,8 +706,8 @@
           "way": -1,
           "asked": 0.3,
           "went": -0.3,
-          "ms": 14,
-          "msOneCall": 6,
+          "ms": 15,
+          "msOneCall": 5,
           "stops": [],
           "moved": {
             "p53 2736": [
@@ -747,8 +747,8 @@
             }
           ],
           "controlWent": [
-            36.33,
-            29.18
+            36.35,
+            29.2
           ],
           "moved": [],
           "went": {},
@@ -764,8 +764,8 @@
           },
           "staysMoved": [],
           "stops": [
-            "52/614",
-            "14/614"
+            "14/614",
+            "52/614"
           ]
         },
         {
@@ -793,8 +793,8 @@
             }
           ],
           "controlWent": [
-            36.11,
-            29
+            35.72,
+            28.68
           ],
           "moved": [],
           "went": {},
@@ -810,14 +810,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "50/631",
-            "11/631"
+            "11/631",
+            "50/631"
           ]
         }
       ],
-      "seconds": 31,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:54:41.796Z"
+      "seconds": 32,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:48:48.848Z"
     }
   ]
 }

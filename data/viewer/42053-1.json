@@ -14,16 +14,16 @@
         "result": "partly",
         "reason": "In the viewer neither a turn of the control nor a push by hand moves these listed parts: p2196, p2201, p2222, p2407 (one of the four moves). Viewer sweep, decision 279."
       },
-      "verdict": "not shown",
-      "msOneCall": 0,
-      "msPerStep": null,
+      "verdict": "shown",
+      "msOneCall": 91,
+      "msPerStep": 20,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
-        "B": 24
+        "A": 3,
+        "B": 22
       },
       "stop": null,
       "stops": [],
@@ -31,37 +31,30 @@
         {
           "control": "p2207 32270",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             2228,
             2235
           ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": 1.5,
+          "ms": 862,
+          "msOneCall": 91,
           "stops": [],
           "moved": {
             "p2196 4716": [
               0,
-              0
+              85.94
             ],
             "p2201 3648b": [
               0,
-              0
+              3.58
             ],
             "p2222 42053 - 33299b": [
               0,
-              0
+              3.58
             ],
             "p2407 32073": [
-              0,
+              10,
               0
             ],
             "p285 42053 - 18938": [
@@ -77,37 +70,30 @@
         {
           "control": "p2207 32270",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             2228,
             2235
           ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": -1.5,
+          "ms": 814,
+          "msOneCall": 28,
           "stops": [],
           "moved": {
             "p2196 4716": [
               0,
-              0
+              85.94
             ],
             "p2201 3648b": [
               0,
-              0
+              3.58
             ],
             "p2222 42053 - 33299b": [
               0,
-              0
+              3.58
             ],
             "p2407 32073": [
-              0,
+              10,
               0
             ],
             "p285 42053 - 18938": [
@@ -127,49 +113,54 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…"
+          "pinsAsked": [
+            2228,
+            2235
           ],
+          "shift": [],
           "drags": [
             {
-              "kind": "push",
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            2.13,
-            97.74
+            0,
+            147.23
           ],
           "moved": [
-            "p2196 4716"
+            "p2196 4716",
+            "p2201 3648b",
+            "p2222 42053 - 33299b",
+            "p2407 32073"
           ],
           "went": {
             "p2196 4716": [
-              2.13,
-              97.74
+              0,
+              147.23
             ],
             "p2201 3648b": [
               0,
-              0
+              6.13
             ],
             "p2222 42053 - 33299b": [
               0,
-              0.54
+              6.16
             ],
             "p2407 32073": [
-              0,
+              17.12,
               0
             ]
           },
@@ -184,16 +175,12 @@
             ]
           },
           "staysMoved": [],
-          "stops": [
-            "437/723"
-          ]
+          "stops": []
         }
       ],
-      "why": "by hand: p2201 3648b, p2222 42053 - 33299b, p2407 32073 not moved",
-      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 32,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:33:11.976Z"
+      "seconds": 31,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:21.882Z"
     },
     {
       "function": 6,

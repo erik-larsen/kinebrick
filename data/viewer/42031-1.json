@@ -176,7 +176,7 @@
         "reason": "The booklet shows a long travel, but in the viewer a collision stops the control p101 at 0.03 rad each way (parts 92/130 and 91/124); the check stops at the same angle and judges by rates. Viewer sweep, decision 279."
       },
       "verdict": "shown",
-      "msOneCall": 9,
+      "msOneCall": 8,
       "msPerStep": 3,
       "time": {
         "open": 4,
@@ -195,7 +195,7 @@
           "asked": 0.03,
           "went": 0.03,
           "ms": 3,
-          "msOneCall": 9,
+          "msOneCall": 8,
           "stops": [],
           "passed": [
             "92/130"
@@ -300,9 +300,9 @@
           ]
         }
       ],
-      "seconds": 21,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:30:48.571Z"
+      "seconds": 20,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:21:59.632Z"
     },
     {
       "function": 3,

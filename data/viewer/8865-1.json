@@ -510,15 +510,15 @@
       "function": 10,
       "does": "Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.",
       "verdict": "shown",
-      "msOneCall": 55,
-      "msPerStep": 11,
+      "msOneCall": 53,
+      "msPerStep": 13,
       "time": {
         "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 6,
-        "B": 28
+        "B": 29
       },
       "stop": null,
       "stops": [],
@@ -561,8 +561,8 @@
           },
           "asked": 0.5,
           "went": 0.5,
-          "ms": 133,
-          "msOneCall": 55,
+          "ms": 140,
+          "msOneCall": 53,
           "stops": [],
           "moved": {}
         },
@@ -604,8 +604,8 @@
           },
           "asked": 0.1,
           "went": -0.1,
-          "ms": 32,
-          "msOneCall": 26,
+          "ms": 38,
+          "msOneCall": 25,
           "stops": [],
           "moved": {}
         },
@@ -637,7 +637,7 @@
           ],
           "asked": 0.5,
           "went": 0.5,
-          "ms": 106,
+          "ms": 120,
           "msOneCall": 29,
           "stops": [],
           "moved": {}
@@ -671,7 +671,7 @@
           "asked": 0.1,
           "went": -0.1,
           "ms": 32,
-          "msOneCall": 16,
+          "msOneCall": 23,
           "stops": [],
           "moved": {}
         }
@@ -721,8 +721,8 @@
             }
           ],
           "controlWent": [
-            53.06,
-            34.23
+            53.02,
+            34.21
           ],
           "moved": [],
           "went": {},
@@ -777,7 +777,7 @@
             }
           ],
           "controlWent": [
-            53.14,
+            53.15,
             34.29
           ],
           "moved": [],
@@ -790,9 +790,9 @@
           ]
         }
       ],
-      "seconds": 45,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:59:10.723Z"
+      "seconds": 47,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:54:24.009Z"
     }
   ]
 }

@@ -611,15 +611,15 @@
       "function": 6,
       "does": "The bonnet lifts by hand.",
       "verdict": "shown",
-      "msOneCall": 25,
-      "msPerStep": 8,
+      "msOneCall": 28,
+      "msPerStep": 7,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 13
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -639,8 +639,8 @@
           },
           "asked": 0.03,
           "went": 0.03,
-          "ms": 8,
-          "msOneCall": 25,
+          "ms": 7,
+          "msOneCall": 28,
           "stops": [],
           "moved": {
             "p893 64683": [
@@ -668,7 +668,7 @@
           },
           "asked": 1.5,
           "went": -1.5,
-          "ms": 89,
+          "ms": 94,
           "msOneCall": 6,
           "stops": [],
           "moved": {
@@ -690,7 +690,6 @@
           "cameraTurns": 0,
           "motor": false,
           "shift": [
-            "Finding the pins that hold it…",
             "2 friction pins that held it can now turn: drag it again"
           ],
           "drags": [
@@ -712,8 +711,8 @@
             }
           ],
           "controlWent": [
-            38.67,
-            86.19
+            44.03,
+            102.16
           ],
           "moved": [
             "p893 64683",
@@ -721,12 +720,12 @@
           ],
           "went": {
             "p893 64683": [
-              38.67,
-              86.19
+              44.03,
+              102.16
             ],
             "p890 32524": [
-              112.73,
-              86.19
+              128.36,
+              102.16
             ]
           },
           "staysWent": {},
@@ -738,8 +737,8 @@
         }
       ],
       "seconds": 21,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:42:19.940Z"
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:35.813Z"
     }
   ]
 }

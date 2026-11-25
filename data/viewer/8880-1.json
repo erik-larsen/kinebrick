@@ -1430,15 +1430,15 @@
       "function": 12,
       "does": "The two seat backs tilt on their finger hinges.",
       "verdict": "not decided",
-      "msOneCall": 82,
-      "msPerStep": 23,
+      "msOneCall": 75,
+      "msPerStep": 20,
       "time": {
         "open": 11,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 9,
-        "B": 29
+        "A": 11,
+        "B": 32
       },
       "stop": {
         "control": "p1092 3031",
@@ -1492,8 +1492,8 @@
           },
           "asked": 0.1,
           "went": 0.1,
-          "ms": 65,
-          "msOneCall": 82,
+          "ms": 58,
+          "msOneCall": 75,
           "stops": [],
           "moved": {}
         },
@@ -1535,7 +1535,7 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 20,
+          "ms": 19,
           "msOneCall": 21,
           "stops": [
             "982/1092"
@@ -1570,8 +1570,8 @@
           ],
           "asked": 0.1,
           "went": 0.1,
-          "ms": 48,
-          "msOneCall": 61,
+          "ms": 56,
+          "msOneCall": 62,
           "stops": [],
           "moved": {}
         },
@@ -1603,8 +1603,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 17,
-          "msOneCall": 20,
+          "ms": 22,
+          "msOneCall": 22,
           "stops": [
             "981/1126"
           ],
@@ -1656,8 +1656,8 @@
             }
           ],
           "controlWent": [
-            16.56,
-            7.19
+            16.82,
+            7.31
           ],
           "moved": [],
           "went": {},
@@ -1713,7 +1713,7 @@
             }
           ],
           "controlWent": [
-            16.69,
+            16.68,
             7.25
           ],
           "moved": [],
@@ -1722,8 +1722,8 @@
           "staysMoved": [],
           "stops": [
             "981/1126",
-            "1066/1124",
-            "1127/1131"
+            "1127/1131",
+            "1066/1124"
           ]
         }
       ],
@@ -1748,9 +1748,9 @@
         "verdict": "shown"
       },
       "why": "not decided: p1092 3031: a travel of 0.2 rad or less each way, stopped at -0 rad (982/1092); p1126 3031: a travel of 0.2 rad or less each way, stopped at -0 rad (981/1126)",
-      "seconds": 53,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:59:57.267Z"
+      "seconds": 60,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:54:42.830Z"
     },
     {
       "function": 13,

@@ -607,15 +607,15 @@
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.03 degrees, 0.028 predicted (rate 0.00485, turn 0.1)",
         "rate: under 1 degree predicted by the check's rate, half of it counts as moved: p1309 65414 turned 0.01 degrees, 0.008 predicted (rate 0.00485, turn -0.03)"
       ],
-      "msOneCall": 395,
-      "msPerStep": 218,
+      "msOneCall": 330,
+      "msPerStep": 247,
       "time": {
-        "open": 14,
+        "open": 13,
         "collisions": 0,
         "first": 0,
-        "reach": 68,
+        "reach": 67,
         "A": 3,
-        "B": 38
+        "B": 43
       },
       "stop": null,
       "stops": [],
@@ -625,8 +625,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 218,
-          "msOneCall": 395,
+          "ms": 247,
+          "msOneCall": 330,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -652,8 +652,8 @@
           "way": -1,
           "asked": 0.13,
           "went": -0.13,
-          "ms": 678,
-          "msOneCall": 214,
+          "ms": 710,
+          "msOneCall": 217,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -679,8 +679,8 @@
           "way": 1,
           "asked": 0.1,
           "went": 0.1,
-          "ms": 573,
-          "msOneCall": 219,
+          "ms": 516,
+          "msOneCall": 198,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -706,8 +706,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 201,
-          "msOneCall": 220,
+          "ms": 204,
+          "msOneCall": 219,
           "stops": [],
           "moved": {
             "p1309 65414": [
@@ -748,7 +748,7 @@
           ],
           "controlWent": [
             0,
-            6.45
+            6.91
           ],
           "moved": [
             "p1309 65414",
@@ -756,15 +756,15 @@
           ],
           "went": {
             "p1309 65414": [
-              9.27,
-              0.31
+              9.89,
+              0.33
             ],
             "p1032 65414": [
               0,
-              0.02
+              0.03
             ],
             "p1379 4254 against p1380 4255": [
-              9,
+              9.61,
               0
             ],
             "p1215 4254 against p1216 4255": [
@@ -796,7 +796,7 @@
           ],
           "controlWent": [
             0,
-            10.23
+            9.03
           ],
           "moved": [
             "p1032 65414",
@@ -805,18 +805,18 @@
           "went": {
             "p1309 65414": [
               0,
-              0.05
+              0.04
             ],
             "p1032 65414": [
-              13.39,
-              0.66
+              12.66,
+              0.76
             ],
             "p1379 4254 against p1380 4255": [
               0,
               0
             ],
             "p1215 4254 against p1216 4255": [
-              12.71,
+              12.08,
               0
             ]
           },
@@ -828,23 +828,23 @@
           ]
         }
       ],
-      "seconds": 124,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:51:31.399Z"
+      "seconds": 127,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:45:24.388Z"
     },
     {
       "function": 8,
       "does": "The steering wheel in the cab is for show: it sits fixed on a red axle 2 in a black connector, which is fitted into the cab on a pin (step 352). It is not connected to the steering, and it does not spin on its own axle.",
       "verdict": "shown",
-      "msOneCall": 282,
-      "msPerStep": 52,
+      "msOneCall": 256,
+      "msPerStep": 53,
       "time": {
         "open": 9,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 25
+        "B": 26
       },
       "stop": null,
       "stops": [],
@@ -854,8 +854,8 @@
           "way": 1,
           "asked": 0.13,
           "went": 0.13,
-          "ms": 192,
-          "msOneCall": 282,
+          "ms": 195,
+          "msOneCall": 256,
           "stops": [],
           "moved": {
             "p1402 87761": [
@@ -869,8 +869,8 @@
           "way": -1,
           "asked": 0.53,
           "went": -0.53,
-          "ms": 534,
-          "msOneCall": 91,
+          "ms": 568,
+          "msOneCall": 92,
           "stops": [],
           "moved": {
             "p1402 87761": [
@@ -906,8 +906,8 @@
             }
           ],
           "controlWent": [
-            36.35,
-            39.34
+            36.41,
+            39.41
           ],
           "moved": [],
           "went": {},
@@ -919,15 +919,15 @@
           },
           "staysMoved": [],
           "stops": [
-            "1935/2287",
             "1879/1935",
+            "1935/2287",
             "1935/2036"
           ]
         }
       ],
-      "seconds": 35,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:51:31.399Z"
+      "seconds": 37,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:45:24.388Z"
     }
   ]
 }

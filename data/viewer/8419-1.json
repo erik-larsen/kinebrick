@@ -194,7 +194,7 @@
       "function": 3,
       "does": "The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip.",
       "verdict": "shown",
-      "msOneCall": 12,
+      "msOneCall": 15,
       "msPerStep": 6,
       "time": {
         "open": 4,
@@ -202,7 +202,7 @@
         "first": 0,
         "reach": 0,
         "A": 1,
-        "B": 7
+        "B": 13
       },
       "stop": null,
       "stops": [],
@@ -210,20 +210,13 @@
         {
           "control": "p204 32269",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             280
           ],
           "asked": 1.5,
           "went": 1.5,
-          "ms": 247,
-          "msOneCall": 12,
+          "ms": 244,
+          "msOneCall": 15,
           "stops": [],
           "moved": {
             "p188 32269 against p212 32009": [
@@ -271,20 +264,13 @@
         {
           "control": "p204 32269",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             280
           ],
           "asked": 1.5,
           "went": -1.5,
-          "ms": 248,
-          "msOneCall": 5,
+          "ms": 256,
+          "msOneCall": 7,
           "stops": [],
           "moved": {
             "p188 32269 against p212 32009": [
@@ -336,9 +322,10 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            280
           ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -347,11 +334,19 @@
             {
               "kind": "round",
               "amount": -1.5
+            },
+            {
+              "kind": "along",
+              "amount": 1
+            },
+            {
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
             0,
-            106.29
+            97.55
           ],
           "moved": [
             "p188 32269 against p212 32009",
@@ -366,35 +361,35 @@
           "went": {
             "p188 32269 against p212 32009": [
               0,
-              106.29
+              97.55
             ],
             "p176 4019 against p212 32009": [
               0,
-              132.87
+              121.93
             ],
             "p98 32198 against p212 32009": [
               0,
-              132.85
+              121.92
             ],
             "p102 3326b against p212 32009": [
-              0.01,
-              132.87
+              0,
+              121.93
             ],
             "p129 4716 against p115 32140": [
               0,
-              132.87
+              121.94
             ],
             "p135 3647 against p115 32140": [
               0,
-              16.74
+              15.38
             ],
             "p279 32525 against p115 32140": [
-              31.03,
-              30.1
+              30.77,
+              29.84
             ],
             "p284 2950 against p115 32140": [
-              82.67,
-              62.65
+              81.96,
+              65.62
             ]
           },
           "staysWent": {
@@ -413,9 +408,9 @@
           "stops": []
         }
       ],
-      "seconds": 13,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:55:14.703Z"
+      "seconds": 18,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:51:44.551Z"
     }
   ]
 }

@@ -414,8 +414,8 @@
       "function": 5,
       "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
       "verdict": "not decided",
-      "msOneCall": 71,
-      "msPerStep": 33,
+      "msOneCall": 77,
+      "msPerStep": 36,
       "time": {
         "open": 16,
         "collisions": 0,
@@ -442,8 +442,8 @@
           "way": 1,
           "asked": 1.5,
           "went": 0,
-          "ms": 31,
-          "msOneCall": 71,
+          "ms": 27,
+          "msOneCall": 77,
           "stops": [
             "345/396"
           ],
@@ -471,8 +471,8 @@
           "way": -1,
           "asked": 0.03,
           "went": -0.03,
-          "ms": 33,
-          "msOneCall": 44,
+          "ms": 36,
+          "msOneCall": 50,
           "stops": [],
           "moved": {
             "p370 32184": [
@@ -498,8 +498,8 @@
           "way": 1,
           "asked": 0.03,
           "went": 0.03,
-          "ms": 30,
-          "msOneCall": 36,
+          "ms": 35,
+          "msOneCall": 37,
           "stops": [],
           "moved": {
             "p370 32184": [
@@ -525,8 +525,8 @@
           "way": -1,
           "asked": 1.5,
           "went": 0,
-          "ms": 25,
-          "msOneCall": 21,
+          "ms": 23,
+          "msOneCall": 27,
           "stops": [
             "345/396"
           ],
@@ -664,10 +664,11 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
+            "345/396",
+            "345/397",
             "14/345",
             "53/345",
-            "56/345",
-            "345/397"
+            "56/345"
           ]
         }
       ],
@@ -692,9 +693,9 @@
         "verdict": "shown"
       },
       "why": "not decided: p364 32195a: a travel of 0.2 rad or less each way, stopped at +0 rad (345/396); p380 32195a: a travel of 0.2 rad or less each way, stopped at -0 rad (345/396)",
-      "seconds": 50,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:55:28.607Z"
+      "seconds": 51,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:52:03.587Z"
     }
   ]
 }

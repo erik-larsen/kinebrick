@@ -14,50 +14,55 @@
         "result": "partly",
         "reason": "The booklet shows the roof gear steering lock to lock (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420), but in the viewer a collision stops p1146 at 0.07 rad each way (parts 466/1065 and 466/872); the check turns 1.27 and 1.5 rad. Viewer sweep on today's code, decision 298."
       },
-      "verdict": "not shown",
-      "msOneCall": 0,
-      "msPerStep": null,
+      "verdict": "shown",
+      "msOneCall": 279,
+      "msPerStep": 106,
       "time": {
-        "open": 11,
+        "open": 12,
         "collisions": 0,
         "first": 0,
-        "reach": 10,
-        "A": 38,
-        "B": 49
+        "reach": 13,
+        "A": 42,
+        "B": 47
       },
-      "stop": null,
-      "stops": [],
+      "stop": {
+        "control": "p1146 18575",
+        "way": 1,
+        "went": 1.291,
+        "asked": 1.5,
+        "by": [
+          "455/483"
+        ]
+      },
+      "stops": [
+        "455/483"
+      ],
       "A": [
         {
           "control": "p1146 18575",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             307
           ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
-          "stops": [],
+          "went": 1.291,
+          "ms": 3926,
+          "msOneCall": 279,
+          "stops": [
+            "455/483"
+          ],
           "moved": {
             "p537 3648b": [
               0,
-              0
+              24.65
             ],
             "p502 56145": [
-              0,
-              0
+              23.73,
+              40.47
             ],
             "p512 56145": [
-              0,
-              0
+              23.73,
+              40.47
             ],
             "p324 3708": [
               0,
@@ -68,33 +73,26 @@
         {
           "control": "p1146 18575",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             307
           ],
           "asked": 1.5,
-          "went": 0,
-          "ms": 0,
-          "msOneCall": 0,
+          "went": -1.5,
+          "ms": 3894,
+          "msOneCall": 130,
           "stops": [],
           "moved": {
             "p537 3648b": [
               0,
-              0
+              28.65
             ],
             "p502 56145": [
-              0,
-              0
+              21.14,
+              36.05
             ],
             "p512 56145": [
-              0,
-              0
+              21.14,
+              36.05
             ],
             "p324 3708": [
               0,
@@ -109,44 +107,49 @@
           "seen": true,
           "cameraTurns": 1,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…"
+          "pinsAsked": [
+            307
           ],
+          "shift": [],
           "drags": [
             {
-              "kind": "push",
+              "kind": "round",
+              "amount": 1.5
+            },
+            {
+              "kind": "round",
+              "amount": -1.5
+            },
+            {
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            30,
-            125.96
+            0,
+            111.96
           ],
-          "moved": [],
+          "moved": [
+            "p537 3648b",
+            "p502 56145",
+            "p512 56145"
+          ],
           "went": {
             "p537 3648b": [
               0,
-              0
+              37.26
             ],
             "p502 56145": [
-              0,
-              0
+              29.87,
+              51.83
             ],
             "p512 56145": [
-              0,
-              0
+              29.87,
+              51.83
             ]
           },
           "staysWent": {
@@ -157,16 +160,24 @@
           },
           "staysMoved": [],
           "stops": [
-            "1118/1123",
-            "998/1118"
+            "455/483"
           ]
         }
       ],
-      "why": "by hand: p537 3648b, p502 56145, p512 56145 not moved; B: no listed part moved by hand",
-      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 109,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:36:51.235Z"
+      "stopsJudged": [
+        {
+          "control": "p1146 18575",
+          "judged": "stands",
+          "why": "stopped at +1.291 rad (455/483); kinds linkage-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 115,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:28:36.415Z"
     },
     {
       "function": 2,
@@ -481,15 +492,15 @@
       "function": 5,
       "does": "The cab doors swing open.",
       "verdict": "shown",
-      "msOneCall": 173,
+      "msOneCall": 169,
       "msPerStep": 42,
       "time": {
         "open": 17,
         "collisions": 0,
         "first": 0,
-        "reach": 18,
-        "A": 106,
-        "B": 81
+        "reach": 14,
+        "A": 110,
+        "B": 92
       },
       "stop": {
         "control": "p851 32524",
@@ -532,8 +543,8 @@
           },
           "asked": 1.5,
           "went": 0,
-          "ms": 60,
-          "msOneCall": 88,
+          "ms": 65,
+          "msOneCall": 85,
           "stops": [
             "481/851"
           ],
@@ -566,8 +577,8 @@
           },
           "asked": 1.13,
           "went": -1.13,
-          "ms": 1366,
-          "msOneCall": 173,
+          "ms": 1354,
+          "msOneCall": 169,
           "stops": [],
           "moved": {}
         },
@@ -593,8 +604,8 @@
           ],
           "asked": 1.13,
           "went": 1.13,
-          "ms": 1277,
-          "msOneCall": 158,
+          "ms": 1270,
+          "msOneCall": 157,
           "stops": [],
           "moved": {}
         },
@@ -620,8 +631,8 @@
           ],
           "asked": 1.5,
           "went": 0,
-          "ms": 43,
-          "msOneCall": 41,
+          "ms": 54,
+          "msOneCall": 65,
           "stops": [
             "481/889"
           ],
@@ -676,8 +687,8 @@
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "481/851",
             "486/851",
+            "481/851",
             "856/1491"
           ]
         },
@@ -720,8 +731,8 @@
             }
           ],
           "controlWent": [
-            65.8,
-            66.51
+            65.78,
+            66.48
           ],
           "moved": [],
           "went": {},
@@ -750,9 +761,9 @@
       "moved": {
         "verdict": "shown"
       },
-      "seconds": 279,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:36:51.235Z"
+      "seconds": 286,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:28:36.415Z"
     },
     {
       "function": 7,
@@ -1008,8 +1019,8 @@
         "collisions": 0,
         "first": 0,
         "reach": 1,
-        "A": 86,
-        "B": 150
+        "A": 72,
+        "B": 108
       },
       "stop": null,
       "stops": [],
@@ -1028,14 +1039,6 @@
               "freed": []
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             2071
           ],
@@ -1060,14 +1063,6 @@
               "freed": []
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             2071
           ],
@@ -1094,16 +1089,9 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": [
-              2071
-            ]
-          },
+          "pinsAsked": [
+            2290
+          ],
           "asked": 1.05,
           "went": 0,
           "ms": 0,
@@ -1127,16 +1115,9 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": [
-              2071
-            ]
-          },
+          "pinsAsked": [
+            2290
+          ],
           "asked": 0.01,
           "went": 0,
           "ms": 0,
@@ -1151,6 +1132,9 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            2071
+          ],
           "shiftOthers": [
             {
               "part": 2270,
@@ -1162,31 +1146,20 @@
               "freed": []
             }
           ],
-          "shift": [
-            "Finding the pins that hold it…",
-            "No friction pins hold this part: drag it"
-          ],
+          "shift": [],
           "drags": [
             {
-              "kind": "push",
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            90.24,
-            29.33
+            117.94,
+            16.45
           ],
           "moved": [],
           "went": {},
@@ -1201,6 +1174,9 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            2290
+          ],
           "shiftOthers": [
             {
               "part": 2051,
@@ -1212,44 +1188,31 @@
               "freed": []
             }
           ],
-          "shift": [
-            "Finding the pins that hold it…",
-            "No friction pins hold this part: drag it"
-          ],
+          "shift": [],
           "drags": [
             {
-              "kind": "push",
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            116.45,
-            27.91
+            116.99,
+            27.33
           ],
           "moved": [],
           "went": {},
           "staysWent": {},
           "staysMoved": [],
-          "stops": [
-            "2279/2280"
-          ]
+          "stops": []
         }
       ],
-      "seconds": 300,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:36:51.235Z"
+      "seconds": 242,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:28:36.415Z"
     },
     {
       "function": 12,
@@ -1260,15 +1223,15 @@
       },
       "verdict": "not shown",
       "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of 25 LDU",
-      "msOneCall": 323,
-      "msPerStep": 159,
+      "msOneCall": 333,
+      "msPerStep": 165,
       "time": {
-        "open": 17,
+        "open": 18,
         "collisions": 0,
-        "first": 85,
+        "first": 86,
         "reach": 0,
-        "A": 84,
-        "B": 98
+        "A": 93,
+        "B": 144
       },
       "stop": {
         "control": "p2665 64782",
@@ -1298,20 +1261,13 @@
               "freed": []
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "This part is held by more than friction pins"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             2629
           ],
           "asked": 1.5,
           "went": 0.593,
-          "ms": 2241,
-          "msOneCall": 323,
+          "ms": 2582,
+          "msOneCall": 333,
           "stops": [
             "2618/2641",
             "186/1680"
@@ -1340,20 +1296,13 @@
               "freed": []
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "This part is held by more than friction pins"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             2629
           ],
           "asked": 0.2,
           "went": -0.2,
-          "ms": 907,
-          "msOneCall": 228,
+          "ms": 940,
+          "msOneCall": 229,
           "stops": [],
           "moved": {
             "p2631 64782 against p2619 32184": [
@@ -1381,19 +1330,13 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "This part is held by more than friction pins"
-            ],
-            "freed": [
-              2629
-            ]
-          },
+          "pinsAsked": [
+            2663
+          ],
           "asked": 0.2,
           "went": 0.2,
-          "ms": 837,
-          "msOneCall": 273,
+          "ms": 871,
+          "msOneCall": 268,
           "stops": [],
           "moved": {
             "p2631 64782 against p2619 32184": [
@@ -1421,19 +1364,13 @@
               ]
             }
           ],
-          "shift": {
-            "seen": true,
-            "said": [
-              "This part is held by more than friction pins"
-            ],
-            "freed": [
-              2629
-            ]
-          },
+          "pinsAsked": [
+            2663
+          ],
           "asked": 1.5,
           "went": -0.628,
-          "ms": 2440,
-          "msOneCall": 214,
+          "ms": 2570,
+          "msOneCall": 210,
           "stops": [
             "185/1685"
           ],
@@ -1455,6 +1392,9 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            2629
+          ],
           "shiftOthers": [
             {
               "part": 2665,
@@ -1465,9 +1405,7 @@
               "freed": []
             }
           ],
-          "shift": [
-            "This part is held by more than friction pins"
-          ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -1487,8 +1425,8 @@
             }
           ],
           "controlWent": [
-            372.69,
-            49.25
+            344.74,
+            45.34
           ],
           "moved": [],
           "went": {
@@ -1514,6 +1452,9 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
+          "pinsAsked": [
+            2663
+          ],
           "shiftOthers": [
             {
               "part": 2631,
@@ -1524,9 +1465,7 @@
               "freed": []
             }
           ],
-          "shift": [
-            "This part is held by more than friction pins"
-          ],
+          "shift": [],
           "drags": [
             {
               "kind": "round",
@@ -1546,8 +1485,8 @@
             }
           ],
           "controlWent": [
-            347.71,
-            45.75
+            516.12,
+            70.48
           ],
           "moved": [],
           "went": {
@@ -1591,9 +1530,9 @@
         "verdict": "not shown",
         "why": "A: p2631 64782 against p2619 32184, p2665 64782 against p2620 32184 not moved; B: no listed part moved by hand; first step short: p2641 99008 slid 0 of 25 LDU; first step short: p2675 99008 slid 4 of 25 LDU"
       },
-      "seconds": 306,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:36:51.235Z"
+      "seconds": 364,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:28:36.415Z"
     },
     {
       "function": 13,

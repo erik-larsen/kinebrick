@@ -564,10 +564,10 @@
       "function": 4,
       "does": "The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.",
       "verdict": "shown",
-      "msOneCall": 8,
-      "msPerStep": 2,
+      "msOneCall": 10,
+      "msPerStep": 3,
       "time": {
-        "open": 5,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 8,
@@ -582,8 +582,8 @@
           "way": 1,
           "asked": 0.07,
           "went": 0.07,
-          "ms": 4,
-          "msOneCall": 8,
+          "ms": 5,
+          "msOneCall": 10,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -601,8 +601,8 @@
           "way": -1,
           "asked": 0.6,
           "went": -0.6,
-          "ms": 13,
-          "msOneCall": 2,
+          "ms": 20,
+          "msOneCall": 4,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -620,8 +620,8 @@
           "way": 1,
           "asked": 0.6,
           "went": 0.6,
-          "ms": 11,
-          "msOneCall": 1,
+          "ms": 16,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -639,8 +639,8 @@
           "way": -1,
           "asked": 0.07,
           "went": -0.07,
-          "ms": 2,
-          "msOneCall": 1,
+          "ms": 3,
+          "msOneCall": 2,
           "stops": [],
           "moved": {
             "p199 3710": [
@@ -680,8 +680,8 @@
             }
           ],
           "controlWent": [
-            13.86,
-            40.53
+            14.02,
+            41.03
           ],
           "moved": [],
           "went": {},
@@ -725,8 +725,8 @@
             }
           ],
           "controlWent": [
-            13.89,
-            40.63
+            13.9,
+            40.66
           ],
           "moved": [],
           "went": {},
@@ -746,9 +746,9 @@
           ]
         }
       ],
-      "seconds": 38,
-      "commit": "485a283d",
-      "date": "2026-11-25T15:00:51.518Z"
+      "seconds": 39,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:55:12.563Z"
     }
   ]
 }

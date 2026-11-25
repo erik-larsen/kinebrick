@@ -361,12 +361,12 @@
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 7,
+        "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 2,
-        "B": 16
+        "B": 17
       },
       "stop": null,
       "stops": [],
@@ -374,14 +374,6 @@
         {
           "control": "p2085 32270",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "asked": 1.5,
           "went": 0,
           "ms": 0,
@@ -413,14 +405,6 @@
         {
           "control": "p2085 32270",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…",
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "asked": 1.5,
           "went": 0,
           "ms": 0,
@@ -456,10 +440,7 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…",
-            "No friction pins hold this part: drag it"
-          ],
+          "shift": [],
           "drags": [
             {
               "kind": "push",
@@ -479,8 +460,8 @@
             }
           ],
           "controlWent": [
-            164.28,
-            34.2
+            164.33,
+            34.5
           ],
           "moved": [
             "p2084 40490",
@@ -489,26 +470,26 @@
           ],
           "went": {
             "p2084 40490": [
-              137.23,
-              33.35
+              137.22,
+              33.37
             ],
             "p2089 32524": [
-              94.64,
-              33.64
+              94.68,
+              33.77
             ],
             "p2095 32524": [
-              94.73,
-              33.64
+              94.8,
+              33.77
             ]
           },
           "staysWent": {
             "p2060 64782": [
-              232.05,
-              33.34
+              232.12,
+              33.35
             ],
             "p2136 55982": [
-              219.59,
-              33.34
+              219.65,
+              33.35
             ]
           },
           "staysMoved": [
@@ -525,9 +506,9 @@
       ],
       "why": "by hand: p2060 64782, p2136 55982 listed to stay moved",
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 26,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:41:52.865Z"
+      "seconds": 24,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:20.738Z"
     },
     {
       "function": 6,

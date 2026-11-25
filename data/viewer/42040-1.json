@@ -276,9 +276,9 @@
         "open": 5,
         "collisions": 0,
         "first": 0,
-        "reach": 8,
-        "A": 9,
-        "B": 15
+        "reach": 9,
+        "A": 0,
+        "B": 7
       },
       "stop": null,
       "stops": [],
@@ -286,13 +286,6 @@
         {
           "control": "p358 6572",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             331
           ],
@@ -319,13 +312,6 @@
         {
           "control": "p358 6572",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             331
           ],
@@ -356,30 +342,23 @@
           "seen": true,
           "cameraTurns": 1,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            331
           ],
+          "shift": [],
           "drags": [
             {
-              "kind": "push",
+              "kind": "along",
               "amount": 1
             },
             {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
-            },
-            {
-              "kind": "push",
-              "amount": 1
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            11.49,
-            33.41
+            13.8,
+            40.37
           ],
           "moved": [
             "p371 2739a",
@@ -388,29 +367,30 @@
           ],
           "went": {
             "p371 2739a": [
-              34.48,
-              1.21
+              41.39,
+              1.16
             ],
             "p330 2736": [
-              24.64,
-              48.5
+              29.62,
+              59.17
             ],
             "p338 18945": [
               0,
-              48.05
+              59.88
             ]
           },
           "staysWent": {},
           "staysMoved": [],
           "stops": [
-            "304/339"
+            "304/339",
+            "304/328"
           ]
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 38,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:32:52.092Z"
+      "seconds": 21,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:24:08.326Z"
     },
     {
       "function": 9,

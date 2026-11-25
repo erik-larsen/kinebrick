@@ -690,12 +690,12 @@
       "msOneCall": 0,
       "msPerStep": null,
       "time": {
-        "open": 23,
+        "open": 24,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 24,
-        "B": 63
+        "A": 45,
+        "B": 85
       },
       "stop": null,
       "stops": [],
@@ -795,9 +795,9 @@
         }
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 111,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:37:46.886Z"
+      "seconds": 155,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:38:58.984Z"
     }
   ]
 }

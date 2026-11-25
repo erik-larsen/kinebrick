@@ -450,53 +450,34 @@
       "function": 5,
       "does": "The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines.",
       "verdict": "shown",
-      "msOneCall": 102,
-      "msPerStep": 26,
+      "msOneCall": 0,
+      "msPerStep": null,
       "time": {
         "open": 7,
         "collisions": 0,
         "first": 0,
         "reach": 0,
-        "A": 2,
+        "A": 1,
         "B": 9
       },
-      "stop": {
-        "control": "p1064 32270",
-        "way": 1,
-        "went": 0.174,
-        "asked": 1.5,
-        "by": [
-          "1054/1062"
-        ]
-      },
-      "stops": [
-        "1054/1062"
-      ],
+      "stop": null,
+      "stops": [],
       "A": [
         {
           "control": "p1064 32270",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             1116
           ],
           "asked": 1.5,
-          "went": 0.174,
-          "ms": 129,
-          "msOneCall": 102,
-          "stops": [
-            "1054/1062"
-          ],
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
           "moved": {
             "p1061 60485": [
-              4.19,
-              15.99
+              0,
+              0
             ],
             "p1094 32278": [
               0,
@@ -507,25 +488,18 @@
         {
           "control": "p1064 32270",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "Finding the pins that hold it…"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             1116
           ],
           "asked": 1.52,
-          "went": -1.52,
-          "ms": 757,
-          "msOneCall": 32,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
           "stops": [],
           "moved": {
             "p1061 60485": [
-              36.47,
-              139.34
+              0,
+              0
             ],
             "p1094 32278": [
               0,
@@ -540,30 +514,31 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "Finding the pins that hold it…"
+          "pinsAsked": [
+            1116
           ],
+          "shift": [],
           "drags": [
             {
-              "kind": "round",
-              "amount": 1.5
+              "kind": "along",
+              "amount": 1
             },
             {
-              "kind": "round",
-              "amount": -1.5
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            4.37,
-            16.69
+            33.28,
+            131.14
           ],
           "moved": [
             "p1061 60485"
           ],
           "went": {
             "p1061 60485": [
-              4.37,
-              16.69
+              33.28,
+              131.14
             ]
           },
           "staysWent": {
@@ -580,20 +555,13 @@
           ]
         }
       ],
-      "stopsJudged": [
-        {
-          "control": "p1064 32270",
-          "judged": "stands",
-          "why": "stopped at +0.174 rad (1054/1062); kinds hinge: grab"
-        }
+      "decidedBy": [
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p1094 32278 moved 1.52, the least-moved listed part 131.14"
       ],
-      "stopVerdict": "shown",
-      "moved": {
-        "verdict": "shown"
-      },
-      "seconds": 19,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:41:15.007Z"
+      "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
+      "seconds": 17,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:40:48.178Z"
     },
     {
       "function": 6,

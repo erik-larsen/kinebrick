@@ -357,8 +357,8 @@
         "collisions": 0,
         "first": 0,
         "reach": 2,
-        "A": 2,
-        "B": 8
+        "A": 0,
+        "B": 6
       },
       "stop": null,
       "stops": [],
@@ -366,13 +366,6 @@
         {
           "control": "p93 32140",
           "way": 1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             18
           ],
@@ -411,13 +404,6 @@
         {
           "control": "p93 32140",
           "way": -1,
-          "shift": {
-            "seen": true,
-            "said": [
-              "No friction pins hold this part: drag it"
-            ],
-            "freed": []
-          },
           "pinsAsked": [
             18
           ],
@@ -460,22 +446,23 @@
           "seen": true,
           "cameraTurns": 0,
           "motor": false,
-          "shift": [
-            "No friction pins hold this part: drag it"
+          "pinsAsked": [
+            18
           ],
+          "shift": [],
           "drags": [
             {
-              "kind": "round",
-              "amount": 1.5
+              "kind": "along",
+              "amount": 1
             },
             {
-              "kind": "round",
-              "amount": -1.5
+              "kind": "along",
+              "amount": -1
             }
           ],
           "controlWent": [
-            11.86,
-            4.64
+            13.92,
+            5.83
           ],
           "moved": [
             "p103 32524",
@@ -484,16 +471,16 @@
           ],
           "went": {
             "p103 32524": [
-              28.92,
-              16.73
+              33.41,
+              19.32
             ],
             "p107 32498": [
-              29.49,
-              19.09
+              34.07,
+              22.06
             ],
             "p108 32498": [
-              29.49,
-              19.09
+              34.07,
+              22.06
             ]
           },
           "staysWent": {
@@ -515,18 +502,19 @@
             "p127 55982"
           ],
           "stops": [
+            "96/116",
             "16/87"
           ]
         }
       ],
       "decidedBy": [
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 28.92",
-        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 28.92"
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p125 55982 moved 2.33, the least-moved listed part 33.41",
+        "tenth: a part listed to stay counts as moved by hand only at a tenth of the least-moved listed part: p127 55982 moved 2.33, the least-moved listed part 33.41"
       ],
       "judgedByHand": "judged by hand: the viewer's turn does not turn this control",
-      "seconds": 16,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:41:35.516Z"
+      "seconds": 12,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:41:07.330Z"
     },
     {
       "function": 4,

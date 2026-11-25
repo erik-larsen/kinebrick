@@ -14,7 +14,7 @@
       "msOneCall": null,
       "msPerStep": 24,
       "time": {
-        "open": 13,
+        "open": 12,
         "collisions": 0,
         "first": 0,
         "reach": 9,
@@ -28,8 +28,8 @@
           "control": "p769 22169",
           "way": 1,
           "asked": 1.5,
-          "went": -1.573,
-          "ms": 1094,
+          "went": -1.581,
+          "ms": 1091,
           "msOneCall": null,
           "stops": [],
           "moved": {}
@@ -38,8 +38,8 @@
           "control": "p769 22169",
           "way": -1,
           "asked": 1.5,
-          "went": 1.659,
-          "ms": 1089,
+          "went": 1.647,
+          "ms": 1076,
           "msOneCall": null,
           "stops": [],
           "moved": {}
@@ -55,7 +55,7 @@
           "drags": [],
           "controlWent": [
             0,
-            917.829
+            921.267
           ],
           "moved": [],
           "went": {},
@@ -65,8 +65,8 @@
         }
       ],
       "seconds": 35,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:48:44.487Z"
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:43:06.877Z"
     }
   ]
 }

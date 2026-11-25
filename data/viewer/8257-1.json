@@ -172,15 +172,15 @@
       "function": 4,
       "does": "Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.",
       "verdict": "shown",
-      "msOneCall": 57,
-      "msPerStep": 13,
+      "msOneCall": 58,
+      "msPerStep": 14,
       "time": {
         "open": 6,
         "collisions": 0,
         "first": 0,
         "reach": 0,
         "A": 0,
-        "B": 13
+        "B": 14
       },
       "stop": null,
       "stops": [],
@@ -190,8 +190,8 @@
           "way": 1,
           "asked": 0.1,
           "went": 0.1,
-          "ms": 37,
-          "msOneCall": 57,
+          "ms": 40,
+          "msOneCall": 58,
           "stops": [],
           "moved": {
             "p602 2723 against p550 32018": [
@@ -209,7 +209,7 @@
           "way": -1,
           "asked": 1.37,
           "went": -1.37,
-          "ms": 247,
+          "ms": 269,
           "msOneCall": 21,
           "stops": [],
           "moved": {
@@ -250,16 +250,16 @@
             }
           ],
           "controlWent": [
-            155.15,
-            86.58
+            153.89,
+            85.71
           ],
           "moved": [
             "p602 2723 against p550 32018"
           ],
           "went": {
             "p602 2723 against p550 32018": [
-              160.51,
-              86.58
+              159.21,
+              85.71
             ]
           },
           "staysWent": {
@@ -270,14 +270,14 @@
           },
           "staysMoved": [],
           "stops": [
-            "348/594",
-            "465/594"
+            "465/594",
+            "348/594"
           ]
         }
       ],
-      "seconds": 19,
-      "commit": "485a283d",
-      "date": "2026-11-25T14:54:28.612Z"
+      "seconds": 20,
+      "commit": "2a66f499",
+      "date": "2026-11-25T15:48:27.099Z"
     },
     {
       "function": 5,
