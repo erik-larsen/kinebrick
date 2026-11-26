@@ -22,11 +22,21 @@
       }
     ]
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "performance-order-2026-11-26",
+      "kind": "Go-ahead",
+      "title": "Performance: start the work in the measured order?",
+      "what": "You agreed to measure first. Measured on 26 November (decision 377): 17 of the 1,223 functions take 55% of the check's 7.7 hours. The time is in the solver's steps on the whole model. The solver's shortcut of 20 November, the working set, does not help in three cases: where a model rolls, its set is nearly the whole model (two thirds of the measured time); the check turns every control back in one long call, which never uses the set; and a car on the ground or on tracks is left out by rule. In the viewer the 8110's wheel runs at 0.3 frames a second for the same reason. Two other costs are separate: the collision test loops over every pair of parts (half of a frame on the 42043), and the two largest models draw one mesh per part and cannot hold 60 frames a second even at rest.",
+      "effect": "The proposed order: (1) long turns on the working set, (2) the working set where the frame moves and the two rules that leave functions out, (3) the collision test with a search structure and the same answers, (4) one mesh per body in the viewer, (5) a check that skips sets whose reading did not change, (6) pushes on a working set. The solver owner takes 1, 2 and 6; the worker 3, then 4. My estimate, not a measurement: steps 1 to 3 make the check 3 to 6 times shorter and bring the largest models from under one frame a second to several. The set work stays paused meanwhile.",
+      "reply": "Start in that order",
+      "since": "2026-11-26"
+    }
+  ],
   "coming": [
     {
       "title": "Performance first; the set work is paused",
-      "what": "On 25 November you paused the work on the sets to make it faster first. The sessions have finished and tested what they had in hand and have stopped: the worker's last sweep, the Hauler's erratum and one collision rule are merged; the solver owner's track work is parked unmerged with its cause written down (373). What is open is listed in one place, decision 376 in the plan. Claude now works on performance with you. Where the time goes today: the function check sums to 8.2 hours of processor time, 81% of it in 12 of 187 sets; the viewer sweep to 17.5 hours, nearly half of it dragging by hand and a quarter finding a camera view of the control."
+      "what": "On 25 November you paused the work on the sets to make it faster first. The sessions finished and tested what they had in hand and stopped; what is open is listed in one place, decision 376 in the plan. On 26 November Claude measured where the time goes (decision 377) and proposed an order of work, which waits for your word above. The set work starts again when you say so."
     },
     {
       "title": "A sanity check of every working function in the viewer",

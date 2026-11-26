@@ -1356,6 +1356,7 @@ Browser-level tests for these paths can come later.
 | `scripts/gear-rates.ts`, `scripts/slider-cranks.ts` | What gears and slider-cranks say parts should do, without the solver, for the function check |
 | `scripts/status-page.ts`, `scripts/status-page.html` | Writes the status page from each set's results: every set as a box, sized by its pieces and coloured by the share of its checked functions that work (`npm run status`; see [docs/plan.md](docs/plan.md)) |
 | `scripts/bench-solver.ts` | Times the solver on a fixed set of drags, small models to the biggest (`npm run bench`; `--quick` leaves out the 8110 Unimog) |
+| `scripts/perf/` | Measures for the speed work (decision 377): `count.ts`, loaded beside one function's check, counts the solver's turns on the working set and on the whole model with the time in each part; `frames.ts` measures the viewer's frames at rest and on Auto spin, split into solver, collision test and drawing; `profile.py` reads node's profile of the check and names its functions by source line. How to run each is at the top of its file |
 | `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
 | `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what Kinebrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
